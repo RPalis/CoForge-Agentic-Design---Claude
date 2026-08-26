@@ -1,0 +1,53 @@
+name: Gate B
+
+# Enforcement layer 3. The same validators the PreToolUse hook runs, applied to the
+# whole repository on every change. A local hook can be disabled; this cannot.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate JSON sources of truth
+        run: |
+          for f in .claude/settings.json artifacts/_types.json artifacts/_registry.json \
+                   research/evidence-ledger.json research/participants.json \
+                   design-system/component-index.json design-system/tokens/tokens.json \
+                   design-system/contracts/figma-code-map.json; do
+            python3 -c "import json,sys;json.load(open('$f'))" || exit 1
+          done
+
+      - name: Rebuild index and fail if it was stale
+        run: |
+          python3 validation/index-system.py
+          git diff --exit-code .ai/ || {
+            echo "::error::.ai/ index is stale — run python3 validation/index-system.py and commit"
+            exit 1
+          }
+
+      - name: Rebuild artifact registry and fail if it was stale
+        run: |
+          python3 validation/rebuild-registry.py
+          git diff --exit-code artifacts/_registry.json artifacts/ARTIFACTS.md || {
+            echo "::error::artifact registry is stale — run python3 validation/rebuild-registry.py"
+            exit 1
+          }
+
+      - name: System audit (severity-ranked)
+        run: python3 validation/audit-system.py --report
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: system-audit
+          path: validation/reports/

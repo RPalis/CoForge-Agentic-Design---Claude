@@ -1,0 +1,19 @@
+{
+  "id": "ART-000",
+  "type": "",
+  "workstream": "",
+  "title": "",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "",
+  "produced_by": "",
+  "model": "",
+  "skills_used": [],
+  "inputs": { "evidence": [], "artifacts": [], "tokens_version": null },
+  "surface": { "kind": "local", "ref": null },
+  "validation": { "passed": false, "report": "validation.md", "checked_at": null },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": ""
+}

@@ -1,0 +1,334 @@
+{
+  "$comment": "Controlled vocabulary. An artifact of an unregistered type cannot be created. Adding a type is a four-part commit: definition here, an owning agent, a validation checklist, and a template.",
+  "version": "1.0.0",
+  "stages": [
+    "discover",
+    "define",
+    "develop",
+    "deliver",
+    "evaluate"
+  ],
+  "count": 40,
+  "types": [
+    {
+      "type": "research-plan",
+      "stage": "discover",
+      "description": "Objectives, method, participants, and what would change our mind.",
+      "owner_agent": "research-ops",
+      "checklist": "validation/checklists/research-plan.md",
+      "template": "artifacts/_templates/research-plan/"
+    },
+    {
+      "type": "interview-analysis",
+      "stage": "discover",
+      "description": "Structured analysis of one or more interviews, cited to the ledger.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/interview-analysis.md",
+      "template": "artifacts/_templates/interview-analysis/"
+    },
+    {
+      "type": "usability-test-analysis",
+      "stage": "discover",
+      "description": "Findings from a moderated or unmoderated usability test.",
+      "owner_agent": "research-ops",
+      "checklist": "validation/checklists/usability-test-analysis.md",
+      "template": "artifacts/_templates/usability-test-analysis/"
+    },
+    {
+      "type": "survey-analysis",
+      "stage": "discover",
+      "description": "Quantitative and open-text analysis of a survey.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/survey-analysis.md",
+      "template": "artifacts/_templates/survey-analysis/"
+    },
+    {
+      "type": "diary-study-analysis",
+      "stage": "discover",
+      "description": "Longitudinal diary or log study analysis.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/diary-study-analysis.md",
+      "template": "artifacts/_templates/diary-study-analysis/"
+    },
+    {
+      "type": "analytics-readout",
+      "stage": "discover",
+      "description": "Read of product analytics against a stated question.",
+      "owner_agent": "dashboard-analyst",
+      "checklist": "validation/checklists/analytics-readout.md",
+      "template": "artifacts/_templates/analytics-readout/"
+    },
+    {
+      "type": "competitive-benchmark",
+      "stage": "discover",
+      "description": "Comparison against competitors on named dimensions.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/competitive-benchmark.md",
+      "template": "artifacts/_templates/competitive-benchmark/"
+    },
+    {
+      "type": "stakeholder-map",
+      "stage": "discover",
+      "description": "Who decides, who is affected, who must be consulted.",
+      "owner_agent": "research-ops",
+      "checklist": "validation/checklists/stakeholder-map.md",
+      "template": "artifacts/_templates/stakeholder-map/"
+    },
+    {
+      "type": "persona",
+      "stage": "define",
+      "description": "Evidence-backed archetype. Never composite fiction.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/persona.md",
+      "template": "artifacts/_templates/persona/"
+    },
+    {
+      "type": "empathy-map",
+      "stage": "define",
+      "description": "Says / thinks / does / feels for one actor.",
+      "owner_agent": "diagram-cartographer",
+      "checklist": "validation/checklists/empathy-map.md",
+      "template": "artifacts/_templates/empathy-map/"
+    },
+    {
+      "type": "journey-map",
+      "stage": "define",
+      "description": "End-to-end journey for exactly one actor.",
+      "owner_agent": "diagram-cartographer",
+      "checklist": "validation/checklists/journey-map.md",
+      "template": "artifacts/_templates/journey-map/"
+    },
+    {
+      "type": "service-blueprint",
+      "stage": "define",
+      "description": "Frontstage, backstage and support processes.",
+      "owner_agent": "diagram-cartographer",
+      "checklist": "validation/checklists/service-blueprint.md",
+      "template": "artifacts/_templates/service-blueprint/"
+    },
+    {
+      "type": "jtbd",
+      "stage": "define",
+      "description": "Jobs-to-be-done statements with context and forces.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/jtbd.md",
+      "template": "artifacts/_templates/jtbd/"
+    },
+    {
+      "type": "insight-report",
+      "stage": "define",
+      "description": "Synthesised findings with confidence labels.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/insight-report.md",
+      "template": "artifacts/_templates/insight-report/"
+    },
+    {
+      "type": "opportunity-map",
+      "stage": "define",
+      "description": "Opportunity solution tree or equivalent.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/opportunity-map.md",
+      "template": "artifacts/_templates/opportunity-map/"
+    },
+    {
+      "type": "problem-statement",
+      "stage": "define",
+      "description": "The problem, who has it, and the evidence.",
+      "owner_agent": "research-synthesizer",
+      "checklist": "validation/checklists/problem-statement.md",
+      "template": "artifacts/_templates/problem-statement/"
+    },
+    {
+      "type": "prioritization",
+      "stage": "define",
+      "description": "Ranked backlog with the scoring model shown.",
+      "owner_agent": "research-ops",
+      "checklist": "validation/checklists/prioritization.md",
+      "template": "artifacts/_templates/prioritization/"
+    },
+    {
+      "type": "ia-map",
+      "stage": "develop",
+      "description": "Sitemap or content hierarchy.",
+      "owner_agent": "diagram-cartographer",
+      "checklist": "validation/checklists/ia-map.md",
+      "template": "artifacts/_templates/ia-map/"
+    },
+    {
+      "type": "taxonomy",
+      "stage": "develop",
+      "description": "Controlled vocabulary, labels and relationships.",
+      "owner_agent": "diagram-cartographer",
+      "checklist": "validation/checklists/taxonomy.md",
+      "template": "artifacts/_templates/taxonomy/"
+    },
+    {
+      "type": "user-flow",
+      "stage": "develop",
+      "description": "Task flow with decision points and error paths.",
+      "owner_agent": "diagram-cartographer",
+      "checklist": "validation/checklists/user-flow.md",
+      "template": "artifacts/_templates/user-flow/"
+    },
+    {
+      "type": "wireframe",
+      "stage": "develop",
+      "description": "Low-fidelity structure. No brand, no final copy.",
+      "owner_agent": "screen-producer",
+      "checklist": "validation/checklists/wireframe.md",
+      "template": "artifacts/_templates/wireframe/"
+    },
+    {
+      "type": "ui-screen",
+      "stage": "develop",
+      "description": "On-system high-fidelity screen.",
+      "owner_agent": "screen-producer",
+      "checklist": "validation/checklists/ui-screen.md",
+      "template": "artifacts/_templates/ui-screen/"
+    },
+    {
+      "type": "component-spec",
+      "stage": "develop",
+      "description": "PROPOSAL for a new component. Promotion-only into the index.",
+      "owner_agent": "screen-producer",
+      "checklist": "validation/checklists/component-spec.md",
+      "template": "artifacts/_templates/component-spec/"
+    },
+    {
+      "type": "pattern-spec",
+      "stage": "develop",
+      "description": "PROPOSAL for a reusable pattern. Promotion-only.",
+      "owner_agent": "screen-producer",
+      "checklist": "validation/checklists/pattern-spec.md",
+      "template": "artifacts/_templates/pattern-spec/"
+    },
+    {
+      "type": "ux-copy",
+      "stage": "develop",
+      "description": "Interface copy with voice rationale.",
+      "owner_agent": "content-comms",
+      "checklist": "validation/checklists/ux-copy.md",
+      "template": "artifacts/_templates/ux-copy/"
+    },
+    {
+      "type": "motion-spec",
+      "stage": "develop",
+      "description": "Timing, easing and choreography.",
+      "owner_agent": "screen-producer",
+      "checklist": "validation/checklists/motion-spec.md",
+      "template": "artifacts/_templates/motion-spec/"
+    },
+    {
+      "type": "data-viz",
+      "stage": "develop",
+      "description": "A single chart or visualisation with its data source.",
+      "owner_agent": "dashboard-analyst",
+      "checklist": "validation/checklists/data-viz.md",
+      "template": "artifacts/_templates/data-viz/"
+    },
+    {
+      "type": "dashboard",
+      "stage": "develop",
+      "description": "Multi-metric view with defined refresh and owner.",
+      "owner_agent": "dashboard-analyst",
+      "checklist": "validation/checklists/dashboard.md",
+      "template": "artifacts/_templates/dashboard/"
+    },
+    {
+      "type": "prototype",
+      "stage": "deliver",
+      "description": "Clickable prototype at stated fidelity.",
+      "owner_agent": "screen-producer",
+      "checklist": "validation/checklists/prototype.md",
+      "template": "artifacts/_templates/prototype/"
+    },
+    {
+      "type": "handoff-spec",
+      "stage": "deliver",
+      "description": "Implementation notes and acceptance criteria.",
+      "owner_agent": "handoff-scribe",
+      "checklist": "validation/checklists/handoff-spec.md",
+      "template": "artifacts/_templates/handoff-spec/"
+    },
+    {
+      "type": "redlines",
+      "stage": "deliver",
+      "description": "Measured annotations against the component contract.",
+      "owner_agent": "handoff-scribe",
+      "checklist": "validation/checklists/redlines.md",
+      "template": "artifacts/_templates/redlines/"
+    },
+    {
+      "type": "presentation",
+      "stage": "deliver",
+      "description": "Deck for a named audience and decision.",
+      "owner_agent": "content-comms",
+      "checklist": "validation/checklists/presentation.md",
+      "template": "artifacts/_templates/presentation/"
+    },
+    {
+      "type": "release-note",
+      "stage": "deliver",
+      "description": "What shipped, for whom, and what changed.",
+      "owner_agent": "content-comms",
+      "checklist": "validation/checklists/release-note.md",
+      "template": "artifacts/_templates/release-note/"
+    },
+    {
+      "type": "ux-benchmark",
+      "stage": "evaluate",
+      "description": "Repeatable measurement against a prior baseline.",
+      "owner_agent": "research-ops",
+      "checklist": "validation/checklists/ux-benchmark.md",
+      "template": "artifacts/_templates/ux-benchmark/"
+    },
+    {
+      "type": "heuristic-review",
+      "stage": "evaluate",
+      "description": "Structured review against named heuristics.",
+      "owner_agent": "design-critic",
+      "checklist": "validation/checklists/heuristic-review.md",
+      "template": "artifacts/_templates/heuristic-review/"
+    },
+    {
+      "type": "a11y-audit",
+      "stage": "evaluate",
+      "description": "WCAG audit with computed values and thresholds.",
+      "owner_agent": "a11y-checker",
+      "checklist": "validation/checklists/a11y-audit.md",
+      "template": "artifacts/_templates/a11y-audit/"
+    },
+    {
+      "type": "design-critique",
+      "stage": "evaluate",
+      "description": "Adversarial review. Advisory, never automatic.",
+      "owner_agent": "design-critic",
+      "checklist": "validation/checklists/design-critique.md",
+      "template": "artifacts/_templates/design-critique/"
+    },
+    {
+      "type": "experiment-plan",
+      "stage": "evaluate",
+      "description": "Hypothesis, metric, guardrail metric, stop rule.",
+      "owner_agent": "research-ops",
+      "checklist": "validation/checklists/experiment-plan.md",
+      "template": "artifacts/_templates/experiment-plan/"
+    },
+    {
+      "type": "metrics-scorecard",
+      "stage": "evaluate",
+      "description": "Tracked metrics against targets.",
+      "owner_agent": "dashboard-analyst",
+      "checklist": "validation/checklists/metrics-scorecard.md",
+      "template": "artifacts/_templates/metrics-scorecard/"
+    },
+    {
+      "type": "test-report",
+      "stage": "evaluate",
+      "description": "Results of a specific test with severity set by a human.",
+      "owner_agent": "research-ops",
+      "checklist": "validation/checklists/test-report.md",
+      "template": "artifacts/_templates/test-report/"
+    }
+  ]
+}

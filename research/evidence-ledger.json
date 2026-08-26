@@ -1,0 +1,6 @@
+{
+  "$comment": "Evidence source of truth. One record per verbatim quote. Owner: evidence-clerk.",
+  "version": "1.0.0",
+  "count": 0,
+  "evidence": []
+}

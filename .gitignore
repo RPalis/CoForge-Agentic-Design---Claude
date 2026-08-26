@@ -1,0 +1,25 @@
+# ── ephemeral / never approved ────────────────────────────────
+scratch/*
+!scratch/.gitkeep
+
+# ── non-canonical working files (superseded generators, plan specs) ──
+_drafts/
+
+# ── OS / editor noise ─────────────────────────────────────────
+.DS_Store
+~$*
+*.swp
+
+# ── python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+
+# ── local-only preview state ──────────────────────────────────
+.claude/settings.local.json
+
+# ── kept local: internal working record and draft deliverables ─────
+# Client-owned project. memory/ holds working notes and corrections;
+# the blueprint is a draft with unfilled placeholders. Add them back
+# deliberately if the team needs continuity in the repo.
+memory/
+*.docx

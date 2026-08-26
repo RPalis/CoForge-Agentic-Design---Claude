@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-raquelpalis-Desktop-Luma-Claude/261f746e-d99a-4e95-8df1-32081f3d2bd7/scratchpad/serve-test/serve.py",
+        "/private/tmp/claude-501/-Users-raquelpalis-Desktop-Luma-Claude/261f746e-d99a-4e95-8df1-32081f3d2bd7/scratchpad/serve-test",
+        "4173"
+      ],
+      "port": 4173,
+      "url": "http://localhost:4173"
+    }
+  ]
+}

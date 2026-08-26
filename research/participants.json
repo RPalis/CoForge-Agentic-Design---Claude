@@ -1,0 +1,5 @@
+{
+  "$comment": "Pseudonymised participants. Never store real names, emails or employers.",
+  "version": "1.0.0",
+  "participants": []
+}

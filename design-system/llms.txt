@@ -1,0 +1,15 @@
+# CoForge Design System
+
+> GENERATED — do not hand-edit. Rebuilt from component-index.json and tokens.json.
+> State: RED (no design system yet). This file is a stub until Build Stage 2.
+
+## Tokens
+None. `design-system/tokens/tokens.json` is seeded empty.
+
+## Components
+None. `design-system/component-index.json` is seeded empty.
+
+## Rules
+- Every colour, spacing, radius and type value comes from tokens.json. No raw hex, no raw px.
+- No component may be used that is not in component-index.json.
+- To propose something new, write a component-spec artifact and request promotion.

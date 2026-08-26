@@ -1,0 +1,24 @@
+# Checklist — prototype
+
+**Stage:** deliver · **Owner:** `screen-producer`
+
+> Clickable prototype at stated fidelity.
+
+## Gate B — automatic (blocks)
+
+- [ ] Artifact is a directory named `YYYY-MM-DD__prototype__<slug>__v<N>`
+- [ ] `manifest.json` present and valid
+- [ ] `validation.md` present (this file, filled in)
+- [ ] Every `[E-nnn]` citation resolves in `research/evidence-ledger.json`
+- [ ] No raw hex / no raw px where the artifact is visual
+
+## Type-specific hard rules
+
+- [ ] Fidelity stated explicitly.
+- [ ] Dead ends and error paths handled or declared out of scope.
+
+## Gate A — human review
+
+- [ ] Claims labelled `Evidenced` / `Inferred` / `Assumption`
+- [ ] Assumptions block present and visible
+- [ ] Reviewed by: ______  Date: ______

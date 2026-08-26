@@ -1,0 +1,6 @@
+{
+  "$comment": "System source of truth. Promotion-only: a component-spec artifact enters here by explicit human approval recorded as an ADR.",
+  "version": "0.1.0",
+  "count": 0,
+  "components": []
+}

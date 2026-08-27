@@ -7,10 +7,11 @@
     "A lookup missing here means the index is stale \u2014 re-run validation/index-system.py."
   ],
   "state": {
-    "ds_fork": "YELLOW",
+    "ds_fork": "RED",
+    "ds_fork_note": "RED until adapter #1 populates L2 components (ADR-011).",
     "evidence_records": 0,
     "raw_sources": 0,
-    "tokens": 59,
+    "tokens": 666,
     "components": 8,
     "artifacts": 4,
     "brand_defined": false
@@ -18,7 +19,7 @@
   "counts": {
     "agents": 13,
     "artifact_types": 40,
-    "adrs": 15,
+    "adrs": 16,
     "relationships": 150
   },
   "agents": [
@@ -356,6 +357,11 @@
     {
       "file": "decisions/ADR-015-licence.md",
       "title": "ADR-015 \u2014 Licence: Apache-2.0",
+      "status": "Accepted \u00b7 2026-08-27"
+    },
+    {
+      "file": "decisions/ADR-016-repository-location.md",
+      "title": "ADR-016 \u2014 Repository location: off ~/Desktop",
       "status": "Accepted \u00b7 2026-08-27"
     }
   ],

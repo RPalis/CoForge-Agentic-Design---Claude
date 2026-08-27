@@ -69,11 +69,18 @@ ledger = jload("research/evidence-ledger.json", {})
 tokens = jload("design-system/tokens/tokens.json", {})
 cindex = jload("design-system/component-index.json", {})
 registry = jload("artifacts/_registry.json", {})
-n_tokens = sum(len(v) for k, v in tokens.items() if isinstance(v, dict) and not k.startswith("$"))
+def _leaves(o):
+    if not isinstance(o, dict): return 0
+    if "$value" in o: return 1
+    return sum(_leaves(v) for k, v in o.items() if not k.startswith("$"))
+n_tokens = _leaves(tokens)   # DTCG leaves, counted the same way llms.txt counts them
 sources = [f for f in os.listdir(P("research", "sources")) if not f.startswith(".")]
 
 state = {
-    "ds_fork": "RED" if not cindex.get("components") else "YELLOW",
+    # The fork is a DECISION, not a heuristic. L1 primitives existing does not make
+    # a design system exist. Declared state wins; counts are reported alongside it.
+    "ds_fork": "RED",
+    "ds_fork_note": "RED until adapter #1 populates L2 components (ADR-011).",
     "evidence_records": ledger.get("count", 0),
     "raw_sources": len(sources),
     "tokens": n_tokens,

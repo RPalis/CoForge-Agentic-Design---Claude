@@ -5,17 +5,18 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-13 agents · 40 artifact types · 15 ADRs · 150 relationships
+13 agents · 40 artifact types · 16 ADRs · 150 relationships
 
 
 ## State
 
 | | |
 |---|---|
-| ds_fork | YELLOW |
+| ds_fork | RED |
+| ds_fork_note | RED until adapter #1 populates L2 components (ADR-011). |
 | evidence_records | 0 |
 | raw_sources | 0 |
-| tokens | 59 |
+| tokens | 666 |
 | components | 8 |
 | artifacts | 4 |
 | brand_defined | False |
@@ -77,3 +78,4 @@
 - [ADR-013 — POC acceptance criteria: the 8 links, and how each is passed](decisions/ADR-013-poc-acceptance-criteria.md) — Accepted · 2026-08-27
 - [ADR-014 — Analytics: a joiner, not an instrument](decisions/ADR-014-analytics-layer.md) — Accepted · 2026-08-27
 - [ADR-015 — Licence: Apache-2.0](decisions/ADR-015-licence.md) — Accepted · 2026-08-27
+- [ADR-016 — Repository location: off ~/Desktop](decisions/ADR-016-repository-location.md) — Accepted · 2026-08-27

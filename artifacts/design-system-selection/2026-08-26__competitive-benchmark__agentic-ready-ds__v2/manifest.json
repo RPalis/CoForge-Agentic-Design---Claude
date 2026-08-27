@@ -1,0 +1,92 @@
+{
+  "id": "ART-002",
+  "type": "competitive-benchmark",
+  "workstream": "design-system-selection",
+  "title": "Benchmark \u2014 agentic-ready design systems (v2: Figma surface added)",
+  "file": "design-system-benchmark.md",
+  "version": 2,
+  "supersedes": "ART-001",
+  "status": "in-review",
+  "stage": "discover",
+  "produced_by": "main-session",
+  "model": "claude-opus-5",
+  "skills_used": [
+    "ux-competitor-analysis"
+  ],
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "tokens_version": null,
+    "sources": [
+      {
+        "id": "S-01",
+        "what": "southleft/design-systems-mcp \u2014 third-party MCP covering Carbon, Polaris, Atlassian, Material 3, Fluent, Spectrum, shadcn, Radix",
+        "url": "https://github.com/southleft/design-systems-mcp"
+      },
+      {
+        "id": "S-02",
+        "what": "Carbon Design System \u2014 Carbon MCP overview (verified HTTP 200)",
+        "url": "https://carbondesignsystem.com/developing/carbon-mcp/overview/"
+      },
+      {
+        "id": "S-03",
+        "what": "HeroUI \u2014 official MCP servers for HeroUI React v3 and HeroUI Native",
+        "url": "https://github.com/heroui-inc/heroui-mcp"
+      },
+      {
+        "id": "S-04",
+        "what": "Ant Design \u2014 official MCP server documentation (verified HTTP 200)",
+        "url": "https://ant.design/docs/react/mcp/"
+      },
+      {
+        "id": "S-05",
+        "what": "W3C DTCG Token Architecture explained",
+        "url": "https://uxhero.design/blog/w3c-dtcg-token-architecture"
+      },
+      {
+        "id": "S-06",
+        "what": "Design Systems: From Web to Mobile \u2014 token-layer vs component-layer sharing",
+        "url": "https://pearpages.com/blog/2026/07/02/design-systems-from-web-to-mobile"
+      },
+      {
+        "id": "S-07",
+        "what": "Design tokens with the W3C standard \u2014 DTCG 2025.10 stable, 24+ orgs, 84% adoption",
+        "url": "https://malakavenu.com/articles/design-tokens-w3c-2026"
+      },
+      {
+        "id": "S-08",
+        "what": "npm registry downloads API \u2014 adoption figures, last-week, retrieved 2026-08-26",
+        "url": "https://api.npmjs.org/downloads/point/last-week/"
+      },
+      {
+        "id": "S-09",
+        "what": "GitHub REST API \u2014 licence, stars, pushed_at, retrieved 2026-08-26",
+        "url": "https://api.github.com/repos/"
+      },
+      {
+        "id": "S-10",
+        "what": "Carbon repo git tree \u2014 157 Code Connect artifacts verified 2026-08-26",
+        "url": "https://api.github.com/repos/carbon-design-system/carbon/git/trees/HEAD?recursive=1"
+      },
+      {
+        "id": "S-11",
+        "what": "Carbon Figma kit page (verified HTTP 200)",
+        "url": "https://carbondesignsystem.com/designing/kits/figma/"
+      }
+    ]
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-08-26"
+  },
+  "autonomy": "suggest-only",
+  "reviewed_by": null,
+  "created_at": "2026-08-26",
+  "produced_by_claimed": "research-synthesizer",
+  "provenance_note": "Written directly, not dispatched. See pre-start audit."
+}

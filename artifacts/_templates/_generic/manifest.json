@@ -3,6 +3,7 @@
   "type": "",
   "workstream": "",
   "title": "",
+  "file": "",
   "version": 1,
   "supersedes": null,
   "status": "draft",
@@ -10,9 +11,20 @@
   "produced_by": "",
   "model": "",
   "skills_used": [],
-  "inputs": { "evidence": [], "artifacts": [], "tokens_version": null },
-  "surface": { "kind": "local", "ref": null },
-  "validation": { "passed": false, "report": "validation.md", "checked_at": null },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "tokens_version": null
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": false,
+    "report": "validation.md",
+    "checked_at": null
+  },
   "autonomy": "draft",
   "reviewed_by": null,
   "created_at": ""

@@ -42,6 +42,14 @@ jobs:
             exit 1
           }
 
+      - name: Rebuild llms.txt and fail if it was stale
+        run: |
+          python3 validation/build-llms-txt.py
+          git diff --exit-code design-system/llms.txt || {
+            echo "::error::llms.txt is stale — run python3 validation/build-llms-txt.py"
+            exit 1
+          }
+
       - name: System audit (severity-ranked)
         run: python3 validation/audit-system.py --report
 

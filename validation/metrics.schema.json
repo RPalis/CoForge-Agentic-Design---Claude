@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "coforge/metrics.schema.json",
+  "title": "CoForge run record",
+  "description": "Defined BEFORE measuring, so measurements are not invented ad hoc — the same argument as the component contract schema (ADR-013). PRIVACY: counts and identifiers only. No conversation content, no file contents, no free text. Enforced by a self-check in collect-metrics.py.",
+  "type": "object",
+  "required": ["run_id","generated_at","tokens","artifacts","gates","readiness"],
+  "additionalProperties": false,
+  "properties": {
+    "run_id":       {"type":"string","description":"ISO date of the run"},
+    "generated_at": {"type":"string"},
+    "project":      {"type":"string"},
+    "session": {
+      "type":"object","additionalProperties": false,
+      "properties":{"turns":{"type":"integer"},"duration_min":{"type":"number"},
+                    "transcripts":{"type":"integer"}}},
+    "tokens": {
+      "type":"object","additionalProperties": false,
+      "description":"Billable = input + output. Cache figures reported separately because they dominate volume but not cost.",
+      "properties":{"input":{"type":"integer"},"output":{"type":"integer"},
+                    "cache_read":{"type":"integer"},"cache_creation":{"type":"integer"},
+                    "billable":{"type":"integer"}}},
+    "tools":  {"type":"object","description":"tool name → call count"},
+    "skills": {"type":"object","description":"skill name → activation count"},
+    "artifacts": {
+      "type":"object","additionalProperties": false,
+      "properties":{"total":{"type":"integer"},"live":{"type":"integer"},
+                    "by_type":{"type":"object"},"by_status":{"type":"object"},
+                    "tokens_per_artifact":{"type":["integer","null"]}}},
+    "gates": {
+      "type":"object","additionalProperties": false,
+      "description":"skipped is tracked as a first-class outcome — skipped is not passed",
+      "properties":{"verdict":{"type":"string"},"blocker":{"type":"integer"},
+                    "error":{"type":"integer"},"warning":{"type":"integer"},
+                    "info":{"type":"integer"},"skipped":{"type":"integer"}}},
+    "corrections": {"type":"object","additionalProperties": false,
+                    "properties":{"logged":{"type":"integer"},"promoted":{"type":"integer"}}},
+    "governance":  {"type":"object","additionalProperties": false,
+                    "properties":{"adrs":{"type":"integer"},"agents":{"type":"integer"},
+                                  "artifact_types":{"type":"integer"}}},
+    "readiness":   {"type":"object","additionalProperties": false,
+                    "properties":{"l1":{"type":"number"},"l2":{"type":"number"},
+                                  "workflow":{"type":"number"}}}
+  }
+}

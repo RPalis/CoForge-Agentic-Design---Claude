@@ -65,7 +65,8 @@ Gate B first (cheap, mechanical), then Gate A for calls that need a person.
 | # | Layer | Implemented by |
 |---|---|---|
 | 1 | Impossible | `.claude/settings.json` + per-agent `tools:` |
-| 2 | Blocked | `.claude/hooks/gate-b.py` (PreToolUse) |
+| 2 | Blocked | `.claude/hooks/gate-b.py` (PreToolUse on Write\|Edit) |
+| 2b | Backstop | `.claude/hooks/session-check.py` (Stop) — **Gate B does NOT fire on Bash writes**; this catches them |
 | 3 | Failed | `.github/workflows/ci.yml` → `validation/audit-system.py` |
 | 4 | Visible | `validation/reports/*__system-audit.md` |
 | 5 | Written | the two prohibitions above |
@@ -76,11 +77,22 @@ a suggested fix. **Skipped checks are always reported: skipped is not passed.**
 
 Tool-gating outranks prohibition. Never solve with prose what a permission can solve.
 
+## Two output levels (ADR-012)
+
+- **L1 Foundations** — branded documents, decks, dashboards, diagrams. Needs tokens +
+  `brand.md` + the 8 level-1 primitives. **34 of 40 artifact types.** Available at Build Stage 2.
+- **L2 Complete** — responsive web prototypes and product UI. Needs the full component index,
+  Code Connect and the CoForge MCP. 6 artifact types. Build Stage 3.
+
+Gate B applies at both levels. L1 is not exempt — its component vocabulary is *restricted to
+level-1 entries*, which is stricter than exempting it and costs one field in the index.
+
 ## The DS fork
 
 - **Green** — DS in code: screen-producer targets Claude Code + Figma MCP + Code Connect.
 - **Yellow** — DS exists, not in code: match components, review consistency, feed gaps to token-keeper.
-- **Red** — no DS: token-keeper builds one before screens are produced. **CoForge is here.**
+- **Red** — no DS: token-keeper builds one before **L2** screens are produced. **CoForge is here** —
+  but L1 output unblocks as soon as tokens land, without waiting for the full library.
 
 ## Routing table
 
@@ -126,9 +138,9 @@ a **directory** — no exceptions:
 
 ```
 artifacts/<workstream>/YYYY-MM-DD__<type>__<slug>__v<N>/
-    artifact.<ext>     the thing itself
-    manifest.json      provenance; travels with the asset
-    validation.md      proof it passed, before a human saw it
+    <descriptive-name>.<ext>   the thing itself — named for a human (ADR-010)
+    manifest.json              provenance; "file" names the payload
+    validation.md              proof it passed, before a human saw it
 ```
 
 - Type must exist in `artifacts/_types.json` (38 types). Unregistered type = no artifact.
@@ -175,8 +187,11 @@ without a baseline you cannot tell whether the skill helped. Assertions are writ
 - **Start:** this file → **`.ai/index.md`** (load once, keep in context, fetch detail on
   demand) → `memory/corrections.md` → tail of `memory/session-log.md` →
   `memory/open-questions.md`.
-- **End:** append what was produced, what changed in either source of truth, what is
-  blocked, and the single next action.
+- **End:** run `python3 validation/audit-system.py` (the Stop hook does this automatically),
+  then append what was produced, what changed in either source of truth, what is blocked,
+  and the single next action.
+- **Never assume a gate ran.** Gate B fires on Write/Edit only. Bash heredocs bypass it —
+  that is how this repository was actually built, and it went unnoticed for a full session.
 - A correction that recurs twice is promoted into this file as a standing rule.
 
 ## Output surfaces

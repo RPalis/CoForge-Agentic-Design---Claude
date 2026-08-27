@@ -23,3 +23,9 @@ __pycache__/
 # deliberately if the team needs continuity in the repo.
 memory/
 *.docx
+
+# ── analytics ─────────────────────────────────────────────────
+# Aggregate run records ARE committed (counts only, privacy-checked).
+# Raw transcripts must never enter the repo — they hold full conversation content.
+*.jsonl
+!validation/metrics/*.json

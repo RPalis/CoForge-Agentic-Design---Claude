@@ -1,0 +1,12 @@
+CoForge — Agentic Design System
+Copyright 2026 CoForge
+
+This product includes design tokens derived from the Carbon Design System
+(@carbon/themes 11.79.0), Copyright IBM Corp., licensed under the Apache
+License 2.0 — https://github.com/carbon-design-system/carbon
+
+Carbon publishes W3C DTCG tokens natively; they are consumed in that format.
+Aliases are preserved rather than resolved.
+
+CoForge is not affiliated with or endorsed by IBM. Apache-2.0 §6 grants no
+right to IBM trade names, trademarks or product names, and none is claimed.

@@ -1,5 +1,5 @@
 {
-  "$comment": "Controlled vocabulary. An artifact of an unregistered type cannot be created. Adding a type is a four-part commit: definition here, an owning agent, a validation checklist, and a template.",
+  "$comment": "Controlled vocabulary. An artifact of an unregistered type cannot be created. Adding a type is a four-part commit: definition here, an owning agent, a validation checklist, and a template. Each type declares a level (ADR-012): 1 = producible from tokens + primitives, 2 = needs the full component library.",
   "version": "1.0.0",
   "stages": [
     "discover",
@@ -16,7 +16,8 @@
       "description": "Objectives, method, participants, and what would change our mind.",
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/research-plan.md",
-      "template": "artifacts/_templates/research-plan/"
+      "template": "artifacts/_templates/research-plan/",
+      "level": 1
     },
     {
       "type": "interview-analysis",
@@ -24,7 +25,8 @@
       "description": "Structured analysis of one or more interviews, cited to the ledger.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/interview-analysis.md",
-      "template": "artifacts/_templates/interview-analysis/"
+      "template": "artifacts/_templates/interview-analysis/",
+      "level": 1
     },
     {
       "type": "usability-test-analysis",
@@ -32,7 +34,8 @@
       "description": "Findings from a moderated or unmoderated usability test.",
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/usability-test-analysis.md",
-      "template": "artifacts/_templates/usability-test-analysis/"
+      "template": "artifacts/_templates/usability-test-analysis/",
+      "level": 1
     },
     {
       "type": "survey-analysis",
@@ -40,7 +43,8 @@
       "description": "Quantitative and open-text analysis of a survey.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/survey-analysis.md",
-      "template": "artifacts/_templates/survey-analysis/"
+      "template": "artifacts/_templates/survey-analysis/",
+      "level": 1
     },
     {
       "type": "diary-study-analysis",
@@ -48,7 +52,8 @@
       "description": "Longitudinal diary or log study analysis.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/diary-study-analysis.md",
-      "template": "artifacts/_templates/diary-study-analysis/"
+      "template": "artifacts/_templates/diary-study-analysis/",
+      "level": 1
     },
     {
       "type": "analytics-readout",
@@ -56,7 +61,8 @@
       "description": "Read of product analytics against a stated question.",
       "owner_agent": "dashboard-analyst",
       "checklist": "validation/checklists/analytics-readout.md",
-      "template": "artifacts/_templates/analytics-readout/"
+      "template": "artifacts/_templates/analytics-readout/",
+      "level": 1
     },
     {
       "type": "competitive-benchmark",
@@ -64,7 +70,8 @@
       "description": "Comparison against competitors on named dimensions.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/competitive-benchmark.md",
-      "template": "artifacts/_templates/competitive-benchmark/"
+      "template": "artifacts/_templates/competitive-benchmark/",
+      "level": 1
     },
     {
       "type": "stakeholder-map",
@@ -72,7 +79,8 @@
       "description": "Who decides, who is affected, who must be consulted.",
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/stakeholder-map.md",
-      "template": "artifacts/_templates/stakeholder-map/"
+      "template": "artifacts/_templates/stakeholder-map/",
+      "level": 1
     },
     {
       "type": "persona",
@@ -80,7 +88,8 @@
       "description": "Evidence-backed archetype. Never composite fiction.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/persona.md",
-      "template": "artifacts/_templates/persona/"
+      "template": "artifacts/_templates/persona/",
+      "level": 1
     },
     {
       "type": "empathy-map",
@@ -88,7 +97,8 @@
       "description": "Says / thinks / does / feels for one actor.",
       "owner_agent": "diagram-cartographer",
       "checklist": "validation/checklists/empathy-map.md",
-      "template": "artifacts/_templates/empathy-map/"
+      "template": "artifacts/_templates/empathy-map/",
+      "level": 1
     },
     {
       "type": "journey-map",
@@ -96,7 +106,8 @@
       "description": "End-to-end journey for exactly one actor.",
       "owner_agent": "diagram-cartographer",
       "checklist": "validation/checklists/journey-map.md",
-      "template": "artifacts/_templates/journey-map/"
+      "template": "artifacts/_templates/journey-map/",
+      "level": 1
     },
     {
       "type": "service-blueprint",
@@ -104,7 +115,8 @@
       "description": "Frontstage, backstage and support processes.",
       "owner_agent": "diagram-cartographer",
       "checklist": "validation/checklists/service-blueprint.md",
-      "template": "artifacts/_templates/service-blueprint/"
+      "template": "artifacts/_templates/service-blueprint/",
+      "level": 1
     },
     {
       "type": "jtbd",
@@ -112,7 +124,8 @@
       "description": "Jobs-to-be-done statements with context and forces.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/jtbd.md",
-      "template": "artifacts/_templates/jtbd/"
+      "template": "artifacts/_templates/jtbd/",
+      "level": 1
     },
     {
       "type": "insight-report",
@@ -120,7 +133,8 @@
       "description": "Synthesised findings with confidence labels.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/insight-report.md",
-      "template": "artifacts/_templates/insight-report/"
+      "template": "artifacts/_templates/insight-report/",
+      "level": 1
     },
     {
       "type": "opportunity-map",
@@ -128,7 +142,8 @@
       "description": "Opportunity solution tree or equivalent.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/opportunity-map.md",
-      "template": "artifacts/_templates/opportunity-map/"
+      "template": "artifacts/_templates/opportunity-map/",
+      "level": 1
     },
     {
       "type": "problem-statement",
@@ -136,7 +151,8 @@
       "description": "The problem, who has it, and the evidence.",
       "owner_agent": "research-synthesizer",
       "checklist": "validation/checklists/problem-statement.md",
-      "template": "artifacts/_templates/problem-statement/"
+      "template": "artifacts/_templates/problem-statement/",
+      "level": 1
     },
     {
       "type": "prioritization",
@@ -144,7 +160,8 @@
       "description": "Ranked backlog with the scoring model shown.",
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/prioritization.md",
-      "template": "artifacts/_templates/prioritization/"
+      "template": "artifacts/_templates/prioritization/",
+      "level": 1
     },
     {
       "type": "ia-map",
@@ -152,7 +169,8 @@
       "description": "Sitemap or content hierarchy.",
       "owner_agent": "diagram-cartographer",
       "checklist": "validation/checklists/ia-map.md",
-      "template": "artifacts/_templates/ia-map/"
+      "template": "artifacts/_templates/ia-map/",
+      "level": 1
     },
     {
       "type": "taxonomy",
@@ -160,7 +178,8 @@
       "description": "Controlled vocabulary, labels and relationships.",
       "owner_agent": "diagram-cartographer",
       "checklist": "validation/checklists/taxonomy.md",
-      "template": "artifacts/_templates/taxonomy/"
+      "template": "artifacts/_templates/taxonomy/",
+      "level": 1
     },
     {
       "type": "user-flow",
@@ -168,7 +187,8 @@
       "description": "Task flow with decision points and error paths.",
       "owner_agent": "diagram-cartographer",
       "checklist": "validation/checklists/user-flow.md",
-      "template": "artifacts/_templates/user-flow/"
+      "template": "artifacts/_templates/user-flow/",
+      "level": 1
     },
     {
       "type": "wireframe",
@@ -176,7 +196,8 @@
       "description": "Low-fidelity structure. No brand, no final copy.",
       "owner_agent": "screen-producer",
       "checklist": "validation/checklists/wireframe.md",
-      "template": "artifacts/_templates/wireframe/"
+      "template": "artifacts/_templates/wireframe/",
+      "level": 2
     },
     {
       "type": "ui-screen",
@@ -184,7 +205,8 @@
       "description": "On-system high-fidelity screen.",
       "owner_agent": "screen-producer",
       "checklist": "validation/checklists/ui-screen.md",
-      "template": "artifacts/_templates/ui-screen/"
+      "template": "artifacts/_templates/ui-screen/",
+      "level": 2
     },
     {
       "type": "component-spec",
@@ -192,7 +214,8 @@
       "description": "PROPOSAL for a new component. Promotion-only into the index.",
       "owner_agent": "screen-producer",
       "checklist": "validation/checklists/component-spec.md",
-      "template": "artifacts/_templates/component-spec/"
+      "template": "artifacts/_templates/component-spec/",
+      "level": 2
     },
     {
       "type": "pattern-spec",
@@ -200,7 +223,8 @@
       "description": "PROPOSAL for a reusable pattern. Promotion-only.",
       "owner_agent": "screen-producer",
       "checklist": "validation/checklists/pattern-spec.md",
-      "template": "artifacts/_templates/pattern-spec/"
+      "template": "artifacts/_templates/pattern-spec/",
+      "level": 2
     },
     {
       "type": "ux-copy",
@@ -208,7 +232,8 @@
       "description": "Interface copy with voice rationale.",
       "owner_agent": "content-comms",
       "checklist": "validation/checklists/ux-copy.md",
-      "template": "artifacts/_templates/ux-copy/"
+      "template": "artifacts/_templates/ux-copy/",
+      "level": 1
     },
     {
       "type": "motion-spec",
@@ -216,7 +241,8 @@
       "description": "Timing, easing and choreography.",
       "owner_agent": "screen-producer",
       "checklist": "validation/checklists/motion-spec.md",
-      "template": "artifacts/_templates/motion-spec/"
+      "template": "artifacts/_templates/motion-spec/",
+      "level": 2
     },
     {
       "type": "data-viz",
@@ -224,7 +250,8 @@
       "description": "A single chart or visualisation with its data source.",
       "owner_agent": "dashboard-analyst",
       "checklist": "validation/checklists/data-viz.md",
-      "template": "artifacts/_templates/data-viz/"
+      "template": "artifacts/_templates/data-viz/",
+      "level": 1
     },
     {
       "type": "dashboard",
@@ -232,7 +259,8 @@
       "description": "Multi-metric view with defined refresh and owner.",
       "owner_agent": "dashboard-analyst",
       "checklist": "validation/checklists/dashboard.md",
-      "template": "artifacts/_templates/dashboard/"
+      "template": "artifacts/_templates/dashboard/",
+      "level": 1
     },
     {
       "type": "prototype",
@@ -240,7 +268,8 @@
       "description": "Clickable prototype at stated fidelity.",
       "owner_agent": "screen-producer",
       "checklist": "validation/checklists/prototype.md",
-      "template": "artifacts/_templates/prototype/"
+      "template": "artifacts/_templates/prototype/",
+      "level": 2
     },
     {
       "type": "handoff-spec",
@@ -248,7 +277,8 @@
       "description": "Implementation notes and acceptance criteria.",
       "owner_agent": "handoff-scribe",
       "checklist": "validation/checklists/handoff-spec.md",
-      "template": "artifacts/_templates/handoff-spec/"
+      "template": "artifacts/_templates/handoff-spec/",
+      "level": 1
     },
     {
       "type": "redlines",
@@ -256,7 +286,8 @@
       "description": "Measured annotations against the component contract.",
       "owner_agent": "handoff-scribe",
       "checklist": "validation/checklists/redlines.md",
-      "template": "artifacts/_templates/redlines/"
+      "template": "artifacts/_templates/redlines/",
+      "level": 1
     },
     {
       "type": "presentation",
@@ -264,7 +295,8 @@
       "description": "Deck for a named audience and decision.",
       "owner_agent": "content-comms",
       "checklist": "validation/checklists/presentation.md",
-      "template": "artifacts/_templates/presentation/"
+      "template": "artifacts/_templates/presentation/",
+      "level": 1
     },
     {
       "type": "release-note",
@@ -272,7 +304,8 @@
       "description": "What shipped, for whom, and what changed.",
       "owner_agent": "content-comms",
       "checklist": "validation/checklists/release-note.md",
-      "template": "artifacts/_templates/release-note/"
+      "template": "artifacts/_templates/release-note/",
+      "level": 1
     },
     {
       "type": "ux-benchmark",
@@ -280,7 +313,8 @@
       "description": "Repeatable measurement against a prior baseline.",
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/ux-benchmark.md",
-      "template": "artifacts/_templates/ux-benchmark/"
+      "template": "artifacts/_templates/ux-benchmark/",
+      "level": 1
     },
     {
       "type": "heuristic-review",
@@ -288,7 +322,8 @@
       "description": "Structured review against named heuristics.",
       "owner_agent": "design-critic",
       "checklist": "validation/checklists/heuristic-review.md",
-      "template": "artifacts/_templates/heuristic-review/"
+      "template": "artifacts/_templates/heuristic-review/",
+      "level": 1
     },
     {
       "type": "a11y-audit",
@@ -296,7 +331,8 @@
       "description": "WCAG audit with computed values and thresholds.",
       "owner_agent": "a11y-checker",
       "checklist": "validation/checklists/a11y-audit.md",
-      "template": "artifacts/_templates/a11y-audit/"
+      "template": "artifacts/_templates/a11y-audit/",
+      "level": 1
     },
     {
       "type": "design-critique",
@@ -304,7 +340,8 @@
       "description": "Adversarial review. Advisory, never automatic.",
       "owner_agent": "design-critic",
       "checklist": "validation/checklists/design-critique.md",
-      "template": "artifacts/_templates/design-critique/"
+      "template": "artifacts/_templates/design-critique/",
+      "level": 1
     },
     {
       "type": "experiment-plan",
@@ -312,7 +349,8 @@
       "description": "Hypothesis, metric, guardrail metric, stop rule.",
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/experiment-plan.md",
-      "template": "artifacts/_templates/experiment-plan/"
+      "template": "artifacts/_templates/experiment-plan/",
+      "level": 1
     },
     {
       "type": "metrics-scorecard",
@@ -320,7 +358,8 @@
       "description": "Tracked metrics against targets.",
       "owner_agent": "dashboard-analyst",
       "checklist": "validation/checklists/metrics-scorecard.md",
-      "template": "artifacts/_templates/metrics-scorecard/"
+      "template": "artifacts/_templates/metrics-scorecard/",
+      "level": 1
     },
     {
       "type": "test-report",
@@ -328,7 +367,8 @@
       "description": "Results of a specific test with severity set by a human.",
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/test-report.md",
-      "template": "artifacts/_templates/test-report/"
+      "template": "artifacts/_templates/test-report/",
+      "level": 1
     }
   ]
 }

@@ -1,15 +1,40 @@
 # CoForge Design System
 
-> GENERATED — do not hand-edit. Rebuilt from component-index.json and tokens.json.
-> State: RED (no design system yet). This file is a stub until Build Stage 2.
-
-## Tokens
-None. `design-system/tokens/tokens.json` is seeded empty.
-
-## Components
-None. `design-system/component-index.json` is seeded empty.
+> Agent-readable index. 666 design tokens (W3C DTCG), 8 level-1 primitives, 0 full components. Load this once; fetch detail on demand.
 
 ## Rules
-- Every colour, spacing, radius and type value comes from tokens.json. No raw hex, no raw px.
-- No component may be used that is not in component-index.json.
-- To propose something new, write a component-spec artifact and request promotion.
+
+- Every colour, spacing, radius and type value comes from `design-system/tokens/tokens.json`. No raw hex, no raw px. Enforced by a PreToolUse hook, not by convention.
+- No component may be used that is not in `design-system/component-index.json`.
+- L1 output may use **level-1 entries only**; L2 output may use the full index (ADR-012).
+- To propose something new, write a `component-spec` artifact and request promotion. Promotion is the only path in.
+
+## Tokens
+
+- [palette](design-system/tokens/tokens.json): 244 tokens
+- [semantic](design-system/tokens/tokens.json): 234 tokens
+- [semantic-dark](design-system/tokens/tokens.json): 188 tokens
+- Source: `@carbon/themes@11.79.0` (Apache-2.0). Aliases preserved, not resolved.
+
+## Level 1 primitives — usable in Foundations output
+
+- [badge](design-system/component-index.json): A small label carrying status or count.
+- [card](design-system/component-index.json): A bounded surface grouping related content.
+- [chart-palette](design-system/component-index.json): The ordered categorical palette for data visualisation.
+- [colour-roles](design-system/component-index.json): Semantic colour roles — background, layer, text, border, support.
+- [rule](design-system/component-index.json): A horizontal or vertical divider.
+- [spacing-scale](design-system/component-index.json): The spacing steps. All margin, padding and gap come from here.
+- [table](design-system/component-index.json): Tabular data with header, rows and optional zebra striping.
+- [type-scale](design-system/component-index.json): Heading and body sizes. The only legal type sizes for L1 output.
+
+## Components — full library
+
+- None yet. Arrives via adapter #1 from Carbon (Apache-2.0 source, not the hosted MCP).
+
+## Further reading
+
+- [CLAUDE.md](CLAUDE.md): the plan, the routing table, the gates
+- [architecture.md](architecture.md): what the parts are and how they relate
+- [decisions/](decisions/): ADRs — what was chosen, and what was rejected
+
+<!-- generated 2026-08-27 by validation/build-llms-txt.py — do not hand-edit -->

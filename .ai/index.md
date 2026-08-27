@@ -5,19 +5,19 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-13 agents · 40 artifact types · 9 ADRs · 150 relationships
+13 agents · 40 artifact types · 15 ADRs · 150 relationships
 
 
 ## State
 
 | | |
 |---|---|
-| ds_fork | RED |
+| ds_fork | YELLOW |
 | evidence_records | 0 |
 | raw_sources | 0 |
-| tokens | 0 |
-| components | 0 |
-| artifacts | 0 |
+| tokens | 59 |
+| components | 8 |
+| artifacts | 4 |
 | brand_defined | False |
 
 ## Agents
@@ -71,3 +71,9 @@
 - [ADR-007 — Figma tooling: grant timing and server duplication](decisions/ADR-007-figma-tooling.md) — Accepted · 2026-08-25
 - [ADR-008 — Indexing layer, severity-ranked audit, and real CI](decisions/ADR-008-indexing-audit-ci.md) — Accepted · 2026-08-25
 - [ADR-009 — Project renamed: Luma → CoForge](decisions/ADR-009-project-rename.md) — Accepted · 2026-08-26
+- [ADR-010 — Artifacts are named, and the manifest points to them](decisions/ADR-010-artifact-filenames.md) — Accepted · 2026-08-26
+- [ADR-011 — Design system: Carbon (web responsive)](decisions/ADR-011-design-system-carbon.md) — ACCEPTED — signed off by Raquel, 2026-08-27
+- [ADR-012 — Two-level output model: L1 Foundations, L2 Complete](decisions/ADR-012-two-level-output.md) — Accepted · 2026-08-26
+- [ADR-013 — POC acceptance criteria: the 8 links, and how each is passed](decisions/ADR-013-poc-acceptance-criteria.md) — Accepted · 2026-08-27
+- [ADR-014 — Analytics: a joiner, not an instrument](decisions/ADR-014-analytics-layer.md) — Accepted · 2026-08-27
+- [ADR-015 — Licence: Apache-2.0](decisions/ADR-015-licence.md) — Accepted · 2026-08-27

@@ -1,0 +1,79 @@
+{
+  "run_id": "2026-08-27",
+  "generated_at": "2026-08-27T12:29:46",
+  "project": "Luma Claude",
+  "session": {
+    "turns": 763,
+    "duration_min": 3031.7,
+    "transcripts": 1
+  },
+  "tokens": {
+    "input": 1526,
+    "output": 1347156,
+    "cache_read": 352867318,
+    "cache_creation": 16534170,
+    "billable": 1348682
+  },
+  "tools": {
+    "Bash": 158,
+    "mcp__Claude_Browser__computer": 58,
+    "mcp__Claude_Browser__javascript_tool": 21,
+    "mcp__Claude_Browser__resize_window": 19,
+    "mcp__Claude_Browser__navigate": 18,
+    "WebSearch": 10,
+    "AskUserQuestion": 9,
+    "SendUserFile": 8,
+    "Artifact": 8,
+    "WebFetch": 7,
+    "mcp__Claude_Browser__get_page_text": 7,
+    "mcp__Claude_Browser__preview_start": 6,
+    "mcp__Claude_Browser__read_page": 6,
+    "ToolSearch": 4,
+    "Skill": 2,
+    "mcp__Claude_Browser__find": 2,
+    "mcp__ccd_session__mark_chapter": 1,
+    "mcp__Claude_Browser__read_console_messages": 1,
+    "mcp__ccd_session_mgmt__set_session_title": 1,
+    "mcp__Claude_Browser__tabs_context": 1,
+    "mcp__Claude_Browser__preview_stop": 1
+  },
+  "skills": {
+    "anthropic-skills:docx": 1,
+    "artifact-design": 1
+  },
+  "artifacts": {
+    "total": 4,
+    "live": 2,
+    "by_type": {
+      "competitive-benchmark": 2,
+      "prioritization": 2
+    },
+    "by_status": {
+      "superseded": 2,
+      "in-review": 2
+    },
+    "tokens_per_artifact": 337170
+  },
+  "gates": {
+    "verdict": "PASS",
+    "blocker": 0,
+    "error": 0,
+    "warning": 0,
+    "info": 0,
+    "skipped": 1
+  },
+  "corrections": {
+    "logged": 4,
+    "promoted": 0
+  },
+  "governance": {
+    "adrs": 15,
+    "agents": 13,
+    "artifact_types": 40
+  },
+  "readiness": {
+    "l1": 80.0,
+    "l2": 54.0,
+    "workflow": 100.0
+  }
+}

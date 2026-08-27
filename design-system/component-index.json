@@ -1,6 +1,264 @@
 {
-  "$comment": "System source of truth. Promotion-only: a component-spec artifact enters here by explicit human approval recorded as an ADR.",
-  "version": "0.1.0",
-  "count": 0,
-  "components": []
+  "$comment": "System source of truth. Promotion-only: a component-spec artifact enters here by explicit human approval recorded as an ADR. Entries carry a `level` (ADR-012): 1 = usable in L1 Foundations output, 2 = full library.",
+  "version": "0.2.0",
+  "count": 8,
+  "$extensions": {
+    "coforge": {
+      "l1_primitives": 8,
+      "l2_components": 0,
+      "note": "L2 components arrive via adapter #1 from Carbon. L1 primitives are ours.",
+      "updated": "2026-08-27"
+    }
+  },
+  "components": [
+    {
+      "name": "type-scale",
+      "level": 1,
+      "status": "stable",
+      "category": "typography",
+      "summary": "Heading and body sizes. The only legal type sizes for L1 output.",
+      "variants": {
+        "levels": [
+          "display",
+          "h1",
+          "h2",
+          "h3",
+          "body",
+          "body-sm",
+          "caption",
+          "code"
+        ]
+      },
+      "tokens_used": [
+        "typography.*"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Never set a font-size directly; pick a level.",
+      "when_not_to_use": "Do not invent an intermediate size \u2014 if none fits, propose a token, not a one-off.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    },
+    {
+      "name": "colour-roles",
+      "level": 1,
+      "status": "stable",
+      "category": "colour",
+      "summary": "Semantic colour roles \u2014 background, layer, text, border, support.",
+      "variants": {
+        "roles": [
+          "background",
+          "layer",
+          "text-primary",
+          "text-secondary",
+          "text-inverse",
+          "border-subtle",
+          "link",
+          "support-error",
+          "support-success",
+          "support-warning",
+          "support-info"
+        ]
+      },
+      "tokens_used": [
+        "semantic.background",
+        "semantic.layer",
+        "semantic.text-primary",
+        "semantic.border-subtle"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Use the role, never the palette entry \u2014 roles re-theme, palette entries do not.",
+      "when_not_to_use": "Do not use support-* for decoration; they carry meaning and screen readers rely on it.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    },
+    {
+      "name": "spacing-scale",
+      "level": 1,
+      "status": "stable",
+      "category": "layout",
+      "summary": "The spacing steps. All margin, padding and gap come from here.",
+      "variants": {
+        "steps": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10"
+        ]
+      },
+      "tokens_used": [
+        "spacing.*"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Applies to margin, padding and gap alike.",
+      "when_not_to_use": "Do not mix a spacing step with an arbitrary px nudge to 'make it line up'.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    },
+    {
+      "name": "rule",
+      "level": 1,
+      "status": "stable",
+      "category": "layout",
+      "summary": "A horizontal or vertical divider.",
+      "variants": {
+        "orientation": [
+          "horizontal",
+          "vertical"
+        ],
+        "weight": [
+          "subtle",
+          "strong"
+        ]
+      },
+      "tokens_used": [
+        "semantic.border-subtle"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Structural separation between sections.",
+      "when_not_to_use": "Do not use a rule where whitespace would do \u2014 most rules are noise.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    },
+    {
+      "name": "table",
+      "level": 1,
+      "status": "stable",
+      "category": "data",
+      "summary": "Tabular data with header, rows and optional zebra striping.",
+      "variants": {
+        "density": [
+          "compact",
+          "default",
+          "comfortable"
+        ],
+        "zebra": [
+          "true",
+          "false"
+        ]
+      },
+      "tokens_used": [
+        "semantic.layer",
+        "semantic.border-subtle",
+        "semantic.text-primary"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Any data with two or more dimensions.",
+      "when_not_to_use": "Do not use a table for layout. Do not use it for a single list \u2014 use a list.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    },
+    {
+      "name": "card",
+      "level": 1,
+      "status": "stable",
+      "category": "layout",
+      "summary": "A bounded surface grouping related content.",
+      "variants": {
+        "elevation": [
+          "flat",
+          "raised"
+        ],
+        "padding": [
+          "05",
+          "06",
+          "07"
+        ]
+      },
+      "tokens_used": [
+        "semantic.layer",
+        "semantic.border-subtle"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Grouping content that belongs together and can be scanned as a unit.",
+      "when_not_to_use": "Do not nest cards. If you need a card inside a card, the grouping is wrong.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    },
+    {
+      "name": "chart-palette",
+      "level": 1,
+      "status": "stable",
+      "category": "data",
+      "summary": "The ordered categorical palette for data visualisation.",
+      "variants": {
+        "series": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "kind": [
+          "categorical",
+          "sequential",
+          "diverging"
+        ]
+      },
+      "tokens_used": [
+        "palette.blue.60",
+        "palette.teal.60",
+        "palette.purple.60",
+        "palette.magenta.60",
+        "palette.cyan.40"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Any chart. Series colours are ordered \u2014 use them in order.",
+      "when_not_to_use": "Do not pick chart colours by eye, and never use semantic support-* colours for series.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    },
+    {
+      "name": "badge",
+      "level": 1,
+      "status": "stable",
+      "category": "status",
+      "summary": "A small label carrying status or count.",
+      "variants": {
+        "kind": [
+          "neutral",
+          "info",
+          "success",
+          "warning",
+          "error"
+        ],
+        "size": [
+          "sm",
+          "md"
+        ]
+      },
+      "tokens_used": [
+        "semantic.support-error",
+        "semantic.support-success",
+        "semantic.support-warning",
+        "semantic.support-info"
+      ],
+      "a11y": {
+        "contrast": "WCAG 2.2 AA \u2014 4.5:1 text, 3:1 non-text",
+        "note": "colour must never be the only carrier of meaning"
+      },
+      "when_to_use": "Short status. One or two words.",
+      "when_not_to_use": "Do not use a badge for an action \u2014 it is not a button and is not focusable.",
+      "source": "CoForge L1 primitive \u2014 derived from tokens, not from Carbon components"
+    }
+  ]
 }

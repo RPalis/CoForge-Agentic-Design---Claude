@@ -28,7 +28,7 @@
 └─────────────────────────────────┘ └──────────────────────────────┘
 ┌─ ARTIFACTS ─────────────────────────────────────────────────────┐
 │  40 registered types · every artifact a directory                │
-│  artifact + manifest.json (provenance) + validation.md (proof)   │
+│  named payload + manifest.json (provenance) + validation.md      │
 └──────────────────────────────────────────────────────────────────┘
 ┌─ AGENTIC LOOP ──────────────────────────────────────────────────┐
 │  gate-b.py (per write) · audit-system.py (whole repo, CI)        │

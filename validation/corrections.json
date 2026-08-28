@@ -124,6 +124,16 @@
       "check": "validation/test-gates.py",
       "verifies": "cases 'citation MENTIONED, not made' (must allow) and 'citation MADE and unresolved still blocks' (must block) — the pair matters: stripping mentions must not blind the gate to real claims",
       "would_have_caught": true
+    },
+    {
+      "id": "C-013",
+      "date": "2026-08-28",
+      "defect": "brand-director and token-keeper had agent definitions but no node on the system map. Both are cross-phase, so they never landed in a phase lane and the diagram silently showed 12 of 14 agents.",
+      "class": "a representation of the system omitting part of it",
+      "found_by": "asking whether the map's nodes correspond to things that actually exist",
+      "check": "validation/audit-system.py",
+      "verifies": "check 5d — every .claude/agents/*.md must appear as a node, and every agent node must have a definition (a ghost node is a blocker)",
+      "would_have_caught": true
     }
   ]
 }

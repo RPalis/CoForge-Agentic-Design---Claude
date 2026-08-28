@@ -219,6 +219,35 @@ else:
         f"{len(claims) - len(naked)} of {len(claims)} claims verified",
         "no action")
 
+# 5d — the map must show every agent that exists
+# brand-director and token-keeper had definitions and no node: they are cross-phase,
+# so they never landed in a phase lane and the diagram quietly showed 12 of 14. A map
+# that omits part of the system is the same defect class as a stale count — it reads
+# as complete. Checked here rather than in audit-contracts because it is about the
+# repo describing itself, not about design-system coherence.
+adir = P(".claude/agents")
+ddata = jload("dashboard/data.json")
+if not os.path.isdir(adir):
+    skip("map", ".claude/agents/ not present")
+elif ddata is None:
+    skip("map", "dashboard/data.json not built")
+else:
+    defined = {f[:-3] for f in os.listdir(adir) if f.endswith(".md")}
+    on_map = {n.get("label") for t in ddata.get("tabs", [])
+              for n in t.get("nodes", []) if n.get("kind") == "agent"}
+    absent = sorted(defined - on_map)
+    ghost = sorted(n for n in on_map - defined if n)
+    if absent:
+        add("error", "map", f"{len(absent)} agent(s) defined but absent from the map: "
+            + ", ".join(absent),
+            "add a node in dashboard/build.py, then re-run build.py and render.py")
+    if ghost:
+        add("blocker", "map", f"{len(ghost)} agent node(s) with no definition: "
+            + ", ".join(ghost),
+            "the map claims an agent that does not exist — remove the node or add the definition")
+    if not absent and not ghost:
+        add("info", "map", f"all {len(defined)} agents appear on the map", "no action")
+
 # 6 — token enforcement across the repo
 tok = jload("design-system/tokens/tokens.json") or {}
 if not any(isinstance(v, dict) and v for k, v in tok.items() if not k.startswith("$")):

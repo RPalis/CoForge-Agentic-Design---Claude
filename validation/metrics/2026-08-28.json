@@ -1,29 +1,29 @@
 {
   "run_id": "2026-08-28",
-  "generated_at": "2026-08-28T15:30:22",
+  "generated_at": "2026-08-28T15:49:48",
   "project": "coforge",
   "session": {
-    "turns": 1735,
-    "duration_min": 4654.1,
+    "turns": 1765,
+    "duration_min": 4673.5,
     "transcripts": 2
   },
   "tokens": {
-    "input": 3468,
-    "output": 2363638,
-    "cache_read": 778637700,
-    "cache_creation": 23411702,
-    "billable": 2367106
+    "input": 3528,
+    "output": 2382204,
+    "cache_read": 802017698,
+    "cache_creation": 23434212,
+    "billable": 2385732
   },
   "tools": {
-    "Bash": 458,
+    "Bash": 464,
     "Edit": 70,
     "mcp__Claude_Browser__computer": 64,
     "Write": 29,
+    "Artifact": 22,
     "mcp__Claude_Browser__javascript_tool": 21,
-    "Artifact": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
-    "mcp__chrome-devtools__evaluate_script": 13,
+    "mcp__chrome-devtools__evaluate_script": 17,
     "AskUserQuestion": 12,
     "WebSearch": 10,
     "mcp__Claude_Browser__preview_start": 10,
@@ -32,13 +32,14 @@
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
     "ToolSearch": 5,
+    "mcp__chrome-devtools__take_screenshot": 5,
     "Agent": 5,
-    "mcp__chrome-devtools__take_screenshot": 4,
+    "mcp__chrome-devtools__new_page": 4,
+    "Read": 4,
     "Skill": 3,
-    "mcp__chrome-devtools__new_page": 3,
-    "Read": 3,
     "mcp__ccd_session__mark_chapter": 2,
     "mcp__Claude_Browser__find": 2,
+    "mcp__chrome-devtools__emulate": 2,
     "mcp__Claude_Browser__read_console_messages": 1,
     "mcp__ccd_session_mgmt__set_session_title": 1,
     "mcp__Claude_Browser__tabs_context": 1,
@@ -46,7 +47,8 @@
     "mcp__Claude_Browser__browser_batch": 1,
     "mcp__Claude_Browser__tabs_close": 1,
     "mcp__chrome-devtools__list_network_requests": 1,
-    "mcp__chrome-devtools__emulate": 1
+    "mcp__chrome-devtools__resize_page": 1,
+    "mcp__chrome-devtools__navigate_page": 1
   },
   "skills": {
     "artifact-design": 2,
@@ -65,7 +67,7 @@
       "approved": 2,
       "superseded": 2
     },
-    "tokens_per_artifact": 338158
+    "tokens_per_artifact": 340819
   },
   "gates": {
     "verdict": "PASS",

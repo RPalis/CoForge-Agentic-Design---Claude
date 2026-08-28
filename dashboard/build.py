@@ -171,6 +171,10 @@ D_NODES = [
   "detail":"screen-producer matches components to wireframes and reviews consistency; gaps route to token-keeper.","where":"CLAUDE.md · DS fork","meta":[["current","no"]],"reads":[],"writes":[]},
  {"id":"green","label":"GREEN — DS in code","kind":"state","layer":"fork","summary":"Most optimised route: generate against the real component library.",
   "detail":"screen-producer targets Claude Code + Figma MCP + Code Connect, generating against real components.","where":"CLAUDE.md · DS fork","meta":[["current","no"]],"reads":[],"writes":[]},
+ agent_node("brand-director","found","Owns voice and visual language. Suggest-only, and it never graduates.",
+            [],["brand"],"A — suggest only","Never graduates — brand direction is a judgment call"),
+ agent_node("token-keeper","tok","Owns tokens.json and the Figma-variable sync. Authors v0, then mirrors.",
+            ["brand"],["tokens"],"B → A","Auto for sync, suggest for new tokens"),
  {"id":"brand","label":"brand.md","kind":"doc","layer":"found","summary":"Voice, visual language, colour rationale, type scale logic, motion character.",
   "detail":"Owned by brand-director at suggest-only, and it never graduates. Brand direction is a judgment call — it is never written automatically, and never inferred from the absence of input. " + {
       "empty":    "Currently a stub awaiting brand inputs.",

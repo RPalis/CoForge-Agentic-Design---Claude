@@ -1023,6 +1023,78 @@
      "writes": []
     },
     {
+     "id": "brand-director",
+     "label": "brand-director",
+     "kind": "agent",
+     "layer": "found",
+     "summary": "Owns voice and visual language. Suggest-only, and it never graduates.",
+     "detail": "Use any time the visual language or brand is in question \u2014 \"define the brand voice\", \"what's our visual language\", \"set the type scale rationale\", \"brand direction for this\". Owns foundations/brand.md \u2014 voice, visual language, colour rationale, type scale logic, motion character. Feeds the DS fork. Suggest-only and never graduates to auto. NOT for encoding tokens (that is token-keeper).",
+     "where": ".claude/agents/brand-director.md",
+     "meta": [
+      [
+       "model",
+       "opus"
+      ],
+      [
+       "tools",
+       "Read, Write"
+      ],
+      [
+       "can write",
+       "yes"
+      ],
+      [
+       "autonomy",
+       "Never graduates \u2014 brand direction is a judgment call"
+      ],
+      [
+       "gate",
+       "A \u2014 suggest only"
+      ]
+     ],
+     "reads": [],
+     "writes": [
+      "brand"
+     ]
+    },
+    {
+     "id": "token-keeper",
+     "label": "token-keeper",
+     "kind": "agent",
+     "layer": "tok",
+     "summary": "Owns tokens.json and the Figma-variable sync. Authors v0, then mirrors.",
+     "detail": "Use any time tokens change or drift \u2014 \"sync the tokens\", \"check for drift\", \"propose a new token\", and throughout the DS fork (build/match the design system). Owns tokens.json and Figma-variable sync. NOT for producing screens (screen-producer) or components outside the token layer.",
+     "where": ".claude/agents/token-keeper.md",
+     "meta": [
+      [
+       "model",
+       "sonnet"
+      ],
+      [
+       "tools",
+       "Read, Write, Bash"
+      ],
+      [
+       "can write",
+       "yes"
+      ],
+      [
+       "autonomy",
+       "Auto for sync, suggest for new tokens"
+      ],
+      [
+       "gate",
+       "B \u2192 A"
+      ]
+     ],
+     "reads": [
+      "brand"
+     ],
+     "writes": [
+      "tokens"
+     ]
+    },
+    {
      "id": "brand",
      "label": "brand.md",
      "kind": "doc",

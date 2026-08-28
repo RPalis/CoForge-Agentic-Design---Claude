@@ -343,8 +343,10 @@ and display share one variable family and hierarchy can be carried by weight as 
 
 ### The third face — monospace, added 2026-08-28
 
-**This section is an amendment to an approved file.** It was not in the version cleared at
-Gate A on 2026-08-27, and adding a face is a type decision, so it reopens Gate A for §4 only.
+**Amendment to an approved file — cleared at Gate A by Raquel, 2026-08-28.** It was not in
+the version approved on 2026-08-27; adding a face is a type decision, so §4 was reopened and
+separately approved rather than folded in silently. The rest of the file's 2026-08-27
+approval is unaffected, and OQ-1 still outranks both.
 
 CoForge is single-family for prose and **not** single-family overall. A third face is
 required, and the requirement was found by a tool rather than by taste:

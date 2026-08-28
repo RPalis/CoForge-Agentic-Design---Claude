@@ -14,7 +14,7 @@ Checked 2026-08-28 against `validation/checklists/competitive-benchmark.md`.
 
 - [x] Claims labelled `Evidenced` / `Inferred` / `Assumption`
 - [x] Assumptions block present and visible — A-1 to A-4
-- [x] Reviewed by: **Raquel** · Date: **2026-08-28**
+- [x] Reviewed by: **Agentic Designer - RP** · Date: **2026-08-28**
 
 ## How this one was found
 

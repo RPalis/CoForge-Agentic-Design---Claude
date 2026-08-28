@@ -75,7 +75,7 @@
 - [ADR-008 — Indexing layer, severity-ranked audit, and real CI](decisions/ADR-008-indexing-audit-ci.md) — Accepted · 2026-08-25
 - [ADR-009 — Project renamed: Luma → CoForge](decisions/ADR-009-project-rename.md) — Accepted · 2026-08-26
 - [ADR-010 — Artifacts are named, and the manifest points to them](decisions/ADR-010-artifact-filenames.md) — Accepted · 2026-08-26
-- [ADR-011 — Design system: Carbon (web responsive)](decisions/ADR-011-design-system-carbon.md) — ACCEPTED — signed off by Raquel, 2026-08-27
+- [ADR-011 — Design system: Carbon (web responsive)](decisions/ADR-011-design-system-carbon.md) — ACCEPTED — signed off by Agentic Designer - RP, 2026-08-27
 - [ADR-012 — Two-level output model: L1 Foundations, L2 Complete](decisions/ADR-012-two-level-output.md) — Accepted · 2026-08-26
 - [ADR-013 — POC acceptance criteria: the 8 links, and how each is passed](decisions/ADR-013-poc-acceptance-criteria.md) — Accepted · 2026-08-27
 - [ADR-014 — Analytics: a joiner, not an instrument](decisions/ADR-014-analytics-layer.md) — Accepted · 2026-08-27

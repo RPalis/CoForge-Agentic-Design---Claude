@@ -55,7 +55,7 @@ one and lose `figma_ds_*`, audit and search tooling with no error. One is remove
 
 **This cannot be done from a non-interactive session** — connector changes require the
 claude.ai connector settings UI, or `claude mcp` / `/mcp` in an interactive terminal.
-Owner: Raquel. Blocks: nothing today; **must be done before Build Stage 2.**
+Owner: Agentic Designer - RP. Blocks: nothing today; **must be done before Build Stage 2.**
 
 ## Consequence
 

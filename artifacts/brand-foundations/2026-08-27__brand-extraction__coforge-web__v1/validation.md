@@ -4,7 +4,7 @@ Checked 2026-08-27 against `validation/checklists/brand-extraction.md`.
 
 ## Provenance
 
-- [x] Subject confirmed **first-party** — Raquel, 2026-08-27. Recorded in
+- [x] Subject confirmed **first-party** — Agentic Designer - RP, 2026-08-27. Recorded in
       `manifest.subject`. Had it not been ours, `competitive-benchmark` was the
       correct type and `brand.md` could not have been written from it at all.
 - [x] Five of six raw captures carry a resolvable URL **and** a sha256

@@ -116,8 +116,8 @@ sources of truth are empty. They activate as a side effect of link 1, not as sep
 
 | Link | Blocked by | Owner |
 |---|---|---|
-| **6 INVERT** | No Figma file exists | Raquel |
-| **8 TRACE** | No research sources — ledger is empty | Raquel |
+| **6 INVERT** | No Figma file exists | Agentic Designer - RP |
+| **8 TRACE** | No research sources — ledger is empty | Agentic Designer - RP |
 
 ## What a partial pass means
 

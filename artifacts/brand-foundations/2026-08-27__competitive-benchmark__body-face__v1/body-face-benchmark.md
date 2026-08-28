@@ -68,7 +68,7 @@ technical one, so these measurements do not settle it.
 
 ## Outcome
 
-**Raquel chose Anek Latin, 2026-08-27.** The brand argument outranked the metric, which is
+**Agentic Designer - RP chose Anek Latin, 2026-08-27.** The brand argument outranked the metric, which is
 the correct precedence for a question brand.md owns.
 
 The choice is made safe by a condition, recorded as a brand rule in brand.md §4: tabular

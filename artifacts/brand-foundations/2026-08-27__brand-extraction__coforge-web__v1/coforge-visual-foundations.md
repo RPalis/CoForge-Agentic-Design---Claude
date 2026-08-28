@@ -2,7 +2,7 @@
 
 **ART-005** · brand-extraction · v1 · captured 2026-08-27
 
-Subject: `https://www.coforge.com/` — **first-party**, confirmed by Raquel on 2026-08-27.
+Subject: `https://www.coforge.com/` — **first-party**, confirmed by Agentic Designer - RP on 2026-08-27.
 Raw captures are referenced by URL and sha256 in `manifest.json`, not stored here:
 `research/sources/**` is deny-listed to every agent, so provenance is by verifiable
 reference rather than by copy. Re-fetch any file and check its hash to reproduce.

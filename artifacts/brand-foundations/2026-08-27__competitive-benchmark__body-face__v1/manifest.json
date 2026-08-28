@@ -46,8 +46,8 @@
     "checked_at": "2026-08-27"
   },
   "autonomy": "draft",
-  "reviewed_by": "Raquel",
+  "reviewed_by": "Agentic Designer - RP",
   "created_at": "2026-08-27",
-  "decision_note": "The recommendation in this artifact (IBM Plex Sans) was NOT the decision taken. Raquel chose Anek Latin on 2026-08-27, on the grounds that brand.md §6's 'Not IBM' position outranks a metric on a question brand.md owns. Recorded here rather than rewritten so the benchmark keeps saying what it measured — an artifact edited to agree with the decision it informed is worth nothing as evidence.",
+  "decision_note": "The recommendation in this artifact (IBM Plex Sans) was NOT the decision taken. Agentic Designer - RP chose Anek Latin on 2026-08-27, on the grounds that brand.md §6's 'Not IBM' position outranks a metric on a question brand.md owns. Recorded here rather than rewritten so the benchmark keeps saying what it measured — an artifact edited to agree with the decision it informed is worth nothing as evidence.",
   "provenance_note": "sha256 is null for both sources: Google Fonts serves a different woff2 subset per user-agent, so a hash would record this session's slice rather than the family. The measurements, not the binaries, are the evidence, and the method is stated so they can be re-taken."
 }

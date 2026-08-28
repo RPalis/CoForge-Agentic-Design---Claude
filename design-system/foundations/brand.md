@@ -1,6 +1,6 @@
 # Brand — visual language and voice
 
-**Status: APPROVED — Gate A cleared by Raquel, 2026-08-27.**
+**Status: APPROVED — Gate A cleared by Agentic Designer - RP, 2026-08-27.**
 **Owner:** `brand-director` · **Autonomy: suggest-only, never graduates.**
 **Date:** 2026-08-27 · **Supersedes:** the EMPTY stub of the same path.
 
@@ -33,7 +33,7 @@ State of the four declared inputs:
 | Required input | Status |
 |---|---|
 | Existing marks, wordmarks, identity assets | **Satisfied** — ART-005 |
-| Reference / mood direction — what it should feel like, what it must not | **Satisfied** — voice and tone confirmed by Raquel, 2026-08-27 |
+| Reference / mood direction — what it should feel like, what it must not | **Satisfied** — voice and tone confirmed by Agentic Designer - RP, 2026-08-27 |
 | Audience and context of use | **Thin** — see Assumptions, and ADR-011 open question 1 |
 | Non-negotiables (a11y floor, legal, platform) | **Satisfied** — WCAG AA, web responsive, Carbon base |
 
@@ -316,7 +316,7 @@ What a candidate has to answer to:
 
 ### OQ-2 — RESOLVED, 2026-08-27: Anek Latin
 
-Both candidates were measured rather than assumed (ART-006). **Raquel chose Anek Latin's
+Both candidates were measured rather than assumed (ART-006). **Agentic Designer - RP chose Anek Latin's
 own lighter weights**, making CoForge single-family: Anek Latin for display and for body.
 
 The decision goes against the measurement on criterion 3 and with the brand on §6. IBM Plex
@@ -343,7 +343,7 @@ and display share one variable family and hierarchy can be carried by weight as 
 
 ### The third face — monospace, added 2026-08-28
 
-**Amendment to an approved file — cleared at Gate A by Raquel, 2026-08-28.** It was not in
+**Amendment to an approved file — cleared at Gate A by Agentic Designer - RP, 2026-08-28.** It was not in
 the version approved on 2026-08-27; adding a face is a type decision, so §4 was reopened and
 separately approved rather than folded in silently. The rest of the file's 2026-08-27
 approval is unaffected, and OQ-1 still outranks both.
@@ -448,7 +448,7 @@ settled by their presence in this file.
   confirmed there is no newer brand direction sitting outside this repository.
 - **A-3 — RESOLVED, 2026-08-27.** "Direct, warm, confident, plain" was read off the
   artefact rather than briefed, and was flagged as the most likely candidate for
-  correction. **Raquel confirmed the voice and tone as correct.** No longer an
+  correction. **Agentic Designer - RP confirmed the voice and tone as correct.** No longer an
   assumption; §1 stands on a human decision, not on inference from the copy.
 - **A-4 — The bone ground is a decision, not a rendering artefact.** It is declared in
   the token layer, so this is well supported, but it has not been confirmed against a
@@ -464,7 +464,7 @@ settled by their presence in this file.
   library or an agency deck exists, it outranks the extraction and this file should be
   rewritten against it rather than reconciled with it.
 - **OQ-2 — RESOLVED 2026-08-27: Anek Latin.** Tested against the six criteria in ART-006 and
-  decided by Raquel. CoForge is single-family. The tabular-figures rule in §4 is binding and
+  decided by Agentic Designer - RP. CoForge is single-family. The tabular-figures rule in §4 is binding and
   is the condition on which this choice is safe. No longer blocking L1.
 - **OQ-3 — Motion.** Requires a real capture of the live site's transitions before §5 is
   anything more than direction.

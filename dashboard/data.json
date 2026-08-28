@@ -1,15 +1,15 @@
 {
- "generated": "2026-08-27",
+ "generated": "2026-08-28",
  "state": {
   "ds_fork": "RED",
   "ds_fork_note": "RED until adapter #1 populates L2 components (ADR-011).",
   "evidence_records": 0,
   "raw_sources": 0,
-  "tokens": 666,
+  "tokens": 786,
   "components": 8,
-  "artifacts": 5,
-  "brand_status": "proposed",
-  "brand_defined": false
+  "artifacts": 7,
+  "brand_status": "approved",
+  "brand_defined": true
  },
  "counts": {
   "agents": 13,
@@ -71,7 +71,7 @@
   {
    "file": "decisions/ADR-011-design-system-carbon.md",
    "title": "ADR-011 \u2014 Design system: Carbon (web responsive)",
-   "status": "ACCEPTED \u2014 signed off by Raquel, 2026-08-27"
+   "status": "ACCEPTED \u2014 signed off by Agentic Designer - RP, 2026-08-27"
   },
   {
    "file": "decisions/ADR-012-two-level-output.md",
@@ -926,7 +926,7 @@
      "kind": "state",
      "layer": "fork",
      "summary": "Current state. token-keeper builds the system before screens are produced.",
-     "detail": "L1 output is unblocked: 666 tokens and 8 level-1 primitives exist. screen-producer stays off L2 until the component index carries L2 entries (ADR-011). This is not a limitation to work around \u2014 producing hi-fi UI with no system is exactly what creates off-system drift.",
+     "detail": "L1 output is unblocked: 786 tokens and 8 level-1 primitives exist. screen-producer stays off L2 until the component index carries L2 entries (ADR-011). This is not a limitation to work around \u2014 producing hi-fi UI with no system is exactly what creates off-system drift.",
      "where": "CLAUDE.md \u00b7 DS fork",
      "meta": [
       [
@@ -981,7 +981,7 @@
      "kind": "doc",
      "layer": "found",
      "summary": "Voice, visual language, colour rationale, type scale logic, motion character.",
-     "detail": "Owned by brand-director at suggest-only, and it never graduates. Brand direction is a judgment call \u2014 it is never written automatically, and never inferred from the absence of input. Written from ART-005 and awaiting Gate A. Written is not approved: brand-director never graduates, so this sits in front of a human until one signs it.",
+     "detail": "Owned by brand-director at suggest-only, and it never graduates. Brand direction is a judgment call \u2014 it is never written automatically, and never inferred from the absence of input. Approved at Gate A.",
      "where": "design-system/foundations/brand.md",
      "meta": [
       [
@@ -994,7 +994,7 @@
       ],
       [
        "state",
-       "PROPOSED"
+       "APPROVED"
       ]
      ],
      "reads": [],
@@ -1006,7 +1006,7 @@
      "kind": "ssot",
      "layer": "tok",
      "summary": "DTCG format. The only legal source of colour, spacing, radius and type.",
-     "detail": "Raw hex and raw px are a build error, not a style opinion. Gate B blocks the write and names the token to use instead. 666 tokens are authored, so the tokens check runs for real instead of reporting SKIPPED.",
+     "detail": "Raw hex and raw px are a build error, not a style opinion. Gate B blocks the write and names the token to use instead. 786 tokens are authored, so the tokens check runs for real instead of reporting SKIPPED.",
      "where": "design-system/tokens/tokens.json",
      "meta": [
       [
@@ -1015,7 +1015,7 @@
       ],
       [
        "state",
-       "666 tokens"
+       "786 tokens"
       ],
       [
        "gate",

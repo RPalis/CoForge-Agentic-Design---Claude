@@ -23,7 +23,7 @@ HTML = r"""<title>CoForge Agentic Design</title>
 }
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
   --bg:#0E1116; --surface:#161A22; --surface-2:#1D222C; --surface-3:#252B37;
-  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#798194;
+  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#848CA1;
   --line:#272D38; --line-2:#333A48;
   --accent:#8FA0EA; --accent-2:#A6B4F0; --accent-soft:#1A2140;
   --sev-block:#E28471; --sev-warn:#D4A94E; --sev-pass:#5FB69E; --sev-skip:#8891A3;
@@ -33,7 +33,7 @@ HTML = r"""<title>CoForge Agentic Design</title>
 }}
 :root[data-theme="dark"]{
   --bg:#0E1116; --surface:#161A22; --surface-2:#1D222C; --surface-3:#252B37;
-  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#798194;
+  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#848CA1;
   --line:#272D38; --line-2:#333A48;
   --accent:#8FA0EA; --accent-2:#A6B4F0; --accent-soft:#1A2140;
   --sev-block:#E28471; --sev-warn:#D4A94E; --sev-pass:#5FB69E; --sev-skip:#8891A3;

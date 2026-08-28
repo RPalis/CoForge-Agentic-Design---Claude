@@ -305,7 +305,7 @@ DATA = {
  "state": ST, "counts": IDX["counts"],
  "adrs": IDX["adrs"],
  "tabs": [
-   {"id":"workflow","label":"Workflow","blurb":"Eleven phases, thirteen agents, and the documents that govern them. Each phase names the agent that activates, what it reads, what it writes, and which gate it must clear.","layers":W_LAYERS,"nodes":W_NODES,"edges":W_EDGES,"numbered":True},
+   {"id":"workflow","label":"Workflow","blurb":f"Eleven phases, {IDX['counts']['agents']} agents, and the documents that govern them. Each phase names the agent that activates, what it reads, what it writes, and which gate it must clear.","layers":W_LAYERS,"nodes":W_NODES,"edges":W_EDGES,"numbered":True},
    {"id":"ds","label":"Design system","blurb":"The downstream half. Brand becomes tokens, tokens constrain components, and nothing enters the system except by promotion.","layers":D_LAYERS,"nodes":D_NODES,"edges":D_EDGES,"numbered":False},
    {"id":"harness","label":"Harness & analytics","blurb":"How the system holds itself honest: the loop every artifact runs, five enforcement layers, earned autonomy, and what gets measured.","layers":H_LAYERS,"nodes":H_NODES,"edges":H_EDGES,"numbered":False},
  ],

@@ -118,7 +118,7 @@
   {
    "id": "workflow",
    "label": "Workflow",
-   "blurb": "Eleven phases, thirteen agents, and the documents that govern them. Each phase names the agent that activates, what it reads, what it writes, and which gate it must clear.",
+   "blurb": "Eleven phases, 14 agents, and the documents that govern them. Each phase names the agent that activates, what it reads, what it writes, and which gate it must clear.",
    "layers": [
     [
      "docs",

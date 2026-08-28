@@ -1,21 +1,21 @@
 {
   "run_id": "2026-08-28",
-  "generated_at": "2026-08-28T14:33:35",
+  "generated_at": "2026-08-28T14:57:45",
   "project": "coforge",
   "session": {
-    "turns": 1637,
-    "duration_min": 4597.3,
+    "turns": 1657,
+    "duration_min": 4621.4,
     "transcripts": 2
   },
   "tokens": {
-    "input": 3272,
-    "output": 2305114,
-    "cache_read": 706260827,
-    "cache_creation": 23304778,
-    "billable": 2308386
+    "input": 3312,
+    "output": 2321076,
+    "cache_read": 720608712,
+    "cache_creation": 23316151,
+    "billable": 2324388
   },
   "tools": {
-    "Bash": 425,
+    "Bash": 433,
     "Edit": 69,
     "mcp__Claude_Browser__computer": 63,
     "Write": 29,
@@ -26,8 +26,8 @@
     "AskUserQuestion": 12,
     "mcp__chrome-devtools__evaluate_script": 11,
     "WebSearch": 10,
+    "SendUserFile": 9,
     "mcp__Claude_Browser__preview_start": 9,
-    "SendUserFile": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
@@ -64,7 +64,7 @@
       "approved": 2,
       "superseded": 2
     },
-    "tokens_per_artifact": 329769
+    "tokens_per_artifact": 332055
   },
   "gates": {
     "verdict": "PASS",

@@ -75,6 +75,18 @@ W_NODES = [
           ["never","does design work, or passes artifact content between agents"],
           ["counts","the autonomy ladder — 3 clean → Auto, 1 hard fail → Draft"]],
   "reads":["claude-md","index-md"],"writes":[]},
+ {"id":"system-keeper","label":"system-keeper","kind":"agent","layer":"docs",
+  "summary":"Owns the machinery, not the design. Adapters, generators, validators, schemas, hooks.",
+  "detail":AG["system-keeper"]["trigger"] + " Added 2026-08-28 (ADR-019) after an audit found no "
+           "routing row owned adapters, generators, validators or hooks — the largest body of work "
+           "in the repository had no agent, no gate and no review path. Every defect in "
+           "validation/corrections.json was found in that unowned surface.",
+  "where":".claude/agents/system-keeper.md",
+  "meta":[["model",AG["system-keeper"]["model"]],["tools",", ".join(AG["system-keeper"]["tools"])],
+          ["owns","validation/ · contracts/ · hooks/ · generated indices"],
+          ["never","makes design decisions, or hand-edits a generated region"],
+          ["gate","B, and A on anything that changes what a gate accepts"]],
+  "reads":["claude-md"],"writes":["ci-yml"]},
 
  agent_node("evidence-clerk","p1","Extracts verbatim quotes into the ledger. Never interprets.",
             ["sources"],["ledger"],"B + A","Draft → Auto (structural check runs Auto from day one)"),

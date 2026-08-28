@@ -8,7 +8,7 @@
     "deliver",
     "evaluate"
   ],
-  "count": 40,
+  "count": 41,
   "types": [
     {
       "type": "research-plan",
@@ -368,6 +368,15 @@
       "owner_agent": "research-ops",
       "checklist": "validation/checklists/test-report.md",
       "template": "artifacts/_templates/test-report/",
+      "level": 1
+    },
+    {
+      "type": "brand-extraction",
+      "stage": "discover",
+      "description": "Measured foundations read off a first-party identity asset. Values and defects, not judgment. Distinct from competitive-benchmark: the subject is our own brand, so the output is inheritable input to brand.md rather than a comparison.",
+      "owner_agent": "brand-director",
+      "checklist": "validation/checklists/brand-extraction.md",
+      "template": "artifacts/_templates/brand-extraction/",
       "level": 1
     }
   ]

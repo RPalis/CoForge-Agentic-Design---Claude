@@ -92,7 +92,14 @@ def main():
     else:
         records = ledger if isinstance(ledger, list) else ledger.get("evidence", [])
         known = {x.get("id") for x in records if isinstance(x, dict)}
-        cited = set(re.findall(r"\[(E-\d{3,})\]", content))
+        # A citation and a *mention* of a citation are not the same thing. Documents that
+        # discuss the notation — ADRs about the claim format, this repo's own plan file —
+        # were blocked for quoting an example ID. Strip the spans where an ID is being
+        # shown rather than made: fenced blocks, inline code, and blockquote lines.
+        prose = re.sub(r"(?s)```.*?```", "", content)      # fenced code
+        prose = re.sub(r"`[^`\n]*`", "", prose)            # inline code
+        prose = re.sub(r"(?m)^\s*>.*$", "", prose)         # blockquoted lines
+        cited = set(re.findall(r"\[(E-\d{3,})\]", prose))
         missing = sorted(cited - known)
         if missing:
             r.add("blocker", "citations", "unresolved evidence ID(s): " + ", ".join(missing),

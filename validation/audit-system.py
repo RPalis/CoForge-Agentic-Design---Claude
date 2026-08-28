@@ -113,6 +113,57 @@ for ws in sorted(os.listdir(adir)):
 if n_art == 0:
     skip("artifacts", "no artifacts produced yet")
 
+# 5b — foundations: SSOT prose was covered by NOTHING until ADR-017.
+# architecture.md lists foundations/brand.md in the downstream SSOT box, but it has
+# neither a token value nor a component name, so checks 5 and 6 both slide past it.
+# The audit reported "skipped 0 · PASS" on runs that never opened the file — the
+# coverage illusion this repo exists to prevent.
+art_paths = {a["id"]: a["path"] for a in (jload("artifacts/_registry.json") or {}).get("artifacts", [])}
+fdir = P("design-system/foundations")
+if not os.path.isdir(fdir):
+    skip("foundations", "design-system/foundations/ does not exist")
+else:
+    n_found = 0
+    for f in sorted(os.listdir(fdir)):
+        if not f.endswith(".md"): continue
+        n_found += 1
+        rel = f"design-system/foundations/{f}"
+        body = open(os.path.join(fdir, f), encoding="utf-8", errors="ignore").read()
+
+        # ledger citations must resolve, exactly as in artifacts
+        for cid in set(re.findall(r"\[(E-\d{3,})\]", body)):
+            if cid not in known_ev:
+                add("blocker", "foundations", f"{rel}: unresolved evidence ID {cid}",
+                    "log the quote via evidence-clerk, or remove the claim — it is stripped, not softened")
+
+        # ADR-017's second form: must resolve to a registered artifact AND a real heading
+        for aid, rest in re.findall(r"\[(ART-\d{3,})([^\]]*)\]", body):
+            p = art_paths.get(aid)
+            if not p or not os.path.isdir(P(p)):
+                add("blocker", "foundations", f"{rel}: {aid} is not a registered artifact",
+                    "cite a registered artifact, or remove the claim (ADR-017)"); continue
+            try:
+                man = jload(os.path.join(p, "manifest.json")) or {}
+                payload = open(P(p, man.get("file", "")), encoding="utf-8", errors="ignore").read()
+            except OSError:
+                add("error", "foundations", f"{rel}: {aid} payload unreadable",
+                    "check manifest.file names an existing file"); continue
+            heads = [h.strip().lower() for h in re.findall(r"^#{2,3}\s+(.+)$", payload, re.M)]
+            for part in rest.split(","):
+                part = part.strip()
+                if not part.startswith("§"): continue
+                sec = part[1:].strip().lower()
+                if not any(h == sec or h.startswith(sec) for h in heads):
+                    add("blocker", "foundations", f"{rel}: {aid} has no section '{sec}'",
+                        "match a real heading in the artifact payload (ADR-017)")
+
+        # an SSOT file must not depend on scratch/ — it is disposable by design
+        for m in set(re.findall(r"scratch/[\w./-]+", body)):
+            add("error", "foundations", f"{rel}: cites disposable path {m}",
+                "promote it to a registered artifact and cite [ART-nnn § …] (ADR-017)")
+    if not n_found:
+        skip("foundations", "no markdown in design-system/foundations/")
+
 # 6 — token enforcement across the repo
 tok = jload("design-system/tokens/tokens.json") or {}
 if not any(isinstance(v, dict) and v for k, v in tok.items() if not k.startswith("$")):
@@ -139,7 +190,7 @@ if "--json" in sys.argv:
                       "verdict": "FAIL" if blocking else "PASS"}, indent=2))
 else:
     print("═" * 66)
-    print("  LUMA SYSTEM AUDIT — " + datetime.date.today().isoformat())
+    print("  COFORGE SYSTEM AUDIT — " + datetime.date.today().isoformat())
     print("═" * 66)
     for x in F:
         print(f"  [{x['severity'].upper():7}] {x['check']}: {x['message']}")

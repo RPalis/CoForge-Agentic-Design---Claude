@@ -5,7 +5,7 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-13 agents · 40 artifact types · 16 ADRs · 150 relationships
+13 agents · 41 artifact types · 17 ADRs · 153 relationships
 
 
 ## State
@@ -16,10 +16,11 @@
 | ds_fork_note | RED until adapter #1 populates L2 components (ADR-011). |
 | evidence_records | 0 |
 | raw_sources | 0 |
-| tokens | 666 |
+| tokens | 787 |
 | components | 8 |
-| artifacts | 4 |
-| brand_defined | False |
+| artifacts | 7 |
+| brand_status | approved |
+| brand_defined | True |
 
 ## Agents
 
@@ -41,7 +42,7 @@
 
 ## Artifact types by stage
 
-- **discover** (8): research-plan · interview-analysis · usability-test-analysis · survey-analysis · diary-study-analysis · analytics-readout · competitive-benchmark · stakeholder-map
+- **discover** (9): research-plan · interview-analysis · usability-test-analysis · survey-analysis · diary-study-analysis · analytics-readout · competitive-benchmark · stakeholder-map · brand-extraction
 - **define** (9): persona · empathy-map · journey-map · service-blueprint · jtbd · insight-report · opportunity-map · problem-statement · prioritization
 - **develop** (11): ia-map · taxonomy · user-flow · wireframe · ui-screen · component-spec · pattern-spec · ux-copy · motion-spec · data-viz · dashboard
 - **deliver** (5): prototype · handoff-spec · redlines · presentation · release-note
@@ -52,6 +53,7 @@
 | agent | owns |
 |---|---|
 | `a11y-checker` | a11y-audit |
+| `brand-director` | brand-extraction |
 | `content-comms` | ux-copy, presentation, release-note |
 | `dashboard-analyst` | analytics-readout, data-viz, dashboard, metrics-scorecard |
 | `design-critic` | heuristic-review, design-critique |
@@ -79,3 +81,4 @@
 - [ADR-014 — Analytics: a joiner, not an instrument](decisions/ADR-014-analytics-layer.md) — Accepted · 2026-08-27
 - [ADR-015 — Licence: Apache-2.0](decisions/ADR-015-licence.md) — Accepted · 2026-08-27
 - [ADR-016 — Repository location: off ~/Desktop](decisions/ADR-016-repository-location.md) — Accepted · 2026-08-27
+- [ADR-017 — Claim format: non-ledger evidence](decisions/ADR-017-non-ledger-evidence.md) — Accepted · 2026-08-27

@@ -1,0 +1,81 @@
+{
+  "id": "ART-005",
+  "type": "brand-extraction",
+  "workstream": "brand-foundations",
+  "title": "Coforge web — measured visual foundations",
+  "file": "coforge-visual-foundations.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "in-review",
+  "stage": "discover",
+  "produced_by": "main-session",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "subject": {
+    "what": "https://www.coforge.com/ — corporate homepage and its declared CSS token layer",
+    "first_party": true,
+    "confirmed_by": "Raquel",
+    "confirmed_on": "2026-08-27"
+  },
+  "capture": {
+    "method": "Chrome DevTools MCP. Page loaded, network requests filtered to stylesheet, template_* files fetched directly and parsed for :root custom properties. Colour geometry via HLS conversion; contrast via WCAG 2.x relative luminance. Cookie consent declined (Deny all) before the visual capture so the consent overlay did not dim the rendered colours.",
+    "captured_at": "2026-08-27",
+    "re_runnable": true
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "tokens_version": null,
+    "sources": [
+      {
+        "id": "S-01",
+        "what": "template_variables.min.css — the declared token layer: colour ramps, type ramp, space, radius, shadow",
+        "url": "https://www.coforge.com/hubfs/hub_generated/template_assets/1/418422194387/1787826373094/template_variables.min.css",
+        "sha256": "9beb0bf05f93d0034e1f8b0024d8af5c82ed510d3615fbe86977085736553ae1"
+      },
+      {
+        "id": "S-02",
+        "what": "template_typography.css — every .text-* utility, both breakpoints; shows body wired to Tahoma",
+        "url": "https://www.coforge.com/hubfs/hub_generated/template_assets/1/418421945573/1787826373797/template_typography.css",
+        "sha256": "81057452607aa7084b62deda585833f67d8ee18fda79ca997dcc6c4f1180ed5e"
+      },
+      {
+        "id": "S-03",
+        "what": "template_buttons.min.css — control form language",
+        "url": "https://www.coforge.com/hubfs/hub_generated/template_assets/1/418422195394/1787826364749/template_buttons.min.css",
+        "sha256": "c16a98154ddbcefdf56c05068d37fe42a91e307317aab5629c26db97c3b2f44d"
+      },
+      {
+        "id": "S-04",
+        "what": "template_utilities.min.css — utility class layer",
+        "url": "https://www.coforge.com/hubfs/hub_generated/template_assets/1/418421945581/1787826366588/template_utilities.min.css",
+        "sha256": "623062c62b4031bff1289a868e6d160df2a01fd9d995a8ad7e0c589d44de9b12"
+      },
+      {
+        "id": "S-05",
+        "what": "template_base.min.css — element defaults",
+        "url": "https://www.coforge.com/hubfs/hub_generated/template_assets/1/418422194402/1787826366519/template_base.min.css",
+        "sha256": "ce132d35ecc6b08e8c72df2cfc443edf04f9697b82b65943bcd39365c4071b45"
+      },
+      {
+        "id": "S-06",
+        "what": "Rendered homepage viewport, 2400x1366, consent declined. Not re-fetchable — a live site changes; this is a dated snapshot held in scratch/brand-extraction/raw/ pending human placement in research/sources/.",
+        "url": null,
+        "sha256": "d5cb4ec6c7b959f8c468f8b5709ba75a3b35fb124d8b470cd8a46de60b9a70a6"
+      }
+    ]
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-08-27"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-08-27",
+  "provenance_note": "Written by the main session, not dispatched to brand-director. brand-director consumed this content in its scratch form to author foundations/brand.md; this artifact is the same measurement set promoted to a registered type so brand.md's citations resolve to a durable path rather than into scratch/. Raw captures are referenced by sha256, not copied: research/sources/** is deny-listed to every agent by .claude/settings.json."
+}

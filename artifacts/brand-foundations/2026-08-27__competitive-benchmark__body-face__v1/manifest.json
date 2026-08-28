@@ -1,0 +1,53 @@
+{
+  "id": "ART-006",
+  "type": "competitive-benchmark",
+  "workstream": "brand-foundations",
+  "title": "Body face — Anek Latin against IBM Plex Sans",
+  "file": "body-face-benchmark.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "approved",
+  "stage": "discover",
+  "produced_by": "main-session",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "type_note": "A stretch of 'competitive-benchmark', declared rather than hidden. The subject is two typefaces competing for one role, not two companies. The type's structure — comparison on named dimensions, scored, with a verdict — matches exactly, and registering a bespoke type for a one-off comparison would inflate the vocabulary for no gain. If body-face benchmarks recur, revisit.",
+  "capture": {
+    "method": "Chrome DevTools MCP. Glyph proportions via canvas TextMetrics at 200px weight 400 (x-height, cap-height, ascender, per-glyph advance). Digit spacing by DOM width comparison of '1111' against '0000' at 64px, with and without font-variant-numeric: tabular-nums. Both families loaded from Google Fonts and confirmed via document.fonts.check before measuring.",
+    "captured_at": "2026-08-27",
+    "re_runnable": true
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-005"],
+    "tokens_version": null,
+    "sources": [
+      {
+        "id": "S-01",
+        "what": "Anek Latin, variable 100..800, served by Google Fonts. SIL Open Font Licence.",
+        "url": "https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800",
+        "sha256": null
+      },
+      {
+        "id": "S-02",
+        "what": "IBM Plex Sans, weights 100..700, served by Google Fonts. SIL Open Font Licence.",
+        "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700",
+        "sha256": null
+      }
+    ]
+  },
+  "surface": {
+    "kind": "artifact",
+    "ref": "https://claude.ai/code/artifact/4b89810f-8478-44a6-8568-285f4ba4e9ab"
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-08-27"
+  },
+  "autonomy": "draft",
+  "reviewed_by": "Raquel",
+  "created_at": "2026-08-27",
+  "decision_note": "The recommendation in this artifact (IBM Plex Sans) was NOT the decision taken. Raquel chose Anek Latin on 2026-08-27, on the grounds that brand.md §6's 'Not IBM' position outranks a metric on a question brand.md owns. Recorded here rather than rewritten so the benchmark keeps saying what it measured — an artifact edited to agree with the decision it informed is worth nothing as evidence.",
+  "provenance_note": "sha256 is null for both sources: Google Fonts serves a different woff2 subset per user-agent, so a hash would record this session's slice rather than the family. The measurements, not the binaries, are the evidence, and the method is stated so they can be re-taken."
+}

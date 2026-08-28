@@ -143,7 +143,7 @@ artifacts/<workstream>/YYYY-MM-DD__<type>__<slug>__v<N>/
     validation.md              proof it passed, before a human saw it
 ```
 
-- Type must exist in `artifacts/_types.json` (38 types). Unregistered type = no artifact.
+- Type must exist in `artifacts/_types.json` (41 types). Unregistered type = no artifact.
 - `manifest.json` chains `inputs.evidence` to ledger IDs and `inputs.tokens_version`
   to a token release. Any claim auditable; any token change traceable.
 - Lifecycle: `draft → validated → in-review → approved → superseded → archived`.
@@ -153,9 +153,18 @@ artifacts/<workstream>/YYYY-MM-DD__<type>__<slug>__v<N>/
 
 ## Claim format
 
-- `Evidenced [E-023]` — must resolve, or the claim is **stripped**, not softened.
+Two evidenced forms. They are not interchangeable — one rests on a person, the other on an
+instrument, and the notation must not let them blur (ADR-017).
+
+- `Evidenced [E-nnn]` — **testimony.** Resolves in `research/evidence-ledger.json`.
+- `Evidenced [ART-nnn § Section]` — **measurement.** Resolves to a registered artifact and
+  a real section heading in its payload.
+- Either form that does not resolve **strips** the claim, not softens it.
 - `Inferred` — must name what it is inferred from.
 - `Assumption` — collected in a visible Assumptions block.
+
+Never mint a ledger ID for a measurement. Once the ledger holds things nobody said,
+"every quote resolves" stops meaning "no user was invented."
 
 ## Boundaries
 

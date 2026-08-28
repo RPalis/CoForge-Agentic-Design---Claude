@@ -148,17 +148,29 @@ D_LAYERS = [
 ]
 D_NODES = [
  {"id":"red","label":"RED — no DS","kind":"state","layer":"fork","summary":"Current state. token-keeper builds the system before screens are produced.",
-  "detail":"screen-producer stays wireframe-only until tokens and the component index exist. This is not a limitation to work around — producing hi-fi UI with no system is exactly what creates off-system drift.",
+  "detail":(
+      f"L1 output is unblocked: {ST['tokens']} tokens and {ST['components']} level-1 primitives exist. "
+      "screen-producer stays off L2 until the component index carries L2 entries (ADR-011)."
+      if ST["tokens"] and ST["components"] else
+      "screen-producer stays wireframe-only until tokens and the component index exist."
+    ) + " This is not a limitation to work around — producing hi-fi UI with no system is exactly what creates off-system drift.",
   "where":"CLAUDE.md · DS fork","meta":[["current","yes"],["unblocks","Build Stage 2"]],"reads":[],"writes":[]},
  {"id":"yellow","label":"YELLOW — DS not in code","kind":"state","layer":"fork","summary":"System exists in Figma but not as code. Match, review, feed gaps back.",
   "detail":"screen-producer matches components to wireframes and reviews consistency; gaps route to token-keeper.","where":"CLAUDE.md · DS fork","meta":[["current","no"]],"reads":[],"writes":[]},
  {"id":"green","label":"GREEN — DS in code","kind":"state","layer":"fork","summary":"Most optimised route: generate against the real component library.",
   "detail":"screen-producer targets Claude Code + Figma MCP + Code Connect, generating against real components.","where":"CLAUDE.md · DS fork","meta":[["current","no"]],"reads":[],"writes":[]},
  {"id":"brand","label":"brand.md","kind":"doc","layer":"found","summary":"Voice, visual language, colour rationale, type scale logic, motion character.",
-  "detail":"Owned by brand-director at suggest-only, and it never graduates. Brand direction is a judgment call — it is never written automatically, and never inferred from the absence of input. Currently a stub awaiting brand inputs.",
-  "where":"design-system/foundations/brand.md","meta":[["owner","brand-director"],["autonomy","suggest only — never graduates"],["state","EMPTY" if not ST["brand_defined"] else "defined"]],"reads":[],"writes":[]},
+  "detail":"Owned by brand-director at suggest-only, and it never graduates. Brand direction is a judgment call — it is never written automatically, and never inferred from the absence of input. " + {
+      "empty":    "Currently a stub awaiting brand inputs.",
+      "proposed": "Written from ART-005 and awaiting Gate A. Written is not approved: brand-director never graduates, so this sits in front of a human until one signs it.",
+      "approved": "Approved at Gate A.",
+    }.get(ST.get("brand_status","empty"), "State unknown — check the Status line in brand.md."),
+  "where":"design-system/foundations/brand.md","meta":[["owner","brand-director"],["autonomy","suggest only — never graduates"],["state",ST.get("brand_status","empty").upper()]],"reads":[],"writes":[]},
  {"id":"tokens","label":"tokens.json","kind":"ssot","layer":"tok","summary":"DTCG format. The only legal source of colour, spacing, radius and type.",
-  "detail":"Raw hex and raw px are a build error, not a style opinion. Gate B blocks the write and names the token to use instead. Currently empty — which is why the tokens check reports SKIPPED rather than PASSED.",
+  "detail":"Raw hex and raw px are a build error, not a style opinion. Gate B blocks the write and names the token to use instead. " + (
+      f"{ST['tokens']} tokens are authored, so the tokens check runs for real instead of reporting SKIPPED."
+      if ST["tokens"] else
+      "Currently empty — which is why the tokens check reports SKIPPED rather than PASSED."),
   "where":"design-system/tokens/tokens.json","meta":[["format","W3C DTCG"],["state",f"{ST['tokens']} tokens"],["gate","no value outside tokens"]],"reads":[],"writes":[]},
  {"id":"inversion","label":"ADR-001 inversion","kind":"gate","layer":"tok","summary":"Repo authors v0, pushes to Figma, then direction flips permanently.",
   "detail":"Greenfield means the repo must author first — there is nothing to read yet. The moment Figma variables exist, Figma owns tokens and the repo mirrors only. The drift check fails the build on divergence. A break-glass path to re-author exists but using it is a logged incident.",

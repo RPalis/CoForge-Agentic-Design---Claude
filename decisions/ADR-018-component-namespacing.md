@@ -2,29 +2,11 @@
 
 **Status:** Accepted · 2026-08-28
 
-## How this decision was made — recorded, not smoothed over
+## Provenance
 
-The recommendation below is **Claude's**, not the approver's independent technical
-judgement. Asked to choose between a naming rule and an ad-hoc rename, Agentic
-Designer - RP said: *"I don't think I have the technical capability to decide on that
-so I'll take your recommendation."*
-
-That is a legitimate delegation and it is recorded as one. An ADR that reads
-"approved by X" when X deferred would misrepresent the provenance of a decision the
-whole component layer now rests on — and this repository's second prohibition exists
-because provenance that overstates itself is worse than none.
-
-**Scope of the delegation — this decision only.** It was given for one narrow,
-technical question: how to namespace component identities so a name determines the
-thing. It is **not** a standing handover, it does not extend to any later decision,
-and it does not alter the autonomy ladder — brand-director and research-synthesizer
-conclusions still never graduate, and Gate A still requires a human on every judgment
-call. The approver has ruled independently on every other decision in this repository:
-the brand at Gate A, Anek Latin over the measured recommendation, keeping the
-repository public, the Carbon reconciliation strategy. Read narrowly, as given.
-
-**What would tell you this was wrong**, without needing the technical depth to
-pre-judge it, is written into "Falsifiers" at the end.
+Recommended by Claude, accepted by Agentic Designer - RP on the recommendation rather
+than on independent technical judgement. Recorded because the naming scheme is load-
+bearing for the component layer; "Falsifiers" at the end says what would show it wrong.
 
 ## Context
 

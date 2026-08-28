@@ -5,7 +5,7 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-13 agents · 41 artifact types · 18 ADRs · 153 relationships
+14 agents · 41 artifact types · 19 ADRs · 157 relationships
 
 
 ## State
@@ -38,6 +38,7 @@
 | `research-ops` | opus | Read, Write | yes |
 | `research-synthesizer` | opus | Read, Write | yes |
 | `screen-producer` | opus | Read, Write, Bash | yes |
+| `system-keeper` | sonnet | Read, Write, Bash, Grep | yes |
 | `token-keeper` | sonnet | Read, Write, Bash | yes |
 
 ## Artifact types by stage
@@ -83,3 +84,4 @@
 - [ADR-016 — Repository location: off ~/Desktop](decisions/ADR-016-repository-location.md) — Accepted · 2026-08-27
 - [ADR-017 — Claim format: non-ledger evidence](decisions/ADR-017-non-ledger-evidence.md) — Accepted · 2026-08-27
 - [ADR-018 — Component namespacing: `cf-` on our layer, vendor names untouched](decisions/ADR-018-component-namespacing.md) — Accepted · 2026-08-28
+- [ADR-019 — Self-governance: unchecked is not passed](decisions/ADR-019-self-governance.md) — Accepted · 2026-08-28

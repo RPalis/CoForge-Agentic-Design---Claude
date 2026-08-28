@@ -76,6 +76,19 @@ CASES = [
      "<div style='color:#ff0000'>x</div>", ALLOW,
      "scratch is where failures are allowed to live"),
 
+    ("citation MENTIONED, not made",
+     "decisions/ADR-999-test.md",
+     "The claim format resolves `Evidenced [E-023]` against the ledger.\n"
+     "> quoted: Evidenced [E-024]\n", ALLOW,
+     "correction C-012: Gate B read a MENTION of a citation as a citation and "
+     "blocked an ADR for quoting CLAUDE.md's own example. Code spans and "
+     "blockquotes are stripped before the scan; this is the regression test"),
+
+    ("citation MADE and unresolved still blocks",
+     "artifacts/x/2026-01-01__dashboard__t__v1/a.md",
+     "Users hated it Evidenced [E-777].", BLOCK,
+     "stripping mentions must not blind the gate to real unresolved claims"),
+
     ("prose file is not a visual file",
      "design-system/foundations/brand.md",
      "The ground is #eeece6 warm bone.", ALLOW,

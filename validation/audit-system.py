@@ -164,6 +164,61 @@ else:
     if not n_found:
         skip("foundations", "no markdown in design-system/foundations/")
 
+# 5c — self-governance: does the system verify its own claims?
+# Every blind spot found on 2026-08-28 had the same shape — a claim that was
+# asserted, believed, and checked by nothing, while every check that DID exist
+# passed. "skipped is not passed" was already known here; this is the missing
+# generalisation: UNCHECKED IS NOT PASSED. The two ledgers make the uncovered
+# surface visible instead of absent, which is the only difference between a
+# system that is healthy and one that merely reports no findings.
+corr = jload("validation/corrections.json")
+if corr is None:
+    skip("corrections", "validation/corrections.json not present")
+else:
+    entries = corr.get("corrections", [])
+    unchecked = []
+    for c in entries:
+        chk = c.get("check")
+        if not chk:
+            unchecked.append(c["id"])
+        elif not os.path.exists(P(chk)):
+            add("blocker", "corrections",
+                f"{c['id']} names check '{chk}', which does not exist",
+                "a correction whose check was removed is a regression — restore it "
+                "or record why the class of defect can no longer occur")
+    if unchecked:
+        add("warning", "corrections",
+            f"{len(unchecked)} of {len(entries)} corrections have no check: "
+            + ", ".join(unchecked),
+            "found and fixed is two of three. Until a check exists that would have "
+            "caught it, the same defect can return silently")
+    else:
+        add("info", "corrections", f"all {len(entries)} corrections carry a check", "no action")
+
+cov = jload("validation/coverage.json")
+if cov is None:
+    skip("coverage", "validation/coverage.json not present")
+else:
+    claims = cov.get("claims", [])
+    naked = [c for c in claims if not c.get("verified_by")]
+    for c in claims:
+        v = c.get("verified_by")
+        if v and not os.path.exists(P(v)):
+            add("blocker", "coverage",
+                f"{c['id']} claims to be verified by '{v}', which does not exist",
+                "the claim is now unverified — restore the check or move it to null "
+                "so it is reported as uncovered rather than silently trusted")
+    if naked:
+        add("warning", "coverage",
+            f"{len(naked)} of {len(claims)} load-bearing claims are UNVERIFIED: "
+            + ", ".join(c["id"] for c in naked),
+            "each is a property this system asserts about itself that nothing tests. "
+            "Reported deliberately — an uncovered claim that nobody can see is how "
+            "every defect in corrections.json survived")
+    add("info", "coverage",
+        f"{len(claims) - len(naked)} of {len(claims)} claims verified",
+        "no action")
+
 # 6 — token enforcement across the repo
 tok = jload("design-system/tokens/tokens.json") or {}
 if not any(isinstance(v, dict) and v for k, v in tok.items() if not k.startswith("$")):

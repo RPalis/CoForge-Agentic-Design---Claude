@@ -124,6 +124,7 @@ match any (phase, task) pair.
 | 11 Improve | roadmap / hypotheses | research-synthesizer | metrics, ledger | artifacts/…/prioritization | A | — → loops to Phase 1 |
 | any | brand voice / visual language | brand-director | brand inputs | foundations/brand.md | A (suggest-only) | never graduates |
 | any | token sync / drift | token-keeper | Figma variables, tokens.json | tokens.json | auto sync / suggest new | — |
+| any | adapters · generators · validators · schemas · hooks | system-keeper | vendor source, the repo itself | validation/, contracts/, generated indices | B (A if it changes what a gate accepts) | design decisions (brand-director, token-keeper) |
 
 ## Autonomy ladder
 

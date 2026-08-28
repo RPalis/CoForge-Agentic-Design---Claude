@@ -18,10 +18,10 @@
     "brand_defined": true
   },
   "counts": {
-    "agents": 13,
+    "agents": 14,
     "artifact_types": 41,
-    "adrs": 18,
-    "relationships": 153
+    "adrs": 19,
+    "relationships": 157
   },
   "agents": [
     {
@@ -158,6 +158,19 @@
       "writes": true,
       "file": ".claude/agents/screen-producer.md",
       "trigger": "Use during Phase 3 for sketches and Phase 4 for wireframes, hi-fi UI, and prototypes \u2014 \"wireframe this\", \"make the hi-fi screen\", \"build a clickable prototype\", \"design the screen\""
+    },
+    {
+      "name": "system-keeper",
+      "model": "sonnet",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash",
+        "Grep"
+      ],
+      "writes": true,
+      "file": ".claude/agents/system-keeper.md",
+      "trigger": "Use for the machinery that produces and checks the system itself \u2014 adapters that ingest a vendor library, generators, validators, schemas, hooks, indices. \"regenerate the component"
     },
     {
       "name": "token-keeper",
@@ -377,6 +390,11 @@
     {
       "file": "decisions/ADR-018-component-namespacing.md",
       "title": "ADR-018 \u2014 Component namespacing: `cf-` on our layer, vendor names untouched",
+      "status": "Accepted \u00b7 2026-08-28"
+    },
+    {
+      "file": "decisions/ADR-019-self-governance.md",
+      "title": "ADR-019 \u2014 Self-governance: unchecked is not passed",
       "status": "Accepted \u00b7 2026-08-28"
     }
   ],
@@ -1130,6 +1148,26 @@
       "from": "screen-producer",
       "rel": "may-use",
       "to": "Bash"
+    },
+    {
+      "from": "system-keeper",
+      "rel": "may-use",
+      "to": "Read"
+    },
+    {
+      "from": "system-keeper",
+      "rel": "may-use",
+      "to": "Write"
+    },
+    {
+      "from": "system-keeper",
+      "rel": "may-use",
+      "to": "Bash"
+    },
+    {
+      "from": "system-keeper",
+      "rel": "may-use",
+      "to": "Grep"
     },
     {
       "from": "token-keeper",

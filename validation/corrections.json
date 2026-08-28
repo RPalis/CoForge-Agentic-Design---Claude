@@ -1,0 +1,129 @@
+{
+  "$comment": "The auto-learn loop. A defect is NOT fixed until a check exists that would have caught it. Every entry names its verifying check; audit-system.py fails when an entry names a check that does not exist, and warns when `check` is null. memory/corrections.md was the prose ancestor of this file and is gitignored, so nothing it recorded survived a clone — which is why this lives in a tracked path and is machine-checked. Entries are append-only: a correction whose check was later removed is a regression, not a tidy-up.",
+  "version": "1.0.0",
+  "rule": "found -> fixed -> CHECKED. Two of three is not done.",
+  "corrections": [
+    {
+      "id": "C-001",
+      "date": "2026-08-28",
+      "defect": "index-system.py's token counter returned on the first $value and never descended, so every token nested inside another token was invisible. The repo reported 666 tokens while holding 712.",
+      "class": "count asserted, never cross-derived",
+      "found_by": "writing an independent walker for an unrelated question",
+      "check": "validation/audit-contracts.py",
+      "verifies": "counts primitives and aliases by descending into hybrid nodes; a divergence from the index count surfaces",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-002",
+      "date": "2026-08-28",
+      "defect": "27 nodes in semantic-dark carried a $value AND child tokens — invalid DTCG. Would have broken the Figma variable import ADR-001 depends on.",
+      "class": "shape never validated",
+      "found_by": "the same independent walker",
+      "check": "validation/align-dark-to-light.py",
+      "verifies": "refuses to write while any node is both a token and a group; audit-contracts.py reports hybrids independently",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-003",
+      "date": "2026-08-28",
+      "defect": "Gate B blocked EVERY legitimate component. The index stores kebab-case, JSX writes PascalCase, and they were compared raw. A gate that blocks correct work teaches people to route around it.",
+      "class": "gate never fired",
+      "found_by": "validation/test-gates.py, on its first ever run",
+      "check": "validation/test-gates.py",
+      "verifies": "case 'INDEXED vendor component' — <Button /> must be ALLOWED",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-004",
+      "date": "2026-08-28",
+      "defect": "No gate covered design-system/foundations/ at all. The audit printed 'skipped 0 · PASS' on runs that never opened brand.md.",
+      "class": "coverage assumed from a pass",
+      "found_by": "grepping the hooks for the path after an agent flagged an unusual citation form",
+      "check": "validation/audit-system.py",
+      "verifies": "check 5b walks foundations/*.md — citations resolve, no scratch/ dependencies. Negative-tested with planted faults.",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-005",
+      "date": "2026-08-28",
+      "defect": "Adapter #1 keyed the component index on DIRECTORY names, not public exports. 13 entries were not importable (Carbon ships Card as preview__Card); ~230 real exports were missing, including Table — which matched our L1 'table' and PASSED Gate B while resolving in code to Carbon's.",
+      "class": "generator never checked against its own output",
+      "found_by": "external research contradicting a claim I had made",
+      "check": "validation/test-gates.py",
+      "verifies": "case 'non-importable vendor name' — <Card /> must BLOCK",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-006",
+      "date": "2026-08-28",
+      "defect": "13 tokens_used references in the L1 primitives pointed at nothing. Hand-authored at Stage 0 against a token layer that did not exist yet, never re-checked when it landed.",
+      "class": "cross-layer link never traversed",
+      "found_by": "the DS contract health report",
+      "check": "validation/audit-contracts.py",
+      "verifies": "check 4c — every tokens_used entry must resolve to a real token path or glob",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-007",
+      "date": "2026-08-28",
+      "defect": "flatten-dark-tokens.py 'proved' light and dark were identical by normalising BOTH sides before comparing, then writing only one. It compared a corrected copy against the real thing.",
+      "class": "verification that could not fail",
+      "found_by": "validation/audit-contracts.py symmetry check",
+      "check": "validation/align-dark-to-light.py",
+      "verifies": "compares dark against light AS IT IS ON DISK; refuses unless the rebuilt key set is identical",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-008",
+      "date": "2026-08-28",
+      "defect": "brand_defined was a boolean and could not express 'written but not approved'. It reported true while brand.md sat unapproved at Gate A, advertising the brand as settled.",
+      "class": "state flattened to fewer values than it has",
+      "found_by": "noticing the flag flip when brand.md was first written",
+      "check": "validation/index-system.py",
+      "verifies": "_brand_status() reads three states from brand.md's own Status line; brand_defined is derived from it",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-009",
+      "date": "2026-08-28",
+      "defect": "Five literals sat above the primitive layer in tokens.json, inherited from Carbon's own upstream files, breaking the alias-only contract.",
+      "class": "contract asserted in prose, unchecked in code",
+      "found_by": "a token-keeper survey",
+      "check": "validation/audit-contracts.py",
+      "verifies": "find_literal_leaks — recurses through composite $value dicts and arrays, so a single literal anywhere fails",
+      "would_have_caught": true
+    },
+    {
+      "id": "C-010",
+      "date": "2026-08-28",
+      "defect": "Documentation drifted: 'no design system exists yet' (x3 files), 'Nine ADRs' when there were 17, five enforcement layers when there were six, three validation scripts documented of twelve.",
+      "class": "prose asserting state nobody re-derives",
+      "found_by": "a manual document audit",
+      "check": null,
+      "verifies": null,
+      "would_have_caught": false,
+      "note": "STILL UNCHECKED. Counts in prose are not compared against the things they count. This is the open item this ledger exists to make visible rather than forgettable."
+    },
+    {
+      "id": "C-011",
+      "date": "2026-08-28",
+      "defect": "1316 lines of reasoning behind ADR-018 and the token layer sat in scratch/, which is gitignored. A clean would have left ADRs asserting conclusions with no visible working.",
+      "class": "durable decision resting on disposable evidence",
+      "found_by": "the user asking that decisions be memorialised",
+      "check": null,
+      "verifies": null,
+      "would_have_caught": false,
+      "note": "STILL UNCHECKED. Nothing verifies that a tracked document's cited evidence is itself tracked. The foundations check does this for design-system/foundations/ only — decisions/ is uncovered."
+    },
+    {
+      "id": "C-012",
+      "date": "2026-08-28",
+      "defect": "Gate B read a MENTION of a citation as a citation, and blocked an ADR for quoting CLAUDE.md's own example ID.",
+      "class": "parser cannot distinguish use from mention",
+      "found_by": "the gate blocking a legitimate write",
+      "check": "validation/test-gates.py",
+      "verifies": "cases 'citation MENTIONED, not made' (must allow) and 'citation MADE and unresolved still blocks' (must block) — the pair matters: stripping mentions must not blind the gate to real claims",
+      "would_have_caught": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "SideNavFooter",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon SideNavFooter.",
+  "variants": {},
+  "props": [
+    {
+      "name": "assistiveText",
+      "required": true,
+      "type": "string",
+      "description": "Provide text to be read to screen readers and shown as a tooltip when interacting with the toggle button in the footer"
+    },
+    {
+      "name": "expanded",
+      "required": true,
+      "type": "boolean",
+      "description": "Specify whether the side navigation is expanded or collapsed"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon SideNavFooter rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/UIShell/SideNavFooter.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SideNavFooterProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 2,
+    "variant_count": 0
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "TableDecoratorRow",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TableDecoratorRow.",
+  "variants": {},
+  "props": [
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `TableDecoratorRow` component"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TableDecoratorRow rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DataTable/TableDecoratorRow.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TableDecoratorRowProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 1,
+    "variant_count": 0
+  }
+}

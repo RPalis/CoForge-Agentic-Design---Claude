@@ -1,0 +1,75 @@
+{
+  "name": "SelectableTile",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon SelectableTile.",
+  "variants": {},
+  "props": [
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `SelectableTile` component"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the SelectableTile should be disabled"
+    },
+    {
+      "name": "hasRoundedCorners",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Specify if the `SelectableTile` component should be rendered with rounded corners. Only valid when `slug` prop is present"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "The `name` of the `<input>`."
+    },
+    {
+      "name": "selected",
+      "required": false,
+      "type": "boolean",
+      "description": "The empty handler of the `<input>`. / onChange?(event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>, selected?: boolean, id?: string): void; /** Specify the function to run when the SelectableTile is clicked / onClick?(event: MouseEvent<HTMLDivElement>): void; /** Specify the function to run when the SelectableTile is interacted with via a keyboard / onKeyDown?(event: KeyboardEvent<HTMLDivElement>): void; /** `true` to select this tile."
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `Slug` component to be rendered inside the `SelectableTile` component"
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "string | number",
+      "description": "The value of the `<input>`."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon SelectableTile rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tile/Tile.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SelectableTileProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 8,
+    "variant_count": 0
+  }
+}

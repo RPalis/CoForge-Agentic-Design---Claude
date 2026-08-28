@@ -1,0 +1,56 @@
+{
+  "name": "TabListVertical",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TabListVertical.",
+  "variants": {
+    "activation": [
+      "automatic",
+      "manual"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ]
+  },
+  "props": [
+    {
+      "name": "activation",
+      "required": false,
+      "type": "'automatic' | 'manual'",
+      "description": "Specify whether the content tab should be activated automatically or manually"
+    },
+    {
+      "name": "scrollIntoView",
+      "required": false,
+      "type": "boolean",
+      "description": "Choose whether to automatically scroll to newly selected tabs on component rerender"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md' | 'lg' | 'xl'",
+      "description": "Specify the size of the tabs."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TabListVertical rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tabs/Tabs.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TabListVerticalProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 3,
+    "variant_count": 2
+  }
+}

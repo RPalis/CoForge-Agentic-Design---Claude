@@ -1,0 +1,61 @@
+{
+  "name": "Switch",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Switch.",
+  "variants": {},
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether or not the Switch should be disabled"
+    },
+    {
+      "name": "index",
+      "required": false,
+      "type": "number",
+      "description": "The index of your Switch in your ContentSwitcher that is used for event handlers. Reserved for usage in ContentSwitcher"
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string | number",
+      "description": "Provide the name of your Switch that is used for event handlers"
+    },
+    {
+      "name": "selected",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether your Switch is selected. Reserved for usage in ContentSwitcher"
+    },
+    {
+      "name": "text",
+      "required": false,
+      "type": "string",
+      "description": "Provide the contents of your Switch"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Switch rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Switch/Switch.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SwitchProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=10151-402337&t=Y6lD1uj5Q0yszbgL-4",
+    "code_connect": "packages/react/code-connect/ContentSwitcher/Switch.figma.tsx"
+  }
+}

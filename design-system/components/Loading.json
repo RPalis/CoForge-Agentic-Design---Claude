@@ -1,0 +1,55 @@
+{
+  "name": "Loading",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Loading.",
+  "variants": {},
+  "props": [
+    {
+      "name": "active",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you want the loading indicator to be spinning or not"
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "string",
+      "description": "Specify a description that would be used to best describe the loading state"
+    },
+    {
+      "name": "small",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you would like the small variant of <Loading>"
+    },
+    {
+      "name": "withOverlay",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you want the loader to be applied with an overlay"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Loading rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Loading/Loading.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "LoadingProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 4,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=3238-28455&t=Y6lD1uj5Q0yszbgL-4",
+    "code_connect": "packages/react/code-connect/Loading/Loading.figma.tsx"
+  }
+}

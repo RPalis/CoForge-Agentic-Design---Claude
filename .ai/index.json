@@ -12,7 +12,7 @@
     "evidence_records": 0,
     "raw_sources": 0,
     "tokens": 786,
-    "components": 8,
+    "components": 216,
     "artifacts": 7,
     "brand_status": "approved",
     "brand_defined": true
@@ -20,7 +20,7 @@
   "counts": {
     "agents": 13,
     "artifact_types": 41,
-    "adrs": 17,
+    "adrs": 18,
     "relationships": 153
   },
   "agents": [
@@ -373,6 +373,11 @@
       "file": "decisions/ADR-017-non-ledger-evidence.md",
       "title": "ADR-017 \u2014 Claim format: non-ledger evidence",
       "status": "Accepted \u00b7 2026-08-27"
+    },
+    {
+      "file": "decisions/ADR-018-component-namespacing.md",
+      "title": "ADR-018 \u2014 Component namespacing: `cf-` on our layer, vendor names untouched",
+      "status": "Accepted \u00b7 2026-08-28"
     }
   ],
   "relationships": [

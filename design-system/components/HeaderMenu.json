@@ -1,0 +1,57 @@
+{
+  "name": "HeaderMenu",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon HeaderMenu.",
+  "variants": {},
+  "props": [
+    {
+      "name": "focusRef",
+      "required": false,
+      "type": "Ref<any>",
+      "description": "Provide a custom ref handler for the menu button"
+    },
+    {
+      "name": "isActive",
+      "required": false,
+      "type": "boolean",
+      "description": "Applies selected styles to the item if a user sets this to true and `aria-current !== 'page'`."
+    },
+    {
+      "name": "isCurrentPage",
+      "required": false,
+      "type": "boolean",
+      "description": "Applies selected styles to the item if a user sets this to true and `aria-current !== 'page'`."
+    },
+    {
+      "name": "menuLinkName",
+      "required": true,
+      "type": "string",
+      "description": "Provide a label for the link text"
+    },
+    {
+      "name": "renderMenuContent",
+      "required": false,
+      "type": "() => ReactNode",
+      "description": "Optional component to render instead of string"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon HeaderMenu rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/UIShell/HeaderMenu.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "HeaderMenuProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 0
+  }
+}

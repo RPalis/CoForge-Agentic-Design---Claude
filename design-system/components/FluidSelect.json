@@ -1,0 +1,79 @@
+{
+  "name": "FluidSelect",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FluidSelect.",
+  "variants": {},
+  "props": [
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "SelectHTMLAttributes<HTMLSelectElement>['defaultValue']",
+      "description": "Optionally provide the default value of the `<select>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is disabled"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the currently value is invalid."
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Message which is displayed if the value is invalid."
+    },
+    {
+      "name": "labelText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide label text to be read by screen readers when interacting with the control"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether or not the component is readonly"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FluidSelect rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FluidSelect/FluidSelect.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FluidSelectProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 8,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=17650-275243&t=LS77peWFGhwOdxIw-4",
+    "code_connect": "packages/react/code-connect/Select/FluidSelect.figma.tsx"
+  }
+}

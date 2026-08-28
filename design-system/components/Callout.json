@@ -1,0 +1,63 @@
+{
+  "name": "Callout",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Callout.",
+  "variants": {},
+  "props": [
+    {
+      "name": "actionButtonLabel",
+      "required": false,
+      "type": "string",
+      "description": "Pass in the action button label that will be rendered within the ActionableNotification."
+    },
+    {
+      "name": "kind",
+      "required": false,
+      "type": "KindProps",
+      "description": "Specify what state the notification represents"
+    },
+    {
+      "name": "lowContrast",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you are using the low contrast variant of the Callout."
+    },
+    {
+      "name": "statusIconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Provide a description for \"status\" icon that can be read by screen readers"
+    },
+    {
+      "name": "subtitle",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Specify the subtitle"
+    },
+    {
+      "name": "titleId",
+      "required": false,
+      "type": "string",
+      "description": "Specify the id for the element containing the title"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Callout rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Notification/Notification.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "CalloutProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

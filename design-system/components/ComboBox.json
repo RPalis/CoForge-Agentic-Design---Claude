@@ -1,0 +1,198 @@
+{
+  "name": "ComboBox",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ComboBox.",
+  "variants": {
+    "direction": [
+      "top",
+      "bottom"
+    ]
+  },
+  "props": [
+    {
+      "name": "allowCustomValue",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether or not the ComboBox should allow a value that is not in the list to be entered in the input"
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "string",
+      "description": "Specify a label to be read by screen readers on the container node 'aria-label' of the ListBox component. / ['aria-label']?: string; /** 'aria-label' of the ListBox component."
+    },
+    {
+      "name": "autoAlign",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Will attempt to automatically align the floating element to avoid collisions with the viewport and being clipped by ancestor elements. Requires React v17+"
+    },
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `ComboBox` component"
+    },
+    {
+      "name": "direction",
+      "required": false,
+      "type": "'top' | 'bottom'",
+      "description": "Specify the direction of the combobox dropdown. Can be either top or bottom."
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the control should be disabled, or not"
+    },
+    {
+      "name": "downshiftActions",
+      "required": false,
+      "type": "RefObject<UseComboboxActions<ItemType> | undefined>",
+      "description": "Provide a ref that will be mutated to contain an object of downshift action functions. These can be called to change the internal state of the downshift useCombobox hook. **Use with caution:** calling these actions modifies the internal state of downshift. It may conflict with or override the state management used within Combobox. Downshift APIs and internals are subject to change, and in some cases they can not be shimmed by Carbon to shield you from potentially breaking changes."
+    },
+    {
+      "name": "downshiftProps",
+      "required": false,
+      "type": "Partial<UseComboboxProps<ItemType>>",
+      "description": "Additional props passed to Downshift. **Use with caution:** anything you define here overrides the components' internal handling of that prop. Downshift APIs and internals are subject to change, and in some cases they can not be shimmed by Carbon to shield you from potentially breaking changes."
+    },
+    {
+      "name": "helperText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide helper text that is used alongside the control label for additional help"
+    },
+    {
+      "name": "initialSelectedItem",
+      "required": false,
+      "type": "ItemType",
+      "description": "Allow users to pass in an arbitrary item or a string (in case their items are an array of strings) from their collection that are pre-selected"
+    },
+    {
+      "name": "inputProps",
+      "required": false,
+      "type": "InputHTMLAttributes<HTMLInputElement>",
+      "description": "Specify native input attributes to place on the `<input>`, like maxLength. These are passed to downshift's getInputProps() and will override the internal input props. https://github.com/downshift-js/downshift?tab=readme-ov-file#getinputprops"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the currently selected value is invalid."
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Message which is displayed if the value is invalid."
+    },
+    {
+      "name": "itemToElement",
+      "required": false,
+      "type": "((item: ItemType) => ReactNode) | null",
+      "description": "Renders an item as a custom React node instead of a string."
+    },
+    {
+      "name": "itemToString",
+      "required": false,
+      "type": "ItemToStringHandler<ItemType>",
+      "description": "Helper function passed to downshift that allows the library to render a given item to a string label. By default, it extracts the `label` field from a given item to serve as the item label in the list"
+    },
+    {
+      "name": "items",
+      "required": true,
+      "type": "ItemType[]",
+      "description": "We try to stay as generic as possible here to allow individuals to pass in a collection of whatever kind of data structure they prefer"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "should use \"light theme\" (white background)?"
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "string",
+      "description": "Used to provide a placeholder text node before a user enters any input. This is only present if the control has no items selected"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether or not the component is read-only"
+    },
+    {
+      "name": "selectedItem",
+      "required": false,
+      "type": "ItemType | null",
+      "description": "For full control of the selection"
+    },
+    {
+      "name": "shouldFilterItem",
+      "required": false,
+      "type": "(input: { item: ItemType",
+      "description": "Specify your own filtering logic by passing in a `shouldFilterItem` function that takes in the current input and an item and passes back whether or not the item should be filtered. this prop will be ignored if `typeahead` prop is enabled"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "ListBoxSize",
+      "description": "Specify the size of the ListBox. Currently supports either `xs`, `sm`, `md` or `lg` as an option."
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `Slug` component to be rendered inside the `ComboBox` component"
+    },
+    {
+      "name": "titleText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide text to be used in a `<label>` element that is tied to the combobox via ARIA attributes."
+    },
+    {
+      "name": "typeahead",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: will enable autocomplete and typeahead for the input field"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ComboBox rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ComboBox/ComboBox.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ComboBoxProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 27,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=14032-290976&t=5acDGCinwyrs5Bbc-4",
+    "code_connect": "packages/react/code-connect/ComboBox/ComboBox.figma.tsx"
+  }
+}

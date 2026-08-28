@@ -1,0 +1,48 @@
+{
+  "name": "Breadcrumb",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Breadcrumb.",
+  "variants": {
+    "size": [
+      "sm",
+      "md"
+    ]
+  },
+  "props": [
+    {
+      "name": "noTrailingSlash",
+      "required": false,
+      "type": "boolean",
+      "description": "Optional prop to omit the trailing slash for the breadcrumbs"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md'",
+      "description": "Specify the size of the Breadcrumb. Currently supports the following: `sm` & `md` (default: 'md')"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Breadcrumb rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Breadcrumb/Breadcrumb.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "BreadcrumbProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 2,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/-v11--Carbon-Design-System?node-id=104376-11673&m=dev",
+    "code_connect": "packages/react/code-connect/Breadcrumb/Breadcrumb.figma.tsx"
+  }
+}

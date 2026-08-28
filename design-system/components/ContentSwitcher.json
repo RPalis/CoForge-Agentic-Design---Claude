@@ -1,0 +1,71 @@
+{
+  "name": "ContentSwitcher",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ContentSwitcher.",
+  "variants": {
+    "selectionMode": [
+      "automatic",
+      "manual"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version. been deprecated in favor of the new `Layer` component. It will be removed in the next major release."
+    },
+    {
+      "name": "lowContrast",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the low contrast version."
+    },
+    {
+      "name": "selectedIndex",
+      "required": false,
+      "type": "number",
+      "description": "Specify a selected index for the initially selected content"
+    },
+    {
+      "name": "selectionMode",
+      "required": false,
+      "type": "'automatic' | 'manual'",
+      "description": "Choose whether or not to automatically change selection on focus when left/right arrow pressed. Defaults to 'automatic'"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the Content Switcher. Currently supports either `sm`, `md` (default) or `lg` as an option."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ContentSwitcher rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ContentSwitcher/ContentSwitcher.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ContentSwitcherProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 2
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=10151-402486&t=LoXqbMLZkoMgbrAS-4",
+    "code_connect": "packages/react/code-connect/ContentSwitcher/ContentSwitcher.figma.tsx"
+  }
+}

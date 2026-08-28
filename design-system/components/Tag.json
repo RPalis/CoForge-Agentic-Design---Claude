@@ -1,0 +1,73 @@
+{
+  "name": "Tag",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Tag.",
+  "variants": {},
+  "props": [
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental:** Provide a `decorator` component to be rendered inside the `Tag` component"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the `Tag` is disabled"
+    },
+    {
+      "name": "filter",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "React.ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "keyof typeof SIZES",
+      "description": "Specify the size of the Tag. Currently supports either `sm`, `md` (default) or `lg` sizes."
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental:** Provide a `Slug` component to be rendered inside the `Tag` component"
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "keyof typeof TYPES",
+      "description": "Specify the type of the `Tag`"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Tag rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tag/Tag.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TagBaseProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 7,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=16031-269750&t=RuAO38H8L12JZXpK-4",
+    "code_connect": "packages/react/code-connect/Tag/Tag.figma.tsx"
+  }
+}

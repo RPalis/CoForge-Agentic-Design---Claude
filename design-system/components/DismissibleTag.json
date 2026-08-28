@@ -1,0 +1,87 @@
+{
+  "name": "DismissibleTag",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon DismissibleTag.",
+  "variants": {},
+  "props": [
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental:** Provide a `decorator` component to be rendered inside the `DismissibleTag` component"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the `DismissibleTag` is disabled"
+    },
+    {
+      "name": "dismissTooltipAlignment",
+      "required": false,
+      "type": "PopoverAlignment",
+      "description": "Specify the tooltip alignment for the dismiss button"
+    },
+    {
+      "name": "dismissTooltipLabel",
+      "required": false,
+      "type": "string",
+      "description": "Provide a custom tooltip label for the dismiss button"
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "React.ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "keyof typeof SIZES",
+      "description": "Specify the size of the Tag. Currently supports either `sm`, `md` (default) or `lg` sizes."
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental:** Provide a `Slug` component to be rendered inside the `DismissibleTag` component"
+    },
+    {
+      "name": "tagTitle",
+      "required": false,
+      "type": "string",
+      "description": "Provide a custom `title` to be inserted in the tag."
+    },
+    {
+      "name": "text",
+      "required": false,
+      "type": "string",
+      "description": "Provide text to be rendered inside of a the tag."
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "keyof typeof TYPES",
+      "description": "Specify the type of the `Tag`"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon DismissibleTag rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tag/DismissibleTag.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "DismissibleTagBaseProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 10,
+    "variant_count": 0
+  }
+}

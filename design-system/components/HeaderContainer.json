@@ -1,0 +1,33 @@
+{
+  "name": "HeaderContainer",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon HeaderContainer.",
+  "variants": {},
+  "props": [
+    {
+      "name": "isSideNavExpanded",
+      "required": true,
+      "type": "boolean",
+      "description": null
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon HeaderContainer rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/UIShell/HeaderContainer.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "HeaderContainerRenderProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 1,
+    "variant_count": 0
+  }
+}

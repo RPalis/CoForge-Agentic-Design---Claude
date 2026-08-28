@@ -1,0 +1,81 @@
+{
+  "name": "ClickableTile",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ClickableTile.",
+  "variants": {},
+  "props": [
+    {
+      "name": "clicked",
+      "required": false,
+      "type": "boolean",
+      "description": "Boolean for whether a tile has been clicked."
+    },
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "boolean | ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component or set the boolean to True for an AILabel icon to be rendered inside the `ClickableTile` component"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the ClickableTile should be disabled"
+    },
+    {
+      "name": "hasRoundedCorners",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Specify if the `ClickableTile` component should be rendered with rounded corners. Only valid when `slug` prop is present"
+    },
+    {
+      "name": "href",
+      "required": false,
+      "type": "string",
+      "description": "The href for the link."
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "rel",
+      "required": false,
+      "type": "string",
+      "description": "Specify the function to run when the ClickableTile is clicked / onClick?(event: MouseEvent<HTMLAnchorElement> | KeyboardEvent<HTMLAnchorElement>): void; /** Specify the function to run when the ClickableTile is interacted with via a keyboard / onKeyDown?(event: KeyboardEvent<HTMLAnchorElement>): void; /** The rel property for the link."
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "React.ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Specify if a `Slug` icon should be rendered inside the `ClickableTile`"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ClickableTile rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tile/Tile.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ClickableTileProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 9,
+    "variant_count": 0
+  }
+}

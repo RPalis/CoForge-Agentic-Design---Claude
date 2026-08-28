@@ -1,0 +1,57 @@
+{
+  "name": "TableSelectRow",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TableSelectRow.",
+  "variants": {},
+  "props": [
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "string",
+      "description": "Specify a label to be read by screen readers on the containing textbox node / ['aria-label']?: string; /** Specify a label to be read by screen readers on the containing textbox node"
+    },
+    {
+      "name": "checked",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether this row is selected, or not"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is disabled"
+    },
+    {
+      "name": "name",
+      "required": true,
+      "type": "string",
+      "description": "Provide a `name` for the underlying input control"
+    },
+    {
+      "name": "radio",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control should be a radio button or inline checkbox"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TableSelectRow rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DataTable/TableSelectRow.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TableSelectRowProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 0
+  }
+}

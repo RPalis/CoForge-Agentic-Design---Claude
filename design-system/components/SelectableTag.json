@@ -1,0 +1,63 @@
+{
+  "name": "SelectableTag",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon SelectableTag.",
+  "variants": {},
+  "props": [
+    {
+      "name": "defaultSelected",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify the default state of the selectable tag."
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the `SelectableTag` is disabled"
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "React.ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "selected",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify the state of the selectable tag."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "keyof typeof SIZES",
+      "description": "Specify the size of the Tag. Currently supports either `sm`, `md` (default) or `lg` sizes."
+    },
+    {
+      "name": "text",
+      "required": false,
+      "type": "string",
+      "description": "Provide text to be rendered inside of a the tag."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon SelectableTag rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tag/SelectableTag.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SelectableTagBaseProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

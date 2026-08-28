@@ -1,0 +1,93 @@
+{
+  "name": "ExpandableTile",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ExpandableTile.",
+  "variants": {},
+  "props": [
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `ExpandableTile` component"
+    },
+    {
+      "name": "expanded",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` if the tile is expanded."
+    },
+    {
+      "name": "hasRoundedCorners",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Specify if the `ExpandableTile` component should be rendered with rounded corners. Only valid when `slug` prop is present"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Specify the function to run when the ExpandableTile is clicked / onClick?(event: MouseEvent): void; /** optional handler to trigger a function when a key is pressed / onKeyUp?(event: KeyboardEvent): void; /** **Experimental**: Provide a `Slug` component to be rendered inside the `ExpandableTile` component"
+    },
+    {
+      "name": "tileCollapsedIconText",
+      "required": false,
+      "type": "string",
+      "description": "The description of the \"collapsed\" icon that can be read by screen readers."
+    },
+    {
+      "name": "tileCollapsedLabel",
+      "required": false,
+      "type": "string",
+      "description": "When \"collapsed\", a label to appear next to the chevron (e.g., \"View more\")."
+    },
+    {
+      "name": "tileExpandedIconText",
+      "required": false,
+      "type": "string",
+      "description": "The description of the \"expanded\" icon that can be read by screen readers."
+    },
+    {
+      "name": "tileExpandedLabel",
+      "required": false,
+      "type": "string",
+      "description": "When \"expanded\", a label to appear next to the chevron (e.g., \"View less\")."
+    },
+    {
+      "name": "tileMaxHeight",
+      "required": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "tilePadding",
+      "required": false,
+      "type": "number",
+      "description": null
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ExpandableTile rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tile/Tile.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ExpandableTileProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 11,
+    "variant_count": 0
+  }
+}

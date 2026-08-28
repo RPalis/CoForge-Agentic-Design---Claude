@@ -5,7 +5,7 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-13 agents · 41 artifact types · 17 ADRs · 153 relationships
+13 agents · 41 artifact types · 18 ADRs · 153 relationships
 
 
 ## State
@@ -17,7 +17,7 @@
 | evidence_records | 0 |
 | raw_sources | 0 |
 | tokens | 786 |
-| components | 8 |
+| components | 216 |
 | artifacts | 7 |
 | brand_status | approved |
 | brand_defined | True |
@@ -82,3 +82,4 @@
 - [ADR-015 — Licence: Apache-2.0](decisions/ADR-015-licence.md) — Accepted · 2026-08-27
 - [ADR-016 — Repository location: off ~/Desktop](decisions/ADR-016-repository-location.md) — Accepted · 2026-08-27
 - [ADR-017 — Claim format: non-ledger evidence](decisions/ADR-017-non-ledger-evidence.md) — Accepted · 2026-08-27
+- [ADR-018 — Component namespacing: `cf-` on our layer, vendor names untouched](decisions/ADR-018-component-namespacing.md) — Accepted · 2026-08-28

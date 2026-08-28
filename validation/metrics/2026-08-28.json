@@ -1,29 +1,29 @@
 {
   "run_id": "2026-08-28",
-  "generated_at": "2026-08-28T13:53:20",
+  "generated_at": "2026-08-28T14:08:20",
   "project": "coforge",
   "session": {
-    "turns": 1536,
-    "duration_min": 4557.0,
+    "turns": 1571,
+    "duration_min": 4572.0,
     "transcripts": 2
   },
   "tokens": {
-    "input": 3070,
-    "output": 2186806,
-    "cache_read": 638282528,
-    "cache_creation": 23206394,
-    "billable": 2189876
+    "input": 3140,
+    "output": 2236944,
+    "cache_read": 661071605,
+    "cache_creation": 23240520,
+    "billable": 2240084
   },
   "tools": {
-    "Bash": 391,
+    "Bash": 403,
     "mcp__Claude_Browser__computer": 63,
     "Edit": 63,
-    "Write": 24,
+    "Write": 25,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
     "Artifact": 16,
-    "AskUserQuestion": 11,
+    "AskUserQuestion": 12,
     "mcp__chrome-devtools__evaluate_script": 11,
     "WebSearch": 10,
     "mcp__Claude_Browser__preview_start": 9,
@@ -64,7 +64,7 @@
       "approved": 2,
       "superseded": 2
     },
-    "tokens_per_artifact": 312839
+    "tokens_per_artifact": 320012
   },
   "gates": {
     "verdict": "PASS",
@@ -79,13 +79,13 @@
     "promoted": 0
   },
   "governance": {
-    "adrs": 17,
+    "adrs": 18,
     "agents": 13,
     "artifact_types": 41
   },
   "readiness": {
     "l1": 100.0,
-    "l2": 62.0,
+    "l2": 66.0,
     "workflow": 100.0
   }
 }

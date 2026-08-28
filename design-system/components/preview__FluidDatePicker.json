@@ -1,0 +1,57 @@
+{
+  "name": "preview__FluidDatePicker",
+  "level": 2,
+  "status": "preview",
+  "category": "carbon",
+  "summary": "Carbon preview__FluidDatePicker.",
+  "variants": {},
+  "props": [
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether or not the control is invalid"
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in error state"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether the input should be read-only"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon preview__FluidDatePicker rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FluidDatePicker/FluidDatePicker.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FluidDatePickerProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 0
+  }
+}

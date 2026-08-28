@@ -1,0 +1,161 @@
+{
+  "name": "FluidMultiSelect",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FluidMultiSelect.",
+  "variants": {
+    "direction": [
+      "top",
+      "bottom"
+    ],
+    "selectionFeedback": [
+      "top",
+      "fixed",
+      "top-after-reopen"
+    ]
+  },
+  "props": [
+    {
+      "name": "clearSelectionDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the text that should be read for screen readers that describes total items selected"
+    },
+    {
+      "name": "clearSelectionText",
+      "required": false,
+      "type": "string",
+      "description": "Specify the text that should be read for screen readers to clear selection."
+    },
+    {
+      "name": "direction",
+      "required": false,
+      "type": "'top' | 'bottom'",
+      "description": "Specify the direction of the multiselect dropdown. Can be either top or bottom."
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `<input>` should be disabled"
+    },
+    {
+      "name": "downshiftProps",
+      "required": false,
+      "type": "Partial<UseSelectProps<ItemType>>",
+      "description": "Additional props passed to Downshift. **Use with caution:** anything you define here overrides the components' internal handling of that prop. Downshift APIs and internals are subject to change, and in some cases they can not be shimmed by Carbon to shield you from potentially breaking changes."
+    },
+    {
+      "name": "initialSelectedItems",
+      "required": false,
+      "type": "ItemType[]",
+      "description": "Allow users to pass in arbitrary items from their collection that are pre-selected"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the currently selected value is invalid."
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in an invalid state"
+    },
+    {
+      "name": "isCondensed",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the `FluidMultiSelect` should render its menu items in condensed mode"
+    },
+    {
+      "name": "isFilterable",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the `FluidMultiSelect` should render the `filterable` variant of `FluidMultiSelect`"
+    },
+    {
+      "name": "items",
+      "required": true,
+      "type": "ItemType[]",
+      "description": "Helper function passed to downshift that allows the library to render a given item to a string label. By default, it extracts the `label` field from a given item to serve as the item label in the list. Consider declaring function with `useCallback` to prevent unnecessary re-renders. / itemToString?(item: ItemType): string; /** We try to stay as generic as possible here to allow individuals to pass in a collection of whatever kind of data structure they prefer"
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "NonNullable<React.ReactNode>",
+      "description": "Generic `label` that will be used as the textual representation of what this field is for"
+    },
+    {
+      "name": "locale",
+      "required": false,
+      "type": "string",
+      "description": "Specify the locale of the control. Used for the default `compareItems` used for sorting the list of items in the control."
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "`onMenuChange` is a utility for this controlled component to communicate to a consuming component that the menu was open(`true`)/closed(`false`). / onMenuChange?(open: boolean): void; /** Whether or not the Multiselect is readonly"
+    },
+    {
+      "name": "selectedItems",
+      "required": false,
+      "type": "ItemType[]",
+      "description": "For full control of the selected items"
+    },
+    {
+      "name": "selectionFeedback",
+      "required": false,
+      "type": "'top' | 'fixed' | 'top-after-reopen'",
+      "description": "Specify feedback (mode) of the selection. `top`: selected item jumps to top `fixed`: selected item stays at it's position `top-after-reopen`: selected item jump to top after reopen dropdown"
+    },
+    {
+      "name": "titleText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the title text that will be read by a screen reader when visiting this control"
+    },
+    {
+      "name": "useTitleInItem",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify title to show title on hover"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FluidMultiSelect rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FluidMultiSelect/FluidMultiSelect.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FluidMultiSelectProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 20,
+    "variant_count": 2
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=14530-300220&t=aG4cJRjteQHcd71k-4",
+    "code_connect": "packages/react/code-connect/MultiSelect/FluidMultiSelect.figma.tsx"
+  }
+}

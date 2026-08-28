@@ -1,0 +1,99 @@
+{
+  "name": "Checkbox",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Checkbox.",
+  "variants": {},
+  "props": [
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `Checkbox` component"
+    },
+    {
+      "name": "defaultChecked",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the underlying input should be checked by default"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Checkbox should be disabled"
+    },
+    {
+      "name": "helperText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide text for the form group for additional help"
+    },
+    {
+      "name": "hideLabel",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the label should be hidden, or not"
+    },
+    {
+      "name": "indeterminate",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Checkbox is in an indeterminate state"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Checkbox is currently invalid"
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text that is displayed when the Checkbox is in an invalid state"
+    },
+    {
+      "name": "labelText",
+      "required": true,
+      "type": "NonNullable<ReactNode>",
+      "description": "Provide a label to provide a description of the Checkbox input that you are exposing to the user"
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `Slug` component to be rendered inside the `Checkbox` component"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Checkbox is currently invalid"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text that is displayed when the Checkbox is in an invalid state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Checkbox rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Checkbox/Checkbox.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "CheckboxProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 12,
+    "variant_count": 0
+  }
+}

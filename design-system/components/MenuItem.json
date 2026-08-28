@@ -1,0 +1,72 @@
+{
+  "name": "MenuItem",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon MenuItem.",
+  "variants": {
+    "kind": [
+      "default",
+      "danger"
+    ]
+  },
+  "props": [
+    {
+      "name": "dangerDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the message read by screen readers for the danger menu item variant"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the MenuItem is disabled or not."
+    },
+    {
+      "name": "kind",
+      "required": false,
+      "type": "'default' | 'danger'",
+      "description": "Specify the kind of the MenuItem."
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "string",
+      "description": "A required label titling the MenuItem. Will be rendered as its text content."
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "shortcut",
+      "required": false,
+      "type": "string",
+      "description": "Provide a shortcut for the action of this MenuItem. Note that the component will only render it as a hint but not actually register the shortcut."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon MenuItem rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Menu/MenuItem.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "MenuItemProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=36234-38344&t=OdgMrt4NDVwZpNSx-4",
+    "code_connect": "packages/react/code-connect/Menu/MenuItem.figma.tsx"
+  }
+}

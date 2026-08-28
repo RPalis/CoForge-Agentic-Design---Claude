@@ -1,0 +1,77 @@
+{
+  "name": "Table",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Table.",
+  "variants": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ]
+  },
+  "props": [
+    {
+      "name": "experimentalAutoAlign",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "isSortable",
+      "required": false,
+      "type": "boolean",
+      "description": "`false` If true, will apply sorting styles"
+    },
+    {
+      "name": "overflowMenuOnHover",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the overflow menu (if it exists) should be shown always, or only on hover"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+      "description": "Change the row height of table. Currently supports `xs`, `sm`, `md`, `lg`, and `xl`."
+    },
+    {
+      "name": "stickyHeader",
+      "required": false,
+      "type": "boolean",
+      "description": "`false` If true, will keep the header sticky (only data rows will scroll)"
+    },
+    {
+      "name": "useStaticWidth",
+      "required": false,
+      "type": "boolean",
+      "description": "If `true`, sets the table width to `auto` instead of `100%`."
+    },
+    {
+      "name": "useZebraStyles",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to add useZebraStyles striping."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Table rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DataTable/Table.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TableProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 7,
+    "variant_count": 1
+  }
+}

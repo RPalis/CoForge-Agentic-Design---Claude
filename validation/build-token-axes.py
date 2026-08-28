@@ -2,7 +2,8 @@
 """Author the four missing token axes: spacing, typography, elevation, motion —
 plus the two density registers (stage, document).
 
-Follows `scratch/brand-extraction/token-axes-proposal.md`, which is the plan;
+Follows `validation/reports/2026-08-28__token-axes-proposal.md`, which is the plan
+(promoted out of gitignored scratch/ on 2026-08-28 so the reasoning survives a clean);
 this script is the execution of it. Per-axis provenance, restated here so a
 reader doesn't have to open the proposal to know what is transcribed versus
 authored:

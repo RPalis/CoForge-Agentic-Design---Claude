@@ -1,0 +1,51 @@
+{
+  "name": "FluidTimePickerSelect",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FluidTimePickerSelect.",
+  "variants": {},
+  "props": [
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "SelectHTMLAttributes<HTMLSelectElement>['defaultValue']",
+      "description": "Optionally provide the default value of the `<select>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is disabled"
+    },
+    {
+      "name": "labelText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide label text to be read by screen readers when interacting with the control"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether the component is read-only."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FluidTimePickerSelect rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FluidTimePickerSelect/FluidTimePickerSelect.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FluidTimePickerSelectProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 4,
+    "variant_count": 0
+  }
+}

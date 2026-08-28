@@ -1,0 +1,49 @@
+{
+  "name": "Tabs",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Tabs.",
+  "variants": {},
+  "props": [
+    {
+      "name": "defaultSelectedIndex",
+      "required": false,
+      "type": "number",
+      "description": "Specify which content tab should be initially selected when the component is first rendered"
+    },
+    {
+      "name": "dismissable",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether the rendered Tab children should be dismissable."
+    },
+    {
+      "name": "selectedIndex",
+      "required": false,
+      "type": "number",
+      "description": "Provide an optional function which is called whenever the state of the `Tabs` changes / onChange?(state: { selectedIndex: number; }): void; /** If specifying the `onTabCloseRequest` prop, provide a callback function responsible for removing the tab when close button is pressed on one of the Tab elements / onTabCloseRequest?(tabIndex: number): void; /** Control which content panel is currently selected. This puts the component in a controlled mode and should be used along with `onChange`"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Tabs rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tabs/Tabs.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TabsProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 3,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=3890-50605&t=PaZ3ZnEGQGMgXgBW-4",
+    "code_connect": "packages/react/code-connect/Tabs/Tabs.figma.tsx"
+  }
+}

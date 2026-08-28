@@ -1,0 +1,81 @@
+{
+  "name": "RadioTile",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon RadioTile.",
+  "variants": {},
+  "props": [
+    {
+      "name": "checked",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `RadioTile` should be checked."
+    },
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `RadioTile` component"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `RadioTile` should be disabled."
+    },
+    {
+      "name": "hasRoundedCorners",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Specify if the `ExpandableTile` component should be rendered with rounded corners. Only valid when `slug` prop is present"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version. For use on `$layer-01` backgrounds only. Don't use this to make tile background color the same as the container background color."
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "Provide a `name` for the underlying `<input>`."
+    },
+    {
+      "name": "required",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to specify if the input is required."
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "**Experimental**: Provide a `Slug` component to be rendered inside the `RadioTile` component"
+    },
+    {
+      "name": "value",
+      "required": true,
+      "type": "string | number",
+      "description": "Specify the value of the underlying `<input>`."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon RadioTile rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/RadioTile/RadioTile.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "RadioTileProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 9,
+    "variant_count": 0
+  }
+}

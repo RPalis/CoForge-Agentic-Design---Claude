@@ -1,0 +1,147 @@
+{
+  "name": "ModalWrapper",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ModalWrapper.",
+  "variants": {},
+  "props": [
+    {
+      "name": "buttonTriggerClassName",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "buttonTriggerText",
+      "required": false,
+      "type": "ReactNode",
+      "description": null
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "handleOpen",
+      "required": false,
+      "type": "React.MouseEventHandler<HTMLButtonElement>",
+      "description": null
+    },
+    {
+      "name": "handleSubmit",
+      "required": false,
+      "type": "React.ReactEventHandler<HTMLElement>",
+      "description": null
+    },
+    {
+      "name": "modalBeforeContent",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "modalHeading",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "modalLabel",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "modalText",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "passiveModal",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "preventCloseOnClickOutside",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "primaryButtonText",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "renderTriggerButtonIcon",
+      "required": true,
+      "type": "React.ElementType",
+      "description": null
+    },
+    {
+      "name": "secondaryButtonText",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "selectorPrimaryFocus",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "shouldCloseAfterSubmit",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "status",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "triggerButtonIconDescription",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "triggerButtonKind",
+      "required": true,
+      "type": "(typeof ButtonKinds)[number]",
+      "description": null
+    },
+    {
+      "name": "withHeader",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ModalWrapper rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ModalWrapper/ModalWrapper.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ModalWrapperProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 20,
+    "variant_count": 0
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "SelectItem",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon SelectItem.",
+  "variants": {},
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the <SelectItem> should be disabled"
+    },
+    {
+      "name": "hidden",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the <SelectItem> is hidden"
+    },
+    {
+      "name": "text",
+      "required": true,
+      "type": "string",
+      "description": "Provide the contents of your <SelectItem>"
+    },
+    {
+      "name": "value",
+      "required": true,
+      "type": "OptionHTMLAttributes<HTMLOptionElement>['value']",
+      "description": "Specify the value of the <SelectItem>"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon SelectItem rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/SelectItem/SelectItem.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SelectItemProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 4,
+    "variant_count": 0
+  }
+}

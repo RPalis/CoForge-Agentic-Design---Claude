@@ -1,0 +1,63 @@
+{
+  "name": "FormGroup",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FormGroup.",
+  "variants": {},
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the FormGroup should be disabled"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the <FormGroup> is invalid"
+    },
+    {
+      "name": "legendId",
+      "required": false,
+      "type": "string",
+      "description": "Provide id for the fieldset <legend> which corresponds to the fieldset `aria-labelledby`"
+    },
+    {
+      "name": "legendText",
+      "required": true,
+      "type": "React.ReactNode",
+      "description": "Provide the text to be rendered inside of the fieldset <legend>"
+    },
+    {
+      "name": "message",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the message should be displayed in the <FormGroup>"
+    },
+    {
+      "name": "messageText",
+      "required": false,
+      "type": "string",
+      "description": "Provide the text for the message in the <FormGroup>"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FormGroup rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FormGroup/FormGroup.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FormGroupProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

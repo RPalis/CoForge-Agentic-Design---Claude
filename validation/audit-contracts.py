@@ -228,28 +228,28 @@ def main():
                 add("blocker", "contracts", f"{name}: tokens_used '{tu}' names no token group",
                     f"existing groups: {', '.join(sorted(groups))}")
         # type-scale levels must exist in typography.scale
-        if name == "type-scale":
+        if name == "cf-type-scale":
             declared = c.get("variants", {}).get("levels", [])
             actual = [k for k in doc.get("typography", {}).get("scale", {}) if not k.startswith("$")]
             for lv in declared:
                 if lv not in actual:
-                    add("blocker", "contracts", f"type-scale declares level '{lv}' with no token",
+                    add("blocker", "contracts", f"cf-type-scale declares level '{lv}' with no token",
                         f"add typography.scale.{lv}")
             for lv in actual:
                 if lv not in declared:
-                    add("error", "contracts", f"typography.scale.{lv} exists but type-scale does not declare it",
+                    add("error", "contracts", f"typography.scale.{lv} exists but cf-type-scale does not declare it",
                         "add it to the index or remove the token")
-        if name == "spacing-scale":
+        if name == "cf-spacing-scale":
             declared = c.get("variants", {}).get("steps", [])
             actual = [k for k in doc.get("spacing", {}) if not k.startswith("$")]
             missing = [s for s in declared if s not in actual]
             extra = [s for s in actual if s not in declared]
             if missing:
-                add("blocker", "contracts", f"spacing-scale declares steps with no token: {missing}",
+                add("blocker", "contracts", f"cf-spacing-scale declares steps with no token: {missing}",
                     "author the tokens or trim the index")
             if extra:
                 add("error", "contracts",
-                    f"spacing tokens exist that spacing-scale does not declare: {extra}",
+                    f"spacing tokens exist that cf-spacing-scale does not declare: {extra}",
                     "extend the index to match, or trim the tokens — the contract must be exact")
 
     # ---- 4b. every entry validates against component.schema.json -------------

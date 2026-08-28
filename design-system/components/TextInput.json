@@ -1,0 +1,158 @@
+{
+  "name": "TextInput",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TextInput.",
+  "variants": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `TextInput` component"
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "string | number",
+      "description": "Optionally provide the default value of the `<input>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `<input>` should be disabled"
+    },
+    {
+      "name": "enableCounter",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether to display the character counter"
+    },
+    {
+      "name": "helperText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide text that is used alongside the control label for additional help"
+    },
+    {
+      "name": "hideLabel",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you want the underlying label to be visually hidden"
+    },
+    {
+      "name": "inline",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the inline version."
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently invalid"
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text that is displayed when the control is in an invalid state"
+    },
+    {
+      "name": "labelText",
+      "required": true,
+      "type": "ReactNode",
+      "description": "Provide the text that will be read by a screen reader when visiting this control"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version. For use on $ui-01 backgrounds only. Don't use this to make tile background color same as container background color. 'The `light` prop for `TextInput` has ' + 'been deprecated in favor of the new `Layer` component. It will be removed in the next major release.'"
+    },
+    {
+      "name": "maxCount",
+      "required": false,
+      "type": "number",
+      "description": "Max character count allowed for the input. This is needed in order for enableCounter to display"
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "string",
+      "description": "Specify the placeholder attribute for the `<input>`"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether the input should be read-only"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'xs' | 'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the Text Input. Currently supports the following:"
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `Slug` component to be rendered inside the `TextInput` component"
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "string",
+      "description": "Specify the type of the `<input>`"
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "string | number | undefined",
+      "description": "Specify the value of the `<input>`"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TextInput rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/TextInput/TextInput.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TextInputProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 20,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=15784-271032&m=dev",
+    "code_connect": "packages/react/code-connect/TextInput/TextInput.figma.tsx"
+  }
+}

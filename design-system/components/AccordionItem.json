@@ -1,0 +1,57 @@
+{
+  "name": "AccordionItem",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon AccordionItem.",
+  "variants": {},
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether an individual `AccordionItem` should be disabled (overrides the parent accordion state). If undefined, this value will be managed by the parent Accordion."
+    },
+    {
+      "name": "handleAnimationEnd",
+      "required": false,
+      "type": "AnimationEventHandler<HTMLElement>",
+      "description": "The callback function to run on the `onAnimationEnd` event for the list item."
+    },
+    {
+      "name": "open",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to open the expand."
+    },
+    {
+      "name": "renderExpando",
+      "required": false,
+      "type": "(props: PropsWithChildren<AccordionToggleProps>) => ReactElement",
+      "description": "removed in the next major release of Carbon. Use the `renderToggle` prop instead."
+    },
+    {
+      "name": "renderToggle",
+      "required": false,
+      "type": "(props: PropsWithChildren<AccordionToggleProps>) => ReactElement",
+      "description": "The callback function to render the expand button. Can be a React component class."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon AccordionItem rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Accordion/AccordionItem.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "AccordionItemProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 0
+  }
+}

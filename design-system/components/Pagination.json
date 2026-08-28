@@ -1,0 +1,182 @@
+{
+  "name": "Pagination",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Pagination.",
+  "variants": {
+    "backwardTextTooltipPosition": [
+      "top",
+      "right",
+      "bottom",
+      "left"
+    ],
+    "forwardTextTooltipPosition": [
+      "top",
+      "right",
+      "bottom",
+      "left"
+    ],
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "backwardText",
+      "required": false,
+      "type": "string",
+      "description": "The description for the backward icon."
+    },
+    {
+      "name": "backwardTextTooltipPosition",
+      "required": false,
+      "type": "'top' | 'right' | 'bottom' | 'left'",
+      "description": "The tooltip position for the backward button."
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` if the backward/forward buttons, as well as the page select elements, should be disabled."
+    },
+    {
+      "name": "forwardText",
+      "required": false,
+      "type": "string",
+      "description": "The description for the forward icon."
+    },
+    {
+      "name": "forwardTextTooltipPosition",
+      "required": false,
+      "type": "'top' | 'right' | 'bottom' | 'left'",
+      "description": "The tooltip position for the forward button."
+    },
+    {
+      "name": "isLastPage",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` if the current page should be the last page."
+    },
+    {
+      "name": "itemRangeText",
+      "required": false,
+      "type": "(min: number, max: number, total: number) => string",
+      "description": "The function returning a translatable text showing where the current page is, in a manner of the range of items."
+    },
+    {
+      "name": "itemText",
+      "required": false,
+      "type": "(min: number, max: number) => string",
+      "description": "A variant of `itemRangeText`, used if the total number of items is unknown."
+    },
+    {
+      "name": "itemsPerPageText",
+      "required": false,
+      "type": "string",
+      "description": "The translatable text indicating the number of items per page."
+    },
+    {
+      "name": "page",
+      "required": false,
+      "type": "number",
+      "description": "The current page."
+    },
+    {
+      "name": "pageInputDisabled",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` if the select box to change the page should be disabled."
+    },
+    {
+      "name": "pageNumberText",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "pageRangeText",
+      "required": false,
+      "type": "(current: number, total: number) => string",
+      "description": "A function returning PII showing where the current page is."
+    },
+    {
+      "name": "pageSelectLabelText",
+      "required": false,
+      "type": "(total: number) => string",
+      "description": "A function returning the label for the page select."
+    },
+    {
+      "name": "pageSize",
+      "required": false,
+      "type": "number",
+      "description": "Total number of pages derived from `totalItems` and `pageSize`. */ totalPages: number; /** Current page size. */ currentPageSize: number; /** The computed accessible label for the page-selection control. */ pageSelectLabelText: string; /** Sets the active page. */ onSetPage: (page: number | string) => void; }) => React.ReactNode; /** The number dictating how many items a page contains."
+    },
+    {
+      "name": "pageSizeInputDisabled",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` if the select box to change the items per page should be disabled."
+    },
+    {
+      "name": "pageSizes",
+      "required": false,
+      "type": "Array<number | PaginationPageSize>",
+      "description": "The choices for `pageSize`."
+    },
+    {
+      "name": "pageText",
+      "required": false,
+      "type": "(page: number, pagesUnknown?: boolean) => string",
+      "description": "The translatable text showing the current page."
+    },
+    {
+      "name": "pagesUnknown",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` when the total number of pages is unknown. Hides the page selection control."
+    },
+    {
+      "name": "renderPageSelect",
+      "required": false,
+      "type": "(props: { /** The currently active page. */ currentPage: number",
+      "description": "Provide a custom render function for the page-selection control. When provided, the default `<Select>` is replaced with the returned node."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'xs' | 'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the Pagination."
+    },
+    {
+      "name": "totalItems",
+      "required": false,
+      "type": "number",
+      "description": "The total number of items."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Pagination rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Pagination/Pagination.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "PaginationProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 22,
+    "variant_count": 3
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=3889-50204&t=gkzO9FaEPqewqYn6-4",
+    "code_connect": "packages/react/code-connect/Pagination/Pagination.figma.tsx"
+  }
+}

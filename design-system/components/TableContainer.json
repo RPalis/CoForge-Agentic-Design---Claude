@@ -1,0 +1,57 @@
+{
+  "name": "TableContainer",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TableContainer.",
+  "variants": {},
+  "props": [
+    {
+      "name": "aiEnabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the entire table has AI generated contents"
+    },
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `TableContainer` component"
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Optional description text for the Table"
+    },
+    {
+      "name": "stickyHeader",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the table should have a sticky header"
+    },
+    {
+      "name": "useStaticWidth",
+      "required": false,
+      "type": "boolean",
+      "description": "If true, will use a width of 'fit-content' to match the inner table width"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TableContainer rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DataTable/TableContainer.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TableContainerProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 0
+  }
+}

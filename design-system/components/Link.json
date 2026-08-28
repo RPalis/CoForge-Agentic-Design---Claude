@@ -1,0 +1,75 @@
+{
+  "name": "Link",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Link.",
+  "variants": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "href",
+      "required": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "inline",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "ComponentType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the Link. Currently supports either `sm`, `md` (default) or `lg` as an option."
+    },
+    {
+      "name": "target",
+      "required": false,
+      "type": "HTMLAttributeAnchorTarget",
+      "description": null
+    },
+    {
+      "name": "visited",
+      "required": false,
+      "type": "boolean",
+      "description": "When enabled, applies Carbon's visited-link styles to browser-controlled :visited link state."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Link rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Link/Link.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "LinkBaseProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 7,
+    "variant_count": 1
+  }
+}

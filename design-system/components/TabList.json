@@ -1,0 +1,101 @@
+{
+  "name": "TabList",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TabList.",
+  "variants": {
+    "activation": [
+      "automatic",
+      "manual"
+    ],
+    "iconSize": [
+      "default",
+      "lg"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "activation",
+      "required": false,
+      "type": "'automatic' | 'manual'",
+      "description": "Specify whether the content tab should be activated automatically or manually"
+    },
+    {
+      "name": "contained",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether component is contained type"
+    },
+    {
+      "name": "fullWidth",
+      "required": false,
+      "type": "boolean",
+      "description": "Used for tabs within a grid, this makes it so tabs span the full container width and have the same width. Only available on contained tabs with <9 children"
+    },
+    {
+      "name": "iconSize",
+      "required": false,
+      "type": "'default' | 'lg'",
+      "description": "If using `IconTab`, specify the size of the icon being used."
+    },
+    {
+      "name": "leftOverflowButtonProps",
+      "required": false,
+      "type": "HTMLAttributes<HTMLButtonElement>",
+      "description": "Provide the props that describe the left overflow button"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether to use the light component variant"
+    },
+    {
+      "name": "rightOverflowButtonProps",
+      "required": false,
+      "type": "HTMLAttributes<HTMLButtonElement>",
+      "description": "Provide the props that describe the right overflow button"
+    },
+    {
+      "name": "scrollDebounceWait",
+      "required": false,
+      "type": "number",
+      "description": "Optionally provide a delay (in milliseconds) passed to the lodash debounce of the onScroll handler. This will impact the responsiveness of scroll arrow buttons rendering when scrolling to the first or last tab."
+    },
+    {
+      "name": "scrollIntoView",
+      "required": false,
+      "type": "boolean",
+      "description": "Choose whether to automatically scroll to newly selected tabs on component rerender"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the tabs. Supports `sm` and `md` for line tabs. Supports `sm`, `md`, and `lg` for contained tabs."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TabList rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tabs/Tabs.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TabListProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 10,
+    "variant_count": 3
+  }
+}

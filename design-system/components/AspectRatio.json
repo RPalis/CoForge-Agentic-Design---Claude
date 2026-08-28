@@ -1,0 +1,51 @@
+{
+  "name": "AspectRatio",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon AspectRatio.",
+  "variants": {
+    "ratio": [
+      "1x1",
+      "2x3",
+      "3x2",
+      "3x4",
+      "4x3",
+      "1x2",
+      "2x1",
+      "9x16",
+      "16x9"
+    ]
+  },
+  "props": [
+    {
+      "name": "as",
+      "required": false,
+      "type": "HTMLElementType",
+      "description": "Provide a custom component or string to be rendered as the outermost node of the component. This is useful if you want to deviate from the default `div` tag, where you could specify `section` or `article` instead. ```jsx <AspectRatio as=\"article\">My content</AspectRatio> ```"
+    },
+    {
+      "name": "ratio",
+      "required": false,
+      "type": "'1x1' | '2x3' | '3x2' | '3x4' | '4x3' | '1x2' | '2x1' | '9x16' | '16x9'",
+      "description": "Specify the ratio to be used by the aspect ratio container. This will determine what aspect ratio your content will be displayed in."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon AspectRatio rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/AspectRatio/AspectRatio.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "AspectRatioProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 2,
+    "variant_count": 1
+  }
+}

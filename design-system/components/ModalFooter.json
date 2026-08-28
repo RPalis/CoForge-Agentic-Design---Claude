@@ -1,0 +1,103 @@
+{
+  "name": "ModalFooter",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ModalFooter.",
+  "variants": {},
+  "props": [
+    {
+      "name": "danger",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify an optional function that is called whenever the modal is closed / closeModal?(evt: MouseEvent): void; /** Specify whether the primary button should be replaced with danger button. Note that this prop is not applied if you render primary/danger button by yourself"
+    },
+    {
+      "name": "dangerDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the message read by screen readers for the danger primary button. Defaults to an empty string; provide localized text to opt in."
+    },
+    {
+      "name": "inputref",
+      "required": false,
+      "type": "Ref<HTMLButtonElement>",
+      "description": "The `ref` callback for the primary button."
+    },
+    {
+      "name": "loadingDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the description for the loading text"
+    },
+    {
+      "name": "loadingIconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the description for the loading text"
+    },
+    {
+      "name": "loadingStatus",
+      "required": false,
+      "type": "InlineLoadingStatus",
+      "description": "loading status"
+    },
+    {
+      "name": "primaryButtonDisabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify an optional function for when the modal is requesting to be closed / onRequestClose?(): void; /** Specify an optional function for when the modal is requesting to be submitted / onRequestSubmit?(): void; /** Specify whether the primary button should be disabled"
+    },
+    {
+      "name": "primaryButtonText",
+      "required": false,
+      "type": "string",
+      "description": "Specify the text for the primary button"
+    },
+    {
+      "name": "primaryClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify a custom className to be applied to the primary button"
+    },
+    {
+      "name": "secondaryButtonText",
+      "required": false,
+      "type": "string",
+      "description": "Specify the text for the secondary button"
+    },
+    {
+      "name": "secondaryButtons",
+      "required": false,
+      "type": "[SecondaryButtonProps, SecondaryButtonProps]",
+      "description": "Specify an array of config objects for secondary buttons"
+    },
+    {
+      "name": "secondaryClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify a custom className to be applied to the secondary button"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ModalFooter rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ComposedModal/ModalFooter.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ModalFooterProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 12,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=3906-50587&t=SbIuH3RAJeFPjXmN-4",
+    "code_connect": "packages/react/code-connect/ComposedModal/ModalFooter.figma.tsx"
+  }
+}

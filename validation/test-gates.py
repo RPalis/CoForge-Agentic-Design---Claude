@@ -37,10 +37,24 @@ CASES = [
      "export default () => <Frobnicator title='x' />", BLOCK,
      "prohibition 1: never a component outside the index"),
 
-    ("INDEXED component, PascalCase",
+    ("INDEXED vendor component",
      "artifacts/x/2026-01-01__dashboard__t__v1/a.jsx",
-     "export default () => <Card />", ALLOW,
-     "card IS in the index — this must NOT block, or the gate is unusable"),
+     "export default () => <Button />", ALLOW,
+     "Button is a real @carbon/react export and IS in the index — this must NOT "
+     "block, or the gate is unusable and on-system work is impossible"),
+
+    ("non-importable vendor name",
+     "artifacts/x/2026-01-01__dashboard__t__v1/a.jsx",
+     "export default () => <Card />", BLOCK,
+     "Carbon ships Card as `preview__Card`; bare `Card` does not compile against the "
+     "pinned package. The index is keyed on public exports (ADR-018 context), so this "
+     "SHOULD block — it is the regression test for the directory-vs-export bug"),
+
+    ("our own primitive, cf- prefixed",
+     "artifacts/x/2026-01-01__dashboard__t__v1/a.jsx",
+     "export default () => <div className='cf-table' />", ALLOW,
+     "ADR-018: CoForge-authored names carry cf- and are not JSX symbols, so the "
+     "PascalCase tag scan must not trip on them"),
 
     ("bad artifact directory name",
      "artifacts/x/not-a-valid-dir/a.md",

@@ -1,6 +1,6 @@
 # CoForge Design System
 
-> Agent-readable index. 786 design tokens (W3C DTCG), 8 level-1 primitives, 0 full components. Load this once; fetch detail on demand.
+> Agent-readable index. 786 design tokens (W3C DTCG), 8 level-1 primitives, 208 full components. Load this once; fetch detail on demand.
 
 ## Rules
 
@@ -23,18 +23,225 @@
 
 ## Level 1 primitives — usable in Foundations output
 
-- [badge](design-system/component-index.json): A small label carrying status or count.
-- [card](design-system/component-index.json): A bounded surface grouping related content.
-- [chart-palette](design-system/component-index.json): The ordered categorical palette for data visualisation.
-- [colour-roles](design-system/component-index.json): Semantic colour roles — background, layer, text, border, support.
-- [rule](design-system/component-index.json): A horizontal or vertical divider.
-- [spacing-scale](design-system/component-index.json): The spacing steps. All margin, padding and gap come from here.
-- [table](design-system/component-index.json): Tabular data with header, rows and optional zebra striping.
-- [type-scale](design-system/component-index.json): Heading and body sizes. The only legal type sizes for L1 output.
+- [cf-badge](design-system/component-index.json): A small label carrying status or count.
+- [cf-card](design-system/component-index.json): A bounded surface grouping related content.
+- [cf-chart-palette](design-system/component-index.json): The ordered categorical palette for data visualisation.
+- [cf-colour-roles](design-system/component-index.json): Semantic colour roles — background, layer, text, border, support.
+- [cf-rule](design-system/component-index.json): A horizontal or vertical divider.
+- [cf-spacing-scale](design-system/component-index.json): The spacing steps. All margin, padding and gap come from here.
+- [cf-table](design-system/component-index.json): Tabular data with header, rows and optional zebra striping.
+- [cf-type-scale](design-system/component-index.json): Heading and body sizes. The only legal type sizes for L1 output.
 
 ## Components — full library
 
-- None yet. Arrives via adapter #1 from Carbon (Apache-2.0 source, not the hosted MCP).
+- [AISkeletonIcon](design-system/components/AISkeletonIcon.json): Carbon AISkeletonIcon.
+- [AISkeletonPlaceholder](design-system/components/AISkeletonPlaceholder.json): Carbon AISkeletonPlaceholder.
+- [AISkeletonText](design-system/components/AISkeletonText.json): Carbon AISkeletonText.
+- [Accordion](design-system/components/Accordion.json): Carbon Accordion.
+- [AccordionItem](design-system/components/AccordionItem.json): Carbon AccordionItem.
+- [ActionableNotification](design-system/components/ActionableNotification.json): Carbon ActionableNotification.
+- [AspectRatio](design-system/components/AspectRatio.json): Carbon AspectRatio.
+- [Breadcrumb](design-system/components/Breadcrumb.json): Carbon Breadcrumb.
+- [BreadcrumbItem](design-system/components/BreadcrumbItem.json): Carbon BreadcrumbItem.
+- [Button](design-system/components/Button.json): Carbon Button.
+- [ButtonSet](design-system/components/ButtonSet.json): Carbon ButtonSet.
+- [Callout](design-system/components/Callout.json): Carbon Callout.
+- [Checkbox](design-system/components/Checkbox.json): Carbon Checkbox.
+- [CheckboxGroup](design-system/components/CheckboxGroup.json): Carbon CheckboxGroup.
+- [ClickableTile](design-system/components/ClickableTile.json): Carbon ClickableTile.
+- [CodeSnippet](design-system/components/CodeSnippet.json): Carbon CodeSnippet.
+- [Column](design-system/components/Column.json): Carbon Column.
+- [ColumnHang](design-system/components/ColumnHang.json): Carbon ColumnHang.
+- [ComboBox](design-system/components/ComboBox.json): Carbon ComboBox.
+- [ComposedModal](design-system/components/ComposedModal.json): Carbon ComposedModal.
+- [ComposedModalPresence](design-system/components/ComposedModalPresence.json): Carbon ComposedModalPresence.
+- [ContainedList](design-system/components/ContainedList.json): Carbon ContainedList.
+- [ContainedListItem](design-system/components/ContainedListItem.json): Carbon ContainedListItem.
+- [Content](design-system/components/Content.json): Carbon Content.
+- [ContentSwitcher](design-system/components/ContentSwitcher.json): Carbon ContentSwitcher.
+- [Copy](design-system/components/Copy.json): Carbon Copy.
+- [CopyButton](design-system/components/CopyButton.json): Carbon CopyButton.
+- [DangerButton](design-system/components/DangerButton.json): Carbon DangerButton.
+- [DataTable](design-system/components/DataTable.json): Carbon DataTable.
+- [DatePicker](design-system/components/DatePicker.json): Carbon DatePicker.
+- [DatePickerInput](design-system/components/DatePickerInput.json): Carbon DatePickerInput.
+- [DefinitionTooltip](design-system/components/DefinitionTooltip.json): Carbon DefinitionTooltip.
+- [DismissibleTag](design-system/components/DismissibleTag.json): Carbon DismissibleTag.
+- [Dropdown](design-system/components/Dropdown.json): Carbon Dropdown.
+- [ErrorBoundary](design-system/components/ErrorBoundary.json): Carbon ErrorBoundary.
+- [ExpandableSearch](design-system/components/ExpandableSearch.json): Carbon ExpandableSearch.
+- [ExpandableTile](design-system/components/ExpandableTile.json): Carbon ExpandableTile.
+- [FileUploader](design-system/components/FileUploader.json): Carbon FileUploader.
+- [FileUploaderButton](design-system/components/FileUploaderButton.json): Carbon FileUploaderButton.
+- [FileUploaderDropContainer](design-system/components/FileUploaderDropContainer.json): Carbon FileUploaderDropContainer.
+- [FileUploaderItem](design-system/components/FileUploaderItem.json): Carbon FileUploaderItem.
+- [Filename](design-system/components/Filename.json): Carbon Filename.
+- [FlexGrid](design-system/components/FlexGrid.json): Carbon FlexGrid.
+- [FluidComboBox](design-system/components/FluidComboBox.json): Carbon FluidComboBox.
+- [FluidDatePicker](design-system/components/FluidDatePicker.json): Carbon FluidDatePicker.
+- [FluidDatePickerInput](design-system/components/FluidDatePickerInput.json): Carbon FluidDatePickerInput.
+- [FluidDropdown](design-system/components/FluidDropdown.json): Carbon FluidDropdown.
+- [FluidForm](design-system/components/FluidForm.json): Carbon FluidForm.
+- [FluidMultiSelect](design-system/components/FluidMultiSelect.json): Carbon FluidMultiSelect.
+- [FluidNumberInput](design-system/components/FluidNumberInput.json): Carbon FluidNumberInput.
+- [FluidPasswordInput](design-system/components/FluidPasswordInput.json): Carbon FluidPasswordInput.
+- [FluidSearch](design-system/components/FluidSearch.json): Carbon FluidSearch.
+- [FluidSelect](design-system/components/FluidSelect.json): Carbon FluidSelect.
+- [FluidTextArea](design-system/components/FluidTextArea.json): Carbon FluidTextArea.
+- [FluidTextInput](design-system/components/FluidTextInput.json): Carbon FluidTextInput.
+- [FluidTimePicker](design-system/components/FluidTimePicker.json): Carbon FluidTimePicker.
+- [FluidTimePickerSelect](design-system/components/FluidTimePickerSelect.json): Carbon FluidTimePickerSelect.
+- [Form](design-system/components/Form.json): Carbon Form.
+- [FormGroup](design-system/components/FormGroup.json): Carbon FormGroup.
+- [FormItem](design-system/components/FormItem.json): Carbon FormItem.
+- [FormLabel](design-system/components/FormLabel.json): Carbon FormLabel.
+- [Grid](design-system/components/Grid.json): Carbon Grid.
+- [GridSettings](design-system/components/GridSettings.json): Carbon GridSettings.
+- [Header](design-system/components/Header.json): Carbon Header.
+- [HeaderContainer](design-system/components/HeaderContainer.json): Carbon HeaderContainer.
+- [HeaderGlobalAction](design-system/components/HeaderGlobalAction.json): Carbon HeaderGlobalAction.
+- [HeaderGlobalBar](design-system/components/HeaderGlobalBar.json): Carbon HeaderGlobalBar.
+- [HeaderMenu](design-system/components/HeaderMenu.json): Carbon HeaderMenu.
+- [HeaderMenuButton](design-system/components/HeaderMenuButton.json): Carbon HeaderMenuButton.
+- [HeaderMenuItem](design-system/components/HeaderMenuItem.json): Carbon HeaderMenuItem.
+- [HeaderName](design-system/components/HeaderName.json): Carbon HeaderName.
+- [HeaderNavigation](design-system/components/HeaderNavigation.json): Carbon HeaderNavigation.
+- [HeaderPanel](design-system/components/HeaderPanel.json): Carbon HeaderPanel.
+- [HeaderSideNavItems](design-system/components/HeaderSideNavItems.json): Carbon HeaderSideNavItems.
+- [IconSwitch](design-system/components/IconSwitch.json): Carbon IconSwitch.
+- [IconTab](design-system/components/IconTab.json): Carbon IconTab.
+- [InlineCheckbox](design-system/components/InlineCheckbox.json): Carbon InlineCheckbox.
+- [InlineLoading](design-system/components/InlineLoading.json): Carbon InlineLoading.
+- [InlineNotification](design-system/components/InlineNotification.json): Carbon InlineNotification.
+- [Link](design-system/components/Link.json): Carbon Link.
+- [ListItem](design-system/components/ListItem.json): Carbon ListItem.
+- [Loading](design-system/components/Loading.json): Carbon Loading.
+- [Menu](design-system/components/Menu.json): Carbon Menu.
+- [MenuItem](design-system/components/MenuItem.json): Carbon MenuItem.
+- [MenuItemDivider](design-system/components/MenuItemDivider.json): Carbon MenuItemDivider.
+- [MenuItemGroup](design-system/components/MenuItemGroup.json): Carbon MenuItemGroup.
+- [MenuItemRadioGroup](design-system/components/MenuItemRadioGroup.json): Carbon MenuItemRadioGroup.
+- [MenuItemSelectable](design-system/components/MenuItemSelectable.json): Carbon MenuItemSelectable.
+- [Modal](design-system/components/Modal.json): Carbon Modal.
+- [ModalBody](design-system/components/ModalBody.json): Carbon ModalBody.
+- [ModalFooter](design-system/components/ModalFooter.json): Carbon ModalFooter.
+- [ModalHeader](design-system/components/ModalHeader.json): Carbon ModalHeader.
+- [ModalPresence](design-system/components/ModalPresence.json): Carbon ModalPresence.
+- [ModalWrapper](design-system/components/ModalWrapper.json): Carbon ModalWrapper.
+- [NotificationActionButton](design-system/components/NotificationActionButton.json): Carbon NotificationActionButton.
+- [NotificationButton](design-system/components/NotificationButton.json): Carbon NotificationButton.
+- [NumberInput](design-system/components/NumberInput.json): Carbon NumberInput.
+- [OperationalTag](design-system/components/OperationalTag.json): Carbon OperationalTag.
+- [OrderedList](design-system/components/OrderedList.json): Carbon OrderedList.
+- [OverflowMenu](design-system/components/OverflowMenu.json): Carbon OverflowMenu.
+- [OverflowMenuItem](design-system/components/OverflowMenuItem.json): Carbon OverflowMenuItem.
+- [Pagination](design-system/components/Pagination.json): Carbon Pagination.
+- [PaginationNav](design-system/components/PaginationNav.json): Carbon PaginationNav.
+- [PrimaryButton](design-system/components/PrimaryButton.json): Carbon PrimaryButton.
+- [ProgressBar](design-system/components/ProgressBar.json): Carbon ProgressBar.
+- [RadioButton](design-system/components/RadioButton.json): Carbon RadioButton.
+- [RadioButtonGroup](design-system/components/RadioButtonGroup.json): Carbon RadioButtonGroup.
+- [RadioTile](design-system/components/RadioTile.json): Carbon RadioTile.
+- [Row](design-system/components/Row.json): Carbon Row.
+- [Search](design-system/components/Search.json): Carbon Search.
+- [SecondaryButton](design-system/components/SecondaryButton.json): Carbon SecondaryButton.
+- [Select](design-system/components/Select.json): Carbon Select.
+- [SelectItem](design-system/components/SelectItem.json): Carbon SelectItem.
+- [SelectItemGroup](design-system/components/SelectItemGroup.json): Carbon SelectItemGroup.
+- [SelectableTag](design-system/components/SelectableTag.json): Carbon SelectableTag.
+- [SelectableTile](design-system/components/SelectableTile.json): Carbon SelectableTile.
+- [SideNav](design-system/components/SideNav.json): Carbon SideNav.
+- [SideNavDetails](design-system/components/SideNavDetails.json): Carbon SideNavDetails.
+- [SideNavDivider](design-system/components/SideNavDivider.json): Carbon SideNavDivider.
+- [SideNavFooter](design-system/components/SideNavFooter.json): Carbon SideNavFooter.
+- [SideNavHeader](design-system/components/SideNavHeader.json): Carbon SideNavHeader.
+- [SideNavIcon](design-system/components/SideNavIcon.json): Carbon SideNavIcon.
+- [SideNavItem](design-system/components/SideNavItem.json): Carbon SideNavItem.
+- [SideNavItems](design-system/components/SideNavItems.json): Carbon SideNavItems.
+- [SideNavLink](design-system/components/SideNavLink.json): Carbon SideNavLink.
+- [SideNavLinkText](design-system/components/SideNavLinkText.json): Carbon SideNavLinkText.
+- [SideNavMenu](design-system/components/SideNavMenu.json): Carbon SideNavMenu.
+- [SideNavMenuItem](design-system/components/SideNavMenuItem.json): Carbon SideNavMenuItem.
+- [SideNavSwitcher](design-system/components/SideNavSwitcher.json): Carbon SideNavSwitcher.
+- [SkeletonIcon](design-system/components/SkeletonIcon.json): Carbon SkeletonIcon.
+- [SkeletonPlaceholder](design-system/components/SkeletonPlaceholder.json): Carbon SkeletonPlaceholder.
+- [SkeletonText](design-system/components/SkeletonText.json): Carbon SkeletonText.
+- [SkipToContent](design-system/components/SkipToContent.json): Carbon SkipToContent.
+- [Slider](design-system/components/Slider.json): Carbon Slider.
+- [StaticNotification](design-system/components/StaticNotification.json): Carbon StaticNotification.
+- [Switch](design-system/components/Switch.json): Carbon Switch.
+- [Switcher](design-system/components/Switcher.json): Carbon Switcher.
+- [SwitcherDivider](design-system/components/SwitcherDivider.json): Carbon SwitcherDivider.
+- [SwitcherItem](design-system/components/SwitcherItem.json): Carbon SwitcherItem.
+- [TabContent](design-system/components/TabContent.json): Carbon TabContent.
+- [TabList](design-system/components/TabList.json): Carbon TabList.
+- [TabListVertical](design-system/components/TabListVertical.json): Carbon TabListVertical.
+- [TabPanel](design-system/components/TabPanel.json): Carbon TabPanel.
+- [TabPanels](design-system/components/TabPanels.json): Carbon TabPanels.
+- [Table](design-system/components/Table.json): Carbon Table.
+- [TableActionList](design-system/components/TableActionList.json): Carbon TableActionList.
+- [TableBatchAction](design-system/components/TableBatchAction.json): Carbon TableBatchAction.
+- [TableBatchActions](design-system/components/TableBatchActions.json): Carbon TableBatchActions.
+- [TableBody](design-system/components/TableBody.json): Carbon TableBody.
+- [TableCell](design-system/components/TableCell.json): Carbon TableCell.
+- [TableContainer](design-system/components/TableContainer.json): Carbon TableContainer.
+- [TableDecoratorRow](design-system/components/TableDecoratorRow.json): Carbon TableDecoratorRow.
+- [TableExpandHeader](design-system/components/TableExpandHeader.json): Carbon TableExpandHeader.
+- [TableExpandRow](design-system/components/TableExpandRow.json): Carbon TableExpandRow.
+- [TableExpandedRow](design-system/components/TableExpandedRow.json): Carbon TableExpandedRow.
+- [TableHead](design-system/components/TableHead.json): Carbon TableHead.
+- [TableHeader](design-system/components/TableHeader.json): Carbon TableHeader.
+- [TableRow](design-system/components/TableRow.json): Carbon TableRow.
+- [TableSelectAll](design-system/components/TableSelectAll.json): Carbon TableSelectAll.
+- [TableSelectRow](design-system/components/TableSelectRow.json): Carbon TableSelectRow.
+- [TableSlugRow](design-system/components/TableSlugRow.json): Carbon TableSlugRow.
+- [TableToolbar](design-system/components/TableToolbar.json): Carbon TableToolbar.
+- [TableToolbarAction](design-system/components/TableToolbarAction.json): Carbon TableToolbarAction.
+- [TableToolbarContent](design-system/components/TableToolbarContent.json): Carbon TableToolbarContent.
+- [TableToolbarMenu](design-system/components/TableToolbarMenu.json): Carbon TableToolbarMenu.
+- [TableToolbarSearch](design-system/components/TableToolbarSearch.json): Carbon TableToolbarSearch.
+- [Tabs](design-system/components/Tabs.json): Carbon Tabs.
+- [TabsVertical](design-system/components/TabsVertical.json): Carbon TabsVertical.
+- [Tag](design-system/components/Tag.json): Carbon Tag.
+- [TextArea](design-system/components/TextArea.json): Carbon TextArea.
+- [TextInput](design-system/components/TextInput.json): Carbon TextInput.
+- [Tile](design-system/components/Tile.json): Carbon Tile.
+- [TileAboveTheFoldContent](design-system/components/TileAboveTheFoldContent.json): Carbon TileAboveTheFoldContent.
+- [TileBelowTheFoldContent](design-system/components/TileBelowTheFoldContent.json): Carbon TileBelowTheFoldContent.
+- [TileGroup](design-system/components/TileGroup.json): Carbon TileGroup.
+- [TimePicker](design-system/components/TimePicker.json): Carbon TimePicker.
+- [TimePickerSelect](design-system/components/TimePickerSelect.json): Carbon TimePickerSelect.
+- [ToastNotification](design-system/components/ToastNotification.json): Carbon ToastNotification.
+- [Toggle](design-system/components/Toggle.json): Carbon Toggle.
+- [Tooltip](design-system/components/Tooltip.json): Carbon Tooltip.
+- [TreeNode](design-system/components/TreeNode.json): Carbon TreeNode.
+- [TreeView](design-system/components/TreeView.json): Carbon TreeView.
+- [UnorderedList](design-system/components/UnorderedList.json): Carbon UnorderedList.
+- [default](design-system/components/default.json): Carbon default.
+- [preview_LayoutDirection](design-system/components/preview_LayoutDirection.json): Carbon preview_LayoutDirection.
+- [preview_Text](design-system/components/preview_Text.json): Carbon preview_Text.
+- [preview_TextDirection](design-system/components/preview_TextDirection.json): Carbon preview_TextDirection.
+- [preview__Card](design-system/components/preview__Card.json): Carbon preview__Card.
+- [preview__ChatButton](design-system/components/preview__ChatButton.json): Carbon preview__ChatButton.
+- [preview__Dialog](design-system/components/preview__Dialog.json): Carbon preview__Dialog.
+- [preview__FluidComboBox](design-system/components/preview__FluidComboBox.json): Carbon preview__FluidComboBox.
+- [preview__FluidDatePicker](design-system/components/preview__FluidDatePicker.json): Carbon preview__FluidDatePicker.
+- [preview__FluidDatePickerInput](design-system/components/preview__FluidDatePickerInput.json): Carbon preview__FluidDatePickerInput.
+- [preview__FluidDropdown](design-system/components/preview__FluidDropdown.json): Carbon preview__FluidDropdown.
+- [preview__FluidMultiSelect](design-system/components/preview__FluidMultiSelect.json): Carbon preview__FluidMultiSelect.
+- [preview__FluidNumberInput](design-system/components/preview__FluidNumberInput.json): Carbon preview__FluidNumberInput.
+- [preview__FluidSearch](design-system/components/preview__FluidSearch.json): Carbon preview__FluidSearch.
+- [preview__FluidSelect](design-system/components/preview__FluidSelect.json): Carbon preview__FluidSelect.
+- [preview__FluidTextArea](design-system/components/preview__FluidTextArea.json): Carbon preview__FluidTextArea.
+- [preview__FluidTextInput](design-system/components/preview__FluidTextInput.json): Carbon preview__FluidTextInput.
+- [preview__FluidTimePicker](design-system/components/preview__FluidTimePicker.json): Carbon preview__FluidTimePicker.
+- [preview__FluidTimePickerSelect](design-system/components/preview__FluidTimePickerSelect.json): Carbon preview__FluidTimePickerSelect.
+- [preview__PageHeader](design-system/components/preview__PageHeader.json): Carbon preview__PageHeader.
+- [preview_useLayoutDirection](design-system/components/preview_useLayoutDirection.json): Carbon preview_useLayoutDirection.
+- [useContextMenu](design-system/components/useContextMenu.json): Carbon useContextMenu.
+- [validateNumberSeparators](design-system/components/validateNumberSeparators.json): Carbon validateNumberSeparators.
+- [withComposedModalPresence](design-system/components/withComposedModalPresence.json): Carbon withComposedModalPresence.
+- [withModalPresence](design-system/components/withModalPresence.json): Carbon withModalPresence.
 
 ## Further reading
 

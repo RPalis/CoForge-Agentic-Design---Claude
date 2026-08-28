@@ -1,0 +1,45 @@
+{
+  "name": "ModalPresence",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ModalPresence.",
+  "variants": {},
+  "props": [
+    {
+      "name": "_autoEnablePresence",
+      "required": false,
+      "type": "boolean",
+      "description": "Internal property for backwards compatibility. Specify whether the Modal should opt in to presence mode."
+    },
+    {
+      "name": "_presenceId",
+      "required": false,
+      "type": "string",
+      "description": "Internal property to predefine the presence context's id for exclusivity."
+    },
+    {
+      "name": "open",
+      "required": true,
+      "type": "boolean",
+      "description": "Specify whether the Modal is currently open"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ModalPresence rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Modal/ModalPresence.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ModalPresenceProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 3,
+    "variant_count": 0
+  }
+}

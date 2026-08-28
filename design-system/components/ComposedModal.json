@@ -1,0 +1,104 @@
+{
+  "name": "ComposedModal",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ComposedModal.",
+  "variants": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "containerClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional className to be applied to the modal node"
+    },
+    {
+      "name": "danger",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the primary button should be replaced with danger button. Note that this prop is not applied if you render primary/danger button by yourself"
+    },
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `ComposedModal` component"
+    },
+    {
+      "name": "isFullWidth",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Modal content should have any inner padding."
+    },
+    {
+      "name": "launcherButtonRef",
+      "required": false,
+      "type": "RefObject<HTMLButtonElement | null>",
+      "description": "Provide a ref to return focus to once the modal is closed."
+    },
+    {
+      "name": "open",
+      "required": false,
+      "type": "boolean",
+      "description": "Called for all `onKeyDown` events that do not close the modal / onKeyDown?(evt: KeyboardEvent): void; /** Specify whether the Modal is currently open"
+    },
+    {
+      "name": "preventCloseOnClickOutside",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "selectorPrimaryFocus",
+      "required": false,
+      "type": "string",
+      "description": "Specify a CSS selector that matches the DOM element that should be focused when the Modal opens"
+    },
+    {
+      "name": "selectorsFloatingMenus",
+      "required": false,
+      "type": "string[]",
+      "description": "Specify the CSS selectors that match the floating menus."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'xs' | 'sm' | 'md' | 'lg'",
+      "description": null
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `Slug` component to be rendered inside the `ComposedModal` component"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ComposedModal rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ComposedModal/ComposedModal.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ComposedModalProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 11,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=4080-55366&t=kgHdN1kQbk04e5Jv-4",
+    "code_connect": "packages/react/code-connect/ComposedModal/ComposedModal.figma.tsx"
+  }
+}

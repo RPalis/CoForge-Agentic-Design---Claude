@@ -1,0 +1,91 @@
+{
+  "name": "SideNav",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon SideNav.",
+  "variants": {},
+  "props": [
+    {
+      "name": "addFocusListeners",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    },
+    {
+      "name": "addMouseListeners",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    },
+    {
+      "name": "defaultExpanded",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    },
+    {
+      "name": "enterDelayMs",
+      "required": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "expanded",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    },
+    {
+      "name": "href",
+      "required": false,
+      "type": "string | undefined",
+      "description": null
+    },
+    {
+      "name": "isChildOfHeader",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    },
+    {
+      "name": "isFixedNav",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    },
+    {
+      "name": "isPersistent",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    },
+    {
+      "name": "isRail",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": null
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon SideNav rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/UIShell/SideNav.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SideNavProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 10,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=6227-297201&t=wcK3P98b09VsrxXF-4",
+    "code_connect": "packages/react/code-connect/UIShell/SideNav.figma.tsx"
+  }
+}

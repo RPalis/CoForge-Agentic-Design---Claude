@@ -1,0 +1,139 @@
+{
+  "name": "TimePicker",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TimePicker.",
+  "variants": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `<input>` should be disabled"
+    },
+    {
+      "name": "hideLabel",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you want the underlying label to be visually hidden"
+    },
+    {
+      "name": "inputClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional className to be applied to the `<input>` node"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently invalid"
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in an invalid state"
+    },
+    {
+      "name": "labelText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that will be read by a screen reader when visiting this control"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "The `light` prop for `TimePicker` has been deprecated. It will be removed in v12. Use the `Layer` component instead."
+    },
+    {
+      "name": "maxLength",
+      "required": false,
+      "type": "number",
+      "description": "Specify the maximum length of the time string in `<input>`"
+    },
+    {
+      "name": "pattern",
+      "required": false,
+      "type": "string",
+      "description": "Specify the regular expression working as the pattern of the time string in `<input>`"
+    },
+    {
+      "name": "pickerClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional className to be applied to the container that wraps the `<input>` and select option"
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "string",
+      "description": "Specify the placeholder attribute for the `<input>`"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the TimePicker should be read-only"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the Time Picker."
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "string",
+      "description": "Specify the type of the `<input>`"
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "string",
+      "description": "Specify the value of the `<input>`"
+    },
+    {
+      "name": "warning",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify a warning message"
+    },
+    {
+      "name": "warningText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in an warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TimePicker rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/TimePicker/TimePicker.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TimePickerProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 17,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=17544-268301&t=qp8bdiovIuVIO7xb-4",
+    "code_connect": "packages/react/code-connect/TimePicker/TimePicker.figma.tsx"
+  }
+}

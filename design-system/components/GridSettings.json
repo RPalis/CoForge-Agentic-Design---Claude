@@ -1,0 +1,26 @@
+{
+  "name": "GridSettings",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon GridSettings.",
+  "variants": {},
+  "props": [],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon GridSettings rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Grid/Grid.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": null,
+    "kind": "unparsed",
+    "partial": true,
+    "prop_count": 0,
+    "variant_count": 0
+  }
+}

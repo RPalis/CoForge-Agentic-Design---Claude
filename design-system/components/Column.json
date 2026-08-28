@@ -1,0 +1,63 @@
+{
+  "name": "Column",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Column.",
+  "variants": {},
+  "props": [
+    {
+      "name": "lg",
+      "required": false,
+      "type": "ColumnSpan",
+      "description": "Specify column span for the `lg` breakpoint (Default breakpoint up to 1312px) This breakpoint supports 16 columns by default."
+    },
+    {
+      "name": "max",
+      "required": false,
+      "type": "ColumnSpan",
+      "description": "Specify column span for the `max` breakpoint. This breakpoint supports 16 columns by default."
+    },
+    {
+      "name": "md",
+      "required": false,
+      "type": "ColumnSpan",
+      "description": "Specify column span for the `md` breakpoint (Default breakpoint up to 1056px) This breakpoint supports 8 columns by default."
+    },
+    {
+      "name": "sm",
+      "required": false,
+      "type": "ColumnSpan",
+      "description": "Specify column span for the `sm` breakpoint (Default breakpoint up to 672px) This breakpoint supports 4 columns by default."
+    },
+    {
+      "name": "span",
+      "required": false,
+      "type": "ColumnSpan",
+      "description": "Specify constant column span, start, or end values that will not change based on breakpoint"
+    },
+    {
+      "name": "xlg",
+      "required": false,
+      "type": "ColumnSpan",
+      "description": "Specify column span for the `xlg` breakpoint (Default breakpoint up to 1584px) This breakpoint supports 16 columns by default."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Column rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Grid/Column.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ColumnBaseProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

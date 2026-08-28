@@ -1,0 +1,66 @@
+{
+  "name": "InlineNotification",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon InlineNotification.",
+  "variants": {
+    "kind": [
+      "error",
+      "info",
+      "info-square",
+      "success",
+      "warning",
+      "warning-alt"
+    ]
+  },
+  "props": [
+    {
+      "name": "hideCloseButton",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify the close button should be disabled, or not"
+    },
+    {
+      "name": "kind",
+      "required": false,
+      "type": "'error' | 'info' | 'info-square' | 'success' | 'warning' | 'warning-alt'",
+      "description": "Specify what state the notification represents"
+    },
+    {
+      "name": "lowContrast",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you are using the low contrast variant of the InlineNotification."
+    },
+    {
+      "name": "statusIconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Provide a description for \"status\" icon that can be read by screen readers"
+    },
+    {
+      "name": "subtitle",
+      "required": false,
+      "type": "string",
+      "description": "Specify the subtitle"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon InlineNotification rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Notification/Notification.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "InlineNotificationProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 1
+  }
+}

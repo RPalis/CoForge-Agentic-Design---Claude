@@ -1,0 +1,51 @@
+{
+  "name": "InlineLoading",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon InlineLoading.",
+  "variants": {},
+  "props": [
+    {
+      "name": "description",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Specify the description for the inline loading text"
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the description for the inline loading text"
+    },
+    {
+      "name": "status",
+      "required": false,
+      "type": "InlineLoadingStatus",
+      "description": "Specify the loading status"
+    },
+    {
+      "name": "successDelay",
+      "required": false,
+      "type": "number",
+      "description": "Provide a delay for the `setTimeout` for success"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon InlineLoading rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/InlineLoading/InlineLoading.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "InlineLoadingProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 4,
+    "variant_count": 0
+  }
+}

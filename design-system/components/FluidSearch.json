@@ -1,0 +1,79 @@
+{
+  "name": "FluidSearch",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FluidSearch.",
+  "variants": {},
+  "props": [
+    {
+      "name": "autoComplete",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional value for the `autocomplete` property on the underlying `<input>`, defaults to \"off\""
+    },
+    {
+      "name": "closeButtonLabelText",
+      "required": false,
+      "type": "string",
+      "description": "Specify a label to be read by screen readers on the \"close\" button"
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "string | number",
+      "description": "Optionally provide the default value of the `<input>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `<input>` should be disabled"
+    },
+    {
+      "name": "labelText",
+      "required": true,
+      "type": "React.ReactNode",
+      "description": "Provide the label text for the Search icon"
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "string",
+      "description": "Provide an optional placeholder text for the Search. Note: if the label and placeholder differ, VoiceOver on Mac will read both"
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "string",
+      "description": "Optional prop to specify the type of the `<input>`"
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "string | number",
+      "description": "Specify the value of the `<input>`"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FluidSearch rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FluidSearch/FluidSearch.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FluidSearchProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 8,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=15503-270751&t=6KMXKibN414b97hv-4",
+    "code_connect": "packages/react/code-connect/Search/FluidSearch.figma.tsx"
+  }
+}

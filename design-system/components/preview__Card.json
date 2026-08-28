@@ -1,0 +1,33 @@
+{
+  "name": "preview__Card",
+  "level": 2,
+  "status": "preview",
+  "category": "carbon",
+  "summary": "Carbon preview__Card.",
+  "variants": {},
+  "props": [
+    {
+      "name": "isFlush",
+      "required": false,
+      "type": "boolean",
+      "description": "When true, removes all padding so content fills the body edge-to-edge. Use when the body contains a component (e.g. a table, chart, or image) that manages its own internal spacing."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon preview__Card rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Card/Card.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "CardBodyProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 1,
+    "variant_count": 0
+  }
+}

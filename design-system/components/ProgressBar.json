@@ -1,0 +1,94 @@
+{
+  "name": "ProgressBar",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ProgressBar.",
+  "variants": {
+    "size": [
+      "small",
+      "big"
+    ],
+    "status": [
+      "active",
+      "finished",
+      "error"
+    ],
+    "type": [
+      "default",
+      "inline",
+      "indented"
+    ]
+  },
+  "props": [
+    {
+      "name": "helperText",
+      "required": false,
+      "type": "string",
+      "description": "The current progress as a textual representation."
+    },
+    {
+      "name": "hideLabel",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether the label should be visually hidden."
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "string",
+      "description": "A label describing the progress bar."
+    },
+    {
+      "name": "max",
+      "required": false,
+      "type": "number",
+      "description": "The maximum value."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'small' | 'big'",
+      "description": "Specify the size of the progress bar."
+    },
+    {
+      "name": "status",
+      "required": false,
+      "type": "'active' | 'finished' | 'error'",
+      "description": "Specify the status."
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "'default' | 'inline' | 'indented'",
+      "description": "Defines the alignment variant of the progress bar."
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "number",
+      "description": "The current value."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ProgressBar rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ProgressBar/ProgressBar.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ProgressBarProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 8,
+    "variant_count": 3
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=9506-402924&t=j280IIQF1o3iLkV2-4",
+    "code_connect": "packages/react/code-connect/ProgressBar/ProgressBar.figma.tsx"
+  }
+}

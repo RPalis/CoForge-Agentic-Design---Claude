@@ -1,25 +1,25 @@
 {
   "run_id": "2026-08-28",
-  "generated_at": "2026-08-28T12:46:13",
+  "generated_at": "2026-08-28T13:53:20",
   "project": "coforge",
   "session": {
-    "turns": 1357,
-    "duration_min": 4489.9,
+    "turns": 1536,
+    "duration_min": 4557.0,
     "transcripts": 2
   },
   "tokens": {
-    "input": 2712,
-    "output": 2002940,
-    "cache_read": 535070436,
-    "cache_creation": 22989322,
-    "billable": 2005652
+    "input": 3070,
+    "output": 2186806,
+    "cache_read": 638282528,
+    "cache_creation": 23206394,
+    "billable": 2189876
   },
   "tools": {
-    "Bash": 331,
+    "Bash": 391,
     "mcp__Claude_Browser__computer": 63,
-    "Edit": 47,
+    "Edit": 63,
+    "Write": 24,
     "mcp__Claude_Browser__javascript_tool": 21,
-    "Write": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
     "Artifact": 16,
@@ -32,7 +32,7 @@
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
     "ToolSearch": 5,
-    "Agent": 4,
+    "Agent": 5,
     "Skill": 3,
     "mcp__ccd_session__mark_chapter": 2,
     "mcp__Claude_Browser__find": 2,
@@ -64,7 +64,7 @@
       "approved": 2,
       "superseded": 2
     },
-    "tokens_per_artifact": 286522
+    "tokens_per_artifact": 312839
   },
   "gates": {
     "verdict": "PASS",
@@ -85,7 +85,7 @@
   },
   "readiness": {
     "l1": 100.0,
-    "l2": 58.0,
+    "l2": 62.0,
     "workflow": 100.0
   }
 }

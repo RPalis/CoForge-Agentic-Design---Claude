@@ -15,7 +15,7 @@ the point — it is easy to reject in someone else's system and import into your
     python3 validation/audit-contracts.py
     python3 validation/audit-contracts.py --strict   # warnings become failures
 """
-import json, os, sys, collections
+import json, os, re, sys, collections
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = lambda *a: os.path.join(ROOT, *a)
@@ -251,6 +251,75 @@ def main():
                 add("error", "contracts",
                     f"spacing tokens exist that spacing-scale does not declare: {extra}",
                     "extend the index to match, or trim the tokens — the contract must be exact")
+
+    # ---- 4b. every entry validates against component.schema.json -------------
+    # Deliberately NOT a separate script. A second checker for the same file is
+    # the redundancy this audit exists to find. jsonschema is not installed and
+    # adding it would put a dependency in CI's path, so this covers exactly the
+    # constructs the schema uses and nothing more — an honest subset beats a
+    # library import that turns a check into an install problem.
+    spath = P("design-system/contracts/component.schema.json")
+    if not os.path.exists(spath):
+        add("blocker", "schema", "design-system/contracts/component.schema.json is missing",
+            "without it every adapter invents its own contract shape")
+    else:
+        schema = json.load(open(spath))
+
+        def validate(inst, sch, path, errs):
+            t = sch.get("type")
+            types = {"object": dict, "array": list, "string": str, "integer": int,
+                     "boolean": bool, "number": (int, float)}
+            if t and not isinstance(t, list) and t in types:
+                if t == "integer" and isinstance(inst, bool):
+                    errs.append(f"{path}: bool where integer expected")
+                elif not isinstance(inst, types[t]):
+                    errs.append(f"{path}: expected {t}, got {type(inst).__name__}")
+                    return
+            if isinstance(t, list):
+                ok = any(isinstance(inst, types[x]) for x in t if x in types) or \
+                     (inst is None and "null" in t)
+                if not ok:
+                    errs.append(f"{path}: expected one of {t}")
+                    return
+            if "enum" in sch and inst not in sch["enum"]:
+                errs.append(f"{path}: {inst!r} not in {sch['enum']}")
+            if isinstance(inst, str):
+                if "minLength" in sch and len(inst) < sch["minLength"]:
+                    errs.append(f"{path}: shorter than minLength {sch['minLength']}")
+                if "pattern" in sch and not re.match(sch["pattern"], inst):
+                    errs.append(f"{path}: does not match {sch['pattern']}")
+            if isinstance(inst, list):
+                if "minItems" in sch and len(inst) < sch["minItems"]:
+                    errs.append(f"{path}: fewer than minItems {sch['minItems']}")
+                for i, v in enumerate(inst):
+                    if "items" in sch:
+                        validate(v, sch["items"], f"{path}[{i}]", errs)
+            if isinstance(inst, dict):
+                for r in sch.get("required", []):
+                    if r not in inst:
+                        errs.append(f"{path}: missing required '{r}'")
+                props = sch.get("properties", {})
+                if sch.get("additionalProperties") is False:
+                    for k in inst:
+                        if k not in props:
+                            errs.append(f"{path}: unexpected property '{k}'")
+                for k, v in inst.items():
+                    if k in props:
+                        validate(v, props[k], f"{path}.{k}", errs)
+                    elif isinstance(sch.get("additionalProperties"), dict):
+                        validate(v, sch["additionalProperties"], f"{path}.{k}", errs)
+            return errs
+
+        bad = 0
+        for c in comps:
+            errs = validate(c, schema, c.get("name", "?"), [])
+            for e in errs[:3]:
+                add("error", "schema", e, "make the entry satisfy component.schema.json")
+            bad += bool(errs)
+        if not bad:
+            add("info", "schema",
+                f"all {len(comps)} entries validate against component.schema.json",
+                "no action")
 
     # ---- 5. semantic duplication: two semantic names, one primitive ----------
     sem_targets = collections.defaultdict(list)

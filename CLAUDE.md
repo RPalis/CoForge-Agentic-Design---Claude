@@ -10,7 +10,8 @@ A design operating system where AI agents produce research, journey maps, IA,
 wireframes, UI, prototypes and handoff — under gates that make fabricated evidence
 and off-system output impossible, not merely discouraged.
 
-**Design-system state: RED** (no DS exists yet). See "DS fork" below.
+**Design-system state: RED** — a *declared* state, not a count. Tokens (786) and
+`brand.md` exist; RED holds until L2 components land (ADR-011). See "DS fork" below.
 
 ## The two prohibitions
 
@@ -37,8 +38,10 @@ Everything stronger is enforced by tools, hooks and CI — not by prose.
 - **Build Stages 0–5** — how we build this system. Linear, one-time. See `decisions/ADR-004-two-clocks.md`.
 - **Design Loop Phases 1–11** — what the system does once built. Cyclical.
 
-Current position: **Build Stage 0 complete. Design Loop not yet runnable** (needs
-Stage 1–2: evidence spine, brand, tokens).
+Current position (2026-08-28): **Build Stage 0–2 complete for foundations.**
+`brand.md` approved at Gate A; 786 tokens across five axes; 8 L1 primitives.
+**Design Loop still not runnable** — it needs the evidence spine (ledger is empty)
+and L2 components (adapter #1, ADR-013 link 1, in progress).
 
 ## Orchestration — plan-and-execute
 
@@ -91,8 +94,11 @@ level-1 entries*, which is stricter than exempting it and costs one field in the
 
 - **Green** — DS in code: screen-producer targets Claude Code + Figma MCP + Code Connect.
 - **Yellow** — DS exists, not in code: match components, review consistency, feed gaps to token-keeper.
-- **Red** — no DS: token-keeper builds one before **L2** screens are produced. **CoForge is here** —
-  but L1 output unblocks as soon as tokens land, without waiting for the full library.
+- **Red** — no *component* DS: token-keeper builds the foundations before **L2** screens are
+  produced. **CoForge is here** — tokens and brand are done, so L1 output is unblocked; RED
+  persists until the component index carries L2 entries. The fork is a **declared** state:
+  L1 primitives existing does not make a design system exist, and the declared value wins
+  over any count.
 
 ## Routing table
 

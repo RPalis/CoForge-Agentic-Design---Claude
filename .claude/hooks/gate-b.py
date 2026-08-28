@@ -126,8 +126,18 @@ def main():
             r.skip("components", "component-index.json is empty (DS state RED) — "
                                  "off-system components CANNOT be detected until Build Stage 2")
         else:
+            # The index stores kebab-case names ("type-scale", "card"); JSX uses
+            # PascalCase (<TypeScale>, <Card>). Comparing them raw made the gate
+            # block EVERY legitimate component while still claiming to enforce the
+            # system — a false positive that would have made on-system work
+            # impossible and taught everyone to route around layer 2. Found by
+            # validation/test-gates.py, which is why link 3 needed exercising
+            # rather than assuming.
+            def norm(s):
+                return re.sub(r"[^a-z0-9]", "", (s or "").lower())
+            known_norm = {norm(k): k for k in known}
             used = set(re.findall(r"<([A-Z][A-Za-z0-9]+)[\s/>]", content))
-            missing = sorted(used - known)
+            missing = sorted(u for u in used if norm(u) not in known_norm)
             if missing:
                 r.add("blocker", "components", "not in the index: " + ", ".join(missing),
                       "file a component-spec proposal in decisions/ and request promotion — "

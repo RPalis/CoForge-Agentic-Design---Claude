@@ -191,8 +191,9 @@ ADR. Promotion is the only path into the design system.
 
 ## Skill evaluation
 
-Skills follow the eval-driven standard (agentskills.io). `evals/evals.json` is the
-only hand-authored file. Every case runs twice — with skill and without — because
+Skills follow the eval-driven standard (agentskills.io).
+`.claude/skills/<skill>/evals/evals.json` is the only hand-authored file (ADR-005 —
+it lives *inside* the skill, not at the repository root). Every case runs twice — with skill and without — because
 without a baseline you cannot tell whether the skill helped. Assertions are written
 **after** the first run. Grading requires evidence quoting the output. Workspaces in
 `validation/skill-evals/<skill>/iteration-N/`. See `decisions/ADR-005-skill-evals.md`.

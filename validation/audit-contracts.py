@@ -321,6 +321,43 @@ def main():
                 f"all {len(comps)} entries validate against component.schema.json",
                 "no action")
 
+    # ---- 4c. tokens_used must actually resolve ------------------------------
+    # The link between the component layer and the token layer. Nothing checked it
+    # until 2026-08-28, and 13 of the L1 primitives' references were dead: they were
+    # hand-authored at Stage 0 against a token layer that did not exist yet
+    # (`semantic.text-primary` when the real path is `semantic.text.primary`) and were
+    # never re-checked when it landed. A component declaring tokens it cannot reach is
+    # a contract to nothing — and it reads as wired up.
+    for c in comps:
+        for t in c.get("tokens_used", []):
+            if t.endswith(".*"):
+                pre = t[:-2]
+                if not any(p == pre or p.startswith(pre + ".") for p in paths):
+                    add("error", "contracts",
+                        f"{c['name']}: tokens_used '{t}' matches no token",
+                        "point it at a real token path or glob")
+            elif t not in paths:
+                add("error", "contracts",
+                    f"{c['name']}: tokens_used '{t}' is not a token path",
+                    "check the real path — semantic keys are grouped "
+                    "(semantic.text.primary, not semantic.text-primary)")
+
+    # ---- 4d. index <-> per-component contract file parity --------------------
+    cdir = P("design-system/components")
+    if os.path.isdir(cdir):
+        onfile = {f[:-5] for f in os.listdir(cdir) if f.endswith(".json")}
+        inindex = {c["name"] for c in comps if c.get("level") == 2}
+        for n in sorted(inindex - onfile):
+            add("error", "contracts", f"{n}: in the index with no contract file",
+                "re-run validation/adapters/carbon-react.py --apply")
+        for n in sorted(onfile - inindex):
+            add("error", "contracts", f"{n}: contract file with no index entry",
+                "stale file — the adapter clears these on each run")
+        if inindex and inindex == onfile:
+            add("info", "contracts",
+                f"index and contract files agree ({len(inindex)} L2 components)",
+                "no action")
+
     # ---- 5. semantic duplication: two semantic names, one primitive ----------
     sem_targets = collections.defaultdict(list)
     for p, n in toks:

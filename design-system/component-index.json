@@ -65,9 +65,9 @@
       },
       "tokens_used": [
         "semantic.background",
-        "semantic.layer",
-        "semantic.text-primary",
-        "semantic.border-subtle"
+        "semantic.layer.*",
+        "semantic.text.primary",
+        "semantic.border.subtle-01"
       ],
       "a11y": {
         "contrast": "WCAG 2.2 AA — 4.5:1 text, 3:1 non-text",
@@ -128,7 +128,7 @@
         ]
       },
       "tokens_used": [
-        "semantic.border-subtle"
+        "semantic.border.subtle-01"
       ],
       "a11y": {
         "contrast": "WCAG 2.2 AA — 4.5:1 text, 3:1 non-text",
@@ -156,9 +156,9 @@
         ]
       },
       "tokens_used": [
-        "semantic.layer",
-        "semantic.border-subtle",
-        "semantic.text-primary"
+        "semantic.layer.*",
+        "semantic.border.subtle-01",
+        "semantic.text.primary"
       ],
       "a11y": {
         "contrast": "WCAG 2.2 AA — 4.5:1 text, 3:1 non-text",
@@ -186,8 +186,8 @@
         ]
       },
       "tokens_used": [
-        "semantic.layer",
-        "semantic.border-subtle"
+        "semantic.layer.*",
+        "semantic.border.subtle-01"
       ],
       "a11y": {
         "contrast": "WCAG 2.2 AA — 4.5:1 text, 3:1 non-text",
@@ -252,10 +252,10 @@
         ]
       },
       "tokens_used": [
-        "semantic.support-error",
-        "semantic.support-success",
-        "semantic.support-warning",
-        "semantic.support-info"
+        "semantic.support.error",
+        "semantic.support.success",
+        "semantic.support.warning",
+        "semantic.support.info"
       ],
       "a11y": {
         "contrast": "WCAG 2.2 AA — 4.5:1 text, 3:1 non-text",

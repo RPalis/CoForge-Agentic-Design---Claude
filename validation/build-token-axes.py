@@ -17,8 +17,14 @@ authored:
                 touch component-index.json to resolve it (out of scope).
 
   TYPOGRAPHY  — MIXED, per brand.md §4 (Anek Latin, OQ-2 resolved 2026-08-27):
-      * family   — AUTHORED per brand.md: Anek Latin for both display and body
-                    (CoForge is single-family). Real fallback stacks attached.
+      * family   — AUTHORED per brand.md. TWO primitives, because there are two
+                    actual typefaces: `sans` (Anek Latin, OQ-2 2026-08-27) and
+                    `mono` (Source Code Pro, ART-007, 2026-08-28). Deliberately
+                    NO display/body split at this layer — those are roles, and
+                    typography.scale.* already expresses them. An earlier pass
+                    carried the role down here and produced two leaves holding a
+                    byte-identical stack; audit-contracts.py flagged it as a
+                    value reachable by two names. Real fallback stacks attached.
       * size     — AUTHORED curated stopping points (7 steps), not Carbon's
                     23-step compiled-formula ramp. brand.md wants one scale at
                     two densities, not a long undifferentiated ramp. Step 07
@@ -284,24 +290,21 @@ def build_typography():
     mono_stack = ["Source Code Pro", "ui-monospace", "SFMono-Regular", "Menlo",
                   "Consolas", "Liberation Mono", "monospace"]
     family = {
-        "$description": "AUTHORED per brand.md §4, OQ-2 RESOLVED 2026-08-27: Anek "
-                         "Latin for both display and body — CoForge is single-family. "
-                         "Kept as two primitive leaves (not one aliasing the other) so "
-                         "a future divergence costs one value swap, not a restructure.",
-        "display": {"$type": "fontFamily", "$value": anek_stack,
-                    "$description": "Headings — display, h1, h2, h3.",
-                    "$extensions": {"coforge": {"intentional_duplicate":
-                        "Identical to family.body while OQ-2 resolves single-family. Kept "
-                        "as two leaves so a later split costs one value swap, not a "
-                        "restructure of every scale level above it."}}},
-        "body": {"$type": "fontFamily", "$value": list(anek_stack),
-                 "$description": "Body copy — body, body-sm, caption, code. Identical "
-                                  "to family.display today per OQ-2's single-family "
-                                  "resolution.",
-                 "$extensions": {"coforge": {"intentional_duplicate":
-                     "Identical to family.display while OQ-2 resolves single-family. Kept "
-                     "as two leaves so a later split costs one value swap, not a "
-                     "restructure of every scale level above it."}}},
+        "$description": "AUTHORED per brand.md §4 (OQ-2 resolved 2026-08-27: Anek Latin; "
+                         "mono added 2026-08-28). Two primitives, because there are two "
+                         "actual typefaces. There is deliberately no display/body split "
+                         "here: 'display' and 'body' are ROLES, and roles live at the "
+                         "semantic layer where typography.scale.* already expresses them "
+                         "by which level draws which family. Carrying the role down into "
+                         "the primitive layer produced two leaves holding a byte-identical "
+                         "stack — a value reachable by two names, which is the same defect "
+                         "CoForge refused to inherit from coforge.com. If display and body "
+                         "ever diverge, add a third primitive and repoint the affected "
+                         "scale levels; the levels are where that decision belongs.",
+        "sans": {"$type": "fontFamily", "$value": anek_stack,
+                 "$description": "Anek Latin. Every non-code level: display, h1, h2, h3, "
+                                  "body, body-sm, caption. CoForge is single-family for "
+                                  "prose (brand.md §4)."},
         "mono": {"$type": "fontFamily", "$value": mono_stack,
                  "$description": "Code and token values. Source Code Pro, selected on "
                                   "measurement [ART-007 § Optical pairing] — its x-height "
@@ -346,18 +349,18 @@ def build_typography():
                          "field inside $value is an alias string, never a literal. "
                          "Every level carries the tabular-figures extension (see "
                          "family/$description above and each level's $extensions).",
-        "display": scale_level("display", "07", "heavy", "07",
+        "display": scale_level("sans", "07", "heavy", "07",
                                 "Stage register hero / key figures. Evidenced size and "
                                 "tracking [ART-005 § Type]."),
-        "h1": scale_level("display", "06", "heavy", "06",
+        "h1": scale_level("sans", "06", "heavy", "06",
                            "Weight carries hierarchy before size (brand.md §4)."),
-        "h2": scale_level("display", "05", "semibold", "05", "AUTHORED."),
-        "h3": scale_level("display", "04", "semibold", "04", "AUTHORED."),
-        "body": scale_level("body", "03", "regular", "03",
+        "h2": scale_level("sans", "05", "semibold", "05", "AUTHORED."),
+        "h3": scale_level("sans", "04", "semibold", "04", "AUTHORED."),
+        "body": scale_level("sans", "03", "regular", "03",
                              "The document register's working text. Most of CoForge's "
                              "L1 output is this level (ADR-012)."),
-        "body-sm": scale_level("body", "02", "regular", "02", "AUTHORED."),
-        "caption": scale_level("body", "01", "regular", "01", "AUTHORED."),
+        "body-sm": scale_level("sans", "02", "regular", "02", "AUTHORED."),
+        "caption": scale_level("sans", "01", "regular", "01", "AUTHORED."),
         "code": scale_level("mono", "01", "regular", "03",
                              "Source Code Pro at the caption size step. Tracking is "
                              "reset to the curve's zero-crossing (03) rather than "

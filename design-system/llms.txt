@@ -1,6 +1,6 @@
 # CoForge Design System
 
-> Agent-readable index. 787 design tokens (W3C DTCG), 8 level-1 primitives, 0 full components. Load this once; fetch detail on demand.
+> Agent-readable index. 786 design tokens (W3C DTCG), 8 level-1 primitives, 0 full components. Load this once; fetch detail on demand.
 
 ## Rules
 
@@ -14,7 +14,7 @@
 - [palette](design-system/tokens/tokens.json): 250 tokens
 - [semantic](design-system/tokens/tokens.json): 234 tokens
 - [semantic-dark](design-system/tokens/tokens.json): 234 tokens
-- [typography](design-system/tokens/tokens.json): 30 tokens
+- [typography](design-system/tokens/tokens.json): 29 tokens
 - [motion](design-system/tokens/tokens.json): 18 tokens
 - [spacing](design-system/tokens/tokens.json): 13 tokens
 - [elevation](design-system/tokens/tokens.json): 4 tokens

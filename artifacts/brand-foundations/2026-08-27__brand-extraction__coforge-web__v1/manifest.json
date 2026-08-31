@@ -59,9 +59,10 @@
       },
       {
         "id": "S-06",
-        "what": "Rendered homepage viewport, 2400x1366, consent declined. Not re-fetchable — a live site changes; this is a dated snapshot held in scratch/brand-extraction/raw/ pending human placement in research/sources/.",
+        "what": "Rendered homepage viewport, 2400x1366, consent declined. Not re-fetchable — a live site changes; this is a dated snapshot. Placed in research/sources/coforge-home.png by Agentic Designer - RP on 2026-08-31; sha256 verified identical to the value recorded here on 2026-08-27.",
         "url": null,
-        "sha256": "d5cb4ec6c7b959f8c468f8b5709ba75a3b35fb124d8b470cd8a46de60b9a70a6"
+        "sha256": "d5cb4ec6c7b959f8c468f8b5709ba75a3b35fb124d8b470cd8a46de60b9a70a6",
+        "path": "research/sources/coforge-home.png"
       }
     ]
   },

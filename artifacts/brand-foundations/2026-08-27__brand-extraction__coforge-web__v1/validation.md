@@ -15,8 +15,11 @@ Checked 2026-08-27 against `validation/checklists/brand-extraction.md`.
 **Exception, stated not hidden:** S-06, the rendered screenshot, has a sha256 but no URL.
 A screenshot is not re-fetchable — a live site changes. It is a dated snapshot, currently
 in `scratch/brand-extraction/raw/`. It cannot be moved into `research/sources/` by any
-agent: `.claude/settings.json` denies `Write`/`Edit` on `research/sources/**`. **Placing it
-is a human action and is outstanding.** Until then the claims resting on it — the wordmark
+agent: `.claude/settings.json` denies `Write`/`Edit` on `research/sources/**`. **Placed 2026-08-31** by Agentic Designer - RP, at
+`research/sources/coforge-home.png`, sha256 verified identical to the value recorded
+here on 2026-08-27. It could not be placed by any agent: `.claude/settings.json` denies
+`Write` and `Edit` on `research/sources/**`, and a Bash copy was refused too. The
+exception is closed. Until then the claims resting on it — the wordmark
 description and the illustration hues — are verifiable only by re-capture, not by hash.
 
 ## Gate B — automatic

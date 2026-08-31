@@ -1,0 +1,94 @@
+{
+  "run_id": "2026-08-31",
+  "generated_at": "2026-08-31T10:05:03",
+  "project": "coforge",
+  "session": {
+    "turns": 1794,
+    "duration_min": 8648.7,
+    "transcripts": 2
+  },
+  "tokens": {
+    "input": 3586,
+    "output": 2399775,
+    "cache_read": 822879569,
+    "cache_creation": 25746885,
+    "billable": 2403361
+  },
+  "tools": {
+    "Bash": 477,
+    "Edit": 71,
+    "mcp__Claude_Browser__computer": 64,
+    "Write": 29,
+    "Artifact": 23,
+    "mcp__Claude_Browser__javascript_tool": 21,
+    "mcp__Claude_Browser__navigate": 20,
+    "mcp__Claude_Browser__resize_window": 19,
+    "mcp__chrome-devtools__evaluate_script": 17,
+    "AskUserQuestion": 12,
+    "WebSearch": 10,
+    "mcp__Claude_Browser__preview_start": 10,
+    "SendUserFile": 9,
+    "WebFetch": 7,
+    "mcp__Claude_Browser__get_page_text": 7,
+    "mcp__Claude_Browser__read_page": 7,
+    "Agent": 6,
+    "ToolSearch": 5,
+    "mcp__chrome-devtools__take_screenshot": 5,
+    "mcp__chrome-devtools__new_page": 4,
+    "Read": 4,
+    "Skill": 3,
+    "mcp__ccd_session__mark_chapter": 2,
+    "mcp__Claude_Browser__find": 2,
+    "mcp__chrome-devtools__emulate": 2,
+    "mcp__Claude_Browser__read_console_messages": 1,
+    "mcp__ccd_session_mgmt__set_session_title": 1,
+    "mcp__Claude_Browser__tabs_context": 1,
+    "mcp__Claude_Browser__preview_stop": 1,
+    "mcp__Claude_Browser__browser_batch": 1,
+    "mcp__Claude_Browser__tabs_close": 1,
+    "mcp__chrome-devtools__list_network_requests": 1,
+    "mcp__chrome-devtools__resize_page": 1,
+    "mcp__chrome-devtools__navigate_page": 1
+  },
+  "skills": {
+    "artifact-design": 2,
+    "anthropic-skills:docx": 1
+  },
+  "artifacts": {
+    "total": 7,
+    "live": 5,
+    "by_type": {
+      "brand-extraction": 1,
+      "competitive-benchmark": 4,
+      "prioritization": 2
+    },
+    "by_status": {
+      "in-review": 3,
+      "approved": 2,
+      "superseded": 2
+    },
+    "tokens_per_artifact": 343337
+  },
+  "gates": {
+    "verdict": "PASS",
+    "blocker": 0,
+    "error": 0,
+    "warning": 0,
+    "info": 0,
+    "skipped": 1
+  },
+  "corrections": {
+    "logged": 4,
+    "promoted": 0
+  },
+  "governance": {
+    "adrs": 19,
+    "agents": 14,
+    "artifact_types": 41
+  },
+  "readiness": {
+    "l1": 100.0,
+    "l2": 66.0,
+    "workflow": 100.0
+  }
+}

@@ -83,7 +83,7 @@ Tool-gating outranks prohibition. Never solve with prose what a permission can s
 ## Two output levels (ADR-012)
 
 - **L1 Foundations** — branded documents, decks, dashboards, diagrams. Needs tokens +
-  `brand.md` + the 8 level-1 primitives. **34 of 40 artifact types.** Available at Build Stage 2.
+  `brand.md` + the 8 level-1 primitives. **35 of 41 artifact types.** Available at Build Stage 2.
 - **L2 Complete** — responsive web prototypes and product UI. Needs the full component index,
   Code Connect and the CoForge MCP. 6 artifact types. Build Stage 3.
 
@@ -222,7 +222,7 @@ Figma, Figma owns it. Flag that boundary every time it is crossed.
 ```
 CLAUDE.md              this file            architecture.md  the system map
 AGENTS.md              vendor-neutral        .ai/index.md     generated index
-.claude/agents/        13 definitions       .claude/settings.json  the tool gate
+.claude/agents/        14 definitions       .claude/settings.json  the tool gate
 .claude/hooks/         Gate B validators    .claude/skills/        our own recipes
 research/              evidence SSOT        design-system/         system SSOT
 artifacts/             deliverables         decisions/             ADRs

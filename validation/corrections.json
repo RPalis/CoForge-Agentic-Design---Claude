@@ -1,5 +1,5 @@
 {
-  "$comment": "The auto-learn loop. A defect is NOT fixed until a check exists that would have caught it. Every entry names its verifying check; audit-system.py fails when an entry names a check that does not exist, and warns when `check` is null. memory/corrections.md was the prose ancestor of this file and is gitignored, so nothing it recorded survived a clone — which is why this lives in a tracked path and is machine-checked. Entries are append-only: a correction whose check was later removed is a regression, not a tidy-up.",
+  "$comment": "The auto-learn loop. A defect is NOT fixed until a check exists that would have caught it. Every entry names its verifying check; audit-system.py fails when an entry names a check that does not exist, and warns when `check` is null. memory/corrections.md was the prose ancestor of this file and is gitignored, so nothing it recorded survived a clone \u2014 which is why this lives in a tracked path and is machine-checked. Entries are append-only: a correction whose check was later removed is a regression, not a tidy-up.",
   "version": "1.0.0",
   "rule": "found -> fixed -> CHECKED. Two of three is not done.",
   "corrections": [
@@ -16,7 +16,7 @@
     {
       "id": "C-002",
       "date": "2026-08-28",
-      "defect": "27 nodes in semantic-dark carried a $value AND child tokens — invalid DTCG. Would have broken the Figma variable import ADR-001 depends on.",
+      "defect": "27 nodes in semantic-dark carried a $value AND child tokens \u2014 invalid DTCG. Would have broken the Figma variable import ADR-001 depends on.",
       "class": "shape never validated",
       "found_by": "the same independent walker",
       "check": "validation/align-dark-to-light.py",
@@ -30,27 +30,27 @@
       "class": "gate never fired",
       "found_by": "validation/test-gates.py, on its first ever run",
       "check": "validation/test-gates.py",
-      "verifies": "case 'INDEXED vendor component' — <Button /> must be ALLOWED",
+      "verifies": "case 'INDEXED vendor component' \u2014 <Button /> must be ALLOWED",
       "would_have_caught": true
     },
     {
       "id": "C-004",
       "date": "2026-08-28",
-      "defect": "No gate covered design-system/foundations/ at all. The audit printed 'skipped 0 · PASS' on runs that never opened brand.md.",
+      "defect": "No gate covered design-system/foundations/ at all. The audit printed 'skipped 0 \u00b7 PASS' on runs that never opened brand.md.",
       "class": "coverage assumed from a pass",
       "found_by": "grepping the hooks for the path after an agent flagged an unusual citation form",
       "check": "validation/audit-system.py",
-      "verifies": "check 5b walks foundations/*.md — citations resolve, no scratch/ dependencies. Negative-tested with planted faults.",
+      "verifies": "check 5b walks foundations/*.md \u2014 citations resolve, no scratch/ dependencies. Negative-tested with planted faults.",
       "would_have_caught": true
     },
     {
       "id": "C-005",
       "date": "2026-08-28",
-      "defect": "Adapter #1 keyed the component index on DIRECTORY names, not public exports. 13 entries were not importable (Carbon ships Card as preview__Card); ~230 real exports were missing, including Table — which matched our L1 'table' and PASSED Gate B while resolving in code to Carbon's.",
+      "defect": "Adapter #1 keyed the component index on DIRECTORY names, not public exports. 13 entries were not importable (Carbon ships Card as preview__Card); ~230 real exports were missing, including Table \u2014 which matched our L1 'table' and PASSED Gate B while resolving in code to Carbon's.",
       "class": "generator never checked against its own output",
       "found_by": "external research contradicting a claim I had made",
       "check": "validation/test-gates.py",
-      "verifies": "case 'non-importable vendor name' — <Card /> must BLOCK",
+      "verifies": "case 'non-importable vendor name' \u2014 <Card /> must BLOCK",
       "would_have_caught": true
     },
     {
@@ -60,7 +60,7 @@
       "class": "cross-layer link never traversed",
       "found_by": "the DS contract health report",
       "check": "validation/audit-contracts.py",
-      "verifies": "check 4c — every tokens_used entry must resolve to a real token path or glob",
+      "verifies": "check 4c \u2014 every tokens_used entry must resolve to a real token path or glob",
       "would_have_caught": true
     },
     {
@@ -90,7 +90,7 @@
       "class": "contract asserted in prose, unchecked in code",
       "found_by": "a token-keeper survey",
       "check": "validation/audit-contracts.py",
-      "verifies": "find_literal_leaks — recurses through composite $value dicts and arrays, so a single literal anywhere fails",
+      "verifies": "find_literal_leaks \u2014 recurses through composite $value dicts and arrays, so a single literal anywhere fails",
       "would_have_caught": true
     },
     {
@@ -99,10 +99,10 @@
       "defect": "Documentation drifted: 'no design system exists yet' (x3 files), 'Nine ADRs' when there were 17, five enforcement layers when there were six, three validation scripts documented of twelve.",
       "class": "prose asserting state nobody re-derives",
       "found_by": "a manual document audit",
-      "check": null,
-      "verifies": null,
-      "would_have_caught": false,
-      "note": "STILL UNCHECKED. Counts in prose are not compared against the things they count. This is the open item this ledger exists to make visible rather than forgettable."
+      "check": "validation/audit-system.py",
+      "verifies": "check 5e \u2014 a declared list (validation/declared-counts.json) of specific prose sentences, each matched by a regex and compared against a value independently re-derived from the repo (ADR files, agent roster, component-index.json, artifacts/_types.json, tokens.json, CLAUDE.md's own enforcement table). A mismatch is an error naming the file, the stated number and the actual number; a claim whose wording changed is a separate warning rather than silently dropping off. Negative-tested 2026-08-31: a planted '787 tokens' in CLAUDE.md was caught and named exactly, then cleared on revert. Declared list only \u2014 a count not in declared-counts.json is uncovered, not verified (see V-012)",
+      "would_have_caught": true,
+      "note": "CLOSED as a check, but re-running it on 2026-08-31 found the same class of defect had already recurred and gone unnoticed: README.md still said 17 ADRs (repo has 19), AGENTS.md still said 12 workers (repo has 13, since system-keeper was added), and CLAUDE.md's L1-of-total artifact-type count still said 34 of 40 (repo has 35 of 41). Reported, not silently fixed \u2014 prose correction is outside system-keeper's job; these four findings are now live ERRORs in audit-system.py until a human or the owning agent corrects the documents."
     },
     {
       "id": "C-011",
@@ -113,7 +113,7 @@
       "check": null,
       "verifies": null,
       "would_have_caught": false,
-      "note": "STILL UNCHECKED. Nothing verifies that a tracked document's cited evidence is itself tracked. The foundations check does this for design-system/foundations/ only — decisions/ is uncovered."
+      "note": "STILL UNCHECKED. Nothing verifies that a tracked document's cited evidence is itself tracked. The foundations check does this for design-system/foundations/ only \u2014 decisions/ is uncovered."
     },
     {
       "id": "C-012",
@@ -122,7 +122,7 @@
       "class": "parser cannot distinguish use from mention",
       "found_by": "the gate blocking a legitimate write",
       "check": "validation/test-gates.py",
-      "verifies": "cases 'citation MENTIONED, not made' (must allow) and 'citation MADE and unresolved still blocks' (must block) — the pair matters: stripping mentions must not blind the gate to real claims",
+      "verifies": "cases 'citation MENTIONED, not made' (must allow) and 'citation MADE and unresolved still blocks' (must block) \u2014 the pair matters: stripping mentions must not blind the gate to real claims",
       "would_have_caught": true
     },
     {
@@ -132,7 +132,7 @@
       "class": "a representation of the system omitting part of it",
       "found_by": "asking whether the map's nodes correspond to things that actually exist",
       "check": "validation/audit-system.py",
-      "verifies": "check 5d — every .claude/agents/*.md must appear as a node, and every agent node must have a definition (a ghost node is a blocker)",
+      "verifies": "check 5d \u2014 every .claude/agents/*.md must appear as a node, and every agent node must have a definition (a ghost node is a blocker)",
       "would_have_caught": true
     }
   ]

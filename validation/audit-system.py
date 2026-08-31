@@ -248,6 +248,108 @@ else:
     if not absent and not ghost:
         add("info", "map", f"all {len(defined)} agents appear on the map", "no action")
 
+# 5e — declared counts in prose vs the things they count (correction C-010)
+# audit-system.py already treats a stale count as this defect class: check 4 catches
+# a GENERATED index falling behind the repo, check 5d catches the system MAP falling
+# behind the agent roster. This extends the same question to hand-authored prose — a
+# number typed by a person drifts exactly the same way, it just has nobody re-running
+# it. Declared list, not a general regex over free text (system-keeper rule 2): an
+# undirected scan over prose would flag ADR numbers, dates and section numbers as
+# "counts". See validation/declared-counts.json for exactly what is and is not
+# covered — anything not listed there is uncovered, not verified; see V-012 in
+# validation/coverage.json.
+def _leaf_count(node):
+    if not isinstance(node, dict):
+        return 0
+    if "$value" in node:
+        return 1
+    return sum(_leaf_count(v) for k, v in node.items() if not k.startswith("$"))
+
+def _count_tokens():
+    doc = jload("design-system/tokens/tokens.json") or {}
+    return sum(_leaf_count(v) for k, v in doc.items() if not k.startswith("$"))
+
+def _count_adrs():
+    d = P("decisions")
+    if not os.path.isdir(d):
+        return 0
+    return len([f for f in os.listdir(d) if re.match(r"ADR-\d+-.*\.md$", f)])
+
+def _count_workers():
+    return len(agents) - (1 if "orchestrator" in agents else 0)
+
+def _component_level_count(level):
+    ci = jload("design-system/component-index.json") or {}
+    return sum(1 for c in ci.get("components", []) if c.get("level") == level)
+
+def _artifact_type_level_count(level):
+    t = jload("artifacts/_types.json") or {}
+    return sum(1 for x in t.get("types", []) if x.get("level") == level)
+
+def _count_enforcement_layers():
+    txt = open(P("CLAUDE.md"), encoding="utf-8").read()
+    m = re.search(r"## Enforcement layers[^\n]*\n+((?:\|.*\n)+)", txt)
+    if not m:
+        return None
+    rows = [ln for ln in m.group(1).splitlines() if ln.strip().startswith("|")]
+    return len(rows) - 2 if len(rows) >= 2 else 0   # drop header row + separator row
+
+_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+          "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10}
+def _to_int(s):
+    return int(s) if s.isdigit() else _WORDS.get(s.lower())
+
+PROSE_COUNT_SOURCES = {
+    "adrs": _count_adrs,
+    "workers": _count_workers,
+    "l1_primitives": lambda: _component_level_count(1),
+    "tokens": _count_tokens,
+    "l1_types": lambda: _artifact_type_level_count(1),
+    "l2_types": lambda: _artifact_type_level_count(2),
+    "total_types": lambda: len((jload("artifacts/_types.json") or {}).get("types", [])),
+    "enforcement_layers": _count_enforcement_layers,
+}
+
+declared = jload("validation/declared-counts.json")
+if declared is None:
+    skip("prose-counts", "validation/declared-counts.json not present")
+else:
+    matches = mismatches = stale = 0
+    for c in declared.get("claims", []):
+        fp = P(c["file"])
+        if not os.path.exists(fp):
+            add("error", "prose-counts", f"{c['id']}: {c['file']} is missing",
+                "restore the file or remove the claim from declared-counts.json")
+            continue
+        body = open(fp, encoding="utf-8", errors="ignore").read()
+        m = re.search(c["pattern"], body)
+        if not m:
+            stale += 1
+            add("warning", "prose-counts",
+                f"{c['id']}: pattern for '{c['label']}' not found in {c['file']}",
+                "the sentence was reworded or removed — update the pattern in "
+                "validation/declared-counts.json, or drop the claim if it no longer applies")
+            continue
+        stated = _to_int(m.group(1))
+        source = PROSE_COUNT_SOURCES.get(c["source"])
+        actual = source() if source else None
+        if actual is None:
+            add("error", "prose-counts",
+                f"{c['id']}: no way to derive the true count for source '{c['source']}'",
+                "add a function for this source in audit-system.py, or the claim cannot be verified")
+        elif stated != actual:
+            mismatches += 1
+            add("error", "prose-counts",
+                f"{c['id']}: {c['file']} states {stated} ({c['label']}) but the repo has {actual}",
+                f"correct {c['file']} to say {actual}, or fix whatever the number actually counts")
+        else:
+            matches += 1
+    if declared.get("claims"):
+        add("info", "prose-counts",
+            f"{matches} of {len(declared['claims'])} declared prose counts agree with the repo "
+            f"({mismatches} disagree, {stale} stale)",
+            "no action" if not mismatches and not stale else "see the error/warning findings above")
+
 # 6 — token enforcement across the repo
 tok = jload("design-system/tokens/tokens.json") or {}
 if not any(isinstance(v, dict) and v for k, v in tok.items() if not k.startswith("$")):

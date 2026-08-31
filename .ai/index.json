@@ -20,17 +20,18 @@
   "counts": {
     "agents": 14,
     "artifact_types": 41,
-    "adrs": 19,
-    "relationships": 157
+    "adrs": 20,
+    "relationships": 159
   },
   "agents": [
     {
       "name": "a11y-checker",
       "model": "sonnet",
       "tools": [
-        "Read"
+        "Read",
+        "Write"
       ],
-      "writes": false,
+      "writes": true,
       "file": ".claude/agents/a11y-checker.md",
       "trigger": "Use as the first filter in Phase 4 (Design) and again in Phase 8 (QA) \u2014 \"check accessibility\", \"run the a11y audit\", \"is this WCAG compliant\", \"contrast check\". Read-only accessibi"
     },
@@ -72,9 +73,10 @@
       "name": "design-critic",
       "model": "opus",
       "tools": [
-        "Read"
+        "Read",
+        "Write"
       ],
-      "writes": false,
+      "writes": true,
       "file": ".claude/agents/design-critic.md",
       "trigger": "Use during Phase 7 (Implementation) for the design-vs-build audit and Phase 8 (QA) for the UI-vs-design diff \u2014 \"does the build match the design\", \"review this implementation\", \"cri"
     },
@@ -396,6 +398,11 @@
       "file": "decisions/ADR-019-self-governance.md",
       "title": "ADR-019 \u2014 Self-governance: unchecked is not passed",
       "status": "Accepted \u00b7 2026-08-28"
+    },
+    {
+      "file": "decisions/ADR-020-finder-agents.md",
+      "title": "ADR-020 \u2014 Finder agents: scoped Write, and a denominator on every finding",
+      "status": "Accepted \u00b7 2026-08-31"
     }
   ],
   "relationships": [
@@ -1020,6 +1027,11 @@
       "to": "Read"
     },
     {
+      "from": "a11y-checker",
+      "rel": "may-use",
+      "to": "Write"
+    },
+    {
       "from": "brand-director",
       "rel": "may-use",
       "to": "Read"
@@ -1058,6 +1070,11 @@
       "from": "design-critic",
       "rel": "may-use",
       "to": "Read"
+    },
+    {
+      "from": "design-critic",
+      "rel": "may-use",
+      "to": "Write"
     },
     {
       "from": "diagram-cartographer",

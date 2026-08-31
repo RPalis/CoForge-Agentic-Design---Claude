@@ -44,9 +44,32 @@ else:
         if t["owner_agent"] not in agents:
             add("blocker", "types", f"{t['type']}: owner agent '{t['owner_agent']}' does not exist",
                 f"create .claude/agents/{t['owner_agent']}.md or reassign the type")
+        else:
+            # Existing is not the same as capable. a11y-checker OWNS a11y-audit and
+            # holds tools: [Read] — it cannot produce the type assigned to it, so that
+            # type can never be created by its declared owner. The check above passed
+            # for months because it only asked whether the name resolved to a file.
+            ofm = open(P(".claude/agents", t["owner_agent"] + ".md"), encoding="utf-8").read()
+            otools = (re.search(r"^tools:\s*(.+)$", ofm, re.M) or [None, ""])[1]
+            if "Write" not in otools:
+                add("error", "types",
+                    f"{t['type']}: owner '{t['owner_agent']}' is read-only ({otools.strip()}) "
+                    f"and cannot produce it",
+                    "give the owner Write, or reassign the type to an agent that can write — "
+                    "an owner that cannot produce its own artifact type is a contract to nothing")
 
 # 3 — agent frontmatter completeness + gate integrity
-READONLY = {"a11y-checker", "design-critic"}
+# FINDERS produce findings and nothing else. They own an artifact type, so they need
+# Write to create it — but they must NEVER hold Edit or Bash. That is the whole scope,
+# expressed as a tool boundary rather than a promise: Write creates a file, Edit changes
+# one that already exists. A finder can record what it found and cannot alter a single
+# existing design file, token or screen.
+#
+# They were tools:[Read] until 2026-08-31, which read as safer and was in fact broken —
+# each OWNED an artifact type it could not physically produce, so a11y-audit,
+# design-critique and heuristic-review were uncreatable. Absolute read-only was not a
+# stronger guarantee; it was an unusable one.
+FINDERS = {"a11y-checker", "design-critic"}
 for fn in sorted(os.listdir(P(".claude/agents"))):
     if not fn.endswith(".md"): continue
     txt = open(P(".claude/agents", fn), encoding="utf-8").read()
@@ -60,9 +83,16 @@ for fn in sorted(os.listdir(P(".claude/agents"))):
             add("error", "agents", f"{fn}: missing '{key}'", f"add {key}: to the frontmatter")
     name = (re.search(r"^name:\s*(.+)$", fm, re.M) or [None, ""])[1].strip()
     tools = (re.search(r"^tools:\s*(.+)$", fm, re.M) or [None, ""])[1]
-    if name in READONLY and ("Write" in tools or "Edit" in tools or "Bash" in tools):
-        add("blocker", "agents", f"{name} must stay read-only but holds {tools.strip()}",
-            "remove Write/Edit/Bash — its autonomy level depends on being unable to act")
+    if name in FINDERS:
+        if "Edit" in tools or "Bash" in tools:
+            add("blocker", "agents",
+                f"{name} is a finder and must not hold Edit or Bash — has {tools.strip()}",
+                "Write creates its own audit; Edit or Bash would let it change existing "
+                "design files, which is the boundary its autonomy level rests on")
+        elif "Write" not in tools:
+            add("error", "agents",
+                f"{name} owns an artifact type but cannot Write ({tools.strip()})",
+                "grant Write — an owner that cannot produce its own type is a contract to nothing")
     if name == "orchestrator" and "Agent" not in tools and "Task" not in tools:
         add("blocker", "agents", "orchestrator has no dispatch tool",
             "list both: tools: [Read, Agent, Task, TodoWrite] — never omit tools: entirely")
@@ -112,6 +142,56 @@ for ws in sorted(os.listdir(adir)):
                         "log the quote via evidence-clerk, or strip the claim")
 if n_art == 0:
     skip("artifacts", "no artifacts produced yet")
+
+# 5a — a finding artifact must record what it CHECKED, not just what it FOUND.
+#
+# Zero findings is a legitimate result: an a11y-audit that finds nothing wrong is a
+# pass. "0 findings across 47 contrast pairs" and "0 findings" are therefore completely
+# different claims, and only one of them is evidence. Without a denominator an audit
+# that never ran is byte-identical to one that ran clean — the artifact looks complete
+# and is empty of the thing it is named for.
+#
+# This is "skipped is not passed" one layer up: a check with no denominator did not
+# pass, it did not happen.
+finder_types = {t["type"] for t in (types or {}).get("types", [])
+                if t.get("owner_agent") in FINDERS}
+if not finder_types:
+    skip("findings", "no artifact types are owned by a finder agent")
+else:
+    n_checked = 0
+    for ws in sorted(os.listdir(adir)):
+        if ws.startswith(("_", ".")) or not os.path.isdir(os.path.join(adir, ws)): continue
+        for d in sorted(os.listdir(os.path.join(adir, ws))):
+            dp = os.path.join(adir, ws, d)
+            if not os.path.isdir(dp): continue
+            m = NAME.match(d)
+            if not m or m.group(1) not in finder_types: continue
+            n_checked += 1
+            man = jload(os.path.join("artifacts", ws, d, "manifest.json")) or {}
+            f = man.get("findings")
+            label = f"{ws}/{d}"
+            if not isinstance(f, dict):
+                add("blocker", "findings", f"{label}: no findings block",
+                    "a finding artifact must record findings_by, checked and found — "
+                    "without them a clean audit and an audit that never ran are identical")
+                continue
+            owner = next(t["owner_agent"] for t in types["types"] if t["type"] == m.group(1))
+            if f.get("findings_by") != owner:
+                add("error", "findings",
+                    f"{label}: findings_by is {f.get('findings_by')!r}, expected {owner!r}",
+                    "the artifact must name the agent that actually produced the findings")
+            checked = f.get("checked")
+            if not isinstance(checked, int) or checked <= 0:
+                add("blocker", "findings",
+                    f"{label}: 'checked' is {checked!r} — no denominator",
+                    "state how many things were examined. Zero findings out of zero checks "
+                    "is not a pass, it is a run that did not happen")
+            if not isinstance(f.get("found"), int):
+                add("error", "findings", f"{label}: 'found' is not a count",
+                    "state how many issues were found — zero is a valid and meaningful answer")
+    if n_checked:
+        add("info", "findings", f"{n_checked} finding artifact(s) carry a checked denominator",
+            "no action")
 
 # 5b — foundations: SSOT prose was covered by NOTHING until ADR-017.
 # architecture.md lists foundations/brand.md in the downstream SSOT box, but it has

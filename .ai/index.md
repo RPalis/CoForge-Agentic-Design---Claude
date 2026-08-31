@@ -5,7 +5,7 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-14 agents · 41 artifact types · 19 ADRs · 157 relationships
+14 agents · 41 artifact types · 20 ADRs · 159 relationships
 
 
 ## State
@@ -26,11 +26,11 @@
 
 | agent | model | tools | writes |
 |---|---|---|---|
-| `a11y-checker` | sonnet | Read | NO |
+| `a11y-checker` | sonnet | Read, Write | yes |
 | `brand-director` | opus | Read, Write | yes |
 | `content-comms` | sonnet | Read, Write | yes |
 | `dashboard-analyst` | sonnet | Read, Write, Bash | yes |
-| `design-critic` | opus | Read | NO |
+| `design-critic` | opus | Read, Write | yes |
 | `diagram-cartographer` | sonnet | Read, Write | yes |
 | `evidence-clerk` | sonnet | Read, Write, Grep | yes |
 | `handoff-scribe` | opus | Read, Write | yes |
@@ -85,3 +85,4 @@
 - [ADR-017 — Claim format: non-ledger evidence](decisions/ADR-017-non-ledger-evidence.md) — Accepted · 2026-08-27
 - [ADR-018 — Component namespacing: `cf-` on our layer, vendor names untouched](decisions/ADR-018-component-namespacing.md) — Accepted · 2026-08-28
 - [ADR-019 — Self-governance: unchecked is not passed](decisions/ADR-019-self-governance.md) — Accepted · 2026-08-28
+- [ADR-020 — Finder agents: scoped Write, and a denominator on every finding](decisions/ADR-020-finder-agents.md) — Accepted · 2026-08-31

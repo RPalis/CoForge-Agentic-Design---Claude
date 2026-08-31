@@ -14,7 +14,7 @@ foundations exist; RED holds until L2 components land (ADR-011).
 | [`CLAUDE.md`](CLAUDE.md) | The plan and the rules. Read first, every session. |
 | [`architecture.md`](architecture.md) | The map — what the parts are and how they relate. |
 | [`.ai/index.md`](.ai/index.md) | Generated index. Load once, fetch detail on demand. |
-| [`decisions/`](decisions/) | 19 ADRs: what we chose, why, and what we rejected. |
+| [`decisions/`](decisions/) | 20 ADRs: what we chose, why, and what we rejected. |
 
 ## The two prohibitions
 

@@ -114,7 +114,7 @@ match any (phase, task) pair.
 | 3 Ideation | IA / site map / flow | diagram-cartographer | artifacts/…/insight-report | artifacts/…/ia-map | A | screens (screen-producer) |
 | 3 Ideation | sketches / concepts | screen-producer | artifacts/…/ia-map | artifacts/…/wireframe | B | tokens (token-keeper) |
 | 4 Design | wireframe → hi-fi / proto | screen-producer | component-index, tokens | artifacts/…/ui-screen | B→A | data viz (dashboard-analyst) |
-| 4 Design | a11y first filter | a11y-checker | artifacts/…/ui-screen | validation/…/a11y | B | writing anything (read-only) |
+| 4 Design | a11y first filter | a11y-checker | artifacts/…/ui-screen | artifacts/…/a11y-audit | B | editing anything — Write only, no Edit, no Bash |
 | 5 Test | test plan / feedback / RICE | research-ops | prototype, ledger | artifacts/…/test-report | A | design changes |
 | 6 Handoff | spec / redline / ticket | handoff-scribe | ui-screen, component-index | artifacts/…/handoff-spec | A | code review |
 | 7 Implementation | design-vs-build audit | design-critic | ui-screen, built UI | validation/…/audit | B (A on change) | writing fixes (advisory) |
@@ -134,7 +134,8 @@ match any (phase, task) pair.
 - **Demotion:** one hard fail in Auto drops the task type back to Draft.
 - **Never graduate:** brand-director; research-synthesizer conclusions.
 - **Auto from day one:** a11y-checker, evidence-clerk's structural check — verifiable,
-  read-only, small blast radius.
+  small blast radius. NOT read-only since 2026-08-31 (ADR-020): they hold Write to create
+  their own audit and hold no Edit and no Bash, so they cannot alter an existing file.
 - **Advisory, not auto:** design-critic. Read-only is not zero blast radius when the
   output's purpose is to change what a human does next.
 

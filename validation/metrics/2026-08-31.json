@@ -1,21 +1,21 @@
 {
   "run_id": "2026-08-31",
-  "generated_at": "2026-08-31T12:22:00",
+  "generated_at": "2026-08-31T12:27:42",
   "project": "coforge",
   "session": {
-    "turns": 1870,
-    "duration_min": 8785.7,
+    "turns": 1878,
+    "duration_min": 8791.4,
     "transcripts": 2
   },
   "tokens": {
-    "input": 3738,
-    "output": 2475620,
-    "cache_read": 886935753,
-    "cache_creation": 25808285,
-    "billable": 2479358
+    "input": 3754,
+    "output": 2481482,
+    "cache_read": 893909485,
+    "cache_creation": 25813569,
+    "billable": 2485236
   },
   "tools": {
-    "Bash": 504,
+    "Bash": 508,
     "Edit": 76,
     "mcp__Claude_Browser__computer": 64,
     "Write": 30,
@@ -69,7 +69,7 @@
       "validated": 1,
       "superseded": 2
     },
-    "tokens_per_artifact": 309920
+    "tokens_per_artifact": 310654
   },
   "gates": {
     "verdict": "PASS",

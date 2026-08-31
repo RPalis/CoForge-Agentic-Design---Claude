@@ -41,6 +41,15 @@ else:
         if not os.path.exists(P(t["checklist"])):
             add("error", "types", f"{t['type']}: checklist missing ({t['checklist']})",
                 "run the checklist generator, or remove the type from _types.json")
+        # _types.json's own $comment: "Adding a type is a four-part commit: definition
+        # here, an owning agent, a validation checklist, and a template." Parts one to
+        # three were checked; the fourth never was, and 40 of 41 types declared a
+        # template path that did not exist. A declared path nobody opens is the same
+        # defect as a named-but-empty enforcement layer — it reads as provision.
+        if not os.path.isdir(P(t["template"])):
+            add("warning", "types", f"{t['type']}: declared template missing ({t['template']})",
+                "create it, or point the type at artifacts/_templates/_generic/ and stop "
+                "declaring a path that does not exist")
         if t["owner_agent"] not in agents:
             add("blocker", "types", f"{t['type']}: owner agent '{t['owner_agent']}' does not exist",
                 f"create .claude/agents/{t['owner_agent']}.md or reassign the type")

@@ -154,6 +154,16 @@
       "check": "validation/audit-system.py",
       "verifies": "check 5a — a finder-owned artifact must carry findings.findings_by matching the type owner, an integer findings.checked > 0, and an integer findings.found. Negative-tested with a planted zero-denominator audit.",
       "would_have_caught": true
+    },
+    {
+      "id": "C-016",
+      "date": "2026-08-31",
+      "defect": "40 of 41 artifact types declared a template path in _types.json that did not exist. The file's own $comment calls adding a type 'a four-part commit: definition, owning agent, validation checklist, and a template' — parts one to three were checked since ADR-008; the fourth never was. Also, a11y-checker.md and design-critic.md still carried 'Read-only... nothing else' hard rules contradicting the ADR-020 scope section appended below them, so an agent reading its own definition top-to-bottom hit the stale rule first.",
+      "class": "declared provision nobody opened",
+      "found_by": "the orchestrator, which stopped rather than dispatching into a contradictory setup",
+      "check": "validation/audit-system.py",
+      "verifies": "check 2 now warns when a type's declared template directory does not exist; check 3 already required finder tool boundaries",
+      "would_have_caught": true
     }
   ]
 }

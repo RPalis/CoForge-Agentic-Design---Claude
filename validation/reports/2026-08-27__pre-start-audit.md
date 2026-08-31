@@ -89,9 +89,9 @@ Assume the next one exists too, and go looking.
 | | Decision | Owner |
 |---|---|---|
 | 1 | Commit + push (17 files uncommitted, CI never run) | Claude |
-| 2 | Move to `~/Projects/coforge`, restart Claude Code there | Claude, then Raquel restarts |
-| 3 | **Brand inputs** — the only Wave 0 item Claude cannot do | **Raquel** |
-| 4 | Dispatch agents for real (POC link 2) or keep writing directly and say so | Raquel |
+| 2 | Move to `~/Projects/coforge`, restart Claude Code there | Claude, then Agentic Designer - RP restarts |
+| 3 | **Brand inputs** — the only Wave 0 item Claude cannot do | **Agentic Designer - RP** |
+| 4 | Dispatch agents for real (POC link 2) or keep writing directly and say so | Agentic Designer - RP |
 
 ## First actions on return
 

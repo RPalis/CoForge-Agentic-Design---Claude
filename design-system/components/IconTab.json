@@ -1,0 +1,63 @@
+{
+  "name": "IconTab",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon IconTab.",
+  "variants": {},
+  "props": [
+    {
+      "name": "badgeIndicator",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Display an empty dot badge on the Tab."
+    },
+    {
+      "name": "defaultOpen",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the tooltip for the icon should be open when it first renders"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether your IconTab is disabled."
+    },
+    {
+      "name": "enterDelayMs",
+      "required": false,
+      "type": "number",
+      "description": "Specify the duration in milliseconds to delay before displaying the tooltip for the icon."
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "ReactNode",
+      "description": "Provide the label to be rendered inside the Tooltip. The label will use `aria-labelledby` and will fully describe the child node that is provided. This means that if you have text in the child node it will not be announced to the screen reader. If using the badgeIndicator then provide a label with describing that there is a new notification."
+    },
+    {
+      "name": "leaveDelayMs",
+      "required": false,
+      "type": "number",
+      "description": "Specify the duration in milliseconds to delay before hiding the tooltip"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon IconTab rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Tabs/Tabs.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "IconTabProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

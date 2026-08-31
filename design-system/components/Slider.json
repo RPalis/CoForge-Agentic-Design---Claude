@@ -1,0 +1,181 @@
+{
+  "name": "Slider",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Slider.",
+  "variants": {},
+  "props": [
+    {
+      "name": "ariaLabelInput",
+      "required": false,
+      "type": "string",
+      "description": "The `ariaLabel` for the `<input>`."
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to disable this slider."
+    },
+    {
+      "name": "formatLabel",
+      "required": false,
+      "type": "(value: number, label: string | undefined) => string",
+      "description": "The callback to format the label associated with the minimum/maximum value and the value tooltip when hideTextInput is true."
+    },
+    {
+      "name": "hideLabel",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you want the underlying label to be visually hidden"
+    },
+    {
+      "name": "hideTextInput",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to hide the number input box."
+    },
+    {
+      "name": "inputType",
+      "required": false,
+      "type": "string",
+      "description": "The `type` attribute of the `<input>`."
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "`Specify whether the Slider is currently invalid"
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text that is displayed when the Slider is in an invalid state"
+    },
+    {
+      "name": "labelText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "The label for the slider."
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version."
+    },
+    {
+      "name": "max",
+      "required": true,
+      "type": "number",
+      "description": "The maximum value."
+    },
+    {
+      "name": "maxLabel",
+      "required": false,
+      "type": "string",
+      "description": "The label associated with the maximum value."
+    },
+    {
+      "name": "min",
+      "required": true,
+      "type": "number",
+      "description": "The minimum value."
+    },
+    {
+      "name": "minLabel",
+      "required": false,
+      "type": "string",
+      "description": "The label associated with the minimum value."
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "The `name` attribute of the `<input>`."
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether the slider should be read-only"
+    },
+    {
+      "name": "required",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to specify if the control is required."
+    },
+    {
+      "name": "step",
+      "required": false,
+      "type": "number",
+      "description": "A value determining how much the value should increase/decrease by moving the thumb by mouse. If a value other than 1 is provided and the input is *not* hidden, the new step requirement should be added to a visible label. Values outside the `step` increment will be considered invalid."
+    },
+    {
+      "name": "stepMultiplier",
+      "required": false,
+      "type": "number",
+      "description": "A value determining how much the value should increase/decrease by Shift+arrow keys, which will be `(max - min) / stepMultiplier`."
+    },
+    {
+      "name": "unstable_ariaLabelInputUpper",
+      "required": false,
+      "type": "string",
+      "description": "The `ariaLabel` for the upper bound `<input>` and handle when there are two handles."
+    },
+    {
+      "name": "unstable_nameUpper",
+      "required": false,
+      "type": "string",
+      "description": "The `name` attribute of the upper bound `<input>` when there are two handles."
+    },
+    {
+      "name": "unstable_valueUpper",
+      "required": false,
+      "type": "number",
+      "description": "The upper bound when there are two handles."
+    },
+    {
+      "name": "value",
+      "required": true,
+      "type": "number",
+      "description": "The value of the slider. When there are two handles, value is the lower bound."
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Slider is in a warning state."
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text displayed when the Slider is in a warning state."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Slider rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Slider/Slider.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SliderProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 25,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=3673-40574&m=dev",
+    "code_connect": "packages/react/code-connect/Slider/Slider.figma.tsx"
+  }
+}

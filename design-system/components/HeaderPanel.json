@@ -1,0 +1,49 @@
+{
+  "name": "HeaderPanel",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon HeaderPanel.",
+  "variants": {},
+  "props": [
+    {
+      "name": "addFocusListeners",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether focus and blur listeners are added. They are by default."
+    },
+    {
+      "name": "expanded",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the panel is expanded"
+    },
+    {
+      "name": "href",
+      "required": false,
+      "type": "string",
+      "description": "Provide the `href` to the id of the element on your package that could be target."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon HeaderPanel rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/UIShell/HeaderPanel.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "HeaderPanelProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 3,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=2319-15100&t=wcK3P98b09VsrxXF-4",
+    "code_connect": "packages/react/code-connect/UIShell/HeaderPanel.figma.tsx"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$comment": "Template for brand-extraction. Copy, fill, never edit in place. inputs.sources is REQUIRED for this type: every raw capture needs a resolvable url and a sha256 so a reader can re-fetch and verify without the bytes being stored in the repo. research/sources/** is deny-listed to every agent, so captures are referenced, not copied.",
+  "id": "ART-000",
+  "type": "brand-extraction",
+  "workstream": "",
+  "title": "",
+  "file": "",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "discover",
+  "produced_by": "",
+  "model": "",
+  "skills_used": [],
+  "subject": {
+    "what": "",
+    "first_party": null,
+    "confirmed_by": "",
+    "confirmed_on": ""
+  },
+  "capture": {
+    "method": "",
+    "captured_at": "",
+    "re_runnable": null
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "tokens_version": null,
+    "sources": [
+      {
+        "id": "S-01",
+        "what": "",
+        "url": "",
+        "sha256": ""
+      }
+    ]
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": false,
+    "report": "validation.md",
+    "checked_at": null
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": ""
+}

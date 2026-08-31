@@ -1,0 +1,96 @@
+{
+  "name": "ActionableNotification",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ActionableNotification.",
+  "variants": {
+    "kind": [
+      "error",
+      "info",
+      "info-square",
+      "success",
+      "warning",
+      "warning-alt"
+    ]
+  },
+  "props": [
+    {
+      "name": "actionButtonLabel",
+      "required": false,
+      "type": "string",
+      "description": "Pass in the action button label that will be rendered within the ActionableNotification."
+    },
+    {
+      "name": "caption",
+      "required": false,
+      "type": "string",
+      "description": "Provide a description for \"close\" icon button that can be read by screen readers / 'aria-label'?: string; /** Specify the caption"
+    },
+    {
+      "name": "closeOnEscape",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if pressing the escape key should close notifications"
+    },
+    {
+      "name": "hasFocus",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if focus should be moved to the component on render. To meet the spec for alertdialog, this must always be true. If you're setting this to false, explore using Callout instead. https://github.com/carbon-design-system/carbon/pull/15532"
+    },
+    {
+      "name": "hideCloseButton",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify the close button should be disabled, or not"
+    },
+    {
+      "name": "inline",
+      "required": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "kind",
+      "required": false,
+      "type": "'error' | 'info' | 'info-square' | 'success' | 'warning' | 'warning-alt'",
+      "description": "Specify what state the notification represents"
+    },
+    {
+      "name": "lowContrast",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you are using the low contrast variant of the ActionableNotification."
+    },
+    {
+      "name": "statusIconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Provide a description for \"status\" icon that can be read by screen readers"
+    },
+    {
+      "name": "subtitle",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Specify the subtitle"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ActionableNotification rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Notification/Notification.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ActionableNotificationProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 10,
+    "variant_count": 1
+  }
+}

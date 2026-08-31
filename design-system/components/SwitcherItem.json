@@ -1,0 +1,69 @@
+{
+  "name": "SwitcherItem",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon SwitcherItem.",
+  "variants": {},
+  "props": [
+    {
+      "name": "expanded",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the panel is expanded"
+    },
+    {
+      "name": "handleSwitcherItemFocus",
+      "required": false,
+      "type": "(event: { currentIndex: number",
+      "description": "event handlers"
+    },
+    {
+      "name": "href",
+      "required": false,
+      "type": "string",
+      "description": "Optionally provide an href for the underlying li`"
+    },
+    {
+      "name": "index",
+      "required": false,
+      "type": "number",
+      "description": "Specify the index of the SwitcherItem"
+    },
+    {
+      "name": "isSelected",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the panel is selected"
+    },
+    {
+      "name": "rel",
+      "required": false,
+      "type": "string",
+      "description": "The rel property for the link."
+    },
+    {
+      "name": "target",
+      "required": false,
+      "type": "HTMLAttributeAnchorTarget",
+      "description": "Specify where to open the link."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon SwitcherItem rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/UIShell/SwitcherItem.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "BaseSwitcherItemProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 7,
+    "variant_count": 0
+  }
+}

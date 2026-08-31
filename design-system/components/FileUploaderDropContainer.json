@@ -1,0 +1,75 @@
+{
+  "name": "FileUploaderDropContainer",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FileUploaderDropContainer.",
+  "variants": {},
+  "props": [
+    {
+      "name": "accept",
+      "required": false,
+      "type": "string[]",
+      "description": "Specify the types of files that this input should be able to receive"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether file input is disabled"
+    },
+    {
+      "name": "innerRef",
+      "required": false,
+      "type": "React.Ref<HTMLButtonElement>",
+      "description": "Ref to pass to the inner button element"
+    },
+    {
+      "name": "labelText",
+      "required": false,
+      "type": "string",
+      "description": "Provide the label text to be read by screen readers when interacting with this control"
+    },
+    {
+      "name": "maxFileSize",
+      "required": false,
+      "type": "number",
+      "description": "Maximum file size allowed in bytes. Files larger than this will be marked invalid"
+    },
+    {
+      "name": "multiple",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the component should accept multiple files to upload"
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "Provide a name for the underlying `<input>` node"
+    },
+    {
+      "name": "pattern",
+      "required": false,
+      "type": "string",
+      "description": "Provide a custom regex pattern for the acceptedTypes"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FileUploaderDropContainer rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FileUploader/FileUploaderDropContainer.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FileUploaderDropContainerProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 8,
+    "variant_count": 0
+  }
+}

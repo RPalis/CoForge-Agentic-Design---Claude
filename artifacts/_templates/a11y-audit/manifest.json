@@ -1,0 +1,40 @@
+{
+  "$comment": "Template for a finder-owned type (ADR-020). The `findings` block is REQUIRED and audit-system.py check 5a blocks without it. `checked` is the denominator: zero findings out of zero checks is not a pass, it is a run that did not happen.",
+  "id": "ART-000",
+  "type": "a11y-audit",
+  "workstream": "",
+  "title": "",
+  "file": "",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "evaluate",
+  "produced_by": "a11y-checker",
+  "model": "",
+  "skills_used": [],
+  "findings": {
+    "$comment": "findings_by MUST name the agent that produced the findings, and must match the type's owner_agent. checked > 0 or the artifact is blocked.",
+    "findings_by": "a11y-checker",
+    "checked": 0,
+    "found": 0,
+    "skipped": 0,
+    "method": "state how the check was performed, so the number can be re-derived"
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "tokens_version": null
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": false,
+    "report": "validation.md",
+    "checked_at": null
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": ""
+}

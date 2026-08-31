@@ -1,0 +1,151 @@
+{
+  "name": "DatePicker",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon DatePicker.",
+  "variants": {},
+  "props": [
+    {
+      "name": "allowInput",
+      "required": false,
+      "type": "boolean",
+      "description": "Flatpickr prop passthrough enables direct date input, and when set to false, we must clear dates manually by resetting the value prop to an empty value (such as `\"\"`, `null`, or `undefined`) or an array of all empty values, making it a controlled input."
+    },
+    {
+      "name": "appendTo",
+      "required": false,
+      "type": "HTMLElement",
+      "description": "The DOM element the flatpickr should be inserted into `<body>` by default."
+    },
+    {
+      "name": "closeOnSelect",
+      "required": false,
+      "type": "boolean",
+      "description": "flatpickr prop passthrough. Controls whether the calendar dropdown closes upon selection."
+    },
+    {
+      "name": "dateFormat",
+      "required": false,
+      "type": "string",
+      "description": "The date format."
+    },
+    {
+      "name": "datePickerType",
+      "required": false,
+      "type": "DatePickerTypes",
+      "description": "The type of the date picker: * `simple` - Without calendar dropdown. * `single` - With calendar dropdown and single date. * `range` - With calendar dropdown and a date range."
+    },
+    {
+      "name": "disable",
+      "required": false,
+      "type": "DateLimit<DateOption>[]",
+      "description": "The flatpickr `disable` option that allows a user to disable certain dates."
+    },
+    {
+      "name": "enable",
+      "required": false,
+      "type": "DateLimit<DateOption>[]",
+      "description": "The flatpickr `enable` option that allows a user to enable certain dates."
+    },
+    {
+      "name": "inline",
+      "required": false,
+      "type": "boolean",
+      "description": "The flatpickr `inline` option."
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether or not the control is invalid (Fluid only)"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version."
+    },
+    {
+      "name": "locale",
+      "required": false,
+      "type": "string | any | SupportedLocale | undefined",
+      "description": "The language locale used to format the days of the week, months, and numbers. The full list of supported locales can be found here https://github.com/flatpickr/flatpickr/tree/master/src/l10n"
+    },
+    {
+      "name": "maxDate",
+      "required": false,
+      "type": "DateOption",
+      "description": "The maximum date that a user can pick to."
+    },
+    {
+      "name": "minDate",
+      "required": false,
+      "type": "DateOption",
+      "description": "The minimum date that a user can start picking from."
+    },
+    {
+      "name": "nextMonthAriaLabel",
+      "required": false,
+      "type": "string",
+      "description": "Accessible aria-label for the \"next month\" arrow icon."
+    },
+    {
+      "name": "parseDate",
+      "required": false,
+      "type": "(date: string) => Date | false",
+      "description": "flatpickr prop passthrough. Controls how dates are parsed."
+    },
+    {
+      "name": "prevMonthAriaLabel",
+      "required": false,
+      "type": "string",
+      "description": "Accessible aria-label for the \"previous month\" arrow icon."
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean | undefined",
+      "description": "whether the DatePicker is to be readOnly if boolean applies to all inputs if array applies to each input in order"
+    },
+    {
+      "name": "short",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the short version."
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "DateOption | DateOption[]",
+      "description": "The value of the date value provided to flatpickr, could be a date, a date number, a date string, an array of dates."
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state (Fluid only)"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon DatePicker rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DatePicker/DatePicker.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "DatePickerProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 20,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=17544-266985&t=hgJuU7m9Y6EM076g-4",
+    "code_connect": "packages/react/code-connect/DatePicker/DatePicker.figma.tsx"
+  }
+}

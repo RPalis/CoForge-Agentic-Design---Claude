@@ -1,0 +1,57 @@
+{
+  "name": "NotificationButton",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon NotificationButton.",
+  "variants": {
+    "notificationType": [
+      "toast",
+      "inline",
+      "actionable"
+    ]
+  },
+  "props": [
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "string",
+      "description": "Specify a label to be read by screen readers on the container node 'aria-label' of the NotificationButton component. / ['aria-label']?: string; /** 'aria-label' of the NotificationButton component."
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional icon for the Button through a string, if provided. However, regular \"close\" icon is preferred."
+    },
+    {
+      "name": "notificationType",
+      "required": false,
+      "type": "'toast' | 'inline' | 'actionable'",
+      "description": "Specify the notification type"
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "React.ElementType",
+      "description": "A component used to render an icon."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon NotificationButton rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Notification/Notification.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "NotificationButtonProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 4,
+    "variant_count": 1
+  }
+}

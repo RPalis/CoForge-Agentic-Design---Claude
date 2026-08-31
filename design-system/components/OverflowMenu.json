@@ -1,0 +1,124 @@
+{
+  "name": "OverflowMenu",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon OverflowMenu.",
+  "variants": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "string",
+      "description": "Specify a label to be read by screen readers on the container node / ['aria-label']?: string; /** Specify a label to be read by screen readers on the container note."
+    },
+    {
+      "name": "direction",
+      "required": false,
+      "type": "MenuDirection",
+      "description": "The menu direction."
+    },
+    {
+      "name": "flipped",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` if the menu alignment should be flipped."
+    },
+    {
+      "name": "focusTrap",
+      "required": false,
+      "type": "boolean",
+      "description": "Enable or disable focus trap behavior"
+    },
+    {
+      "name": "iconClass",
+      "required": false,
+      "type": "string",
+      "description": "The CSS class for the icon."
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "The icon description."
+    },
+    {
+      "name": "innerRef",
+      "required": false,
+      "type": "Ref<any>",
+      "description": "The ref to the overflow menu's trigger button element."
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version. For use on $ui-01 backgrounds only. Don't use this to make OverflowMenu background color same as container background color."
+    },
+    {
+      "name": "menuOffset",
+      "required": false,
+      "type": "MenuOffset",
+      "description": "The adjustment in position applied to the floating menu."
+    },
+    {
+      "name": "menuOffsetFlip",
+      "required": false,
+      "type": "MenuOffset",
+      "description": "The adjustment in position applied to the floating menu when flipped."
+    },
+    {
+      "name": "menuOptionsClass",
+      "required": false,
+      "type": "string",
+      "description": "The class to apply to the menu options"
+    },
+    {
+      "name": "open",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` if the menu should be open."
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "selectorPrimaryFocus",
+      "required": false,
+      "type": "string",
+      "description": "Specify a CSS selector that matches the DOM element that should be focused when the OverflowMenu opens"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'xs' | 'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the OverflowMenu. Currently supports either `xs`, `sm`, `md` (default) or `lg` as an option."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon OverflowMenu rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/OverflowMenu/OverflowMenu.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "OverflowMenuProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 15,
+    "variant_count": 1
+  }
+}

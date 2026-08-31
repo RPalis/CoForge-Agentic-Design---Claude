@@ -1,0 +1,92 @@
+{
+  "name": "FileUploaderItem",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FileUploaderItem.",
+  "variants": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "status": [
+      "uploading",
+      "edit",
+      "complete"
+    ]
+  },
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether file uploader item is disabled"
+    },
+    {
+      "name": "errorBody",
+      "required": false,
+      "type": "string",
+      "description": "Error message body for an invalid file upload"
+    },
+    {
+      "name": "errorSubject",
+      "required": false,
+      "type": "string",
+      "description": "Error message subject for an invalid file upload"
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Description of status icon (displayed in native tooltip)"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the currently uploaded file is invalid"
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "Name of the uploaded file"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the FileUploaderButton, from a list of available sizes."
+    },
+    {
+      "name": "status",
+      "required": false,
+      "type": "'uploading' | 'edit' | 'complete'",
+      "description": "Status of the file upload"
+    },
+    {
+      "name": "uuid",
+      "required": false,
+      "type": "string",
+      "description": "Unique identifier for the file object"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FileUploaderItem rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FileUploader/FileUploaderItem.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FileUploaderItemProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 9,
+    "variant_count": 2
+  }
+}

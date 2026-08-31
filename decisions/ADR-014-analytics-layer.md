@@ -6,7 +6,7 @@
 
 The blueprint (§11.2) and ADR-005 specified analytics — five portfolio metrics, an eval
 delta, autonomy counters. **None of it had an implementation**, and the readiness audit did
-not look for it. The gap-finder had a gap; it surfaced only because Raquel asked.
+not look for it. The gap-finder had a gap; it surfaced only because Agentic Designer - RP asked.
 
 Third "named but empty layer" found in two days, after CI (ADR-008) and Gate B's Bash bypass.
 

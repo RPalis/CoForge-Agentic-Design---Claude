@@ -1,0 +1,63 @@
+{
+  "name": "ModalHeader",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon ModalHeader.",
+  "variants": {},
+  "props": [
+    {
+      "name": "closeClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional className to be applied to the modal close node"
+    },
+    {
+      "name": "closeIconClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional className to be applied to the modal close icon node"
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Provide an optional function to be called when the modal is closed / closeModal?(event: MouseEvent): void; /** Specify a description for the close icon that can be read by screen readers"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional label to be displayed"
+    },
+    {
+      "name": "labelClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional className to be applied to the modal header label"
+    },
+    {
+      "name": "titleClassName",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional className to be applied to the modal heading"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon ModalHeader rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ComposedModal/ModalHeader.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ModalHeaderProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

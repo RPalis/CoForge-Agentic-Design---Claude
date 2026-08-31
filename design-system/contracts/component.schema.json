@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coforge.design/schema/component.schema.json",
+  "title": "CoForge component contract",
+  "$comment": "The DTCG-equivalent for components. DTCG standardises what a TOKEN is; nothing standardises what a COMPONENT CONTRACT is, so every adapter invents its own shape and no two design systems can be compared or swapped. This file is CoForge's answer, and it is the reason the system can claim to be design-system-agnostic: an adapter's job is to satisfy THIS, not to define it. Both layers validate against it — L1 primitives are hand-authored, L2 entries are generated from a vendor source, and neither gets a private dialect.",
+
+  "type": "object",
+  "required": ["name", "level", "status", "category", "summary", "tokens_used", "a11y", "when_to_use", "when_not_to_use", "source"],
+  "additionalProperties": false,
+
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "IDENTITY. Must be the symbol a developer or agent actually writes — the public export, never a directory or a folder name. An adapter keyed on directories produced entries that were not importable (Carbon ships Card as `preview__Card`) and silently omitted ones that were (`Table` lives under DataTable/). A contract whose name does not compile is worse than no contract, because the gate goes green on it. Uniqueness is enforced across the whole index by the identity rule below, not by this field alone.",
+      "pattern": "^[A-Za-z][A-Za-z0-9._-]*$"
+    },
+
+    "level": {
+      "enum": [1, 2],
+      "$comment": "ADR-012. 1 = producible from tokens + primitives (L1 Foundations output). 2 = needs the full component library. NOT an identity field: level is mutable, so it can bound cost but can never disambiguate two entries sharing a name."
+    },
+
+    "status": {
+      "enum": ["stable", "experimental", "deprecated", "preview"],
+      "$comment": "`preview` matters for vendored components: Carbon exports some behind a preview namespace, and the symbol changes on graduation. A contract that hides that sets an agent up to write code that breaks at the next upgrade."
+    },
+
+    "category": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+
+    "variants": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" },
+        "minItems": 1
+      },
+      "$comment": "Closed value sets, keyed by the prop they belong to. An empty object means none were found — which is different from a component having none, and the `parse` block says which."
+    },
+
+    "props": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "required", "type"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "required": { "type": "boolean" },
+          "type": { "type": "string" },
+          "description": { "type": ["string", "null"] }
+        }
+      },
+      "$comment": "Absent for L1 primitives, which are token expressions rather than React components. Present and possibly empty for L2 — and empty is only honest when `parse.kind` explains it."
+    },
+
+    "tokens_used": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "$comment": "Token paths or globs this component is allowed to draw from. The link from the component layer to the token layer; without it the two sources of truth are unrelated files."
+    },
+
+    "a11y": {
+      "type": "object",
+      "required": ["contrast"],
+      "properties": {
+        "contrast": { "type": "string" },
+        "note": { "type": "string" }
+      },
+      "$comment": "WCAG 2.2 AA is the declared floor (design-system/a11y/rules.md). Required on every entry: an accessibility field that can be omitted is one that will be."
+    },
+
+    "when_to_use": { "type": "string", "minLength": 1 },
+    "when_not_to_use": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Required, not optional. The catalogue exists so an agent queries before inventing; the question it most needs answered is when NOT to reach for something, and that is the field every generated catalogue omits."
+    },
+
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Provenance, incl. package and version for vendored entries. Answers 'where did this contract come from, and what happens when that upstream moves'."
+    },
+
+    "figma": {
+      "type": "object",
+      "required": ["node"],
+      "additionalProperties": false,
+      "properties": {
+        "node": { "type": "string", "format": "uri" },
+        "key": { "type": ["string", "null"] },
+        "code_connect": { "type": "string" }
+      },
+      "$comment": "ADR-013 link 5. Figma identity is collision-proof but cannot be the primary key: it is an opaque hash while get_contract() takes human names, and it is null on exactly the token-derived primitives that collide. Secondary identity, never the key."
+    },
+
+    "parse": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "enum": ["full", "alias", "dom-passthrough", "unparsed"],
+          "$comment": "Why a generated entry has the props it has. `alias` (DangerButton IS Button), `dom-passthrough` (Form wraps <form>) and `unparsed` are three different situations that all look like 'no props'. Flattening them into one word makes a parser gap indistinguishable from a real finding — and the gate trusts this file."
+        },
+        "partial": { "type": "boolean" },
+        "interface": { "type": ["string", "null"] },
+        "prop_count": { "type": "integer", "minimum": 0 },
+        "variant_count": { "type": "integer", "minimum": 0 }
+      },
+      "$comment": "Generated entries only. Hand-authored L1 primitives have no parse block because nothing parsed them."
+    }
+  },
+
+  "$defs": {
+    "identity-rule": {
+      "$comment": "NOT a validated subschema — JSON Schema cannot express it, and pretending otherwise would be the kind of decorative check this repo exists to remove. Enforced by validation/audit-contracts.py and by the adapter's collision guard. THE RULE: no two entries may share a normalised name, where normalising lowercases and strips non-alphanumerics. Gate B matches <Card /> against `card`, so two entries reachable by one normalised name make both the gate and get_contract() ambiguous — the same defect CoForge refused to inherit from coforge.com's colour ramps, one layer up. On collision the correct behaviour is to REFUSE, not to pick a winner: an ordering rule is not an identity."
+    }
+  }
+}

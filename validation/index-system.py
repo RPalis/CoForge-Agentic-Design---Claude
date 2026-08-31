@@ -70,11 +70,35 @@ tokens = jload("design-system/tokens/tokens.json", {})
 cindex = jload("design-system/component-index.json", {})
 registry = jload("artifacts/_registry.json", {})
 def _leaves(o):
+    """Count DTCG tokens, descending INTO tokens that also carry children.
+
+    The previous version returned 1 on the first `$value` and never looked deeper, so
+    every token nested inside another token was invisible. It under-reported by 46 —
+    the repo said 666 tokens when it held 712. Nesting a token inside a token is itself
+    invalid DTCG (see validation/flatten-dark-tokens.py), but a counter must not be the
+    thing that hides it: an undercount reads as a smaller system, not as a malformed one.
+    """
     if not isinstance(o, dict): return 0
-    if "$value" in o: return 1
-    return sum(_leaves(v) for k, v in o.items() if not k.startswith("$"))
+    n = 1 if "$value" in o else 0
+    return n + sum(_leaves(v) for k, v in o.items() if not k.startswith("$"))
 n_tokens = _leaves(tokens)   # DTCG leaves, counted the same way llms.txt counts them
 sources = [f for f in os.listdir(P("research", "sources")) if not f.startswith(".")]
+
+
+def _brand_status():
+    """empty | proposed | approved — read from brand.md's own Status line.
+
+    brand-director is suggest-only and never graduates, so brand.md can sit written
+    but unapproved indefinitely. That is a real state and the index must be able to
+    say it; collapsing it into a boolean is how an unapproved file starts reporting
+    as a finished one.
+    """
+    head = open(P("design-system/foundations/brand.md")).read(400)
+    m = re.search(r"^\*\*Status:\s*([A-Z]+)", head, re.M)
+    if not m:
+        return "unknown"
+    return {"EMPTY": "empty", "PROPOSED": "proposed",
+            "APPROVED": "approved"}.get(m.group(1), "unknown")
 
 state = {
     # The fork is a DECISION, not a heuristic. L1 primitives existing does not make
@@ -86,7 +110,11 @@ state = {
     "tokens": n_tokens,
     "components": cindex.get("count", 0),
     "artifacts": registry.get("count", 0),
-    "brand_defined": "Status: EMPTY" not in open(P("design-system/foundations/brand.md")).read(),
+    # Three states, not two. A binary flag cannot express "written but not approved",
+    # and reported `true` on an unapproved file it advertises the brand as settled
+    # while it is still sitting in front of a human at Gate A.
+    "brand_status": _brand_status(),
+    "brand_defined": _brand_status() == "approved",
 }
 
 # ---------- relationships ----------

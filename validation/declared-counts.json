@@ -1,0 +1,90 @@
+{
+  "$comment": "Correction C-010. A declared list, not a general prose scanner (system-keeper rule 2: an undirected regex over free text would flag ages, version numbers and section numbers as 'counts'). Each entry names exactly one file, one regex with ONE capturing group holding an integer or number-word, and a `source` key selecting a function in audit-system.py that independently re-derives the true count from the repo. If a sentence is reworded so the pattern no longer matches, that is reported as a WARNING ('pattern not found') rather than silently dropped -- a claim going quiet is exactly the failure mode this exists to close. Anything NOT listed here is uncovered; see validation/coverage.json V-012.",
+  "version": "1.0.0",
+  "claims": [
+    {
+      "id": "PC-001",
+      "file": "README.md",
+      "label": "ADR count in the Start Here table",
+      "pattern": "\\[`decisions/`\\]\\(decisions/\\) \\| (\\d+) ADRs",
+      "source": "adrs"
+    },
+    {
+      "id": "PC-002",
+      "file": "AGENTS.md",
+      "label": "worker count (agents other than the orchestrator)",
+      "pattern": "and (\\d+) workers",
+      "source": "workers"
+    },
+    {
+      "id": "PC-003",
+      "file": "CLAUDE.md",
+      "label": "L1 primitive count (Current position paragraph)",
+      "pattern": "(\\d+) L1 primitives",
+      "source": "l1_primitives"
+    },
+    {
+      "id": "PC-004",
+      "file": "CLAUDE.md",
+      "label": "L1 primitive count (Two output levels section)",
+      "pattern": "the (\\d+) level-1 primitives",
+      "source": "l1_primitives"
+    },
+    {
+      "id": "PC-005",
+      "file": "CLAUDE.md",
+      "label": "token count (Current position paragraph)",
+      "pattern": "(\\d+) tokens across five axes",
+      "source": "tokens"
+    },
+    {
+      "id": "PC-006",
+      "file": "CLAUDE.md",
+      "label": "L1-available artifact types, numerator (Two output levels section)",
+      "pattern": "\\*\\*(\\d+) of \\d+ artifact types\\.\\*\\*",
+      "source": "l1_types"
+    },
+    {
+      "id": "PC-007",
+      "file": "CLAUDE.md",
+      "label": "artifact type total, denominator (Two output levels section)",
+      "pattern": "\\*\\*\\d+ of (\\d+) artifact types\\.\\*\\*",
+      "source": "total_types"
+    },
+    {
+      "id": "PC-008",
+      "file": "CLAUDE.md",
+      "label": "L2 artifact type count (Two output levels section)",
+      "pattern": "CoForge MCP\\. (\\d+) artifact types",
+      "source": "l2_types"
+    },
+    {
+      "id": "PC-009",
+      "file": "design-system/DESIGN-SYSTEM.md",
+      "label": "token count",
+      "pattern": "(\\d+) tokens across five axes",
+      "source": "tokens"
+    },
+    {
+      "id": "PC-010",
+      "file": "design-system/DESIGN-SYSTEM.md",
+      "label": "L1 primitive count",
+      "pattern": "(\\d+) L1 primitives",
+      "source": "l1_primitives"
+    },
+    {
+      "id": "PC-011",
+      "file": "architecture.md",
+      "label": "enforcement layer count (section title)",
+      "pattern": "## The (\\w+) layers",
+      "source": "enforcement_layers"
+    },
+    {
+      "id": "PC-012",
+      "file": "architecture.md",
+      "label": "enforcement layer count (Enforcement heading)",
+      "pattern": "## Enforcement . (\\w+) layers",
+      "source": "enforcement_layers"
+    }
+  ]
+}

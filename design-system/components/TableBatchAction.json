@@ -1,0 +1,45 @@
+{
+  "name": "TableBatchAction",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TableBatchAction.",
+  "variants": {},
+  "props": [
+    {
+      "name": "hasIconOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the button is an icon-only button"
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "If specifying the `renderIcon` prop, provide a description for that icon that can be read by screen readers"
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "React.ElementType",
+      "description": "A component used to render an icon."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TableBatchAction rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DataTable/TableBatchAction.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TableBatchActionProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 3,
+    "variant_count": 0
+  }
+}

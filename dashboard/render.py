@@ -23,7 +23,7 @@ HTML = r"""<title>CoForge Agentic Design</title>
 }
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
   --bg:#0E1116; --surface:#161A22; --surface-2:#1D222C; --surface-3:#252B37;
-  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#798194;
+  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#848CA1;
   --line:#272D38; --line-2:#333A48;
   --accent:#8FA0EA; --accent-2:#A6B4F0; --accent-soft:#1A2140;
   --sev-block:#E28471; --sev-warn:#D4A94E; --sev-pass:#5FB69E; --sev-skip:#8891A3;
@@ -33,7 +33,7 @@ HTML = r"""<title>CoForge Agentic Design</title>
 }}
 :root[data-theme="dark"]{
   --bg:#0E1116; --surface:#161A22; --surface-2:#1D222C; --surface-3:#252B37;
-  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#798194;
+  --ink:#E8EBF2; --ink-2:#A7AFC0; --ink-3:#848CA1;
   --line:#272D38; --line-2:#333A48;
   --accent:#8FA0EA; --accent-2:#A6B4F0; --accent-soft:#1A2140;
   --sev-block:#E28471; --sev-warn:#D4A94E; --sev-pass:#5FB69E; --sev-skip:#8891A3;
@@ -55,6 +55,8 @@ header{position:sticky;top:0;z-index:40;background:var(--surface);
 .brandrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 h1{font-size:17px;font-weight:700;margin:0;letter-spacing:-.01em}
 .sub{font-size:12.5px;color:var(--ink-3)}
+.author{font-size:12.5px;color:var(--ink-2);font-weight:500;
+  border-left:1px solid var(--line);padding-left:14px}
 .stamp{margin-left:auto;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
   color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
 nav{display:flex;gap:2px;margin-top:12px;flex-wrap:wrap}
@@ -182,6 +184,7 @@ main{padding:22px 24px 80px;min-width:0}
   <div class="brandrow">
     <h1>CoForge — Agentic Design System</h1>
     <span class="sub">How the system is put together, and how a piece of work moves through it.</span>
+    <span class="author">Raquel Palis</span>
     <span class="stamp" id="stamp"></span>
   </div>
   <nav id="tabs" role="tablist"></nav>

@@ -1,7 +1,22 @@
 # Reconciliation — Blueprint vs Hermes
 
-**Purpose:** two designs for the Luma agentic structure now exist. This lists every
-conflict side by side with a recommendation, so one canonical design can be chosen.
+> **SUPERSEDED — historical record, not guidance. Do not act on this file.**
+>
+> Superseded by **ADR-002** (agent roster) and **ADR-004** (two clocks), which settled
+> everything argued here. **ADR-009** renamed the project Luma → CoForge, so every
+> "Luma" below is historical. **ADR-016** moved the repository, so the `Desktop/…` paths
+> below no longer exist.
+>
+> Retained rather than deleted for two reasons: `ADR-002` and `ADR-009` cite it as the
+> reasoning behind decisions still in force, and deleting the argument would leave those
+> ADRs asserting conclusions with no visible working. The 2026-08-27 pre-start audit
+> reached the same call — *"keep as history"*.
+>
+> If you want the current design: `CLAUDE.md` for the rules, `architecture.md` for the map.
+
+**Purpose (as written at the time):** two designs for the Luma agentic structure now exist.
+This lists every conflict side by side with a recommendation, so one canonical design can
+be chosen.
 
 - **Blueprint** = `Luma-Agentic-Design-System-Blueprint.docx` (this folder, agreed in session)
 - **Hermes** = `Desktop/Luma Hermes/Luma/` (CLAUDE.md + 13 agent definitions, built 13:35–13:41)

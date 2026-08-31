@@ -1,0 +1,133 @@
+{
+  "name": "FluidTextArea",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FluidTextArea.",
+  "variants": {},
+  "props": [
+    {
+      "name": "cols",
+      "required": false,
+      "type": "number",
+      "description": "Specify the `cols` attribute for the underlying `<textarea>` node"
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "string | number",
+      "description": "Optionally provide the default value of the `<textarea>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is disabled"
+    },
+    {
+      "name": "enableCounter",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether to display the character counter"
+    },
+    {
+      "name": "helperText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide text that is used alongside the control label for additional help"
+    },
+    {
+      "name": "hideLabel",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether you want the underlying label to be visually hidden"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently invalid"
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in an invalid state"
+    },
+    {
+      "name": "labelText",
+      "required": true,
+      "type": "React.ReactNode",
+      "description": "Provide the text that will be read by a screen reader when visiting this control"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version. For use on $ui-01 backgrounds only. Don't use this to make tile background color same as container background color."
+    },
+    {
+      "name": "maxCount",
+      "required": false,
+      "type": "number",
+      "description": "Max character count allowed for the textarea. This is needed in order for enableCounter to display"
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "string",
+      "description": "Specify the placeholder attribute for the `<textarea>`"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether or not the component is readonly"
+    },
+    {
+      "name": "rows",
+      "required": false,
+      "type": "number",
+      "description": "Specify the rows attribute for the `<textarea>`"
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "string | number",
+      "description": "Provide the current value of the `<textarea>`"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FluidTextArea rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FluidTextArea/FluidTextArea.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FluidTextAreaProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 17,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=18791-274643&t=4Ath5JqwaYJZxznq-4",
+    "code_connect": "packages/react/code-connect/TextArea/FluidTextArea.figma.tsx"
+  }
+}

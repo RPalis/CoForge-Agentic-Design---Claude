@@ -1,0 +1,104 @@
+{
+  "name": "Search",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Search.",
+  "variants": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "autoComplete",
+      "required": false,
+      "type": "string",
+      "description": "Specify an optional value for the `autocomplete` property on the underlying `<input>`, defaults to \"off\""
+    },
+    {
+      "name": "closeButtonLabelText",
+      "required": false,
+      "type": "string",
+      "description": "Specify a label to be read by screen readers on the \"close\" button"
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "string | number",
+      "description": "Optionally provide the default value of the `<input>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `<input>` should be disabled"
+    },
+    {
+      "name": "isExpanded",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether or not ExpandableSearch should render expanded or not"
+    },
+    {
+      "name": "labelText",
+      "required": true,
+      "type": "ReactNode",
+      "description": "Provide the label text for the Search icon"
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "string",
+      "description": "Optional callback called when the search value is cleared. / onClear?(): void; /** Optional callback called when the magnifier icon is clicked in ExpandableSearch. / onExpand?(e: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>): void; /** Provide an optional placeholder text for the Search. Note: if the label and placeholder differ, VoiceOver on Mac will read both"
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'xs' | 'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the Search"
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "string",
+      "description": "Specify the type of the `<input>`"
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "string | number",
+      "description": "Specify the value of the `<input>`"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Search rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Search/Search.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "SearchProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 11,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=2805-21056&t=6KMXKibN414b97hv-4",
+    "code_connect": "packages/react/code-connect/Search/Search.figma.tsx"
+  }
+}

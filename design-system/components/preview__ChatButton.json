@@ -1,0 +1,63 @@
+{
+  "name": "preview__ChatButton",
+  "level": 2,
+  "status": "preview",
+  "category": "carbon",
+  "summary": "Carbon preview__ChatButton.",
+  "variants": {},
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `ChatButton` should be disabled"
+    },
+    {
+      "name": "isQuickAction",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `ChatButton` should be rendered as a quick action button"
+    },
+    {
+      "name": "isSelected",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the quick action `ChatButton` should be rendered as selected. This disables the input"
+    },
+    {
+      "name": "kind",
+      "required": false,
+      "type": "ChatButtonKind",
+      "description": "Specify the kind of `ChatButton` you want to create"
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "ComponentProps<typeof Button>['renderIcon']",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "ChatButtonSize",
+      "description": "Specify the size of the `ChatButton`, from the following list of sizes:"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon preview__ChatButton rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/ChatButton/ChatButton.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ChatButtonProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

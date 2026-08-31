@@ -1,0 +1,126 @@
+{
+  "name": "FileUploader",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon FileUploader.",
+  "variants": {
+    "buttonKind": [
+      "primary",
+      "secondary",
+      "danger",
+      "ghost",
+      "danger--primary",
+      "danger--ghost",
+      "danger--tertiary",
+      "tertiary"
+    ],
+    "filenameStatus": [
+      "edit",
+      "complete",
+      "uploading"
+    ],
+    "size": [
+      "sm",
+      "small",
+      "md",
+      "field",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "accept",
+      "required": false,
+      "type": "string[]",
+      "description": "Specify the types of files that this input should be able to receive"
+    },
+    {
+      "name": "buttonKind",
+      "required": false,
+      "type": "'primary' | 'secondary' | 'danger' | 'ghost' | 'danger--primary' | 'danger--ghost' | 'danger--tertiary' | 'tertiary'",
+      "description": "Specify the type of the `<FileUploaderButton>`"
+    },
+    {
+      "name": "buttonLabel",
+      "required": false,
+      "type": "string",
+      "description": "Provide the label text to be read by screen readers when interacting with the `<FileUploaderButton>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether file input is disabled"
+    },
+    {
+      "name": "filenameStatus",
+      "required": true,
+      "type": "'edit' | 'complete' | 'uploading'",
+      "description": "Specify the status of the File Upload"
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Provide a description for the complete/close icon that can be read by screen readers"
+    },
+    {
+      "name": "labelDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the description text of this `<FileUploader>`"
+    },
+    {
+      "name": "labelTitle",
+      "required": false,
+      "type": "string",
+      "description": "Specify the title text of this `<FileUploader>`"
+    },
+    {
+      "name": "maxFileSize",
+      "required": false,
+      "type": "number",
+      "description": "Maximum file size allowed in bytes. Files larger than this will be marked invalid"
+    },
+    {
+      "name": "multiple",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the component should accept multiple files to upload"
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "Provide a name for the underlying `<input>` node"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'small' | 'md' | 'field' | 'lg'",
+      "description": "Specify the size of the FileUploaderButton, from a list of available sizes."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon FileUploader rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FileUploader/FileUploader.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FileUploaderProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 12,
+    "variant_count": 3
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=5465-294860&t=KAcDAMsePqspmo2e-4",
+    "code_connect": "packages/react/code-connect/FileUploader/FileUploader.figma.tsx"
+  }
+}

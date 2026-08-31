@@ -1,0 +1,49 @@
+{
+  "name": "TableCell",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TableCell.",
+  "variants": {},
+  "props": [
+    {
+      "name": "colSpan",
+      "required": false,
+      "type": "number",
+      "description": "The width of the expanded row's internal cell"
+    },
+    {
+      "name": "hasAILabelHeader",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the table cell is in an AI column"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "type": "string",
+      "description": "The id of the matching th node in the table head. Addresses a11y concerns outlined here: https://www.ibm.com/able/guidelines/ci162/info_and_relationships.html and https://www.w3.org/TR/WCAG20-TECHS/H43"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TableCell rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DataTable/TableCell.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TableCellProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 3,
+    "variant_count": 0
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=6172-291044&t=5C1lVaCoSygb13J1-4",
+    "code_connect": "packages/react/code-connect/DataTable/TableCell.figma.tsx"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "TileGroup",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TileGroup.",
+  "variants": {},
+  "props": [
+    {
+      "name": "defaultSelected",
+      "required": false,
+      "type": "T",
+      "description": "Specify the the value of <RadioTile> to be selected by default"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the group is disabled"
+    },
+    {
+      "name": "legend",
+      "required": false,
+      "type": "string",
+      "description": "Provide an optional legend for this group"
+    },
+    {
+      "name": "name",
+      "required": true,
+      "type": "string",
+      "description": "Specify the name of the underlying `<input>` nodes"
+    },
+    {
+      "name": "required",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to specify if input selection in group is required."
+    },
+    {
+      "name": "valueSelected",
+      "required": false,
+      "type": "T",
+      "description": "Specify the value that is currently selected in the group"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TileGroup rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/TileGroup/TileGroup.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TileGroupProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

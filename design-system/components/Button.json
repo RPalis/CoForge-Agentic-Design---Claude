@@ -1,0 +1,131 @@
+{
+  "name": "Button",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Button.",
+  "variants": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ],
+    "tooltipAlignment": [
+      "start",
+      "center",
+      "end"
+    ]
+  },
+  "props": [
+    {
+      "name": "dangerDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify the message read by screen readers for the danger button variants"
+    },
+    {
+      "name": "hasIconOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the button is an icon-only button"
+    },
+    {
+      "name": "href",
+      "required": false,
+      "type": "React.AnchorHTMLAttributes<HTMLAnchorElement>['href']",
+      "description": "Optionally specify an href for your Button to become an `<a>` element"
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "If specifying the `renderIcon` prop, provide a description for that icon that can be read by screen readers"
+    },
+    {
+      "name": "isExpressive",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Button is expressive, or not. Only applies to the large/default button size."
+    },
+    {
+      "name": "isSelected",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the Button is currently selected. Only applies to the icon only Ghost variant."
+    },
+    {
+      "name": "kind",
+      "required": false,
+      "type": "ButtonBaseProps['hasIconOnly'] extends true ? IconButtonKind : ButtonKind",
+      "description": "Specify the kind of Button you want to create"
+    },
+    {
+      "name": "rel",
+      "required": false,
+      "type": "React.AnchorHTMLAttributes<HTMLAnchorElement>['rel']",
+      "description": "Optionally specify a `rel` when using an `<a>` element."
+    },
+    {
+      "name": "renderIcon",
+      "required": false,
+      "type": "React.ElementType",
+      "description": "A component used to render an icon."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "ButtonSize",
+      "description": "Specify the size of the button, from the following list of sizes:"
+    },
+    {
+      "name": "target",
+      "required": false,
+      "type": "React.AnchorHTMLAttributes<HTMLAnchorElement>['target']",
+      "description": "Optionally specify a `target` when using an `<a>` element."
+    },
+    {
+      "name": "tooltipAlignment",
+      "required": false,
+      "type": "ButtonTooltipAlignment",
+      "description": "Specify the alignment of the tooltip to the icon-only button. Can be one of: `start`, `center`, or `end`."
+    },
+    {
+      "name": "tooltipDropShadow",
+      "required": false,
+      "type": "boolean",
+      "description": "Enable drop shadow for tooltips for icon-only buttons."
+    },
+    {
+      "name": "tooltipHighContrast",
+      "required": false,
+      "type": "boolean",
+      "description": "Enable high-contrast theme for tooltips on icon-only buttons. Defaults to true."
+    },
+    {
+      "name": "tooltipPosition",
+      "required": false,
+      "type": "ButtonTooltipPosition",
+      "description": "Specify the direction of the tooltip for icon-only buttons. Can be either `top`, `right`, `bottom`, or `left`."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Button rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Button/Button.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "ButtonBaseProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 15,
+    "variant_count": 2
+  }
+}

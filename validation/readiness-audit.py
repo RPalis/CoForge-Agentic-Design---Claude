@@ -51,7 +51,7 @@ _idx0 = jload("design-system/component-index.json") or {}
 _comps = _idx0.get("components", []) if isinstance(_idx0, dict) else []
 _l1 = [c for c in _comps if isinstance(c, dict) and c.get("level") == 1]
 rec("2 Contract","level-1 primitive set","PRESENT" if _l1 else "MISSING", f"{len(_l1)} of 8",
-    None if _l1 else "define 8: type-scale · colour-roles · spacing-scale · rule · table · card · chart-palette · badge",
+    None if _l1 else "define 8: cf-type-scale · cf-colour-roles · cf-spacing-scale · cf-rule · table · card · chart-palette · badge",
     None if _l1 else "L1 artifacts have no legal component vocabulary — the gate would block everything", level=1)
 
 # ── LAYER 2 · COMPONENT CONTRACT ─────────────────────────────────────

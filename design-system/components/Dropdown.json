@@ -1,0 +1,170 @@
+{
+  "name": "Dropdown",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Dropdown.",
+  "variants": {
+    "direction": [
+      "top",
+      "bottom"
+    ]
+  },
+  "props": [
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "string",
+      "description": "Specify a label to be read by screen readers on the container node 'aria-label' of the ListBox component. / ['aria-label']?: string; /** Specify a label to be read by screen readers on the container note."
+    },
+    {
+      "name": "autoAlign",
+      "required": false,
+      "type": "boolean",
+      "description": "**Experimental**: Will attempt to automatically align the floating element to avoid collisions with the viewport and being clipped by ancestor elements. Requires React v17+"
+    },
+    {
+      "name": "decorator",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `decorator` component to be rendered inside the `Dropdown` component"
+    },
+    {
+      "name": "direction",
+      "required": false,
+      "type": "'top' | 'bottom'",
+      "description": "Specify the direction of the dropdown. Can be either top or bottom."
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Disable the control"
+    },
+    {
+      "name": "downshiftProps",
+      "required": false,
+      "type": "Partial<UseSelectProps<ItemType>>",
+      "description": "Additional props passed to Downshift. **Use with caution:** anything you define here overrides the components' internal handling of that prop. Downshift APIs and internals are subject to change, and in some cases they can not be shimmed by Carbon to shield you from potentially breaking changes."
+    },
+    {
+      "name": "helperText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide helper text that is used alongside the control label for additional help"
+    },
+    {
+      "name": "hideLabel",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the title text should be hidden or not"
+    },
+    {
+      "name": "initialSelectedItem",
+      "required": false,
+      "type": "ItemType",
+      "description": "Allow users to pass in an arbitrary item or a string (in case their items are an array of strings) from their collection that are pre-selected"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the currently selected value is invalid."
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Message which is displayed if the value is invalid."
+    },
+    {
+      "name": "itemToElement",
+      "required": false,
+      "type": "((item: ItemType) => NonNullable<ReactNode>) | null",
+      "description": "Renders an item as a custom React node instead of a string."
+    },
+    {
+      "name": "items",
+      "required": true,
+      "type": "ItemType[]",
+      "description": "Helper function passed to downshift that allows the library to render a given item to a string label. By default, it extracts the `label` field from a given item to serve as the item label in the list. / itemToString?(item: ItemType | null): string; /** We try to stay as generic as possible here to allow individuals to pass in a collection of whatever kind of data structure they prefer"
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "NonNullable<ReactNode>",
+      "description": "Generic `label` that will be used as the textual representation of what this field is for"
+    },
+    {
+      "name": "light",
+      "required": false,
+      "type": "boolean",
+      "description": "`true` to use the light version. in favor of the new `Layer` component. It will be removed in the next major release."
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "`onChange` is a utility for this controlled component to communicate to a consuming component what kind of internal state changes are occurring. / onChange?(data: OnChangeData<ItemType>): void; /** Whether or not the Dropdown is readonly"
+    },
+    {
+      "name": "selectedItem",
+      "required": false,
+      "type": "ItemType",
+      "description": "An optional callback to render the currently selected item as a react element instead of only as a string. / renderSelectedItem?(item: ItemType): ReactNode; /** In the case you want to control the dropdown selection entirely."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "ListBoxSize",
+      "description": "Specify the size of the ListBox. Currently supports either `xs`, `sm`, `md` or `lg` as an option."
+    },
+    {
+      "name": "slug",
+      "required": false,
+      "type": "ReactNode",
+      "description": "**Experimental**: Provide a `Slug` component to be rendered inside the `Dropdown` component"
+    },
+    {
+      "name": "titleText",
+      "required": true,
+      "type": "ReactNode",
+      "description": "Provide the title text that will be read by a screen reader when visiting this control"
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "ListBoxType",
+      "description": "The dropdown type, `default` or `inline`"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Dropdown rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/Dropdown/Dropdown.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "DropdownProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 23,
+    "variant_count": 1
+  }
+}

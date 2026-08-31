@@ -1,0 +1,105 @@
+{
+  "name": "preview__FluidTextInput",
+  "level": 2,
+  "status": "preview",
+  "category": "carbon",
+  "summary": "Carbon preview__FluidTextInput.",
+  "variants": {},
+  "props": [
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "string | number",
+      "description": "Optionally provide the default value of the `<input>`"
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the `<input>` should be disabled"
+    },
+    {
+      "name": "enableCounter",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether to display the character counter"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently invalid"
+    },
+    {
+      "name": "invalidText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in an invalid state"
+    },
+    {
+      "name": "isPassword",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is a password input"
+    },
+    {
+      "name": "labelText",
+      "required": true,
+      "type": "React.ReactNode",
+      "description": "Provide the text that will be read by a screen reader when visiting this control"
+    },
+    {
+      "name": "maxCount",
+      "required": false,
+      "type": "number",
+      "description": "Max character count allowed for the textInput. This is needed in order for enableCounter to display"
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "string",
+      "description": "Specify the placeholder attribute for the `<input>`"
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether or not the component is readonly"
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "string | number",
+      "description": "Specify the value of the `<input>`"
+    },
+    {
+      "name": "warn",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the control is currently in warning state"
+    },
+    {
+      "name": "warnText",
+      "required": false,
+      "type": "React.ReactNode",
+      "description": "Provide the text that is displayed when the control is in warning state"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon preview__FluidTextInput rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FluidTextInput/FluidTextInput.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FluidTextInputProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 13,
+    "variant_count": 0
+  }
+}

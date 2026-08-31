@@ -1,6 +1,6 @@
 # ADR-011 — Design system: Carbon (web responsive)
 
-**Status:** ACCEPTED — signed off by Raquel, 2026-08-27
+**Status:** ACCEPTED — signed off by Agentic Designer - RP, 2026-08-27
 **Date:** 2026-08-26 (proposed) · 2026-08-27 (accepted)
 **Evidence:** ART-002 (`artifacts/design-system-selection/…__v2/`)
 

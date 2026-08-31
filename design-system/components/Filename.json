@@ -1,0 +1,57 @@
+{
+  "name": "Filename",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon Filename.",
+  "variants": {},
+  "props": [
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify whether the file uploader item is disabled"
+    },
+    {
+      "name": "iconDescription",
+      "required": false,
+      "type": "string",
+      "description": "Specify an id that describes the error to be read by screen readers when the filename is invalid / ['aria-describedby']?: string; /** Provide a description of the SVG icon to denote file upload status"
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "boolean",
+      "description": "Specify if the file is invalid"
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "string",
+      "description": "Name of the uploaded file"
+    },
+    {
+      "name": "status",
+      "required": false,
+      "type": "FilenameStatus",
+      "description": "Status of the file upload"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon Filename rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/FileUploader/Filename.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "FilenameProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 5,
+    "variant_count": 0
+  }
+}

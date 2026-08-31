@@ -1,0 +1,63 @@
+{
+  "name": "TableToolbarSearch",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon TableToolbarSearch.",
+  "variants": {},
+  "props": [
+    {
+      "name": "defaultExpanded",
+      "required": false,
+      "type": "boolean",
+      "description": "Specifies if the search should initially render in an expanded state"
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "string",
+      "description": "Provide an optional default value for the Search component"
+    },
+    {
+      "name": "expanded",
+      "required": false,
+      "type": "boolean",
+      "description": "Specifies if the search should expand"
+    },
+    {
+      "name": "labelText",
+      "required": false,
+      "type": "ReactNode",
+      "description": "Provide an optional label text for the Search component icon"
+    },
+    {
+      "name": "persistent",
+      "required": false,
+      "type": "boolean",
+      "description": "Provide an optional hook that is called each time the input is expanded / onExpand?(event: FocusEvent<HTMLInputElement>, newExpand: boolean): void; /** Provide an optional function to be called when the search input gains focus, this will be passed the event as the first parameter and a function to handle the expanding of the search input as the second. / onFocus?(event: FocusEvent<HTMLInputElement>, handleExpand: TableToolbarSearchHandleExpand): void; /** Whether the search should be allowed to expand."
+    },
+    {
+      "name": "searchContainerClass",
+      "required": false,
+      "type": "string",
+      "description": "Provide an optional className for the overall container of the Search"
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon TableToolbarSearch rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/DataTable/TableToolbarSearch.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "TableToolbarSearchProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 6,
+    "variant_count": 0
+  }
+}

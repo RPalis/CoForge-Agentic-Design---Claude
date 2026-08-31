@@ -1,0 +1,134 @@
+{
+  "$comment": "The coverage ledger. Every load-bearing claim this system makes about itself names the check that verifies it. audit-system.py reports any claim whose verifier is null or missing from disk. The repo already knew 'skipped is not passed'; this is the generalisation it lacked — UNCHECKED IS NOT PASSED. Every blind spot found on 2026-08-28 was a claim in this shape: asserted, believed, and verified by nothing, while every check that did exist passed.",
+  "version": "1.0.0",
+  "claims": [
+    {
+      "id": "V-001",
+      "claim": "No value may exist outside tokens.json (the token contract)",
+      "asserted_in": "CLAUDE.md · design-system/llms.txt",
+      "verified_by": "validation/audit-contracts.py",
+      "how": "find_literal_leaks — zero literals above the primitive layer, recursing into composite values"
+    },
+    {
+      "id": "V-002",
+      "claim": "No component may be used that is not in component-index.json (prohibition 1)",
+      "asserted_in": "CLAUDE.md",
+      "verified_by": "validation/test-gates.py",
+      "how": "plants an unindexed component and requires BLOCK; plants an indexed one and requires allow"
+    },
+    {
+      "id": "V-003",
+      "claim": "No user quote may exist outside evidence-ledger.json (prohibition 2)",
+      "asserted_in": "CLAUDE.md",
+      "verified_by": "validation/audit-system.py",
+      "how": "unresolved [E-nnn] in artifacts/ and foundations/ is a blocker",
+      "note": "PARTIAL — the ledger is empty, so the check has never had a resolvable ID to pass on. Untested in the affirmative."
+    },
+    {
+      "id": "V-004",
+      "claim": "Gate B blocks off-system writes",
+      "asserted_in": "architecture.md layer 2",
+      "verified_by": "validation/test-gates.py",
+      "how": "12 planted violations across raw hex, raw spacing, components, naming and types"
+    },
+    {
+      "id": "V-005",
+      "claim": "The Stop backstop catches what Gate B cannot see (Bash writes)",
+      "asserted_in": "architecture.md layer 2b",
+      "verified_by": "validation/test-gates.py",
+      "how": "writes a violation via a shell redirect and requires the backstop to report it"
+    },
+    {
+      "id": "V-006",
+      "claim": "Layer 1 makes off-limits paths impossible",
+      "asserted_in": "architecture.md layer 1",
+      "verified_by": null,
+      "how": null,
+      "note": "UNCHECKED, and known-incomplete: settings.json denies Write/Edit on research/sources/** but NOT Bash. Recorded in architecture.md; nothing tests it."
+    },
+    {
+      "id": "V-007",
+      "claim": "component-index.json entries satisfy component.schema.json",
+      "asserted_in": "design-system/contracts/component.schema.json",
+      "verified_by": "validation/audit-contracts.py",
+      "how": "check 4b validates every entry; the adapter refuses to write on violation"
+    },
+    {
+      "id": "V-008",
+      "claim": "Every tokens_used reference resolves to a real token",
+      "asserted_in": "design-system/contracts/component.schema.json",
+      "verified_by": "validation/audit-contracts.py",
+      "how": "check 4c, paths and globs"
+    },
+    {
+      "id": "V-009",
+      "claim": "No two component entries share a normalised name (ADR-018)",
+      "asserted_in": "decisions/ADR-018-component-namespacing.md",
+      "verified_by": "validation/adapters/carbon-react.py",
+      "how": "collision guard refuses to write; audit-contracts.py reports independently"
+    },
+    {
+      "id": "V-010",
+      "claim": "Regenerating the component index produces an identical file (ADR-013 link 1)",
+      "asserted_in": "decisions/ADR-013-poc-acceptance-criteria.md",
+      "verified_by": null,
+      "how": null,
+      "note": "UNCHECKED as a standing test. Verified by hand on 2026-08-28 (byte-identical across three runs) but nothing re-runs it, so drift would be silent."
+    },
+    {
+      "id": "V-011",
+      "claim": "Light and dark semantic themes carry identical key sets (ADR-001 needs one name per variable mode)",
+      "asserted_in": "validation/align-dark-to-light.py",
+      "verified_by": "validation/audit-contracts.py",
+      "how": "symmetry check; the aligner refuses to write unless the sets match exactly"
+    },
+    {
+      "id": "V-012",
+      "claim": "Counts stated in prose match the things they count",
+      "asserted_in": "CLAUDE.md · README.md · architecture.md · DESIGN-SYSTEM.md",
+      "verified_by": "validation/audit-system.py",
+      "how": "check 5e against the declared list in validation/declared-counts.json (12 claims across README.md, AGENTS.md, CLAUDE.md, design-system/DESIGN-SYSTEM.md, architecture.md). PARTIAL BY DESIGN: a declared list, not a general prose scanner — a count not named in declared-counts.json is uncovered, and a claim whose sentence is reworded is reported as a stale-pattern warning rather than silently dropped.",
+      "note": "Re-running the new check on 2026-08-31 found 4 of the 12 declared counts currently wrong: README.md's ADR count (17 vs 19), AGENTS.md's worker count (12 vs 13), and CLAUDE.md's L1-of-total artifact-type count (34 of 40 vs 35 of 41). These are open findings in audit-system.py, not fixed here — see C-010."
+    },
+    {
+      "id": "V-013",
+      "claim": "Evidence cited by a tracked document is itself tracked",
+      "asserted_in": "decisions/ADR-017-non-ledger-evidence.md",
+      "verified_by": "validation/audit-system.py",
+      "how": "the foundations check errors on scratch/ references",
+      "note": "PARTIAL — covers design-system/foundations/ only. decisions/ is uncovered; see correction C-011."
+    },
+    {
+      "id": "V-014",
+      "claim": "Artifacts carry resolvable provenance to a token version",
+      "asserted_in": "CLAUDE.md · artifacts/_types.json",
+      "verified_by": null,
+      "how": null,
+      "note": "UNCHECKED and currently FALSE: every manifest carries tokens_version: null. ADR-013 link 8."
+    },
+    {
+      "id": "V-015",
+      "claim": "The autonomy ladder graduates and demotes task types on evidence",
+      "asserted_in": "CLAUDE.md",
+      "verified_by": null,
+      "how": null,
+      "note": "UNCHECKED and unimplemented. Nothing counts clean reviews, so nothing can graduate or be demoted. The ladder is prose."
+    },
+    {
+      "id": "V-016",
+      "claim": "Work is routed through the agent roster and its gates",
+      "asserted_in": "CLAUDE.md routing table",
+      "verified_by": "artifacts/_registry.json",
+      "how": "ART-008 records produced_by: a11y-checker, dispatched by the orchestrator through the Phase 4 routing row. First artifact of 8 not attributed to main-session. The registry is generated by scanning, so the attribution cannot be hand-written.",
+      "note": "VERIFIED 2026-08-31, and partially: one artifact of eight came through the roster. The routing table has 40 rows and 2 have now been exercised (system-keeper for validators, a11y-checker for a11y-audit). The claim is no longer false; it is not yet broadly true."
+    },
+    {
+      "id": "V-017",
+      "claim": "Enforcement layer 3 runs — CI validates the sources of truth, fails on a stale generated file, and runs the whole-repo audit on every push and pull request",
+      "asserted_in": "architecture.md layer 3 · .github/workflows/ci.yml",
+      "verified_by": ".github/workflows/ci.yml",
+      "how": "Observed executing on a real pull request 2026-08-31: 'Gate B / audit (push)' and 'Gate B / audit (pull_request)' both green. The job validates every JSON source of truth, rebuilds .ai/, _registry.json and llms.txt and fails if any was stale, then runs audit-system.py --report.",
+      "note": "architecture.md records that this layer 'existed only as a sentence until 2026-08-25'. Until this PR it had never been observed running on real work — the workflow file existed and nothing proved it executed. A named layer that has never fired is the coverage illusion this repo was built to remove, so the distinction between 'the file is there' and 'it ran and went green' is the whole point of recording it here."
+    }
+  ]
+}

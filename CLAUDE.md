@@ -10,7 +10,8 @@ A design operating system where AI agents produce research, journey maps, IA,
 wireframes, UI, prototypes and handoff — under gates that make fabricated evidence
 and off-system output impossible, not merely discouraged.
 
-**Design-system state: RED** (no DS exists yet). See "DS fork" below.
+**Design-system state: RED** — a *declared* state, not a count. Tokens (786) and
+`brand.md` exist; RED holds until L2 components land (ADR-011). See "DS fork" below.
 
 ## The two prohibitions
 
@@ -37,8 +38,10 @@ Everything stronger is enforced by tools, hooks and CI — not by prose.
 - **Build Stages 0–5** — how we build this system. Linear, one-time. See `decisions/ADR-004-two-clocks.md`.
 - **Design Loop Phases 1–11** — what the system does once built. Cyclical.
 
-Current position: **Build Stage 0 complete. Design Loop not yet runnable** (needs
-Stage 1–2: evidence spine, brand, tokens).
+Current position (2026-08-28): **Build Stage 0–2 complete for foundations.**
+`brand.md` approved at Gate A; 786 tokens across five axes; 8 L1 primitives.
+**Design Loop still not runnable** — it needs the evidence spine (ledger is empty)
+and L2 components (adapter #1, ADR-013 link 1, in progress).
 
 ## Orchestration — plan-and-execute
 
@@ -80,7 +83,7 @@ Tool-gating outranks prohibition. Never solve with prose what a permission can s
 ## Two output levels (ADR-012)
 
 - **L1 Foundations** — branded documents, decks, dashboards, diagrams. Needs tokens +
-  `brand.md` + the 8 level-1 primitives. **34 of 40 artifact types.** Available at Build Stage 2.
+  `brand.md` + the 8 level-1 primitives. **35 of 41 artifact types.** Available at Build Stage 2.
 - **L2 Complete** — responsive web prototypes and product UI. Needs the full component index,
   Code Connect and the CoForge MCP. 6 artifact types. Build Stage 3.
 
@@ -91,8 +94,11 @@ level-1 entries*, which is stricter than exempting it and costs one field in the
 
 - **Green** — DS in code: screen-producer targets Claude Code + Figma MCP + Code Connect.
 - **Yellow** — DS exists, not in code: match components, review consistency, feed gaps to token-keeper.
-- **Red** — no DS: token-keeper builds one before **L2** screens are produced. **CoForge is here** —
-  but L1 output unblocks as soon as tokens land, without waiting for the full library.
+- **Red** — no *component* DS: token-keeper builds the foundations before **L2** screens are
+  produced. **CoForge is here** — tokens and brand are done, so L1 output is unblocked; RED
+  persists until the component index carries L2 entries. The fork is a **declared** state:
+  L1 primitives existing does not make a design system exist, and the declared value wins
+  over any count.
 
 ## Routing table
 
@@ -108,7 +114,7 @@ match any (phase, task) pair.
 | 3 Ideation | IA / site map / flow | diagram-cartographer | artifacts/…/insight-report | artifacts/…/ia-map | A | screens (screen-producer) |
 | 3 Ideation | sketches / concepts | screen-producer | artifacts/…/ia-map | artifacts/…/wireframe | B | tokens (token-keeper) |
 | 4 Design | wireframe → hi-fi / proto | screen-producer | component-index, tokens | artifacts/…/ui-screen | B→A | data viz (dashboard-analyst) |
-| 4 Design | a11y first filter | a11y-checker | artifacts/…/ui-screen | validation/…/a11y | B | writing anything (read-only) |
+| 4 Design | a11y first filter | a11y-checker | artifacts/…/ui-screen | artifacts/…/a11y-audit | B | editing anything — Write only, no Edit, no Bash |
 | 5 Test | test plan / feedback / RICE | research-ops | prototype, ledger | artifacts/…/test-report | A | design changes |
 | 6 Handoff | spec / redline / ticket | handoff-scribe | ui-screen, component-index | artifacts/…/handoff-spec | A | code review |
 | 7 Implementation | design-vs-build audit | design-critic | ui-screen, built UI | validation/…/audit | B (A on change) | writing fixes (advisory) |
@@ -118,6 +124,7 @@ match any (phase, task) pair.
 | 11 Improve | roadmap / hypotheses | research-synthesizer | metrics, ledger | artifacts/…/prioritization | A | — → loops to Phase 1 |
 | any | brand voice / visual language | brand-director | brand inputs | foundations/brand.md | A (suggest-only) | never graduates |
 | any | token sync / drift | token-keeper | Figma variables, tokens.json | tokens.json | auto sync / suggest new | — |
+| any | adapters · generators · validators · schemas · hooks | system-keeper | vendor source, the repo itself | validation/, contracts/, generated indices | B (A if it changes what a gate accepts) | design decisions (brand-director, token-keeper) |
 
 ## Autonomy ladder
 
@@ -127,7 +134,8 @@ match any (phase, task) pair.
 - **Demotion:** one hard fail in Auto drops the task type back to Draft.
 - **Never graduate:** brand-director; research-synthesizer conclusions.
 - **Auto from day one:** a11y-checker, evidence-clerk's structural check — verifiable,
-  read-only, small blast radius.
+  small blast radius. NOT read-only since 2026-08-31 (ADR-020): they hold Write to create
+  their own audit and hold no Edit and no Bash, so they cannot alter an existing file.
 - **Advisory, not auto:** design-critic. Read-only is not zero blast radius when the
   output's purpose is to change what a human does next.
 
@@ -143,7 +151,7 @@ artifacts/<workstream>/YYYY-MM-DD__<type>__<slug>__v<N>/
     validation.md              proof it passed, before a human saw it
 ```
 
-- Type must exist in `artifacts/_types.json` (38 types). Unregistered type = no artifact.
+- Type must exist in `artifacts/_types.json` (41 types). Unregistered type = no artifact.
 - `manifest.json` chains `inputs.evidence` to ledger IDs and `inputs.tokens_version`
   to a token release. Any claim auditable; any token change traceable.
 - Lifecycle: `draft → validated → in-review → approved → superseded → archived`.
@@ -153,9 +161,18 @@ artifacts/<workstream>/YYYY-MM-DD__<type>__<slug>__v<N>/
 
 ## Claim format
 
-- `Evidenced [E-023]` — must resolve, or the claim is **stripped**, not softened.
+Two evidenced forms. They are not interchangeable — one rests on a person, the other on an
+instrument, and the notation must not let them blur (ADR-017).
+
+- `Evidenced [E-nnn]` — **testimony.** Resolves in `research/evidence-ledger.json`.
+- `Evidenced [ART-nnn § Section]` — **measurement.** Resolves to a registered artifact and
+  a real section heading in its payload.
+- Either form that does not resolve **strips** the claim, not softens it.
 - `Inferred` — must name what it is inferred from.
 - `Assumption` — collected in a visible Assumptions block.
+
+Never mint a ledger ID for a measurement. Once the ledger holds things nobody said,
+"every quote resolves" stops meaning "no user was invented."
 
 ## Boundaries
 
@@ -176,8 +193,9 @@ ADR. Promotion is the only path into the design system.
 
 ## Skill evaluation
 
-Skills follow the eval-driven standard (agentskills.io). `evals/evals.json` is the
-only hand-authored file. Every case runs twice — with skill and without — because
+Skills follow the eval-driven standard (agentskills.io).
+`.claude/skills/<skill>/evals/evals.json` is the only hand-authored file (ADR-005 —
+it lives *inside* the skill, not at the repository root). Every case runs twice — with skill and without — because
 without a baseline you cannot tell whether the skill helped. Assertions are written
 **after** the first run. Grading requires evidence quoting the output. Workspaces in
 `validation/skill-evals/<skill>/iteration-N/`. See `decisions/ADR-005-skill-evals.md`.
@@ -205,7 +223,7 @@ Figma, Figma owns it. Flag that boundary every time it is crossed.
 ```
 CLAUDE.md              this file            architecture.md  the system map
 AGENTS.md              vendor-neutral        .ai/index.md     generated index
-.claude/agents/        13 definitions       .claude/settings.json  the tool gate
+.claude/agents/        14 definitions       .claude/settings.json  the tool gate
 .claude/hooks/         Gate B validators    .claude/skills/        our own recipes
 research/              evidence SSOT        design-system/         system SSOT
 artifacts/             deliverables         decisions/             ADRs

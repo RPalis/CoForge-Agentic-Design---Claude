@@ -1,0 +1,85 @@
+{
+  "name": "PaginationNav",
+  "level": 2,
+  "status": "stable",
+  "category": "carbon",
+  "summary": "Carbon PaginationNav.",
+  "variants": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "props": [
+    {
+      "name": "disableOverflow",
+      "required": false,
+      "type": "boolean",
+      "description": "If true, the '...' pagination overflow will not render page links between the first and last rendered buttons. Set this to true if you are having performance problems with large data sets."
+    },
+    {
+      "name": "itemsShown",
+      "required": false,
+      "type": "number",
+      "description": "The number of items to be shown (minimum of 4 unless props.items < 4)."
+    },
+    {
+      "name": "loop",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether user should be able to loop through the items when reaching first / last."
+    },
+    {
+      "name": "page",
+      "required": false,
+      "type": "number",
+      "description": "The index of current page."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Specify the size of the PaginationNav."
+    },
+    {
+      "name": "tooltipAlignment",
+      "required": false,
+      "type": "TooltipAlignment",
+      "description": "Specify the alignment of the tooltip for the icon-only next/prev buttons. Can be one of: start, center, or end."
+    },
+    {
+      "name": "tooltipPosition",
+      "required": false,
+      "type": "TooltipPosition",
+      "description": "Specify the position of the tooltip for the icon-only next/prev buttons. Can be one of: top, right, bottom, or left."
+    },
+    {
+      "name": "totalItems",
+      "required": false,
+      "type": "number",
+      "description": "The total number of items."
+    }
+  ],
+  "tokens_used": [
+    "semantic.*"
+  ],
+  "a11y": {
+    "contrast": "WCAG 2.2 AA — inherited from Carbon",
+    "note": "Carbon ships a11y behaviour per component; verify per screen"
+  },
+  "when_to_use": "Use Carbon PaginationNav rather than building one.",
+  "when_not_to_use": "Do not restyle off-token — propose a token instead.",
+  "source": "@carbon/react@1.115.0 (package/es/components/PaginationNav/PaginationNav.d.ts) — Apache-2.0",
+  "parse": {
+    "interface": "PaginationNavProps",
+    "kind": "full",
+    "partial": false,
+    "prop_count": 8,
+    "variant_count": 1
+  },
+  "figma": {
+    "node": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-All-themes---Carbon-Design-System?node-id=2799-20761&t=gkzO9FaEPqewqYn6-4",
+    "code_connect": "packages/react/code-connect/Pagination/PaginationNav.figma.tsx"
+  }
+}

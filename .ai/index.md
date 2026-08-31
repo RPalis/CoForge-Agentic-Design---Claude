@@ -5,7 +5,7 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-13 agents · 40 artifact types · 16 ADRs · 150 relationships
+14 agents · 41 artifact types · 20 ADRs · 159 relationships
 
 
 ## State
@@ -15,21 +15,22 @@
 | ds_fork | RED |
 | ds_fork_note | RED until adapter #1 populates L2 components (ADR-011). |
 | evidence_records | 0 |
-| raw_sources | 0 |
-| tokens | 666 |
-| components | 8 |
-| artifacts | 4 |
-| brand_defined | False |
+| raw_sources | 1 |
+| tokens | 786 |
+| components | 216 |
+| artifacts | 8 |
+| brand_status | approved |
+| brand_defined | True |
 
 ## Agents
 
 | agent | model | tools | writes |
 |---|---|---|---|
-| `a11y-checker` | sonnet | Read | NO |
+| `a11y-checker` | sonnet | Read, Write | yes |
 | `brand-director` | opus | Read, Write | yes |
 | `content-comms` | sonnet | Read, Write | yes |
 | `dashboard-analyst` | sonnet | Read, Write, Bash | yes |
-| `design-critic` | opus | Read | NO |
+| `design-critic` | opus | Read, Write | yes |
 | `diagram-cartographer` | sonnet | Read, Write | yes |
 | `evidence-clerk` | sonnet | Read, Write, Grep | yes |
 | `handoff-scribe` | opus | Read, Write | yes |
@@ -37,11 +38,12 @@
 | `research-ops` | opus | Read, Write | yes |
 | `research-synthesizer` | opus | Read, Write | yes |
 | `screen-producer` | opus | Read, Write, Bash | yes |
+| `system-keeper` | sonnet | Read, Write, Bash, Grep | yes |
 | `token-keeper` | sonnet | Read, Write, Bash | yes |
 
 ## Artifact types by stage
 
-- **discover** (8): research-plan · interview-analysis · usability-test-analysis · survey-analysis · diary-study-analysis · analytics-readout · competitive-benchmark · stakeholder-map
+- **discover** (9): research-plan · interview-analysis · usability-test-analysis · survey-analysis · diary-study-analysis · analytics-readout · competitive-benchmark · stakeholder-map · brand-extraction
 - **define** (9): persona · empathy-map · journey-map · service-blueprint · jtbd · insight-report · opportunity-map · problem-statement · prioritization
 - **develop** (11): ia-map · taxonomy · user-flow · wireframe · ui-screen · component-spec · pattern-spec · ux-copy · motion-spec · data-viz · dashboard
 - **deliver** (5): prototype · handoff-spec · redlines · presentation · release-note
@@ -52,6 +54,7 @@
 | agent | owns |
 |---|---|
 | `a11y-checker` | a11y-audit |
+| `brand-director` | brand-extraction |
 | `content-comms` | ux-copy, presentation, release-note |
 | `dashboard-analyst` | analytics-readout, data-viz, dashboard, metrics-scorecard |
 | `design-critic` | heuristic-review, design-critique |
@@ -73,9 +76,13 @@
 - [ADR-008 — Indexing layer, severity-ranked audit, and real CI](decisions/ADR-008-indexing-audit-ci.md) — Accepted · 2026-08-25
 - [ADR-009 — Project renamed: Luma → CoForge](decisions/ADR-009-project-rename.md) — Accepted · 2026-08-26
 - [ADR-010 — Artifacts are named, and the manifest points to them](decisions/ADR-010-artifact-filenames.md) — Accepted · 2026-08-26
-- [ADR-011 — Design system: Carbon (web responsive)](decisions/ADR-011-design-system-carbon.md) — ACCEPTED — signed off by Raquel, 2026-08-27
+- [ADR-011 — Design system: Carbon (web responsive)](decisions/ADR-011-design-system-carbon.md) — ACCEPTED — signed off by Agentic Designer - RP, 2026-08-27
 - [ADR-012 — Two-level output model: L1 Foundations, L2 Complete](decisions/ADR-012-two-level-output.md) — Accepted · 2026-08-26
 - [ADR-013 — POC acceptance criteria: the 8 links, and how each is passed](decisions/ADR-013-poc-acceptance-criteria.md) — Accepted · 2026-08-27
 - [ADR-014 — Analytics: a joiner, not an instrument](decisions/ADR-014-analytics-layer.md) — Accepted · 2026-08-27
 - [ADR-015 — Licence: Apache-2.0](decisions/ADR-015-licence.md) — Accepted · 2026-08-27
 - [ADR-016 — Repository location: off ~/Desktop](decisions/ADR-016-repository-location.md) — Accepted · 2026-08-27
+- [ADR-017 — Claim format: non-ledger evidence](decisions/ADR-017-non-ledger-evidence.md) — Accepted · 2026-08-27
+- [ADR-018 — Component namespacing: `cf-` on our layer, vendor names untouched](decisions/ADR-018-component-namespacing.md) — Accepted · 2026-08-28
+- [ADR-019 — Self-governance: unchecked is not passed](decisions/ADR-019-self-governance.md) — Accepted · 2026-08-28
+- [ADR-020 — Finder agents: scoped Write, and a denominator on every finding](decisions/ADR-020-finder-agents.md) — Accepted · 2026-08-31

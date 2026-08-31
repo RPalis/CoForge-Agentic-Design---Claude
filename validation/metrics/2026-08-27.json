@@ -1,58 +1,70 @@
 {
   "run_id": "2026-08-27",
-  "generated_at": "2026-08-27T12:37:44",
+  "generated_at": "2026-08-27T18:46:56",
   "project": "coforge",
   "session": {
-    "turns": 776,
-    "duration_min": 3041.4,
-    "transcripts": 1
+    "turns": 1237,
+    "duration_min": 3410.6,
+    "transcripts": 2
   },
   "tokens": {
-    "input": 1552,
-    "output": 1366648,
-    "cache_read": 361272749,
-    "cache_creation": 18937612,
-    "billable": 1368200
+    "input": 2474,
+    "output": 1909250,
+    "cache_read": 481658526,
+    "cache_creation": 20817801,
+    "billable": 1911724
   },
   "tools": {
-    "Bash": 164,
-    "mcp__Claude_Browser__computer": 58,
+    "Bash": 288,
+    "mcp__Claude_Browser__computer": 63,
+    "Edit": 36,
     "mcp__Claude_Browser__javascript_tool": 21,
+    "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
-    "mcp__Claude_Browser__navigate": 18,
+    "Write": 18,
+    "Artifact": 15,
+    "AskUserQuestion": 11,
+    "mcp__chrome-devtools__evaluate_script": 11,
     "WebSearch": 10,
-    "AskUserQuestion": 9,
+    "mcp__Claude_Browser__preview_start": 9,
     "SendUserFile": 8,
-    "Artifact": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
-    "mcp__Claude_Browser__preview_start": 6,
-    "mcp__Claude_Browser__read_page": 6,
-    "ToolSearch": 4,
-    "Skill": 2,
+    "mcp__Claude_Browser__read_page": 7,
+    "ToolSearch": 5,
+    "Agent": 4,
+    "Skill": 3,
+    "mcp__ccd_session__mark_chapter": 2,
     "mcp__Claude_Browser__find": 2,
-    "mcp__ccd_session__mark_chapter": 1,
+    "mcp__chrome-devtools__new_page": 2,
+    "mcp__chrome-devtools__take_screenshot": 2,
+    "Read": 2,
     "mcp__Claude_Browser__read_console_messages": 1,
     "mcp__ccd_session_mgmt__set_session_title": 1,
     "mcp__Claude_Browser__tabs_context": 1,
-    "mcp__Claude_Browser__preview_stop": 1
+    "mcp__Claude_Browser__preview_stop": 1,
+    "mcp__Claude_Browser__browser_batch": 1,
+    "mcp__Claude_Browser__tabs_close": 1,
+    "mcp__chrome-devtools__list_network_requests": 1
   },
   "skills": {
-    "anthropic-skills:docx": 1,
-    "artifact-design": 1
+    "artifact-design": 2,
+    "anthropic-skills:docx": 1
   },
   "artifacts": {
-    "total": 4,
-    "live": 2,
+    "total": 6,
+    "live": 4,
     "by_type": {
-      "competitive-benchmark": 2,
+      "brand-extraction": 1,
+      "competitive-benchmark": 3,
       "prioritization": 2
     },
     "by_status": {
-      "superseded": 2,
-      "in-review": 2
+      "in-review": 3,
+      "approved": 1,
+      "superseded": 2
     },
-    "tokens_per_artifact": 342050
+    "tokens_per_artifact": 318621
   },
   "gates": {
     "verdict": "PASS",
@@ -67,13 +79,13 @@
     "promoted": 0
   },
   "governance": {
-    "adrs": 16,
+    "adrs": 17,
     "agents": 13,
-    "artifact_types": 40
+    "artifact_types": 41
   },
   "readiness": {
-    "l1": 80.0,
-    "l2": 54.0,
+    "l1": 100.0,
+    "l2": 58.0,
     "workflow": 100.0
   }
 }

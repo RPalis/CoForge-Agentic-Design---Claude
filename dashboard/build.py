@@ -75,6 +75,18 @@ W_NODES = [
           ["never","does design work, or passes artifact content between agents"],
           ["counts","the autonomy ladder — 3 clean → Auto, 1 hard fail → Draft"]],
   "reads":["claude-md","index-md"],"writes":[]},
+ {"id":"system-keeper","label":"system-keeper","kind":"agent","layer":"docs",
+  "summary":"Owns the machinery, not the design. Adapters, generators, validators, schemas, hooks.",
+  "detail":AG["system-keeper"]["trigger"] + " Added 2026-08-28 (ADR-019) after an audit found no "
+           "routing row owned adapters, generators, validators or hooks — the largest body of work "
+           "in the repository had no agent, no gate and no review path. Every defect in "
+           "validation/corrections.json was found in that unowned surface.",
+  "where":".claude/agents/system-keeper.md",
+  "meta":[["model",AG["system-keeper"]["model"]],["tools",", ".join(AG["system-keeper"]["tools"])],
+          ["owns","validation/ · contracts/ · hooks/ · generated indices"],
+          ["never","makes design decisions, or hand-edits a generated region"],
+          ["gate","B, and A on anything that changes what a gate accepts"]],
+  "reads":["claude-md"],"writes":["ci-yml"]},
 
  agent_node("evidence-clerk","p1","Extracts verbatim quotes into the ledger. Never interprets.",
             ["sources"],["ledger"],"B + A","Draft → Auto (structural check runs Auto from day one)"),
@@ -148,17 +160,33 @@ D_LAYERS = [
 ]
 D_NODES = [
  {"id":"red","label":"RED — no DS","kind":"state","layer":"fork","summary":"Current state. token-keeper builds the system before screens are produced.",
-  "detail":"screen-producer stays wireframe-only until tokens and the component index exist. This is not a limitation to work around — producing hi-fi UI with no system is exactly what creates off-system drift.",
+  "detail":(
+      f"L1 output is unblocked: {ST['tokens']} tokens and {ST['components']} level-1 primitives exist. "
+      "screen-producer stays off L2 until the component index carries L2 entries (ADR-011)."
+      if ST["tokens"] and ST["components"] else
+      "screen-producer stays wireframe-only until tokens and the component index exist."
+    ) + " This is not a limitation to work around — producing hi-fi UI with no system is exactly what creates off-system drift.",
   "where":"CLAUDE.md · DS fork","meta":[["current","yes"],["unblocks","Build Stage 2"]],"reads":[],"writes":[]},
  {"id":"yellow","label":"YELLOW — DS not in code","kind":"state","layer":"fork","summary":"System exists in Figma but not as code. Match, review, feed gaps back.",
   "detail":"screen-producer matches components to wireframes and reviews consistency; gaps route to token-keeper.","where":"CLAUDE.md · DS fork","meta":[["current","no"]],"reads":[],"writes":[]},
  {"id":"green","label":"GREEN — DS in code","kind":"state","layer":"fork","summary":"Most optimised route: generate against the real component library.",
   "detail":"screen-producer targets Claude Code + Figma MCP + Code Connect, generating against real components.","where":"CLAUDE.md · DS fork","meta":[["current","no"]],"reads":[],"writes":[]},
+ agent_node("brand-director","found","Owns voice and visual language. Suggest-only, and it never graduates.",
+            [],["brand"],"A — suggest only","Never graduates — brand direction is a judgment call"),
+ agent_node("token-keeper","tok","Owns tokens.json and the Figma-variable sync. Authors v0, then mirrors.",
+            ["brand"],["tokens"],"B → A","Auto for sync, suggest for new tokens"),
  {"id":"brand","label":"brand.md","kind":"doc","layer":"found","summary":"Voice, visual language, colour rationale, type scale logic, motion character.",
-  "detail":"Owned by brand-director at suggest-only, and it never graduates. Brand direction is a judgment call — it is never written automatically, and never inferred from the absence of input. Currently a stub awaiting brand inputs.",
-  "where":"design-system/foundations/brand.md","meta":[["owner","brand-director"],["autonomy","suggest only — never graduates"],["state","EMPTY" if not ST["brand_defined"] else "defined"]],"reads":[],"writes":[]},
+  "detail":"Owned by brand-director at suggest-only, and it never graduates. Brand direction is a judgment call — it is never written automatically, and never inferred from the absence of input. " + {
+      "empty":    "Currently a stub awaiting brand inputs.",
+      "proposed": "Written from ART-005 and awaiting Gate A. Written is not approved: brand-director never graduates, so this sits in front of a human until one signs it.",
+      "approved": "Approved at Gate A.",
+    }.get(ST.get("brand_status","empty"), "State unknown — check the Status line in brand.md."),
+  "where":"design-system/foundations/brand.md","meta":[["owner","brand-director"],["autonomy","suggest only — never graduates"],["state",ST.get("brand_status","empty").upper()]],"reads":[],"writes":[]},
  {"id":"tokens","label":"tokens.json","kind":"ssot","layer":"tok","summary":"DTCG format. The only legal source of colour, spacing, radius and type.",
-  "detail":"Raw hex and raw px are a build error, not a style opinion. Gate B blocks the write and names the token to use instead. Currently empty — which is why the tokens check reports SKIPPED rather than PASSED.",
+  "detail":"Raw hex and raw px are a build error, not a style opinion. Gate B blocks the write and names the token to use instead. " + (
+      f"{ST['tokens']} tokens are authored, so the tokens check runs for real instead of reporting SKIPPED."
+      if ST["tokens"] else
+      "Currently empty — which is why the tokens check reports SKIPPED rather than PASSED."),
   "where":"design-system/tokens/tokens.json","meta":[["format","W3C DTCG"],["state",f"{ST['tokens']} tokens"],["gate","no value outside tokens"]],"reads":[],"writes":[]},
  {"id":"inversion","label":"ADR-001 inversion","kind":"gate","layer":"tok","summary":"Repo authors v0, pushes to Figma, then direction flips permanently.",
   "detail":"Greenfield means the repo must author first — there is nothing to read yet. The moment Figma variables exist, Figma owns tokens and the repo mirrors only. The drift check fails the build on divergence. A break-glass path to re-author exists but using it is a logged incident.",
@@ -281,7 +309,7 @@ DATA = {
  "state": ST, "counts": IDX["counts"],
  "adrs": IDX["adrs"],
  "tabs": [
-   {"id":"workflow","label":"Workflow","blurb":"Eleven phases, thirteen agents, and the documents that govern them. Each phase names the agent that activates, what it reads, what it writes, and which gate it must clear.","layers":W_LAYERS,"nodes":W_NODES,"edges":W_EDGES,"numbered":True},
+   {"id":"workflow","label":"Workflow","blurb":f"Eleven phases, {IDX['counts']['agents']} agents, and the documents that govern them. Each phase names the agent that activates, what it reads, what it writes, and which gate it must clear.","layers":W_LAYERS,"nodes":W_NODES,"edges":W_EDGES,"numbered":True},
    {"id":"ds","label":"Design system","blurb":"The downstream half. Brand becomes tokens, tokens constrain components, and nothing enters the system except by promotion.","layers":D_LAYERS,"nodes":D_NODES,"edges":D_EDGES,"numbered":False},
    {"id":"harness","label":"Harness & analytics","blurb":"How the system holds itself honest: the loop every artifact runs, five enforcement layers, earned autonomy, and what gets measured.","layers":H_LAYERS,"nodes":H_NODES,"edges":H_EDGES,"numbered":False},
  ],

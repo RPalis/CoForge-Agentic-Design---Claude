@@ -249,4 +249,4 @@
 - [architecture.md](architecture.md): what the parts are and how they relate
 - [decisions/](decisions/): ADRs — what was chosen, and what was rejected
 
-<!-- generated 2026-08-28 by validation/build-llms-txt.py — do not hand-edit -->
+<!-- generated 2026-08-31 by validation/build-llms-txt.py — do not hand-edit -->

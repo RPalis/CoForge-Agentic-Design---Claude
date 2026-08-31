@@ -1,22 +1,22 @@
 {
   "run_id": "2026-08-31",
-  "generated_at": "2026-08-31T11:36:31",
+  "generated_at": "2026-08-31T12:12:23",
   "project": "coforge",
   "session": {
-    "turns": 1839,
-    "duration_min": 8740.2,
+    "turns": 1860,
+    "duration_min": 8776.1,
     "transcripts": 2
   },
   "tokens": {
-    "input": 3676,
-    "output": 2450193,
-    "cache_read": 860311695,
-    "cache_creation": 25777117,
-    "billable": 2453869
+    "input": 3718,
+    "output": 2469305,
+    "cache_read": 878258737,
+    "cache_creation": 25802887,
+    "billable": 2473023
   },
   "tools": {
-    "Bash": 491,
-    "Edit": 75,
+    "Bash": 501,
+    "Edit": 76,
     "mcp__Claude_Browser__computer": 64,
     "Write": 30,
     "Artifact": 23,
@@ -28,10 +28,10 @@
     "WebSearch": 10,
     "mcp__Claude_Browser__preview_start": 10,
     "SendUserFile": 9,
+    "Agent": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
-    "Agent": 7,
     "ToolSearch": 5,
     "mcp__chrome-devtools__take_screenshot": 5,
     "mcp__chrome-devtools__new_page": 4,
@@ -55,19 +55,21 @@
     "anthropic-skills:docx": 1
   },
   "artifacts": {
-    "total": 7,
-    "live": 5,
+    "total": 8,
+    "live": 6,
     "by_type": {
       "brand-extraction": 1,
       "competitive-benchmark": 4,
+      "a11y-audit": 1,
       "prioritization": 2
     },
     "by_status": {
       "in-review": 3,
       "approved": 2,
+      "validated": 1,
       "superseded": 2
     },
-    "tokens_per_artifact": 350553
+    "tokens_per_artifact": 309128
   },
   "gates": {
     "verdict": "PASS",

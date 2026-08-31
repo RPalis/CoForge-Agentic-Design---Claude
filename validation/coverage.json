@@ -1,13 +1,13 @@
 {
-  "$comment": "The coverage ledger. Every load-bearing claim this system makes about itself names the check that verifies it. audit-system.py reports any claim whose verifier is null or missing from disk. The repo already knew 'skipped is not passed'; this is the generalisation it lacked \u2014 UNCHECKED IS NOT PASSED. Every blind spot found on 2026-08-28 was a claim in this shape: asserted, believed, and verified by nothing, while every check that did exist passed.",
+  "$comment": "The coverage ledger. Every load-bearing claim this system makes about itself names the check that verifies it. audit-system.py reports any claim whose verifier is null or missing from disk. The repo already knew 'skipped is not passed'; this is the generalisation it lacked — UNCHECKED IS NOT PASSED. Every blind spot found on 2026-08-28 was a claim in this shape: asserted, believed, and verified by nothing, while every check that did exist passed.",
   "version": "1.0.0",
   "claims": [
     {
       "id": "V-001",
       "claim": "No value may exist outside tokens.json (the token contract)",
-      "asserted_in": "CLAUDE.md \u00b7 design-system/llms.txt",
+      "asserted_in": "CLAUDE.md · design-system/llms.txt",
       "verified_by": "validation/audit-contracts.py",
-      "how": "find_literal_leaks \u2014 zero literals above the primitive layer, recursing into composite values"
+      "how": "find_literal_leaks — zero literals above the primitive layer, recursing into composite values"
     },
     {
       "id": "V-002",
@@ -22,7 +22,7 @@
       "asserted_in": "CLAUDE.md",
       "verified_by": "validation/audit-system.py",
       "how": "unresolved [E-nnn] in artifacts/ and foundations/ is a blocker",
-      "note": "PARTIAL \u2014 the ledger is empty, so the check has never had a resolvable ID to pass on. Untested in the affirmative."
+      "note": "PARTIAL — the ledger is empty, so the check has never had a resolvable ID to pass on. Untested in the affirmative."
     },
     {
       "id": "V-004",
@@ -85,10 +85,10 @@
     {
       "id": "V-012",
       "claim": "Counts stated in prose match the things they count",
-      "asserted_in": "CLAUDE.md \u00b7 README.md \u00b7 architecture.md \u00b7 DESIGN-SYSTEM.md",
+      "asserted_in": "CLAUDE.md · README.md · architecture.md · DESIGN-SYSTEM.md",
       "verified_by": "validation/audit-system.py",
-      "how": "check 5e against the declared list in validation/declared-counts.json (12 claims across README.md, AGENTS.md, CLAUDE.md, design-system/DESIGN-SYSTEM.md, architecture.md). PARTIAL BY DESIGN: a declared list, not a general prose scanner \u2014 a count not named in declared-counts.json is uncovered, and a claim whose sentence is reworded is reported as a stale-pattern warning rather than silently dropped.",
-      "note": "Re-running the new check on 2026-08-31 found 4 of the 12 declared counts currently wrong: README.md's ADR count (17 vs 19), AGENTS.md's worker count (12 vs 13), and CLAUDE.md's L1-of-total artifact-type count (34 of 40 vs 35 of 41). These are open findings in audit-system.py, not fixed here \u2014 see C-010."
+      "how": "check 5e against the declared list in validation/declared-counts.json (12 claims across README.md, AGENTS.md, CLAUDE.md, design-system/DESIGN-SYSTEM.md, architecture.md). PARTIAL BY DESIGN: a declared list, not a general prose scanner — a count not named in declared-counts.json is uncovered, and a claim whose sentence is reworded is reported as a stale-pattern warning rather than silently dropped.",
+      "note": "Re-running the new check on 2026-08-31 found 4 of the 12 declared counts currently wrong: README.md's ADR count (17 vs 19), AGENTS.md's worker count (12 vs 13), and CLAUDE.md's L1-of-total artifact-type count (34 of 40 vs 35 of 41). These are open findings in audit-system.py, not fixed here — see C-010."
     },
     {
       "id": "V-013",
@@ -96,12 +96,12 @@
       "asserted_in": "decisions/ADR-017-non-ledger-evidence.md",
       "verified_by": "validation/audit-system.py",
       "how": "the foundations check errors on scratch/ references",
-      "note": "PARTIAL \u2014 covers design-system/foundations/ only. decisions/ is uncovered; see correction C-011."
+      "note": "PARTIAL — covers design-system/foundations/ only. decisions/ is uncovered; see correction C-011."
     },
     {
       "id": "V-014",
       "claim": "Artifacts carry resolvable provenance to a token version",
-      "asserted_in": "CLAUDE.md \u00b7 artifacts/_types.json",
+      "asserted_in": "CLAUDE.md · artifacts/_types.json",
       "verified_by": null,
       "how": null,
       "note": "UNCHECKED and currently FALSE: every manifest carries tokens_version: null. ADR-013 link 8."
@@ -118,9 +118,9 @@
       "id": "V-016",
       "claim": "Work is routed through the agent roster and its gates",
       "asserted_in": "CLAUDE.md routing table",
-      "verified_by": null,
-      "how": null,
-      "note": "UNCHECKED and currently FALSE: all 7 registered artifacts record produced_by 'main-session'. The routing table has 39 rows and has never been exercised."
+      "verified_by": "artifacts/_registry.json",
+      "how": "ART-008 records produced_by: a11y-checker, dispatched by the orchestrator through the Phase 4 routing row. First artifact of 8 not attributed to main-session. The registry is generated by scanning, so the attribution cannot be hand-written.",
+      "note": "VERIFIED 2026-08-31, and partially: one artifact of eight came through the roster. The routing table has 40 rows and 2 have now been exercised (system-keeper for validators, a11y-checker for a11y-audit). The claim is no longer false; it is not yet broadly true."
     }
   ]
 }

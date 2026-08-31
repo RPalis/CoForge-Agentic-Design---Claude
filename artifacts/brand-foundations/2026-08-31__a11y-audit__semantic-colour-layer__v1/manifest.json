@@ -1,0 +1,38 @@
+{
+  "id": "ART-008",
+  "type": "a11y-audit",
+  "workstream": "brand-foundations",
+  "title": "Semantic colour layer — WCAG 2.2 AA contrast audit",
+  "file": "semantic-colour-contrast-audit.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "validated",
+  "stage": "evaluate",
+  "produced_by": "a11y-checker",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "a11y-checker",
+    "checked": 58,
+    "found": 13,
+    "skipped": 432,
+    "method": "Two units, stated so the numbers can be re-derived independently. (1) checked = 58 foreground/background PAIRS computed by hand from resolved sRGB hex values using the WCAG 2.x formula: normalise each channel to 0-1, linearise (c/12.92 where c <= 0.04045, else ((c+0.055)/1.055)^2.4), combine as L = 0.2126R + 0.7152G + 0.0722B, ratio = (L_lighter + 0.05) / (L_darker + 0.05). No script was run; this agent has no Bash. The 58 pairs are enumerated in six tables in section 4 of the payload (14 + 14 + 3 + 12 + 10 + 5 = 58) and each row states both hex values, so any row can be recomputed. Scope was driven by the tokens_used declarations of the eight L1 primitives in design-system/component-index.json; the 208 L2 entries declare only the wildcard semantic.*, which names no pairing and generated no pairs. Thresholds from design-system/a11y/rules.md: 4.5:1 normal text, 3:1 non-text. The large-text 3:1 allowance was NOT applied to any text pair, since a colour token carries no size. (2) found = 13 findings, numbered F-01..F-13 in section 2 of the payload; count them to re-derive. These cover 11 failed measurements of the 58 (F-01..F-07), 2 thin-margin passes flagged for a human (F-08, F-09), 1 escalated skip (F-10), and 3 structural findings about the layer (F-11..F-13). (3) skipped = 432 of the 468 semantic colour aliases; 36 appear on one side of a computed pair, the remaining 432 were NOT evaluated and are bucketed with reasons in section 3 of the payload: S1 syntax.* = 176 (no ground token exists to measure against), S2 ai.*/chat.* = 84 (outside declared L1 scope), S3 alpha-modified = 21 (org.carbon.alphaModifier vs opaque DTCG $value gives two defensible readings), S4 state/layer variants = 151 (ground is a state, not a surface; several are value-identical to a checked token but identity is an inference, not a measurement). 176 + 84 + 21 + 151 = 432; 432 + 36 = 468. Skipped is not passed: no claim is made about these in either direction. Also not run and not claimed: target size, focus order, focus visibility, programmatic labels, prefers-reduced-motion and heading structure — all are checks in rules.md that a token file cannot answer and that require a rendered ui-screen."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "tokens_version": "0.1.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-08-31"
+  },
+  "autonomy": "auto",
+  "reviewed_by": null,
+  "created_at": "2026-08-31"
+}

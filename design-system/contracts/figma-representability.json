@@ -1,0 +1,61 @@
+{
+  "$comment": "Which DTCG $types can be a Figma VARIABLE, and where the rest actually live. ONE declaration, read by both the generator (validation/build-token-axes.py, which stamps every token) and the checker (validation/figma-representable.py, which verifies tokens.json on disk conforms). Two programs reading one contract, rather than two programs each holding their own copy and agreeing with themselves.",
+
+  "provenance": {
+    "established": "2026-08-31",
+    "method": "empirical — a real import of all 794 tokens into Figma file ip2wZ3UUQ5sbFc3r902kYK via figma-console-mcp, then reading back every created variable's resolvedType and value. Not transcribed from a documentation page.",
+    "what_it_cost": "The import reported 'Created 776 variable(s). 0 failed.' 14 of those 776 were variables holding nothing — typography/scale/h1 resolved to FLOAT 0, elevation/shadow/raised to FLOAT 0, density/stage/type-scale to a comma-joined string of alias syntax. A designer opening the picker would have chosen a name that returned nothing, in a file reporting full coverage. See correction C-017.",
+    "the_part_that_worked": "The 18 motion tokens were REFUSED by the Plugin API with a message naming the four creatable types. Honest absence is the correct outcome for a token with no Figma representation. The failure mode to prevent is not absence — it is silent degradation into a representable-but-meaningless type."
+  },
+
+  "figma_variable_types": ["COLOR", "FLOAT", "STRING", "BOOLEAN"],
+
+  "dimension_unit": {
+    "$comment": "A second, quieter failure of the same kind, found 2026-08-31 immediately after the first. Every dimension token imported as its rem NUMBER with the unit discarded — Figma FLOAT variables are unitless. typography/size/07 arrived as 3.875 and elevation/spacing/13 as 10. Bound to a font size or a padding, Figma reads a FLOAT as PIXELS, so the display level would have rendered at 3.875px instead of 62px. Nothing failed and nothing warned; the numbers were simply wrong by a factor of 16.",
+    "rem_to_px": 16,
+    "applies_to": ["dimension"],
+    "rule": "tokens.json is the source and STAYS IN REM — rem is correct for CSS and must not be changed to suit a downstream surface. Figma has no rem, so the bridge converts on the way in and only on the way in. A dimension pushed to Figma without this conversion is off by 16x.",
+    "affected_count_at_establishment": 27,
+    "affected": "spacing (13) + typography.size (7) + typography.tracking (7). elevation.shadow geometry is authored in px already and is NOT converted — converting it would introduce the same error in the opposite direction.",
+    "corroboration": "After conversion, size/07 reads 62px and tracking/07 reads -2px. Those are the two independently evidenced values in the type axis [ART-005 § Type; brand.md §4] — the only two points on the scale that research fixed rather than authored. Both landing exactly is the check that the factor is right.",
+    "enforced_by": "validation/build-figma-tokens.py — generates design-system/tokens/coforge.figma.tokens.json, the ONLY file Figma imports. The conversion happens there, so the import is correct by construction; `--check` fails CI if tokens.json moved without regenerating. This replaced a hand-applied fix that nothing could verify, because CI has no Figma access and a re-import would have reverted all 27 dimensions silently.",
+    "one_import_source": "design-system/tokens/ must contain exactly ONE file matching the importer's *.tokens.json glob, and it must be the generated one. A coforge.tokens.json symlink to tokens.json existed as a workaround for the glob and was deleted on 2026-08-31 — with both present, an import would have pushed the rem source alongside the px file."
+  },
+
+  "representable": {
+    "$comment": "DTCG $type -> the Figma variable resolvedType it becomes.",
+    "color": "COLOR",
+    "dimension": "FLOAT",
+    "number": "FLOAT",
+    "fontWeight": "FLOAT",
+    "fontFamily": "STRING",
+    "string": "STRING",
+    "boolean": "BOOLEAN"
+  },
+
+  "elsewhere": {
+    "$comment": "DTCG $type -> where the token lives instead, since it cannot be a variable. A token carrying one of these MUST declare $extensions.coforge.figma_representable: false and a matching figma_home. 'figma-*' values name a real Figma primitive the token should be materialised into; 'code-only' means Figma has no representation at all and the token is consumed exclusively in code.",
+    "typography": "figma-text-style",
+    "shadow": "figma-effect-style",
+    "gradient": "figma-paint-style",
+    "duration": "code-only",
+    "cubicBezier": "code-only",
+    "transition": "code-only",
+    "border": "code-only",
+    "strokeStyle": "code-only",
+    "coforge.levelSet": "code-only"
+  },
+
+  "reasons": {
+    "$comment": "Why each non-representable class has no variable form. Written once here rather than repeated on every affected token.",
+    "typography": "A composite of family, size, weight and tracking. Figma expresses this as a TEXT STYLE, which can itself bind each of its fields to the size/, weight/, tracking/ and family/ variables that DO import. The composite is not lost — it is materialised as the Figma primitive that actually models it.",
+    "shadow": "A composite of colour, offset, blur and spread — and DTCG allows a list of layers, which is how elevation.shadow.none expresses zero shadow as []. Figma models this as an EFFECT STYLE. Imported as a variable it collapses to FLOAT 0, which is indistinguishable from a real zero.",
+    "gradient": "A list of colour stops. Figma models this as a PAINT STYLE.",
+    "duration": "Figma has a Timing variable type in its own UI but the Plugin API cannot create one — verified by the API's own refusal message, which lists only BOOLEAN/COLOR/FLOAT/STRING as creatable. A duration could be smuggled in as a unitless FLOAT, and must not be: 150 with the 'ms' stripped is a number that no longer says what it measures.",
+    "cubicBezier": "Four control points. No Figma variable type holds an ordered tuple.",
+    "transition": "A composite of a duration and an easing, so it inherits both exclusions.",
+    "border": "A composite of width, style and colour.",
+    "strokeStyle": "An enumerated stroke pattern with no Figma variable equivalent.",
+    "coforge.levelSet": "Not a value at all — a CONSTRAINT naming which typography.scale levels a density register is permitted to draw from. cf-type-scale declares all 8 levels; stage permits 5 and document 6, so the constraint carries real information held nowhere else. But a constraint is not a thing a designer picks from a variable picker. It belongs beside the component contract's variants, and is consumed in code."
+  }
+}

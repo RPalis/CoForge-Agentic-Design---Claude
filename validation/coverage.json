@@ -42,9 +42,10 @@
       "id": "V-006",
       "claim": "Layer 1 makes off-limits paths impossible",
       "asserted_in": "architecture.md layer 1",
-      "verified_by": null,
-      "how": null,
-      "note": "UNCHECKED, and known-incomplete: settings.json denies Write/Edit on research/sources/** but NOT Bash. Recorded in architecture.md; nothing tests it."
+      "verified_by": "validation/check-sources-integrity.py",
+      "how": "The claim as written stays FALSE and cannot be made true: settings.json denies Write/Edit on research/sources/** and cannot deny Bash by path without denying Bash entirely. So prevention is replaced by detection — every raw source is sha256'd into research/sources-manifest.json, and a change, removal or addition fails the check. test-gates.py exercises all three branches: baseline clean must pass, a Bash-altered source must fail, and a Bash-MANUFACTURED source that was never baselined must fail. Wired into CI 2026-09-01.",
+      "correction_history": "This entry asserted exactly the sentence above on 2026-09-01 while ADDITION was only a warning and the check exited 0. A fabricated source written through a Bash redirect passed CI, and quotes logged against it would have resolved cleanly for ever after — altering testimony was caught, manufacturing it was not, which is the one case that defeats prohibition 2 outright. It was found the same day by an independent system-keeper audit, not by the author, and only because that audit was told to attack the claim rather than read it. test-gates.py case 15 did not cover it: flipping ADDED to blocker in a sandbox left the case still passing, proving it exercised only the MODIFIED branch. Half a guarantee was tested and the whole of it recorded as verified. Kept here rather than overwritten, because the corrected sentence reads identically to the false one and nothing else would show that it was ever wrong.",
+      "note": "VERIFIED 2026-09-01 as detection, not prevention, and the distinction is deliberate. It matters most where the ledger is concerned: if a source can be altered after quotes were logged against it, every citation still resolves — to testimony nobody gave. Tamper-evidence on the sources is what makes 'every quote resolves' mean 'no user was invented'. The check also flags the CITED-vs-uncited distinction, so an altered file the ledger depends on is a blocker rather than a warning."
     },
     {
       "id": "V-007",
@@ -71,9 +72,9 @@
       "id": "V-010",
       "claim": "Regenerating the component index produces an identical file (ADR-013 link 1)",
       "asserted_in": "decisions/ADR-013-poc-acceptance-criteria.md",
-      "verified_by": null,
-      "how": null,
-      "note": "UNCHECKED as a standing test. Verified by hand on 2026-08-28 (byte-identical across three runs) but nothing re-runs it, so drift would be silent."
+      "verified_by": ".github/workflows/ci.yml",
+      "how": "CI regenerates design-system/component-index.json with the Carbon adapter and fails on a non-empty git diff, the same idiom already used for .ai/, _registry.json and llms.txt. Confirmed byte-identical locally on 2026-09-01 before wiring.",
+      "note": "VERIFIED 2026-09-01 as a standing test. Previously verified once by hand on 2026-08-28 and never re-run, which is not the same claim — ingest is the bottom of the stack, and if it is not reproducible then nothing built on the index can be trusted to be either. A hand-check that nothing repeats is exactly the 'named layer that reads as coverage' failure."
     },
     {
       "id": "V-011",
@@ -129,6 +130,14 @@
       "verified_by": ".github/workflows/ci.yml",
       "how": "Observed executing on a real pull request 2026-08-31: 'Gate B / audit (push)' and 'Gate B / audit (pull_request)' both green. The job validates every JSON source of truth, rebuilds .ai/, _registry.json and llms.txt and fails if any was stale, then runs audit-system.py --report.",
       "note": "architecture.md records that this layer 'existed only as a sentence until 2026-08-25'. Until this PR it had never been observed running on real work — the workflow file existed and nothing proved it executed. A named layer that has never fired is the coverage illusion this repo was built to remove, so the distinction between 'the file is there' and 'it ran and went green' is the whole point of recording it here."
+    },
+    {
+      "id": "V-018",
+      "claim": "The token layer can be pushed to Figma variables — ADR-013 link 6, the INVERT link",
+      "asserted_in": "DESIGN-SYSTEM.md build order step 3 · ADR-001 inversion · ADR-013 link 6",
+      "verified_by": "validation/figma-representable.py",
+      "how": "Executed against Figma file ip2wZ3UUQ5sbFc3r902kYK on 2026-08-31, then read back variable-by-variable. The claim is TRUE FOR 762 OF 794 TOKENS and false for the rest: 12 tokens ($type typography and shadow) are Figma STYLES rather than variables, and 20 ($type duration, cubicBezier, and our coforge.levelSet) have no Figma representation at all. The 762 figure is derived by script from the token file, never asserted; it was independently corroborated by counting what Figma actually created (776) minus the 14 that created falsely.",
+      "note": "VERIFIED 2026-08-31 for the representable subset, and the qualification is the finding. DESIGN-SYSTEM.md step 3 states the goal without qualification, which reads as though the whole token layer crosses. It does not, and cannot: the DTCG-to-Figma-variable mapping is not total, because Figma variables hold only COLOR/FLOAT/STRING/BOOLEAN and every composite type falls outside that. Live state confirmed by direct plugin read — 762 variables, 474 aliases, 288 literals, 0 unresolved aliases, dimensions in px — plus 8 text styles and 2 effect styles carrying the 12 composite tokens in the Figma primitive that actually models them. The 20 code-only tokens are correctly and permanently absent. Read the method note in C-020 before re-verifying: the importer's diff, the exporter, and the success summaries were each wrong in this session, so a direct plugin read is the only accepted evidence."
     }
   ]
 }

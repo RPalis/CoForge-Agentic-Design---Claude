@@ -50,8 +50,51 @@ jobs:
             exit 1
           }
 
+      # ADR-013 link 1 claims the adapter is deterministic. That was verified once,
+      # by hand, on 2026-08-28 — and nothing re-ran it, so drift would be silent
+      # (V-010). Ingest is the bottom of the stack: if it is not reproducible,
+      # nothing built on the index can be trusted to be either.
+      - name: Component index regenerates identically
+        run: |
+          python3 validation/adapters/carbon-react.py --apply
+          git diff --exit-code design-system/component-index.json || {
+            echo "::error::the Carbon adapter is not deterministic — regenerating the"
+            echo "::error::component index changed it. ADR-013 link 1 assumes it cannot."
+            exit 1
+          }
+
+      # research/sources/ is the evidence spine and is declared immutable. Layer 1
+      # denies Write|Edit there but CANNOT deny Bash, so this is detection standing in
+      # for prevention it cannot provide. If a source changes after quotes were logged
+      # against it, every citation still resolves — to testimony nobody gave (V-006).
+      - name: Raw sources are unaltered
+        run: python3 validation/check-sources-integrity.py
+
+      # A token whose $type cannot be a Figma variable must say where it lives
+      # instead. Without this, a new composite token imports as a placeholder
+      # holding nothing while Figma reports full coverage — correction C-017.
+      - name: Figma representability of the token layer
+        run: python3 validation/figma-representable.py
+
+      # The file Figma actually imports is generated: composites removed, rem
+      # converted to px. If tokens.json moves and this is not regenerated, an
+      # import pushes stale values — and every dimension would revert to rem,
+      # silently, at 1/16 of its intended size (correction C-018).
+      - name: Figma token file is current
+        run: python3 validation/build-figma-tokens.py --check
+
       - name: System audit (severity-ranked)
         run: python3 validation/audit-system.py --report
+
+      # LAST ON PURPOSE. This check is knowingly RED until the alpha repair lands
+      # (C-021) — 53 tokens carry a modifier nothing applies. Actions halts the job
+      # at the first failing step, so while it sat sixth of eleven it silently
+      # disabled every check after it: raw sources, representability, token-file
+      # staleness and the system audit all reported nothing while appearing wired.
+      # A knowingly-failing step must run after everything that can still pass, or
+      # it converts one known defect into total blindness.
+      - name: Value modifiers are applied
+        run: python3 validation/check-value-modifiers.py
 
       - name: Upload audit report
         if: always()

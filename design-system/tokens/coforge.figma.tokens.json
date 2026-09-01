@@ -1,0 +1,6063 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$description": "CoForge design tokens. Sourced from @carbon/themes 11.79.0 (Apache-2.0), which publishes W3C DTCG natively — no conversion was needed. ADR-001: the repository authors v0; after the inversion point Figma owns tokens and this file mirrors.",
+  "$version": "0.1.0",
+  "palette": {
+    "ai": {
+      "$description": "One-off AI-surface values Carbon never ramped. They exist here because Carbon's own white.json and g100.json break its alias convention and inline these four as literals in the semantic layer. Hoisted to the primitive layer so the contract holds: exactly one layer carries numbers, everything above it aliases.",
+      "caret-center-light": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.627451,
+            0.764706,
+            1
+          ],
+          "hex": "#a0c3ff"
+        },
+        "$description": "AI popover caret centre, light"
+      },
+      "caret-center-dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.282353,
+            0.439216,
+            0.709804
+          ],
+          "hex": "#4870b5"
+        },
+        "$description": "AI popover caret centre, dark"
+      },
+      "caret-bottom-background-dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.12549,
+            0.176471,
+            0.270588
+          ],
+          "hex": "#202d45"
+        },
+        "$description": "AI popover caret bottom background, dark"
+      },
+      "caret-bottom-background-actions-dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.117647,
+            0.156863,
+            0.227451
+          ],
+          "hex": "#1e283a"
+        },
+        "$description": "AI popover caret bottom action background, dark"
+      },
+      "caret-bottom-background": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.917647,
+            0.945098,
+            1
+          ],
+          "hex": "#eaf1ff"
+        },
+        "$description": "AI popover caret bottom background"
+      },
+      "caret-bottom-background-actions": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.913725,
+            0.937255,
+            0.980392
+          ],
+          "hex": "#e9effa"
+        },
+        "$description": "AI popover caret bottom background for actions"
+      }
+    },
+    "black": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000"
+        },
+        "$description": "black default"
+      },
+      "Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.129412,
+            0.129412,
+            0.129412
+          ],
+          "hex": "#212121"
+        },
+        "$description": "black Hover"
+      }
+    },
+    "blue": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.929412,
+            0.960784,
+            1
+          ],
+          "hex": "#edf5ff"
+        },
+        "$description": "blue 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.815686,
+            0.886275,
+            1
+          ],
+          "hex": "#d0e2ff"
+        },
+        "$description": "blue 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.65098,
+            0.784314,
+            1
+          ],
+          "hex": "#a6c8ff"
+        },
+        "$description": "blue 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.470588,
+            0.662745,
+            1
+          ],
+          "hex": "#78a9ff"
+        },
+        "$description": "blue 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.270588,
+            0.537255,
+            1
+          ],
+          "hex": "#4589ff"
+        },
+        "$description": "blue 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.058824,
+            0.384314,
+            0.996078
+          ],
+          "hex": "#0f62fe"
+        },
+        "$description": "blue 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.262745,
+            0.807843
+          ],
+          "hex": "#0043ce"
+        },
+        "$description": "blue 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.176471,
+            0.611765
+          ],
+          "hex": "#002d9c"
+        },
+        "$description": "blue 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.113725,
+            0.423529
+          ],
+          "hex": "#001d6c"
+        },
+        "$description": "blue 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.066667,
+            0.254902
+          ],
+          "hex": "#001141"
+        },
+        "$description": "blue 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.121569,
+            0.458824
+          ],
+          "hex": "#001f75"
+        },
+        "$description": "blue 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.858824,
+            0.921569,
+            1
+          ],
+          "hex": "#dbebff"
+        },
+        "$description": "blue 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.721569,
+            0.827451,
+            1
+          ],
+          "hex": "#b8d3ff"
+        },
+        "$description": "blue 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.541176,
+            0.713725,
+            1
+          ],
+          "hex": "#8ab6ff"
+        },
+        "$description": "blue 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.360784,
+            0.592157,
+            1
+          ],
+          "hex": "#5c97ff"
+        },
+        "$description": "blue 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.121569,
+            0.439216,
+            1
+          ],
+          "hex": "#1f70ff"
+        },
+        "$description": "blue 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.313725,
+            0.901961
+          ],
+          "hex": "#0050e6"
+        },
+        "$description": "blue 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.32549,
+            1
+          ],
+          "hex": "#0053ff"
+        },
+        "$description": "blue 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.223529,
+            0.780392
+          ],
+          "hex": "#0039c7"
+        },
+        "$description": "blue 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.145098,
+            0.541176
+          ],
+          "hex": "#00258a"
+        },
+        "$description": "blue 90Hover"
+      }
+    },
+    "coolGray": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.94902,
+            0.956863,
+            0.972549
+          ],
+          "hex": "#f2f4f8"
+        },
+        "$description": "coolGray 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.866667,
+            0.882353,
+            0.901961
+          ],
+          "hex": "#dde1e6"
+        },
+        "$description": "coolGray 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.756863,
+            0.780392,
+            0.803922
+          ],
+          "hex": "#c1c7cd"
+        },
+        "$description": "coolGray 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.635294,
+            0.662745,
+            0.690196
+          ],
+          "hex": "#a2a9b0"
+        },
+        "$description": "coolGray 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.529412,
+            0.552941,
+            0.588235
+          ],
+          "hex": "#878d96"
+        },
+        "$description": "coolGray 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.411765,
+            0.439216,
+            0.466667
+          ],
+          "hex": "#697077"
+        },
+        "$description": "coolGray 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.301961,
+            0.32549,
+            0.345098
+          ],
+          "hex": "#4d5358"
+        },
+        "$description": "coolGray 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.203922,
+            0.227451,
+            0.247059
+          ],
+          "hex": "#343a3f"
+        },
+        "$description": "coolGray 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.129412,
+            0.152941,
+            0.164706
+          ],
+          "hex": "#21272a"
+        },
+        "$description": "coolGray 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.070588,
+            0.086275,
+            0.098039
+          ],
+          "hex": "#121619"
+        },
+        "$description": "coolGray 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.133333,
+            0.164706,
+            0.184314
+          ],
+          "hex": "#222a2f"
+        },
+        "$description": "coolGray 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.894118,
+            0.913725,
+            0.945098
+          ],
+          "hex": "#e4e9f1"
+        },
+        "$description": "coolGray 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.803922,
+            0.827451,
+            0.854902
+          ],
+          "hex": "#cdd3da"
+        },
+        "$description": "coolGray 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.678431,
+            0.709804,
+            0.741176
+          ],
+          "hex": "#adb5bd"
+        },
+        "$description": "coolGray 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.568627,
+            0.6,
+            0.631373
+          ],
+          "hex": "#9199a1"
+        },
+        "$description": "coolGray 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.458824,
+            0.482353,
+            0.521569
+          ],
+          "hex": "#757b85"
+        },
+        "$description": "coolGray 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.345098,
+            0.368627,
+            0.392157
+          ],
+          "hex": "#585e64"
+        },
+        "$description": "coolGray 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.364706,
+            0.392157,
+            0.415686
+          ],
+          "hex": "#5d646a"
+        },
+        "$description": "coolGray 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.262745,
+            0.290196,
+            0.317647
+          ],
+          "hex": "#434a51"
+        },
+        "$description": "coolGray 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.168627,
+            0.196078,
+            0.211765
+          ],
+          "hex": "#2b3236"
+        },
+        "$description": "coolGray 90Hover"
+      }
+    },
+    "cyan": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.898039,
+            0.964706,
+            1
+          ],
+          "hex": "#e5f6ff"
+        },
+        "$description": "cyan 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.729412,
+            0.901961,
+            1
+          ],
+          "hex": "#bae6ff"
+        },
+        "$description": "cyan 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.509804,
+            0.811765,
+            1
+          ],
+          "hex": "#82cfff"
+        },
+        "$description": "cyan 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2,
+            0.694118,
+            1
+          ],
+          "hex": "#33b1ff"
+        },
+        "$description": "cyan 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.066667,
+            0.572549,
+            0.909804
+          ],
+          "hex": "#1192e8"
+        },
+        "$description": "cyan 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.447059,
+            0.764706
+          ],
+          "hex": "#0072c3"
+        },
+        "$description": "cyan 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.32549,
+            0.603922
+          ],
+          "hex": "#00539a"
+        },
+        "$description": "cyan 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.227451,
+            0.427451
+          ],
+          "hex": "#003a6d"
+        },
+        "$description": "cyan 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.003922,
+            0.152941,
+            0.286275
+          ],
+          "hex": "#012749"
+        },
+        "$description": "cyan 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.023529,
+            0.090196,
+            0.152941
+          ],
+          "hex": "#061727"
+        },
+        "$description": "cyan 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.043137,
+            0.160784,
+            0.278431
+          ],
+          "hex": "#0b2947"
+        },
+        "$description": "cyan 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8,
+            0.933333,
+            1
+          ],
+          "hex": "#cceeff"
+        },
+        "$description": "cyan 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6,
+            0.854902,
+            1
+          ],
+          "hex": "#99daff"
+        },
+        "$description": "cyan 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.341176,
+            0.745098,
+            1
+          ],
+          "hex": "#57beff"
+        },
+        "$description": "cyan 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.019608,
+            0.623529,
+            1
+          ],
+          "hex": "#059fff"
+        },
+        "$description": "cyan 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.058824,
+            0.494118,
+            0.784314
+          ],
+          "hex": "#0f7ec8"
+        },
+        "$description": "cyan 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.372549,
+            0.639216
+          ],
+          "hex": "#005fa3"
+        },
+        "$description": "cyan 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.4,
+            0.741176
+          ],
+          "hex": "#0066bd"
+        },
+        "$description": "cyan 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.286275,
+            0.541176
+          ],
+          "hex": "#00498a"
+        },
+        "$description": "cyan 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.003922,
+            0.2,
+            0.376471
+          ],
+          "hex": "#013360"
+        },
+        "$description": "cyan 90Hover"
+      }
+    },
+    "gray": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.956863,
+            0.956863,
+            0.956863
+          ],
+          "hex": "#f4f4f4"
+        },
+        "$description": "gray 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.878431,
+            0.878431,
+            0.878431
+          ],
+          "hex": "#e0e0e0"
+        },
+        "$description": "gray 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.776471,
+            0.776471,
+            0.776471
+          ],
+          "hex": "#c6c6c6"
+        },
+        "$description": "gray 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.658824,
+            0.658824,
+            0.658824
+          ],
+          "hex": "#a8a8a8"
+        },
+        "$description": "gray 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.552941,
+            0.552941,
+            0.552941
+          ],
+          "hex": "#8d8d8d"
+        },
+        "$description": "gray 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.435294,
+            0.435294,
+            0.435294
+          ],
+          "hex": "#6f6f6f"
+        },
+        "$description": "gray 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.321569,
+            0.321569,
+            0.321569
+          ],
+          "hex": "#525252"
+        },
+        "$description": "gray 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.223529,
+            0.223529,
+            0.223529
+          ],
+          "hex": "#393939"
+        },
+        "$description": "gray 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.14902,
+            0.14902,
+            0.14902
+          ],
+          "hex": "#262626"
+        },
+        "$description": "gray 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.086275,
+            0.086275,
+            0.086275
+          ],
+          "hex": "#161616"
+        },
+        "$description": "gray 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.160784,
+            0.160784,
+            0.160784
+          ],
+          "hex": "#292929"
+        },
+        "$description": "gray 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.909804,
+            0.909804,
+            0.909804
+          ],
+          "hex": "#e8e8e8"
+        },
+        "$description": "gray 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.819608,
+            0.819608,
+            0.819608
+          ],
+          "hex": "#d1d1d1"
+        },
+        "$description": "gray 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.709804,
+            0.709804,
+            0.709804
+          ],
+          "hex": "#b5b5b5"
+        },
+        "$description": "gray 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6,
+            0.6,
+            0.6
+          ],
+          "hex": "#999999"
+        },
+        "$description": "gray 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.478431,
+            0.478431,
+            0.478431
+          ],
+          "hex": "#7a7a7a"
+        },
+        "$description": "gray 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.368627,
+            0.368627,
+            0.368627
+          ],
+          "hex": "#5e5e5e"
+        },
+        "$description": "gray 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.388235,
+            0.388235,
+            0.388235
+          ],
+          "hex": "#636363"
+        },
+        "$description": "gray 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.278431,
+            0.278431,
+            0.278431
+          ],
+          "hex": "#474747"
+        },
+        "$description": "gray 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2,
+            0.2,
+            0.2
+          ],
+          "hex": "#333333"
+        },
+        "$description": "gray 90Hover"
+      }
+    },
+    "green": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.870588,
+            0.984314,
+            0.901961
+          ],
+          "hex": "#defbe6"
+        },
+        "$description": "green 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.654902,
+            0.941176,
+            0.729412
+          ],
+          "hex": "#a7f0ba"
+        },
+        "$description": "green 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.435294,
+            0.862745,
+            0.54902
+          ],
+          "hex": "#6fdc8c"
+        },
+        "$description": "green 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.258824,
+            0.745098,
+            0.396078
+          ],
+          "hex": "#42be65"
+        },
+        "$description": "green 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.141176,
+            0.631373,
+            0.282353
+          ],
+          "hex": "#24a148"
+        },
+        "$description": "green 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.098039,
+            0.501961,
+            0.219608
+          ],
+          "hex": "#198038"
+        },
+        "$description": "green 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.054902,
+            0.376471,
+            0.152941
+          ],
+          "hex": "#0e6027"
+        },
+        "$description": "green 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.015686,
+            0.262745,
+            0.090196
+          ],
+          "hex": "#044317"
+        },
+        "$description": "green 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.007843,
+            0.176471,
+            0.05098
+          ],
+          "hex": "#022d0d"
+        },
+        "$description": "green 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.027451,
+            0.098039,
+            0.031373
+          ],
+          "hex": "#071908"
+        },
+        "$description": "green 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.05098,
+            0.188235,
+            0.058824
+          ],
+          "hex": "#0d300f"
+        },
+        "$description": "green 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.713725,
+            0.964706,
+            0.784314
+          ],
+          "hex": "#b6f6c8"
+        },
+        "$description": "green 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.454902,
+            0.905882,
+            0.572549
+          ],
+          "hex": "#74e792"
+        },
+        "$description": "green 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.211765,
+            0.807843,
+            0.368627
+          ],
+          "hex": "#36ce5e"
+        },
+        "$description": "green 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.231373,
+            0.670588,
+            0.352941
+          ],
+          "hex": "#3bab5a"
+        },
+        "$description": "green 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.12549,
+            0.556863,
+            0.247059
+          ],
+          "hex": "#208e3f"
+        },
+        "$description": "green 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.086275,
+            0.435294,
+            0.192157
+          ],
+          "hex": "#166f31"
+        },
+        "$description": "green 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.066667,
+            0.454902,
+            0.184314
+          ],
+          "hex": "#11742f"
+        },
+        "$description": "green 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.019608,
+            0.321569,
+            0.109804
+          ],
+          "hex": "#05521c"
+        },
+        "$description": "green 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.011765,
+            0.231373,
+            0.066667
+          ],
+          "hex": "#033b11"
+        },
+        "$description": "green 90Hover"
+      }
+    },
+    "magenta": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.941176,
+            0.968627
+          ],
+          "hex": "#fff0f7"
+        },
+        "$description": "magenta 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.839216,
+            0.909804
+          ],
+          "hex": "#ffd6e8"
+        },
+        "$description": "magenta 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.686275,
+            0.823529
+          ],
+          "hex": "#ffafd2"
+        },
+        "$description": "magenta 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.494118,
+            0.713725
+          ],
+          "hex": "#ff7eb6"
+        },
+        "$description": "magenta 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.933333,
+            0.32549,
+            0.588235
+          ],
+          "hex": "#ee5396"
+        },
+        "$description": "magenta 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.815686,
+            0.14902,
+            0.439216
+          ],
+          "hex": "#d02670"
+        },
+        "$description": "magenta 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.623529,
+            0.094118,
+            0.32549
+          ],
+          "hex": "#9f1853"
+        },
+        "$description": "magenta 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.454902,
+            0.035294,
+            0.215686
+          ],
+          "hex": "#740937"
+        },
+        "$description": "magenta 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.317647,
+            0.007843,
+            0.141176
+          ],
+          "hex": "#510224"
+        },
+        "$description": "magenta 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.164706,
+            0.039216,
+            0.094118
+          ],
+          "hex": "#2a0a18"
+        },
+        "$description": "magenta 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.32549,
+            0.078431,
+            0.184314
+          ],
+          "hex": "#53142f"
+        },
+        "$description": "magenta 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.878431,
+            0.937255
+          ],
+          "hex": "#ffe0ef"
+        },
+        "$description": "magenta 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.741176,
+            0.854902
+          ],
+          "hex": "#ffbdda"
+        },
+        "$description": "magenta 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.580392,
+            0.764706
+          ],
+          "hex": "#ff94c3"
+        },
+        "$description": "magenta 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.341176,
+            0.627451
+          ],
+          "hex": "#ff57a0"
+        },
+        "$description": "magenta 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.890196,
+            0.090196,
+            0.435294
+          ],
+          "hex": "#e3176f"
+        },
+        "$description": "magenta 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.690196,
+            0.129412,
+            0.372549
+          ],
+          "hex": "#b0215f"
+        },
+        "$description": "magenta 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.74902,
+            0.113725,
+            0.388235
+          ],
+          "hex": "#bf1d63"
+        },
+        "$description": "magenta 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.556863,
+            0.043137,
+            0.262745
+          ],
+          "hex": "#8e0b43"
+        },
+        "$description": "magenta 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.407843,
+            0.011765,
+            0.180392
+          ],
+          "hex": "#68032e"
+        },
+        "$description": "magenta 90Hover"
+      }
+    },
+    "orange": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.94902,
+            0.909804
+          ],
+          "hex": "#fff2e8"
+        },
+        "$description": "orange 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.85098,
+            0.745098
+          ],
+          "hex": "#ffd9be"
+        },
+        "$description": "orange 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.717647,
+            0.517647
+          ],
+          "hex": "#ffb784"
+        },
+        "$description": "orange 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.513725,
+            0.168627
+          ],
+          "hex": "#ff832b"
+        },
+        "$description": "orange 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.921569,
+            0.384314,
+            0
+          ],
+          "hex": "#eb6200"
+        },
+        "$description": "orange 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.729412,
+            0.305882,
+            0
+          ],
+          "hex": "#ba4e00"
+        },
+        "$description": "orange 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.541176,
+            0.219608,
+            0
+          ],
+          "hex": "#8a3800"
+        },
+        "$description": "orange 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.368627,
+            0.160784,
+            0
+          ],
+          "hex": "#5e2900"
+        },
+        "$description": "orange 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.243137,
+            0.101961,
+            0
+          ],
+          "hex": "#3e1a00"
+        },
+        "$description": "orange 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.137255,
+            0.062745,
+            0
+          ],
+          "hex": "#231000"
+        },
+        "$description": "orange 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.258824,
+            0.117647,
+            0
+          ],
+          "hex": "#421e00"
+        },
+        "$description": "orange 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.886275,
+            0.8
+          ],
+          "hex": "#ffe2cc"
+        },
+        "$description": "orange 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.776471,
+            0.619608
+          ],
+          "hex": "#ffc69e"
+        },
+        "$description": "orange 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.615686,
+            0.341176
+          ],
+          "hex": "#ff9d57"
+        },
+        "$description": "orange 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.980392,
+            0.407843,
+            0
+          ],
+          "hex": "#fa6800"
+        },
+        "$description": "orange 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8,
+            0.333333,
+            0
+          ],
+          "hex": "#cc5500"
+        },
+        "$description": "orange 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.619608,
+            0.258824,
+            0
+          ],
+          "hex": "#9e4200"
+        },
+        "$description": "orange 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.658824,
+            0.266667,
+            0
+          ],
+          "hex": "#a84400"
+        },
+        "$description": "orange 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.458824,
+            0.2,
+            0
+          ],
+          "hex": "#753300"
+        },
+        "$description": "orange 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.321569,
+            0.133333,
+            0
+          ],
+          "hex": "#522200"
+        },
+        "$description": "orange 90Hover"
+      }
+    },
+    "purple": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.964706,
+            0.94902,
+            1
+          ],
+          "hex": "#f6f2ff"
+        },
+        "$description": "purple 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.909804,
+            0.854902,
+            1
+          ],
+          "hex": "#e8daff"
+        },
+        "$description": "purple 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.831373,
+            0.733333,
+            1
+          ],
+          "hex": "#d4bbff"
+        },
+        "$description": "purple 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.745098,
+            0.584314,
+            1
+          ],
+          "hex": "#be95ff"
+        },
+        "$description": "purple 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.647059,
+            0.431373,
+            1
+          ],
+          "hex": "#a56eff"
+        },
+        "$description": "purple 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.541176,
+            0.247059,
+            0.988235
+          ],
+          "hex": "#8a3ffc"
+        },
+        "$description": "purple 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.411765,
+            0.160784,
+            0.768627
+          ],
+          "hex": "#6929c4"
+        },
+        "$description": "purple 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.286275,
+            0.113725,
+            0.545098
+          ],
+          "hex": "#491d8b"
+        },
+        "$description": "purple 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.192157,
+            0.07451,
+            0.368627
+          ],
+          "hex": "#31135e"
+        },
+        "$description": "purple 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.109804,
+            0.058824,
+            0.188235
+          ],
+          "hex": "#1c0f30"
+        },
+        "$description": "purple 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.203922,
+            0.109804,
+            0.34902
+          ],
+          "hex": "#341c59"
+        },
+        "$description": "purple 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.929412,
+            0.898039,
+            1
+          ],
+          "hex": "#ede5ff"
+        },
+        "$description": "purple 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.862745,
+            0.780392,
+            1
+          ],
+          "hex": "#dcc7ff"
+        },
+        "$description": "purple 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.772549,
+            0.639216,
+            1
+          ],
+          "hex": "#c5a3ff"
+        },
+        "$description": "purple 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.682353,
+            0.478431,
+            1
+          ],
+          "hex": "#ae7aff"
+        },
+        "$description": "purple 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.576471,
+            0.321569,
+            1
+          ],
+          "hex": "#9352ff"
+        },
+        "$description": "purple 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.470588,
+            0.133333,
+            0.984314
+          ],
+          "hex": "#7822fb"
+        },
+        "$description": "purple 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.486275,
+            0.239216,
+            0.839216
+          ],
+          "hex": "#7c3dd6"
+        },
+        "$description": "purple 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.356863,
+            0.141176,
+            0.678431
+          ],
+          "hex": "#5b24ad"
+        },
+        "$description": "purple 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.25098,
+            0.098039,
+            0.482353
+          ],
+          "hex": "#40197b"
+        },
+        "$description": "purple 90Hover"
+      }
+    },
+    "red": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.945098,
+            0.945098
+          ],
+          "hex": "#fff1f1"
+        },
+        "$description": "red 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.843137,
+            0.85098
+          ],
+          "hex": "#ffd7d9"
+        },
+        "$description": "red 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.701961,
+            0.721569
+          ],
+          "hex": "#ffb3b8"
+        },
+        "$description": "red 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.513725,
+            0.537255
+          ],
+          "hex": "#ff8389"
+        },
+        "$description": "red 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.980392,
+            0.301961,
+            0.337255
+          ],
+          "hex": "#fa4d56"
+        },
+        "$description": "red 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.854902,
+            0.117647,
+            0.156863
+          ],
+          "hex": "#da1e28"
+        },
+        "$description": "red 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.635294,
+            0.098039,
+            0.121569
+          ],
+          "hex": "#a2191f"
+        },
+        "$description": "red 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.458824,
+            0.054902,
+            0.07451
+          ],
+          "hex": "#750e13"
+        },
+        "$description": "red 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.321569,
+            0.015686,
+            0.031373
+          ],
+          "hex": "#520408"
+        },
+        "$description": "red 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.176471,
+            0.027451,
+            0.035294
+          ],
+          "hex": "#2d0709"
+        },
+        "$description": "red 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.329412,
+            0.05098,
+            0.066667
+          ],
+          "hex": "#540d11"
+        },
+        "$description": "red 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.878431,
+            0.878431
+          ],
+          "hex": "#ffe0e0"
+        },
+        "$description": "red 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.760784,
+            0.772549
+          ],
+          "hex": "#ffc2c5"
+        },
+        "$description": "red 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.6,
+            0.627451
+          ],
+          "hex": "#ff99a0"
+        },
+        "$description": "red 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.380392,
+            0.407843
+          ],
+          "hex": "#ff6168"
+        },
+        "$description": "red 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.933333,
+            0.027451,
+            0.07451
+          ],
+          "hex": "#ee0713"
+        },
+        "$description": "red 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.721569,
+            0.098039,
+            0.133333
+          ],
+          "hex": "#b81922"
+        },
+        "$description": "red 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.760784,
+            0.117647,
+            0.145098
+          ],
+          "hex": "#c21e25"
+        },
+        "$description": "red 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.572549,
+            0.066667,
+            0.094118
+          ],
+          "hex": "#921118"
+        },
+        "$description": "red 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4,
+            0.019608,
+            0.039216
+          ],
+          "hex": "#66050a"
+        },
+        "$description": "red 90Hover"
+      }
+    },
+    "teal": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.85098,
+            0.984314,
+            0.984314
+          ],
+          "hex": "#d9fbfb"
+        },
+        "$description": "teal 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.619608,
+            0.941176,
+            0.941176
+          ],
+          "hex": "#9ef0f0"
+        },
+        "$description": "teal 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.239216,
+            0.858824,
+            0.85098
+          ],
+          "hex": "#3ddbd9"
+        },
+        "$description": "teal 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.031373,
+            0.741176,
+            0.729412
+          ],
+          "hex": "#08bdba"
+        },
+        "$description": "teal 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.615686,
+            0.603922
+          ],
+          "hex": "#009d9a"
+        },
+        "$description": "teal 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.490196,
+            0.47451
+          ],
+          "hex": "#007d79"
+        },
+        "$description": "teal 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.364706,
+            0.364706
+          ],
+          "hex": "#005d5d"
+        },
+        "$description": "teal 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.254902,
+            0.266667
+          ],
+          "hex": "#004144"
+        },
+        "$description": "teal 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.007843,
+            0.168627,
+            0.188235
+          ],
+          "hex": "#022b30"
+        },
+        "$description": "teal 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.031373,
+            0.101961,
+            0.109804
+          ],
+          "hex": "#081a1c"
+        },
+        "$description": "teal 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.058824,
+            0.188235,
+            0.203922
+          ],
+          "hex": "#0f3034"
+        },
+        "$description": "teal 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.67451,
+            0.964706,
+            0.964706
+          ],
+          "hex": "#acf6f6"
+        },
+        "$description": "teal 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.341176,
+            0.898039,
+            0.898039
+          ],
+          "hex": "#57e5e5"
+        },
+        "$description": "teal 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.145098,
+            0.792157,
+            0.784314
+          ],
+          "hex": "#25cac8"
+        },
+        "$description": "teal 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.027451,
+            0.670588,
+            0.662745
+          ],
+          "hex": "#07aba9"
+        },
+        "$description": "teal 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.541176,
+            0.529412
+          ],
+          "hex": "#008a87"
+        },
+        "$description": "teal 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.419608,
+            0.407843
+          ],
+          "hex": "#006b68"
+        },
+        "$description": "teal 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.439216,
+            0.439216
+          ],
+          "hex": "#007070"
+        },
+        "$description": "teal 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.32549,
+            0.341176
+          ],
+          "hex": "#005357"
+        },
+        "$description": "teal 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.011765,
+            0.223529,
+            0.25098
+          ],
+          "hex": "#033940"
+        },
+        "$description": "teal 90Hover"
+      }
+    },
+    "warmGray": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.968627,
+            0.952941,
+            0.94902
+          ],
+          "hex": "#f7f3f2"
+        },
+        "$description": "warmGray 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.898039,
+            0.878431,
+            0.87451
+          ],
+          "hex": "#e5e0df"
+        },
+        "$description": "warmGray 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.792157,
+            0.772549,
+            0.768627
+          ],
+          "hex": "#cac5c4"
+        },
+        "$description": "warmGray 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.678431,
+            0.658824,
+            0.658824
+          ],
+          "hex": "#ada8a8"
+        },
+        "$description": "warmGray 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.560784,
+            0.545098,
+            0.545098
+          ],
+          "hex": "#8f8b8b"
+        },
+        "$description": "warmGray 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.447059,
+            0.431373,
+            0.431373
+          ],
+          "hex": "#726e6e"
+        },
+        "$description": "warmGray 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.337255,
+            0.317647,
+            0.317647
+          ],
+          "hex": "#565151"
+        },
+        "$description": "warmGray 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.235294,
+            0.219608,
+            0.219608
+          ],
+          "hex": "#3c3838"
+        },
+        "$description": "warmGray 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.152941,
+            0.145098,
+            0.145098
+          ],
+          "hex": "#272525"
+        },
+        "$description": "warmGray 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.090196,
+            0.078431,
+            0.078431
+          ],
+          "hex": "#171414"
+        },
+        "$description": "warmGray 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.172549,
+            0.14902,
+            0.14902
+          ],
+          "hex": "#2c2626"
+        },
+        "$description": "warmGray 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.941176,
+            0.909804,
+            0.901961
+          ],
+          "hex": "#f0e8e6"
+        },
+        "$description": "warmGray 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.847059,
+            0.815686,
+            0.811765
+          ],
+          "hex": "#d8d0cf"
+        },
+        "$description": "warmGray 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.72549,
+            0.701961,
+            0.694118
+          ],
+          "hex": "#b9b3b1"
+        },
+        "$description": "warmGray 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.611765,
+            0.588235,
+            0.588235
+          ],
+          "hex": "#9c9696"
+        },
+        "$description": "warmGray 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.498039,
+            0.482353,
+            0.482353
+          ],
+          "hex": "#7f7b7b"
+        },
+        "$description": "warmGray 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.376471,
+            0.364706,
+            0.364706
+          ],
+          "hex": "#605d5d"
+        },
+        "$description": "warmGray 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.411765,
+            0.388235,
+            0.388235
+          ],
+          "hex": "#696363"
+        },
+        "$description": "warmGray 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.298039,
+            0.282353,
+            0.282353
+          ],
+          "hex": "#4c4848"
+        },
+        "$description": "warmGray 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.203922,
+            0.196078,
+            0.196078
+          ],
+          "hex": "#343232"
+        },
+        "$description": "warmGray 90Hover"
+      }
+    },
+    "white": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$description": "white default"
+      },
+      "Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.909804,
+            0.909804,
+            0.909804
+          ],
+          "hex": "#e8e8e8"
+        },
+        "$description": "white Hover"
+      }
+    },
+    "yellow": {
+      "10": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.988235,
+            0.956863,
+            0.839216
+          ],
+          "hex": "#fcf4d6"
+        },
+        "$description": "yellow 10"
+      },
+      "20": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.992157,
+            0.862745,
+            0.411765
+          ],
+          "hex": "#fddc69"
+        },
+        "$description": "yellow 20"
+      },
+      "30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.945098,
+            0.760784,
+            0.105882
+          ],
+          "hex": "#f1c21b"
+        },
+        "$description": "yellow 30"
+      },
+      "40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.823529,
+            0.631373,
+            0.023529
+          ],
+          "hex": "#d2a106"
+        },
+        "$description": "yellow 40"
+      },
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.698039,
+            0.52549,
+            0
+          ],
+          "hex": "#b28600"
+        },
+        "$description": "yellow 50"
+      },
+      "60": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.556863,
+            0.415686,
+            0
+          ],
+          "hex": "#8e6a00"
+        },
+        "$description": "yellow 60"
+      },
+      "70": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.407843,
+            0.305882,
+            0
+          ],
+          "hex": "#684e00"
+        },
+        "$description": "yellow 70"
+      },
+      "80": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.282353,
+            0.215686,
+            0
+          ],
+          "hex": "#483700"
+        },
+        "$description": "yellow 80"
+      },
+      "90": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.188235,
+            0.141176,
+            0
+          ],
+          "hex": "#302400"
+        },
+        "$description": "yellow 90"
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.109804,
+            0.082353,
+            0
+          ],
+          "hex": "#1c1500"
+        },
+        "$description": "yellow 100"
+      },
+      "100Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2,
+            0.14902,
+            0
+          ],
+          "hex": "#332600"
+        },
+        "$description": "yellow 100Hover"
+      },
+      "10Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.972549,
+            0.901961,
+            0.627451
+          ],
+          "hex": "#f8e6a0"
+        },
+        "$description": "yellow 10Hover"
+      },
+      "20Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.988235,
+            0.803922,
+            0.152941
+          ],
+          "hex": "#fccd27"
+        },
+        "$description": "yellow 20Hover"
+      },
+      "30Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.866667,
+            0.690196,
+            0.054902
+          ],
+          "hex": "#ddb00e"
+        },
+        "$description": "yellow 30Hover"
+      },
+      "40Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.737255,
+            0.564706,
+            0.019608
+          ],
+          "hex": "#bc9005"
+        },
+        "$description": "yellow 40Hover"
+      },
+      "50Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.619608,
+            0.466667,
+            0
+          ],
+          "hex": "#9e7700"
+        },
+        "$description": "yellow 50Hover"
+      },
+      "60Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.458824,
+            0.345098,
+            0
+          ],
+          "hex": "#755800"
+        },
+        "$description": "yellow 60Hover"
+      },
+      "70Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.501961,
+            0.376471,
+            0
+          ],
+          "hex": "#806000"
+        },
+        "$description": "yellow 70Hover"
+      },
+      "80Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.360784,
+            0.27451,
+            0
+          ],
+          "hex": "#5c4600"
+        },
+        "$description": "yellow 80Hover"
+      },
+      "90Hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.239216,
+            0.180392,
+            0
+          ],
+          "hex": "#3d2e00"
+        },
+        "$description": "yellow 90Hover"
+      }
+    },
+    "bone": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.933333,
+            0.92549,
+            0.901961
+          ],
+          "hex": "#eeece6"
+        },
+        "$description": "CoForge bone — the default page/document ground. Warm off-white, not pure white."
+      }
+    },
+    "ink": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.015686,
+            0.070588,
+            0.133333
+          ],
+          "hex": "#041222"
+        },
+        "$description": "CoForge ink — the default text and mark colour. Deep navy, not black."
+      }
+    },
+    "coral": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.945098,
+            0.356863,
+            0.25098
+          ],
+          "hex": "#f15b40"
+        },
+        "$description": "CoForge coral — accent and CONTAINER role only. Fills shapes, large-type CTAs, the wordmark C. NEVER body text, small labels, captions, legends, table values or form hints, on any ground (brand.md §3 binding rule) — measures 2.82:1 on bone / 3.33:1 on white, below the 4.5:1 AA text floor at every size this brand permits for small text."
+      },
+      "text": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.690196,
+            0.219608,
+            0.133333
+          ],
+          "hex": "#b03822"
+        },
+        "$description": "CoForge coral, TEXT-SAFE role. The only coral value permitted to carry text, per brand.md §3's binding rule that the container coral and the text coral are two separate roles, not one colour used twice. Resolves OQ-6."
+      }
+    }
+  },
+  "semantic": {
+    "background": {
+      "$type": "color",
+      "$value": "{bone.default}",
+      "$description": "Default page background color. Use as the base surface for the entire application or page."
+    },
+    "background-inverse": {
+      "$type": "color",
+      "$value": "{gray.80}",
+      "$description": "Inverse background color for dark UI elements. Use for tooltips, inverse buttons, or dark-themed sections."
+    },
+    "background-brand": {
+      "$type": "color",
+      "$value": "{blue.60}",
+      "$description": "Brand color for backgrounds. Use for branded sections, headers, or promotional areas."
+    },
+    "background-active": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Background color for active/pressed state. Use when user clicks or presses interactive elements."
+    },
+    "background-hover": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Background color for hover state. Use when user hovers over interactive elements to provide visual feedback."
+    },
+    "background-inverse-hover": {
+      "$type": "color",
+      "$value": "{gray.80Hover}",
+      "$description": "Hover state for inverse backgrounds"
+    },
+    "background-selected": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Background color for selected state. Use to highlight currently selected items or active states."
+    },
+    "background-selected-hover": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Hover state for selected backgrounds"
+    },
+    "layer": {
+      "01": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "active-01": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "background-01": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "hover-01": {
+        "$type": "color",
+        "$value": "{gray.10Hover}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "selected-01": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "selected-hover-01": {
+        "$type": "color",
+        "$value": "{gray.20Hover}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "02": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "active-02": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "background-02": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "hover-02": {
+        "$type": "color",
+        "$value": "{gray.10Hover}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "selected-02": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "selected-hover-02": {
+        "$type": "color",
+        "$value": "{gray.20Hover}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "03": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "active-03": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "background-03": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "hover-03": {
+        "$type": "color",
+        "$value": "{gray.10Hover}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "selected-03": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "selected-hover-03": {
+        "$type": "color",
+        "$value": "{gray.20Hover}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "selected-inverse": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "selected-disabled": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Disabled. Token for disabled in the design system."
+      },
+      "accent-01": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "accent-active-01": {
+        "$type": "color",
+        "$value": "{gray.40}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "accent-hover-01": {
+        "$type": "color",
+        "$value": "{gray.20Hover}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "accent-02": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "accent-active-02": {
+        "$type": "color",
+        "$value": "{gray.40}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "accent-hover-02": {
+        "$type": "color",
+        "$value": "{gray.20Hover}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "accent-03": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "accent-active-03": {
+        "$type": "color",
+        "$value": "{gray.40}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "accent-hover-03": {
+        "$type": "color",
+        "$value": "{gray.20Hover}",
+        "$description": "03. Token for 03 in the design system."
+      }
+    },
+    "field": {
+      "01": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Background color for form fields on layer 01. Use for input fields, text areas, and selects on first layer."
+      },
+      "hover-01": {
+        "$type": "color",
+        "$value": "{gray.10Hover}",
+        "$description": "Hover background for fields on layer 01. Use when user hovers over input fields on first layer."
+      },
+      "02": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Background color for form fields on layer 02. Use for input fields on second layer surfaces."
+      },
+      "hover-02": {
+        "$type": "color",
+        "$value": "{gray.10Hover}",
+        "$description": "Hover background for fields on layer 02. Use when user hovers over input fields on second layer."
+      },
+      "03": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Background color for form fields on layer 03. Use for input fields on third layer surfaces."
+      },
+      "hover-03": {
+        "$type": "color",
+        "$value": "{gray.10Hover}",
+        "$description": "Hover background for fields on layer 03. Use when user hovers over input fields on third layer."
+      }
+    },
+    "border": {
+      "subtle-00": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Subtle border color for base layer. Use for low-contrast borders on page background."
+      },
+      "subtle-01": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Subtle border color for layer 01. Use for low-contrast borders on first layer surfaces."
+      },
+      "subtle-selected-01": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Subtle border for selected items on layer 01. Use for low-contrast borders on selected elements."
+      },
+      "subtle-02": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Subtle border color for layer 02. Use for low-contrast borders on second layer surfaces."
+      },
+      "subtle-selected-02": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Subtle border for selected items on layer 02. Use for low-contrast borders on selected elements."
+      },
+      "subtle-03": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Subtle border color for layer 03. Use for low-contrast borders on third layer surfaces."
+      },
+      "subtle-selected-03": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Subtle border for selected items on layer 03. Use for low-contrast borders on selected elements."
+      },
+      "strong-01": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "Strong border color for layer 01. Use for high-contrast borders that need clear definition on first layer."
+      },
+      "strong-02": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Strong border color for layer 02. Use for high-contrast borders on second layer surfaces."
+      },
+      "strong-03": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Strong border color for layer 03. Use for high-contrast borders on third layer surfaces."
+      },
+      "tile-01": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Border color for tiles on layer 01. Use for card or tile borders on first layer."
+      },
+      "tile-02": {
+        "$type": "color",
+        "$value": "{gray.40}",
+        "$description": "Border color for tiles on layer 02. Use for card or tile borders on second layer."
+      },
+      "tile-03": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Border color for tiles on layer 03. Use for card or tile borders on third layer."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Border color for inverse/dark UI elements. Use for borders on dark backgrounds or inverse components."
+      },
+      "interactive": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Border color for interactive elements. Use for focused inputs, active selections, or clickable borders."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Border color for disabled elements. Use when borders need to indicate unavailable or inactive state."
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "{ink.default}",
+        "$description": "Primary. Token for primary in the design system."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "Secondary. Token for secondary in the design system."
+      },
+      "placeholder": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Placeholder. Token for placeholder in the design system."
+      },
+      "helper": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "Helper. Token for helper in the design system."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{red.70}",
+        "$description": "Error. Token for error in the design system."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "on-color": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Color. Token for color in the design system."
+      },
+      "on-color-disabled": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Disabled. Token for disabled in the design system."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Disabled. Token for disabled in the design system."
+      }
+    },
+    "link": {
+      "primary": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "Primary. Token for primary in the design system."
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "Hover. Token for hover in the design system."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "Secondary. Token for secondary in the design system."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "visited": {
+        "$type": "color",
+        "$value": "{purple.70}",
+        "$description": "Visited. Token for visited in the design system."
+      },
+      "inverse-visited": {
+        "$type": "color",
+        "$value": "{purple.40}",
+        "$description": "Visited. Token for visited in the design system."
+      },
+      "inverse-active": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Active. Token for active in the design system."
+      },
+      "inverse-hover": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Hover. Token for hover in the design system."
+      }
+    },
+    "icon": {
+      "primary": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Primary icon color. Use for main icons with highest visual priority and emphasis."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "Secondary. Token for secondary in the design system."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Icon color for inverse/dark backgrounds. Use for icons on dark surfaces or inverse components."
+      },
+      "on-color": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Icon color for colored backgrounds. Use for icons on brand colors, buttons, or colored surfaces."
+      },
+      "on-color-disabled": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Disabled icon color on colored backgrounds. Use when icons on colored surfaces are inactive."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Icon color for disabled state. Use when icons need to indicate unavailable or inactive functionality."
+      },
+      "interactive": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Icon color for interactive elements. Use for clickable icons, buttons, and actionable items."
+      }
+    },
+    "support": {
+      "error": {
+        "$type": "color",
+        "$value": "{red.60}",
+        "$description": "Error. Token for error in the design system."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Success. Token for success in the design system."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{yellow.60}",
+        "$description": "Warning. Token for warning in the design system."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "Info. Token for info in the design system."
+      },
+      "error-inverse": {
+        "$type": "color",
+        "$value": "{red.50}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "success-inverse": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "warning-inverse": {
+        "$type": "color",
+        "$value": "{yellow.30}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "info-inverse": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "caution-minor": {
+        "$type": "color",
+        "$value": "{yellow.30}",
+        "$description": "Minor. Token for minor in the design system."
+      },
+      "caution-major": {
+        "$type": "color",
+        "$value": "{orange.40}",
+        "$description": "Major. Token for major in the design system."
+      },
+      "caution-undefined": {
+        "$type": "color",
+        "$value": "{purple.60}",
+        "$description": "Undefined. Token for undefined in the design system."
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{blue.60}",
+      "$description": "Focus indicator color. Use for focus rings and outlines on interactive elements for keyboard navigation."
+    },
+    "focus-inset": {
+      "$type": "color",
+      "$value": "{white.default}",
+      "$description": "Inset focus indicator color. Use for inner focus rings on elements with colored backgrounds."
+    },
+    "focus-inverse": {
+      "$type": "color",
+      "$value": "{white.default}",
+      "$description": "Focus indicator for inverse/dark elements. Use for focus rings on dark backgrounds."
+    },
+    "interactive": {
+      "$type": "color",
+      "$value": "{blue.60}",
+      "$description": "Interactive element color. Use for clickable elements, links, and actionable items."
+    },
+    "highlight": {
+      "$type": "color",
+      "$value": "{blue.20}",
+      "$description": "Highlight color for selected text or emphasized content. Use for text selection or search result highlighting."
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "{black.default}",
+      "$description": "Overlay color for modal backgrounds. Use to dim content behind dialogs and modals."
+    },
+    "toggle-off": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Off. Token for off in the design system."
+    },
+    "shadow": {
+      "$type": "color",
+      "$value": "{black.default}",
+      "$description": "Shadow color for elevation. Provides depth and layering for elevated components."
+    },
+    "skeleton": {
+      "background": {
+        "$type": "color",
+        "$value": "{gray.10Hover}",
+        "$description": "Background. Token for background in the design system."
+      },
+      "element": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Element. Token for element in the design system."
+      }
+    },
+    "syntax": {
+      "comment": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax highlighting color for comments. Use for all comment types in code editors."
+      },
+      "line-comment": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax highlighting color for line comments. Use for single-line comments in code."
+      },
+      "block-comment": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax highlighting color for block comments. Use for multi-line comment blocks."
+      },
+      "doc-comment": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax highlighting color for documentation comments. Use for JSDoc, docstrings, etc."
+      },
+      "string": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax highlighting color for strings. Use for string literals in code."
+      },
+      "doc-string": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax highlighting color for documentation strings. Use for docstring literals."
+      },
+      "keyword": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax highlighting color for keywords. Use for language keywords like if, for, class."
+      },
+      "operator-keyword": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax highlighting color for operator keywords. Use for keywords like and, or, not."
+      },
+      "control-keyword": {
+        "$type": "color",
+        "$value": "{purple.70}",
+        "$description": "Syntax highlighting color for control flow keywords. Use for if, else, while, return."
+      },
+      "definition-keyword": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax highlighting color for definition keywords. Use for def, function, class declarations."
+      },
+      "module-keyword": {
+        "$type": "color",
+        "$value": "{purple.70}",
+        "$description": "Syntax highlighting color for module keywords. Use for import, export, require."
+      },
+      "variable": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax highlighting color for variables. Use for variable names and identifiers."
+      },
+      "name": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax name"
+      },
+      "variable-name": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax variable name"
+      },
+      "label-name": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax label name"
+      },
+      "attribute": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax attribute"
+      },
+      "attribute-name": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax attribute name"
+      },
+      "property-name": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax property name"
+      },
+      "tag": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax tag"
+      },
+      "tag-name": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax tag name"
+      },
+      "type": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax type"
+      },
+      "type-name": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax type name"
+      },
+      "class-name": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax class name"
+      },
+      "namespace": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax namespace"
+      },
+      "macro-name": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax macro name"
+      },
+      "atom": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax atom"
+      },
+      "literal": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax literal"
+      },
+      "bool": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax bool"
+      },
+      "null": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax null"
+      },
+      "self": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax self"
+      },
+      "number": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax number"
+      },
+      "integer": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax integer"
+      },
+      "float": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax float"
+      },
+      "unit": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax unit"
+      },
+      "character": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax character"
+      },
+      "attribute-value": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax attribute value"
+      },
+      "special-string": {
+        "$type": "color",
+        "$value": "{purple.60}",
+        "$description": "Syntax special string"
+      },
+      "regexp": {
+        "$type": "color",
+        "$value": "{purple.70}",
+        "$description": "Syntax regexp"
+      },
+      "escape": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax escape"
+      },
+      "url": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax url"
+      },
+      "color": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax color"
+      },
+      "operator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax operator"
+      },
+      "deref-operator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax deref operator"
+      },
+      "arithmetic-operator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax arithmetic operator"
+      },
+      "logic-operator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax logic operator"
+      },
+      "bitwise-operator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax bitwise operator"
+      },
+      "compare-operator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax compare operator"
+      },
+      "update-operator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax update operator"
+      },
+      "definition-operator": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax definition operator"
+      },
+      "type-operator": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax type operator"
+      },
+      "control-operator": {
+        "$type": "color",
+        "$value": "{purple.70}",
+        "$description": "Syntax control operator"
+      },
+      "modifier": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax modifier"
+      },
+      "punctuation": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax punctuation"
+      },
+      "separator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax separator"
+      },
+      "bracket": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax bracket"
+      },
+      "angle-bracket": {
+        "$type": "color",
+        "$value": "{coolGray.60}",
+        "$description": "Syntax angle bracket"
+      },
+      "square-bracket": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax square bracket"
+      },
+      "paren": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax paren"
+      },
+      "brace": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax brace"
+      },
+      "content": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax content"
+      },
+      "list": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax list"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax emphasis"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax strong"
+      },
+      "monospace": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax monospace"
+      },
+      "strikethrough": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax strikethrough"
+      },
+      "heading": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax heading"
+      },
+      "content-separator": {
+        "$type": "color",
+        "$value": "{coolGray.80}",
+        "$description": "Syntax content separator"
+      },
+      "quote": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax quote"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax link"
+      },
+      "invalid": {
+        "$type": "color",
+        "$value": "{red.60}",
+        "$description": "Syntax invalid"
+      },
+      "meta": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax meta"
+      },
+      "document-meta": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Syntax document meta"
+      },
+      "annotation": {
+        "$type": "color",
+        "$value": "{teal.60}",
+        "$description": "Syntax annotation"
+      },
+      "processing-instruction": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Syntax processing instruction"
+      },
+      "definition": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax definition"
+      },
+      "constant": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax constant"
+      },
+      "function": {
+        "$type": "color",
+        "$value": "{yellow.60}",
+        "$description": "Syntax function"
+      },
+      "standard": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax standard"
+      },
+      "local": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax local"
+      },
+      "special": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Syntax special"
+      },
+      "inserted": {
+        "$type": "color",
+        "$value": "{green.20}",
+        "$description": "Syntax inserted"
+      },
+      "deleted": {
+        "$type": "color",
+        "$value": "{red.20}",
+        "$description": "Syntax deleted"
+      },
+      "heading-1": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax heading 1"
+      },
+      "heading-2": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax heading 2"
+      },
+      "heading-3": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax heading 3"
+      },
+      "heading-4": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax heading 4"
+      },
+      "heading-5": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax heading 5"
+      },
+      "heading-6": {
+        "$type": "color",
+        "$value": "{cyan.70}",
+        "$description": "Syntax heading 6"
+      }
+    },
+    "ai": {
+      "inner-shadow": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "AI inner shadow"
+      },
+      "aura-start-sm": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "AI aura start small"
+      },
+      "aura-start": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "AI aura start"
+      },
+      "aura-end": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "AI aura end"
+      },
+      "border-strong": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "AI strong border"
+      },
+      "border-start": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "AI border start"
+      },
+      "border-end": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "AI border end"
+      },
+      "drop-shadow": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "AI drop shadow"
+      },
+      "aura-hover-background": {
+        "$type": "color",
+        "$value": "{blue.10}",
+        "$description": "AI aura hover background"
+      },
+      "aura-hover-start": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "AI aura hover start"
+      },
+      "aura-hover-end": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "AI aura hover end"
+      },
+      "popover-background": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "AI popover background"
+      },
+      "popover-shadow-outer-01": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "AI popover outer shadow 01"
+      },
+      "popover-shadow-outer-02": {
+        "$type": "color",
+        "$value": "{black.default}",
+        "$description": "AI popover outer shadow 02"
+      },
+      "skeleton-background": {
+        "$type": "color",
+        "$value": "{blue.20}",
+        "$description": "AI skeleton background"
+      },
+      "skeleton-element-background": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "AI skeleton element background"
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": "{blue.100}",
+        "$description": "AI modal overlay"
+      },
+      "popover-caret-center": {
+        "$type": "color",
+        "$value": "{ai.caret-center-light}",
+        "$description": "AI popover caret center"
+      },
+      "popover-caret-bottom": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "AI popover caret bottom"
+      },
+      "popover-caret-bottom-background-actions": {
+        "$type": "color",
+        "$value": "{ai.caret-bottom-background-actions}",
+        "$description": "AI popover caret bottom background for actions"
+      },
+      "popover-caret-bottom-background": {
+        "$type": "color",
+        "$value": "{ai.caret-bottom-background}",
+        "$description": "AI popover caret bottom background"
+      }
+    },
+    "chat": {
+      "prompt-background": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Chat prompt background"
+      },
+      "prompt-border-start": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Chat prompt border start"
+      },
+      "prompt-border-end": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Chat prompt border end"
+      },
+      "prompt-text": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Chat prompt text"
+      },
+      "bubble-user": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Chat bubble user background"
+      },
+      "bubble-user-text": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Chat bubble user text"
+      },
+      "bubble-agent": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Chat bubble agent background"
+      },
+      "bubble-agent-text": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Chat bubble agent text"
+      },
+      "bubble-border": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Chat bubble border"
+      },
+      "avatar-bot": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "Chat avatar bot"
+      },
+      "avatar-agent": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "Chat avatar agent"
+      },
+      "avatar-user": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Chat avatar user"
+      },
+      "shell-background": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Chat shell background"
+      },
+      "header-background": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Chat header background"
+      },
+      "header-text": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Chat header text"
+      },
+      "button": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Chat button color"
+      },
+      "button-hover": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Chat button hover background"
+      },
+      "button-text-hover": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "Chat button text hover"
+      },
+      "button-active": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Chat button active background"
+      },
+      "button-selected": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Chat button selected background"
+      },
+      "button-text-selected": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "Chat button text selected"
+      }
+    },
+    "accent": {
+      "container": {
+        "$type": "color",
+        "$value": "{coral.default}",
+        "$description": "The brand accent as a CONTAINER — fills, large-type CTA backgrounds, the wordmark mark. NEVER a text or label colour on any ground (brand.md §3 binding rule)."
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{coral.text}",
+        "$description": "The brand accent's TEXT-SAFE role — the only coral value permitted to carry text on bone (brand.md §3). GROUND-DEPENDENT (OQ-5): on dark, {coral.text} (#b03822) measures 2.95:1 against semantic-dark.background and fails, while {coral.default} (#f15b40) measures 5.43:1 there and passes — so the dark alias is deliberately NOT the same primitive as light's. No new value is invented; token-keeper is choosing between brand.md's own two evidenced anchors per ground."
+      }
+    }
+  },
+  "semantic-dark": {
+    "background": {
+      "$type": "color",
+      "$value": "{gray.100}",
+      "$description": "Default page background color. Use as the base surface for the entire application or page."
+    },
+    "background-inverse": {
+      "$type": "color",
+      "$value": "{gray.10}",
+      "$description": "Inverse background color for dark UI elements. Use for tooltips, inverse buttons, or dark-themed sections."
+    },
+    "background-brand": {
+      "$type": "color",
+      "$value": "{blue.60}",
+      "$description": "Brand color for backgrounds. Use for branded sections, headers, or promotional areas."
+    },
+    "background-active": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Background color for active/pressed state. Use when user clicks or presses interactive elements."
+    },
+    "background-hover": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Background color for hover state. Use when user hovers over interactive elements to provide visual feedback."
+    },
+    "background-inverse-hover": {
+      "$type": "color",
+      "$value": "{gray.10Hover}",
+      "$description": "Hover state for inverse backgrounds. Use when user hovers over dark UI elements."
+    },
+    "background-selected": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Background color for selected state. Use to highlight currently selected items or active states."
+    },
+    "background-selected-hover": {
+      "$type": "color",
+      "$value": "{gray.50}",
+      "$description": "Hover state for selected backgrounds. Use when user hovers over already-selected items."
+    },
+    "layer": {
+      "01": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "active-01": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "background-01": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "hover-01": {
+        "$type": "color",
+        "$value": "{gray.90Hover}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "selected-01": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "selected-hover-01": {
+        "$type": "color",
+        "$value": "{gray.80Hover}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "02": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "active-02": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "background-02": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "hover-02": {
+        "$type": "color",
+        "$value": "{gray.80Hover}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "selected-02": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "selected-hover-02": {
+        "$type": "color",
+        "$value": "{gray.70Hover}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "03": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "active-03": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "background-03": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "hover-03": {
+        "$type": "color",
+        "$value": "{gray.70Hover}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "selected-03": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "selected-hover-03": {
+        "$type": "color",
+        "$value": "{gray.60Hover}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "selected-inverse": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "selected-disabled": {
+        "$type": "color",
+        "$value": "{gray.40}",
+        "$description": "Disabled. Token for disabled in the design system."
+      },
+      "accent-01": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "accent-active-01": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "accent-hover-01": {
+        "$type": "color",
+        "$value": "{gray.80Hover}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "accent-02": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "accent-active-02": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "accent-hover-02": {
+        "$type": "color",
+        "$value": "{gray.70Hover}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "accent-03": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "accent-active-03": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "accent-hover-03": {
+        "$type": "color",
+        "$value": "{gray.60Hover}",
+        "$description": "03. Token for 03 in the design system."
+      }
+    },
+    "field": {
+      "01": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "hover-01": {
+        "$type": "color",
+        "$value": "{gray.90Hover}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "02": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "hover-02": {
+        "$type": "color",
+        "$value": "{gray.80Hover}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "03": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "hover-03": {
+        "$type": "color",
+        "$value": "{gray.70Hover}",
+        "$description": "03. Token for 03 in the design system."
+      }
+    },
+    "border": {
+      "subtle-00": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "00. Token for 00 in the design system."
+      },
+      "subtle-01": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "subtle-selected-01": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "subtle-02": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "subtle-selected-02": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "subtle-03": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "subtle-selected-03": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "strong-01": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "strong-02": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "strong-03": {
+        "$type": "color",
+        "$value": "{gray.40}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "tile-01": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "01. Token for 01 in the design system."
+      },
+      "tile-02": {
+        "$type": "color",
+        "$value": "{gray.60}",
+        "$description": "02. Token for 02 in the design system."
+      },
+      "tile-03": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "03. Token for 03 in the design system."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Border color for inverse/dark UI elements. Use for borders on dark backgrounds or inverse components."
+      },
+      "interactive": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Border color for interactive elements. Use for focused inputs, active selections, or clickable borders."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Border color for disabled elements. Use when borders need to indicate unavailable or inactive state."
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Primary. Token for primary in the design system."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Secondary. Token for secondary in the design system."
+      },
+      "placeholder": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Placeholder. Token for placeholder in the design system."
+      },
+      "helper": {
+        "$type": "color",
+        "$value": "{gray.40}",
+        "$description": "Helper. Token for helper in the design system."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{red.40}",
+        "$description": "Error. Token for error in the design system."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "on-color": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Color. Token for color in the design system."
+      },
+      "on-color-disabled": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Disabled. Token for disabled in the design system."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Disabled. Token for disabled in the design system."
+      }
+    },
+    "link": {
+      "primary": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "Primary. Token for primary in the design system."
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Hover. Token for hover in the design system."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Secondary. Token for secondary in the design system."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{blue.60}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "visited": {
+        "$type": "color",
+        "$value": "{purple.40}",
+        "$description": "Visited. Token for visited in the design system."
+      },
+      "inverse-visited": {
+        "$type": "color",
+        "$value": "{purple.60}",
+        "$description": "Visited. Token for visited in the design system."
+      },
+      "inverse-active": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Active. Token for active in the design system."
+      },
+      "inverse-hover": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "Hover. Token for hover in the design system."
+      }
+    },
+    "icon": {
+      "primary": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Primary. Token for primary in the design system."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Secondary. Token for secondary in the design system."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "on-color": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Color. Token for color in the design system."
+      },
+      "on-color-disabled": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Disabled. Token for disabled in the design system."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Disabled. Token for disabled in the design system."
+      },
+      "interactive": {
+        "$type": "color",
+        "$value": "{white.default}",
+        "$description": "Interactive element color. Use for clickable elements, links, and actionable items."
+      }
+    },
+    "support": {
+      "error": {
+        "$type": "color",
+        "$value": "{red.50}",
+        "$description": "Error. Token for error in the design system."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Success. Token for success in the design system."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{yellow.30}",
+        "$description": "Warning. Token for warning in the design system."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Info. Token for info in the design system."
+      },
+      "error-inverse": {
+        "$type": "color",
+        "$value": "{red.60}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "success-inverse": {
+        "$type": "color",
+        "$value": "{green.50}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "warning-inverse": {
+        "$type": "color",
+        "$value": "{yellow.30}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "info-inverse": {
+        "$type": "color",
+        "$value": "{blue.70}",
+        "$description": "Inverse. Token for inverse in the design system."
+      },
+      "caution-minor": {
+        "$type": "color",
+        "$value": "{yellow.30}",
+        "$description": "Minor. Token for minor in the design system."
+      },
+      "caution-major": {
+        "$type": "color",
+        "$value": "{orange.40}",
+        "$description": "Major. Token for major in the design system."
+      },
+      "caution-undefined": {
+        "$type": "color",
+        "$value": "{purple.50}",
+        "$description": "Undefined. Token for undefined in the design system."
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{white.default}",
+      "$description": "Focus. Token for focus in the design system."
+    },
+    "focus-inset": {
+      "$type": "color",
+      "$value": "{gray.100}",
+      "$description": "Inset. Token for inset in the design system."
+    },
+    "focus-inverse": {
+      "$type": "color",
+      "$value": "{blue.60}",
+      "$description": "Inverse. Token for inverse in the design system."
+    },
+    "interactive": {
+      "$type": "color",
+      "$value": "{blue.50}",
+      "$description": "Interactive element color. Use for clickable elements, links, and actionable items."
+    },
+    "highlight": {
+      "$type": "color",
+      "$value": "{blue.90}",
+      "$description": "Highlight. Token for highlight in the design system."
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "{black.default}",
+      "$description": "Overlay color for modal backgrounds. Use to dim content behind dialogs and modals."
+    },
+    "toggle-off": {
+      "$type": "color",
+      "$value": "{gray.60}",
+      "$description": "Off. Token for off in the design system."
+    },
+    "shadow": {
+      "$type": "color",
+      "$value": "{black.default}",
+      "$description": "Shadow color for elevation. Provides depth and layering for elevated components."
+    },
+    "skeleton": {
+      "background": {
+        "$type": "color",
+        "$value": "{gray.100Hover}",
+        "$description": "Background. Token for background in the design system."
+      },
+      "element": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "Element. Token for element in the design system."
+      }
+    },
+    "syntax": {
+      "comment": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Comment. Token for comment in the design system."
+      },
+      "line-comment": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Comment. Token for comment in the design system."
+      },
+      "block-comment": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Comment. Token for comment in the design system."
+      },
+      "doc-comment": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Comment. Token for comment in the design system."
+      },
+      "string": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "String. Token for string in the design system."
+      },
+      "doc-string": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "String. Token for string in the design system."
+      },
+      "keyword": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Keyword. Token for keyword in the design system."
+      },
+      "operator-keyword": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Keyword. Token for keyword in the design system."
+      },
+      "control-keyword": {
+        "$type": "color",
+        "$value": "{purple.40}",
+        "$description": "Keyword. Token for keyword in the design system."
+      },
+      "definition-keyword": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "Keyword. Token for keyword in the design system."
+      },
+      "module-keyword": {
+        "$type": "color",
+        "$value": "{purple.40}",
+        "$description": "Keyword. Token for keyword in the design system."
+      },
+      "variable": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Variable. Token for variable in the design system."
+      },
+      "name": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "variable-name": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "label-name": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "attribute": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "Attribute. Token for attribute in the design system."
+      },
+      "attribute-name": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "property-name": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "tag": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Tag. Token for tag in the design system."
+      },
+      "tag-name": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "type": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Type. Token for type in the design system."
+      },
+      "type-name": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "class-name": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "namespace": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Namespace. Token for namespace in the design system."
+      },
+      "macro-name": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Name. Token for name in the design system."
+      },
+      "atom": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Atom. Token for atom in the design system."
+      },
+      "literal": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Literal. Token for literal in the design system."
+      },
+      "bool": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Bool. Token for bool in the design system."
+      },
+      "null": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Null. Token for null in the design system."
+      },
+      "self": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Self. Token for self in the design system."
+      },
+      "number": {
+        "$type": "color",
+        "$value": "{green.30}",
+        "$description": "Number. Token for number in the design system."
+      },
+      "integer": {
+        "$type": "color",
+        "$value": "{green.30}",
+        "$description": "Integer. Token for integer in the design system."
+      },
+      "float": {
+        "$type": "color",
+        "$value": "{green.30}",
+        "$description": "Float. Token for float in the design system."
+      },
+      "unit": {
+        "$type": "color",
+        "$value": "{green.30}",
+        "$description": "Unit. Token for unit in the design system."
+      },
+      "character": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Character. Token for character in the design system."
+      },
+      "attribute-value": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Value. Token for value in the design system."
+      },
+      "special-string": {
+        "$type": "color",
+        "$value": "{purple.40}",
+        "$description": "String. Token for string in the design system."
+      },
+      "regexp": {
+        "$type": "color",
+        "$value": "{purple.40}",
+        "$description": "Regexp. Token for regexp in the design system."
+      },
+      "escape": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Escape. Token for escape in the design system."
+      },
+      "url": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Url. Token for url in the design system."
+      },
+      "color": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Color. Token for color in the design system."
+      },
+      "operator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "deref-operator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "arithmetic-operator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "logic-operator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "bitwise-operator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "compare-operator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "update-operator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "definition-operator": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "type-operator": {
+        "$type": "color",
+        "$value": "{teal.30}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "control-operator": {
+        "$type": "color",
+        "$value": "{purple.40}",
+        "$description": "Operator. Token for operator in the design system."
+      },
+      "modifier": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Modifier. Token for modifier in the design system."
+      },
+      "punctuation": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Punctuation. Token for punctuation in the design system."
+      },
+      "separator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Separator. Token for separator in the design system."
+      },
+      "bracket": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Bracket. Token for bracket in the design system."
+      },
+      "angle-bracket": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Bracket. Token for bracket in the design system."
+      },
+      "square-bracket": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Bracket. Token for bracket in the design system."
+      },
+      "paren": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Paren. Token for paren in the design system."
+      },
+      "brace": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Brace. Token for brace in the design system."
+      },
+      "content": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Content. Token for content in the design system."
+      },
+      "list": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "List. Token for list in the design system."
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Emphasis. Token for emphasis in the design system."
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Strong. Token for strong in the design system."
+      },
+      "monospace": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Monospace. Token for monospace in the design system."
+      },
+      "strikethrough": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Strikethrough. Token for strikethrough in the design system."
+      },
+      "heading": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "Heading. Token for heading in the design system."
+      },
+      "content-separator": {
+        "$type": "color",
+        "$value": "{gray.20}",
+        "$description": "Separator. Token for separator in the design system."
+      },
+      "quote": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Quote. Token for quote in the design system."
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Link. Token for link in the design system."
+      },
+      "invalid": {
+        "$type": "color",
+        "$value": "{red.50}",
+        "$description": "Invalid. Token for invalid in the design system."
+      },
+      "meta": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Meta. Token for meta in the design system."
+      },
+      "document-meta": {
+        "$type": "color",
+        "$value": "{green.40}",
+        "$description": "Meta. Token for meta in the design system."
+      },
+      "annotation": {
+        "$type": "color",
+        "$value": "{teal.40}",
+        "$description": "Annotation. Token for annotation in the design system."
+      },
+      "processing-instruction": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Instruction. Token for instruction in the design system."
+      },
+      "definition": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "Definition. Token for definition in the design system."
+      },
+      "constant": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Constant. Token for constant in the design system."
+      },
+      "function": {
+        "$type": "color",
+        "$value": "{yellow.30}",
+        "$description": "Function. Token for function in the design system."
+      },
+      "standard": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Standard. Token for standard in the design system."
+      },
+      "local": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Local. Token for local in the design system."
+      },
+      "special": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Special. Token for special in the design system."
+      },
+      "inserted": {
+        "$type": "color",
+        "$value": "{green.60}",
+        "$description": "Inserted. Token for inserted in the design system."
+      },
+      "deleted": {
+        "$type": "color",
+        "$value": "{red.70}",
+        "$description": "Deleted. Token for deleted in the design system."
+      },
+      "heading-1": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "1. Token for 1 in the design system."
+      },
+      "heading-2": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "2. Token for 2 in the design system."
+      },
+      "heading-3": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "3. Token for 3 in the design system."
+      },
+      "heading-4": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "4. Token for 4 in the design system."
+      },
+      "heading-5": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "5. Token for 5 in the design system."
+      },
+      "heading-6": {
+        "$type": "color",
+        "$value": "{cyan.40}",
+        "$description": "6. Token for 6 in the design system."
+      }
+    },
+    "ai": {
+      "inner-shadow": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Inner shadow color for AI elements. Creates inset depth effect for AI-enhanced surfaces."
+      },
+      "aura-start-sm": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Start color for small AI aura gradient. Use for compact AI indicators or smaller UI elements."
+      },
+      "aura-start": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Start color for AI aura gradient effect. Provides the vibrant blue beginning of the gradient for AI-enhanced elements."
+      },
+      "aura-end": {
+        "$type": "color",
+        "$value": "{black.default}",
+        "$description": "End color for AI aura gradient effect. Creates a fade-to-transparent effect at the edge of AI-enhanced elements."
+      },
+      "border-strong": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "Strong border color for AI elements. Use for high-emphasis AI borders that need clear definition."
+      },
+      "border-start": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Start color for AI border gradient. Creates the darker edge of gradient borders on AI elements."
+      },
+      "border-end": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "End color for AI border gradient. Creates the lighter edge of gradient borders on AI elements."
+      },
+      "drop-shadow": {
+        "$type": "color",
+        "$value": "{black.default}",
+        "$description": "Drop shadow color for AI elements. Provides depth and elevation for AI-enhanced components."
+      },
+      "aura-hover-background": {
+        "$type": "color",
+        "$value": "{gray.90Hover}",
+        "$description": "Background color for AI aura on hover. Use when user hovers over AI-enhanced interactive elements."
+      },
+      "aura-hover-start": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Start color for AI aura gradient on hover. Provides the vibrant blue beginning of the hover gradient."
+      },
+      "aura-hover-end": {
+        "$type": "color",
+        "$value": "{black.default}",
+        "$description": "End color for AI aura gradient on hover. Creates hover state fade effect for AI elements."
+      },
+      "popover-background": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Background color for AI popovers and tooltips. Provides the base surface for AI-generated content displays."
+      },
+      "popover-shadow-outer-01": {
+        "$type": "color",
+        "$value": "{black.default}",
+        "$description": "Primary outer shadow for AI popovers. Provides the first layer of depth for elevated AI elements."
+      },
+      "popover-shadow-outer-02": {
+        "$type": "color",
+        "$value": "{black.default}",
+        "$description": "Secondary outer shadow for AI popovers. Adds additional depth layer for AI element elevation."
+      },
+      "skeleton-background": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "Background color for AI skeleton loaders. Use while AI-generated content is loading."
+      },
+      "skeleton-element-background": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "Element background color for AI skeleton loaders. Provides the animated shimmer effect for loading AI content."
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": "{black.default}",
+        "$description": "Overlay color for AI modal backgrounds. Use to dim content behind AI dialogs or popovers."
+      },
+      "popover-caret-center": {
+        "$type": "color",
+        "$value": "{ai.caret-center-dark}",
+        "$description": "Center color for AI popover caret gradient. Creates the vibrant middle of the gradient pointer."
+      },
+      "popover-caret-bottom": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "Bottom caret color for AI popovers. Creates the gradient pointer at the bottom of AI tooltips."
+      },
+      "popover-caret-bottom-background-actions": {
+        "$type": "color",
+        "$value": "{ai.caret-bottom-background-actions-dark}",
+        "$description": "Background color for action area in AI popover bottom caret. Use for interactive sections within AI tooltips."
+      },
+      "popover-caret-bottom-background": {
+        "$type": "color",
+        "$value": "{ai.caret-bottom-background-dark}",
+        "$description": "Background color for bottom caret of AI popovers. Provides the base color for the popover pointer."
+      }
+    },
+    "chat": {
+      "prompt-background": {
+        "$type": "color",
+        "$value": "{gray.100}",
+        "$description": "Background. Token for background in the design system."
+      },
+      "prompt-border-start": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "Start. Token for start in the design system."
+      },
+      "prompt-border-end": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "End. Token for end in the design system."
+      },
+      "prompt-text": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Text. Token for text in the design system."
+      },
+      "bubble-user": {
+        "$type": "color",
+        "$value": "{gray.80}",
+        "$description": "User. Token for user in the design system."
+      },
+      "bubble-user-text": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Text. Token for text in the design system."
+      },
+      "bubble-agent": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "Agent. Token for agent in the design system."
+      },
+      "bubble-agent-text": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Text. Token for text in the design system."
+      },
+      "bubble-border": {
+        "$type": "color",
+        "$value": "{gray.70}",
+        "$description": "Border. Token for border in the design system."
+      },
+      "avatar-bot": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Bot. Token for bot in the design system."
+      },
+      "avatar-agent": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Agent. Token for agent in the design system."
+      },
+      "avatar-user": {
+        "$type": "color",
+        "$value": "{blue.50}",
+        "$description": "User. Token for user in the design system."
+      },
+      "shell-background": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "Background. Token for background in the design system."
+      },
+      "header-background": {
+        "$type": "color",
+        "$value": "{gray.90}",
+        "$description": "Background. Token for background in the design system."
+      },
+      "header-text": {
+        "$type": "color",
+        "$value": "{gray.10}",
+        "$description": "Text. Token for text in the design system."
+      },
+      "button": {
+        "$type": "color",
+        "$value": "{blue.40}",
+        "$description": "Button. Token for button in the design system."
+      },
+      "button-hover": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Hover. Token for hover in the design system."
+      },
+      "button-text-hover": {
+        "$type": "color",
+        "$value": "{blue.30}",
+        "$description": "Hover. Token for hover in the design system."
+      },
+      "button-active": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Active. Token for active in the design system."
+      },
+      "button-selected": {
+        "$type": "color",
+        "$value": "{gray.50}",
+        "$description": "Selected. Token for selected in the design system."
+      },
+      "button-text-selected": {
+        "$type": "color",
+        "$value": "{gray.30}",
+        "$description": "Selected. Token for selected in the design system."
+      }
+    },
+    "accent": {
+      "container": {
+        "$type": "color",
+        "$value": "{coral.default}",
+        "$description": "The brand accent as a CONTAINER — fills, large-type CTA backgrounds, the wordmark mark. NEVER a text or label colour on any ground (brand.md §3 binding rule)."
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{coral.default}",
+        "$description": "The brand accent's TEXT-SAFE role — the only coral value permitted to carry text on bone (brand.md §3). GROUND-DEPENDENT (OQ-5): on dark, {coral.text} (#b03822) measures 2.95:1 against semantic-dark.background and fails, while {coral.default} (#f15b40) measures 5.43:1 there and passes — so the dark alias is deliberately NOT the same primitive as light's. No new value is invented; token-keeper is choosing between brand.md's own two evidenced anchors per ground."
+      }
+    }
+  },
+  "spacing": {
+    "$description": "Structural spacing scale. Transcribed from @carbon/layout 11.58.0 (Apache-2.0) — no brand signal opposes a different cadence (token-axes-proposal.md §2). 13 steps; component-index.json's spacing-scale component currently was extended to 13 on 2026-08-28; the contract is exact. script imports faithfully and flags, not resolves.",
+    "01": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-01 — 0.125rem. [0.125rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "02": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-02 — 0.25rem. [0.25rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "03": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-03 — 0.5rem. [0.5rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "04": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-04 — 0.75rem. [0.75rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "05": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-05 — 1rem. [1rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "06": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-06 — 1.5rem. [1.5rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "07": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-07 — 2rem. [2rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "08": {
+      "$type": "dimension",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-08 — 2.5rem. [2.5rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "09": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-09 — 3rem. [3rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": {
+        "value": 64,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-10 — 4rem. [4rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "11": {
+      "$type": "dimension",
+      "$value": {
+        "value": 80,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-11 — 5rem. [5rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": {
+        "value": 96,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-12 — 6rem. [6rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    },
+    "13": {
+      "$type": "dimension",
+      "$value": {
+        "value": 160,
+        "unit": "px"
+      },
+      "$description": "Carbon spacing-13 — 10rem. [10rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+    }
+  },
+  "typography": {
+    "$description": "Typography primitives + semantic scale. AUTHORED per brand.md §4 (OQ-2 resolved: Anek Latin). Not a Carbon import — see this script's module docstring for the per-field provenance breakdown.",
+    "size": {
+      "$description": "Curated stopping points, not Carbon's 23-step compiled-formula ramp (brand.md §4: one scale, used at two densities, not a long undifferentiated ramp). AUTHORED.",
+      "01": {
+        "$type": "dimension",
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        },
+        "$description": "12px — caption, code. [0.75rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "02": {
+        "$type": "dimension",
+        "$value": {
+          "value": 14,
+          "unit": "px"
+        },
+        "$description": "14px — body-sm. [0.875rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "03": {
+        "$type": "dimension",
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        },
+        "$description": "16px — body. The tracking curve's zero-crossing lives near here. [1rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "04": {
+        "$type": "dimension",
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        },
+        "$description": "20px — h3. [1.25rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "05": {
+        "$type": "dimension",
+        "$value": {
+          "value": 28,
+          "unit": "px"
+        },
+        "$description": "28px — h2. [1.75rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "06": {
+        "$type": "dimension",
+        "$value": {
+          "value": 40,
+          "unit": "px"
+        },
+        "$description": "40px — h1. [2.5rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "07": {
+        "$type": "dimension",
+        "$value": {
+          "value": 62,
+          "unit": "px"
+        },
+        "$description": "62px — display. Evidenced size [ART-005 § Type]. [3.875rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      }
+    },
+    "weight": {
+      "$description": "light/regular/semibold transcribed from @carbon/type 11.66.0's compiled fontWeights export. heavy/black are CoForge-authored — Carbon's ceiling is 600; brand.md §4 evidences a 700 display weight and requires weight, not size, to carry hierarchy.",
+      "light": {
+        "$type": "fontWeight",
+        "$value": 300,
+        "$description": "Transcribed from @carbon/type@11.66.0."
+      },
+      "regular": {
+        "$type": "fontWeight",
+        "$value": 400,
+        "$description": "Transcribed from @carbon/type@11.66.0."
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": 600,
+        "$description": "Transcribed from @carbon/type@11.66.0."
+      },
+      "heavy": {
+        "$type": "fontWeight",
+        "$value": 700,
+        "$description": "AUTHORED. Evidenced display weight [ART-005 § Type] — \"set at heavy weight (700)\". Carbon has no value here."
+      },
+      "black": {
+        "$type": "fontWeight",
+        "$value": 800,
+        "$description": "AUTHORED headroom, not currently used by any typography.scale level. Anek Latin serves weights to 800 (brand.md §4); reserved for a future display need."
+      }
+    },
+    "tracking": {
+      "$description": "A curve, not a constant (brand.md §4). Paired 1:1 by index with typography.size — tightens as size grows. Only step 07 is evidenced; steps 01-06 are AUTHORED interpolation and NEED VISUAL TESTING before being treated as final.",
+      "01": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.16,
+          "unit": "px"
+        },
+        "$description": "AUTHORED interpolation — slightly open at small size, per brand.md §4's \"relaxes to normal or slightly open at small sizes.\" NOT evidenced. Needs visual testing. [0.01rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "02": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.08,
+          "unit": "px"
+        },
+        "$description": "AUTHORED interpolation. NOT evidenced. Needs visual testing. [0.005rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "03": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        },
+        "$description": "AUTHORED interpolation — the curve's zero-crossing, placed at body size deliberately earlier than Carbon's own table (which stays at 0 until ~92px; proposal §3). NOT evidenced. Needs visual testing. [0rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "04": {
+        "$type": "dimension",
+        "$value": {
+          "value": -0.24,
+          "unit": "px"
+        },
+        "$description": "AUTHORED interpolation. NOT evidenced. Needs visual testing. [-0.015rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "05": {
+        "$type": "dimension",
+        "$value": {
+          "value": -0.48,
+          "unit": "px"
+        },
+        "$description": "AUTHORED interpolation. NOT evidenced. Needs visual testing. [-0.03rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "06": {
+        "$type": "dimension",
+        "$value": {
+          "value": -0.96,
+          "unit": "px"
+        },
+        "$description": "AUTHORED interpolation. NOT evidenced. Needs visual testing. [-0.06rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      },
+      "07": {
+        "$type": "dimension",
+        "$value": {
+          "value": -2,
+          "unit": "px"
+        },
+        "$description": "EVIDENCED [ART-005 § Type] — \"-0.125rem (-2px) tracking at 62px.\" The only evidenced point on this curve; every other step is this script's interpolation toward it. [-0.125rem in the source. Figma has no rem; the bridge converts at 16px/rem. tokens.json stays in rem.]"
+      }
+    },
+    "family": {
+      "$description": "AUTHORED per brand.md §4 (OQ-2 resolved 2026-08-27: Anek Latin; mono added 2026-08-28). Two primitives, because there are two actual typefaces. There is deliberately no display/body split here: 'display' and 'body' are ROLES, and roles live at the semantic layer where typography.scale.* already expresses them by which level draws which family. Carrying the role down into the primitive layer produced two leaves holding a byte-identical stack — a value reachable by two names, which is the same defect CoForge refused to inherit from coforge.com. If display and body ever diverge, add a third primitive and repoint the affected scale levels; the levels are where that decision belongs.",
+      "sans": {
+        "$type": "fontFamily",
+        "$value": [
+          "Anek Latin",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ],
+        "$description": "Anek Latin. Every non-code level: display, h1, h2, h3, body, body-sm, caption. CoForge is single-family for prose (brand.md §4)."
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": [
+          "Source Code Pro",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Consolas",
+          "Liberation Mono",
+          "monospace"
+        ],
+        "$description": "Code and token values. Source Code Pro, selected on measurement [ART-007 § Optical pairing] — its x-height ratio is 0.486 against Anek Latin's 0.488, a 0.4% difference. Inline code sits inside body text, so a mismatched x-height reads as a size change mid-sentence and invites a compensating size nudge that then breaks alignment in tables. The nearest rival was 14x further off. Not a brand gesture — a face chosen to be unnoticeable next to the one that is."
+      }
+    }
+  },
+  "density": {
+    "$description": "AUTHORED. Two named registers, no new primitives — subsets of the one shared typography.scale and spacing group (brand.md §2).",
+    "stage": {
+      "spacing-unit": {
+        "$type": "dimension",
+        "$value": "{spacing.07}",
+        "$description": "One unit at stage density."
+      },
+      "$description": "Stage register."
+    },
+    "document": {
+      "spacing-unit": {
+        "$type": "dimension",
+        "$value": "{spacing.03}",
+        "$description": "One unit at document density — tighter default."
+      },
+      "$description": "Document register."
+    }
+  }
+}

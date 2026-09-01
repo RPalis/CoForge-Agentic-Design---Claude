@@ -1,0 +1,10 @@
+{
+  "$comment": "sha256 of every file in research/sources/. Raw sources are immutable (CLAUDE.md boundaries); layer 1 denies Write/Edit on that path but CANNOT deny Bash, so this manifest is the detection that replaces the prevention it cannot provide. Regenerated only by a deliberate --update, which must appear in a diff a human reads. See V-006.",
+  "count": 1,
+  "files": {
+    "coforge-home.png": {
+      "sha256": "d5cb4ec6c7b959f8c468f8b5709ba75a3b35fb124d8b470cd8a46de60b9a70a6",
+      "bytes": 342781
+    }
+  }
+}

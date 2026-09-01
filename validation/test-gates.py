@@ -150,6 +150,67 @@ def main():
         import shutil
         shutil.rmtree(os.path.join(ROOT, "artifacts", "zzgatetest"), ignore_errors=True)
 
+    # ---- the evidence spine: raw sources must be tamper-evident (V-006) ----
+    # settings.json denies Write|Edit on research/sources/** and CANNOT deny Bash.
+    # So the guarantee is detection, not prevention — and detection that has never
+    # been fired is worth nothing. This plants a real Bash edit and demands a FAIL.
+    print("-" * 74)
+    print("  Raw source tamper-evidence — the Bash path into the evidence spine")
+    integ = os.path.join(ROOT, "validation", "check-sources-integrity.py")
+    manifest = os.path.join(ROOT, "research", "sources-manifest.json")
+    planted = os.path.join(ROOT, "research", "sources", "zz-gatetest-source.txt")
+    fabricated = os.path.join(ROOT, "research", "sources", "zz-gatetest-fabricated.txt")
+    backup = None
+    try:
+        if os.path.exists(manifest):
+            with open(manifest) as fh:
+                backup = fh.read()
+        env = dict(os.environ, CLAUDE_PROJECT_DIR=ROOT)
+        run = lambda *a: subprocess.run([sys.executable, integ, *a], capture_output=True,
+                                        text=True, env=env, timeout=60)
+        # a source is placed and baselined, as a human placing evidence would
+        subprocess.run(["sh", "-c", f"printf 'original testimony\\n' > {planted}"], check=True)
+        run("--update")
+        clean = run()
+        # ALTERED via Bash, which no permission and no PreToolUse hook can stop
+        subprocess.run(["sh", "-c", f"printf 'ALTERED\\n' > {planted}"], check=True)
+        tampered = run()
+        # MANUFACTURED: a source that was never baselined at all. Until 2026-09-01
+        # this exited 0 — the check verified only the altered branch, so a fabricated
+        # interview passed CI and every quote logged against it resolved. Testing one
+        # half of a guarantee and recording the whole of it as verified is the defect
+        # this case now covers.
+        subprocess.run(["sh", "-c", f"printf 'original testimony\\n' > {planted}"], check=True)
+        run("--update")
+        subprocess.run(["sh", "-c", f"printf 'fabricated\\n' > {fabricated}"], check=True)
+        manufactured = run()
+
+        for label, res, want_fail in (("baseline clean", clean, False),
+                                      ("altered source", tampered, True),
+                                      ("manufactured source", manufactured, True)):
+            got_fail = res.returncode != 0
+            good = got_fail == want_fail
+            mark = "PASS" if good else "FAIL"
+            verdict = ("DETECTED" if got_fail else "MISSED") if want_fail else \
+                      ("clean" if not got_fail else "false positive")
+            print(f"  [{mark}] {label:<22} {verdict}")
+            if not good:
+                print("         research/sources/ is the evidence spine. A source that can")
+                print("         be altered — or invented — after quotes are logged against")
+                print("         it leaves every citation resolving to testimony nobody gave.")
+                for line in (res.stdout + res.stderr).splitlines()[:5]:
+                    print(f"         | {line}")
+            passed, failed = passed + good, failed + (not good)
+    finally:
+        for tmp in (planted, fabricated):
+            if os.path.exists(tmp):
+                os.remove(tmp)
+        if backup is not None:
+            with open(manifest, "w") as fh:
+                fh.write(backup)
+        elif os.path.exists(manifest):
+            os.remove(manifest)
+
     print("-" * 74)
     print(f"  {passed} passed · {failed} failed")
     print(f"  LINK 3: {'PASS' if not failed else 'FAIL'}")

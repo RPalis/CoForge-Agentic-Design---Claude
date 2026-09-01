@@ -10,7 +10,7 @@ A design operating system where AI agents produce research, journey maps, IA,
 wireframes, UI, prototypes and handoff — under gates that make fabricated evidence
 and off-system output impossible, not merely discouraged.
 
-**Design-system state: RED** — a *declared* state, not a count. Tokens (786) and
+**Design-system state: RED** — a *declared* state, not a count. Tokens (794) and
 `brand.md` exist; RED holds until L2 components land (ADR-011). See "DS fork" below.
 
 ## The two prohibitions
@@ -39,7 +39,7 @@ Everything stronger is enforced by tools, hooks and CI — not by prose.
 - **Design Loop Phases 1–11** — what the system does once built. Cyclical.
 
 Current position (2026-08-28): **Build Stage 0–2 complete for foundations.**
-`brand.md` approved at Gate A; 786 tokens across five axes; 8 L1 primitives.
+`brand.md` approved at Gate A; 794 tokens across five axes; 8 L1 primitives.
 **Design Loop still not runnable** — it needs the evidence spine (ledger is empty)
 and L2 components (adapter #1, ADR-013 link 1, in progress).
 

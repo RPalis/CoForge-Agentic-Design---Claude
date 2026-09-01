@@ -543,6 +543,12 @@ def build_density():
                     "note": "Non-standard DTCG $type — an array of pure alias strings, "
                             "the same documented-extension shape Carbon itself uses "
                             "for its own 'transition' $type. Not a DTCG-spec type.",
+                    # figma_representable / figma_home / figma_exclusion_reason are NOT
+                    # written here. stamp_figma_representability() derives them from
+                    # design-system/contracts/figma-representability.json, which is the
+                    # single place the $type -> where-it-lives mapping is declared.
+                    # Writing them here too would be the same fact reachable by two
+                    # names, and the two would drift.
                 }
             },
         }
@@ -690,6 +696,60 @@ def find_missing_type(doc):
 # main
 # ---------------------------------------------------------------------------
 
+CONTRACT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                        "design-system", "contracts", "figma-representability.json")
+
+
+def stamp_figma_representability(doc):
+    """Mark every token that cannot be a Figma variable, and say where it lives.
+
+    Added 2026-08-31 after the first real import created 14 variables holding
+    nothing — typography/scale/h1 as FLOAT 0, a levelSet as a string of alias
+    syntax (correction C-017). The mapping is a fact about Figma's Plugin API,
+    not a per-token judgement, so it is DERIVED from one contract rather than
+    hand-written onto thirty tokens. Hand-stamping would be the same value
+    reachable by thirty names — the defect this axis was already cleaned of once.
+
+    Returns (stamped, unknown): unknown holds any $type in neither table, which
+    is a hard failure — a new composite type must be classified before it ships,
+    not silently assumed importable.
+    """
+    with open(CONTRACT) as fh:
+        contract = json.load(fh)
+    representable = {k: v for k, v in contract["representable"].items()
+                     if not k.startswith("$")}
+    elsewhere = {k: v for k, v in contract["elsewhere"].items()
+                 if not k.startswith("$")}
+    reasons = {k: v for k, v in contract["reasons"].items() if not k.startswith("$")}
+
+    stamped, unknown = 0, []
+
+    def walk(node, path, inherited):
+        nonlocal stamped
+        if not isinstance(node, dict):
+            return
+        own = node.get("$type", inherited)
+        if "$value" in node:
+            if own in representable:
+                return
+            if own not in elsewhere:
+                unknown.append((path, own))
+                return
+            home = elsewhere[own]
+            ext = node.setdefault("$extensions", {}).setdefault("coforge", {})
+            ext["figma_representable"] = False
+            ext["figma_home"] = home
+            ext["figma_exclusion_reason"] = reasons[own]
+            stamped += 1
+            return
+        for key, child in node.items():
+            if not key.startswith("$"):
+                walk(child, f"{path}.{key}" if path else key, own)
+
+    walk(doc, "", None)
+    return stamped, unknown
+
+
 def main():
     apply = "--apply" in sys.argv
     original = json.load(open(TOKENS))
@@ -702,6 +762,8 @@ def main():
     candidate["elevation"] = build_elevation()
     candidate["motion"] = build_motion()
     candidate["density"] = build_density()
+
+    stamped, unknown_types = stamp_figma_representability(candidate)
 
     ok = True
 
@@ -755,6 +817,20 @@ def main():
         ok = False
     else:
         print("  every leaf token has $type and $value")
+
+    # 6. every non-representable $type is classified, none assumed importable
+    if unknown_types:
+        print(f"  FAIL {len(unknown_types)} token(s) carry a $type that is in neither "
+              f"table of design-system/contracts/figma-representability.json")
+        for p, t in unknown_types[:10]:
+            print(f"      {p} -> $type {t!r}")
+        print("      classify it: either it maps to a Figma variable type, or name "
+              "where it lives instead. A $type nobody classified would import as "
+              "whatever Figma guessed — that is correction C-017 repeating.")
+        ok = False
+    else:
+        print(f"  every $type classified for Figma; {stamped} token(s) stamped "
+              f"non-representable")
 
     # counts + flags, informational
     n_leaves_before = len(all_leaves(original))

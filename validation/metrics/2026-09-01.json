@@ -1,33 +1,33 @@
 {
   "run_id": "2026-09-01",
-  "generated_at": "2026-09-01T16:38:08",
+  "generated_at": "2026-09-01T17:15:37",
   "project": "coforge",
   "session": {
-    "turns": 2596,
-    "duration_min": 10481.8,
+    "turns": 2647,
+    "duration_min": 10518.2,
     "transcripts": 2
   },
   "tokens": {
-    "input": 5188,
-    "output": 3224045,
-    "cache_read": 1216575655,
-    "cache_creation": 29809886,
-    "billable": 3229233
+    "input": 5290,
+    "output": 3293929,
+    "cache_read": 1240966739,
+    "cache_creation": 29879617,
+    "billable": 3299219
   },
   "tools": {
-    "Bash": 665,
-    "Edit": 122,
+    "Bash": 683,
+    "Edit": 125,
     "mcp__Claude_Browser__computer": 64,
-    "Write": 48,
+    "Write": 50,
     "Artifact": 23,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
     "mcp__figma-console__figma_execute": 19,
     "mcp__chrome-devtools__evaluate_script": 17,
+    "Agent": 16,
     "ToolSearch": 15,
     "AskUserQuestion": 14,
-    "Agent": 14,
     "mcp__figma-console__figma_delete_variable": 11,
     "WebSearch": 10,
     "SendUserFile": 10,
@@ -81,7 +81,7 @@
       "validated": 1,
       "superseded": 2
     },
-    "tokens_per_artifact": 403654
+    "tokens_per_artifact": 412402
   },
   "gates": {
     "verdict": "PASS",

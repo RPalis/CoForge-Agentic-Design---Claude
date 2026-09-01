@@ -220,6 +220,22 @@ without a baseline you cannot tell whether the skill helped. Assertions are writ
   and the single next action.
 - **Never assume a gate ran.** Gate B fires on Write/Edit only. Bash heredocs bypass it —
   that is how this repository was actually built, and it went unnoticed for a full session.
+- **If you changed the checks, someone who did not change them must attack the result
+  before it is committed.** The author is the one person who cannot perform this check.
+  Twice on 2026-09-01 a check was declared working by its author and was not: C-021 (53
+  tokens carrying an inert modifier, inspected three days earlier and cleared in writing)
+  and C-024 (39 warnings driven to zero in an hour, where one closure had made the
+  citation check 96% blind). Both were good-faith errors backed by evidence the author
+  found convincing, which is exactly why good faith is not the safeguard. **Prompted —
+  not enforced** — by `audit-system.py` check 5g against `validation/attestation.json`:
+  it hashes every validator, hook, and the wiring that invokes them, and errors when
+  that hash is not named in an audit report. Editing the recorded hash silences it and
+  nothing detects that, so it raises the cost of skipping the step and cannot make
+  skipping impossible. Calling it enforcement would be the defect it was built to catch.
+  An attestation means an agent that ran the checks and planted defects — not one that
+  read them, and not one that wrote a file with the right name.
+- **A clean board is when to look hardest.** Findings falling fast is evidence something
+  changed a lot, not evidence it was repaired.
 - A correction that recurs twice is promoted into this file as a standing rule.
 
 ## Output surfaces

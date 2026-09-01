@@ -51,7 +51,7 @@ citation, because it reads as rigour.
 
 ## Why an artifact ID and not a file path
 
-`brand.md` originally cited `scratch/brand-extraction/EXTRACTION.md`. That is why this ADR
+`brand.md` originally cited a working file inside the scratch directory. That is why this ADR
 exists: **an SSOT file cannot depend on `scratch/`**, which the boundary table defines as
 holding nothing approved and which is disposable by design. Clearing scratch would have
 left 22 dangling citations inside a source of truth.

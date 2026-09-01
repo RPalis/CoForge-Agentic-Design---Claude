@@ -128,6 +128,16 @@ match any (phase, task) pair.
 
 ## Autonomy ladder
 
+> **NOT OPERATIVE (2026-09-01).** Nothing counts clean reviews, so nothing can graduate
+> or be demoted — every writing agent is at Draft and stays there. Two of the forty
+> routing rows have ever been exercised, so there is almost nothing to count yet;
+> building the counter now would be machinery ahead of capability. Two things must
+> change before this is real: something has to do the counting, and the tally cannot
+> live in `memory/corrections.md`, which is **gitignored** and would not survive a
+> clone. Tracked as V-015. Stated here because a ladder described in the present tense
+> reads as a live mechanism, and a mechanism nobody implemented is the coverage
+> illusion this file exists to remove.
+
 - Everything that can write starts at **Draft** (Gate A before it counts).
 - Graduates to **Auto** (Gate B only) after **3 consecutive clean reviews**, logged in
   `memory/corrections.md`. The orchestrator counts.

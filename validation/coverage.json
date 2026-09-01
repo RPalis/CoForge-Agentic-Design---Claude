@@ -103,9 +103,9 @@
       "id": "V-014",
       "claim": "Artifacts carry resolvable provenance to a token version",
       "asserted_in": "CLAUDE.md · artifacts/_types.json",
-      "verified_by": null,
-      "how": null,
-      "note": "UNCHECKED and currently FALSE: every manifest carries tokens_version: null. ADR-013 link 8."
+      "verified_by": "validation/audit-system.py",
+      "how": "Check 5f, conditional in both directions: an artifact whose payload references tokens must declare inputs.tokens_version (blocker if absent); one that references none must leave it null (error if set). Negative-tested both ways on 2026-09-01 — stripping ART-008's version blocked, and the check surfaced ART-007, which references typography.scale throughout and had carried null since creation.",
+      "note": "VERIFIED 2026-09-01, after the claim itself was found to be MIS-SPECIFIED rather than false. It was recorded as 'currently FALSE: every manifest carries tokens_version: null' and the obvious fix was to backfill a version everywhere. That would have manufactured false provenance: five of the thirteen manifests are _templates skeletons, and seven of the eight real artifacts are prose research documents referencing no token at all, so null is the CORRECT value for them. Only ART-007 was genuinely wrong; its version was recovered from the single release tokens.json has ever declared and backfilled with a note, payload untouched. The lesson is the one this ledger keeps teaching: a field that is empty is not automatically a field that is wrong."
     },
     {
       "id": "V-015",
@@ -113,7 +113,7 @@
       "asserted_in": "CLAUDE.md",
       "verified_by": null,
       "how": null,
-      "note": "UNCHECKED and unimplemented. Nothing counts clean reviews, so nothing can graduate or be demoted. The ladder is prose."
+      "note": "UNVERIFIED, and recorded that way after a failed attempt to close it. On 2026-09-01 this was set to verified_by: CLAUDE.md on the grounds that the document now carries a NOT OPERATIVE banner. An independent audit deleted the banner outright and the audit still reported '18 of 18 claims verified' — because naming a file as a verifier only proves the file EXISTS. A claim about a document, verified by that document, is circular; it closed the warning without establishing anything. The banner is still in CLAUDE.md and is still worth having, since prose in the present tense reads as a live mechanism. But it is documentation, not verification, and this field now says so. The ladder remains unimplemented and unverifiable: nothing counts clean reviews, 2 of 40 routing rows have ever been exercised, and its declared tally lives in memory/corrections.md, which is gitignored and would not survive a clone."
     },
     {
       "id": "V-016",

@@ -19,8 +19,10 @@
   },
   "inputs": {
     "evidence": [],
-    "artifacts": ["ART-006"],
-    "tokens_version": null,
+    "artifacts": [
+      "ART-006"
+    ],
+    "tokens_version": "0.1.0",
     "sources": [
       {
         "id": "S-01",
@@ -34,7 +36,8 @@
         "url": "https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800",
         "sha256": null
       }
-    ]
+    ],
+    "$tokens_version_note": "Backfilled 2026-09-01. The field was null since creation and the artifact references typography.scale and typography.family throughout — it is the benchmark that selected typography.family.mono. 0.1.0 is the only release tokens.json has ever declared, so it is the release this was built against; the value is recovered, not chosen. Recording provenance that was always true completes an immutable artifact's record rather than altering its claim — the payload is untouched. Surfaced by audit-system check 5f (V-014)."
   },
   "surface": {
     "kind": "local",

@@ -52,7 +52,7 @@
       "produced_by": "main-session",
       "supersedes": null,
       "evidence": [],
-      "tokens_version": null,
+      "tokens_version": "0.1.0",
       "surface": {
         "kind": "local",
         "ref": null

@@ -208,34 +208,50 @@ else:
 # The audit reported "skipped 0 · PASS" on runs that never opened the file — the
 # coverage illusion this repo exists to prevent.
 art_paths = {a["id"]: a["path"] for a in (jload("artifacts/_registry.json") or {}).get("artifacts", [])}
-fdir = P("design-system/foundations")
-if not os.path.isdir(fdir):
-    skip("foundations", "design-system/foundations/ does not exist")
-else:
+
+
+# C-011: ADRs are durable decisions and were never scanned. A decision resting on a
+# gitignored path or an unresolvable ID is the same defect as one in an SSOT file —
+# it just takes longer to notice, because nobody re-reads an ADR.
+SSOT_DIRS = [("design-system/foundations", "foundations"), ("decisions", "decisions")]
+for _dir, _label in SSOT_DIRS:
+  fdir = P(_dir)
+  if not os.path.isdir(fdir):
+    skip(_label, f"{_dir}/ does not exist")
+  else:
     n_found = 0
     for f in sorted(os.listdir(fdir)):
         if not f.endswith(".md"): continue
         n_found += 1
-        rel = f"design-system/foundations/{f}"
+        rel = f"{_dir}/{f}"
+        # NOT span-stripped. gate-b.py strips fenced code, inline code and
+        # blockquotes before scanning, and copying that here was a 96% coverage
+        # LOSS: brand.md writes every citation as inline code — `Evidenced
+        # [ART-005 § Contrast]` — so 24 of 25 real citations went unchecked while
+        # the change was described as a widening. A PRE-WRITE GATE and a POST-HOC
+        # AUDIT have inverted risk profiles. Gate B must not block correct work, so
+        # it tolerates missing a mention. An audit must not miss a real defect, so
+        # it tolerates reporting one. Same rule, opposite tolerances; the tolerance
+        # is not transferable.
         body = open(os.path.join(fdir, f), encoding="utf-8", errors="ignore").read()
 
         # ledger citations must resolve, exactly as in artifacts
         for cid in set(re.findall(r"\[(E-\d{3,})\]", body)):
             if cid not in known_ev:
-                add("blocker", "foundations", f"{rel}: unresolved evidence ID {cid}",
+                add("blocker", _label, f"{rel}: unresolved evidence ID {cid}",
                     "log the quote via evidence-clerk, or remove the claim — it is stripped, not softened")
 
         # ADR-017's second form: must resolve to a registered artifact AND a real heading
         for aid, rest in re.findall(r"\[(ART-\d{3,})([^\]]*)\]", body):
             p = art_paths.get(aid)
             if not p or not os.path.isdir(P(p)):
-                add("blocker", "foundations", f"{rel}: {aid} is not a registered artifact",
+                add("blocker", _label, f"{rel}: {aid} is not a registered artifact",
                     "cite a registered artifact, or remove the claim (ADR-017)"); continue
             try:
                 man = jload(os.path.join(p, "manifest.json")) or {}
                 payload = open(P(p, man.get("file", "")), encoding="utf-8", errors="ignore").read()
             except OSError:
-                add("error", "foundations", f"{rel}: {aid} payload unreadable",
+                add("error", _label, f"{rel}: {aid} payload unreadable",
                     "check manifest.file names an existing file"); continue
             heads = [h.strip().lower() for h in re.findall(r"^#{2,3}\s+(.+)$", payload, re.M)]
             for part in rest.split(","):
@@ -243,15 +259,83 @@ else:
                 if not part.startswith("§"): continue
                 sec = part[1:].strip().lower()
                 if not any(h == sec or h.startswith(sec) for h in heads):
-                    add("blocker", "foundations", f"{rel}: {aid} has no section '{sec}'",
+                    add("blocker", _label, f"{rel}: {aid} has no section '{sec}'",
                         "match a real heading in the artifact payload (ADR-017)")
 
         # an SSOT file must not depend on scratch/ — it is disposable by design
         for m in set(re.findall(r"scratch/[\w./-]+", body)):
-            add("error", "foundations", f"{rel}: cites disposable path {m}",
+            add("error", _label, f"{rel}: cites disposable path {m}",
                 "promote it to a registered artifact and cite [ART-nnn § …] (ADR-017)")
     if not n_found:
-        skip("foundations", "no markdown in design-system/foundations/")
+        skip(_label, f"no markdown in {_dir}/")
+
+# 5f — V-014: tokens_version must be TRUE, not merely present.
+# CLAUDE.md: "manifest.json chains inputs.tokens_version to a token release ... any
+# token change traceable." Twelve of thirteen manifests carried null and that was
+# read as "nobody filled it in". It was not. Seven of the eight real artifacts are
+# prose research documents that reference no token anywhere, so null is CORRECT for
+# them, and backfilling a version would have manufactured exactly the kind of false
+# provenance this field exists to prevent. Five of the thirteen are _templates
+# skeletons, where null is the only right answer.
+#
+# So the claim was never false, it was mis-specified — and the check has to be
+# conditional or it forces a lie: an artifact that consumes tokens must name the
+# release, one that does not must stay null. Both directions are errors.
+# Detection is HEURISTIC and the severities are asymmetric because of it.
+# Three forms count as consuming tokens: a DTCG path (semantic.background, braces
+# optional — a document that AUDITS tokens names them bare, and requiring a brace
+# once declared ART-008 token-free); a CSS custom property (var(--cds-*), which is
+# how an L2 HTML payload actually consumes them); and a raw hex, which means the
+# artifact renders colour at all. The first version matched only braced paths and
+# would have told ART-004 — an HTML artifact with a TRUE tokens_version — to "set
+# it back to null", pushing a correct manifest into a lie for exactly the artifact
+# class this system is being built toward.
+TOKEN_REF = re.compile(
+    r"\b(palette|semantic|semantic-dark|spacing|typography|elevation|motion|density)"
+    r"\.[a-z0-9][a-z0-9-]*"
+    r"|var\(\s*--[a-z0-9-]+")
+# Raw hex is deliberately NOT a signal. It was tried and immediately mis-flagged
+# ART-005, the brand extraction, whose hex values are colours MEASURED FROM
+# coforge.com — source material, not tokens consumed. And Gate B already forbids raw
+# hex inside artifacts, so hex that survives there is research data by construction.
+# "Contains a colour" and "consumes our token layer" are different claims.
+_tokens_ver = (jload("design-system/tokens/tokens.json") or {}).get("$version")
+if not _tokens_ver:
+    skip("provenance", "tokens.json declares no $version to chain to")
+else:
+    n_prov = 0
+    for a in (jload("artifacts/_registry.json") or {}).get("artifacts", []):
+        ap = a.get("path")
+        if not ap or not os.path.isdir(P(ap)): continue
+        n_prov += 1
+        declared = ((jload(os.path.join(ap, "manifest.json")) or {}).get("inputs") or {}).get("tokens_version")
+        uses = False
+        for fn2 in sorted(os.listdir(P(ap))):
+            if fn2 == "manifest.json": continue
+            try:
+                if TOKEN_REF.search(open(P(ap, fn2), encoding="utf-8", errors="ignore").read()):
+                    uses = True; break
+            except OSError:
+                pass
+        if uses and not declared:
+            add("blocker", "provenance",
+                f"{a['id']} references tokens but its manifest declares no tokens_version",
+                f'set inputs.tokens_version to the release it was built against (currently '
+                f'"{_tokens_ver}") — an on-token artifact with no version is untraceable')
+        elif declared and not uses:
+            # WARNING, never error, and never phrased as "remove it". Detection is a
+            # heuristic; a miss here means a TRUE provenance record gets told to delete
+            # itself. Absent provenance is a gap, but false provenance and destroyed
+            # provenance are both worse, so the asymmetry is deliberate: this direction
+            # asks a human to look, it does not assert the manifest is wrong.
+            add("warning", "provenance",
+                f"{a['id']} declares tokens_version {declared!r} but no token reference "
+                f"was detected in its payload",
+                "confirm by hand. If it genuinely consumes no tokens, set the field to "
+                "null; if it does and this check missed the form, widen TOKEN_REF — do "
+                "NOT delete a true version to satisfy a heuristic")
+    if not n_prov:
+        skip("provenance", "no registered artifacts to check")
 
 # 5c — self-governance: does the system verify its own claims?
 # Every blind spot found on 2026-08-28 had the same shape — a claim that was

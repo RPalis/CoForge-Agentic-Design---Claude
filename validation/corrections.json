@@ -110,8 +110,8 @@
       "defect": "1316 lines of reasoning behind ADR-018 and the token layer sat in scratch/, which is gitignored. A clean would have left ADRs asserting conclusions with no visible working.",
       "class": "durable decision resting on disposable evidence",
       "found_by": "the user asking that decisions be memorialised",
-      "check": null,
-      "verifies": null,
+      "check": "validation/audit-system.py",
+      "verifies": "Check 5b walks decisions/ as well as design-system/foundations/, scanning FULL TEXT: an [E-nnn] that does not resolve in the ledger is a blocker, an [ART-nnn § Section] must resolve to a registered artifact AND a real heading, and citing a scratch/ path is an error because scratch is disposable by design. Negative-tested 2026-09-01 by planting a broken section reference inside brand.md's own inline-code citation style — caught. ADR-017's single historical mention of a scratch path was removed at the source rather than exempted, so the check stays strict and the ADR loses nothing.",
       "would_have_caught": false,
       "note": "STILL UNCHECKED. Nothing verifies that a tracked document's cited evidence is itself tracked. The foundations check does this for design-system/foundations/ only — decisions/ is uncovered."
     },
@@ -237,6 +237,17 @@
       "verifies": "generated_at is removed from both files, so each is now a pure function of its inputs. Verified idempotent: regenerating twice produces byte-identical output with no clock dependency. When a file was generated is git's question to answer — git log -1 --format=%cd -- <file> — not a field inside a file that is compared byte-for-byte. validation/collect-metrics.py keeps its timestamp deliberately: metrics are a time series and are NOT diff-checked in CI.",
       "would_have_caught": true,
       "note": "Every other correction in this ledger is a check that stayed silent when it should have spoken. This is the opposite and it is more corrosive: the remedy it teaches is to regenerate and commit a meaningless one-line diff, daily, which trains everyone to read a red pipeline as noise. A gate that cries wolf disables every gate beside it, because people stop looking. Worth stating as a standing rule: a file a check byte-compares must not contain the clock."
+    },
+    {
+      "id": "C-024",
+      "date": "2026-09-01",
+      "defect": "Closing C-011 made the citation check 96% BLIND while being described as a scope widening. A _prose_only() helper was added to strip fenced code, inline code and blockquotes before scanning, copied from gate-b.py. brand.md writes every citation as inline code — `Evidenced [ART-005 § Contrast]` — so of 25 citations across foundations/ and decisions/, 24 stopped being checked and 1 remained. The directory it gained, decisions/, contains zero citations today. C-011 was therefore closed on a check that verified nothing and had stopped verifying 24 things. Separately, V-015 was closed with verified_by: CLAUDE.md, which the audit resolves with os.path.exists — deleting the entire banner that its `how` field named still reported '18 of 18 claims verified'. And check 5f's first TOKEN_REF matched only braced DTCG paths, so an L2 HTML payload consuming tokens through var(--cds-*) would be told to delete a TRUE tokens_version.",
+      "class": "a guarantee weakened while being reported as strengthened, plus a claim closed by circular reference",
+      "found_by": "system-keeper, dispatched specifically to answer one question — did the 39-to-0 warning drop happen by FIXING or by SILENCING. It proved the blindness by planting a broken section reference in brand.md's existing style and running HEAD against the change: HEAD blocked, the change reported nothing.",
+      "check": "validation/audit-system.py",
+      "verifies": "_prose_only() is removed; 5b scans full text again, negative-tested with the auditor's own planted case. ADR-017's historical scratch mention was rewritten at the source so the check needs no exemption. V-015 is reopened as verified_by: null and the audit reports it — a warning that is true beats a closure that is not. TOKEN_REF now also matches CSS custom properties, and the reverse direction was downgraded from error to WARNING with wording that never tells a manifest to delete a true value, because detection is heuristic and false provenance and destroyed provenance are both worse than an absent field. Raw hex was tried as a third signal and removed: it mis-flagged ART-005, whose hex values are colours MEASURED FROM coforge.com, and Gate B already forbids raw hex inside artifacts.",
+      "would_have_caught": true,
+      "note": "The reasoning error is worth keeping. A PRE-WRITE GATE and a POST-HOC AUDIT have inverted risk profiles: Gate B must not block correct work, so it accepts missing a mention; an audit must not miss a real defect, so it accepts reporting one. The same rule needs opposite tolerances, and the tolerance is not transferable between them. C-012's own entry stated the untested half — 'stripping mentions must not blind the gate to real claims' — and that half had never been run. Second lesson: a board that goes clean fast is when this repository has been wrong, and the only reason this was caught before it was committed is that an agent was asked whether the clean board was real."
     }
   ]
 }

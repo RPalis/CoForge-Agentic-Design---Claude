@@ -1,34 +1,34 @@
 {
   "run_id": "2026-09-02",
-  "generated_at": "2026-09-02T12:46:31",
+  "generated_at": "2026-09-02T13:42:32",
   "project": "coforge",
   "session": {
-    "turns": 2939,
-    "duration_min": 11690.2,
+    "turns": 3044,
+    "duration_min": 11746.2,
     "transcripts": 2
   },
   "tokens": {
-    "input": 5874,
-    "output": 3644461,
-    "cache_read": 1419783305,
-    "cache_creation": 33196039,
-    "billable": 3650335
+    "input": 6084,
+    "output": 3764435,
+    "cache_read": 1503247759,
+    "cache_creation": 33344919,
+    "billable": 3770519
   },
   "tools": {
-    "Bash": 747,
+    "Bash": 758,
     "Edit": 125,
     "mcp__Claude_Browser__computer": 64,
-    "Write": 54,
-    "mcp__figma-console__figma_execute": 40,
+    "mcp__figma-console__figma_execute": 60,
+    "Write": 55,
     "Artifact": 30,
-    "Agent": 22,
+    "Agent": 25,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
     "mcp__chrome-devtools__evaluate_script": 17,
     "ToolSearch": 16,
+    "SendUserFile": 15,
     "AskUserQuestion": 14,
-    "SendUserFile": 13,
     "mcp__figma-console__figma_delete_variable": 11,
     "WebSearch": 10,
     "mcp__Claude_Browser__preview_start": 10,
@@ -40,16 +40,16 @@
     "mcp__chrome-devtools__take_screenshot": 5,
     "Skill": 4,
     "mcp__chrome-devtools__new_page": 4,
+    "mcp__figma-console__figma_delete_variable_collection": 4,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 3,
     "mcp__figma-console__figma_get_variables": 3,
     "mcp__figma-console__figma_export_tokens": 3,
+    "mcp__figma-console__figma_take_screenshot": 3,
     "mcp__ccd_session__mark_chapter": 2,
     "mcp__Claude_Browser__find": 2,
     "mcp__chrome-devtools__emulate": 2,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 2,
     "mcp__figma-console__figma_get_status": 2,
-    "mcp__figma-console__figma_delete_variable_collection": 2,
-    "mcp__figma-console__figma_take_screenshot": 2,
     "mcp__Claude_Browser__read_console_messages": 1,
     "mcp__ccd_session_mgmt__set_session_title": 1,
     "mcp__Claude_Browser__tabs_context": 1,
@@ -61,7 +61,8 @@
     "mcp__chrome-devtools__navigate_page": 1,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_design_system_kit": 1,
     "mcp__figma-console__figma_list_open_files": 1,
-    "mcp__figma-console__figma_navigate": 1
+    "mcp__figma-console__figma_navigate": 1,
+    "mcp__figma-console__figma_capture_screenshot": 1
   },
   "skills": {
     "artifact-design": 3,
@@ -82,20 +83,20 @@
       "superseded": 3,
       "draft": 1
     },
-    "tokens_per_artifact": 405593
+    "tokens_per_artifact": 418947
   },
   "gates": {
-    "verdict": "PASS",
+    "verdict": "FAIL",
     "blocker": 0,
-    "error": 0,
+    "error": 1,
     "warning": 2,
     "info": 8,
     "skipped": 0,
     "source": "live-audit"
   },
   "corrections": {
-    "logged": 29,
-    "with_check": 29,
+    "logged": 30,
+    "with_check": 30,
     "unchecked": 0,
     "source": "validation/corrections.json"
   },

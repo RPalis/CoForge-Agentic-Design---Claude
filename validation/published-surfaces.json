@@ -51,6 +51,14 @@
       "shared": null,
       "documents": null,
       "note": "Setup notes for the local bridge, published 2026-08-24 — the oldest surface. Same class as the runbook: external tooling, unanchored, unobservable from here."
+    },
+    {
+      "title": "CoForge Foundations — Figma variable library",
+      "url": "https://www.figma.com/design/ip2wZ3UUQ5sbFc3r902kYK",
+      "artifact": null,
+      "shared": null,
+      "documents": { "tokens_version": "0.2.0" },
+      "note": "The Figma file the token layer was pushed to. It ASSERTS that its 561 variables across five collections — palette 289, semantic 236 (Light and Dark modes), spacing 13, typography 21, density 2 — are release 0.2.0 of design-system/tokens/tokens.json, plus 8 text and 2 effect styles carrying the 12 composite tokens no variable can hold. Registered 2026-09-02 as Phase 1 of the foundations migration: the file key had appeared in this repository three times, all in prose, never as structured data, so the one anchor that could have said 'the library is behind the tokens' was never pointed at it. Not published as a Figma library yet, and it must not be until check-figma-live.py reads 0 blockers and 0 uncompared — publishing puts values in other people's hands, which is C-028's lesson. What this entry CANNOT do is confirm the file is correct: 5h compares a declared release against tokens.json and nothing here reads Figma. Whether the contents match is the separate, currently UNCOVERED claim V-024, red because of C-030. This entry going stale on the next token release is the mechanism working, not a fault."
     }
   ],
 

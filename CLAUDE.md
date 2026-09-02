@@ -10,8 +10,10 @@ A design operating system where AI agents produce research, journey maps, IA,
 wireframes, UI, prototypes and handoff — under gates that make fabricated evidence
 and off-system output impossible, not merely discouraged.
 
-**Design-system state: RED** — a *declared* state, not a count. Tokens (794) and
-`brand.md` exist; RED holds until L2 components land (ADR-011). See "DS fork" below.
+**Design-system state: RED** — a *declared* state, not a count. Tokens (829) and
+`brand.md` exist; RED holds until CoForge has AUTHORED L2 components (ADR-011). The
+index carries 208 L2 rows and every one is `source: @carbon/react` — a vendor
+catalogue the adapter ingested, not a system anyone built. See "DS fork" below.
 
 ## The two prohibitions
 
@@ -39,7 +41,7 @@ Everything stronger is enforced by tools, hooks and CI — not by prose.
 - **Design Loop Phases 1–11** — what the system does once built. Cyclical.
 
 Current position (2026-08-28): **Build Stage 0–2 complete for foundations.**
-`brand.md` approved at Gate A; 794 tokens across five axes; 8 L1 primitives.
+`brand.md` approved at Gate A; 829 tokens across five axes; 8 L1 primitives.
 **Design Loop still not runnable** — it needs the evidence spine (ledger is empty)
 and L2 components (adapter #1, ADR-013 link 1, in progress).
 
@@ -96,9 +98,14 @@ level-1 entries*, which is stricter than exempting it and costs one field in the
 - **Yellow** — DS exists, not in code: match components, review consistency, feed gaps to token-keeper.
 - **Red** — no *component* DS: token-keeper builds the foundations before **L2** screens are
   produced. **CoForge is here** — tokens and brand are done, so L1 output is unblocked; RED
-  persists until the component index carries L2 entries. The fork is a **declared** state:
-  L1 primitives existing does not make a design system exist, and the declared value wins
-  over any count.
+  persists until the index carries L2 entries **CoForge authored and promoted through the
+  membrane** — spec → human approval → ADR → index. Counting bare L2 rows is not the test
+  and was never meant to be: the criterion predates adapter #1 and never anticipated that
+  208 L2 entries could arrive by *ingesting a vendor library*. Today 208 of 208 carry
+  `source: @carbon/react@1.115.0` and **0** were authored here, so RED is correct, not
+  stale. The fork is a **declared** state: L1 primitives existing does not make a design
+  system exist, a vendor catalogue does not either, and the declared value wins over any
+  count.
 
 ## Routing table
 

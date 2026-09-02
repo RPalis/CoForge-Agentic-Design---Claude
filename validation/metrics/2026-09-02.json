@@ -1,30 +1,30 @@
 {
   "run_id": "2026-09-02",
-  "generated_at": "2026-09-02T10:58:40",
+  "generated_at": "2026-09-02T12:30:38",
   "project": "coforge",
   "session": {
-    "turns": 2852,
-    "duration_min": 11582.3,
+    "turns": 2935,
+    "duration_min": 11674.3,
     "transcripts": 2
   },
   "tokens": {
-    "input": 5700,
-    "output": 3518100,
-    "cache_read": 1357538964,
-    "cache_creation": 33059966,
-    "billable": 3523800
+    "input": 5866,
+    "output": 3640570,
+    "cache_read": 1416752615,
+    "cache_creation": 33190812,
+    "billable": 3646436
   },
   "tools": {
-    "Bash": 724,
+    "Bash": 745,
     "Edit": 125,
     "mcp__Claude_Browser__computer": 64,
-    "Write": 53,
+    "Write": 54,
     "mcp__figma-console__figma_execute": 40,
-    "Artifact": 29,
+    "Artifact": 30,
+    "Agent": 22,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
-    "Agent": 18,
     "mcp__chrome-devtools__evaluate_script": 17,
     "ToolSearch": 16,
     "AskUserQuestion": 14,
@@ -82,19 +82,22 @@
       "superseded": 3,
       "draft": 1
     },
-    "tokens_per_artifact": 391533
+    "tokens_per_artifact": 405160
   },
   "gates": {
-    "verdict": "PASS",
+    "verdict": "FAIL",
     "blocker": 0,
-    "error": 0,
-    "warning": 0,
-    "info": 0,
-    "skipped": 1
+    "error": 1,
+    "warning": 2,
+    "info": 8,
+    "skipped": 0,
+    "source": "live-audit"
   },
   "corrections": {
-    "logged": 4,
-    "promoted": 0
+    "logged": 29,
+    "with_check": 29,
+    "unchecked": 0,
+    "source": "validation/corrections.json"
   },
   "governance": {
     "adrs": 20,

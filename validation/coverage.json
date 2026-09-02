@@ -138,6 +138,46 @@
       "verified_by": "validation/figma-representable.py",
       "how": "Executed against Figma file ip2wZ3UUQ5sbFc3r902kYK on 2026-08-31, then read back variable-by-variable. The claim is TRUE FOR 762 OF 794 TOKENS and false for the rest: 12 tokens ($type typography and shadow) are Figma STYLES rather than variables, and 20 ($type duration, cubicBezier, and our coforge.levelSet) have no Figma representation at all. The 762 figure is derived by script from the token file, never asserted; it was independently corroborated by counting what Figma actually created (776) minus the 14 that created falsely.",
       "note": "VERIFIED 2026-08-31 for the representable subset, and the qualification is the finding. DESIGN-SYSTEM.md step 3 states the goal without qualification, which reads as though the whole token layer crosses. It does not, and cannot: the DTCG-to-Figma-variable mapping is not total, because Figma variables hold only COLOR/FLOAT/STRING/BOOLEAN and every composite type falls outside that. Live state confirmed by direct plugin read — 762 variables, 474 aliases, 288 literals, 0 unresolved aliases, dimensions in px — plus 8 text styles and 2 effect styles carrying the 12 composite tokens in the Figma primitive that actually models them. The 20 code-only tokens are correctly and permanently absent. Read the method note in C-020 before re-verifying: the importer's diff, the exporter, and the success summaries were each wrong in this session, so a direct plugin read is the only accepted evidence."
+    },
+    {
+      "id": "V-019",
+      "claim": "The attestation hash covers every contract file the checks read",
+      "asserted_in": "validation/attestation.json · validation/corrections.json C-025, C-027",
+      "verified_by": null,
+      "how": null,
+      "note": "UNVERIFIED. Recorded here 2026-09-02 rather than left only inside attestation.json's known_open_at_attestation block, where it was invisible to the audit. Check 5g's WIRING list names one file in design-system/contracts/ (figma-representability.json). component.schema.json — which all 216 component-index entries validate against — and figma-code-map.json are outside the hash, so either can be changed without moving it and without prompting an independent pass. This is C-027 sub-defect E-1, deliberately left open by the 2026-09-02 four-fix pass: every change to 5g invalidates the attestation it is part of, and the brief scoped that pass to the printed-hash bypass. Fix is one line — hash design-system/contracts/*.json — and needs its own attested round."
+    },
+    {
+      "id": "V-020",
+      "claim": "A hook that is registered is a hook that will actually run",
+      "asserted_in": "CLAUDE.md enforcement layers 2 and 2b · validation/corrections.json C-025",
+      "verified_by": null,
+      "how": null,
+      "note": "UNVERIFIED. Check 2b asks whether .claude/settings.json REGISTERS gate-b.py under PreToolUse and session-check.py under Stop, and it matches on the command STRING. So `gate-b.py.DISABLED`, `true # gate-b.py`, and a matcher switched from Write|Edit to Read all pass, and permissions {\"deny\": []} counts as a non-empty block. That is the same proves-the-script-not-the-wiring gap one layer down from the one C-025 closed, and test-gates.py passes clean under a neutered matcher because it invokes the hook by absolute path. C-027 sub-defect E-3. Fix: resolve the referenced path and require the file to exist, require the matcher to cover Write and Edit, require a non-empty deny list."
+    },
+    {
+      "id": "V-021",
+      "claim": "A page published outside this repository that DECLARES a token release cannot fall behind it without the audit saying so",
+      "asserted_in": "validation/published-surfaces.json the_rule · validation/corrections.json C-028",
+      "verified_by": "validation/audit-system.py",
+      "how": "Check 5h over validation/published-surfaces.json: an entry whose documents.tokens_version is behind tokens.json's $version warns with both versions and the URL; ahead or uncomparable errors; a malformed entry errors. Verified firing on a real stale page 2026-09-02.",
+      "note": "NARROWED 2026-09-02 on attestation, having first been written as 'a page cannot fall behind ... without the audit saying so'. That was false and was proved so: switching the one genuinely stale entry to documents: null plus 56 characters of plausible prose turned the warning into '[INFO] 2 of 2 surfaces are current'. The check verifies a DECLARED version against the repository; it cannot verify that the declaration is honest, and it cannot see a published page that was never added to the ledger at all — that case is undetectable from here (F-4). What the row now claims is what 5h does. The gap between them is why this note exists rather than a closure."
+    },
+    {
+      "id": "V-022",
+      "claim": "A metrics run record cannot claim a live audit unless one actually ran",
+      "asserted_in": "validation/metrics/METRICS.md · validation/corrections.json C-026",
+      "verified_by": "validation/audit-system.py",
+      "how": "Check 5i, two conditions rather than one. The newest validation/metrics/*.json must carry gates.source == 'live-audit', which collect-metrics.py sets ONLY after the audit subprocess returns; AND the record must not contradict itself — source 'live-audit' alongside verdict 'UNAVAILABLE' or any null count is an ERROR. Both negative-tested 2026-09-02: moving audit-system.py aside yields source 'unavailable', and reinstating the original C-026 bug is caught by the contradiction arm rather than reported as a live run.",
+      "note": "NARROWED, then the check was WIDENED to meet it. First written as 'gate counts describe the run that produced them' — false, because the failure branch hardcoded source 'live-audit'. Fixing that was not enough: an independent attestation reinstated the bug and showed the record went out self-contradictory (verdict UNAVAILABLE, every count null, source live-audit) while this very check reported 'gate counts derived from a live audit run'. It ruled the narrowing to be moving the goalposts — the row claimed something its named verifier did not verify — and the answer was to make 5i verify it, not to shrink the claim again. What is still NOT claimed: 5i does not re-derive the counts, so a hand-edited record that is internally consistent still passes. Re-deriving them inside the check would make the check its own subject."
+    },
+    {
+      "id": "V-023",
+      "claim": "The DS fork state in .ai/index.json is derived from the component index, not asserted",
+      "asserted_in": "CLAUDE.md DS fork · .ai/index.json state · validation/corrections.json C-029",
+      "verified_by": ".github/workflows/ci.yml",
+      "how": "The CI step 'Rebuild index and fail if it was stale' re-runs validation/index-system.py and fails on a non-empty git diff of .ai/. ds_fork is now a pure function of component-index.json — RED while zero level-2 entries positively name CoForge as their source — so a committed value that disagrees with the index turns CI red. Negative-tested 2026-09-02: planting one CoForge-authored L2 entry flipped the derived value to REVIEW and dirtied .ai/; component-index.json restored and re-verified by sha256.",
+      "note": "The generator reports REVIEW, never YELLOW or GREEN. Which fork the project is on is a declared decision under ADR-011 and belongs to a human; a script may report that the stated reason for RED has expired and may not promote the system past it. What this does NOT verify is the membrane itself: authorship is read from the `source` string because component.schema.json records no promotion event, so a hand-written source naming CoForge would be believed. That is the same class of gap as V-019 and is why the default falls towards RED. DISCLOSED 2026-09-02: the authorship test matches a positive 'CoForge' marker in `source`, so a VENDOR row whose source reads 'Ingested by the CoForge Carbon adapter from Carbon React 1.115.0' would be counted as authored here and flip the fork to REVIEW. Left unfixed deliberately — the failure direction is safe (REVIEW asks a human, it never promotes) and changing _l2_authorship() changes what CI accepts, which is Gate A."
     }
   ]
 }

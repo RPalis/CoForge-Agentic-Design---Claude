@@ -7,7 +7,9 @@
   ],
   "state": {
     "ds_fork": "RED",
-    "ds_fork_note": "RED until adapter #1 populates L2 components (ADR-011).",
+    "ds_fork_note": "RED until the index carries L2 entries CoForge AUTHORED and promoted through the membrane \u2014 spec, human approval, ADR, index (ADR-011). 208 of 208 L2 rows are vendor-ingested and 0 were authored here, so RED is correct, not stale. Counting bare L2 rows is not the test and never was: the criterion predates adapter #1 and never anticipated L2 entries arriving by ingesting a vendor library.",
+    "l2_authored_here": 0,
+    "l2_vendor_ingested": 208,
     "evidence_records": 0,
     "raw_sources": 1,
     "tokens": 829,

@@ -1,26 +1,26 @@
 {
   "run_id": "2026-09-02",
-  "generated_at": "2026-09-02T10:42:17",
+  "generated_at": "2026-09-02T10:53:41",
   "project": "coforge",
   "session": {
-    "turns": 2816,
-    "duration_min": 11566.0,
+    "turns": 2849,
+    "duration_min": 11577.3,
     "transcripts": 2
   },
   "tokens": {
-    "input": 5628,
-    "output": 3480625,
-    "cache_read": 1333744702,
-    "cache_creation": 32972554,
-    "billable": 3486253
+    "input": 5694,
+    "output": 3515366,
+    "cache_read": 1355498252,
+    "cache_creation": 33058836,
+    "billable": 3521060
   },
   "tools": {
-    "Bash": 714,
+    "Bash": 723,
     "Edit": 125,
     "mcp__Claude_Browser__computer": 64,
     "Write": 53,
     "mcp__figma-console__figma_execute": 40,
-    "Artifact": 25,
+    "Artifact": 29,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
@@ -32,7 +32,7 @@
     "mcp__figma-console__figma_delete_variable": 11,
     "WebSearch": 10,
     "mcp__Claude_Browser__preview_start": 10,
-    "Read": 8,
+    "Read": 9,
     "mcp__figma-console__figma_import_tokens": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
@@ -82,7 +82,7 @@
       "superseded": 3,
       "draft": 1
     },
-    "tokens_per_artifact": 387361
+    "tokens_per_artifact": 391229
   },
   "gates": {
     "verdict": "PASS",

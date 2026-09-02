@@ -16,8 +16,11 @@
       "evidence": [],
       "tokens_version": null,
       "surface": {
-        "kind": "local",
-        "ref": null
+        "kind": "claude-artifact",
+        "ref": "https://claude.ai/code/artifact/f6118c84-7ef4-4afd-b44b-cfc135fd747d",
+        "shared": true,
+        "documents_tokens_version": "0.2.0",
+        "$note": "Registered 2026-09-02, having been published on 2026-08-28 and recorded nowhere. surface.ref was null, so no manifest pointed at the page and nothing in the repository could tell it had gone stale \u2014 the same shape as every other defect in validation/corrections.json: an unwatched surface. The published page also DIVERGED from this payload: coforge-visual-foundations.md is 124 lines of pure coforge.com measurement and contains none of the token-coverage figures the page carried, so the published surface asserted things about CoForge's own token layer that no registered artifact backs. documents_tokens_version records the release the page's own-layer figures are true of; when tokens.json moves past it, the page is stale by definition."
       },
       "path": "artifacts/brand-foundations/2026-08-27__brand-extraction__coforge-web__v1"
     },

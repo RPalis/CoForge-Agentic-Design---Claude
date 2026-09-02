@@ -16,7 +16,7 @@
 | ds_fork_note | RED until adapter #1 populates L2 components (ADR-011). |
 | evidence_records | 0 |
 | raw_sources | 1 |
-| tokens | 794 |
+| tokens | 829 |
 | components | 216 |
 | artifacts | 8 |
 | brand_status | approved |

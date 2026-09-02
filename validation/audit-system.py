@@ -11,7 +11,7 @@ Every finding carries a suggested fix. Skipped checks are always reported.
   python3 validation/audit-system.py --json     # machine output
   python3 validation/audit-system.py --report   # also write validation/reports/
 """
-import json, os, re, sys, datetime
+import json, os, re, sys, datetime, hashlib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def P(*a): return os.path.join(ROOT, *a)
@@ -66,6 +66,36 @@ else:
                     f"and cannot produce it",
                     "give the owner Write, or reassign the type to an agent that can write — "
                     "an owner that cannot produce its own artifact type is a contract to nothing")
+
+# 2b — the gates must be WIRED, not merely present.
+# Check 1 asked whether .claude/settings.json exists. An audit deleted its entire hooks
+# block — killing enforcement layers 2 and 2b outright — and every check in this repo
+# still passed, because existence was the only question anyone asked. test-gates.py did
+# not catch it either: it invokes gate-b.py by absolute path, which proves the SCRIPT
+# works and proves nothing about whether anything calls it. A hook that exists and is
+# not registered is the purest form of the defect this file exists to remove.
+_settings = jload(".claude/settings.json")
+if _settings is None:
+    add("blocker", "wiring", ".claude/settings.json unreadable — layer 1 and layer 2 are unverifiable",
+        "restore it; permissions and every hook registration live there")
+else:
+    _hooks_blob = json.dumps(_settings.get("hooks") or {})
+    for _hook, _event, _why in (
+            ("gate-b.py", "PreToolUse",
+             "layer 2 — blocks raw hex, unindexed components and unresolved citations on Write|Edit"),
+            ("session-check.py", "Stop",
+             "layer 2b — the ONLY thing covering Bash writes, which Gate B never sees")):
+        if _hook not in _hooks_blob:
+            add("blocker", "wiring", f"{_hook} exists but is not registered in settings.json",
+                f"register it under {_event} — {_why}. The script passing its own tests "
+                f"says nothing about whether anything invokes it")
+        elif f'"{_event}"' not in json.dumps({k: v for k, v in (_settings.get("hooks") or {}).items()
+                                              if _hook in json.dumps(v)}):
+            add("error", "wiring", f"{_hook} is registered but not under {_event}",
+                f"it must fire on {_event} — {_why}")
+    if not (_settings.get("permissions") or {}):
+        add("error", "wiring", "settings.json declares no permissions — layer 1 is empty",
+            "layer 1 is the deny list that makes off-limits paths impossible")
 
 # 3 — agent frontmatter completeness + gate integrity
 # FINDERS produce findings and nothing else. They own an artifact type, so they need
@@ -208,34 +238,50 @@ else:
 # The audit reported "skipped 0 · PASS" on runs that never opened the file — the
 # coverage illusion this repo exists to prevent.
 art_paths = {a["id"]: a["path"] for a in (jload("artifacts/_registry.json") or {}).get("artifacts", [])}
-fdir = P("design-system/foundations")
-if not os.path.isdir(fdir):
-    skip("foundations", "design-system/foundations/ does not exist")
-else:
+
+
+# C-011: ADRs are durable decisions and were never scanned. A decision resting on a
+# gitignored path or an unresolvable ID is the same defect as one in an SSOT file —
+# it just takes longer to notice, because nobody re-reads an ADR.
+SSOT_DIRS = [("design-system/foundations", "foundations"), ("decisions", "decisions")]
+for _dir, _label in SSOT_DIRS:
+  fdir = P(_dir)
+  if not os.path.isdir(fdir):
+    skip(_label, f"{_dir}/ does not exist")
+  else:
     n_found = 0
     for f in sorted(os.listdir(fdir)):
         if not f.endswith(".md"): continue
         n_found += 1
-        rel = f"design-system/foundations/{f}"
+        rel = f"{_dir}/{f}"
+        # NOT span-stripped. gate-b.py strips fenced code, inline code and
+        # blockquotes before scanning, and copying that here was a 96% coverage
+        # LOSS: brand.md writes every citation as inline code — `Evidenced
+        # [ART-005 § Contrast]` — so 24 of 25 real citations went unchecked while
+        # the change was described as a widening. A PRE-WRITE GATE and a POST-HOC
+        # AUDIT have inverted risk profiles. Gate B must not block correct work, so
+        # it tolerates missing a mention. An audit must not miss a real defect, so
+        # it tolerates reporting one. Same rule, opposite tolerances; the tolerance
+        # is not transferable.
         body = open(os.path.join(fdir, f), encoding="utf-8", errors="ignore").read()
 
         # ledger citations must resolve, exactly as in artifacts
         for cid in set(re.findall(r"\[(E-\d{3,})\]", body)):
             if cid not in known_ev:
-                add("blocker", "foundations", f"{rel}: unresolved evidence ID {cid}",
+                add("blocker", _label, f"{rel}: unresolved evidence ID {cid}",
                     "log the quote via evidence-clerk, or remove the claim — it is stripped, not softened")
 
         # ADR-017's second form: must resolve to a registered artifact AND a real heading
         for aid, rest in re.findall(r"\[(ART-\d{3,})([^\]]*)\]", body):
             p = art_paths.get(aid)
             if not p or not os.path.isdir(P(p)):
-                add("blocker", "foundations", f"{rel}: {aid} is not a registered artifact",
+                add("blocker", _label, f"{rel}: {aid} is not a registered artifact",
                     "cite a registered artifact, or remove the claim (ADR-017)"); continue
             try:
                 man = jload(os.path.join(p, "manifest.json")) or {}
                 payload = open(P(p, man.get("file", "")), encoding="utf-8", errors="ignore").read()
             except OSError:
-                add("error", "foundations", f"{rel}: {aid} payload unreadable",
+                add("error", _label, f"{rel}: {aid} payload unreadable",
                     "check manifest.file names an existing file"); continue
             heads = [h.strip().lower() for h in re.findall(r"^#{2,3}\s+(.+)$", payload, re.M)]
             for part in rest.split(","):
@@ -243,15 +289,173 @@ else:
                 if not part.startswith("§"): continue
                 sec = part[1:].strip().lower()
                 if not any(h == sec or h.startswith(sec) for h in heads):
-                    add("blocker", "foundations", f"{rel}: {aid} has no section '{sec}'",
+                    add("blocker", _label, f"{rel}: {aid} has no section '{sec}'",
                         "match a real heading in the artifact payload (ADR-017)")
 
         # an SSOT file must not depend on scratch/ — it is disposable by design
         for m in set(re.findall(r"scratch/[\w./-]+", body)):
-            add("error", "foundations", f"{rel}: cites disposable path {m}",
+            add("error", _label, f"{rel}: cites disposable path {m}",
                 "promote it to a registered artifact and cite [ART-nnn § …] (ADR-017)")
     if not n_found:
-        skip("foundations", "no markdown in design-system/foundations/")
+        skip(_label, f"no markdown in {_dir}/")
+
+# 5f — V-014: tokens_version must be TRUE, not merely present.
+# CLAUDE.md: "manifest.json chains inputs.tokens_version to a token release ... any
+# token change traceable." Twelve of thirteen manifests carried null and that was
+# read as "nobody filled it in". It was not. Seven of the eight real artifacts are
+# prose research documents that reference no token anywhere, so null is CORRECT for
+# them, and backfilling a version would have manufactured exactly the kind of false
+# provenance this field exists to prevent. Five of the thirteen are _templates
+# skeletons, where null is the only right answer.
+#
+# So the claim was never false, it was mis-specified — and the check has to be
+# conditional or it forces a lie: an artifact that consumes tokens must name the
+# release, one that does not must stay null. Both directions are errors.
+# Detection is HEURISTIC and the severities are asymmetric because of it.
+# Three forms count as consuming tokens: a DTCG path (semantic.background, braces
+# optional — a document that AUDITS tokens names them bare, and requiring a brace
+# once declared ART-008 token-free); a CSS custom property (var(--cds-*), which is
+# how an L2 HTML payload actually consumes them); and a raw hex, which means the
+# artifact renders colour at all. The first version matched only braced paths and
+# would have told ART-004 — an HTML artifact with a TRUE tokens_version — to "set
+# it back to null", pushing a correct manifest into a lie for exactly the artifact
+# class this system is being built toward.
+TOKEN_REF = re.compile(
+    r"\b(palette|semantic|semantic-dark|spacing|typography|elevation|motion|density)"
+    r"\.[a-z0-9][a-z0-9-]*"
+    r"|var\(\s*--[a-z0-9-]+")
+# Raw hex is deliberately NOT a signal. It was tried and immediately mis-flagged
+# ART-005, the brand extraction, whose hex values are colours MEASURED FROM
+# coforge.com — source material, not tokens consumed. And Gate B already forbids raw
+# hex inside artifacts, so hex that survives there is research data by construction.
+# "Contains a colour" and "consumes our token layer" are different claims.
+_tokens_ver = (jload("design-system/tokens/tokens.json") or {}).get("$version")
+if not _tokens_ver:
+    skip("provenance", "tokens.json declares no $version to chain to")
+else:
+    n_prov = 0
+    for a in (jload("artifacts/_registry.json") or {}).get("artifacts", []):
+        ap = a.get("path")
+        if not ap or not os.path.isdir(P(ap)): continue
+        n_prov += 1
+        declared = ((jload(os.path.join(ap, "manifest.json")) or {}).get("inputs") or {}).get("tokens_version")
+        uses = False
+        for fn2 in sorted(os.listdir(P(ap))):
+            if fn2 == "manifest.json": continue
+            try:
+                if TOKEN_REF.search(open(P(ap, fn2), encoding="utf-8", errors="ignore").read()):
+                    uses = True; break
+            except OSError:
+                pass
+        if uses and not declared:
+            add("blocker", "provenance",
+                f"{a['id']} references tokens but its manifest declares no tokens_version",
+                f'set inputs.tokens_version to the release it was built against (currently '
+                f'"{_tokens_ver}") — an on-token artifact with no version is untraceable')
+        elif declared and not uses:
+            # WARNING, never error, and never phrased as "remove it". Detection is a
+            # heuristic; a miss here means a TRUE provenance record gets told to delete
+            # itself. Absent provenance is a gap, but false provenance and destroyed
+            # provenance are both worse, so the asymmetry is deliberate: this direction
+            # asks a human to look, it does not assert the manifest is wrong.
+            add("warning", "provenance",
+                f"{a['id']} declares tokens_version {declared!r} but no token reference "
+                f"was detected in its payload",
+                "confirm by hand. If it genuinely consumes no tokens, set the field to "
+                "null; if it does and this check missed the form, widen TOKEN_REF — do "
+                "NOT delete a true version to satisfy a heuristic")
+    if not n_prov:
+        skip("provenance", "no registered artifacts to check")
+
+# 5g — if you changed the checks, someone who did not change them must attack the result.
+#
+# Promoted to a standing rule on 2026-09-01 under CLAUDE.md's own provision that a
+# correction recurring twice becomes one. It recurred twice in a single day:
+#
+#   C-021  53 tokens with an inert alphaModifier — inspected three days earlier and
+#          cleared in writing as "does not need re-doing", while every check passed.
+#   C-024  39 warnings driven to 0 in an hour, where one closure had made the citation
+#          check 96% blind and another was closed by circular reference.
+#
+# Neither was found by the author. Both were found by dispatching an agent that had not
+# done the work. The guardrail that worked was not a check — it was refusing to commit
+# an unattacked clean board — so this encodes the refusal instead of leaving it to
+# whoever remembers.
+#
+# WHAT THIS IS NOT. The first attempt compared today's finding count against the
+# previous metrics snapshot and fired on a large drop. It could never fire: snapshots
+# record END-of-session state, which is always clean, so the delta is always about
+# zero. It was deleted rather than shipped — a check that cannot fire is the exact
+# "named layer that reads as coverage" this file exists to remove, and it would have
+# been indistinguishable from a working one.
+#
+# The signal that DOES exist is the machinery itself. Hash every validator and hook; if
+# that hash has moved since the last recorded attestation and no independent audit is
+# dated today, the checks changed and nobody but their author has looked.
+# WHAT IS HASHED. Recursively, every .py under validation/ and .claude/hooks/ — plus
+# the WIRING, which the first version omitted and which an audit proved was the whole
+# hole: deleting the hooks block from .claude/settings.json kills enforcement layers 2
+# and 2b, and every check still passed, because test-gates.py invokes gate-b.py by
+# absolute path (proving the script works, proving nothing about whether it is wired
+# in) and check 1 only asks whether settings.json exists. Same for ci.yml, where
+# deleting a step removes a layer without touching a .py. The two files where one
+# deleted line disables the most enforcement were the two the hash did not watch.
+# os.listdir was also flat, so validation/adapters/carbon-react.py — the script with
+# the worst defect record in this repo — was the one omitted.
+WIRING = [".claude/settings.json", ".github/workflows/ci.yml",
+          "design-system/contracts/figma-representability.json",
+          "validation/declared-counts.json"]
+MACHINERY = []
+for _base in ("validation", ".claude/hooks"):
+    for _root, _dirs, _files in os.walk(P(_base)):
+        _dirs[:] = [d for d in _dirs if d not in ("__pycache__", "reports", "metrics")]
+        MACHINERY += [os.path.join(_root, f) for f in _files if f.endswith(".py")]
+MACHINERY = sorted(MACHINERY) + [P(w) for w in WIRING if os.path.exists(P(w))]
+_h = hashlib.sha256()
+for _f in MACHINERY:
+    _h.update(os.path.relpath(_f, ROOT).encode())
+    with open(_f, "rb") as _fh:
+        _h.update(_fh.read())
+_machinery = _h.hexdigest()[:16]
+
+_rec = jload("validation/attestation.json") or {}
+if _rec.get("machinery") == _machinery:
+    add("info", "attestation",
+        f"machinery + wiring unchanged since {_rec.get('attested_on','?')} ({_machinery})",
+        "no action")
+else:
+    # The attesting report must NAME THIS HASH. Matching on filename and date was
+    # defeated three ways in one audit: a zero-byte file passed, an "audit-TODO-
+    # placeholder" passed, and — live, on the first probe — reports written earlier
+    # the same day were reused to clear a change made after them, because attested_by
+    # was never dereferenced. Requiring the hash inside the report removes all three
+    # and removes the wall-clock dependence with them: the same commit no longer goes
+    # green on one day and red the next.
+    rdir = P("validation/reports")
+    attest = []
+    for r in sorted(os.listdir(rdir) if os.path.isdir(rdir) else []):
+        if "audit" not in r or not any(a in r for a in agents):
+            continue
+        try:
+            if _machinery in open(os.path.join(rdir, r), encoding="utf-8",
+                                  errors="ignore").read():
+                attest.append(r)
+        except OSError:
+            pass
+    if attest:
+        add("info", "attestation",
+            f"machinery changed to {_machinery}; attested by {', '.join(attest)}",
+            "record it in validation/attestation.json")
+    else:
+        add("error", "attestation",
+            f"the validation machinery or its wiring changed (hash {_machinery}) and no "
+            f"audit report names that hash",
+            "dispatch an agent from the roster that did NOT make the change, have it "
+            "attack the result and RECORD THE HASH in its report. NOTE: this is a "
+            "process prompt, not enforcement — editing attestation.json silences it and "
+            "nothing detects that. It raises the cost of skipping the step; it cannot "
+            "make skipping impossible, and calling it enforcement would be the defect "
+            "it was built to prevent")
 
 # 5c — self-governance: does the system verify its own claims?
 # Every blind spot found on 2026-08-28 had the same shape — a claim that was

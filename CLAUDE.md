@@ -10,8 +10,10 @@ A design operating system where AI agents produce research, journey maps, IA,
 wireframes, UI, prototypes and handoff — under gates that make fabricated evidence
 and off-system output impossible, not merely discouraged.
 
-**Design-system state: RED** — a *declared* state, not a count. Tokens (794) and
-`brand.md` exist; RED holds until L2 components land (ADR-011). See "DS fork" below.
+**Design-system state: RED** — a *declared* state, not a count. Tokens (829) and
+`brand.md` exist; RED holds until CoForge has AUTHORED L2 components (ADR-011). The
+index carries 208 L2 rows and every one is `source: @carbon/react` — a vendor
+catalogue the adapter ingested, not a system anyone built. See "DS fork" below.
 
 ## The two prohibitions
 
@@ -39,7 +41,7 @@ Everything stronger is enforced by tools, hooks and CI — not by prose.
 - **Design Loop Phases 1–11** — what the system does once built. Cyclical.
 
 Current position (2026-08-28): **Build Stage 0–2 complete for foundations.**
-`brand.md` approved at Gate A; 794 tokens across five axes; 8 L1 primitives.
+`brand.md` approved at Gate A; 829 tokens across five axes; 8 L1 primitives.
 **Design Loop still not runnable** — it needs the evidence spine (ledger is empty)
 and L2 components (adapter #1, ADR-013 link 1, in progress).
 
@@ -96,9 +98,14 @@ level-1 entries*, which is stricter than exempting it and costs one field in the
 - **Yellow** — DS exists, not in code: match components, review consistency, feed gaps to token-keeper.
 - **Red** — no *component* DS: token-keeper builds the foundations before **L2** screens are
   produced. **CoForge is here** — tokens and brand are done, so L1 output is unblocked; RED
-  persists until the component index carries L2 entries. The fork is a **declared** state:
-  L1 primitives existing does not make a design system exist, and the declared value wins
-  over any count.
+  persists until the index carries L2 entries **CoForge authored and promoted through the
+  membrane** — spec → human approval → ADR → index. Counting bare L2 rows is not the test
+  and was never meant to be: the criterion predates adapter #1 and never anticipated that
+  208 L2 entries could arrive by *ingesting a vendor library*. Today 208 of 208 carry
+  `source: @carbon/react@1.115.0` and **0** were authored here, so RED is correct, not
+  stale. The fork is a **declared** state: L1 primitives existing does not make a design
+  system exist, a vendor catalogue does not either, and the declared value wins over any
+  count.
 
 ## Routing table
 
@@ -127,6 +134,16 @@ match any (phase, task) pair.
 | any | adapters · generators · validators · schemas · hooks | system-keeper | vendor source, the repo itself | validation/, contracts/, generated indices | B (A if it changes what a gate accepts) | design decisions (brand-director, token-keeper) |
 
 ## Autonomy ladder
+
+> **NOT OPERATIVE (2026-09-01).** Nothing counts clean reviews, so nothing can graduate
+> or be demoted — every writing agent is at Draft and stays there. Two of the forty
+> routing rows have ever been exercised, so there is almost nothing to count yet;
+> building the counter now would be machinery ahead of capability. Two things must
+> change before this is real: something has to do the counting, and the tally cannot
+> live in `memory/corrections.md`, which is **gitignored** and would not survive a
+> clone. Tracked as V-015. Stated here because a ladder described in the present tense
+> reads as a live mechanism, and a mechanism nobody implemented is the coverage
+> illusion this file exists to remove.
 
 - Everything that can write starts at **Draft** (Gate A before it counts).
 - Graduates to **Auto** (Gate B only) after **3 consecutive clean reviews**, logged in
@@ -210,6 +227,22 @@ without a baseline you cannot tell whether the skill helped. Assertions are writ
   and the single next action.
 - **Never assume a gate ran.** Gate B fires on Write/Edit only. Bash heredocs bypass it —
   that is how this repository was actually built, and it went unnoticed for a full session.
+- **If you changed the checks, someone who did not change them must attack the result
+  before it is committed.** The author is the one person who cannot perform this check.
+  Twice on 2026-09-01 a check was declared working by its author and was not: C-021 (53
+  tokens carrying an inert modifier, inspected three days earlier and cleared in writing)
+  and C-024 (39 warnings driven to zero in an hour, where one closure had made the
+  citation check 96% blind). Both were good-faith errors backed by evidence the author
+  found convincing, which is exactly why good faith is not the safeguard. **Prompted —
+  not enforced** — by `audit-system.py` check 5g against `validation/attestation.json`:
+  it hashes every validator, hook, and the wiring that invokes them, and errors when
+  that hash is not named in an audit report. Editing the recorded hash silences it and
+  nothing detects that, so it raises the cost of skipping the step and cannot make
+  skipping impossible. Calling it enforcement would be the defect it was built to catch.
+  An attestation means an agent that ran the checks and planted defects — not one that
+  read them, and not one that wrote a file with the right name.
+- **A clean board is when to look hardest.** Findings falling fast is evidence something
+  changed a lot, not evidence it was repaired.
 - A correction that recurs twice is promoted into this file as a standing rule.
 
 ## Output surfaces

@@ -1,41 +1,41 @@
 {
-  "run_id": "2026-09-01",
-  "generated_at": "2026-09-01T18:35:18",
+  "run_id": "2026-09-02",
+  "generated_at": "2026-09-02T09:48:00",
   "project": "coforge",
   "session": {
-    "turns": 2656,
-    "duration_min": 10599.0,
+    "turns": 2730,
+    "duration_min": 11511.7,
     "transcripts": 2
   },
   "tokens": {
-    "input": 5308,
-    "output": 3308008,
-    "cache_read": 1244129023,
-    "cache_creation": 31299056,
-    "billable": 3313316
+    "input": 5456,
+    "output": 3371551,
+    "cache_read": 1282401001,
+    "cache_creation": 32831544,
+    "billable": 3377007
   },
   "tools": {
-    "Bash": 685,
+    "Bash": 696,
     "Edit": 125,
     "mcp__Claude_Browser__computer": 64,
-    "Write": 50,
+    "Write": 51,
+    "mcp__figma-console__figma_execute": 37,
     "Artifact": 23,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
-    "mcp__figma-console__figma_execute": 19,
     "mcp__chrome-devtools__evaluate_script": 17,
+    "ToolSearch": 16,
     "Agent": 16,
-    "ToolSearch": 15,
     "AskUserQuestion": 14,
     "mcp__figma-console__figma_delete_variable": 11,
     "WebSearch": 10,
     "SendUserFile": 10,
     "mcp__Claude_Browser__preview_start": 10,
+    "mcp__figma-console__figma_import_tokens": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
-    "mcp__figma-console__figma_import_tokens": 7,
     "mcp__chrome-devtools__take_screenshot": 5,
     "mcp__chrome-devtools__new_page": 4,
     "Read": 4,
@@ -47,7 +47,9 @@
     "mcp__Claude_Browser__find": 2,
     "mcp__chrome-devtools__emulate": 2,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 2,
+    "mcp__figma-console__figma_get_status": 2,
     "mcp__figma-console__figma_delete_variable_collection": 2,
+    "mcp__figma-console__figma_take_screenshot": 2,
     "mcp__Claude_Browser__read_console_messages": 1,
     "mcp__ccd_session_mgmt__set_session_title": 1,
     "mcp__Claude_Browser__tabs_context": 1,
@@ -58,7 +60,6 @@
     "mcp__chrome-devtools__resize_page": 1,
     "mcp__chrome-devtools__navigate_page": 1,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_design_system_kit": 1,
-    "mcp__figma-console__figma_get_status": 1,
     "mcp__figma-console__figma_list_open_files": 1,
     "mcp__figma-console__figma_navigate": 1
   },
@@ -81,7 +82,7 @@
       "validated": 1,
       "superseded": 2
     },
-    "tokens_per_artifact": 414164
+    "tokens_per_artifact": 422126
   },
   "gates": {
     "verdict": "PASS",

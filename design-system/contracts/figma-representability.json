@@ -10,6 +10,11 @@
 
   "figma_variable_types": ["COLOR", "FLOAT", "STRING", "BOOLEAN"],
 
+  "string_flattening": {
+    "$comment": "DTCG allows fontFamily to be an ARRAY — the fallback stack. A Figma STRING variable holds one string, so the stack is flattened on the way in. Declared here 2026-09-02 because it was performed by the importer and declared nowhere (I-1, mirror audit): the live file holds the stack comma-joined with NO space, `\",\".join(...)` matches exactly and `\", \".join(...)` does not. A future importer choosing the other separator would change both fontFamily values and nothing would have flagged it. The push plan generator now applies this separator itself, so the value is joined by us rather than by whatever is on the other side of the bridge.",
+    "fontFamily_separator": ","
+  },
+
   "dimension_unit": {
     "$comment": "A second, quieter failure of the same kind, found 2026-08-31 immediately after the first. Every dimension token imported as its rem NUMBER with the unit discarded — Figma FLOAT variables are unitless. typography/size/07 arrived as 3.875 and elevation/spacing/13 as 10. Bound to a font size or a padding, Figma reads a FLOAT as PIXELS, so the display level would have rendered at 3.875px instead of 62px. Nothing failed and nothing warned; the numbers were simply wrong by a factor of 16.",
     "rem_to_px": 16,
@@ -18,8 +23,131 @@
     "affected_count_at_establishment": 27,
     "affected": "spacing (13) + typography.size (7) + typography.tracking (7). elevation.shadow geometry is authored in px already and is NOT converted — converting it would introduce the same error in the opposite direction.",
     "corroboration": "After conversion, size/07 reads 62px and tracking/07 reads -2px. Those are the two independently evidenced values in the type axis [ART-005 § Type; brand.md §4] — the only two points on the scale that research fixed rather than authored. Both landing exactly is the check that the factor is right.",
-    "enforced_by": "validation/build-figma-tokens.py — generates design-system/tokens/coforge.figma.tokens.json, the ONLY file Figma imports. The conversion happens there, so the import is correct by construction; `--check` fails CI if tokens.json moved without regenerating. This replaced a hand-applied fix that nothing could verify, because CI has no Figma access and a re-import would have reverted all 27 dimensions silently.",
-    "one_import_source": "design-system/tokens/ must contain exactly ONE file matching the importer's *.tokens.json glob, and it must be the generated one. A coforge.tokens.json symlink to tokens.json existed as a workaround for the glob and was deleted on 2026-08-31 — with both present, an import would have pushed the rem source alongside the px file."
+    "enforced_by": "validation/build-figma-tokens.py — generates TWO files, and the conversion happens in both, so each is correct by construction; `--check` fails CI if either is stale. design-system/tokens/coforge.figma.tokens.json is DTCG and is what the *.tokens.json importer reads. design-system/tokens/figma-push-plan.json is mode-aware and is what a push actually applies (figma_batch_update_variables / figma_execute). CORRECTED 2026-09-02: this field previously read 'the ONLY file Figma imports'. That stopped being true when `semantic` and `semantic-dark` were collapsed into one two-mode Figma collection (C-030). A DTCG group cannot express a mode, so the generated .tokens.json now OMITS every collection that carries modes — see collection_modes — and the push plan carries them instead. READ THIS FIELD AS A DESIGN, NOT AS A HISTORY: the 2026-09-02 mirror audit (W-1) established that the live Figma file was never produced by an import of the generated file at all — 27 dimension descriptions carry an older wording and 5 tracking values carry float32 residue from a tokens.json that has since changed. The import path is documented, generated, and unexercised.",
+    "one_import_source": "design-system/tokens/ must contain exactly ONE file matching the importer's *.tokens.json glob, and it must be the generated one. A coforge.tokens.json symlink to tokens.json existed as a workaround for the glob and was deleted on 2026-08-31 — with both present, an import would have pushed the rem source alongside the px file. That rule still holds and is still enforced by the filename. NARROWED 2026-09-02: it no longer means 'one file is the whole push'. One import source is not one push source. The DTCG file can only address collections that have a single mode, so it now covers 325 of the 797 representable tokens; the remaining 472 are the Light and Dark modes of the 236 `semantic` variables and are pushed from figma-push-plan.json. figma_import_tokens MUST NOT be used against `semantic` — the importer maps a top-level DTCG group to a collection, so importing a file that carried `semantic-dark` would recreate the collection that was deleted, leaving every dark value in the file twice with only one copy bound to anything."
+  },
+
+  "collection_modes": {
+    "$comment": "Which Figma variable COLLECTIONS carry more than one mode, and which top-level DTCG group supplies each mode. DTCG has no concept of a mode, so tokens.json models Light and Dark as two sibling groups — that is correct for DTCG, correct for CSS, and STAYS. Only the bridge needs to know they are two modes of one collection. Established 2026-09-02, after the collapse of `semantic` and `semantic-dark` into one two-mode collection was performed in Figma by direct Plugin API calls and left no trace on the repo side: the generator went on emitting a group the importer would have turned back into a sixth collection, and the only checker that can see Figma read valuesByMode[modes[0]] and so could not see Dark at all (C-030). ONE declaration, read by validation/build-figma-tokens.py and validation/check-figma-live.py. It is deliberately NOT an $extensions hint for the importer: C-017 established that declaring is not enforcing — an importer does not read our extensions — so the mode structure is applied by a push plan this repository generates, never by a marker we hope is honoured.",
+    "single_mode_name": "Default",
+    "collections": {
+      "semantic": {
+        "default_mode": "Light",
+        "modes": {
+          "Light": "semantic",
+          "Dark": "semantic-dark"
+        }
+      }
+    },
+    "rules": [
+      "Every source group named here must exist as a top-level group of tokens.json.",
+      "default_mode must be one of the keys of modes, and a collection must declare at least two modes.",
+      "A source group may be claimed by at most one collection and at most one mode.",
+      "Every mode of a collection must carry exactly the same set of leaf token paths. A Figma variable exists in every mode of its collection, so a name present in one mode and missing from another is an UNSET value in that mode, not a smaller mode.",
+      "A collection listed here is NOT emitted into the DTCG file. A DTCG group cannot express a mode, so emitting it would push one mode's values under a name the importer maps to an entire collection.",
+      "Any collection absent from this map is single-mode and its mode is named by single_mode_name.",
+      "The generator REFUSES on any violation and writes nothing. It never infers a mapping: a guessed mode map writes one theme's values over another's, and Figma keeps no history of what was overwritten."
+    ],
+    "unproven": "Which mode Figma treats as index 0 is INFERRED, not proven. Light is first in the capture's key order, and key order in a serialised capture is not evidence. If Dark were index 0, every unconfigured consumer would render dark and nothing in this repository would show it. Recorded as I-3 of validation/reports/2026-09-02__token-keeper-figma-mirror-audit.md. `default_mode` above is the assertion this repository makes, not a measurement.",
+    "known_loss": "A Figma variable carries ONE description, not one per mode. 161 of the 236 `semantic-dark` $descriptions therefore have no Figma home and the live file holds the Light text; 137 are machine filler and 24 are substantive prose about dark behaviour. Recoverable only while tokens.json is upstream (mirror audit E-1). Nothing here checks descriptions, and this note is not a check."
+  },
+
+  "figma_styles": {
+    "$comment": "Which composite tokens are actually MATERIALISED as a Figma style, and under what name. This cannot be derived from figma_home, because figma_home names a KIND and not an instance: four shadow tokens declare figma-effect-style and only two are materialised — elevation.shadow.* are geometry primitives that elevation.surface.* pure-alias, and materialising both would put one shadow in the picker twice (W-3, 2026-09-02 mirror audit). A checker deriving expected style names from figma_home alone would report two blockers against a correct file.",
+    "name_rule": "the token path with its first segment dropped and the remaining segments joined by '/': typography.scale.display -> scale/display; elevation.surface.raised -> surface/raised.",
+    "text": {
+      "typography.scale.display": "scale/display",
+      "typography.scale.h1": "scale/h1",
+      "typography.scale.h2": "scale/h2",
+      "typography.scale.h3": "scale/h3",
+      "typography.scale.body": "scale/body",
+      "typography.scale.body-sm": "scale/body-sm",
+      "typography.scale.caption": "scale/caption",
+      "typography.scale.code": "scale/code"
+    },
+    "effect": {
+      "elevation.surface.raised": "surface/raised",
+      "elevation.surface.flat": "surface/flat"
+    },
+    "not_materialised": {
+      "elevation.shadow.none": "geometry primitive, pure-aliased by elevation.surface.flat — materialising it would duplicate the style",
+      "elevation.shadow.raised": "geometry primitive, pure-aliased by elevation.surface.raised — materialising it would duplicate the style"
+    },
+    "text_style_bindings_checked": [
+      "fontSize",
+      "letterSpacing"
+    ],
+    "not_checked": [
+      "effect style VALUES — colour, offset, blur, spread. Presence by name only. Deliberate: building composite effect comparison at foundations stage was flagged as over-engineering by the migration plan §8, and a half-built value comparison reads as coverage. check-figma-live.py prints this limit in its own output rather than leaving it silent.",
+      "text style fontFamily and fontWeight bindings — out of scope for the same reason; only size and tracking are compared.",
+      "whether a style is bound in a mode other than the file default — Figma text styles are not mode-aware in the capture."
+    ]
+  },
+
+  "live_capture": {
+    "$comment": "The ONE capture shape validation/check-figma-live.py accepts. Contracted 2026-09-02 as a deliverable, not assumed as an input. Before this, two mutually incompatible captures existed in scratch/ and neither was declared: a flat {collection,name,type,alias,value} list and a {collection,name,type,scopes,description,modes:{...}} list. The checker read the first and silently mis-read the second, which is how a mirror that is exact by independent re-derivation produced 474 blockers and 323 uncompared — 561 of 797 comparisons were shape artefacts. An unrecognised capture producing hundreds of phantom blockers is WORSE than a hard failure, because it looks like a real diff. The checker therefore ERRORS (exit 2) on any shape but this one and compares nothing.",
+    "schema_id": "coforge-figma-capture/1",
+    "top_level": {
+      "$capture_schema": "must equal schema_id exactly",
+      "captured": "ISO-8601 timestamp from the plugin, not from the reader",
+      "file_key": "the Figma file key the capture was taken from",
+      "variables": "array of variable objects, see `variable`",
+      "styles": "object with `text` and `effect` arrays, OR null meaning NOT CAPTURED. The key is REQUIRED either way: null is a declaration that nobody looked, and the checker counts every expected style as uncompared. Omitting the key is an ERROR, because an omission and an empty capture are indistinguishable and one of them means 'no styles exist in Figma'."
+    },
+    "variable": {
+      "collection": "Figma collection name",
+      "name": "variable name with '/' replaced by '.', so it reads as a token path",
+      "type": "resolvedType — COLOR | FLOAT | STRING | BOOLEAN",
+      "scopes": "array; captured but not compared — nothing in this repository declares scopes (mirror audit W-2)",
+      "description": "captured but not compared",
+      "modes": "object keyed by MODE NAME. Each value holds exactly one of `alias` (a full dotted path to another variable) or `value` (a literal). An empty object means the variable has no value in that mode and is reported, never skipped."
+    },
+    "text_style": {
+      "name": "style name as it appears in Figma, e.g. scale/display",
+      "boundVariables": "object mapping a text-style field (fontSize, letterSpacing, …) to the full dotted path of the variable bound to it, or null when the field is bound to nothing"
+    },
+    "effect_style": {
+      "name": "style name as it appears in Figma, e.g. surface/raised"
+    },
+    "how_to_capture": "Run the snippet below in figma_execute against the file and save the returned JSON. C-020 governs: the MCP's own reporting of its own work is not evidence — the import summary, the dry-run diff and figma_export_tokens were each wrong in one session, every time in the direction of claiming success. A direct plugin read is the only accepted evidence, and this snippet is that read.",
+    "plugin_snippet": [
+      "const cols = await figma.variables.getLocalVariableCollectionsAsync();",
+      "const byId = Object.fromEntries(cols.map(c => [c.id, c]));",
+      "const pathOf = async (id) => {",
+      "  const t = await figma.variables.getVariableByIdAsync(id);",
+      "  return t ? byId[t.variableCollectionId].name + '.' + t.name.split('/').join('.') : 'UNRESOLVED';",
+      "};",
+      "const variables = [];",
+      "for (const v of await figma.variables.getLocalVariablesAsync()) {",
+      "  const c = byId[v.variableCollectionId]; if (!c) continue;",
+      "  const modes = {};",
+      "  for (const m of c.modes) {",
+      "    const raw = v.valuesByMode[m.modeId];",
+      "    if (raw === undefined) { modes[m.name] = {}; continue; }",
+      "    modes[m.name] = (raw && raw.type === 'VARIABLE_ALIAS')",
+      "      ? { alias: await pathOf(raw.id) }",
+      "      : { value: raw };",
+      "  }",
+      "  variables.push({ collection: c.name, name: v.name.split('/').join('.'),",
+      "                   type: v.resolvedType, scopes: v.scopes,",
+      "                   description: v.description, modes });",
+      "}",
+      "const text = [];",
+      "for (const s of await figma.getLocalTextStylesAsync()) {",
+      "  const bv = {};",
+      "  for (const [f, ref] of Object.entries(s.boundVariables || {})) {",
+      "    const r = Array.isArray(ref) ? ref[0] : ref;",
+      "    bv[f] = (r && r.id) ? await pathOf(r.id) : null;",
+      "  }",
+      "  text.push({ name: s.name, boundVariables: bv });",
+      "}",
+      "const effect = [];",
+      "for (const s of await figma.getLocalEffectStylesAsync()) { effect.push({ name: s.name }); }",
+      "return JSON.stringify({ $capture_schema: 'coforge-figma-capture/1',",
+      "  captured: new Date().toISOString(), file_key: figma.fileKey,",
+      "  variables, styles: { text, effect } });"
+    ],
+    "then": "python3 validation/check-figma-live.py <path-to-capture.json>"
   },
 
   "representable": {

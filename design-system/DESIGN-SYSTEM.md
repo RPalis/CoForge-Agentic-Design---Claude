@@ -69,11 +69,15 @@ not one per mode, so 161 dark-side descriptions live only here. They survive bec
 side is still upstream, and they stop surviving the moment it is not.
 
 **Before anything about this row changes**, `validation/check-figma-live.py` has to read 0
-blockers and 0 uncompared. It currently reads FAIL, because it has no concept of modes —
-that is C-030, and the repair is Phase 2 of
-`validation/reports/2026-09-02__plan-foundations-figma-migration.md`. The recommendation
-there is an ADR-001 amendment that defers the inversion with those four as explicit entry
-criteria: a deferral with a test, rather than a deferral by silence.
+blockers and 0 uncompared *against a capture taken by the documented method*. Updated
+2026-09-02 (Phase 2, `validation/reports/2026-09-02__system-keeper-phase2-modes.md`): the
+checker is now mode-aware, accepts exactly one contracted capture shape and refuses every
+other, and covers the 8 text and 2 effect styles. What it still cannot say is anything
+about the live file, because **no capture in the contracted shape exists** — the two in
+`scratch/` predate the schema and are now correctly rejected as unreadable. Print the
+recipe with `python3 validation/check-figma-live.py --capture-snippet`; capturing needs
+the Figma MCP, which no agent holds. Until that capture is taken, this row's live figures
+rest on the 2026-09-02 mirror audit and on V-024, which was closed later the same day when the main session took a capture with the contracted snippet and ran it through check-figma-live.py: 813 comparisons, 0 blockers, 0 uncompared. The distinction the earlier wording drew — evidence versus verification — was correct at the time it was written and is what the capture removed.
 
 ### Open divergence in step 4, recorded not resolved
 

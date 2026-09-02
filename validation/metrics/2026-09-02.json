@@ -1,27 +1,27 @@
 {
   "run_id": "2026-09-02",
-  "generated_at": "2026-09-02T13:42:32",
+  "generated_at": "2026-09-02T14:24:36",
   "project": "coforge",
   "session": {
-    "turns": 3044,
-    "duration_min": 11746.2,
+    "turns": 3079,
+    "duration_min": 11788.3,
     "transcripts": 2
   },
   "tokens": {
-    "input": 6084,
-    "output": 3764435,
-    "cache_read": 1503247759,
-    "cache_creation": 33344919,
-    "billable": 3770519
+    "input": 6154,
+    "output": 3801373,
+    "cache_read": 1533548062,
+    "cache_creation": 33417493,
+    "billable": 3807527
   },
   "tools": {
-    "Bash": 758,
+    "Bash": 772,
     "Edit": 125,
     "mcp__Claude_Browser__computer": 64,
-    "mcp__figma-console__figma_execute": 60,
+    "mcp__figma-console__figma_execute": 61,
     "Write": 55,
     "Artifact": 30,
-    "Agent": 25,
+    "Agent": 27,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
@@ -83,14 +83,14 @@
       "superseded": 3,
       "draft": 1
     },
-    "tokens_per_artifact": 418947
+    "tokens_per_artifact": 423059
   },
   "gates": {
     "verdict": "FAIL",
     "blocker": 0,
     "error": 1,
     "warning": 2,
-    "info": 8,
+    "info": 7,
     "skipped": 0,
     "source": "live-audit"
   },

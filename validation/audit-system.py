@@ -403,9 +403,20 @@ else:
 # deleted line disables the most enforcement were the two the hash did not watch.
 # os.listdir was also flat, so validation/adapters/carbon-react.py — the script with
 # the worst defect record in this repo — was the one omitted.
-WIRING = [".claude/settings.json", ".github/workflows/ci.yml",
-          "design-system/contracts/figma-representability.json",
-          "validation/declared-counts.json"]
+# V-019, closed 2026-09-02. This list named ONE file in design-system/contracts/ and
+# left component.schema.json — which all 216 component-index entries validate against —
+# and figma-code-map.json outside the hash, so either could be changed without moving it
+# and without prompting an independent pass. It is now the whole directory, sorted, so a
+# contract added later is covered by existing, not by someone remembering to add a line.
+# A contract is machinery: figma-representability.json alone is read by four programs and
+# two CI steps, and editing what a check reads changes what it accepts exactly as surely
+# as editing the check.
+WIRING = sorted(
+    [".claude/settings.json", ".github/workflows/ci.yml",
+     "validation/declared-counts.json"]
+    + [os.path.join("design-system", "contracts", f)
+       for f in os.listdir(P("design-system/contracts"))
+       if f.endswith(".json")])
 MACHINERY = []
 for _base in ("validation", ".claude/hooks"):
     for _root, _dirs, _files in os.walk(P(_base)):

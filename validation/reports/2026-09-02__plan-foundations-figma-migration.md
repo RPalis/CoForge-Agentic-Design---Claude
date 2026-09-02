@@ -253,7 +253,7 @@ P3 and P4 are independent of each other and can run in parallel, but both **land
 
 **The Figma file is correct and the repository cannot describe it.**
 
-`check-figma-live.py` has been silently FAIL since the collapse. The specific danger is someone clearing those blockers the obvious way — re-running `figma_import_tokens` from the current generated file. That recreates `semantic-dark` as a **seventh collection** beside the two-mode `semantic`, and the check goes **green** against a file holding the same 236 values twice, with only one set bound to anything.
+`check-figma-live.py` has been silently FAIL since the collapse. The specific danger is someone clearing those blockers the obvious way — re-running `figma_import_tokens` from the current generated file. That recreates `semantic-dark` as a **sixth collection** beside the two-mode `semantic` [corrected 2026-09-02 — this read "seventh"; five collections are live, the original count predated the collapse. The failure mode is unchanged.], and the check goes **green** against a file holding the same 236 values twice, with only one set bound to anything.
 
 That is C-018's exact shape one layer up: a green board over a file that is wrong in a way nothing was looking at.
 

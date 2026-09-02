@@ -100,11 +100,61 @@ def _brand_status():
     return {"EMPTY": "empty", "PROPOSED": "proposed",
             "APPROVED": "approved"}.get(m.group(1), "unknown")
 
+_VENDOR_PKG = re.compile(r"@[\w.-]+/[\w.-]+@\d")   # e.g. @carbon/react@1.115.0
+
+
+def _l2_authorship():
+    """Split level-2 index entries into ones CoForge authored and ones a vendor supplied.
+
+    The old value was the literal "RED" with the note "RED until adapter #1 populates
+    L2 components". Adapter #1 populated them — 208 of them — so the index every
+    session loads at start was stating a condition that had already been satisfied,
+    and it stayed that way for five days because the string could not know.
+
+    The criterion in CLAUDE.md is the membrane, not the row count: an L2 entry counts
+    only if CoForge authored it and it came through spec -> human approval -> ADR ->
+    index. Nothing in component.schema.json records a promotion, so authorship is read
+    from `source`, which every row carries. An entry that does not POSITIVELY name
+    CoForge is counted as not ours: the default has to fall towards RED, because the
+    failure this guards against is a state that quietly upgrades itself.
+    """
+    l2 = [c for c in cindex.get("components", []) if c.get("level") == 2]
+    ours = [c for c in l2
+            if re.search(r"\bCoForge\b", c.get("source") or "")
+            and not _VENDOR_PKG.search(c.get("source") or "")]
+    return len(ours), len(l2) - len(ours)
+
+
+_l2_ours, _l2_vendor = _l2_authorship()
+_l2_total = _l2_ours + _l2_vendor
+if _l2_ours == 0:
+    _ds_fork = "RED"
+    _ds_fork_note = (
+        f"RED until the index carries L2 entries CoForge AUTHORED and promoted through "
+        f"the membrane — spec, human approval, ADR, index (ADR-011). {_l2_vendor} of "
+        f"{_l2_total} L2 rows are vendor-ingested and {_l2_ours} were authored here, so "
+        f"RED is correct, not stale. Counting bare L2 rows is not the test and never was: "
+        f"the criterion predates adapter #1 and never anticipated L2 entries arriving by "
+        f"ingesting a vendor library.")
+else:
+    # Deliberately NOT "YELLOW". Which fork we are on is a declared decision (ADR-011);
+    # a generator may report that the RED criterion has stopped holding, and may not
+    # promote the system past it.
+    _ds_fork = "REVIEW"
+    _ds_fork_note = (
+        f"The RED criterion no longer holds: {_l2_ours} of {_l2_total} L2 entries were "
+        f"authored here rather than ingested. The fork is a DECLARED state (ADR-011) — a "
+        f"human must re-declare it. This generator reports the criterion and will not "
+        f"promote the system past it.")
+
 state = {
     # The fork is a DECISION, not a heuristic. L1 primitives existing does not make
-    # a design system exist. Declared state wins; counts are reported alongside it.
-    "ds_fork": "RED",
-    "ds_fork_note": "RED until adapter #1 populates L2 components (ADR-011).",
+    # a design system exist, and a vendor catalogue does not either. Declared state
+    # wins; the counts the declaration rests on are reported alongside it.
+    "ds_fork": _ds_fork,
+    "ds_fork_note": _ds_fork_note,
+    "l2_authored_here": _l2_ours,
+    "l2_vendor_ingested": _l2_vendor,
     "evidence_records": ledger.get("count", 0),
     "raw_sources": len(sources),
     "tokens": n_tokens,

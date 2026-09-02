@@ -10,6 +10,7 @@ Every finding carries a suggested fix. Skipped checks are always reported.
   python3 validation/audit-system.py            # human output
   python3 validation/audit-system.py --json     # machine output
   python3 validation/audit-system.py --report   # also write validation/reports/
+  python3 validation/audit-system.py --machinery-hash   # print the attestation hash, nothing else
 """
 import json, os, re, sys, datetime, hashlib
 
@@ -418,6 +419,39 @@ for _f in MACHINERY:
         _h.update(_fh.read())
 _machinery = _h.hexdigest()[:16]
 
+# C-027 / E-2 — THE FAILING BRANCH USED TO PRINT THIS HASH.
+# That made the cheapest bypass a single, entirely unremarkable command:
+#   python3 validation/audit-system.py > validation/reports/<date>__<agent>-audit.md 2>&1
+# The output contained the hash, the filename matched, and the check cleared itself
+# with the audit's own complaint. Writing a report is the NORMAL accompaniment to a
+# machinery change, so nothing about that command looks like evasion — which made it
+# cheaper AND less conspicuous than editing attestation.json, the bypass the file
+# openly documents. An honour system is only as strong as its cheapest bypass.
+#
+# The hash is now emitted in exactly two places: this flag, and the INFO branch below
+# (which only runs when the recorded hash ALREADY matches, i.e. when no attestation is
+# owed — a report written from it can only ever name a hash that is already attested).
+# The flag prints the hash and nothing else, so redirecting it produces a 17-byte file,
+# which the substance floor below rejects LOUDLY rather than accepting silently.
+if "--machinery-hash" in sys.argv:
+    print(_machinery)
+    sys.exit(0)
+
+# An attesting report must be a report. 500 bytes is arbitrary and is meant to be.
+#
+# WHAT IT DOES NOT DO. This block previously claimed the floor "makes every remaining
+# path require deliberately writing prose that is not true". That claim is FALSE and was
+# disproved by an independent attestation on 2026-09-02: `(audit-system.py
+# --machinery-hash; audit-system.py) > validation/reports/<date>__<agent>-audit.md 2>&1`
+# produces 3,613 bytes containing the hash and flips 5g to "attested by", and a filler
+# variant cleared it at 718. The --machinery-hash flag added to close the bypass SUPPLIES
+# the token; the audit's own output supplies the bulk. Before the fix it was one command
+# with no prose; after it, one command with no prose. The gain is conspicuousness, not
+# cost. Left in place at that honest valuation rather than removed, and stated here
+# because this file is what check 5c reads every run — the refutation living only in
+# attestation.json is the refutation living where nothing reports it.
+MIN_ATTESTATION_BYTES = 500
+
 _rec = jload("validation/attestation.json") or {}
 if _rec.get("machinery") == _machinery:
     add("info", "attestation",
@@ -432,24 +466,47 @@ else:
     # and removes the wall-clock dependence with them: the same commit no longer goes
     # green on one day and red the next.
     rdir = P("validation/reports")
-    attest = []
+    attest, thin = [], []
     for r in sorted(os.listdir(rdir) if os.path.isdir(rdir) else []):
-        if "audit" not in r or not any(a in r for a in agents):
+        # "attestation" counts too. A report commissioned as
+        # `<date>__system-keeper-attestation-4.md` could never clear 5g however honest
+        # its contents, and was discarded with no diagnostic — so two refusals were
+        # right in effect and partly wrong in cause. A gate that silently ignores a
+        # good-faith attempt teaches people the gate is broken.
+        if not any(t in r for t in ("audit", "attestation")) or not any(a in r for a in agents):
             continue
         try:
-            if _machinery in open(os.path.join(rdir, r), encoding="utf-8",
-                                  errors="ignore").read():
-                attest.append(r)
+            body = open(os.path.join(rdir, r), encoding="utf-8", errors="ignore").read()
         except OSError:
-            pass
+            continue
+        if _machinery not in body:
+            continue
+        if len(body.encode("utf-8")) < MIN_ATTESTATION_BYTES:
+            thin.append((r, len(body.encode("utf-8"))))
+        else:
+            attest.append(r)
+    for r, n in thin:
+        # Reported, not ignored. A file that names the hash and says nothing else is
+        # someone reaching for the bypass; the previous version either accepted it
+        # (a 16-byte file passed) or, once it stopped, said nothing at all. Silence
+        # would leave the attester guessing why an honest short report was refused.
+        add("error", "attestation",
+            f"{r} names the current machinery hash but is {n} bytes — too thin to be "
+            f"an attestation (floor {MIN_ATTESTATION_BYTES})",
+            "an attestation records what was RUN and what fault was PLANTED for each "
+            "check, by an agent that did not make the change. If this file is redirected "
+            "command output, delete it; it is not evidence that anybody looked")
     if attest:
         add("info", "attestation",
             f"machinery changed to {_machinery}; attested by {', '.join(attest)}",
             "record it in validation/attestation.json")
     else:
         add("error", "attestation",
-            f"the validation machinery or its wiring changed (hash {_machinery}) and no "
-            f"audit report names that hash",
+            "the validation machinery or its wiring changed and no audit report attests "
+            "to the current state",
+            "get the hash with `python3 validation/audit-system.py --machinery-hash` "
+            "(it is deliberately NOT printed here — printing it made this check "
+            "clearable by redirecting its own output into a report file). Then "
             "dispatch an agent from the roster that did NOT make the change, have it "
             "attack the result and RECORD THE HASH in its report. NOTE: this is a "
             "process prompt, not enforcement — editing attestation.json silences it and "
@@ -642,6 +699,183 @@ else:
             f"{matches} of {len(declared['claims'])} declared prose counts agree with the repo "
             f"({mismatches} disagree, {stale} stale)",
             "no action" if not mismatches and not stale else "see the error/warning findings above")
+
+# 5h — a published page goes stale in somebody else's hands (C-028).
+#
+# A shared claude.ai page stated 786 tokens against a repo holding 829 and drifted for
+# four days. Nothing in this repository could have raised it: check 5e compares declared
+# counts inside tracked markdown and cannot reach a URL. validation/published-surfaces.json
+# closes the half of that which IS locally checkable — every published page declares the
+# state its content is true of, and when the repository moves past that declaration the
+# page is stale BY DEFINITION, with no network access and no human noticing required.
+#
+# What this CANNOT do is confirm a page is correct; nothing here reads the published
+# HTML. Those are different claims and only the first is automatable from inside CI.
+# Recorded in the ledger's own known_limits and in coverage.json rather than blurred.
+SURFACES = "validation/published-surfaces.json"
+_DOC_KEYS = {"tokens_version", "asserted_state_date"}
+
+def _semver(v):
+    try: return tuple(int(x) for x in str(v).split("."))
+    except (ValueError, AttributeError): return None
+
+if not os.path.exists(P(SURFACES)):
+    skip("surfaces", f"{SURFACES} not present — no published page is tracked, so none can "
+                     f"be compared against repository state")
+else:
+    surf = jload(SURFACES)
+    if surf is None:
+        add("error", "surfaces", f"{SURFACES} is unreadable or not valid JSON",
+            "the published-surface ledger cannot be parsed, so every page it tracks is "
+            "unwatched — repair the file rather than deleting it")
+    elif not isinstance(surf.get("surfaces"), list):
+        add("error", "surfaces", f"{SURFACES} has no 'surfaces' list",
+            "restore the list; an empty list is a claim that nothing is published, which "
+            "is checkable — a missing one is not")
+    else:
+        tok_ver = (jload("design-system/tokens/tokens.json") or {}).get("$version")
+        # The comparator for asserted_state_date. corrections.json is the only ledger in
+        # the repo that dates its own entries, so it is the cheapest honest proxy for
+        # "the repository has moved". LIMIT, recorded rather than hidden: a change that
+        # produces no correction does not move this date, so a page can be stale and
+        # still pass. Under-reporting, never over-reporting.
+        _cdates = sorted(c.get("date") for c in (corr or {}).get("corrections", [])
+                         if isinstance(c.get("date"), str))
+        newest_change = _cdates[-1] if _cdates else None
+
+        n_ok = n_stale = n_static = 0
+        for i, e in enumerate(surf["surfaces"]):
+            where = f"surfaces[{i}]"
+            if not isinstance(e, dict):
+                add("error", "surfaces", f"{where} is not an object",
+                    "every entry must be an object with title, url and documents"); continue
+            title = e.get("title") or where
+            url = e.get("url")
+            if not isinstance(url, str) or not url.strip():
+                add("error", "surfaces", f"{title}: no url",
+                    "a surface with no address cannot be checked or corrected — add the "
+                    "url or remove the entry"); continue
+            if "documents" not in e:
+                add("error", "surfaces", f"{title}: no 'documents' key ({url})",
+                    "declare the state the page is true of, or documents: null WITH a note "
+                    "saying why nothing on it can go stale. Omitting the key is the silent "
+                    "case this check exists to remove"); continue
+            doc = e["documents"]
+            note = e.get("note")
+            if doc is None:
+                if not isinstance(note, str) or len(note.strip()) < 20:
+                    add("error", "surfaces",
+                        f"{title}: documents is null with no note explaining why ({url})",
+                        "documents: null asserts the page can never go stale. That is a "
+                        "real claim and has to be justified in 'note', or it is just an "
+                        "untracked page wearing an exemption")
+                else:
+                    n_static += 1
+                continue
+            if not isinstance(doc, dict) or not doc:
+                add("error", "surfaces", f"{title}: documents must be an object or null ({url})",
+                    "use {\"tokens_version\": ...} / {\"asserted_state_date\": ...}, or null "
+                    "with a note. An empty object declares nothing while looking declarative")
+                continue
+            unknown = sorted(set(doc) - _DOC_KEYS)
+            if unknown:
+                add("error", "surfaces",
+                    f"{title}: documents has unrecognised key(s) {', '.join(unknown)} ({url})",
+                    f"only {', '.join(sorted(_DOC_KEYS))} are compared against the repo. A "
+                    f"key nothing reads is a declaration that can never fire — spell it "
+                    f"correctly or teach this check to compare it")
+                continue
+            entry_stale = False
+            if "tokens_version" in doc:
+                dv, cv = _semver(doc["tokens_version"]), _semver(tok_ver)
+                if dv is None or cv is None:
+                    add("error", "surfaces",
+                        f"{title}: tokens_version {doc['tokens_version']!r} is not comparable "
+                        f"with tokens.json $version {tok_ver!r} ({url})",
+                        "both must be dotted integers; an uncomparable version is never "
+                        "reported stale, which is the failure mode this check removes")
+                    continue
+                if dv < cv:
+                    entry_stale = True
+                    add("warning", "surfaces",
+                        f"{title}: documents tokens {doc['tokens_version']} but tokens.json "
+                        f"is {tok_ver} — the page is stale ({url})",
+                        "republish the page from current state and update documents, or "
+                        "correct only the figures that describe this repository and say so. "
+                        "Do NOT rewrite a hashed measurement of something else to match us")
+                elif dv > cv:
+                    add("error", "surfaces",
+                        f"{title}: documents tokens {doc['tokens_version']}, ahead of "
+                        f"tokens.json {tok_ver} ({url})",
+                        "the page claims a release this repository does not have — either "
+                        "the token layer was rolled back or the declaration is wrong")
+                    continue
+            if "asserted_state_date" in doc:
+                d = str(doc["asserted_state_date"])
+                if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
+                    add("error", "surfaces",
+                        f"{title}: asserted_state_date {d!r} is not YYYY-MM-DD ({url})",
+                        "an unparseable date is never reported stale")
+                    continue
+                if newest_change and d < newest_change:
+                    entry_stale = True
+                    add("warning", "surfaces",
+                        f"{title}: asserts repository state as of {d}; the repository has "
+                        f"recorded changes through {newest_change} ({url})",
+                        "read the page against current state, then republish it and move "
+                        "asserted_state_date, or narrow what it claims. Comparator is the "
+                        "newest dated entry in corrections.json, so this UNDER-reports: a "
+                        "change that logged no correction will not move it")
+            n_ok += 0 if entry_stale else 1
+            n_stale += 1 if entry_stale else 0
+        add("info", "surfaces",
+            f"{n_ok} of {n_ok + n_stale} versioned published surfaces are current; "
+            f"{n_static} declare nothing that can go stale",
+            "no action" if not n_stale else "see the warnings above")
+
+# 5i — the metrics series must describe the day it is named for (C-026).
+# Gate counts in validation/metrics/*.json were frozen at 0/0/0/0 from 2026-08-28 to
+# 2026-09-01 because collect-metrics.py parsed the newest __system-audit.md, which was
+# dated 2026-08-27. Every snapshot looked like a measurement of its own day. The fix is
+# in collect-metrics.py; this is the check that would have caught it, and it asks the
+# only question that is answerable after the fact — where did these numbers come from.
+# LIMIT: newest record only. The defect is systemic (which code path produced it), so
+# the newest record answers it; a frozen middle of the series is not re-examined here.
+_mfiles = sorted(f for f in os.listdir(P("validation/metrics"))
+                 if f.endswith(".json")) if os.path.isdir(P("validation/metrics")) else []
+if not _mfiles:
+    skip("metrics", "validation/metrics/ holds no run record")
+else:
+    _m = jload(os.path.join("validation/metrics", _mfiles[-1]))
+    if _m is None:
+        add("error", "metrics", f"validation/metrics/{_mfiles[-1]} is unreadable",
+            "the newest run record cannot be parsed — regenerate it with "
+            "python3 validation/collect-metrics.py")
+    elif (_m.get("gates") or {}).get("source") != "live-audit":
+        add("warning", "metrics",
+            f"{_mfiles[-1]}: gate counts are not marked as derived from a live audit "
+            f"(source={((_m.get('gates') or {}).get('source'))!r})",
+            "re-run python3 validation/collect-metrics.py. A record whose gate counts "
+            "were copied from a report file describes the day that report was written, "
+            "not its own — which is how the series read 0/0/0/0 for five days")
+    elif ((_m.get("gates") or {}).get("verdict") == "UNAVAILABLE"
+           or any((_m.get("gates") or {}).get(k) is None
+                  for k in ("blocker", "error", "warning", "info", "skipped"))):
+        # The marker says an audit ran; the payload says it did not. Reinstating the
+        # original C-026 bug produced exactly this — verdict UNAVAILABLE, every count
+        # null, source "live-audit" — and this check reported "derived from a live audit
+        # run" over the top of it. A record that contradicts itself must never be the
+        # thing that certifies the record.
+        add("error", "metrics",
+            f"{_mfiles[-1]}: claims source 'live-audit' while carrying "
+            f"verdict={((_m.get('gates') or {}).get('verdict'))!r} and null counts — "
+            f"the record contradicts itself",
+            "collect-metrics.py must set source only after the audit subprocess returns; "
+            "a failed run records source 'unavailable' with null counts")
+    else:
+        add("info", "metrics",
+            f"{_mfiles[-1]}: gate counts derived from a live audit run",
+            "no action")
 
 # 6 — token enforcement across the repo
 tok = jload("design-system/tokens/tokens.json") or {}

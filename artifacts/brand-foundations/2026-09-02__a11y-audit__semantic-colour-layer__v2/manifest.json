@@ -1,0 +1,45 @@
+{
+  "id": "ART-009",
+  "type": "a11y-audit",
+  "workstream": "brand-foundations",
+  "title": "Semantic colour layer — WCAG 2.2 AA contrast audit (v2, token release 0.2.0)",
+  "file": "semantic-colour-contrast-audit.md",
+  "version": 2,
+  "supersedes": "ART-008",
+  "status": "draft",
+  "stage": "evaluate",
+  "produced_by": "a11y-checker",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "a11y-checker",
+    "checked": 121,
+    "found": 28,
+    "skipped": 420,
+    "method": "Three units, stated so each number can be re-derived independently. (1) checked = 121 foreground/background PAIRS computed by hand from the resolved sRGB values in design-system/tokens/tokens.json at release 0.2.0. No script was run; this agent has no Bash. Relative luminance: normalise each channel to 0-1, linearise (c/12.92 where c <= 0.04045, else ((c+0.055)/1.055)^2.4), combine as L = 0.2126R + 0.7152G + 0.0722B. Ratio = (L_lighter + 0.05) / (L_darker + 0.05), TRUNCATED to two decimals, never rounded up, so no PASS is inflated (v1 rounded to nearest; §3.2 of the payload marks every row where a 0.01 difference is that convention and not movement). Alpha-carrying foregrounds are composited onto the specific ground being measured BEFORE linearisation, per channel in sRGB: result = alpha x fg + (1 - alpha) x bg; the worked example is in payload §1.3. The 121 pairs are enumerated in seven tables in payload §5 (24 + 16 + 3 + 21 + 23 + 15 + 19 = 121) and every row states both resolved hex values, so any row can be recomputed by hand. EVERY RATIO WAS RE-DERIVED FROM 0.2.0; no number was carried forward from ART-008, because the ground moved (semantic.background is now {bone.default} #eeece6, not #ffffff), seven aliases moved under unchanged token names, and 53 tokens gained real alpha under C-021. Arithmetic cross-check: this audit's luminance model reproduces, to two decimals, five of the seven contrast ratios that token-keeper computed independently and recorded in tokens.json $description fields (coral on bone/white, coral.text on bone/white, ink on bone); one matches under truncation and one does not, which is finding F-28. Scope was driven, as in v1, by the tokens_used declarations of the eight L1 primitives in design-system/component-index.json; the 208 L2 entries declare only the wildcard semantic.*, which names no pairing and generated no pairs. Thresholds from design-system/a11y/rules.md: 4.5:1 normal text, 3:1 non-text. The large-text 3:1 allowance was NOT applied to any text pair, since a colour token carries no size. WCAG 2.2's inactive-component exception (SC 1.4.3 and 1.4.11) IS applied and is named at every row it touches: of the 38 measurements below threshold, 14 fall under it (every *.disabled role) and 24 do not. (2) found = 28 register entries, numbered F-01..F-28 in payload §6; count them to re-derive. Six of them (F-01, F-08, F-09, F-10, F-11, F-12) record a v1 finding now RESOLVED and require no action; 22 are open. IDs are carried from ART-008 wherever the subject is the same, so one concern can be followed across both versions. The open set covers 38 failing measurements (F-02..F-07, F-14..F-21), 2 thin-margin passes flagged for a human (F-22, F-23), and 5 structural findings about the layer (F-13, F-24..F-28). (3) skipped = 420 of the 472 semantic colour aliases (up from 468: semantic.accent.{container,text} are new in both themes). 52 appear on one side of a computed pair (34 light, 18 dark); the remaining 420 were NOT evaluated and are bucketed with reasons in payload §4: S1 syntax.* = 176 (still no ground token exists to measure against; re-verified that no syntax leaf carries alpha), S2 ai.*/chat.* = 84 (outside declared L1 scope; 32 of these now carry real alpha and 6 are the alpha-0 tokens), S3 alpha-carrying SURFACES = 12 (background-{hover,active,selected,selected-hover}, overlay and shadow in both themes: a composited surface is a ground, not a foreground, and no token pairs a foreground with it — see F-24), S4 state and layer variants = 148 (including semantic-dark.layer.02 and layer.03, which are distinct dark surfaces that were not computed — F-25). 176 + 84 + 12 + 148 = 420; 420 + 52 = 472. Skipped is not passed: no claim is made about these in either direction. SEPARATELY, six tokens resolve to an alpha-0.0 primitive and are EXCLUDED BY DEFINITION rather than skipped (payload §2): at alpha 0 the composite is the ground identically, every one would report exactly 1.00:1 against every ground, and reporting six 1.00:1 rows would inflate the failure count by an arithmetic artifact. The exclusion changes no count in this artifact because all six already sat in bucket S2. Also not run and not claimed: target size, focus order, focus visibility, programmatic labels, prefers-reduced-motion and heading structure — all are checks in rules.md that a token file cannot answer and that require a rendered ui-screen."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-008"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-02"
+  },
+  "autonomy": "auto",
+  "reviewed_by": null,
+  "created_at": "2026-09-02",
+  "notes": {
+    "supersession": "ART-008 should be marked status: superseded. This agent did NOT and COULD NOT do it: a11y-checker holds Write only, for this directory, and holds no Edit and no Bash, so it cannot alter an existing artifact's manifest. Marking ART-008 superseded is the orchestrator's or token-keeper's action, and until it is taken the two artifacts both read as live and disagree about 24 ratios.",
+    "why_v2": "Token release 0.1.0 -> 0.2.0 changed the subject in three independent ways: (a) C-021 minted 35 alpha-carrying palette primitives and repointed 53 semantic tokens onto them, so tokens that rendered opaque are now genuinely translucent; (b) semantic.background moved from {white.default} to {bone.default}, invalidating every light-theme number in v1 on its own; (c) seven aliases moved one palette step darker under unchanged token names. Any one of the three would have required a full re-derivation.",
+    "provisional_ground": "Every light-theme ratio in this artifact is measured against palette.bone.default, which carries gate: 'Gate A — suggested by token-keeper; not counted until a human approves'. The same applies to ink.default and coral.*. If Gate A rejects them, the light column is recomputed, not adjusted. Recorded as Assumption A-5 in the payload."
+  }
+}

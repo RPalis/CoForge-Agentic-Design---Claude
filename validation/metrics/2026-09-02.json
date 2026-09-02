@@ -1,45 +1,45 @@
 {
   "run_id": "2026-09-02",
-  "generated_at": "2026-09-02T09:48:00",
+  "generated_at": "2026-09-02T10:42:17",
   "project": "coforge",
   "session": {
-    "turns": 2730,
-    "duration_min": 11511.7,
+    "turns": 2816,
+    "duration_min": 11566.0,
     "transcripts": 2
   },
   "tokens": {
-    "input": 5456,
-    "output": 3371551,
-    "cache_read": 1282401001,
-    "cache_creation": 32831544,
-    "billable": 3377007
+    "input": 5628,
+    "output": 3480625,
+    "cache_read": 1333744702,
+    "cache_creation": 32972554,
+    "billable": 3486253
   },
   "tools": {
-    "Bash": 696,
+    "Bash": 714,
     "Edit": 125,
     "mcp__Claude_Browser__computer": 64,
-    "Write": 51,
-    "mcp__figma-console__figma_execute": 37,
-    "Artifact": 23,
+    "Write": 53,
+    "mcp__figma-console__figma_execute": 40,
+    "Artifact": 25,
     "mcp__Claude_Browser__javascript_tool": 21,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__Claude_Browser__resize_window": 19,
+    "Agent": 18,
     "mcp__chrome-devtools__evaluate_script": 17,
     "ToolSearch": 16,
-    "Agent": 16,
     "AskUserQuestion": 14,
+    "SendUserFile": 13,
     "mcp__figma-console__figma_delete_variable": 11,
     "WebSearch": 10,
-    "SendUserFile": 10,
     "mcp__Claude_Browser__preview_start": 10,
+    "Read": 8,
     "mcp__figma-console__figma_import_tokens": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
     "mcp__chrome-devtools__take_screenshot": 5,
+    "Skill": 4,
     "mcp__chrome-devtools__new_page": 4,
-    "Read": 4,
-    "Skill": 3,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 3,
     "mcp__figma-console__figma_get_variables": 3,
     "mcp__figma-console__figma_export_tokens": 3,
@@ -64,25 +64,25 @@
     "mcp__figma-console__figma_navigate": 1
   },
   "skills": {
-    "artifact-design": 2,
+    "artifact-design": 3,
     "anthropic-skills:docx": 1
   },
   "artifacts": {
-    "total": 8,
+    "total": 9,
     "live": 6,
     "by_type": {
       "brand-extraction": 1,
       "competitive-benchmark": 4,
-      "a11y-audit": 1,
+      "a11y-audit": 2,
       "prioritization": 2
     },
     "by_status": {
       "in-review": 3,
       "approved": 2,
-      "validated": 1,
-      "superseded": 2
+      "superseded": 3,
+      "draft": 1
     },
-    "tokens_per_artifact": 422126
+    "tokens_per_artifact": 387361
   },
   "gates": {
     "verdict": "PASS",

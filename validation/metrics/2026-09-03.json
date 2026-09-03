@@ -1,0 +1,113 @@
+{
+  "run_id": "2026-09-03",
+  "generated_at": "2026-09-03T09:09:45",
+  "project": "coforge",
+  "session": {
+    "turns": 3101,
+    "duration_min": 12913.5,
+    "transcripts": 2
+  },
+  "tokens": {
+    "input": 6198,
+    "output": 3820935,
+    "cache_read": 1551504410,
+    "cache_creation": 35141735,
+    "billable": 3827133
+  },
+  "tools": {
+    "Bash": 780,
+    "Edit": 125,
+    "mcp__Claude_Browser__computer": 64,
+    "mcp__figma-console__figma_execute": 62,
+    "Write": 56,
+    "Artifact": 30,
+    "Agent": 27,
+    "mcp__Claude_Browser__javascript_tool": 21,
+    "mcp__Claude_Browser__navigate": 20,
+    "mcp__Claude_Browser__resize_window": 19,
+    "mcp__chrome-devtools__evaluate_script": 17,
+    "ToolSearch": 16,
+    "SendUserFile": 16,
+    "AskUserQuestion": 14,
+    "mcp__figma-console__figma_delete_variable": 11,
+    "WebSearch": 10,
+    "mcp__Claude_Browser__preview_start": 10,
+    "Read": 9,
+    "mcp__figma-console__figma_import_tokens": 8,
+    "WebFetch": 7,
+    "mcp__Claude_Browser__get_page_text": 7,
+    "mcp__Claude_Browser__read_page": 7,
+    "mcp__chrome-devtools__take_screenshot": 5,
+    "Skill": 4,
+    "mcp__chrome-devtools__new_page": 4,
+    "mcp__figma-console__figma_delete_variable_collection": 4,
+    "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 3,
+    "mcp__figma-console__figma_get_variables": 3,
+    "mcp__figma-console__figma_export_tokens": 3,
+    "mcp__figma-console__figma_take_screenshot": 3,
+    "mcp__ccd_session__mark_chapter": 2,
+    "mcp__Claude_Browser__find": 2,
+    "mcp__chrome-devtools__emulate": 2,
+    "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 2,
+    "mcp__figma-console__figma_get_status": 2,
+    "mcp__Claude_Browser__read_console_messages": 1,
+    "mcp__ccd_session_mgmt__set_session_title": 1,
+    "mcp__Claude_Browser__tabs_context": 1,
+    "mcp__Claude_Browser__preview_stop": 1,
+    "mcp__Claude_Browser__browser_batch": 1,
+    "mcp__Claude_Browser__tabs_close": 1,
+    "mcp__chrome-devtools__list_network_requests": 1,
+    "mcp__chrome-devtools__resize_page": 1,
+    "mcp__chrome-devtools__navigate_page": 1,
+    "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_design_system_kit": 1,
+    "mcp__figma-console__figma_list_open_files": 1,
+    "mcp__figma-console__figma_navigate": 1,
+    "mcp__figma-console__figma_capture_screenshot": 1
+  },
+  "skills": {
+    "artifact-design": 3,
+    "anthropic-skills:docx": 1
+  },
+  "artifacts": {
+    "total": 9,
+    "live": 6,
+    "by_type": {
+      "brand-extraction": 1,
+      "competitive-benchmark": 4,
+      "a11y-audit": 2,
+      "prioritization": 2
+    },
+    "by_status": {
+      "in-review": 3,
+      "approved": 2,
+      "superseded": 3,
+      "draft": 1
+    },
+    "tokens_per_artifact": 425237
+  },
+  "gates": {
+    "verdict": "FAIL",
+    "blocker": 0,
+    "error": 1,
+    "warning": 2,
+    "info": 7,
+    "skipped": 0,
+    "source": "live-audit"
+  },
+  "corrections": {
+    "logged": 30,
+    "with_check": 30,
+    "unchecked": 0,
+    "source": "validation/corrections.json"
+  },
+  "governance": {
+    "adrs": 20,
+    "agents": 14,
+    "artifact_types": 41
+  },
+  "readiness": {
+    "l1": 100.0,
+    "l2": 66.0,
+    "workflow": 100.0
+  }
+}

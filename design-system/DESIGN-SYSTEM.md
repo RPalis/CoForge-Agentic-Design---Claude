@@ -29,9 +29,55 @@ because that is what reasoning needs. Both, never one.
 |---|---|---|
 | 1 | `brand-director` → `foundations/brand.md` (suggest-only, never automatic) | **done** — Gate A 2026-08-27, §4 amended 08-28 |
 | 2 | `token-keeper` → `tokens/tokens.json` v0 | **done** — 829 tokens, 5 axes, 0 literals above the primitive layer |
-| 3 | push to Figma variables → **ADR-001 inversion** | blocked — no Figma file exists |
+| 3 | push to Figma variables → **ADR-001 inversion** | **pushed, not inverted** — file `ip2wZ3UUQ5sbFc3r902kYK` holds 561 variables across 5 collections. The inversion is NOT reached and must not be attempted; see below |
 | 4 | components → `component-index.json` + per-component contract and intent files | in progress — adapter #1, ADR-013 link 1 |
 | 5 | generate `llms.txt` from the index — never hand-written | **done** — `validation/build-llms-txt.py` |
+
+### Step 3 — pushed, not inverted
+
+Corrected 2026-09-02. This row read *"blocked — no Figma file exists"* for three days after
+a file existed, and no check in this repository could have noticed: check 5e compares
+declared counts inside tracked markdown, and a state that names no number is not a
+tracked count. Recorded in `validation/corrections.json` C-030 and
+`validation/coverage.json` V-018.
+
+**What is true.** Of 829 tokens, **797 are importable as Figma variables**; the other 32
+are correctly absent — 12 belong to a Figma *style* rather than a variable, and 20 have no
+Figma representation at all. Those 797 rows fold into **561 live variables** because
+`semantic` and `semantic-dark` were collapsed into one collection with **Light and Dark
+modes**, so the 236 dark rows are a second mode rather than 236 further variables. Live
+collections: `palette` 289, `semantic` 236 (two modes), `spacing` 13, `typography` 21,
+`density` 2. Derived by `validation/figma-representable.py` and by an independent
+re-derivation of the bridge in
+`validation/reports/2026-09-02__token-keeper-figma-mirror-audit.md`, which found **0
+missing, 0 extra, 0 divergent** across 797 comparisons.
+
+**The push is not the inversion.** ADR-001 makes Figma the owner and this repository the
+mirror. That is a one-way door and four grounded reasons say it is not open yet:
+
+1. **32 tokens have no Figma variable form.** An export-driven mirror deletes or degrades
+   them — C-017's class exactly.
+2. **The rem→px conversion is deliberately one-way.** A mirror needs an inverse that
+   nobody has written or tested.
+3. **The mode collapse means an export produces a shape `tokens.json` does not have** —
+   one collection with two modes, against two parallel top-level groups here.
+4. **`figma_export_tokens` is on record as unreliable** (C-020): it reported 8 collections
+   when 6 existed and re-emitted 14 deleted variables.
+
+There is a fifth, softer reason: the descriptions. A Figma variable holds one description,
+not one per mode, so 161 dark-side descriptions live only here. They survive because this
+side is still upstream, and they stop surviving the moment it is not.
+
+**Before anything about this row changes**, `validation/check-figma-live.py` has to read 0
+blockers and 0 uncompared *against a capture taken by the documented method*. Updated
+2026-09-02 (Phase 2, `validation/reports/2026-09-02__system-keeper-phase2-modes.md`): the
+checker is now mode-aware, accepts exactly one contracted capture shape and refuses every
+other, and covers the 8 text and 2 effect styles. What it still cannot say is anything
+about the live file, because **no capture in the contracted shape exists** — the two in
+`scratch/` predate the schema and are now correctly rejected as unreadable. Print the
+recipe with `python3 validation/check-figma-live.py --capture-snippet`; capturing needs
+the Figma MCP, which no agent holds. Until that capture is taken, this row's live figures
+rest on the 2026-09-02 mirror audit and on V-024, which was closed later the same day when the main session took a capture with the contracted snippet and ran it through check-figma-live.py: 813 comparisons, 0 blockers, 0 uncompared. The distinction the earlier wording drew — evidence versus verification — was correct at the time it was written and is what the capture removed.
 
 ### Open divergence in step 4, recorded not resolved
 

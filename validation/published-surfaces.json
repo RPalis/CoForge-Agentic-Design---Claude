@@ -1,15 +1,15 @@
 {
   "$comment": "Every page published outside this repository, and what it asserts. Created 2026-09-02 after a shared page was found stating 786 tokens against a repo holding 829 — stale for four days with nothing able to notice, because only 1 of 9 artifact manifests declared a surface.ref and four published pages had no registered artifact at all (C-028). Not everything published belongs in artifacts/ — a runbook is not a design deliverable — but everything published that makes CLAIMS about this system has to be trackable, or the claim drifts in someone else's hands.",
-
   "the_rule": "A page listed here declares `documents` — the release, count, or state its content is true of. When the repository moves past that, the page is stale BY DEFINITION and does not need a human to notice. `documents: null` means the page makes no claim that can go stale, and must say why.",
-
   "surfaces": [
     {
       "title": "CoForge Visual Foundations",
       "url": "https://claude.ai/code/artifact/f6118c84-7ef4-4afd-b44b-cfc135fd747d",
       "artifact": "ART-005",
       "shared": true,
-      "documents": { "tokens_version": "0.2.0" },
+      "documents": {
+        "tokens_version": "0.2.0"
+      },
       "note": "A measurement of coforge.com, hashed in ART-005's manifest, PLUS a section describing our own token layer. That second part is what goes stale — and it appears nowhere in the registered 124-line payload, so the published surface asserts more than the artifact backs. Corrected 2026-09-02; the site measurements were deliberately left untouched."
     },
     {
@@ -25,7 +25,9 @@
       "url": "https://claude.ai/code/artifact/7ed592f8-e8d8-46ee-bd26-6a10a63243ed",
       "artifact": null,
       "shared": null,
-      "documents": { "asserted_state_date": "2026-08-28" },
+      "documents": {
+        "asserted_state_date": "2026-08-28"
+      },
       "note": "The system map, published 2026-08-28 and untouched since. UNVERIFIED and very likely the stalest surface we have: since that date tokens moved 786 -> 829 and 0.1.0 -> 0.2.0, three artifacts were added, corrections went 10 -> 28, and the whole validation layer landed. It has no registered artifact, so nothing anchors what it claims. Needs reading before it is trusted or shared."
     },
     {
@@ -33,7 +35,10 @@
       "url": "https://claude.ai/code/artifact/c8912255-4d15-4964-aee1-62d6880c20d5",
       "artifact": null,
       "shared": null,
-      "documents": { "tokens_version": "0.2.0", "asserted_state_date": "2026-09-02" },
+      "documents": {
+        "tokens_version": "0.2.0",
+        "asserted_state_date": "2026-09-02"
+      },
       "note": "A live status board of governance, foundations and blockers. Derived entirely from sources of truth and regenerable, so it does not need to be an artifact — but every figure on it is a claim about repository state, which makes it the fastest-staling page here."
     },
     {
@@ -51,9 +56,18 @@
       "shared": null,
       "documents": null,
       "note": "Setup notes for the local bridge, published 2026-08-24 — the oldest surface. Same class as the runbook: external tooling, unanchored, unobservable from here."
+    },
+    {
+      "title": "CoForge Foundations — Figma variable library",
+      "url": "https://www.figma.com/design/ip2wZ3UUQ5sbFc3r902kYK",
+      "artifact": null,
+      "shared": null,
+      "documents": {
+        "tokens_version": "0.2.0"
+      },
+      "note": "The Figma file the token layer was pushed to. It ASSERTS that its 561 variables across five collections — palette 289, semantic 236 (Light and Dark modes), spacing 13, typography 21, density 2 — are release 0.2.0 of design-system/tokens/tokens.json, plus 8 text and 2 effect styles carrying the 12 composite tokens no variable can hold. Registered 2026-09-02 as Phase 1 of the foundations migration: the file key had appeared in this repository three times, all in prose, never as structured data, so the one anchor that could have said 'the library is behind the tokens' was never pointed at it. Not published as a Figma library yet, and it must not be until check-figma-live.py reads 0 blockers and 0 uncompared — publishing puts values in other people's hands, which is C-028's lesson. What this entry CANNOT do is confirm the file is correct: 5h compares a declared release against tokens.json and nothing here reads Figma. Whether the contents match is the separate, currently UNCOVERED claim V-024, closed 2026-09-02 on a contracted capture run through check-figma-live.py — 813 comparisons, 0 blockers, 0 uncompared. This entry going stale on the next token release is the mechanism working, not a fault. The verification is a point-in-time result from a check CI cannot run, and coverage.json has no notion of a verification that expires — flagged on attestation and recorded here rather than solved."
     }
   ],
-
   "known_limits": {
     "shared_flag": "`shared` is null where this session could not observe it. The share state lives in the artifact's own menu, not in any API reachable from here, so it is recorded as unknown rather than guessed. It matters: a shared page puts wrong figures in someone else's hands, and a viewer may be pinned to a version older than the live one.",
     "no_content_check": "Nothing here reads the published HTML. A check can compare `documents` against the repository and say a page is stale; it cannot confirm a page is CORRECT. Those are different claims and only the first is automatable from inside CI."

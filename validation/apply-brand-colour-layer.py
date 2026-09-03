@@ -298,14 +298,28 @@ def main():
         doc["palette"][name] = group
     doc["palette"]["$extensions"] = doc["palette"].get("$extensions", {})
     ext = doc.get("$extensions", {}).setdefault("coforge", {})
+    # A GATE STATE IS NOT REGENERABLE. This block used to be assigned wholesale, so the
+    # `gate` field was rewritten to "suggest-only, pending human approval" on every run —
+    # meaning a re-run would silently REVOKE an approval a person had since given, and
+    # nothing would report it. The Gate A clearance on 2026-09-02 would have survived
+    # exactly until the next time anyone regenerated the colour layer.
+    #
+    # A generator may author what it derives and must not author what a human decided.
+    # An existing `gate` is therefore carried forward untouched, and only ever set here
+    # when none exists — the first-write case this script is actually for.
+    _prior_gate = (ext.get("brand_primitives_added") or {}).get("gate")
+    _prior_hist = (ext.get("brand_primitives_added") or {}).get("$gate_history")
     ext["brand_primitives_added"] = {
         "what": "palette.bone, palette.ink, palette.coral (.default + .text) — CoForge's own primitives, "
         "added alongside the Carbon mirror, never inside it (ADR-011).",
         "not_imported": "ART-005's coherent ramps (taupe, neutral) are NOT imported step-for-step — only "
         "their evidenced single-step endpoints (bone, ink) exist in any artifact this agent may read. "
         "See validation/apply-brand-colour-layer.py's OPEN QUESTIONS output.",
-        "added_by": "token-keeper", "gate": "Gate A — suggest-only, pending human approval",
+        "added_by": "token-keeper",
+        "gate": _prior_gate or "Gate A — suggest-only, pending human approval",
     }
+    if _prior_hist:
+        ext["brand_primitives_added"]["$gate_history"] = _prior_hist
 
     # --- 2/3/4. repoint existing semantic keys (light only) ------------------
     report_rows = []

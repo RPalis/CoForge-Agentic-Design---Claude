@@ -14,7 +14,8 @@
       "claim": "No component may be used that is not in component-index.json (prohibition 1)",
       "asserted_in": "CLAUDE.md",
       "verified_by": "validation/test-gates.py",
-      "how": "plants an unindexed component and requires BLOCK; plants an indexed one and requires allow"
+      "how": "plants an unindexed component and requires BLOCK; plants an indexed one and requires allow",
+      "note": "PARTIAL, narrower than the claim as stated. test-gates.py verifies the detector against a .jsx fixture using PascalCase JSX (<Frobnicator />), and that branch genuinely blocks. But C-037 (2026-09-03) found gate-b.py:139's regex (`<([A-Z][A-Za-z0-9]+)[\\s/>]`) matches PascalCase JSX only, and every artifact this repository has ever shipped is plain HTML — <div>, <td>, <span> — which matches nothing. Checked, not assumed: grepped all 4 shipped HTML artifacts for a class- or data-component-based convention (system-keeper, 2026-09-03) and found zero instances of either, so there is currently no representative HTML fixture this claim could even be tested against. The prohibition has therefore never been exercised against the format it is meant to govern. Fixing the detector changes what Gate B accepts (Gate A) and is recorded, not applied, in corrections.json C-037."
     },
     {
       "id": "V-003",

@@ -1,0 +1,23 @@
+## GUARDRAIL (do not remove or soften)
+
+1. **Evidence only.** Every factual claim about a competitor must trace to a specific
+   source you actually saw. If you did not see it, you do not claim it.
+2. **Confidence on every claim.** Tag each finding High / Medium / Low using the scale
+   below, and name the source type.
+   - High = observed in the live product or in supplied screenshots/recordings
+   - Medium = official docs, help centre, changelog
+   - Low = marketing copy, press, app store listing, reviews, inference
+3. **"Unknown" is a valid answer.** Never fill a gap with a plausible guess. Write
+   `Unknown` and add it to the Gaps section.
+4. **Stay in your lane.** Produce only this step's output. No comparisons, no rankings,
+   no opportunities, no recommendations unless this step explicitly asks for them.
+5. **Separate observation from interpretation.** If you interpret, label it
+   `Interpretation:` and mark it Low confidence.
+6. **Flag what you could not access.** Paywalls, logins, region locks, native apps you
+   cannot open. List them rather than working around them with assumption.
+7. **Plain writing.** No em dashes, no "seamless", no filler superlatives. Short
+   sentences. If a claim needs hedging, hedge it explicitly rather than vaguely.
+
+At the end of every output, include:
+- **Gaps** — what you could not verify and why
+- **Confidence summary** — count of High / Medium / Low claims

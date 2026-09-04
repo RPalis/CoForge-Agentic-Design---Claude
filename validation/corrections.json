@@ -315,6 +315,116 @@
       "would_have_caught": false,
       "note": "The dangerous repair is the obvious one. Clearing the 236 'MISSING from Figma' blockers by re-running figma_import_tokens against the current generated file recreates semantic-dark as its own collection, turns the check GREEN, and leaves the file holding every dark value twice with only one copy bound to anything — a green board over a file that is wrong in a way nothing was looking at. Plan §10. Separately, the collapse did lose something real and it is NOT recoverable from Figma: a Figma variable carries one description, not one per mode, so 161 Dark-side $descriptions were dropped and the live file holds the Light text. 137 are machine filler; 24 are substantive prose about dark behaviour (ai.inner-shadow, ai.aura-start, background-inverse-hover and 21 more). They survive only because tokens.json is still upstream, and they stop surviving at the ADR-001 inversion point — one of the four reasons plan §7 defers it. PHASE 2 ADDENDUM 2026-09-02: the dangerous repair described above is now structurally unavailable — figma_import_tokens against the current generated file can no longer recreate semantic-dark, because the file no longer contains it. The 24 substantive dark descriptions are still lost and are still recoverable only while tokens.json is upstream; nothing checks descriptions and this sentence is not a check. What Phase 2 did NOT change: this check remains outside CI, because layer 3 has no Figma desktop, no bridge and no plugin. Nothing in this repository can detect a change made in Figma until a human captures the file and runs the check. That is the residue of this defect's class and it is stated rather than closed.",
       "would_have_caught_note": "Kept FALSE after the repair, deliberately. The repaired checker WOULD report the mode collapse loudly if it were run — but the primary defect is a change made in an external system through a path this repository does not model, and no check here can see that without a capture, which needs a tool no agent holds and which CI cannot take. On 2026-09-02 the collapse went unnoticed for hours because nobody ran the check; the repaired check does not change that, it only changes what the check says once someone does. Marking this true would claim a detection this repository cannot perform unprompted. The half that IS unconditionally caught — a generated file that would recreate a collapsed collection — is caught by build-figma-tokens.py --check in CI, and that half is stated in `verifies` rather than smuggled into this flag."
+    },
+    {
+      "id": "C-031",
+      "date": "2026-09-03",
+      "defect": "Gate B's raw-value rule and audit check 6 both match HEX LITERALS only, so they cannot tell an on-token colour from an invented one — they only tell hex from not-hex. A payload of hand-invented rgb() or hsl() passes clean; a payload whose hex was copied faithfully out of tokens.json is blocked. The check enforces a NOTATION, and CLAUDE.md describes it as enforcing that no value exists outside tokens.json. Those are different claims and only the weaker one is true.",
+      "class": "a check whose stated guarantee is broader than the thing it actually matches",
+      "found_by": "dashboard-analyst, while building ART-010. Its own payload passes with zero hex — and it reported that this is NOT why the payload is on-token: every colour was read out of tokens.json by path by a generator and emitted in the sRGB component form the token file itself stores, each custom property carrying its path in a comment. It declined to bank the pass as evidence of the property.",
+      "check": null,
+      "verifies": "UNCHECKED. Widening the match to rgb()/hsl()/named colours would catch more notations and still not establish provenance — the only real test is whether a value RESOLVES to a token path, which means a generator emitting values by path and a check that reads the emitted provenance. That is system-keeper's, it changes what Gate B accepts, and per this repository's own rule it needs someone other than its author to attack it. Recorded rather than patched.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-032",
+      "date": "2026-09-03",
+      "defect": "The main session dispatched a built-in `Plan` agent to write the foundations migration plan. `Plan` is not one of the 14 definitions in .claude/agents/ and appears nowhere in CLAUDE.md's routing table, which states that exactly one agent should match any (phase, task) pair. So a load-bearing planning artifact was produced by an actor the governance model does not describe, with no declared tools, no declared boundaries and no 'not your job' line.",
+      "class": "work routed outside the roster that the roster claims to cover",
+      "found_by": "dashboard-analyst, which was told the ledger covered 'four agents', checked the roster, found only three of them in it, and recorded the discrepancy as an assumption rather than counting it silently.",
+      "check": "validation/agent-runs.json",
+      "verifies": "PARTIAL. agent-runs.json now records the actor of every dispatch, so an off-roster agent is at least visible in the record — the previous state left no trace at all. What is NOT checked: nothing compares the `agent` field against .claude/agents/, and nothing prevents the dispatch. The honest resolution is a decision, not a check: either planning is a real routing row with an owning agent and declared boundaries, or the routing table stops claiming to cover every (phase, task) pair. That is Gate A.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-033",
+      "date": "2026-09-03",
+      "defect": "Nothing checks that an [ART-nnn § Section] citation inside an artifact resolves. Check 5b validates that citation form for design-system/foundations/ and decisions/ ONLY — never under artifacts/, which is where the form is most used. ART-012 cites ART-011 for its coverage ceiling, and for a period after both were written those citations resolved to nothing because _registry.json still held 10 entries. An artifact whose ceiling citation dangles reads as complete coverage, which is precisely what D-002 forbids.",
+      "class": "a citation rule enforced everywhere except where it is used most",
+      "found_by": "research-synthesizer, which flagged it as an action for the main session rather than assuming the registry would be rebuilt. It also declined to use the [ART-nnn] form for its ~60 source citations, correctly: ADR-017 resolves that form against _registry.json and no file under research/sources/ is a registered artifact, so the form would have produced 60 dangling citations. It declared an [S-nn] register resolving to sha256 plus heading instead.",
+      "check": null,
+      "verifies": "UNCHECKED. The fix is to extend check 5b's directory list to artifacts/ — mechanically small. It is NOT done here because 5b lives in audit-system.py, which is in the machinery hash, and the hash already carries one unattested change (5g is red). Adding a second unattested change to the same file before the first is attested is how a review round stops meaning anything. Recorded, and it is system-keeper's.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-034",
+      "date": "2026-09-03",
+      "defect": "A board built to make a coverage gap loud re-based its own mid-page charts onto the covered subset. The cluster chart denominates on 330 (55 rows x 6 profiled) and the journey grid on 48 (8 stages x 6), while the KPI band four inches above denominates on 770 and 112. The board therefore states 24.5% coverage and then shows a chart whose worst bar is 66.7%. This is Song & Szafir's REMOVAL condition — the lowest-scoring treatment they tested — applied to the single fact the artifact exists to make visible, in the same artifact whose redesign was justified by that very paper.",
+      "class": "the fix applied at the top and abandoned below the fold",
+      "found_by": "design-critic, dispatched to attack a board it did not build. Verified independently: 581/770 = 75.5%, the exact complement of the board's own KPI.",
+      "check": null,
+      "verifies": "UNCHECKED. No validator reads denominators out of a rendered artifact, and it is not obvious one could. Recorded as a design finding for v3, not as machinery.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-035",
+      "date": "2026-09-03",
+      "defect": "tokens.json disagrees with itself about whether the brand primitives cleared Gate A. One batch-level note at $extensions.coforge.brand_primitives_added reads 'Gate A — APPROVED by Agentic Designer - RP, 2026-09-02'. Four per-primitive entries -- palette.bone.default, palette.ink.default, palette.coral.default, palette.coral.text -- each still carry their own gate field reading 'not counted until a human approves', unchanged since 2026-08-31. The human approval was recorded at the batch level and never propagated to the tokens it approved, so the file asserts both states at two different levels of specificity.",
+      "class": "an approval recorded where it was granted, not where it is read",
+      "found_by": "dashboard-analyst, while building v3. THREE parties looked at this and only the builder got it right: design-critic reported assumption A-4 'simply false', the main session verified that and agreed -- both by reading only the batch note and stopping. dashboard-analyst read both levels and reported the disagreement instead of picking a side. The main session then re-derived it and confirmed: 1 APPROVED, 4 PENDING.",
+      "check": null,
+      "verifies": "UNCHECKED. Nothing validates that a batch-level gate agrees with the per-token gates it covers. token-keeper's file and token-keeper's call; recorded here rather than edited by a session that does not own it.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-036",
+      "date": "2026-09-03",
+      "defect": "cf-chart-palette, a REGISTERED L1 primitive and the only sanctioned way to colour a chart in this system, cannot distinguish its own categories. Its four primary series are blue.60, teal.60, purple.60 and magenta.60 -- four hues at the same step on a Carbon mirror where every hue family shares one universal lightness ladder. Measured separation between them is under 0.4%; worst-case pairwise contrast between any two hue families at the same step, across all 12 families, is 1.055:1 against a 3:1 non-text floor. A categorical palette whose categories are luminance-identical is not a palette. This is the literal mechanism behind every colour-encoding failure on the coverage board -- the v2 VSUP inversion included -- and it was sitting in the index the whole time, marked status: stable.",
+      "class": "a primitive that fails the job it is the primitive for",
+      "found_by": "token-keeper, dispatched to freeze the baseline and asked to verify-or-refute a property a previous agent had asserted. It verified it, then went further and checked the registered palette against it -- which nobody had done. Two earlier agents each worked around this defect (declining cf-chart-palette on measured contrast) without either one identifying the cause.",
+      "check": null,
+      "verifies": "UNCHECKED. Nothing validates that a categorical palette's series are mutually distinguishable. That check is writable and should exist: for any component whose kind is 'categorical', every pair of series must clear 3:1. Recorded for system-keeper. The usable escape hatch is STEP, not hue -- an ordinal ramp across lightness steps separates; a categorical ramp across hues at one step does not. ADDENDUM 2026-09-03 (ADR-021, system-keeper): cf-chart-palette.status changed 'stable' -> 'deprecated' in component-index.json, and its summary / when_to_use / when_not_to_use / a11y.note rewritten to state the defect and the measured numbers in the entry itself, so a reader of the index is no longer told this primitive is sanctioned. This is a MITIGATION, not the check: nothing yet validates that a registered categorical palette's series are mutually distinguishable, so a future palette could ship the same defect and nothing would catch it before a human reads the entry. Still UNCHECKED. The replacement dataviz token group this note calls for is token-keeper's and does not exist yet (ADR-021).",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-037",
+      "date": "2026-09-03",
+      "defect": "The first of the two prohibitions -- 'Never create a component that is not in component-index.json' -- has never once been tested. gate-b.py:139 detects components with re.findall(r'<([A-Z][A-Za-z0-9]+)[\\s/>]', content): PascalCase JSX tags only. Every artifact this repository has ever shipped is plain HTML, so <div>, <td> and <span> match nothing and the component check reports [PASSED] having inspected zero components. Probed both directions: '<CfUnitCell />' raises a blocker and exits 2; '<div />' passes and exits 0. Enforcement layer 2 has been passing vacuously on the exact class of artifact the prohibition exists to govern.",
+      "class": "a gate that only fires on a syntax nothing here uses",
+      "found_by": "screen-producer, which was told in its brief that Gate B would block the rebuild and checked rather than believed it. The main session had verified line 142 exists and stopped there -- reading the blocker without reading its trigger.",
+      "check": null,
+      "verifies": "UNCHECKED. The fix is a second detector for class-name and data-attribute component usage in HTML payloads, which is harder than the JSX case and must not become a false-positive generator. system-keeper's, and it changes what CI accepts, so Gate A. ADDENDUM 2026-09-03 (ADR-021 promotion, system-keeper): assessed and NOT applied — the fix changes what Gate B accepts and is Gate A. Specified fix: add a second detector beside the PascalCase regex at gate-b.py:139 that matches HTML component usage by a markup convention — e.g. `class=\"[^\"]*\\bcf-[a-z0-9-]+\\b\"` or `data-component=\"([A-Za-z0-9._-]+)\"` — normalised and checked against the index the same way the JSX path already is. Checked what it would newly reject before proposing it, rather than assuming: grepped both patterns across all 4 HTML artifacts this repository has shipped (artifacts/**/*.html) and found zero matches for either. So the detector alone would report zero components found and stay exactly as vacuous as the JSX one, for a different reason — no artifact currently declares which index entry any element instantiates. The real fix is two Gate-A decisions, not one: (1) a markup convention artifacts must follow so built HTML names its component, and (2) the detector enforcing it. Recording the fix and its blast radius only; not applied, per this session's brief.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-038",
+      "date": "2026-09-03",
+      "defect": "The design system cannot leave RED by construction. The DS fork holds RED until CoForge AUTHORS and promotes level-2 components through the membrane. But validation/adapters/carbon-react.py preserves only entries where level == 1 and rebuilds every other entry from the vendor tarball, then unconditionally os.remove()s every .json in design-system/components/. A CoForge-authored L2 entry and its contract file are therefore both destroyed by the next --apply. There is no L2 lane through the membrane that survives the adapter, so the exit condition the fork declares is unreachable through the only mechanism provided.",
+      "class": "an exit condition the machinery makes unreachable",
+      "found_by": "screen-producer, while deciding what level to propose four new components at. It filed all four at level 1 BECAUSE of this, and flagged that cf-detail-panel arguably belongs at level 2 -- leaving the level contested in its own text for a human rather than choosing the safe answer silently.",
+      "check": null,
+      "verifies": "UNCHECKED. Needs the adapter to preserve any entry whose source names CoForge, not only level 1, and to stop blind-deleting the contracts directory. system-keeper's; it changes what survives a vendor re-ingest, so Gate A. ADDENDUM 2026-09-03 (ADR-021 / ADR-022, system-keeper): DESCOPED, not solved, per ADR-021 — a coverage dashboard no longer needs L2 authorship to leave RED at L1 output, so this deadlock stops blocking L1 work; it still blocks Build Stage 3. Verified directly, not assumed, for the promotion executed the same day: cf-chip, cf-nav-rail and cf-detail-panel (ADR-022) are level 1, `validation/adapters/carbon-react.py:325` preserves every entry with level==1 verbatim, and the adapter's destructive os.remove() loop targets only design-system/components/*.json, which holds the 208 generated L2 contracts and no L1 primitive files — confirmed by directory listing before promoting. This specific promotion survives the adapter as it stands today. The defect itself is unchanged: no level-2 entry authored here has a surviving lane through the adapter, and the exit condition ADR-011 declares for RED remains unreachable through it.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-039",
+      "date": "2026-09-04",
+      "defect": "v4 shipped five table cells truncated mid-sentence with a bare ellipsis, while the complete text of all five sat verbatim in the same file's panel JSON. The worst is Google Travel's — 'not like-for-like with the other five, w…' — cut off mid-word. That caveat qualifies the board's SINGLE verified Yes, and promoting it out from behind a click was an explicit instruction in the v4 brief precisely so a reader could not miss it. It was promoted and then truncated, which is worse than leaving it in the panel: a visible half-sentence reads as complete.",
+      "class": "a fix applied and then silently undone by the mechanism applying it",
+      "found_by": "content-comms, dispatched to rewrite jargon, not to audit. It noticed while reading the payload against the panel JSON. The main session published v4 after reading all 730 lines and did not see it; neither design-critic nor a11y-checker has attacked v4 at all.",
+      "check": null,
+      "verifies": "UNCHECKED, and cheaply checkable: no rendered text in a payload should end in an ellipsis when a longer form of the same string exists elsewhere in the file. Recorded for system-keeper.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-040",
+      "date": "2026-09-04",
+      "defect": "A clean-room quarantine cannot be honoured on a first read of a single file. research-ops was told not to read SKILL.md's 'Prior findings' section; skipping a section requires its line numbers, and obtaining those requires reading the file. The breach was structural, not careless, and it happened to the agent authoring the document that defines the boundary. It self-reported in three places rather than letting it pass. The prior round's bias is therefore in the context of the agent that wrote the plan excluding it.",
+      "class": "a boundary that cannot be obeyed by the first agent asked to obey it",
+      "found_by": "research-ops, self-reported. It also supplied the fix nobody had: the safe read is SKILL.md offset 1 limit 186 THEN offset 231 limit 9, because '## Anti-patterns' sits AFTER the quarantined block — so the obvious limit=186 silently drops the anti-patterns list. Verified: Prior findings starts L187, Standing risks L223, Anti-patterns L231.",
+      "check": null,
+      "verifies": "UNCHECKED. A quarantine expressed as prose cannot bind a first read. It has to be a pre-split file or a path glob. research-ops applied the glob lesson itself by filing the plan in a NEW workstream, since filing it inside artifacts/luma-travel/** would have placed the plan inside its own quarantine.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-041",
+      "date": "2026-09-04",
+      "defect": "Hands-on capture was being run on a single browser surface, and that surface was the worst available choice for visual claims. The client's own Chrome carries third-party extensions (a 'Directo' deals panel, a 'vio' price bar) that inject UI into competitor pages. A programmatic check for injected overlays returned ZERO — they sit in shadow DOM or extension iframes that page-context selectors cannot reach — so any screenshot-derived observation could silently attribute a third-party overlay to a competitor, and nothing in the method would have caught it.",
+      "class": "a capture surface that cannot see its own contamination",
+      "found_by": "The client, by asking whether the inspector MCP was being used at all. It was not. Checking it revealed a SECOND browser — signed out, extension-clean, with network inspection — which turned a single contaminated surface into a matched pair: control and treatment. The first controlled run immediately produced a result no single session could: loyalty membership changes Booking.com's ranking surface by exactly one axis, and that axis is another price axis.",
+      "check": null,
+      "verifies": "UNCHECKED as a validator, but now a standing rule in two places that are actually read: ART-024 section 4.1b, and a CLAUDE.md section loaded every turn. The residual blindness is stated rather than solved — the inspector cannot see authenticated flows and the authenticated browser cannot see network traffic, so network evidence about a PERSONALISED response is unavailable.",
+      "would_have_caught": false
     }
   ]
 }

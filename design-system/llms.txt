@@ -1,6 +1,6 @@
 # CoForge Design System
 
-> Agent-readable index. 829 design tokens (W3C DTCG), 8 level-1 primitives, 208 full components. Load this once; fetch detail on demand.
+> Agent-readable index. 829 design tokens (W3C DTCG), 11 level-1 primitives, 208 full components. Load this once; fetch detail on demand.
 
 ## Rules
 
@@ -25,8 +25,11 @@
 
 - [cf-badge](design-system/component-index.json): A small label carrying status or count.
 - [cf-card](design-system/component-index.json): A bounded surface grouping related content.
-- [cf-chart-palette](design-system/component-index.json): The ordered categorical palette for data visualisation.
+- [cf-chart-palette](design-system/component-index.json): The ordered categorical palette for data visualisation — DEFECTIVE (C-036). Do not use for any new chart.
+- [cf-chip](design-system/component-index.json): A small neutral label carrying a non-status classification — evidence tier, coverage state, category. Has no colour variant by design: every chip looks identical whatever it says, so no classification can be scored good or bad by its treatment.
 - [cf-colour-roles](design-system/component-index.json): Semantic colour roles — background, layer, text, border, support.
+- [cf-detail-panel](design-system/component-index.json): A side panel revealing provenance for one clicked cell or row while the grid stays fully visible and operable behind it. Click-to-pin, never hover. Level two of a two-level disclosure limit; nothing nests below it.
+- [cf-nav-rail](design-system/component-index.json): Persistent within-page section navigation for a long analytical document, with scrollspy and anchored deep links. Navigates only — it cannot filter, sort, collapse or hide, so it can never conceal missing data.
 - [cf-rule](design-system/component-index.json): A horizontal or vertical divider.
 - [cf-spacing-scale](design-system/component-index.json): The spacing steps. All margin, padding and gap come from here.
 - [cf-table](design-system/component-index.json): Tabular data with header, rows and optional zebra striping.
@@ -249,4 +252,4 @@
 - [architecture.md](architecture.md): what the parts are and how they relate
 - [decisions/](decisions/): ADRs — what was chosen, and what was rejected
 
-<!-- generated 2026-09-02 by validation/build-llms-txt.py — do not hand-edit -->
+<!-- generated 2026-09-03 by validation/build-llms-txt.py — do not hand-edit -->

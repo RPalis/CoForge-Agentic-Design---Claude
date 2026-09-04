@@ -1,0 +1,56 @@
+{
+  "id": "ART-024",
+  "type": "research-plan",
+  "workstream": "luma-hands-on",
+  "title": "Hands-on competitor UX capture — 14 products, eight journey stages, clean room",
+  "file": "hands-on-competitor-capture-plan.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "discover",
+  "produced_by": "research-ops",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "research-ops",
+    "checked": 8,
+    "found": 7,
+    "skipped": 5,
+    "method": "checked = the 8 numbered requirements in the dispatch brief's 'What the plan must contain' list, each traced to a payload section: (1) objective and decisions -> S1 and S1.1, mapped one row per business goal against scenario.pdf S Business Goals; (2) fourteen competitors in execution order with a per-entry reason -> S2.3, plus the tier derivation in S2.1 and the capability argument in S2.2; (3) per-competitor capture protocol -> S4, site tree first (S4.2) then stages (S4.3) then probes (S4.4), with standing settings fixed in S4.1 so two operators are comparable; (4) record schema -> S5.2 (capture record, 21 fields, no blanks) and S5.1 (the mandated six matrix fields preserved unchanged); (5) five user types -> S5.5, one discriminating question each, answered in a single analysis pass over the already-captured set rather than by five captures; (6) evidence handling -> S6.4; (7) stop rules and quality gates -> S7; (8) known limitations -> S8. found = 7 defects in the brief or in the source documents, each corrected in place and listed in validation.md S3. skipped = 5 checks not run and not claimed in either direction, listed in validation.md S5: the repository audit, the artifact ID collision check, the per-agent tools: fields, the 5,500-tokens-per-screen measurement, and the quarantined prior round itself."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "sources": [
+      "/Users/raquelpalis/Desktop/Luma test project scenario.pdf",
+      "skillx/luma-competitor-analysis/SKILL.md (lines 1-186 and 231-239 only; 187-230 quarantined)",
+      "CLAUDE.md",
+      "artifacts/_types.json",
+      "artifacts/ARTIFACTS.md",
+      "research/evidence-ledger.json",
+      "validation/checklists/research-plan.md",
+      ".claude/settings.json"
+    ],
+    "tokens_version": null
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-04"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-04",
+  "notes": {
+    "why_a_new_workstream": "The dispatch asked whether luma-travel is the right home, given it holds the quarantined prior round. It is not, and the reason is structural rather than tidiness. The clean room is enforced as a PATH boundary: 'do not read artifacts/luma-travel/**'. Filing this plan inside luma-travel would put the plan itself inside its own quarantine glob, so any agent obeying the quarantine could not read the plan it is meant to execute, and any agent reading the plan would have to make an exception to the glob -- at which point the boundary is a matter of judgment rather than a path, which is exactly the failure mode the clean room exists to remove. The new workstream luma-hands-on keeps the quarantine expressible as one unqualified glob. Secondary reason: the two rounds are deliberately kept comparable-but-separate until Step R, and separate directories make it mechanically obvious which round any artifact belongs to. At Step R the reconciliation test-report is filed under luma-hands-on, because its subject is the reliability of the prior study as measured by this round, and it must not read as an amendment to the prior round's own workstream.",
+    "clean_room_breach": "RECORDED, NOT SUPPRESSED. The dispatch instructed the author to skip the section headed 'Prior findings' in the client skill. The skill was read with a whole-file read, so lines 187-239 entered context -- all of '## Prior findings' AND all of '## Standing risks to carry forward'. Skipping a section requires knowing its line numbers, which requires reading the file, so this was not avoidable on a first read; it is nonetheless a breach of the clean room by the author of the plan that defines the clean room. Containment: (a) no prior finding appears anywhere in the payload; (b) the one place exposure could have leaked -- the roster and its order -- is audited in payload S2.4, where each of the four net-new competitors is traced to a specific line of scenario.pdf, so a reader can test the claim rather than take it; (c) the author does not analyse the captures, and blind analysis passes to sessions with no exposure; (d) the safe read range is now known and mandated in payload S0.3, and it CANNOT be expressed as one range -- offset 1 limit 186, then offset 231 limit 9, because '## Anti-patterns' sits after the quarantined block and is in scope, so a single limit=186 silently drops it and a whole-file read reproduces this breach.",
+    "quarantine_widened_beyond_the_brief": "The brief quarantined '## Prior findings' only. This plan also quarantines '## Standing risks to carry forward' (SKILL.md lines 223-230) on the same reasoning -- the heading says 'carry forward', so it is prior-round output carried inside the method file. It was not named in the brief.",
+    "no_ledger_ids_and_why": "This artifact mints no E-nnn and cites none. research/evidence-ledger.json holds 0 records; no person is quoted anywhere in the payload. The plan goes further and forbids the round from ever minting one for a capture: CLAUDE.md S Claim format separates testimony from measurement and says 'Never mint a ledger ID for a measurement.' A screenshot of a competitor is a measurement. The plan carries a specific consequence of this at payload S5.4 -- a user review displayed on a competitor's site IS a real person's words, so transcribing one would create a user quote with no ledger record and would violate the second prohibition; the plan therefore forbids transcribing competitor user reviews and permits only describing the review mechanism.",
+    "no_findings_by_construction": "The dispatch forbids findings. Every statement about a competitor in the payload is a roster-justification and is labelled Assumption A-5 collectively, with A-2 and A-3 carrying the two that are load-bearing. The payload states in its header that a contradicted assumption is a result to be recorded, not an error to be tidied away, and S4.2 forbids retrospectively editing the applicability declaration to match what was found.",
+    "tokens_version_is_null": "The payload is a markdown document with no colour, no spacing and no visual system. It references no token and declares no tokens_version. audit-system.py check 5f is understood to raise a blocker only where token references are detected without a declared version; none are present. This was reasoned about, not run -- see validation.md S5."
+  }
+}

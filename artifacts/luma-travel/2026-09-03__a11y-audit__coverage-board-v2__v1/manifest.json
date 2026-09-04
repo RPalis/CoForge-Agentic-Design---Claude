@@ -1,0 +1,47 @@
+{
+  "id": "ART-015",
+  "type": "a11y-audit",
+  "workstream": "luma-travel",
+  "title": "Luma competitor coverage board (v2) — WCAG 2.2 AA audit: loud-absence blocks, VSUP color-mix() ramps, opacity-composited text",
+  "file": "coverage-board-a11y-audit.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "evaluate",
+  "produced_by": "a11y-checker",
+  "model": "claude-sonnet-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "a11y-checker",
+    "checked": 46,
+    "found": 11,
+    "skipped": 7,
+    "method": "checked = 46: 12 rendered text/background pairs (§1) + 17 non-text pairs — chip dots, VSUP swatch ramp steps, adjacent-cell separations, cluster-bar-vs-track steps (§2) + 11 semantic checks — lang, focus order, focus visibility, images/alt (N/A), caption, row headers, col scope, details/summary naming, h1, heading order, main landmark (§4) + 4 use-of-colour checks — the fourteen's three absence states, the load-bearing spotlight, the scoreboard, the VSUP grid's redundant text labels (§3) + 1 motion check (§6) + 1 confirmed-would-fail cross-check of a pairing the payload correctly never renders (white text inside a Weak-tier VSUP swatch) = 46. Every ratio was computed by hand from the color(srgb ...) values in ART-014's <style> block (relative luminance per WCAG's formula, contrast = (L_lighter+0.05)/(L_darker+0.05)); no script was run, this agent holds no Bash. color-mix(in srgb, ...) was resolved as gamma-space linear interpolation of the two operands' sRGB channels and cross-checked against the three hex values validation.md §2.5 hand-computed independently -- all three matched exactly. CSS opacity was resolved by compositing the WHOLE element (background paint + content, pre-flattened) against the page ground behind it, per the CSS Compositing spec's stacking-context model for opacity<1 -- this changed the result for F-01 substantially from a naive 'text vs visible stripe colour' read, and is documented step-by-step in the payload's §0 because it is the same class of implicit-colour-synthesis hazard the brief named for color-mix() but the brief did not name for opacity. found = 11, filed as F-01..F-11 in the payload's Findings register: F-01 (error, a text/background pair that fails AA -- .gapnote text at 86% opacity composited onto the lighter half of the priorart diagonal stripe resolves to 3.85:1 against a 4.5:1 floor, in exactly 2 of 14 rows), F-02 (warning, the VSUP ramp's Weak tier -- pure and Medium-confidence -- sits under the 3:1 non-text floor against bone, 2.83:1 and 2.96:1, while every other rung of the same ramp clears 3:1 by a wide margin), F-03 (warning, the same shape of defect in the cluster gap-density bar chart's lowest tone, 2.58:1 against its own track), F-04 (info, teal-90/Strong-High and gap-80/Unknown sit only 1.30:1 apart in lightness and appear adjacent in the journey grid -- not a clean SC failure since every cell carries a redundant text label, flagged because it is exactly the pairing the loud-absence/VSUP mechanism most wants to stay legible for a greyscale or low-vision reader), F-05..F-11 (semantic: no <caption> on any of the 4 tables; row-label cells are <td> not <th scope=row> in all 4 tables; no scope=col on thead th; 6 of 7 <details> controls have an empty <summary></summary> whose entire visible/accessible label is CSS ::before content, a documented-fragile accessible-naming pattern; no <h1> anywhere; a heading-order skip from the last <h2> to <h3> inside the collapsed Meta appendix with no intervening <h2>; no <main> landmark). skipped = 7, listed by name in the payload's closing section because a rendered check was required and this agent has no Bash/rendering tool: 200% zoom, 400% zoom, 320px viewport reflow, an actual assistive-technology pass over the <details> controls and the 4 tables, a forced-colors/Windows-High-Contrast-Mode render, an actual CVD-simulated render (F-04 is reasoned from luminance/hue proximity math, not a simulated filter), and a print-to-PDF render (dashboard-analyst's own validation.md already records this as open; independently confirmed still open here, not re-attempted). Motion: no transition/animation/@keyframes/transform exists anywhere in the file, so prefers-reduced-motion is correctly inapplicable, not omitted."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-014"
+    ],
+    "decisions": [],
+    "sources": [],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "auto",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "gate_b_vs_gate_a": "Gate B here concerns the STRUCTURAL validity of this audit artifact itself (directory name, manifest present, no unresolved [E-nnn], checked > 0, every check states a computed value and a threshold) -- it passes. It says nothing about whether ART-014 (the audited subject) is clean; ART-014 carries 11 open findings, 2 of them severity 'error', and stays draft pending a human at Gate A per the routing table ('a11y first filter ... a human (Gate A) still reviews the screen after you pass it').",
+    "why_no_edit": "This agent holds Write for this directory only, and holds no Edit and no Bash -- it cannot alter ART-014's payload, ART-014's own manifest/validation.md, or anything in design-system/. Every finding above is a report, not a patch; where a finding implicates a token-ramp floor (F-02, F-03) the fix is named as a token-keeper/human decision, never proposed as a value here.",
+    "opacity_correction": "The payload's method section (§0) documents an in-session self-correction: a first read of the .gapnote/opacity interaction assumed the text composites against the VISIBLE stripe colour beneath it, which is not how CSS opacity works (opacity fades the whole flattened element toward whatever is behind it in paint order, i.e. the page ground here, not the element's own pre-fade background). The corrected model is what F-01 is built on. Recorded per this session's own standard: attack your own result before it is delivered, not merely trust the first calculation."
+  }
+}

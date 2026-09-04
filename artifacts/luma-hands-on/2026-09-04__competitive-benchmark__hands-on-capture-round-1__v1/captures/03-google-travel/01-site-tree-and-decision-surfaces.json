@@ -1,0 +1,59 @@
+{
+  "competitor": "Google Travel",
+  "capture": "s0-site-tree-L1 + s1-dream-discover",
+  "url": "https://www.google.com/travel/search?q=Lisbon&hl=en&gl=GB",
+  "captured_at": "2026-09-04T12:04Z",
+  "surface": "client's authenticated Chrome",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 8194, "links": 223 },
+
+  "method_deviation_recorded": {
+    "issue": "The first capture attempt returned the entire interface in Portuguese (pt-BR) — browser locale resolution, not a user choice.",
+    "why_it_mattered": "ART-024 section 4.1 fixes locale for all competitors precisely so any difference between products is a PRODUCT difference. A pt-BR capture is not comparable with two English captures.",
+    "action": "Discarded and re-captured with hl=en&gl=GB forced in the URL. The Portuguese capture is not recorded as evidence.",
+    "residual": "curr=GBP did NOT take — prices still render in EUR. Currency is therefore NOT controlled for this competitor. Flagged rather than silently accepted."
+  },
+
+  "finding_F23_DECISION_SURFACES": {
+    "claim": "Google Travel exposes four decision-support surfaces that neither Booking.com nor Expedia offers anywhere in their accommodation journey.",
+    "surfaces_verbatim": ["Track prices", "Where to stay", "When to visit", "What you'll pay"],
+    "evidence": "Present as primary navigation on the accommodation search result. Booking.com and Expedia captures of the equivalent surface contain no analogue.",
+    "confidence": "Verified",
+    "why_it_matters": "These answer 'should I go, when, and roughly what will it cost' — the scenario's stage 1 'Dream & discover' and the front half of stage 2 'Plan & compare'. The two transactional incumbents begin at a search box and assume the decision is already made. Luma's stated primary user, a first-time traveller with low confidence, has NOT already made it.",
+    "scope_limit": "Presence of these surfaces is verified. Their QUALITY and whether they materially help is not tested by this capture."
+  },
+
+  "finding_F24_NO_TRANSACTION": {
+    "claim": "Google Travel hands off rather than sells. No 'Book on Google' surface was present on the accommodation result.",
+    "evidence": "Full page text searched for 'book on google' — no match. The forward control is 'View prices'.",
+    "confidence": "Verified",
+    "reading": "It occupies the compare-and-decide half of the journey and deliberately declines the transaction. That is the inverse of Booking.com and Expedia, which begin at transaction intent.",
+    "note_for_F08_thread": "A product that never sells also never owns the failure moment — but for a different reason than the intermediaries. It is not disclaiming liability; it is not in the transaction at all."
+  },
+
+  "control_surface": {
+    "filter_chips": ["4+ rating", "Under €75", "Pool", "4- or 5-star", "Spa", "Price",
+                     "Property type", "Offers", "Guest rating", "Hotel class", "Amenities", "Brands"],
+    "all_filters_entry": true,
+    "sort_control": "NOT FOUND on this render — recorded as not-yet-observed, NOT as absent. The sort axis enumeration for this competitor is OWED before F-20's running total can include it.",
+    "accessibility_feedback_link_present": true
+  },
+
+  "verticals_present": ["Explore", "Flights", "Hotels", "Vacation rentals"],
+  "verticals_absent_vs_peers": ["cars", "activities/things to do", "packages", "cruises", "airport transfers"],
+
+  "our_product_decision_required": [
+    "Decision required: Luma's journey begins at stage 1 'Dream & discover'. Google Travel is the only product so far that builds for that stage. Does Luma compete there against Google, or start where the transactional incumbents start and inherit their assumption that the decision is made?",
+    "Decision required: 'When to visit' and 'What you'll pay' are confidence features that cost nothing at transaction time. They are the cheapest observed answer to reducing traveller anxiety — and no transactional competitor has them.",
+    "Decision required: Google declines the transaction and keeps the decision layer. Luma proposes to own both. That is a harder position than either incumbent holds — is it defensible without inventory?"
+  ],
+
+  "not_observed": [
+    "sort axes — control not located this render; OWED",
+    "the four decision surfaces opened and assessed",
+    "handoff destination and what happens after 'View prices'",
+    "empty / error / no-results states",
+    "flights and vacation rentals verticals"
+  ]
+}

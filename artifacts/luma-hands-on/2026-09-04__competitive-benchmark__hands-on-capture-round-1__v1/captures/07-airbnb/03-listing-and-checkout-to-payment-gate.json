@@ -1,0 +1,78 @@
+{
+  "competitor": "Airbnb",
+  "capture": "s3-book / accommodation — listing through checkout to the payment gate",
+  "captured_at": "2026-09-04T14:36Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "stopped_at": "Confirmar y pagar (Confirm and pay). NOTHING submitted. No payment made. A saved card exists on the account and was displayed by Airbnb — its details are deliberately NOT recorded here.",
+
+  "finding_F71_AIRCOVER_IS_NOT_SHOWN_AT_THE_DECISION_REFUTES_PRIOR_CLAIM": {
+    "the_prior_claim": "Desk research held AirCover's value is that it 'names the safety net and shows it before booking rather than after failure' — listed as the most transferable idea in the whole prior round.",
+    "what_was_tested": "Three surfaces searched for 'aircover': search results, listing page, checkout.",
+    "result": {
+      "search_results": "present — but only as 'AirCover' and 'AirCover para anfitriones', consistent with footer navigation",
+      "listing_page": "same two footer-consistent matches after full render (8,113 chars). No listing-level badge, panel or trust element.",
+      "checkout": "not detected in the rendered checkout view"
+    },
+    "verdict": "NOT SUPPORTED as stated. AirCover is documented, free and genuinely good (F-66, F-67) — but it is NOT surfaced at the moment of comparison or the moment of commitment. A traveller must already know it exists to find it.",
+    "confidence": "Verified",
+    "why_this_matters": "This is a prior-round claim that survived into strategy and does not survive contact with the product. The transferable idea was 'reassurance made visible before booking'. What actually exists is 'reassurance documented in a help centre'. Those are different things, and the second is much easier to build and much less valuable.",
+    "caveat": "Checkout was captured by screenshot after a renderer timeout; a text sweep of the fully-rendered checkout did not complete. AirCover could appear lower on that page. Recorded as not-detected, not as absent."
+  },
+
+  "finding_F72_NEUTRAL_INSURANCE_DECLINE_THE_ANTI_F22": {
+    "claim": "Airbnb offers travel insurance at checkout with a neutral, priced question. Expedia phrases the same decision as a confession of recklessness.",
+    "evidence_verbatim_es": "¿Quieres añadir un seguro de viaje? Sí, quiero añadirlo por 9,32 €",
+    "translation": "Do you want to add travel insurance? Yes, I want to add it for 9.32 €",
+    "the_contrast": {
+      "Expedia (F-22)": "accept = 'Stay Protection Plan'; decline = 'I'm willing to risk my $358.59 stay in Lisbon' — confirmshaming",
+      "Airbnb": "a question, a price, and an affirmative opt-in. Declining requires no statement about oneself."
+    },
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "Both products attach insurance at the same point in the same journey for comparable amounts. One manufactures guilt; one asks. This is the clearest paired evidence in the round that the dark pattern is a CHOICE, not a requirement of the economics — because a larger competitor declines to use it at the identical moment."
+  },
+
+  "finding_F73_PAY_LATER_AT_NO_COST": {
+    "claim": "Airbnb offers three payment timings, one of which defers the entire cost at no additional charge.",
+    "options_verbatim_es": [
+      "Paga 203,00 € ahora",
+      "Paga 0 € ahora — Cantidad cobrada el 28 oct: 203,00 €. Sin costes adicionales.",
+      "Paga en 3 plazos con Klarna — Paga en 3 plazos de 67,66 € sin intereses (0% TAE)"
+    ],
+    "translation": ["Pay 203.00 € now", "Pay 0 € now — amount charged 28 Oct: 203.00 €. No additional costs.",
+                    "Pay in 3 instalments with Klarna — 3 × 67.66 €, interest free (0% APR)"],
+    "confidence": "Verified",
+    "comparison": "Expedia offered BNPL at '0% APR or as low as $33/mo' on a $358 stay (F-21). Airbnb offers BNPL AND a no-cost full deferral. The second is materially different: it is not credit, it is a later charge date with no fee.",
+    "for_luma": "A first-time traveller on a limited budget faces a commitment they cannot easily reverse. 'Pay 0 € now, charged 28 Oct, no additional costs' reduces the cost of committing without selling them debt. That distinction — deferral versus credit — is worth making explicitly."
+  },
+
+  "finding_F74_PRICE_CONTEXT_AT_COMMITMENT": {
+    "claim": "Airbnb states whether the price is normal, at the moment of payment.",
+    "evidence_verbatim_es": "El precio está por debajo de la media para 60 días",
+    "translation": "The price is below the average for 60 days",
+    "confidence": "Verified",
+    "why_it_matters": "F-27 recorded that Google is the only product telling a traveller what a normal price looks like — but Google does it BEFORE the search. Airbnb does it at CHECKOUT, the moment of maximum doubt. Same orientation device, opposite end of the journey. Neither Booking.com nor Expedia offers it at either point."
+  },
+
+  "price_construction_at_checkout": {
+    "lines_verbatim_es": ["3 noches por 59,67 €", "236,62 € (struck) 179,00 €", "Impuestos 24,00 €", "203,00 € total"],
+    "note": "Nightly rate DOES appear at checkout (59,67 €) although it never appeared in search results (F-70). So the total-first convention holds at comparison time and relaxes at commitment time, when the traveller has already chosen."
+  },
+
+  "cancellation_at_checkout_verbatim_es": "Cancelación gratuita — Si cancelas la reserva antes del 5 de noviembre, recibirás un reembolso completo",
+  "cancellation_note": "Dated, specific, and stated twice — on the listing and again at checkout. Two tiers: full refund before 5 Nov, partial before the 10 Nov arrival.",
+
+  "method_note": {
+    "listing_page_load_failure": "The listing page returned 251 characters of body text across two attempts and rendered as a skeleton. A reload resolved it to 8,113 characters. Nothing was recorded from the failed state — an empty text extraction is not a finding about a product.",
+    "checkout_renderer_timeout": "A text sweep of the checkout timed out at 45s (CDP Runtime.evaluate). The checkout was therefore captured by SCREENSHOT, which is why the AirCover null there is recorded as not-detected rather than absent."
+  },
+
+  "not_observed": [
+    "Filtros panel — still owed to fully close F-69",
+    "Airbnb Experiences / activities inventory — the reason Airbnb is the closest shape to business goal 2, still uncaptured",
+    "post-purchase and trip management",
+    "whether AirCover appears further down the checkout page"
+  ]
+}

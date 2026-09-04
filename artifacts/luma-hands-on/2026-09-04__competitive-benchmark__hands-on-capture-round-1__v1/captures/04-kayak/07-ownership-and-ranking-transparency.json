@@ -1,0 +1,62 @@
+{
+  "competitor": "Kayak",
+  "capture": "corporate structure + ranking transparency",
+  "url": "https://www.kayak.es/c/company/",
+  "page_title_verbatim_es": "Cómo funciona nuestra web",
+  "translation": "How our website works",
+  "captured_at": "2026-09-04T15:22Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture (first-party disclosure document)",
+  "confidence": "Verified",
+  "document_size": "18,759 characters",
+
+  "finding_F88_THREE_OF_SEVENTEEN_SHARE_A_PARENT": {
+    "claim": "Booking.com, Kayak and Rentalcars.com — competitors 1, 4 and 9 on the roster — are all Booking Holdings companies. Verified from first-party statements on two of the three.",
+    "evidence_verbatim_es": "Independientemente de estos acuerdos, nuestra empresa forma parte de Booking Holdings Inc, que cuenta con otras webs de viaje y ocio como Booking.com, Priceline.com, Agoda.com, Rentalcars.com y Opentable.com.",
+    "translation": "Regardless of these agreements, our company is part of Booking Holdings Inc, which owns other travel and leisure sites such as Booking.com, Priceline.com, Agoda.com, Rentalcars.com and Opentable.com.",
+    "corroborating": "Rentalcars.com states independently on its own homepage: 'Rentalcars.com es parte de Booking Holdings Inc.' (F-85)",
+    "kayak_also_operates_verbatim_es": "También gestionamos otras webs de metabúsqueda que incluyen KAYAK, SWOODOO, checkfelix, momondo, Cheapflights, HotelsCombined y Mundi.",
+    "translation_2": "We also operate other metasearch sites including KAYAK, SWOODOO, checkfelix, momondo, Cheapflights, HotelsCombined and Mundi.",
+    "confidence": "Verified",
+
+    "WHY_THIS_CHANGES_THE_ANALYSIS": "Three of seventeen roster entries — including two tier-1 products named by the scenario itself — are one company. Every finding of the form 'N competitors do X' has been silently treating them as independent evidence. Where siblings agree, apparent market consensus may be a single portfolio decision.",
+    "findings_that_must_now_be_re_read": [
+      "F-26 / F-46 refinement: 'products that hand off build decision layers; products that transact do not' — Booking.com (transacts) and Kayak (hands off) are the SAME COMPANY running both models deliberately. That strengthens the finding as a business-model claim and weakens it as a claim about independent firms converging.",
+      "F-46: Google Flights commits to all-in pricing; Kayak excludes baggage. Kayak's sibling Booking.com also says only 'includes taxes and fees'. Two of the three data points on price honesty are one company.",
+      "F-29 / F-88: 'Booking.com unlocks a discount, Google unlocks a capability' — the Booking.com half is one firm's choice, not the intermediary norm.",
+      "Any count of the form 'X of N competitors' in the final synthesis must state the sibling relationship or it overstates independence."
+    ],
+    "action": "Roster audit item 4. The plan's own section 2.2 argued tier composition on capability coverage and never considered corporate independence. That is a real gap in the plan, found in capture."
+  },
+
+  "finding_F89_KAYAK_PUBLISHES_A_FULL_RANKING_DOCUMENT": {
+    "claim": "Kayak publishes an 18,759-character document explaining how it recommends content and orders results, broken down per vertical.",
+    "structure_verbatim_es": ["Cómo recomendamos contenido y listamos los resultados", "Nuestros sistemas de recomendación",
+                              "Vuelos", "Estancias (hoteles y otros alojamientos)", "Coches", "Recomendaciones", "Viajes"],
+    "translation": ["How we recommend content and list results", "Our recommendation systems", "Flights", "Stays", "Cars", "Recommendations", "Trips"],
+    "sample_verbatim_es": "Clasificación de los resultados de las propiedades: por defecto, los resultados se clasifican mediante nuestro algoritmo «Recomendaciones», que se basa en varios factor[es]",
+    "confidence": "Verified",
+    "disclosure_spectrum_updated_again": {
+      "Kayak": "per-vertical ranking document, ~18,800 chars, PLUS per-placement ad labelling (F-44)",
+      "Airbnb": "five weighted factors, ~10,800 chars, linked from results (F-75)",
+      "Tripadvisor": "criteria named inline on results (F-84)",
+      "Google Flights": "one line — 'ranked based on price and convenience'",
+      "Booking.com": "discloses commission influences ranking; criteria not named",
+      "Expedia": "nothing observed"
+    },
+    "revision_to_F75": "F-75 held that the products with NO sort control explain ranking most fully, and that control and explanation are traded off. Kayak breaks that: it offers three sort tabs AND publishes the most detailed ranking document found. The trade-off framing does not survive. The corrected statement is simply that explanation VARIES enormously and is unrelated to how much control is offered.",
+    "likely_cause_stated_as_inference": "Inferred, not verified: this reads as EU Digital Services Act / P2B transparency compliance rather than a product choice. Both Kayak and Booking.com are EU-facing platforms. The documents' existence may be regulatory rather than voluntary — which matters, because a regulatory floor is available to Luma too and confers no differentiation."
+  },
+
+  "our_product_decision_required": [
+    "Decision required for the ANALYSIS: state the Booking Holdings relationship wherever a count is presented. Three of seventeen is 18% of the roster and includes two scenario-named competitors.",
+    "Decision required: if ranking transparency is a regulatory floor rather than a differentiator, Luma gains nothing by matching it. The differentiator would be explaining a ranking a traveller can ACT on — 'why is this third for me' — which no observed document does."
+  ],
+
+  "not_observed": [
+    "the ranking document read in full — headings and samples captured only",
+    "whether Booking.com publishes an equivalent document",
+    "whether the roster's other entries disclose parentage"
+  ]
+}

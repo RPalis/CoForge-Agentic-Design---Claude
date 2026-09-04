@@ -1,0 +1,57 @@
+{
+  "competitor": "Expedia",
+  "capture": "s0-site-tree-L1",
+  "url": "https://www.expedia.com/",
+  "captured_at": "2026-09-04T11:31Z",
+  "surface": "inspector instance (signed out, extension-clean)",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 1529, "links": 39, "inputs": 23 },
+
+  "product_lines": {
+    "Stays": "/Hotels", "Flights": "/Flights", "Cars": "/Cars",
+    "Packages": "/Vacation-Packages", "Things to do": "/Activities", "Cruises": "/Cruises"
+  },
+  "loyalty_and_account": {
+    "One Key": "/welcome-one-key", "Trips": "/trips",
+    "Sign in": "/login", "Support": "/helpcenter/"
+  },
+  "legal": { "Terms of Service": "/lp/b/terms-of-service", "Privacy Statement": "/lp/b/lg-privacypolicy" },
+
+  "finding_F16_vs_booking": {
+    "claim": "Expedia carries six verticals to Booking.com's four booking types, adding Packages and Cruises — but presents a far smaller link surface on the homepage.",
+    "evidence": "Expedia homepage: 39 links, 1,529 DOM nodes. Booking.com homepage: 300 links, 5,393 DOM nodes. Same capture method, same day, both signed out.",
+    "confidence": "Verified",
+    "reading": "Booking.com's homepage is an index; Expedia's is a funnel. Different first-run experiences for a traveller who does not yet know what they want — which is stage 1 of the scenario's journey.",
+    "caveat": "Link count is a proxy for surface breadth, not for capability. Recorded as a measured difference, not a quality judgement."
+  },
+
+  "finding_F17_ROMIE_ABSENT": {
+    "claim": "Romie — named in prior desk research as the most serious competitive threat and the top open question — does not appear anywhere on the Expedia homepage.",
+    "evidence": "Full homepage text searched for 'romie', case-insensitive, after full render and scroll-to-bottom. No match.",
+    "confidence": "Verified",
+    "scope_limit": "HOMEPAGE ONLY. This is not evidence that Romie does not exist or has not shipped. It establishes that it is not surfaced on the primary entry point. The open question stands until the product surfaces are searched directly."
+  },
+
+  "loyalty_model_first_read": {
+    "name": "One Key / OneKeyCash",
+    "verbatim": [
+      "Members earn 30% more OneKeyCash on eligible hotels and vacation rentals",
+      "Unlock instant savings and earn OneKeyCash to spend on future travel",
+      "Member Price available"
+    ],
+    "structural_contrast_with_booking": "One Key reads as EARN-AND-BURN — a currency accrued and spent on future travel. Genius is TENURE-GATED — a discount tier unlocked by completed booking count. These are different answers to retention and imply different things for a first-time traveller: a currency starts at zero but is immediately earnable; a tier starts locked.",
+    "confidence": "Likely",
+    "why_not_verified": "Read from homepage marketing copy only. The One Key programme page has not yet been captured; mechanics, expiry and tier structure are unconfirmed."
+  },
+
+  "luma_capability_coverage": {
+    "flights": "present", "accommodation_on_site": "present",
+    "activities_experiences": "present — /Activities",
+    "transport_on_site": "partial — car hire only (/Cars); no public-transport ticketing observed at L1"
+  },
+  "not_observed_at_this_level": [
+    "public transport ticketing", "airport interior navigation", "security wait times",
+    "lounge or Fast Track booking", "One Key mechanics", "Romie anywhere"
+  ]
+}

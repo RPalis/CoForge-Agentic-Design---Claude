@@ -1,0 +1,64 @@
+{
+  "competitor": "Omio",
+  "capture": "s0-site-tree-L1 — multi-modal on-site transport",
+  "url": "https://www.omio.es/",
+  "captured_at": "2026-09-04T15:50Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 2484, "links": 719, "visible_chars": 16338 },
+
+  "CAPTURE_BLOCKED_BY_CONSENT": {
+    "what_happened": "A search for Madrid to Barcelona could not be completed. A cookie consent modal — 'Administrar preferencias de cookies' — intercepted the input and blocked the search form.",
+    "options_offered": ["Aceptarlas todas (Accept all)", "Gestionar ajustes (Manage settings)"],
+    "no_direct_reject": "No single-click reject or necessary-only control was offered.",
+    "action_taken": "NONE. Accept was not clicked. 'Gestionar ajustes' was not entered either — configuring the client's consent preferences on their behalf is a further step beyond declining, and neither is the operator's to take.",
+    "consequence": "Omio's results and comparison surface — the entire reason it is on the roster — are NOT captured. Recorded as blocked, not as absent.",
+    "second_occurrence": "Tripadvisor presented the same shape (F-80 capture): an accept control with no reject affordance found. Two of eleven competitors have now blocked capture at consent with no compliant path forward."
+  },
+
+  "finding_F94_164_CONSENT_PARTNERS": {
+    "claim": "Omio's consent modal states it shares personal data with 164 partners.",
+    "evidence_verbatim_es": "Nosotros y nuestros 164 socios tratamos tus datos personales mediante cookies y tecnologías similares",
+    "translation": "We and our 164 partners process your personal data using cookies and similar technologies",
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "The scenario names GDPR-adjacent obligations only implicitly, via 'Accessibility compliant' and multi-language constraints. This is a concrete measure of what a travel intermediary's data surface actually looks like — and the number is stated by the vendor, not estimated. A first-time traveller consenting here is consenting across 164 organisations. Luma's own partner count is a design decision with the same visibility consequence.",
+    "note": "Recorded as a fact about the consent notice. No claim is made about what those partners receive."
+  },
+
+  "finding_F95_TRUE_MULTIMODAL_INPUT": {
+    "claim": "Omio accepts city, station, airport OR port in a single origin field and compares across four transport modes in one result set.",
+    "evidence_verbatim_es": {
+      "field_placeholder": "desde: Ciudad, estación, aeropuerto o puerto",
+      "proposition": "Compara vuelos baratos y billetes de tren con autobuses y ferris",
+      "positioning": "Viajes globales desde un único lugar",
+      "scale": "Elige entre más de 2.000 compañías de viaje · Con más de 80.000 billetes vendidos cada día"
+    },
+    "translation": ["from: City, station, airport or port", "Compare cheap flights and train tickets with buses and ferries",
+                    "Global travel from a single place", "Choose from more than 2,000 travel companies · Over 80,000 tickets sold daily"],
+    "confidence": "Verified",
+    "why_it_matters": "This is the most direct answer observed to the scenario's own opening problem — 'Comparing flights, transport, accommodation and activities happens in different places and never lines up.' Omio makes four transport modes line up in one query. Trainline compares train and bus (270 companies); Omio adds air and ferry across 2,000. The single field accepting four location TYPES is the concrete mechanism — the traveller does not have to know which mode they want before they can search.",
+    "the_limit": "Transport only. Accommodation appears as a separate 'Buscar alojamiento' toggle, and activities are absent. Omio unifies the transport half of the scenario's four booking types and not the other half."
+  },
+
+  "finding_F96_FIFTH_AI_ASSISTANT": {
+    "claim": "Omio ships an AI planner as a primary tab beside the standard search — 'Planificador IA'.",
+    "confidence": "Verified",
+    "running_count": "Fifth of eleven competitors with a conversational or AI planning surface: Booking.com, Expedia (Romie), Kayak (IA, header), Iberia (Ibot), Omio (Planificador IA). Tripadvisor's was not located. Assistant commoditisation is now observed first-hand on five products.",
+    "for_luma": "The prior round listed 'assistant commoditisation' as a standing risk. It is no longer a risk — it is the baseline. Luma cannot position on having an AI planner."
+  },
+
+  "accommodation_toggle": {
+    "observed": "'Buscar alojamiento' (Search accommodation) as a toggle inside the transport search form",
+    "note": "Omio attaches accommodation to a transport search — the same cross-vertical attach Trainline does with its pre-checked Booking.com box (F-91). Whether Omio's is pre-checked and whether it opens a popunder was NOT determined; the consent modal blocked the interaction.",
+    "confidence": "Verified that the toggle exists; its default state and behaviour are UNKNOWN."
+  },
+
+  "not_observed": [
+    "the entire results and comparison surface — blocked at consent",
+    "sort axes, effort attributes, fulfilment",
+    "whether the accommodation toggle is pre-checked",
+    "the AI planner"
+  ]
+}

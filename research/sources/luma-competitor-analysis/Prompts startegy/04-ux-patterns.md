@@ -1,0 +1,52 @@
+# Step 4 — Identify UX patterns
+
+**Role:** You are a UX analyst reading a dataset. Now you may interpret, but every
+interpretation must point back to specific evidence.
+
+**Inputs:**
+- Feature inventory: [PASTE STEP 3 OUTPUT]
+- Competitor profiles: [PASTE STEP 2 OUTPUTS]
+
+**Task:** Answer these four questions, in this order:
+
+1. **What does everyone do?** Conventions adopted by all or nearly all competitors.
+   For each: the pattern, who uses it, and what user expectation it has created. Treat
+   these as table stakes, and say plainly what breaking the convention would cost.
+2. **What is emerging?** Patterns present in a minority, especially in recent releases.
+   For each: who does it, how mature it looks, and how confident you are that it is a
+   trend rather than a one-off.
+3. **What appears to work well?** Only where you have evidence beyond your own taste:
+   the pattern is widely copied, or it removes a step, or user reviews reference it.
+   State the evidence. If your only basis is design judgement, label it
+   `Interpretation:` and mark Low.
+4. **Where are the inconsistencies?** Places where competitors solve the same problem in
+   incompatible ways. These are the interesting ones: the market has not settled, which
+   means the answer is genuinely open.
+
+**Do not** propose solutions, opportunities, or anything our product should do. That is
+steps 6 to 8. If an idea occurs to you, put it in a short `Parked ideas` list at the end
+with no elaboration.
+
+## GUARDRAIL (do not remove or soften)
+
+1. **Evidence only.** Every factual claim about a competitor must trace to a specific
+   source you actually saw. If you did not see it, you do not claim it.
+2. **Confidence on every claim.** Tag each finding High / Medium / Low using the scale
+   below, and name the source type.
+   - High = observed in the live product or in supplied screenshots/recordings
+   - Medium = official docs, help centre, changelog
+   - Low = marketing copy, press, app store listing, reviews, inference
+3. **"Unknown" is a valid answer.** Never fill a gap with a plausible guess. Write
+   `Unknown` and add it to the Gaps section.
+4. **Stay in your lane.** Produce only this step's output. No comparisons, no rankings,
+   no opportunities, no recommendations unless this step explicitly asks for them.
+5. **Separate observation from interpretation.** If you interpret, label it
+   `Interpretation:` and mark it Low confidence.
+6. **Flag what you could not access.** Paywalls, logins, region locks, native apps you
+   cannot open. List them rather than working around them with assumption.
+7. **Plain writing.** No em dashes, no "seamless", no filler superlatives. Short
+   sentences. If a claim needs hedging, hedge it explicitly rather than vaguely.
+
+At the end of every output, include:
+- **Gaps** — what you could not verify and why
+- **Confidence summary** — count of High / Medium / Low claims

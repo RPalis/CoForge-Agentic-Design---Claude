@@ -1,10 +1,202 @@
 {
   "$comment": "sha256 of every file in research/sources/. Raw sources are immutable (CLAUDE.md boundaries); layer 1 denies Write/Edit on that path but CANNOT deny Bash, so this manifest is the detection that replaces the prevention it cannot provide. Regenerated only by a deliberate --update, which must appear in a diff a human reads. See V-006.",
-  "count": 1,
+  "count": 49,
   "files": {
     "coforge-home.png": {
       "sha256": "d5cb4ec6c7b959f8c468f8b5709ba75a3b35fb124d8b470cd8a46de60b9a70a6",
       "bytes": 342781
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/AI Workflows for UX figma batch 3.png": {
+      "sha256": "c6e31e4bbf7814cf369e0d94abde7d2e489b0c9f83767ef73a1c9d6db6585ed2",
+      "bytes": 5571327
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/booking-com-competitor-profile.md": {
+      "sha256": "07a91166d8754cc5bc29a5c3abe6861fabbfbe7dfb42facbaa8340caf8b5770b",
+      "bytes": 35614
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/build_inventory.py": {
+      "sha256": "78cfb3a6907af6604ccfbdd3a881905bf028c66d304bb2f8a53a0ccf020f5b89",
+      "bytes": 29168
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/build_report.js": {
+      "sha256": "5497ce5e83ea729f001985d57c1a81a1ac7c7f758402a8b3201d494863f31f4a",
+      "bytes": 22940
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/expedia-competitor-profile.md": {
+      "sha256": "11b2e7afa459940077b0b63434bda494438af1b313524338cd190a0849ad7891",
+      "bytes": 27288
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/google-travel-competitor-profile.md": {
+      "sha256": "2c4c7d8c2d969c70c1e0ae43c5389712b4ffe5f621585375d6acd96b3aae1b0c",
+      "bytes": 22288
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/hopper-competitor-profile.md": {
+      "sha256": "ed9bf09b4d6543405dd51f4a2f480d3f2e2f8acdfa3b7cee7d3833c86bb7ee07",
+      "bytes": 24001
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/lu41h5dj8.tmp": {
+      "sha256": "3558b5c5b48a3725f62c743f4dbb706039afe6328832bead72f700ffaac33d01",
+      "bytes": 161323
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-benchmark-plan.md": {
+      "sha256": "aa811e78329f0fb2cae41acc5e219c7c54ba04ca614b25b4e777e20d07ce6b98",
+      "bytes": 25132
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-executive-report.docx": {
+      "sha256": "f5c7a93caa46100d3dedee5e592b951388250c1c8d874c3e1379a850ca02f0a8",
+      "bytes": 18574
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-executive-report.pdf": {
+      "sha256": "3558b5c5b48a3725f62c743f4dbb706039afe6328832bead72f700ffaac33d01",
+      "bytes": 161323
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-feature-inventory.md": {
+      "sha256": "2d9dc341fd9831006fde69307fa228a3868fa5be6056677373816edc1abd1590",
+      "bytes": 20281
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-feature-inventory.xlsx": {
+      "sha256": "46e65d5e786424006fa080cac7bca9c72efae12239455f55b0bf9df40621e32e",
+      "bytes": 19319
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-journey-comparison.md": {
+      "sha256": "f86d5d37b9daa51bf43078493845a859a7f11ceb983885894d3980d2b7d47446",
+      "bytes": 21145
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-opportunity-scoring.md": {
+      "sha256": "4e5aa43fc47e7762eae7a74a9e04bf5ce593b05f7f93f0e179d5ec5082dba470",
+      "bytes": 27977
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-pattern-analysis.md": {
+      "sha256": "9508a80e0e0753b84eebb02dc00afce93844777d45e054c63d15f3811fa0c49f",
+      "bytes": 19294
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-strategy-recommendation.md": {
+      "sha256": "c099f3dcc24da74793d76368d8fb6843b62d2a27386fde7bc065eb7c54fdd6fc",
+      "bytes": 19270
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/luma-white-space-analysis.md": {
+      "sha256": "5271e8b37da305bdfe2180acec4986ac8e26057248a1c24bbb2bdf11c87afcfc",
+      "bytes": 18547
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/package.json": {
+      "sha256": "1ad896461fe8445ff4dd51ba2afbe8d116b1a46b8ca4aae721418b5150354e34",
+      "bytes": 49
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-1.jpg": {
+      "sha256": "3192e16bf1156380d142abee185f0b37f97b9cc0b88b44f911a80dbe8ae3ca02",
+      "bytes": 34885
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-2.jpg": {
+      "sha256": "25dee45ade3495342af7bf82c7899c522a9eb324a313b1a2a61213f1ec819e00",
+      "bytes": 14115
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-3.jpg": {
+      "sha256": "270fbc83dda635bddb2524351ad90302626f81de82cbc956f499c5c76e0de898",
+      "bytes": 121446
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-4.jpg": {
+      "sha256": "862c7888f4618c11ce94f25bbc47531d34b25377f2c4d4859efc0abb3ff1f276",
+      "bytes": 115761
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-5.jpg": {
+      "sha256": "2650c8890c92f37ee626715e3d0c9f7d2ba134a7b72436488a4f1bce9bd71e6e",
+      "bytes": 79491
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-6.jpg": {
+      "sha256": "491d6abc6ddea0fc9a9173b493f4dd5f9e4a512aac25c28dcaf9dbcae87389dd",
+      "bytes": 111242
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-7.jpg": {
+      "sha256": "d946a3eef549c943cf304bd84293bb869ff3520bc37a231172fa972d77213239",
+      "bytes": 107994
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/rp-8.jpg": {
+      "sha256": "031ed84069b1886b34f683412273177379bc870f1ee405f44b05199b2817623f",
+      "bytes": 17561
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/tripadvisor-competitor-profile.md": {
+      "sha256": "67dc93cdebfecb92e8f4c9ab1b2b4e5e9f930eaa835e2c5cc4ef5843b25d3231",
+      "bytes": 23196
+    },
+    "luma-competitor-analysis/2nd to 8th step outputs/tripit-competitor-profile.md": {
+      "sha256": "d339d88cce53bf44202ee246e2abaf20903277bdceab96bdf3e164fb65a8e121",
+      "bytes": 28322
+    },
+    "luma-competitor-analysis/Luma-Competitor-Analysis - Hermes and Claude.docx": {
+      "sha256": "98b4fef7bc48bfd5a38c2cc529dc1188753e0f725cea58ff8793d25b7e5e3b32",
+      "bytes": 44384
+    },
+    "luma-competitor-analysis/Prompts startegy/00-README.md": {
+      "sha256": "eca44cae16f4cdfc2fd8109d400196f8c8df59f922f7a4edd64a3162d89fa33d",
+      "bytes": 1636
+    },
+    "luma-competitor-analysis/Prompts startegy/01-define-benchmark.md": {
+      "sha256": "eced9ac033ce6a48a598a0db6d1fbe3efca0cda9ed20a5ffc6a700bebb4dc791",
+      "bytes": 3057
+    },
+    "luma-competitor-analysis/Prompts startegy/01-define-benchmark.md.head": {
+      "sha256": "92f5f9621e8155282ea6b8b7d01bc0e2e551d85ace604d943193d9af630888a0",
+      "bytes": 1632
+    },
+    "luma-competitor-analysis/Prompts startegy/02-research-competitor.md": {
+      "sha256": "750de6ddb2af932e0a389c89edb5668db475d200eb35269a23f3afe33a62d145",
+      "bytes": 2954
+    },
+    "luma-competitor-analysis/Prompts startegy/02-research-competitor.md.head": {
+      "sha256": "fb50ecf3b41074bb9124fdb66fe430f8c73b19d9d1c6476fb0cfe40da7465922",
+      "bytes": 1529
+    },
+    "luma-competitor-analysis/Prompts startegy/03-feature-inventory.md": {
+      "sha256": "7135bc265563b1a0a6bd5016c7f60bc7879462968bb385ed3442b2d725b2d2a6",
+      "bytes": 2818
+    },
+    "luma-competitor-analysis/Prompts startegy/03-feature-inventory.md.head": {
+      "sha256": "9fe29ca1e89b86cbfbc79f5c528040a9101f685d1758d2eaf12eea01381ebbc1",
+      "bytes": 1393
+    },
+    "luma-competitor-analysis/Prompts startegy/04-ux-patterns.md": {
+      "sha256": "b5f68565bb17365cedc6c4a4be044a7ed4efbb5440d74d869336f8c684ffa79a",
+      "bytes": 2907
+    },
+    "luma-competitor-analysis/Prompts startegy/04-ux-patterns.md.head": {
+      "sha256": "2546f96517888eb6453e60d4ebb5a6ab53ccf7439c16c3b6652c12c2ff6d885a",
+      "bytes": 1482
+    },
+    "luma-competitor-analysis/Prompts startegy/05-journey-comparison.md": {
+      "sha256": "a414fc4891973b2bd9072fc9b0db3fbcd94273906ce76de0b0142481c1dc19fd",
+      "bytes": 2765
+    },
+    "luma-competitor-analysis/Prompts startegy/05-journey-comparison.md.head": {
+      "sha256": "abb62042852b02a05be763f0c76363f2bce49fd846cfbde711dff3151110c802",
+      "bytes": 1340
+    },
+    "luma-competitor-analysis/Prompts startegy/06-white-space.md": {
+      "sha256": "66d18bb8708928b8d6acd0b35b9788a548f88942ec03208974e194f315987b99",
+      "bytes": 2896
+    },
+    "luma-competitor-analysis/Prompts startegy/06-white-space.md.head": {
+      "sha256": "f8641c45585dd53a519a03447037e889b9c786fb17fbdda9801514914230a9a9",
+      "bytes": 1471
+    },
+    "luma-competitor-analysis/Prompts startegy/07-opportunities.md": {
+      "sha256": "e7495a1de140be27a8016876af97df1f053bafb01ce683cda3e9e75059a13d83",
+      "bytes": 3046
+    },
+    "luma-competitor-analysis/Prompts startegy/07-opportunities.md.head": {
+      "sha256": "c4cbd664ef8d816b48bb9cd54e351d8c1cec4ed99ab53bf93daab1cf135edfdd",
+      "bytes": 1621
+    },
+    "luma-competitor-analysis/Prompts startegy/08-strategy.md": {
+      "sha256": "23eeec354e936dfc515aa937ee13527db957f93696444f7d7db10605bc5b202a",
+      "bytes": 3152
+    },
+    "luma-competitor-analysis/Prompts startegy/08-strategy.md.head": {
+      "sha256": "df3a72cb4bd1624321a87a67309bc86586f95e7cc57a82810f7fc0f4dd526cc0",
+      "bytes": 1727
+    },
+    "luma-competitor-analysis/Prompts startegy/_guardrail.txt": {
+      "sha256": "b322467cbb2761004565ce74a5c9a63a96bedb021e0b011dbe2edfa03edd9441",
+      "bytes": 1424
     }
   }
 }

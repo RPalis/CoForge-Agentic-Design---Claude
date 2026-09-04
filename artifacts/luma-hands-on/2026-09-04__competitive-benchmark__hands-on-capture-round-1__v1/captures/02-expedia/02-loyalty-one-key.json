@@ -1,0 +1,54 @@
+{
+  "competitor": "Expedia",
+  "capture": "L-loyalty-programme",
+  "url": "https://www.expedia.com/welcome-one-key",
+  "captured_at": "2026-09-04T11:44Z",
+  "surface": "client's authenticated Chrome (page served generic marketing content; no account tier reflected)",
+  "source_class": "Own capture (first-party product page)",
+  "confidence": "Verified",
+
+  "tier_structure": [
+    { "tier": "Blue",     "qualify": "0-4 trip elements",   "earn": "1% OneKeyCash on eligible bookings" },
+    { "tier": "Silver",   "qualify": "5-14 trip elements",  "earn": "2% OneKeyCash on eligible bookings" },
+    { "tier": "Gold",     "qualify": "15-29 trip elements", "earn": "3% OneKeyCash at VIP Access stays" },
+    { "tier": "Platinum", "qualify": "30+ trip elements",   "earn": "4% OneKeyCash at VIP Access stays" }
+  ],
+  "parallel_mechanism": "Member Prices — 'Save 10% or more on stays with Member Prices', available to members independent of tier",
+  "progression_unit": "Trip Elements, collected on eligible bookings",
+  "expiry": "An FAQ entry 'Does OneKeyCash expire?' exists. The answer was not captured — recorded as UNKNOWN, not as 'does not expire'.",
+
+  "correction_to_own_earlier_claim": {
+    "earlier_claim": "capture 01 recorded One Key as EARN-AND-BURN in contrast to Genius as TENURE-GATED, marked Likely from homepage marketing copy.",
+    "corrected": "One Key is BOTH. It is a currency (OneKeyCash, earned as a percentage and spent on future travel) layered on top of a four-tier ladder gated by accumulated Trip Elements. The earlier framing set up a contrast that does not hold.",
+    "why_recorded": "The earlier claim was marked Likely precisely so it could be corrected rather than inherited. Correcting it in place rather than quietly overwriting it."
+  },
+
+  "finding_F18_TWO_OF_TWO": {
+    "claim": "Both loyalty programmes examined so far gate their better rates behind accumulated bookings, and neither addresses a first-time traveller anywhere on its own explainer page.",
+    "evidence": [
+      "Booking.com Genius: Level 2 = 5 bookings in 2 years; Level 3 = 15 bookings in 2 years. Full page text contains no match for first-time / new to Booking / beginner.",
+      "Expedia One Key: Blue 0-4 -> Silver 5-14 -> Gold 15-29 -> Platinum 30+ trip elements. Full page text contains no match for first-time / new member / beginner."
+    ],
+    "confidence": "Verified",
+    "status": "Two of two is a pattern worth stating and NOT yet a market claim. Fifteen competitors remain. This is exactly the inference the roster was widened to be able to test rather than assume."
+  },
+
+  "material_difference_from_genius": {
+    "entry_tier_is_not_empty": "One Key's entry tier (Blue, 0-4) still earns 1% and Member Prices apply from membership rather than from tier. Genius Level 1 likewise grants 10% immediately. In BOTH cases the entry tier is non-empty — a first-timer is not given nothing, they are given the floor.",
+    "the_real_exclusion": "What is gated is not participation but the BEST rate, and — in Booking.com's case specifically — priority support, which is the one benefit that is about help rather than price.",
+    "confidence": "Verified"
+  },
+
+  "our_product_decision_required": [
+    "Decision required: two incumbents both answer retention with an accumulation ladder. Luma's stated user starts at zero on both. Does Luma compete on the same axis and lose by definition, invert it, or decline to run a points programme at all?",
+    "Decision required: both programmes reward BOOKING COUNT. Neither rewards trip completion, confidence gained, or a successfully handled disruption. Is there a retention unit other than transaction volume?",
+    "Decision required: Expedia separates a currency (OneKeyCash) from a tier (Trip Elements). That is two loops. Is one enough for Luma at ideation?"
+  ],
+
+  "not_observed": [
+    "whether OneKeyCash expires — FAQ exists, answer uncaptured",
+    "what a 'trip element' counts as — one booking, or one component of a trip",
+    "VIP Access stay definition",
+    "the authenticated member view of this page — served generic marketing content"
+  ]
+}

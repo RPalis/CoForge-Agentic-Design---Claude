@@ -1,0 +1,45 @@
+{
+  "id": "ART-022",
+  "type": "ux-copy",
+  "workstream": "luma-travel",
+  "title": "Plain-language copy deck for the Luma Batch 3 coverage board (v4) — standfirst, inline definitions, rewritten captions/annotations, a truncation fix, and a citation-placement recommendation",
+  "file": "coverage-board-plain-language-copy-deck.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "develop",
+  "produced_by": "content-comms",
+  "model": "claude-sonnet-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "content-comms",
+    "checked": "Every visible section, heading, caption, annotation, KPI label and the full 155-entry click-to-pin JSON data block in ART-021's payload, read in full and cross-checked sentence-by-sentence against the full text of ART-011 and ART-012 before any replacement copy was written, to confirm every fact carried forward traces to a real section in one of the two permitted sources.",
+    "found": 1,
+    "method": "found = 1 structural defect (not a wording judgement): five of the fourteen `rownote` table cells in ART-021's #fourteen section (rows 3, 6, 9, 11, 14 — Google Travel, Hopper, Tripadvisor, Trainline, Rome2Rio) are truncated mid-sentence in the static table, each ending in a bare ellipsis. Confirmed by comparing each truncated cell against the matching row-N entry in the same file's #panel-data JSON block, where the full untruncated sentence exists verbatim. All five are listed with their exact replacement text (copied from the panel-data block, not authored) in the copy deck's section 3. NOT DONE / not claimed: no shell was available, so the brief's own word-count (2,131) and undefined-term frequency figures (e.g. 'profiled' x19) were taken as given, not independently re-derived; no automated diff or grep was run against the payload; validation/audit-system.py was not run. A second gap, not a defect, is recorded rather than silently patched: ART-011/ART-012 name the fourteen competitors' direct/adjacent/analogous categories and cite the study's own stated reason at [S-01 §2], but do not quote that reason, and S-01 sits under research/sources/, which this dispatch is not permitted to open. The plain-language definition of the three categories offered in the copy deck is therefore inferred from the roster composition, flagged explicitly as unconfirmed against the original reason."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-011", "ART-012", "ART-021"],
+    "decisions": ["D-001", "D-002"],
+    "sources": [],
+    "tokens_version": null
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-04"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-04",
+  "notes": {
+    "tokens_version_is_null_deliberately": "This is a prose copy deck: instructions for another agent to edit text inside an existing HTML file. It references no design token or CSS custom property of its own (it recommends a class name, `.srcline`, for dashboard-analyst to define, but does not itself set a value), so null is the true value here, matching the convention ART-011/ART-012 already use for the same reason.",
+    "why_ux_copy_and_not_release_note_or_presentation": "content-comms owns three types in artifacts/_types.json: ux-copy, presentation, release-note. This deliverable is interface copy for an existing dashboard's UI text (headings, captions, annotations, KPI labels) with a stated voice rationale (see the deck's own framing and section 4) — exactly ux-copy's own description. It does not announce something that shipped (release-note) and is not a deck for a named audience/decision (presentation).",
+    "why_a_new_artifact_and_not_an_edit_to_ART-021": "This dispatch holds Read and Write, not Edit or Bash, and per CLAUDE.md's routing table content-comms's job is copy for another agent to apply, not direct authorship of the dashboard artifact (dashboard-analyst's own artifact type and Gate). The copy deck is therefore its own registered artifact, referencing ART-021 as an input rather than modifying it in place.",
+    "gate_a_is_mandatory_here": "Per this agent's own hard rules: 'Everything you write is public-facing, so everything gets a human before it ships. Never mark launch content as auto-approved.' Status stays draft and reviewed_by stays null regardless of how thorough the checking above was."
+  }
+}

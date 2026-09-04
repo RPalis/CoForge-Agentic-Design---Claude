@@ -1,0 +1,48 @@
+{
+  "competitor": "Google Travel",
+  "capture": "s2-plan-compare — ranking axes, enumerated",
+  "captured_at": "2026-09-04T12:12Z",
+  "surface": "inspector instance (signed out, extension-clean); consent declined — 'Reject all'",
+  "locale_served": "en",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "method": "DevTools protocol accessibility snapshot of the opened 'Sort by' modal. Two page-context selector sweeps returned empty or returned amenity chips; the snapshot resolved it. Recorded because the empty sweeps were NOT evidence of absence and were not treated as such.",
+
+  "sort_modal_verbatim": [
+    "radio 'Relevance' checked",
+    "radio 'Lowest price'",
+    "radio 'Highest rating'"
+  ],
+
+  "finding_F25_THREE_OF_THREE": {
+    "claim": "Google Travel offers three ranking axes: an opaque default, price, and a quality proxy. None concerns effort, ease, stress or confidence.",
+    "axis_breakdown": { "opaque_default": 1, "price": 1, "quality_proxy": 1, "effort_ease_stress": 0 },
+    "running_total": {
+      "Booking.com": 11, "Expedia": 6, "Google Travel": 3,
+      "total_axes_enumerated": 20,
+      "axes_concerning_ease_or_confidence": 0
+    },
+    "confidence": "Verified",
+    "status": "Three of three, 20 axes, all positively enumerated by opening each control — never inferred from a failed search. Still not a market claim; eleven roster competitors remain plus the three airlines."
+  },
+
+  "finding_F26_INVERSE_RELATIONSHIP": {
+    "claim": "The product with the richest decision-support layer has the poorest ranking layer.",
+    "evidence": "Google Travel: 4 decision surfaces (Track prices, Where to stay, When to visit, What you'll pay), 3 sort axes. Booking.com: 0 decision surfaces, 11 sort axes. Expedia: 0 decision surfaces, 6 sort axes.",
+    "confidence": "Verified",
+    "reading": "Two different theories of how a traveller decides. Booking.com and Expedia assume the destination is settled and compete on filtering a large result set. Google assumes it is not settled and competes on the questions before the search. Neither builds a ranking axis for how easy the trip will be.",
+    "why_it_matters_for_luma": "Luma proposes to serve a first-time traveller across the WHOLE journey — which means it needs Google's front half and the incumbents' back half, and the axis neither has. That is the shape of the opportunity and also the shape of the difficulty."
+  },
+
+  "our_product_decision_required": [
+    "Decision required: 20 axes across three products and none ranks by effort. If Luma builds 'easiest first', it is genuinely unoccupied — but Luma must be able to COMPUTE it. From what signal? Cancellation flexibility, transfer count, walking distance, language support, and step count are candidates; none is currently a ranking input anywhere observed.",
+    "Decision required: decision-support and transaction appear to trade off in practice. Luma proposes both. What is the evidence that one product can hold both halves?"
+  ],
+
+  "not_observed": [
+    "the four decision surfaces opened and assessed — OWED, next capture",
+    "flights and vacation rentals verticals",
+    "handoff destination after 'View prices'",
+    "empty / error / no-results states"
+  ]
+}

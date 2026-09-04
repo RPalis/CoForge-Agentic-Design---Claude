@@ -1,0 +1,60 @@
+{
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "s2-plan-compare / flights — live route London to Lisbon, 2026-11-10 to 2026-11-13",
+  "captured_at": "2026-09-04T12:34Z",
+  "surface": "inspector instance (signed out, extension-clean)",
+  "locale_served": "en",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "CORRECTION_to_finding_F28": {
+    "original_claim": "F-28 (capture 04): authentication unlocks exactly one capability on Google Travel — Track prices.",
+    "what_this_capture_shows": "'Track prices' is present and offered on the SIGNED-OUT flights results page: 'Track prices from London to Lisbon departing 2026-11-10 and returning...'.",
+    "corrected_claim": "Track prices is gated per VERTICAL, not per account. It is absent from signed-out HOTELS and present on signed-out FLIGHTS.",
+    "consequence_for_F29": "F-29's contrast — Booking.com unlocks a discount, Google unlocks a capability — still holds for the hotels comparison where both were measured on the same vertical. But it can no longer be stated as a claim about the two PRODUCTS. It is a claim about their accommodation surfaces.",
+    "how_this_was_caught": "By capturing a second vertical on the same competitor rather than generalising from one. Recorded rather than quietly narrowed."
+  },
+
+  "finding_F32_RANKING_IS_EXPLAINED": {
+    "claim": "Google Flights states its ranking criteria in plain language on the result set itself.",
+    "evidence_verbatim": "Ranked based on price and convenience. Prices include required taxes + fees for 1 adult. Optional charges and bag fees may apply.",
+    "confidence": "Verified",
+    "comparison": {
+      "Booking.com": "'Commission paid on bookings, and other factors can affect property rankings' — discloses that commercial terms INFLUENCE ranking, without stating the criteria.",
+      "Expedia": "'Recommended for you' — no explanation observed.",
+      "Google Flights": "names the criteria (price and convenience) and scopes the price claim (1 adult, required taxes, optional bag fees excluded)."
+    },
+    "why_it_matters": "This materially weakens the prior-round hypothesis that 'no competitor consistently explains its recommendations'. One competitor discloses commercial influence; another names its actual criteria. The claim needs restating before it is reused."
+  },
+
+  "finding_F33_ACTIONABLE_ORIENTATION": {
+    "claim": "On a live route, Google states whether the current price is normal and when to buy — without requiring a booking, an account, or a commitment.",
+    "evidence_verbatim": ["Prices are currently typical", "The cheapest time to book is usually now, until Oct 17", "View price history"],
+    "confidence": "Verified",
+    "why_it_matters": "'Prices are currently typical' is the direct answer to a first-time traveller's central fear — am I being taken advantage of. 'Cheapest time to book is usually now, until Oct 17' converts that into a decision with a deadline. Neither transactional competitor said anything equivalent at any point in either journey captured."
+  },
+
+  "finding_F34_A_FOURTH_AXIS_EXISTS": {
+    "claim": "Google Flights surfaces a comparison dimension that is neither price, quality proxy, nor distance: carbon emissions, expressed relative to the route average.",
+    "evidence_verbatim": ["Avg emissions", "-17% emissions", "+30% emissions"],
+    "confidence": "Verified",
+    "important_scope_limit": "This was observed as a DISPLAYED attribute per result. Whether emissions is a selectable SORT axis was not tested this pass. It is therefore NOT added to the 20-axis running total, which counts enumerated sort options only. OWED.",
+    "why_it_matters_anyway": "It demonstrates that a non-price, non-quality comparison dimension can be computed, displayed relative to a baseline, and understood at a glance. That is the structural proof-of-concept for an 'effort' or 'ease' axis, which F-25 established does not exist anywhere yet."
+  },
+
+  "current_sort_state": "Sorted by top flights — full option list NOT enumerated this pass. OWED before F-25's total can include the flights vertical.",
+
+  "our_product_decision_required": [
+    "Decision required: F-34 is the most useful precedent in the round. Emissions is a computed, relative, non-price axis that travellers evidently tolerate. An 'effort' or 'ease' axis would work the same way — relative to a route baseline, shown per result. The objection that it cannot be computed is weakened by a working example.",
+    "Decision required: 'Prices are currently typical' costs nothing and requires no inventory. It is the single highest value-per-effort feature observed so far for Luma's stated user.",
+    "Decision required: Google explains its ranking criteria; Booking.com discloses commercial influence; Expedia explains nothing. Where does Luma sit, and can it explain a ranking it has not yet built?"
+  ],
+
+  "not_observed": [
+    "flights sort options enumerated — OWED",
+    "whether emissions is sortable — OWED",
+    "the handoff after selecting a flight — 'Book on Google' text not found; route untested",
+    "price history graph opened",
+    "date grid opened"
+  ]
+}

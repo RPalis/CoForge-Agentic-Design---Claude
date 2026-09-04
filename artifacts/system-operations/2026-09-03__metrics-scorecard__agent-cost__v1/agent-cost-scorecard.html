@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent cost &mdash; metrics scorecard &mdash; CoForge</title>
+<meta name="generator" content="dashboard-analyst">
+<meta name="source" content="validation/agent-runs.json">
+<style>
+:root {
+  /* colour — every value read from design-system/tokens/tokens.json 0.2.0 by path */
+  --ground:        color(srgb 0.933333 0.92549 0.901961);      /* semantic.background -> palette.bone.default */
+  --raised:        color(srgb 1 1 1);     /* semantic.layer.02   -> palette.white.default */
+  --ink:           color(srgb 0.015686 0.070588 0.133333);       /* semantic.text.primary -> palette.ink.default */
+  --ink-2:         color(srgb 0.321569 0.321569 0.321569);           /* semantic.text.secondary -> palette.gray.70 */
+  --ink-3:         color(srgb 0.337255 0.317647 0.317647);       /* palette.warmGray.70 — axis + caption ink, 6.60:1 on bone */
+  --hairline:      color(srgb 0.776471 0.776471 0.776471);           /* semantic.border.subtle-01 -> palette.gray.30 */
+  --hairline-soft: color(srgb 0.898039 0.878431 0.87451);       /* palette.warmGray.20 — gridline */
+  --coral:         color(srgb 0.945098 0.356863 0.25098);     /* FILL ONLY — brand.md §3 */
+  --coral-text:    color(srgb 0.690196 0.219608 0.133333);        /* the text-safe coral role */
+  --s01: 0.125rem; --s02: 0.25rem; --s03: 0.5rem;
+  --s04: 0.75rem; --s05: 1rem; --s06: 1.5rem;
+  --s07: 2rem; --s08: 2.5rem; --s09: 3rem;
+  --s10: 4rem;
+  --f01: 0.75rem; --f02: 0.875rem;
+  --f03: 1rem; --f04: 1.25rem;
+  --f05: 1.75rem; --f06: 2.5rem;
+  --w-reg: 400; --w-semi: 600;
+  --w-heavy: 700;
+  --tr-h1: -0.06rem; --tr-h2: -0.03rem;
+  --tr-h3: -0.015rem; --tr-body: 0rem;
+  --tr-cap: 0.01rem;
+  --sans: 'Anek Latin', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --o-found-defect: color(srgb 0.058824 0.384314 0.996078);   /* palette.blue.60 */
+  --o-delivered: color(srgb 0.541176 0.219608 0);   /* palette.orange.70 */
+  --o-refused: color(srgb 0.411765 0.160784 0.768627);   /* palette.purple.70 */
+  --o-attested: color(srgb 0.815686 0.14902 0.439216);   /* palette.magenta.60 */
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--sans); font-size: var(--f03); font-weight: var(--w-reg);
+  letter-spacing: var(--tr-body); line-height: 1.5;
+  margin: 0; padding: var(--s08) var(--s07) var(--s10);
+}
+.wrap { max-width: 68rem; margin: 0 auto; }
+
+/* --- cf-type-scale levels ------------------------------------------------ */
+h1 { font-size: var(--f06); font-weight: var(--w-heavy); letter-spacing: var(--tr-h1);
+     line-height: 1.05; margin: 0 0 var(--s03); }
+h2 { font-size: var(--f05); font-weight: var(--w-semi); letter-spacing: var(--tr-h2);
+     line-height: 1.15; margin: var(--s09) 0 var(--s02); }
+h3 { font-size: var(--f04); font-weight: var(--w-semi); letter-spacing: var(--tr-h3);
+     line-height: 1.25; margin: var(--s07) 0 var(--s03); }
+p  { margin: 0 0 var(--s04); max-width: 46rem; }
+.body-sm { font-size: var(--f02); }
+.caption { font-size: var(--f01); letter-spacing: var(--tr-cap); color: var(--ink-3); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+code, .mono { font-family: var(--mono); font-size: var(--f01); }
+.src { font-family: var(--mono); font-size: var(--f01); color: var(--ink-3);
+       letter-spacing: var(--tr-body); }
+.lede { font-size: var(--f04); font-weight: var(--w-reg); letter-spacing: var(--tr-h3);
+        line-height: 1.35; max-width: 44rem; }
+a { color: var(--coral-text); }
+
+/* --- cf-rule ------------------------------------------------------------- */
+.rule { border: 0; border-top: 1px solid var(--hairline); margin: var(--s07) 0; }
+.rule-strong { border: 0; border-top: 2px solid var(--ink); margin: var(--s05) 0 var(--s07); }
+
+/* --- cf-card ------------------------------------------------------------- */
+.card { background: var(--raised); border: 1px solid var(--hairline);
+        border-radius: var(--s04); padding: var(--s06); }
+
+/* --- the floor banner ---------------------------------------------------- */
+.floor { background: var(--raised); border: 1px solid var(--hairline);
+         border-left: var(--s02) solid var(--coral);
+         border-radius: var(--s04); padding: var(--s06); margin: var(--s07) 0 var(--s08); }
+.floor h2 { margin: 0 0 var(--s03); font-size: var(--f04); letter-spacing: var(--tr-h3); }
+.floor ul { margin: 0; padding-left: var(--s05); }
+.floor li { margin: 0 0 var(--s03); max-width: 52rem; }
+.floor li:last-child { margin-bottom: 0; }
+
+/* --- KPI row (stat tiles) ------------------------------------------------ */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s05); }
+.kpi { background: var(--raised); border: 1px solid var(--hairline);
+       border-radius: var(--s04); padding: var(--s05); }
+.kpi .val { font-family: var(--sans); font-size: var(--f06); font-weight: var(--w-heavy);
+            letter-spacing: var(--tr-h1); line-height: 1; display: block; }
+.kpi .lab { display: block; margin-top: var(--s03); font-size: var(--f02);
+            font-weight: var(--w-semi); }
+.kpi .flr { display: inline-block; margin-top: var(--s02); font-size: var(--f01);
+            font-family: var(--mono); color: var(--ink-3); }
+.kpi .flr b { color: var(--coral-text); font-weight: var(--w-semi); }
+
+/* --- charts -------------------------------------------------------------- */
+.chart { margin-top: var(--s05); }
+.row { display: grid; grid-template-columns: 17rem 1fr; gap: var(--s05);
+       align-items: center; padding: var(--s02) 0; }
+.row + .row { border-top: 1px solid var(--hairline-soft); }
+.rowlab { font-size: var(--f02); line-height: 1.25; }
+.rowlab .agent { font-weight: var(--w-semi); }
+.rowlab .task { display: block; color: var(--ink-2); font-size: var(--f01); }
+.track { display: grid; grid-template-columns: 1fr 4.75rem; align-items: center;
+          gap: var(--s04); }
+.plot { min-width: 0; }
+.bar { height: 0.875rem; border-radius: var(--s01); }
+.val { font-family: var(--mono); font-size: var(--f01); font-variant-numeric: tabular-nums;
+       white-space: nowrap; text-align: right; }
+.stack { display: flex; gap: var(--s01); }
+.seg { height: 1.125rem; border-radius: var(--s01); }
+.axis { display: flex; justify-content: space-between; border-top: 1px solid var(--hairline);
+        margin-top: var(--s03); padding-top: var(--s02); }
+.axis span { font-family: var(--mono); font-size: var(--f01);
+             font-variant-numeric: tabular-nums; color: var(--ink-3); }
+
+/* --- the emphasis marker: coral as FILL only ----------------------------- */
+.peak { display: inline-flex; align-items: center; gap: var(--s02); margin-top: var(--s01);
+        font-size: var(--f01); font-family: var(--mono); color: var(--coral-text); }
+.peak .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%;
+             background: var(--coral); flex: none; }
+.peakcard { border-left: var(--s02) solid var(--coral); }
+
+/* --- legend -------------------------------------------------------------- */
+.legend { display: flex; flex-wrap: wrap; gap: var(--s04) var(--s07); margin: var(--s05) 0 var(--s04); }
+.lg { display: inline-flex; align-items: center; gap: var(--s03); font-size: var(--f02); }
+.lg .sw { width: 0.875rem; height: 0.875rem; border-radius: var(--s01); flex: none; }
+.lg .gl { font-size: var(--f02); line-height: 1; }
+.lg .ct { font-family: var(--mono); font-size: var(--f01); color: var(--ink-2);
+          font-variant-numeric: tabular-nums; }
+
+/* --- cf-badge ------------------------------------------------------------ */
+.badge { display: inline-flex; align-items: center; gap: var(--s02);
+         font-size: var(--f01); font-weight: var(--w-semi); white-space: nowrap;
+         letter-spacing: var(--tr-cap); color: var(--ink); }
+.badge .gl { font-size: var(--f02); line-height: 1; }
+
+/* --- cf-table ------------------------------------------------------------ */
+table { border-collapse: collapse; width: 100%; font-size: var(--f01); }
+caption { text-align: left; font-size: var(--f02); color: var(--ink-2);
+          padding: 0 0 var(--s04); max-width: 52rem; }
+th, td { text-align: left; vertical-align: top; padding: var(--s04) var(--s04) var(--s04) 0;
+         border-bottom: 1px solid var(--hairline); }
+thead th { font-weight: var(--w-semi); border-bottom: 2px solid var(--ink);
+           white-space: nowrap; }
+tbody tr:nth-child(even) { background: var(--raised); }
+td.n, th.n { text-align: right; font-family: var(--mono);
+             font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.found { max-width: 26rem; }
+td.nw { white-space: nowrap; }
+td .rep { display: block; margin-top: var(--s02); font-family: var(--mono);
+          color: var(--ink-3); word-break: normal; overflow-wrap: anywhere; }
+
+.note { background: var(--raised); border: 1px solid var(--hairline);
+        border-radius: var(--s04); padding: var(--s06); margin-top: var(--s05); }
+blockquote { margin: 0 0 var(--s04); padding-left: var(--s05);
+             border-left: 2px solid var(--hairline); color: var(--ink-2);
+             font-size: var(--f02); max-width: 48rem; }
+footer { margin-top: var(--s09); padding-top: var(--s05);
+         border-top: 1px solid var(--hairline); }
+ol, ul { max-width: 48rem; }
+li { margin-bottom: var(--s03); }
+
+@media (max-width: 60rem) {
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .row { grid-template-columns: 1fr; gap: var(--s02); }
+}
+@media print { body { padding: 0; } .card, .kpi, .floor, .note { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="src">metrics-scorecard &middot; v1 &middot; draft &middot; 2026-09-03 &middot; dashboard-analyst</p>
+  <h1>What the agents cost</h1>
+  <p class="lede">14 recorded dispatches over 2 days. Every figure on this
+  board is derived from one file and nothing else.</p>
+  <p class="src">Source: <code>validation/agent-runs.json</code> &middot;
+  visual values: <code>design-system/tokens/tokens.json</code> 0.2.0</p>
+  <hr class="rule-strong">
+</header>
+
+<section class="floor">
+  <h2>These totals are a floor, not a measurement</h2>
+  <p class="body-sm">The ledger says so itself. Quoted verbatim from its
+  <code>completeness</code> block, because a cost figure that looks complete and is not
+  will misprice every decision made from it.</p>
+  <ul class="body-sm">
+    <li><b>Nothing before 2026-09-01.</b>
+      &ldquo;Dispatches before 2026-09-01 are NOT recorded — their usage blocks were consumed in conversation and are unrecoverable. Several 2026-09-01/02 runs are also missing: only rows whose exact usage block could be quoted are entered, and a run recalled but not quoted was left out rather than estimated. Totals below are therefore a FLOOR, not a measurement.&rdquo;</li>
+    <li><b>The orchestrating session is absent.</b>
+      &ldquo;Main-session cost is not here at all. Only subagent dispatches return a usage block; the orchestrating session&#x27;s own tokens are invisible to it. The true cost of this work is higher than any total this file can produce, by an unknown margin.&rdquo;</li>
+    <li><b>Hand-entered, not collected.</b>
+      &ldquo;It is append-only and hand-entered from each dispatch&#x27;s own returned usage block — there is no API to collect it from, which is stated rather than pretended otherwise.&rdquo;</li>
+  </ul>
+</section>
+
+<h2>The floor</h2>
+<p class="body-sm">Four totals. Each is a straight sum over the 14 rows in
+<code>runs[]</code>. Read every one as &ldquo;at least&rdquo;.</p>
+<div class="kpis">
+  <div class="kpi"><span class="val">1,590,156</span>
+    <span class="lab">tokens</span>
+    <span class="flr"><b>&ge;</b> sum of <code>tokens</code></span></div>
+  <div class="kpi"><span class="val">14</span>
+    <span class="lab">dispatches recorded</span>
+    <span class="flr"><b>&ge;</b> length of <code>runs[]</code></span></div>
+  <div class="kpi"><span class="val">626</span>
+    <span class="lab">tool calls</span>
+    <span class="flr"><b>&ge;</b> sum of <code>tool_uses</code></span></div>
+  <div class="kpi"><span class="val">2 h 55 m</span>
+    <span class="lab">agent wall-clock</span>
+    <span class="flr"><b>&ge;</b> sum of <code>duration_ms</code></span></div>
+</div>
+<p class="caption" style="margin-top:var(--s04)">Mean 113,583
+tokens per dispatch; median 101,205.5; range 63,139&ndash;248,428.
+Wall-clock is the sum of per-dispatch <code>duration_ms</code>
+(10,541,675&nbsp;ms), not elapsed calendar time.</p>
+
+<h2>Cost per dispatch</h2>
+<p class="body-sm">One bar per row in <code>runs[]</code>, longest first. Bar length is
+<code>tokens</code>. Fill is <code>outcome</code>, and the same value is written out in
+words beside it, so no reading depends on colour.</p>
+
+<div class="legend"><span class="lg"><span class="sw" style="background:var(--o-found-defect)"></span><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect<span class="ct">6 runs &middot; 683,366 tok</span></span><span class="lg"><span class="sw" style="background:var(--o-delivered)"></span><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered<span class="ct">5 runs &middot; 625,837 tok</span></span><span class="lg"><span class="sw" style="background:var(--o-refused)"></span><span class="gl" aria-hidden="true" style="color:var(--o-refused)">■</span>refused<span class="ct">2 runs &middot; 202,411 tok</span></span><span class="lg"><span class="sw" style="background:var(--o-attested)"></span><span class="gl" aria-hidden="true" style="color:var(--o-attested)">▲</span>attested<span class="ct">1 run &middot; 78,542 tok</span></span></div>
+
+<div class="note" style="margin-top:0;margin-bottom:var(--s06)">
+  <h3 style="margin-top:0">Outcome is not a pass/fail axis</h3>
+  <blockquote>&ldquo;One row per dispatch, entered when the dispatch returns. `outcome` records what the run DID, not whether it succeeded — a refusal that caught a real defect is a successful run of an attestation and must not read as a failure. Cost without outcome is a number nobody can act on.&rdquo;
+  <br><span class="src">&mdash; validation/agent-runs.json &sect; the_rule</span></blockquote>
+  <p class="body-sm" style="margin-bottom:0">The field takes four values
+  &mdash; <code>found-defect</code>, <code>delivered</code>, <code>refused</code>,
+  <code>attested</code> &mdash; and none of them is &ldquo;failed&rdquo;. The
+  2 refusals each carry a <code>found</code> entry beginning
+  &ldquo;REFUSED.&rdquo;; both are in the table below, verbatim. No slot in the palette
+  above is a red or a green hue, and no slot&rsquo;s value is bound to a
+  <code>semantic.support.*</code> status role, so no fill on this board can be read as
+  a verdict.</p>
+</div>
+
+<div class="chart">
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">a11y-checker</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span>
+        <span class="task">2026-09-02 &mdash; Re-audit the colour layer against release 0.2.0 (ART-009)</span><span class="peak"><span class="dot"></span>largest single dispatch</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:100.00%;background:var(--o-found-defect)"></div></div>
+        <span class="val">248,428</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span>
+        <span class="task">2026-09-02 &mdash; Phase 2 — teach the bridge and checker about modes</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:72.73%;background:var(--o-delivered)"></div></div>
+        <span class="val">180,680</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">Plan</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span>
+        <span class="task">2026-09-02 &mdash; Plan the foundations Figma migration</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:58.66%;background:var(--o-delivered)"></div></div>
+        <span class="val">145,734</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span>
+        <span class="task">2026-09-02 &mdash; Fix the four maintained failures (C-026/027/028, ds_fork)</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:50.78%;background:var(--o-delivered)"></div></div>
+        <span class="val">126,148</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">token-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span>
+        <span class="task">2026-09-01 &mdash; Audit the token layer after the alpha finding</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:44.97%;background:var(--o-found-defect)"></div></div>
+        <span class="val">111,715</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span>
+        <span class="task">2026-09-01 &mdash; Audit the new validation machinery</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:44.35%;background:var(--o-found-defect)"></div></div>
+        <span class="val">110,167</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">token-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-refused)">■</span>refused</span>
+        <span class="task">2026-09-02 &mdash; Attest Phase 2</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:40.76%;background:var(--o-refused)"></div></div>
+        <span class="val">101,260</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-refused)">■</span>refused</span>
+        <span class="task">2026-09-02 &mdash; Re-attest after the first refusal</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:40.72%;background:var(--o-refused)"></div></div>
+        <span class="val">101,151</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">token-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span>
+        <span class="task">2026-09-02 &mdash; Audit the live Figma mirror against the token layer</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:38.42%;background:var(--o-delivered)"></div></div>
+        <span class="val">95,437</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">token-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span>
+        <span class="task">2026-09-02 &mdash; Verify every claim in the published visual foundations page</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:31.73%;background:var(--o-found-defect)"></div></div>
+        <span class="val">78,823</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-attested)">▲</span>attested</span>
+        <span class="task">2026-09-01 &mdash; Attest the hardened attestation check</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:31.62%;background:var(--o-attested)"></div></div>
+        <span class="val">78,542</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span>
+        <span class="task">2026-09-02 &mdash; Phase 1 — make the Figma divergence legible</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:31.33%;background:var(--o-delivered)"></div></div>
+        <span class="val">77,838</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span>
+        <span class="task">2026-09-01 &mdash; Attack the Group A fixes</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:28.62%;background:var(--o-found-defect)"></div></div>
+        <span class="val">71,094</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab">
+        <span class="agent">system-keeper</span> &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span>
+        <span class="task">2026-09-01 &mdash; Attack the attestation check itself</span>
+      </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:25.42%;background:var(--o-found-defect)"></div></div>
+        <span class="val">63,139</span>
+      </div>
+    </div>
+  <div class="axis"><span>0</span><span>248,428 tokens</span></div>
+</div>
+
+<div class="card peakcard" style="margin-top:var(--s06)">
+  <h3 style="margin-top:0">The most expensive dispatch, and what it bought</h3>
+  <p class="body-sm" style="margin-bottom:var(--s03)">
+    <span class="num">248,428</span> tokens &mdash;
+    <span class="num">15.6%</span> of the recorded floor
+    in a single run &mdash; against <span class="num">30</span> tool
+    calls, the joint-fewest of any row.</p>
+  <p class="body-sm" style="margin-bottom:var(--s03)"><b>a11y-checker</b>
+    &middot; 2026-09-02 &middot; Re-audit the colour layer against release 0.2.0 (ART-009) &middot; <span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span></p>
+  <blockquote style="margin-bottom:var(--s03)">&ldquo;121 pairs, 28 findings, 6 v1 findings resolved. CORRECTED ITS OWN BRIEF: the dispatch claimed v1 had passed the alpha tokens; it had not.&rdquo;
+  <br><span class="src">&mdash; validation/agent-runs.json &sect; runs[5].found</span></blockquote>
+  <p class="src" style="margin-bottom:0">Report: <code>artifacts/brand-foundations/2026-09-02__a11y-audit__semantic-colour-layer__v2/</code></p>
+</div>
+
+<h2>Where the tokens went</h2>
+<p class="body-sm">Total <code>tokens</code> per <code>agent</code>, each bar segmented by
+<code>outcome</code>. Agent is the axis; outcome is the fill. Segment order is fixed, so
+the same colour always sits in the same place.</p>
+<div class="chart">
+    <div class="row">
+      <div class="rowlab"><span class="agent">system-keeper</span>
+        <span class="task">8 dispatches
+        &middot; 362 tool calls</span></div>
+      <div class="track">
+        <div class="plot"><div class="stack"
+          style="width:100.000%"><div class="seg" style="width:30.219%;background:var(--o-found-defect)" title="found-defect"></div><div class="seg" style="width:47.563%;background:var(--o-delivered)" title="delivered"></div><div class="seg" style="width:12.507%;background:var(--o-refused)" title="refused"></div><div class="seg" style="width:9.711%;background:var(--o-attested)" title="attested"></div></div></div>
+        <span class="val">808,759</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">token-keeper</span>
+        <span class="task">4 dispatches
+        &middot; 176 tool calls</span></div>
+      <div class="track">
+        <div class="plot"><div class="stack"
+          style="width:47.880%"><div class="seg" style="width:23.559%;background:var(--o-found-defect)" title="found-defect"></div><div class="seg" style="width:11.800%;background:var(--o-delivered)" title="delivered"></div><div class="seg" style="width:12.520%;background:var(--o-refused)" title="refused"></div></div></div>
+        <span class="val">387,235</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">a11y-checker</span>
+        <span class="task">1 dispatch
+        &middot; 30 tool calls</span></div>
+      <div class="track">
+        <div class="plot"><div class="stack"
+          style="width:30.717%"><div class="seg" style="width:30.717%;background:var(--o-found-defect)" title="found-defect"></div></div></div>
+        <span class="val">248,428</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Plan</span>
+        <span class="task">1 dispatch
+        &middot; 58 tool calls</span></div>
+      <div class="track">
+        <div class="plot"><div class="stack"
+          style="width:18.019%"><div class="seg" style="width:18.019%;background:var(--o-delivered)" title="delivered"></div></div></div>
+        <span class="val">145,734</span></div>
+    </div>
+  <div class="axis"><span>0</span><span>808,759 tokens</span></div>
+</div>
+
+<h3>Tokens per tool call</h3>
+<p class="body-sm">Derived: an agent&rsquo;s summed <code>tokens</code> divided by its
+summed <code>tool_uses</code>. Across all 14 dispatches the rate is
+<span class="num">2,540</span>. One series, so one colour &mdash; this
+chart carries no outcome encoding.</p>
+<div class="chart">
+    <div class="row">
+      <div class="rowlab"><span class="agent">a11y-checker</span>
+        <span class="task">248,428 tokens &divide; 30 tool calls</span>
+        <span class="peak"><span class="dot"></span>3.3&times; the all-agent rate</span></div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:100.00%;background:var(--ink-2)"></div></div>
+        <span class="val">8,281</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Plan</span>
+        <span class="task">145,734 tokens &divide; 58 tool calls</span>
+        </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:30.34%;background:var(--ink-2)"></div></div>
+        <span class="val">2,513</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">system-keeper</span>
+        <span class="task">808,759 tokens &divide; 362 tool calls</span>
+        </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:26.98%;background:var(--ink-2)"></div></div>
+        <span class="val">2,234</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">token-keeper</span>
+        <span class="task">387,235 tokens &divide; 176 tool calls</span>
+        </div>
+      <div class="track">
+        <div class="plot"><div class="bar"
+          style="width:26.57%;background:var(--ink-2)"></div></div>
+        <span class="val">2,200</span>
+      </div>
+    </div>
+  <div class="axis"><span>0</span><span>8,281 tokens per tool call</span></div>
+</div>
+
+<h2>The table view</h2>
+<table>
+  <caption>Every recorded dispatch, in ledger order. <code>found</code> and
+  <code>report</code> are reproduced verbatim; no row is summarised. This table is the
+  colour-free equivalent of every chart above.</caption>
+  <thead>
+    <tr><th>Date</th><th>Agent</th><th>Task</th><th class="n">Tokens</th>
+      <th class="n">Tools</th><th class="n">Min</th><th>Outcome</th>
+      <th>Found &middot; report</th></tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td class="mono nw">2026-09-01</td>
+        <td class="nw">token-keeper</td>
+        <td>Audit the token layer after the alpha finding</td>
+        <td class="n">111,715</td>
+        <td class="n">49</td>
+        <td class="n">13.2</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span></td>
+        <td class="found">Confirmed 53/35/6 by re-derivation; found the alpha-repair proposal&#x27;s own JSON example reintroduced the defect it repaired (6-digit hex beside alpha 0.3).<span class="rep">validation/reports/2026-09-01__token-keeper-audit.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-01</td>
+        <td class="nw">system-keeper</td>
+        <td>Audit the new validation machinery</td>
+        <td class="n">110,167</td>
+        <td class="n">51</td>
+        <td class="n">17.2</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span></td>
+        <td class="found">1 blocker, 5 errors. V-006 asserted a guarantee that did not exist — a fabricated source written via Bash passed CI.<span class="rep">validation/reports/2026-09-01__system-keeper-audit.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-01</td>
+        <td class="nw">system-keeper</td>
+        <td>Attack the Group A fixes</td>
+        <td class="n">71,094</td>
+        <td class="n">39</td>
+        <td class="n">8.2</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span></td>
+        <td class="found">Verdict FIXED-AND-SILENCED. The citation check had been made 96% blind while described as a widening.<span class="rep">validation/reports/2026-09-01__system-keeper-audit-2.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-01</td>
+        <td class="nw">system-keeper</td>
+        <td>Attack the attestation check itself</td>
+        <td class="n">63,139</td>
+        <td class="n">39</td>
+        <td class="n">10.6</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span></td>
+        <td class="found">Verdict A PROCESS PROMPT. The hash watched the checks and not the wiring that runs them.<span class="rep">validation/reports/2026-09-01__system-keeper-attestation-audit.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-01</td>
+        <td class="nw">system-keeper</td>
+        <td>Attest the hardened attestation check</td>
+        <td class="n">78,542</td>
+        <td class="n">30</td>
+        <td class="n">13.9</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-attested)">▲</span>attested</span></td>
+        <td class="found">0 blockers; recorded that the fix&#x27;s own claim about the 500-byte floor was false.<span class="rep">validation/reports/2026-09-01__system-keeper-attestation-audit-2.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">a11y-checker</td>
+        <td>Re-audit the colour layer against release 0.2.0 (ART-009)</td>
+        <td class="n">248,428</td>
+        <td class="n">30</td>
+        <td class="n">16.2</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span></td>
+        <td class="found">121 pairs, 28 findings, 6 v1 findings resolved. CORRECTED ITS OWN BRIEF: the dispatch claimed v1 had passed the alpha tokens; it had not.<span class="rep">artifacts/brand-foundations/2026-09-02__a11y-audit__semantic-colour-layer__v2/</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">token-keeper</td>
+        <td>Verify every claim in the published visual foundations page</td>
+        <td class="n">78,823</td>
+        <td class="n">40</td>
+        <td class="n">8.2</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-found-defect)">◆</span>found-defect</span></td>
+        <td class="found">9 of 32 claims false; 4 were wrong when published rather than drifted.<span class="rep">validation/reports/2026-09-02__token-keeper-visual-foundations-verification.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">system-keeper</td>
+        <td>Fix the four maintained failures (C-026/027/028, ds_fork)</td>
+        <td class="n">126,148</td>
+        <td class="n">49</td>
+        <td class="n">14.4</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span></td>
+        <td class="found">All four fixed. Refused to close C-027 on one of four defects and opened V-019/V-020 instead.<span class="rep">validation/reports/2026-09-02__system-keeper-four-fixes.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">system-keeper</td>
+        <td>Re-attest after the first refusal</td>
+        <td class="n">101,151</td>
+        <td class="n">46</td>
+        <td class="n">13.2</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-refused)">■</span>refused</span></td>
+        <td class="found">REFUSED. Drew the line this repo needed: narrowing a claim is legitimate only when the narrowed claim is one the named verifier actually verifies.<span class="rep">validation/reports/2026-09-02__system-keeper-attestation-4.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">token-keeper</td>
+        <td>Audit the live Figma mirror against the token layer</td>
+        <td class="n">95,437</td>
+        <td class="n">44</td>
+        <td class="n">11.4</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span></td>
+        <td class="found">Mirror EXACT — 0 missing, 0 extra, 0 divergent. Found check-figma-live.py non-functional in both directions.<span class="rep">validation/reports/2026-09-02__token-keeper-figma-mirror-audit.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">Plan</td>
+        <td>Plan the foundations Figma migration</td>
+        <td class="n">145,734</td>
+        <td class="n">58</td>
+        <td class="n">9.2</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span></td>
+        <td class="found">Six-phase plan. Corrected four claims in its own brief, including that brand.md argues for navy — it does not.<span class="rep">validation/reports/2026-09-02__plan-foundations-figma-migration.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">system-keeper</td>
+        <td>Phase 1 — make the Figma divergence legible</td>
+        <td class="n">77,838</td>
+        <td class="n">46</td>
+        <td class="n">7.5</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span></td>
+        <td class="found">Hash unchanged as designed. Corrected six things, including that V-021 was already taken.<span class="rep">validation/reports/2026-09-02__plan-foundations-figma-migration.md#phase-1-executed</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">system-keeper</td>
+        <td>Phase 2 — teach the bridge and checker about modes</td>
+        <td class="n">180,680</td>
+        <td class="n">62</td>
+        <td class="n">20.8</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-delivered)">●</span>delivered</span></td>
+        <td class="found">20 faults planted, 20 fired. Left V-024/V-025 null because its own baseline was a fixture it had written.<span class="rep">validation/reports/2026-09-02__system-keeper-phase2-modes.md</span></td>
+      </tr>
+      <tr>
+        <td class="mono nw">2026-09-02</td>
+        <td class="nw">token-keeper</td>
+        <td>Attest Phase 2</td>
+        <td class="n">101,260</td>
+        <td class="n">43</td>
+        <td class="n">11.8</td>
+        <td><span class="badge"><span class="gl" aria-hidden="true" style="color:var(--o-refused)">■</span>refused</span></td>
+        <td class="found">REFUSED. The checker printed the plan&#x27;s mode order under the capture&#x27;s heading; Dark at index 0 passed.<span class="rep">validation/reports/2026-09-02__token-keeper-phase2-audit.md</span></td>
+      </tr></tbody>
+  <tfoot>
+    <tr><th colspan="3">Floor totals</th><th class="n">1,590,156</th>
+      <th class="n">626</th><th class="n">175.7</th>
+      <th colspan="2"></th></tr>
+  </tfoot>
+</table>
+
+<h2>What this board cannot tell you</h2>
+<ol class="body-sm">
+  <li><b>Any cost before 2026-09-01.</b> The ledger begins at
+    2026-09-01; earlier usage blocks &ldquo;were consumed in
+    conversation and are unrecoverable&rdquo;. The count of missing dispatches is itself
+    unknown, so the gap cannot be sized.</li>
+  <li><b>The runs that were left out.</b> The ledger records that several
+    2026-09-01 and 2026-09-02 dispatches are missing, because only rows whose exact usage
+    block could be quoted were entered and &ldquo;a run recalled but not quoted was left
+    out rather than estimated&rdquo;. This board does not estimate them either.</li>
+  <li><b>The orchestrating session.</b> Not captured at all: &ldquo;only subagent
+    dispatches return a usage block&rdquo;. The true total is higher &ldquo;by an unknown
+    margin&rdquo;.</li>
+  <li><b>Anything on 2026-09-03.</b> The ledger holds rows for
+    2026-09-01 and 2026-09-02 only. Today&rsquo;s dispatches &mdash; including
+    the one that produced this board &mdash; are not in it.</li>
+  <li><b>Cost per finding.</b> <code>found</code> is free text, not a count. Dividing
+    tokens by defects would require assigning a number to a sentence, which is an
+    interpretation and not in the data.</li>
+  <li><b>Whether any of this was worth it.</b> That is a judgement about the roadmap.
+    This board reports what the ledger records; reading it belongs to Phase&nbsp;11.</li>
+</ol>
+
+<h2>Assumptions</h2>
+<ul class="body-sm">
+  <li><b>A-1.</b> Every row in <code>runs[]</code> is accepted as entered. The file is
+    hand-transcribed from dispatch usage blocks with no API behind it, so this board
+    inherits any transcription error and cannot detect one.</li>
+  <li><b>A-2.</b> <code>duration_ms</code> is treated as per-dispatch wall clock and the
+    values are summed. If any two dispatches overlapped, the sum overstates elapsed time.
+    The ledger does not record start timestamps, so overlap cannot be ruled out.</li>
+  <li><b>A-3.</b> <code>tokens</code> is treated as one comparable unit across rows. The
+    ledger does not break it into input, output or cache, so no cost in currency is
+    derived here.</li>
+  <li><b>A-4.</b> <code>Plan</code> is counted as an agent, because the
+    <code>agent</code> field names it. It is not a row in CLAUDE.md&rsquo;s routing table.</li>
+  <li><b>A-5.</b> Colour values are read from token release 0.2.0, whose bone, ink and
+    coral primitives carry a Gate&nbsp;A gate that a human has not yet cleared. If those
+    values change, this board is regenerated rather than adjusted.</li>
+</ul>
+
+<h2>Claim format</h2>
+<p class="body-sm">Per CLAUDE.md and ADR-017, every figure above is a
+<b>measurement</b>, not testimony. It resolves to
+<code>validation/agent-runs.json</code> and a named field, and can be recomputed from
+that file alone. No <code>[E-nnn]</code> ID appears on this board and none is minted:
+<code>research/evidence-ledger.json</code> holds zero entries, no user was asked
+anything, and no person is quoted here. The one quoted passage is the ledger&rsquo;s own
+<code>the_rule</code> string.</p>
+
+<footer>
+  <p class="src">Produced by dashboard-analyst &middot; status draft &middot; Gate&nbsp;B
+  &middot; created 2026-09-03<br>
+  Data: <code>validation/agent-runs.json</code> (14 rows) &middot;
+  visual values: <code>design-system/tokens/tokens.json</code> release 0.2.0 &middot;
+  brand rules: <code>design-system/foundations/brand.md</code> &sect;3<br>
+  Derivation of every figure, and the palette validator&rsquo;s verdict, are in
+  <code>validation.md</code> beside this file.</p>
+</footer>
+
+</div>
+</body>
+</html>

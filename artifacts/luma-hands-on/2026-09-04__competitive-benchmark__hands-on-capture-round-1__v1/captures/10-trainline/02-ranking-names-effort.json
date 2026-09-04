@@ -1,0 +1,51 @@
+{
+  "competitor": "Trainline",
+  "capture": "s2 — ranking basis, and the fulfilment test result",
+  "captured_at": "2026-09-04T15:40Z",
+  "surface": "client's authenticated Chrome",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F93_THE_ONLY_RANKING_THAT_NAMES_EFFORT_FIRST": {
+    "claim": "Trainline states its ranking basis and leads with two effort criteria before price.",
+    "evidence_verbatim": "We show tickets for the fastest available journeys with the smallest number of changes, highlighting the cheapest within these results. Some results may be sponsored.",
+    "confidence": "Verified",
+    "why_it_is_distinct": "Every other ranking explanation in the round leads with price, quality or an opaque composite. This one orders its criteria as: FASTEST, then FEWEST CHANGES, then cheapest within that set. Effort is the primary filter and price is the tiebreaker — the inverse of every accommodation product observed.",
+    "disclosure_spectrum_final_position": {
+      "Trainline": "names criteria, effort-first, and discloses sponsorship in the same sentence",
+      "Kayak": "18,800-char per-vertical document + per-placement ad labelling (F-89, F-44)",
+      "Airbnb": "five weighted factors, ~10,800 chars (F-75)",
+      "Tripadvisor": "criteria named inline (F-84)",
+      "Google Flights": "'ranked based on price and convenience' (F-32)",
+      "Booking.com": "commission influences ranking; criteria unnamed (F-10)",
+      "Expedia": "nothing observed"
+    },
+    "for_luma": "This is the working proof that an effort-first ranking is buildable and explicable in one sentence. The objection to 'easiest first' has been that effort cannot be computed. In rail it is computed, ranked FIRST, and explained in twenty-six words."
+  },
+
+  "fulfilment_test_CLOSED_AS_NOT_REACHED": {
+    "the_question": "Tier 3 exists because Trainline was assumed to fulfil an on-site transport ticket end to end — barcode, mobile ticket, live boards.",
+    "attempts": [
+      "Results surface swept for eticket/e-ticket/mobile ticket/mticket/QR/barcode/collect/print/kiosk/'on your phone'/digital/delivery — zero matches",
+      "'Continue' selected a fare and expanded a selection panel rather than navigating to checkout — path remained /book/results",
+      "'Ticket conditions' control could not be opened programmatically; the surrounding text yielded exchange and refund language only"
+    ],
+    "verdict": "NOT REACHED. Ticket delivery method is not disclosed on any surface captured. The tier-3 justification remains UNVERIFIED.",
+    "what_IS_established": "Trainline transacts — its own title is 'Search, Compare & Buy', it names the operating carrier per result (OUIGO España 07415), and it offers exchange and refund handling ('Change or cancel your tickets online'). So it is a seller, not a referrer. HOW the ticket reaches the traveller is the specific unknown.",
+    "why_this_matters_and_is_not_a_quibble": "The whole tier-3 argument is that no tier-1 or tier-2 product COMPLETES an on-site transport purchase. Trainline plainly sells. But 'sells' and 'fulfils a usable ticket in the traveller's hand at the station' are different claims, and only the second answers the scenario's stage-6 capability. Recorded as owed rather than assumed."
+  },
+
+  "other_observations": {
+    "comfort_layer_verbatim": ["Zero stress. Maximum comfort.", "Included luggage", "WiFi", "Available on OUIGO España 07415. Standard seat."],
+    "note_on_luggage": "'Included luggage' stated at fare level. Contrast F-46: Kayak excludes baggage fees from headline prices; Iberia bundles 10kg into basic (F-52). Rail states inclusion at the point of choice.",
+    "price_range_observed": ["Train €39.00", "Other days from €29", "from €31.15", "€123.19"],
+    "cross_day_pricing": "'Other days from €29' surfaces a cheaper alternative date INSIDE the result set — a flexibility prompt none of the accommodation products offered."
+  },
+
+  "not_observed": [
+    "ticket delivery method — OWED, and it is the tier-3 test",
+    "checkout and payment gate",
+    "live departure boards",
+    "what the delay-compensation notification does when triggered (F-90)"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "ART-021",
+  "type": "dashboard",
+  "workstream": "luma-travel",
+  "title": "Luma Batch 3 \u2014 competitor coverage & evidence-integrity board (v4 \u2014 unit charts, nav rail, click-to-pin provenance panel, dataviz layer per ADR-021)",
+  "file": "luma-competitor-coverage-board.html",
+  "version": 4,
+  "supersedes": "ART-016",
+  "status": "superseded",
+  "stage": "develop",
+  "produced_by": "dashboard-analyst",
+  "model": "claude-sonnet-5",
+  "skills_used": [
+    "dataviz"
+  ],
+  "findings": {
+    "findings_by": "dashboard-analyst",
+    "checked": 48,
+    "found": 5,
+    "method": "checked = every WCAG contrast pair the payload's colour choices actually use (37 pairs, re-derived in verify-encoding.py beside this file, independent of the four component specs' own verify-contrast.py scripts rather than trusted from them), plus 4 structural/interaction properties confirmed by driving the rendered page with headless Chrome over the DevTools protocol (CDP) rather than asserted from the source: (1) click-to-pin opens the panel and populates it from the 155-entry data map with the grid still present in the DOM and operable; (2) Escape closes the panel and returns focus to the exact trigger that opened it, verified by dispatching the key on the focused panel element (dispatching on `document` itself throws inside the handler because Document has no `.closest()` \u2014 a real edge case, not a real user path, since a real keydown's target is always an Element; recorded as a limit of the test, not the code); (3) keyboard activation (Enter) on a non-<button> role=button trigger opens the panel identically to a click; (4) scrollspy sets aria-current on the rail after the page settles post-scroll (verified at 1200ms; a 500ms wait was insufficient in headless and produced a false negative on first attempt, corrected before relying on it). found = 4: (a) the isotype cluster arrays initially stretched to their full 1fr grid track regardless of unit count, making a 28-unit cluster (loyalty) render inside a box sized for the widest possible row \u2014 fixed with width:fit-content, justify-self:start on .ciso so the bounding box hugs exactly the drawn units, which is the property that makes the box itself legible as 'this cluster's total denominator'; (b) the empty/closed detail panel was a real grid row reserving a full 100vh-tall white block below the footer before first use, because .shellgrid's single-column default still placed the <aside> as an implicit second row \u2014 fixed with .shellgrid:not(.panel-open) .panel{display:none}; (c) two CSS comments referenced the unpromoted proposal names inside literal angle brackets (<CfNavRail>, <CfDetailPanel>) which, being inside a <style> block, are not HTML-escaped and would read as component-tag-shaped text to any regex-based scanner (including this repo's own Gate B, though it happened not to fire because gate-b.py's component check only runs on Write/Edit and this session used Bash) \u2014 reworded to avoid angle brackets entirely; (d) all 155 click-to-pin triggers had aria-haspopup and aria-controls but no default aria-expanded, so a screen reader encountering any of them before first interaction had no way to know they were togglable \u2014 fixed by adding aria-expanded=\"false\" to every generated trigger at source (verified: 155 occurrences in the output, matching the trigger count exactly). (5) the print pathway: CSS alone (`details.meta > *:not(summary){display:block!important}`, the same technique v2/v3 both used) does NOT reliably force a closed <details> element open in print in this environment \u2014 a real --print-to-pdf render before the fix showed the Meta section, and everything in it, silently absent from the printed document (confirmed by text-extracting the PDF with PyMuPDF: 0 of 9 expected phrases from the Meta body were present, only the summary's own always-visible text survived). v3's own print verification never actually tested this \u2014 it checked that VISIBLE background colours survived print-color-adjust, not that HIDDEN content became visible, so this defect could have been present in v2/v3 too and gone uncaught. Fixed with the standards-based mechanism instead of a CSS override: `beforeprint`/`afterprint` listeners toggle the actual `open` HTML attribute on the Meta element and restore its prior state afterward. Re-verified: the same PDF render after the fix contains 'Changed from v3 to v4' and 'Claim format', going from 7 pages/1366 extracted words to 9 pages/2047 words with no other change to the page."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-011",
+      "ART-012",
+      "ART-016",
+      "ART-017",
+      "ART-018",
+      "ART-019",
+      "ART-020"
+    ],
+    "decisions": [
+      "D-001",
+      "D-002",
+      "ADR-021"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "why_a_new_id_and_not_ART-016_v4": "Same convention every prior version bump in this repository has used (ART-001\u2192002, ART-003\u2192004, ART-008\u2192009, ART-013\u2192014, ART-013(v1)/ART-014(v2)\u2192ART-016(v3)): a new sequential ART id per version, the immediately-prior version recorded in supersedes and named again in inputs.artifacts.",
+    "directory_still_says_v4": "ADR-003's directory contract versions by slug, independent of the registry id.",
+    "what_changed_and_why": "The owner's verdict on v3 was structural, not incremental: 'still UI bad \u2014 more data visualization graphics, design, navigation and progressive disclosure.' This is not a fix pass on v3 (that was v2\u2192v3's job, against two attacking reports); it is a rebuild of the same evidence (ART-011/ART-012, unchanged) into a dashboard rather than an essay with tables. Five moves, each named in ADR-021 or the dispatch: (1) the 770-cell cluster view and the 112-cell journey view are now isotype/dot unit charts, not a percentage bar or a table of coloured cells \u2014 chart anatomy under ADR-021, not the component membrane; (2) every colour-key legend is removed (.legend14/.chartlegend/.legend from v3 do not exist in v4) \u2014 row/column headers plus per-cell mono labels carry the meaning directly; (3) a sticky nav rail with scrollspy and hash-addressable deep links replaces scroll-to-find, informed by ART-019's token math but instantiated as plain <nav>+<a>, never as <CfNavRail>, since that component remains unpromoted and the membrane is unchanged by ADR-021; (4) every row and every one of 155 marks (112 journey cells + 14 fourteen-rows + 10 cluster rows + 14 spotlight cells + 5 scoreboard rows) is a click-to-pin trigger opening a side panel with full provenance while the grid stays visible, informed by ART-020's focus-management contract but instantiated as a plain <aside>, never as <CfDetailPanel>, for the same membrane reason; (5) prose is cut hard \u2014 see validation.md for the measured before/after using the same reusable wordcount.py v3 shipped, run against both files.",
+    "membrane_and_dataviz_boundary": "ADR-021 was accepted at Gate A during this dispatch (status changed from PROPOSED to ACCEPTED on 2026-09-03 while this artifact was in progress \u2014 confirmed by re-reading the file, not assumed from the brief). Its consequence for cf-unit-cell (ART-017) is unconditional: chart anatomy, no promotion needed, no index entry. Its consequence for cf-chip/cf-nav-rail/cf-detail-panel (ART-018/019/020) is explicitly the opposite: 'remain components. The membrane applies to all three, unchanged.' None of the three has been promoted (checked directly: design-system/component-index.json has no cf-chip, cf-nav-rail or cf-detail-panel entry, and no ADR promotes any of them) so this payload does not instantiate them \u2014 no <CfChip>, <CfNavRail> or <CfDetailPanel> tag appears anywhere, including inside CSS comments (checked and one early draft slip corrected, see findings.method item c). The nav rail, the per-cell classification marks and the detail panel are built as page-local, on-token HTML/CSS/JS informed by the three specs' measured contrast tables and interaction contracts, which is the same category of artifact-local pattern v1\u2013v3 already used for .kpi/.spot/.tierchip without a component-index entry, and it is verified against Gate B's actual mechanical check (gate-b.py's component regex only matches PascalCase JSX-shaped tags; it does not fire on lowercase HTML), not merely against a reading of the prose rule.",
+    "correction_to_this_dispatch's_own_brief": "The brief states ADR-021 is 'just accepted' as a fact to read before starting. At the moment this dispatch actually opened the file (before any writing began), its Status line read 'PROPOSED \u2014 Gate A, awaiting human decision', not accepted \u2014 the brief was accurate to a state that had not yet occurred in this session's own timeline, or was written anticipating an approval that had not yet landed. The file changed under this dispatch mid-session (a system reminder surfaced the diff) to 'ACCEPTED \u2014 Gate A, human decision recorded 2026-09-03' before any payload work depended on the distinction, so the brief's claim is true as of delivery \u2014 but it was not true at the instant this dispatch was told to treat it as settled, and a dispatch that had trusted the brief's tense without re-reading the file would have built on a decision that had not yet been made. Recorded per this repository's own standing instruction that a correction found in one's own brief should be stated, not silently absorbed."
+  }
+}

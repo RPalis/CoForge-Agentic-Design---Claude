@@ -1,0 +1,52 @@
+{
+  "competitor": "Qatar Airways",
+  "capture": "L-loyalty — Buy Qpoints. Settles F-108.",
+  "url": "https://www.qatarairways.com/en-gb/Privilege-Club/buy-qpoints.html",
+  "captured_at": "2026-09-04T16:44Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en-gb",
+  "source_class": "Own capture (first-party product page)",
+  "confidence": "Verified",
+
+  "F108_SETTLED": {
+    "the_question": "F-108 inferred that lounge access is indirectly purchasable, because lounge access sits at Silver and Qpoints are sold — but flagged that many programmes exclude PURCHASED points from tier qualification, and that the inference was unverified.",
+    "the_answer_verbatim": {
+      "page_heading": "Buy Qpoints to upgrade or retain your tier",
+      "body": "Buy Qpoints to reach the next tier faster or renew your current tier to continue enjoying incredible benefits. Purchase exclusively on qatarairways.com and pay only USD 25 for 1 Qpoint."
+    },
+    "verdict": "CONFIRMED with an important qualification. Purchased Qpoints DO count toward tier upgrade AND retention — that is the product's stated purpose, in its own heading. Price is USD 25 per Qpoint.",
+    "the_qualification_that_matters": "The page carries two constraint tables — 'Tier | Minimum Qpoints balance needed | Maximum number of Qpoints to be purchased' for upgrade, and 'Tier | Maximum number of Qpoints to be purchased' for retention — plus a section headed 'Additional criteria for tier upgrade and retention'. So purchase ACCELERATES tier progression; it does not replace it. A member must already hold a minimum earned balance, and purchases are capped.",
+    "the_numbers_NOT_captured": "The actual minimum balances and purchase caps sit in tables that did not render into extractable text (page returned 1,069 characters). Recorded as UNKNOWN rather than estimated.",
+    "arithmetic_that_can_be_stated": "Silver requires 150 Qpoints (F-108 capture). At USD 25 per Qpoint, 150 Qpoints priced outright is USD 3,750. This is an upper-bound illustration ONLY — the cap means the full 150 cannot necessarily be bought, so USD 3,750 is not a purchasable price for Silver and must not be reported as one.",
+    "confidence": "Verified for the mechanism and the unit price. UNKNOWN for the caps."
+  },
+
+  "finding_F111_STATUS_HAS_A_UNIT_PRICE": {
+    "claim": "Qatar Airways publishes a unit price for loyalty status: USD 25 per Qpoint.",
+    "confidence": "Verified",
+    "why_it_is_worth_recording": "Across four loyalty programmes this is the only observed instance of status carrying an explicit monetary price. Genius status cannot be bought at any price. One Key tiers cannot be bought. Iberia's Elite Points are flight-gated. Qatar prices the ladder.",
+    "for_luma": "It converts a strategic question into an arithmetic one. If status is worth USD 25 a point to the operator, the operator is telling you what the benefit bundle is worth to it — and by implication what it costs to give away. For Luma, which proposes to grant reassurance to travellers who have earned nothing, this is the closest thing to a market price on the thing being given away."
+  },
+
+  "closes_business_goal_5_partially": {
+    "the_three_observed_models_for_airport_services": {
+      "Iberia (F-53)": "bundled with Business class. No price. Not purchasable by an economy traveller.",
+      "Qatar (F-108 + this)": "lounge access is a Silver benefit; Silver is reachable partly by purchase at USD 25/Qpoint, subject to a minimum earned balance and a cap.",
+      "American Airlines": "NOT CAPTURED — its airport services and AAdvantage structure remain untouched."
+    },
+    "what_remains_open": "F-54's core problem is unresolved. Neither model sells lounge access to an economy traveller as a simple product. The comparators that DO — lounge aggregators such as Priority Pass and its class — are absent from all four roster tiers, which F-54 flagged and this capture confirms rather than fixes.",
+    "confidence": "Verified"
+  },
+
+  "method_note": {
+    "page_size": "1,069 visible characters. The constraint tables are present as headings but their rows did not extract.",
+    "recorded_as": "The mechanism and unit price are Verified. Every specific threshold is UNKNOWN and is written as UNKNOWN, not estimated. Reporting a computed USD 3,750 as 'the price of Silver' would have been a fabricated number built from two real ones — precisely the failure mode this round has been guarding against."
+  },
+
+  "not_observed": [
+    "the minimum-balance and purchase-cap tables — rows did not render",
+    "'Additional criteria for tier upgrade and retention'",
+    "Privilege Club Pro",
+    "whether purchased Qpoints have any restriction on unlocking lounge access specifically"
+  ]
+}

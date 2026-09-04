@@ -76,3 +76,24 @@ for documents — which is what would have happened if L1 had simply been exempt
 **Exempting L1 artifacts from the component gate entirely.** Simpler, and it would have made
 documents a hole in the enforcement model — the one place off-system values could accumulate
 unchecked. Restricting the vocabulary is stricter than exempting it, and costs one field.
+
+## Amendment 2026-09-03 (ADR-021) — a third layer, not a third level
+
+ADR-021 (accepted 2026-09-03) adds **dataviz** — chart marks and chart anatomy — as a
+layer beside L1 and L2, not a rung on this ladder. Both the level table above and the
+"How Gate B behaves at each level" table describe **components**, governed by the
+membrane; they were never read against chart internals, because nothing here had
+reason to ask the question until building a coverage dashboard raised it.
+
+Under ADR-021, a dot in a dot matrix, a bar segment, a matrix cell, a legend or an axis
+label is chart anatomy — drawn by the chart's own rendering logic — and is governed at
+Gate B by a written encoding contract (numeric contrast floors, colour-never-sole-channel,
+a sanctioned chart-type vocabulary), never by promotion through the membrane. `cf-unit-cell`
+(ART-017) is the first example: proposed and then correctly refused an index entry for
+this reason (ADR-022). A KPI tile, a filter control or a data table is unaffected and
+remains an ordinary component under whichever level (L1 or L2) it belongs to.
+
+The level-1 primitive set above still stands, including `chart-palette` — a *token
+selection*, not a mark, and therefore still a component in ADR-012's sense. Its
+registered entry, `cf-chart-palette`, is separately marked `deprecated` for a measured
+defect (C-036) unrelated to this amendment; see ADR-021 and `component-index.json`.

@@ -1,0 +1,67 @@
+{
+  "competitor": "Citymapper",
+  "capture": "s6-in-destination — airport to accommodation, Lisbon",
+  "route": "Humberto Delgado Airport (LIS) Terminal 1 → Príncipe Real",
+  "why_this_route": "The scenario's own problem list states: 'Getting from arrival to the accommodation on site is stressful.' Príncipe Real is where the Airbnb captured earlier sits (F-71 capture), so this is the literal continuation of the same traveller's journey.",
+  "captured_at": "2026-09-04T16:06Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F99_ATTRIBUTES_NOBODY_ELSE_SHOWS": {
+    "claim": "Citymapper presents transit options with frequency, calories and cross-mode alternatives alongside price and duration — three attributes absent from every other competitor in the roster.",
+    "evidence_observed": {
+      "suggested_routes": ["1,90 € · 39 min · 'Every 7 min'", "1,90 € · 49 min"],
+      "alternative_modes": ["Walk 94 min · 389 cal", "Cycle 56 min · 234 cal", "Cab 33 min"]
+    },
+    "the_three_new_attributes": {
+      "frequency": "'Every 7 min' — how long you wait if you miss one. NO other roster competitor surfaces service frequency anywhere.",
+      "calories": "389 cal walking, 234 cycling. An effort measure in a literal physiological unit — the only non-time, non-money effort metric found in the round.",
+      "cross_mode_alternatives_with_times": "Walk / Cycle / Cab shown together with durations, so 39 min by transit sits against 33 min by cab and 94 min on foot."
+    },
+    "confidence": "Verified",
+    "why_frequency_matters_MOST_for_luma": "For a first-time traveller the fear at arrival is not cost or even duration — it is being stranded. 'Every 7 min' answers a question none of the other sixteen competitors even acknowledges: what happens if I miss it. It is a reassurance datum that costs nothing to display and exists in every transit feed.",
+    "for_luma": "Luma's Core Features list includes 'Arrival transport to the accommodation' at stage 5 and 'Transport on site — routes, tickets, passes' at stage 6. This capture is the working reference for both, and it demonstrates that the useful attributes at that moment are NOT the ones the booking products optimise for."
+  },
+
+  "finding_F100_EFFORT_MEASURED_IN_A_THIRD_UNIT": {
+    "claim": "Across the roster, effort is now observed measured in three different units, and which unit is used depends entirely on what the vertical can compute.",
+    "the_three_units": {
+      "time": "flights and rail — duration, change count (F-25 correction, F-43, F-92)",
+      "carbon": "Google Flights — emissions relative to route average, sortable (F-35)",
+      "calories": "Citymapper — physiological effort for active modes (this capture)"
+    },
+    "accommodation_and_activities": "ZERO effort units. 20 accommodation ranking axes contain none (F-25); activity duration exists only inside seller prose (F-83).",
+    "confidence": "Verified",
+    "the_synthesis": "Every vertical that CAN quantify effort does, and competes on it. Every vertical that cannot, ignores it entirely. Luma's opportunity is not to invent an effort axis — three already exist in three units — it is to compute one where the data does not yet exist: accommodation and on-site activities."
+  },
+
+  "surface_structure": {
+    "primary_action_verbatim": "Get Me Somewhere",
+    "time_basis_options": ["Now", "Arrive", "Leave"],
+    "note_on_time_basis": "'Arrive by' is offered as a first-class option. For a traveller with a check-in time or a booked activity, working backwards from an arrival time is the actual need. No booking competitor in the roster offers an arrive-by search.",
+    "secondary_features": ["Nearby", "Lines (find a bus or line)", "Meet Me Somewhere"],
+    "meet_me_somewhere_note": "A feature for finding a midpoint between two people. Relevant to the scenario's 'Families travelling with children — coordinating several people' user type, which F-59 established is addressed by almost nothing in the roster.",
+    "named_operators_lisbon": "Metro, Comboios Urbanos De Lisboa, Carris, Transtejo & Soflusa — the actual local transit authorities, named."
+  },
+
+  "web_vs_app": {
+    "web_is_functional": "Route planning worked end to end in the browser: origin, destination, alternatives, prices, frequencies and a map.",
+    "app_promoted": "'Get the App' present, but the web surface is not a marketing shell — contrast Hopper (F-65), where the differentiating products were app-gated.",
+    "confidence": "Verified"
+  },
+
+  "ticketing_status": {
+    "observation": "Fares are shown (1,90 €) but no purchase or ticketing affordance was found on the rendered surface — swept for ticket, pass, fare, pay, buy, price, card.",
+    "recorded_as": "NOT OBSERVED. Citymapper is known to sell transit tickets in some cities; whether Lisbon is one was not established.",
+    "tier_3_relevance": "The tier-3 argument requires SOMEONE in the roster to complete an on-site transport purchase. Trainline's fulfilment is still unverified after three attempts; Omio is blocked at consent; Rome2Rio does not sell. Citymapper's ticketing is unconfirmed. The tier-3 justification therefore still rests on assumption rather than observation — after four of four tier-3 competitors have been touched."
+  },
+
+  "not_observed": [
+    "step-by-step route detail",
+    "whether tickets can be purchased for Lisbon",
+    "accessibility / step-free routing — searched, no match on this surface",
+    "live departure data and disruption alerts"
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "$comment": "What the agents actually cost. Every Agent dispatch returns tokens, tool calls and wall-clock duration; until 2026-09-03 those were read once in a notification and discarded, so the repository could say what its agents FOUND and not what they COST. This ledger is the record. It is append-only and hand-entered from each dispatch's own returned usage block — there is no API to collect it from, which is stated rather than pretended otherwise.",
+  "the_rule": "One row per dispatch, entered when the dispatch returns. `outcome` records what the run DID, not whether it succeeded — a refusal that caught a real defect is a successful run of an attestation and must not read as a failure. Cost without outcome is a number nobody can act on.",
+  "completeness": {
+    "$comment": "Honest scope, because a cost ledger that looks complete and is not would misprice every future decision made from it.",
+    "begins": "2026-09-01",
+    "known_incomplete": "Dispatches before 2026-09-01 are NOT recorded — their usage blocks were consumed in conversation and are unrecoverable. Several 2026-09-01/02 runs are also missing: only rows whose exact usage block could be quoted are entered, and a run recalled but not quoted was left out rather than estimated. Totals below are therefore a FLOOR, not a measurement.",
+    "not_captured": "Main-session cost is not here at all. Only subagent dispatches return a usage block; the orchestrating session's own tokens are invisible to it. The true cost of this work is higher than any total this file can produce, by an unknown margin."
+  },
+  "runs": [
+    {
+      "date": "2026-09-01",
+      "agent": "token-keeper",
+      "task": "Audit the token layer after the alpha finding",
+      "tokens": 111715,
+      "tool_uses": 49,
+      "duration_ms": 791328,
+      "outcome": "found-defect",
+      "found": "Confirmed 53/35/6 by re-derivation; found the alpha-repair proposal's own JSON example reintroduced the defect it repaired (6-digit hex beside alpha 0.3).",
+      "report": "validation/reports/2026-09-01__token-keeper-audit.md"
+    },
+    {
+      "date": "2026-09-01",
+      "agent": "system-keeper",
+      "task": "Audit the new validation machinery",
+      "tokens": 110167,
+      "tool_uses": 51,
+      "duration_ms": 1033366,
+      "outcome": "found-defect",
+      "found": "1 blocker, 5 errors. V-006 asserted a guarantee that did not exist — a fabricated source written via Bash passed CI.",
+      "report": "validation/reports/2026-09-01__system-keeper-audit.md"
+    },
+    {
+      "date": "2026-09-01",
+      "agent": "system-keeper",
+      "task": "Attack the Group A fixes",
+      "tokens": 71094,
+      "tool_uses": 39,
+      "duration_ms": 492292,
+      "outcome": "found-defect",
+      "found": "Verdict FIXED-AND-SILENCED. The citation check had been made 96% blind while described as a widening.",
+      "report": "validation/reports/2026-09-01__system-keeper-audit-2.md"
+    },
+    {
+      "date": "2026-09-01",
+      "agent": "system-keeper",
+      "task": "Attack the attestation check itself",
+      "tokens": 63139,
+      "tool_uses": 39,
+      "duration_ms": 635007,
+      "outcome": "found-defect",
+      "found": "Verdict A PROCESS PROMPT. The hash watched the checks and not the wiring that runs them.",
+      "report": "validation/reports/2026-09-01__system-keeper-attestation-audit.md"
+    },
+    {
+      "date": "2026-09-01",
+      "agent": "system-keeper",
+      "task": "Attest the hardened attestation check",
+      "tokens": 78542,
+      "tool_uses": 30,
+      "duration_ms": 832490,
+      "outcome": "attested",
+      "found": "0 blockers; recorded that the fix's own claim about the 500-byte floor was false.",
+      "report": "validation/reports/2026-09-01__system-keeper-attestation-audit-2.md"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "a11y-checker",
+      "task": "Re-audit the colour layer against release 0.2.0 (ART-009)",
+      "tokens": 248428,
+      "tool_uses": 30,
+      "duration_ms": 974654,
+      "outcome": "found-defect",
+      "found": "121 pairs, 28 findings, 6 v1 findings resolved. CORRECTED ITS OWN BRIEF: the dispatch claimed v1 had passed the alpha tokens; it had not.",
+      "report": "artifacts/brand-foundations/2026-09-02__a11y-audit__semantic-colour-layer__v2/"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "token-keeper",
+      "task": "Verify every claim in the published visual foundations page",
+      "tokens": 78823,
+      "tool_uses": 40,
+      "duration_ms": 489617,
+      "outcome": "found-defect",
+      "found": "9 of 32 claims false; 4 were wrong when published rather than drifted.",
+      "report": "validation/reports/2026-09-02__token-keeper-visual-foundations-verification.md"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "system-keeper",
+      "task": "Fix the four maintained failures (C-026/027/028, ds_fork)",
+      "tokens": 126148,
+      "tool_uses": 49,
+      "duration_ms": 862190,
+      "outcome": "delivered",
+      "found": "All four fixed. Refused to close C-027 on one of four defects and opened V-019/V-020 instead.",
+      "report": "validation/reports/2026-09-02__system-keeper-four-fixes.md"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "system-keeper",
+      "task": "Re-attest after the first refusal",
+      "tokens": 101151,
+      "tool_uses": 46,
+      "duration_ms": 792675,
+      "outcome": "refused",
+      "found": "REFUSED. Drew the line this repo needed: narrowing a claim is legitimate only when the narrowed claim is one the named verifier actually verifies.",
+      "report": "validation/reports/2026-09-02__system-keeper-attestation-4.md"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "token-keeper",
+      "task": "Audit the live Figma mirror against the token layer",
+      "tokens": 95437,
+      "tool_uses": 44,
+      "duration_ms": 682212,
+      "outcome": "delivered",
+      "found": "Mirror EXACT — 0 missing, 0 extra, 0 divergent. Found check-figma-live.py non-functional in both directions.",
+      "report": "validation/reports/2026-09-02__token-keeper-figma-mirror-audit.md"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "Plan",
+      "task": "Plan the foundations Figma migration",
+      "tokens": 145734,
+      "tool_uses": 58,
+      "duration_ms": 553549,
+      "outcome": "delivered",
+      "found": "Six-phase plan. Corrected four claims in its own brief, including that brand.md argues for navy — it does not.",
+      "report": "validation/reports/2026-09-02__plan-foundations-figma-migration.md"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "system-keeper",
+      "task": "Phase 1 — make the Figma divergence legible",
+      "tokens": 77838,
+      "tool_uses": 46,
+      "duration_ms": 448488,
+      "outcome": "delivered",
+      "found": "Hash unchanged as designed. Corrected six things, including that V-021 was already taken.",
+      "report": "validation/reports/2026-09-02__plan-foundations-figma-migration.md#phase-1-executed"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "system-keeper",
+      "task": "Phase 2 — teach the bridge and checker about modes",
+      "tokens": 180680,
+      "tool_uses": 62,
+      "duration_ms": 1248799,
+      "outcome": "delivered",
+      "found": "20 faults planted, 20 fired. Left V-024/V-025 null because its own baseline was a fixture it had written.",
+      "report": "validation/reports/2026-09-02__system-keeper-phase2-modes.md"
+    },
+    {
+      "date": "2026-09-02",
+      "agent": "token-keeper",
+      "task": "Attest Phase 2",
+      "tokens": 101260,
+      "tool_uses": 43,
+      "duration_ms": 705008,
+      "outcome": "refused",
+      "found": "REFUSED. The checker printed the plan's mode order under the capture's heading; Dark at index 0 passed.",
+      "report": "validation/reports/2026-09-02__token-keeper-phase2-audit.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "dashboard-analyst",
+      "task": "Build the agent-cost scorecard (ART-010)",
+      "tokens": 165231,
+      "tool_uses": 68,
+      "duration_ms": 1140769,
+      "outcome": "delivered",
+      "found": "Derived a validated 4-hue palette by enumeration after confirming cf-chart-palette fails on our own ground. Corrected six things in its brief, including that 'encode outcome as status' is incompatible with 'a refusal is a success' — status is a reserved good-to-critical scale. Found three defects in its own construction, incl. warmGray.60 caption ink at 4.26:1 failing AA.",
+      "report": "artifacts/system-operations/2026-09-03__metrics-scorecard__agent-cost__v1/validation.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "research-synthesizer",
+      "task": "Synthesise the Luma competitor benchmark (ART-011, ART-012)",
+      "tokens": 345902,
+      "tool_uses": 61,
+      "duration_ms": 1691929,
+      "outcome": "found-defect",
+      "found": "Split into two artifacts on the grounds that meta-claims and market-claims carry different certainty and merging lets the second borrow the first's. Found an arithmetic defect in the SOURCE that reached the stakeholder document: Phase 3 reports 275 confidence cells against a grid it describes as 55x6=330; 275 is exactly 55x5, a five-column total. Corrected six things in its brief, incl. 10 clusters not 7, unweighted not weighted scoring, and that the eight 'screenshots' are page images of the report — so Tier 3 of the evidence ladder was never used at all.",
+      "report": "artifacts/luma-travel/2026-09-03__competitive-benchmark__batch-3-coverage-reconciliation__v1/validation.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "dashboard-analyst",
+      "task": "Render the competitor coverage board (ART-013)",
+      "tokens": 256185,
+      "tool_uses": 84,
+      "duration_ms": 1441001,
+      "outcome": "found-defect",
+      "found": "Refused the brief's encoding. The dispatch said 'status - evidence tier'; the dataviz job table names TIER as the Ordinal job in the row directly above Status, which is a reserved good->critical scale. The instruction would have put 'never profiled' on the same axis as 'critical' - reading as a verdict on those competitors rather than a gap in our study, the exact misreading D-001 exists to prevent. Built a validated one-hue ordinal ramp instead and gave the three-way coverage split NO hue at all, shape and word only. Same class it caught in ART-010 (outcome cannot wear status colour) - second time it has refused a colour job from its brief. Also surfaced that D-001's text says 6 never-profiled where ART-011 reconciles to 8, and followed the 8/2/6 split with the discrepancy stated rather than silently resolved.",
+      "report": "artifacts/luma-travel/2026-09-03__dashboard__batch-3-competitor-coverage__v1/validation.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "general-purpose",
+      "task": "Benchmark best-in-class interactive research dashboards",
+      "tokens": 150395,
+      "tool_uses": 54,
+      "duration_ms": 633205,
+      "outcome": "found-defect",
+      "found": "Contradicted ART-013's central choice with empirical work. Song & Szafir (IEEE VIS 2018): encodings that HIGHLIGHT missing data score higher on perceived quality than ones that DOWNPLAY it (alpha-blend, hatching, dashed), and removal scores lowest of all. ART-013's hatched grey blanks are the downplay condition, which tested badly on exactly the credibility axis D-001 exists to protect. Also: typed-absence vocabularies (StatCan 5 symbols, MDN true/false/null, caniuse grey-? vs red-X); VSUP (Correll/Moritz/Heer CHI 2018) as the right primitive for a value x uncertainty matrix; the Tableau census (n=25,620) placing this in the MAGAZINE genre, median 8 blocks. Debunked four pieces of folklore incl. the '85% ignore interactives' claim, which its own author has publicly corrected.",
+      "report": null
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "dashboard-analyst",
+      "task": "Rebuild the coverage board as v2 (ART-014)",
+      "tokens": 319006,
+      "tool_uses": 96,
+      "duration_ms": 1747566,
+      "outcome": "found-defect",
+      "found": "CORRECTED THE PAPER THE REDESIGN RESTED ON. Fetched Song & Szafir (IEEE VIS 2018) and checked the brief's three strongest claims against the actual tables: alpha-blending, a DOWNPLAY technique, scored consistently HIGH on perceived quality; removal did NOT score lowest of every condition (Data Absent 4.19 beat the annotation condition's 4.06); and the accuracy loss was Dashed Outline Bars at 75.35% against Data Absent's 76.37%, which was HIGHER. Direction holds, stated strength did not. Also correctly refused to build the 330-cell matrix: neither it nor a 10-cluster x 6 grid exists at cell resolution in ART-012, so it built the two bivariates the evidence does support (48-cell journey, 6-cell load-bearing row) and named the limit. Caught a class collision right-aligning the KPI numerals via a headless render before delivery.",
+      "report": "artifacts/luma-travel/2026-09-03__dashboard__batch-3-competitor-coverage__v2/validation.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "design-critic",
+      "task": "Attack the v2 coverage board (ART-014)",
+      "tokens": 98058,
+      "tool_uses": 10,
+      "duration_ms": 672153,
+      "outcome": "found-defect",
+      "found": "3 blockers, all reproduced independently by the main session. DC-01: the mid-page objects silently re-base from 14 competitors to 6 — the cluster chart is denominated on 330 (55x6) not 770 (55x14), so its WORST bar reads 66.7% four inches below the board's own 24.5% KPI; recomputed on 770 the complement is 581/770 = 75.5%, exact. The journey grid draws 48 of the 112 cells its own KPI counts. DC-02: the VSUP is broken — value and uncertainty ramps are INTERLEAVED by luminance (teal.90 Y=0.0195 sits between gap.90 and gap.80; teal.70 0.0862 vs gap.70 0.0846), so suppressing for uncertainty moves a cell DOWN the value scale. DC-03: 3 @media print blocks and 0 print-color-adjust, so printed the eight render as white text on blank rows while validation.md asserts print carries everything. Also caught assumption A-4 asserting an uncleared Gate A on tokens that tokens.json records as APPROVED by the user on 2026-09-02.",
+      "report": "validation/reports/2026-09-03__design-critic-coverage-board-v2.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "a11y-checker",
+      "task": "Audit the v2 coverage board for accessibility (ART-015)",
+      "tokens": 150955,
+      "tool_uses": 14,
+      "duration_ms": 879396,
+      "outcome": "found-defect",
+      "found": "46 checks, 11 findings (2 error, 5 warning, 4 info), 7 explicitly UNCHECKED. Independently reproduced the two headline claims to two decimals (warmGray.80 on bone 9.79:1; white on it 11.57:1) rather than accepting them. F-01: .gapnote carries opacity 0.86, which fades the whole element -- stripe background AND white text together -- toward the page ground, resolving to 3.85:1 against the lighter half of the stripe; it documented getting the compositing wrong on a first pass and redoing it. F-08 (error): six <details> controls have a literally EMPTY <summary> with the entire label in CSS ::before content -- an unlabelled control for assistive tech, and also the exact mechanism design-critic had hypothesised for the word-count discrepancy. F-04 hit the SAME VSUP collision design-critic found (1.30:1 vs 1.305:1) by a different route, neither agent having seen the other run.",
+      "report": "artifacts/luma-travel/2026-09-03__a11y-audit__coverage-board-v2__v1/"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "dashboard-analyst",
+      "task": "Build v3 of the coverage board (ART-016)",
+      "tokens": 308035,
+      "tool_uses": 109,
+      "duration_ms": 3887155,
+      "outcome": "found-defect",
+      "found": "All 3 blockers and all 11 a11y findings resolved; 18 of 21 critique findings fixed, 2 kept as documented judgment calls, 1 knowingly left with reasons. Traced Blocker 2 deeper than the brief did: tokens.json is a Carbon mirror where EVERY hue family shares one universal lightness ladder, so any two ordinal ramps at matching step numbers are luminance-identical regardless of hue -- there is no non-colliding third ramp on this token set. Fix moves confidence off colour entirely onto a dashed border and draws absence hollow so it is never a competing fill. Also found tokens.json disagrees with ITSELF on Gate A (C-035), correcting both design-critic and the main session, who had each read only the batch note. Caught four of its own off-token literals before delivery.",
+      "report": "artifacts/luma-travel/2026-09-03__dashboard__batch-3-competitor-coverage__v3/validation.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "general-purpose",
+      "task": "Benchmark navigation, disclosure and graphical craft with colour frozen",
+      "tokens": 113905,
+      "tool_uses": 24,
+      "duration_ms": 232141,
+      "outcome": "delivered",
+      "found": "Answered the central question -- where graphical richness comes from when colour is spent. Bertin: value and TEXTURE are ordered variables, so the palette freeze does not lock shape or texture. Top move is unit/dot-matrix encoding: isotype practice makes an unfilled unit communicate absence STRUCTURALLY, so the 8 blanks become a hole in the pattern rather than a different colour. Sharp corollary: with a luminance-matched ramp a legend is ACTIVELY HARDER to decode than direct labels, so direct labelling is not a preference here but a fix. Bateman CHI 2010: embellishment does not help comprehension but significantly helps RECALL at 2-3 weeks -- which is this board's actual job. Killed two more pieces of folklore: the '5-7 KPIs max' rule attributed to NN/g appears nowhere in their publications and is Miller's 7+/-2 transplanted by SEO blogs, and the 'dashboards become wallpaper in two weeks' claim has no traceable data. Ruled OUT scrollytelling: every case study found is narrative journalism, not a reference tool three audiences jump around in. Two Opus dispatches died on 529 before this one ran on Sonnet.",
+      "report": null
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "token-keeper",
+      "task": "Freeze the foundations baseline and verify the lightness-ladder property",
+      "tokens": 91828,
+      "tool_uses": 44,
+      "duration_ms": 485481,
+      "outcome": "found-defect",
+      "found": "Baseline frozen: 829 leaves, canonical-JSON sha256 1926c393... (survives reformatting). VERIFIED the universal lightness ladder rather than taking it on trust -- worst-case pairwise contrast between any two hue families at the same step, all 12 families, is 1.055:1. Then went past the brief and checked the REGISTERED palette against it, finding C-036: cf-chart-palette's four primary series sit at under 0.4% luminance separation, so the system's only sanctioned chart palette cannot distinguish its own categories. Also found 731 of 829 tokens (88%) are referenced by nothing in the component index, including 100% of semantic-dark, motion, elevation and density, and that the five-axis framing in CLAUDE.md omits density -- tokens.json has 8 top-level keys, a reconciliation that existed nowhere in the repo. Changed no token value.",
+      "report": "validation/reports/2026-09-03__token-keeper-frozen-baseline.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "screen-producer",
+      "task": "Write four component-specs (ART-017 to ART-020) — first exercise of the membrane",
+      "tokens": 201668,
+      "tool_uses": 66,
+      "duration_ms": 1624686,
+      "outcome": "found-defect",
+      "found": "Four specs delivered with a verify-contrast.py beside each that re-resolves every alias, recomputes every ratio, validates against component.schema.json and FAILS if the name already appears in the index -- it caught one of its own transposed figures before delivery. Found C-037 (Gate B's component detector is PascalCase-only, so the first prohibition has never been tested on any artifact this repo ships) and C-038 (the Carbon adapter deletes any authored L2 entry, making the RED exit condition unreachable). Corrected the MAGNITUDE of C-036 four minutes after token-keeper filed it: 0 of 108 adjacent-step pairs clear 2:1, so a single-hue ordinal ramp on bone supports at most TWO mutually-3:1 steps. Measured semantic.focus on teal.60 at 1.003:1 -- the focus ring vanishes on the lightest fill, no token substitution fixes it, hence a two-tone ring. Also: cf-badge's four kinds sit within 0.025 of each other and its kind axis is hue-only, failing 1.4.1. Diffed the audit by (severity, check, message) rather than totals and REFUSED to claim a delta that token-keeper had written concurrently four minutes earlier.",
+      "report": "artifacts/design-system-authoring/2026-09-03__component-spec__cf-detail-panel__v1/validation.md"
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "general-purpose",
+      "task": "Benchmark how mature design systems govern data visualization",
+      "tokens": 118695,
+      "tool_uses": 31,
+      "duration_ms": 616455,
+      "outcome": "delivered",
+      "found": "One-sided across every system checked. USWDS states it outright: 'The data visualizations components are guidance-only and do not include any Component Code.' Spectrum, Polaris and Carbon ship separate packages; Primer and GOV.UK ship guidance with no code. None folds chart internals into component registration. Resolved the blurry line with a rule two systems reached independently: chart anatomy is whatever the chart's own rendering logic draws (marks, legend, tooltip, axis); a separate DOM element a human clicks or reads as a number (KPI tile, filter) is an ordinary UI component. Carbon confirms directly -- Tile is a plain UI component, not in @carbon/charts. Counter-case argued properly and it does NOT support folding charts into the index: the documented failure is DRIFT nobody catches because no one inspects the assembled screen, whose answer is adversarial real-screen validation. Verified by direct fetch that NNG publishes no '5-7 KPIs' guidance anywhere -- the attribution is false. Supplied a usable numeric contract from Primer: 3:1 marks, 4.5:1 axis text, first line solid with stroke-style differentiation without colour.",
+      "report": null
+    },
+    {
+      "date": "2026-09-03",
+      "agent": "dashboard-analyst",
+      "task": "Build v4 of the coverage board (ART-021) — unit charts, nav, disclosure",
+      "tokens": 374752,
+      "tool_uses": 129,
+      "duration_ms": 2199084,
+      "outcome": "found-defect",
+      "found": "Rebuilt as an actual dashboard: 770-cell and 112-cell isotype unit charts where absence is drawn as a hole, a sticky nav rail with scrollspy and deep links, and 155 click-to-pin provenance triggers into a side panel. Every legend removed -- direct labels only. Prose cut 2183->1460 visible words (33%), 4058->2142 all-DOM (47%). THE FINDING: the <details>-forced-open-under-print CSS technique that v2 AND v3 both shipped does not actually reveal hidden content in this Chrome build -- proved with a real --print-to-pdf render plus PyMuPDF text extraction, then fixed with beforeprint/afterprint toggling the real open attribute. So v3's print claim, which the main session reported to the user as resolving DC-03, was unverified in exactly the way DC-03 warned about. Also corrected the brief: ADR-021 was still PROPOSED when the dispatch opened it and flipped to ACCEPTED mid-run; it confirmed this rather than assuming. Caught five defects in its own build before delivery, including all 155 triggers missing a default aria-expanded.",
+      "report": "artifacts/luma-travel/2026-09-03__dashboard__batch-3-competitor-coverage__v4/validation.md"
+    },
+    {
+      "date": "2026-09-04",
+      "agent": "content-comms",
+      "task": "Plain-language copy deck for the coverage board (ART-022)",
+      "tokens": 202050,
+      "tool_uses": 25,
+      "duration_ms": 683027,
+      "outcome": "found-defect",
+      "found": "Delivered a copy deck: 65-word standfirst, inline definitions indexed to first use, quote-current/replace-with pairs for every caption, and a concrete relocation plan for the 46 reference codes. Confirmed the predicted gap honestly rather than papering over it: ART-011/012 establish that Luma is 'a first-time-traveller travel product at ideation' but NOT what it sells — and it identified that the 'referral layer' in ART-012 is the study's own UNADOPTED recommendation with no acceptance recorded anywhere, so using it as a product description would have asserted a decision nobody made. Found C-039 while reading, outside its brief: five rownotes truncated mid-sentence with the full text present in the same file. Also flagged that its own direct/adjacent/analogous definition is INFERRED from the roster rather than quoted, because the citation for it points into research/sources/, which it was forbidden to open.",
+      "report": "artifacts/luma-travel/2026-09-04__ux-copy__coverage-board-plain-language__v1/validation.md"
+    },
+    {
+      "date": "2026-09-04",
+      "agent": "dashboard-analyst",
+      "task": "Build v5 with the plain-language deck applied (ART-023)",
+      "tokens": 346400,
+      "tool_uses": 144,
+      "duration_ms": 1792944,
+      "outcome": "delivered",
+      "found": "Fixed C-039 — all five truncated rownotes restored verbatim from the panel JSON — and, finding no generator to patch at source, shipped verify-rownotes.py which passes on v5 and reproduces all five defects when pointed at v4. Applied the copy deck: standfirst with the 'what Luma sells' gap left visible, seven jargon groups defined at first use, direct/adjacent/analogous marked Inferred on the page. Re-verified every do-not-regress invariant against the live payload rather than asserting them, including a fresh --print-to-pdf extraction and all six CDP interaction tests. TWO CLAIMS THE MAIN SESSION COULD NOT REPRODUCE: it reported reference codes in prose falling 18->2; measured the same way on both versions, mid-sentence codes in the default-visible flow went 32->25, and total visible codes ROSE 46->58 because provenance was relocated rather than removed. And words rose 2131->3463 (+62%), which it states as expected, but the hero moved from 62 words down the page to 243 — the entry point the v4 benchmark was built around.",
+      "report": "artifacts/luma-travel/2026-09-04__dashboard__batch-3-competitor-coverage__v5/validation.md"
+    },
+    {
+      "date": "2026-09-04",
+      "agent": "research-ops",
+      "task": "Write the locked 14-competitor capture research plan (ART-024)",
+      "tokens": 87950,
+      "tool_uses": 14,
+      "duration_ms": 631607,
+      "outcome": "found-defect",
+      "found": "First dispatch of this agent. Seven corrections to its brief. (1) Only FOUR competitors are net-new, not seven — Airbnb, Tripadvisor and Rentalcars are already in the client's own standing set, and burying four real additions among seven weakens the argument that must survive. (2) Loyalty is NOT a ninth stage — it occurs inside other stages, and a ninth stage would discard the in-line occurrences where business goal 8's answer lives. (3) A capture may never become a ledger record — CLAUDE.md forbids minting a ledger ID for a measurement — with the sharp corollary that transcribing a user review from a competitor site would create an unresolvable user quote and breach prohibition 2. (4) The main session's 'write captures to a file immediately' advice DOUBLES cost rather than reducing it: context already spent is re-emitted as tool input; the real levers are the screenshot never entering context and the a11y tree going to disk unread. Revised to ~198k per competitor and 16-20 sessions, not 14. (5) Stage list crossed with state list yields 120 screens against a 40-70 budget. (6) The scenario names FIVE user types and SKILL.md names one — an undeclared disagreement that is the likely origin of the prior round's single-persona lens. (7) ADR-017 does not exist at the path given. Also found an airport-services roster gap: business goal 5 has no comparator among the fourteen. Self-reported a clean-room breach (C-040).",
+      "report": "artifacts/luma-hands-on/2026-09-04__research-plan__competitor-ux-capture__v1/validation.md"
+    }
+  ]
+}

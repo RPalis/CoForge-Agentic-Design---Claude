@@ -1,0 +1,57 @@
+{
+  "competitor": "Airbnb",
+  "capture": "s2/s6 — Experiences (activities inventory) and the business-goal-2 test",
+  "url": "https://www.airbnb.es/s/Lisboa--Portugal/experiences",
+  "captured_at": "2026-09-04T14:53Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F78_THREE_INVENTORIES_ONE_ACCOUNT_ZERO_TRIP": {
+    "claim": "Airbnb holds stays, experiences and services under one account and still does not model the trip as a single object. Moving from an accommodation search to experiences drops the trip entirely.",
+    "method": "Full Experiences results page (8,765 chars) swept for 'tu viaje', 'tu estancia', 'tu reserva', 'añadir al viaje', 'durante tu', 'itinerario'. ZERO matches.",
+    "supporting_evidence": "Navigating from the dated stays search (checkin 2026-11-10, checkout 2026-11-13) to Experiences produced a URL carrying NO dates. The experiences surface does not know the traveller has a stay, when it is, or where.",
+    "confidence": "Verified",
+    "why_this_is_the_most_useful_negative_in_the_round": "Airbnb is on the roster precisely because it was assumed the closest existing shape to business goal 2 — 'increase the share of trips that include more than one of the four booking types'. It has the inventory, the single account and the brand. It still presents three separate searches. The competitor best positioned to connect a trip does not connect it.",
+    "for_luma": "This is the strongest available evidence that business goal 2 is UNSOLVED rather than merely unclaimed. It also reframes the difficulty: the barrier is not inventory or accounts — Airbnb has both — it is that nobody has modelled the trip as the object the traveller actually has. That is a data-model decision made before any screen is designed."
+  },
+
+  "finding_F79_PRICE_CONVENTION_INCONSISTENT_WITHIN_ONE_PRODUCT": {
+    "claim": "Airbnb shows accommodation as a total for the stay and experiences as a price per traveller. The same product uses two conventions in two verticals.",
+    "evidence": {
+      "stays": "'203 € en total', '199 € en total' — total, never nightly (F-70)",
+      "experiences": "'Desde 25 € por viajero', '70 € por viajero', '44 € por viajero (antes: 55 €)' — per traveller, with a 'from' floor"
+    },
+    "confidence": "Verified",
+    "why_it_matters": "F-70 credited Airbnb with removing the arithmetic a traveller must do. That credit holds for stays and does not extend to experiences: a party of two now multiplies again, and 'desde' (from) reintroduces a floor price that is not the price. The convention that makes stays legible is abandoned in the vertical the traveller reaches second.",
+    "for_luma": "A trip crossing four booking types cannot present four pricing conventions. The scenario's own problem statement — 'Booking each part separately leaves no single view of the trip or its total cost' — is visible INSIDE a single competitor, between two of its own verticals."
+  },
+
+  "surface_structure": {
+    "top_level_verticals": ["Alojamientos (stays)", "Experiencias (experiences)", "Servicios (services)"],
+    "experience_filters": ["Entradas (tickets)", "Originals", "Tipo (type)", "Horario (schedule)"],
+    "editorial_sections": ["Verano en Lisboa: gastronomía, costa y Sintra", "Novedades en Lisboa", "Cultura e historia de la zona"],
+    "sort_control": "NONE — consistent with F-69. Airbnb offers no sort in either vertical captured.",
+    "duration_shown": "searched for 'N horas' and 'duración' — no match on the results surface. An activity's time cost is not surfaced at comparison."
+  },
+
+  "note_on_duration": {
+    "observation": "Experiences show price and category but not duration on the results surface.",
+    "why_it_matters": "Duration is the effort axis that flights already rank on (F-43, F-25 correction). For an on-site activity it is arguably the MOST decision-relevant attribute after price — a traveller with three days has a time budget, not just a money budget. It is not shown.",
+    "confidence": "Verified for this render; recorded as not-observed rather than absent."
+  },
+
+  "our_product_decision_required": [
+    "Decision required — and it precedes design: is Luma's trip ONE object or four searches? Airbnb proves that inventory and a shared account are not sufficient. The trip has to be the primary object in the data model or the same seam reappears.",
+    "Decision required: one pricing convention across all four booking types, or four? Airbnb runs two and the inconsistency lands exactly where the scenario says travellers already struggle.",
+    "Decision required: does Luma show TIME cost alongside money cost for activities? A three-day trip has a time budget. No observed competitor surfaces duration at comparison."
+  ],
+
+  "not_observed": [
+    "Servicios vertical — the third inventory type, uncaptured",
+    "an experience detail page and its booking flow",
+    "whether an experience booked separately appears alongside a stay in Trips",
+    "the Filtros panel interior on this vertical"
+  ]
+}

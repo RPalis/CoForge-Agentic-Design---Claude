@@ -1,0 +1,49 @@
+{
+  "id": "ART-010",
+  "type": "metrics-scorecard",
+  "workstream": "system-operations",
+  "title": "Agent cost — what CoForge's 14 recorded dispatches cost, and what they found",
+  "file": "agent-cost-scorecard.html",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "evaluate",
+  "produced_by": "dashboard-analyst",
+  "model": "claude-opus-5",
+  "skills_used": [
+    "dataviz"
+  ],
+  "findings": {
+    "findings_by": "dashboard-analyst",
+    "checked": 14,
+    "found": 4,
+    "skipped": 3,
+    "method": "Three units, stated so each number can be re-derived independently. (1) checked = the 14 objects in validation/agent-runs.json runs[]. That file is the ONLY input; no figure on the board comes from anywhere else, and no figure is estimated. Every total is a straight sum over runs[]: tokens 1,590,156; tool_uses 626; duration_ms 10,541,675 (= 2 h 55 m, rendered by integer-dividing seconds by 3600 and 60). Mean tokens 1,590,156 / 14 = 113,582.57, shown rounded to 113,583. Median is the mean of the 7th and 8th values of the sorted token list (101,151 and 101,260) = 101,205.5, shown to one decimal rather than truncated, because 14 is even and an integer here would be a fabricated observation. Range 63,139-248,428. Tokens per tool call is a per-agent ratio: that agent's summed tokens divided by its summed tool_uses (a11y-checker 248,428/30 = 8,281; Plan 145,734/58 = 2,513; system-keeper 808,759/362 = 2,234; token-keeper 387,235/176 = 2,200), and the all-agent rate 1,590,156/626 = 2,540. The 3.3x multiple on the board is 8,280.93/2,540.19 computed at render time, not typed. The peak share 15.6% is 248,428/1,590,156. Counts by outcome (found-defect 6, delivered 5, refused 2, attested 1) and by agent (system-keeper 8, token-keeper 4, a11y-checker 1, Plan 1) are tallies of the literal field values. Nothing is derived from the free-text `found` field: it is reproduced verbatim in the table and never counted, because turning a sentence into a number is an interpretation and Phase 10 does not do interpretation. (2) found = 4 defects this artifact fixed in ITS OWN construction before shipping, all caught by measurement rather than by eye, and all recorded in validation.md section 5: (a) cf-chart-palette, the only chart component in component-index.json, FAILS the dataviz validator on the bone ground — teal.60 sits at chroma 0.092, below the 0.10 floor, and cyan.40 measures 2.0:1 — so the indexed palette could not be used and a replacement had to be derived and validated; (b) palette.warmGray.60, first chosen as the caption and axis ink, measures 4.26:1 on bone and fails AA for normal text, replaced by warmGray.70 at 6.60:1; (c) the outcome fill colours blue.60 (4.23:1) and magenta.60 (4.24:1) clear the 3:1 mark threshold but not the 4.5:1 text threshold on bone, so colour was removed from every badge LABEL and left only on the swatch, which is a redundant non-text mark; (d) the dataviz skill's own 2px stacked-segment gap is a raw px value that Gate B blocks — it is spacing.01 (0.125rem = 2px) and is now emitted as a token. (3) skipped = 3 checks that were NOT run and about which no claim is made in either direction: dark mode (the payload declares no dark theme and no dark surface was validated — semantic-dark exists in tokens.json and is untouched here); the --pairs adjacent pairlist (the all-pairs pairlist was used instead, which is strictly harder, so adjacent is covered by implication but was not separately reported); and any cost in currency (runs[] records a single `tokens` figure with no input/output/cache split and no rate, so no monetary figure can be derived and none is shown). Also not run and not claimed: keyboard focus order, target size, and screen-reader traversal, none of which a static render can answer."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [],
+    "sources": [
+      "validation/agent-runs.json"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "why_a_new_workstream": "system-operations did not exist. The two that did are brand-foundations (the brand, its tokens and their contrast) and design-system-selection (which design system to adopt). This artifact is about neither: its subject is the operating cost of the agent apparatus itself, measured from validation/agent-runs.json. Filing it under either existing workstream would have put a cost ledger inside a brand or a procurement thread and made both harder to read. The directory is new; nothing else was changed to accommodate it.",
+    "why_not_cf_chart_palette": "cf-chart-palette is the only entry in component-index.json for data visualisation and this artifact does NOT use it, because it fails on our own ground. Measured with the dataviz skill's validator against palette.bone.default: palette.teal.60 sits at OKLCH chroma 0.092, under the 0.10 floor, so slot 2 reads grey; palette.cyan.40 reaches 2.0:1 against bone, under the 3:1 mark threshold; and tritan separation for the set is 6.8, inside the 6-8 band that is legal only with secondary encoding. ART-009 F-07 recorded part of this independently. The four fills used here are palette.blue.60, palette.orange.70, palette.purple.70 and palette.magenta.60, chosen by enumeration and validated all-pairs on bone. THIS IS A GAP, NOT A FIX: no validated chart palette exists in the index, this artifact did not create one, and it must not be read as having promoted anything. A component-spec proposal for a bone-ground chart palette belongs to token-keeper and passes through the membrane; dashboard-analyst neither files nor promotes it.",
+    "gate_b_colour_check_is_notation_deep": "Gate B and audit-system check 6 both enforce 'no raw colour' in an artifact by a single regular expression that matches hex literals. The payload contains no hex, and the checks pass. That is TRUE but it is not the whole claim: the same checks would pass a payload full of off-token rgb() or hsl() values, and would block a payload whose hex was copied faithfully out of tokens.json. Both directions are wrong. The provenance here does not rest on the check: every colour in the payload was read out of tokens.json BY TOKEN PATH by a generator, and is emitted in the sRGB component form the token file itself stores, so each value can be traced to a path rather than merely to a notation. See validation.md section 4.",
+    "fonts_are_declared_not_embedded": "The payload names typography.family.sans (Anek Latin) and typography.family.mono (Source Code Pro) with the fallback stacks tokens.json declares. No font file exists in this repository, so a reader without those faces installed sees the first available fallback. The screenshots taken during validation were rendered under exactly that condition. Type SIZE, WEIGHT and TRACKING are on-token regardless of which face resolves."
+  }
+}

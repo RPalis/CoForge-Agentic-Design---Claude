@@ -1,0 +1,63 @@
+{
+  "competitor": "Google Travel",
+  "capture": "s1-dream-discover — the three decision surfaces, opened",
+  "captured_at": "2026-09-04T12:18Z",
+  "surface": "inspector instance (signed out, extension-clean); consent 'Reject all'",
+  "locale_served": "en",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "extraction_error_recorded": {
+    "what_happened": "A first pass clicked each of the three tabs and returned IDENTICAL content for all three — the sponsored hotel list.",
+    "why": "The decision panels report offsetParent === null even when selected, so a 'first visible tabpanel' selector fell through to the results list every time.",
+    "why_this_is_recorded": "Identical output from three different controls is a signature of extraction failure, not a product finding. Had it been written up it would have produced the false claim that Google's three decision surfaces show the same thing. Verified against aria-selected and per-panel text before recording anything.",
+    "correct_method": "Enumerate ALL [role=tabpanel] nodes and read each by index; do not filter on visibility."
+  },
+
+  "surface_1_where_to_stay": {
+    "shape": "Ranked neighbourhood list, each with a one-line reason and an 'Add area' action that filters the search.",
+    "verbatim": "TOP AREAS — 1. Alfama: São Jorge Castle & live Fado music. 2. Bairro Alto: São Roque Church & happening nightlife. 3. Príncipe Real: Stylish shopping & Príncipe Real Garden.",
+    "what_it_answers": "'I don't know this city — where should I even be?' The reason is given per area, so the recommendation is explained rather than asserted.",
+    "confidence": "Verified"
+  },
+
+  "surface_2_when_to_visit": {
+    "shape": "Seasonality prose plus weather and local events.",
+    "verbatim": "Peak travel is Apr-Sep, when temperatures are warm. Jul-Aug is especially hot, sunny and dry. Indie Lisboa (Apr) is a film festival focusing on international... [Read more]",
+    "what_it_answers": "'When should I go, and what will it be like?' — a question asked BEFORE dates exist, which every transactional competitor requires as an input.",
+    "confidence": "Verified"
+  },
+
+  "surface_3_what_youll_pay_STRONGEST": {
+    "shape": "Typical nightly price BY STAR CLASS, each with a range, the month it applies to, and the inventory count behind it.",
+    "verbatim": [
+      "2-star hotels €62 Typical — Usually €48-€75 per night in Sep — 51+ hotels",
+      "3-star hotels €102 Typical — Usually €76-€127 per night in Sep — 77+ hotels",
+      "4-star hotels €175 Typical — ..."
+    ],
+    "what_it_answers": "'Is this a normal price, or am I being taken advantage of?'",
+    "why_it_is_the_strongest": "This is the only surface observed anywhere in the round that directly addresses a first-time traveller's core anxiety — not knowing what normal looks like. It requires no booking, no account and no commitment, and it gives a RANGE plus the sample size behind it rather than a single number. It is an honesty device.",
+    "confidence": "Verified"
+  },
+
+  "finding_F27": {
+    "claim": "Google Travel is the only product observed that tells a traveller what a normal price looks like before they search.",
+    "evidence": "'What you'll pay' gives typical nightly price by star class with an explicit range, month, and inventory count. Booking.com and Expedia captures contain no equivalent — both present prices only in the context of a specific property, anchored against a struck-through 'previous price'.",
+    "confidence": "Verified",
+    "contrast_that_matters": "Booking.com and Expedia both use price ANCHORING at the property level — 'The previous price was $571', 'Sale $185 off'. Anchoring tells you this deal is good relative to a number the seller chose. Google's typical-range tells you what the market actually costs. These are opposite epistemics: one is persuasion, one is orientation.",
+    "scope_limit": "Three competitors. Whether any of the remaining fourteen offers an equivalent is untested."
+  },
+
+  "our_product_decision_required": [
+    "Decision required: 'what a normal price looks like' is the cheapest anti-anxiety feature observed in the round — no inventory, no supplier deal, no transaction required. Is it in Luma's first build?",
+    "Decision required: Google explains its neighbourhood recommendations with a reason per area. Booking.com and Expedia rank without explaining. Does Luma explain every recommendation, and can it, at ideation, without the data that produces the reason?",
+    "Decision required: 'When to visit' assumes dates are not yet chosen. Every transactional competitor REQUIRES dates as a search input. Luma's stage 1 is 'Dream & discover' — does its search accept an undecided traveller?"
+  ],
+
+  "not_observed": [
+    "'Track prices' surface — not opened this pass",
+    "whether these surfaces exist for destinations with thinner data",
+    "the handoff after 'View prices'",
+    "flights and vacation rentals verticals"
+  ]
+}

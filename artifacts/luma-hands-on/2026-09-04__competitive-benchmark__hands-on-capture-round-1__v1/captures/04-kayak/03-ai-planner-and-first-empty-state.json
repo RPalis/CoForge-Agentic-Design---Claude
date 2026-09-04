@@ -1,0 +1,63 @@
+{
+  "competitor": "Kayak",
+  "capture": "s1-dream-discover / AI planner — includes the round's FIRST empty state",
+  "url": "https://www.kayak.es/ai",
+  "captured_at": "2026-09-04T13:05Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es-es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "product_name_verbatim": "KAYAK - Planificador de viajes de inteligencia artificial",
+
+  "finding_F39_FIRST_EMPTY_STATE_CAPTURED": {
+    "claim": "Kayak's AI planner ships a designed empty state. This is the first empty state observed anywhere in the round across four competitors.",
+    "evidence_verbatim_es": "Aún no tienes planes de viaje",
+    "translation": "You don't have travel plans yet",
+    "accompanying_affordances": ["Nuevo chat (New chat)", "Empecemos (Let's start)", "Enlaces compartidos (Shared links)"],
+    "confidence": "Verified",
+    "why_it_matters": "Every capture so far has recorded empty/error/no-results states as NOT OBSERVED, because transactional flows rarely surface them to a browsing user. The AI surface is where a competitor must design for a user who has nothing yet — which is precisely the state Luma's first-time traveller is permanently in. The empty state is not an edge case for that user; it is their opening screen.",
+    "scope_limit": "One empty state, one product, one surface. Error, no-results and offline states remain uncaptured everywhere."
+  },
+
+  "finding_F40_MULTIMODAL_INPUT": {
+    "claim": "Kayak's travel AI accepts photo and file upload as planning input, not just text.",
+    "evidence_verbatim_es": ["Entrada de mensaje de chat", "Cargar fotos", "Elige otro archivo"],
+    "translation": ["Chat message input", "Upload photos", "Choose another file"],
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "Luma's Core Features list includes 'Travel documents', 'Boarding passes' and 'Offline itinerary' — all of which are FILES a traveller already holds. A competitor has already built the ingestion path for exactly that content, framed as planning input rather than storage. TripIt's whole product is confirmation ingestion. The pattern of 'give us the document you already have' is occupied from two directions before Luma has built anything.",
+    "not_observed": "What Kayak does with an uploaded photo. OWED — nothing was uploaded; no file belonging to the client was used or would be."
+  },
+
+  "finding_F41_LOCATION_ASSERTION": {
+    "claim": "The planner asserts the traveller's location unprompted, and asserted it incorrectly.",
+    "evidence_verbatim_es": "Estás en Toronto Todos los aeropuertos",
+    "translation": "You are in Toronto, All airports",
+    "confidence": "Verified",
+    "observation": "The session is a Spanish-locale browser whose flight search pre-filled Madrid (MAD) as origin minutes earlier. The AI surface independently asserts Toronto. Two surfaces of one product disagree about where the traveller is.",
+    "why_it_matters": "For a confident traveller a wrong default is a minor annoyance. For Luma's stated user — low confidence, needing reassurance at every step — a product that states something false about them in its opening line spends trust it has not yet earned. And it is presented as a statement ('You are in'), not a question.",
+    "caveat": "Cause not established. Could be IP geolocation, VPN, account setting or a stale default. Recorded as observed behaviour, NOT as a geolocation defect."
+  },
+
+  "surface_structure": {
+    "layout": "Left sidebar with chat history and shared links; centre column with prompt and suggested starters",
+    "primary_prompt_verbatim_es": "Pregunta lo que sea",
+    "translation": "Ask anything",
+    "starter_section": "Empecemos (Let's start) — four suggestion cards, still loading at capture time",
+    "chat_history_state": "empty for this account"
+  },
+
+  "our_product_decision_required": [
+    "Decision required: the empty state IS the first-time traveller's normal state. Every competitor optimises for a returning user with history. Luma's primary user has none, ever, on first use. What does Luma's empty state DO — and is it designed first rather than last?",
+    "Decision required: Kayak ingests photos and files as planning input. Luma's travel documents, boarding passes and offline itinerary are the same content. Is Luma's document layer storage, or an input to planning?",
+    "Decision required: Kayak states the traveller's location and got it wrong, in the opening line of its AI. For a reassurance-led product, is an unverified assertion about the user ever acceptable — or should Luma ask where a confident product would assume?"
+  ],
+
+  "not_observed": [
+    "the four suggestion starter cards resolved",
+    "an actual AI conversation — no prompt was submitted",
+    "what an uploaded photo produces",
+    "Kayak sort axes — STILL OWED across two attempts",
+    "the handoff to a booking site",
+    "Trips / saved items authenticated views"
+  ]
+}

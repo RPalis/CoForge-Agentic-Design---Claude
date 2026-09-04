@@ -1,0 +1,64 @@
+{
+  "competitor": "Hopper",
+  "capture": "s0 + fintech layer — Premium Disruption Assistance",
+  "urls": ["https://www.hopper.com/", "https://www.hopper.com/product/premium-disruption-assistance"],
+  "captured_at": "2026-09-04T14:08Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en",
+  "source_class": "Own capture (first-party product page)",
+  "confidence": "Verified",
+
+  "MATERIAL_QUALIFICATION_of_F57": {
+    "F57_as_stated": "Traced across five competitors, the traveller's protection degrades at every hop and nobody holds the whole chain. Recorded as 'the clearest statement of Luma's opportunity produced by this round'.",
+    "what_Hopper_shows": "One competitor sells exactly that ownership, as a named product.",
+    "evidence_verbatim": "If your flight is delayed or canceled, instantly rebook on any airline. If you are not happy with the rebooking options, get a 100% refund of your flight instead.",
+    "the_corrected_position": "The gap is NOT that nobody owns the disruption moment. It is that ownership is sold as a PAID ADD-ON, inside an APP, attached to that product's own bookings — rather than being a property of the journey itself.",
+    "why_the_correction_matters": "F-57 as written would have led Luma to claim an unoccupied space that is in fact occupied by a well-capitalised specialist. The honest version is narrower and far more useful: the question is not whether to own disruption, it is whether owning it is a PRODUCT YOU BUY or a PROPERTY OF THE THING YOU ALREADY BOUGHT.",
+    "confidence": "Verified"
+  },
+
+  "the_product": {
+    "name": "Premium Disruption Assistance",
+    "core_promise_verbatim": "If your flight is delayed or canceled, instantly rebook on any airline. If you are not happy with the rebooking options, get a 100% refund of your flight instead.",
+    "notable_scope": "'rebook on ANY airline' — not restricted to the original carrier. That is materially more than EU 261 obliges an airline to do, and more than Iberia's changes page offers (F-56).",
+    "availability_verbatim": "Available in the Hopper app",
+    "cost": "NOT STATED on this page. A customer review quoted on the page says 'you can rebook it if you pay a small amount' — that is a testimonial, not a price. Recorded as UNKNOWN.",
+    "page_size": "1,631 characters — a thin marketing page, not documentation."
+  },
+
+  "finding_F64_THE_FINTECH_FAMILY": {
+    "claim": "Hopper ships a family of flexibility products, not a single one.",
+    "products_observed": ["Cancel for Any Reason", "Change for Any Reason", "Leave for Any Reason",
+                          "Premium Disruption Assistance", "Price Prediction"],
+    "confidence": "Verified",
+    "reading": "Every one converts an anxiety into a purchasable option. This is the most developed answer to traveller anxiety observed in the round — and it is a FINANCIAL product line, not a UX one.",
+    "the_uncomfortable_implication": "Expedia monetises anxiety by shaming the decline (F-22). Hopper monetises it by selling the cure as a product family. Both are revenue models built on the same fear Luma proposes to remove. A product that genuinely removes the fear removes the revenue with it. That is a business-model question the scenario does not address."
+  },
+
+  "finding_F65_THE_BROWSER_LIMIT_MEASURED": {
+    "claim": "Hopper's web surface permits search but gates its differentiating products behind the app.",
+    "evidence": {
+      "web_can": "Search inputs and buttons present and functional for both stays and flights — 'Search destination', 'Add dates', 'Add guests', 'Departure', 'Destination', 'Add travelers'.",
+      "web_cannot": "'Premium Disruption Assistance' states 'Available in the Hopper app'. Homepage carries 'Scan to download' and 'Get deal alerts on the app'.",
+      "page_shape": "Homepage 1,769 DOM nodes / 89 links — by far the thinnest of the six competitors captured. Booking.com 5,393/300, Skyscanner 2,994/446, Kayak 3,657/487."
+    },
+    "confidence": "Verified",
+    "why_this_was_scheduled_here": "ART-024 placed Hopper at position 6 specifically to measure the browser-only limit before more sessions were planned around it. The measurement: the web surface is a functional search plus a marketing site for the app. Every capture of Hopper's actual differentiators — prediction accuracy, price freeze mechanics, the disruption product in use — is UNREACHABLE by this method.",
+    "consequence_for_the_plan": "Hopper cannot be captured to the same depth as the other sixteen. This must be stated in any comparison rather than letting Hopper look feature-poor because the method could not see it. Recorded as a METHOD limit, not a product finding.",
+    "options_for_a_human": ["capture on a phone with the app installed", "accept Hopper as web-surface-only and label every Hopper comparison accordingly"]
+  },
+
+  "our_product_decision_required": [
+    "Decision required — the biggest one this round has produced: is disruption protection something Luma SELLS, or something Luma IS? Hopper sells it. Expedia sells the adjacent fear. Iberia acknowledges the moment and abandons it. Booking.com disclaims it. Luma's stated objective — 'reducing travel stress... at every stage' — reads as the second, but the second has no observed revenue model.",
+    "Decision required: 'rebook on any airline' is the strongest single promise found in the round. Luma cannot make it without either inventory relationships or a balance sheet to absorb the cost. Which is it buying?",
+    "Decision required: how does Luma treat a competitor whose differentiators are app-only? Hopper's web surface understates it. Any Luma comparison built from web capture alone will misjudge its strongest rival on exactly the axis Luma cares most about."
+  ],
+
+  "not_observed": [
+    "the price of Premium Disruption Assistance — the single most important missing number",
+    "whether it covers flights NOT booked through Hopper",
+    "Price Prediction accuracy claims — the standing vendor-claim caution from the skill applies",
+    "Price Freeze — searched for 'price freeze', 'lock in price': NO match on the homepage. Not observed, not absent.",
+    "everything app-gated"
+  ]
+}

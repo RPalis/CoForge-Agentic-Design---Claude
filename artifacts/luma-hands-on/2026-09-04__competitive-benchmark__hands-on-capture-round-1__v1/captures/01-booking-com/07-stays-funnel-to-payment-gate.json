@@ -1,0 +1,67 @@
+{
+  "competitor": "Booking.com",
+  "capture": "s3-book / accommodation — detail through booking form to the payment gate",
+  "captured_at": "2026-09-04T11:26Z",
+  "surface": "inspector instance (signed out, extension-clean)",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "path_walked": ["/searchresults.html", "/hotel/pt/<property>.html", "/book.html"],
+  "stopped_at": "booking form. Payment step not entered. No payment field was present at this step.",
+
+  "finding_F13": {
+    "claim": "The primary Reserve control is inert until a room quantity is selected, and nothing states this.",
+    "evidence": "On the property page, clicking 'I'll reserve' produced no navigation. After setting a room-quantity <select> to 1 and dispatching change, the identical click advanced to /book.html. The button was never disabled — it was enabled and did nothing.",
+    "confidence": "Verified",
+    "why_it_matters": "An enabled control that silently does nothing is worse than a disabled one for a low-confidence user, who reads no response as their own error. Luma's stated primary user is exactly this person."
+  },
+
+  "finding_F14": {
+    "claim": "No account is required to reach the booking form. There is no sign-in wall and no guest-checkout prompt either — the question is simply never asked.",
+    "evidence": "At /book.html signed out: no 'sign in', 'create an account' or 'continue as guest' text present. The form is served directly.",
+    "confidence": "Verified",
+    "why_it_matters": "Friction is deferred rather than imposed. Contrast with the Genius finding: the account matters for price, not for permission."
+  },
+
+  "finding_F15": {
+    "claim": "Booking.com's answer to multi-type trip attachment is three opt-in checkboxes inside the booking form.",
+    "evidence": "Form carries checkboxes named interested_flight, interested_car_rentals, interested_taxi.",
+    "confidence": "Verified",
+    "business_goal_link": "Scenario business goal 2 — 'Increase the share of trips that include more than one of the four booking types.' The incumbent implements this as interest capture at checkout, not as a connected trip.",
+    "our_product_decision_required": "Decision required: is Luma's multi-type attachment a checkbox at checkout, or a consequence of the trip being modelled as one object? These produce very different products."
+  },
+
+  "required_fields_before_payment": [
+    "firstname (required)", "lastname (required)", "email (required)",
+    "address1 (required)", "city (required)", "country cc1 (required)",
+    "phoneNumber (required)", "zip (optional)"
+  ],
+  "field_note": "Full postal address is mandatory to book a three-night apartment stay. That is a heavy ask at the moment of commitment for a first-time traveller.",
+
+  "segmentation_captured_at_booking": {
+    "bp_travel_purpose": "radio — leisure vs business, captured during booking",
+    "notstayer": "radio — booking for yourself vs someone else"
+  },
+
+  "price_transparency": {
+    "lines_observed": ["€ 1,272.16 (original)", "- € 435.93 (deal)", "€ 836.23 (current)",
+                       "Includes € 136.01 in taxes and fees", "€ 42.01"],
+    "assessment": "Strike-through anchoring plus an itemised tax line. Total is stated, taxes are disclosed inline rather than at the end.",
+    "confidence": "Verified"
+  },
+  "rate_terms_on_this_step": ["Non-refundable"],
+  "rate_terms_available_on_detail_page": ["Free cancellation before September 29, 2026",
+                                          "Free cancellation before November 3, 2026", "Non-refundable"],
+
+  "detail_page_devices": {
+    "reassurance": ["free cancellation dates stated per rate", "price match / best price guarantee present"],
+    "urgency": ["Limited-time Deal"],
+    "urgency_absent_this_render": ["only N rooms left", "in high demand", "booked N times", "people looking now"],
+    "accessibility_facilities_listed": true
+  },
+
+  "not_reached": [
+    { "surface": "payment step and its fields", "reason": "operator does not transact — standing constraint" },
+    { "surface": "confirmation, manage-booking, post-purchase", "reason": "requires a completed booking" },
+    { "surface": "flights, car rental, attractions funnels", "reason": "not yet captured — stays only" }
+  ]
+}

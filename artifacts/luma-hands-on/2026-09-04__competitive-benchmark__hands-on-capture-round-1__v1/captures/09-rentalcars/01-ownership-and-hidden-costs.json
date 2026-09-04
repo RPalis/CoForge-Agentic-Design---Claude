@@ -1,0 +1,66 @@
+{
+  "competitor": "Rentalcars.com",
+  "capture": "s0-site-tree-L1 — on-site transport (car hire)",
+  "url": "https://www.rentalcars.com/es/",
+  "captured_at": "2026-09-04T15:16Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 1057, "links": 114, "visible_chars": 4839 },
+
+  "finding_F85_ROSTER_INDEPENDENCE_PROBLEM": {
+    "claim": "Rentalcars.com states on its own homepage that it is part of Booking Holdings — the same parent as Booking.com, competitor 1.",
+    "evidence_verbatim_es": "Rentalcars.com es parte de Booking Holdings Inc., líder mundial en viajes online y servicios relacionados.",
+    "translation": "Rentalcars.com is part of Booking Holdings Inc., world leader in online travel and related services.",
+    "confidence": "Verified — first-party statement on the product's own homepage.",
+    "why_it_matters_for_the_ROSTER": "The roster treats Booking.com (tier 1) and Rentalcars.com (tier 2) as independent competitors. They are corporate siblings. Any claim of the form 'N of 17 competitors do X' silently overstates independence wherever siblings agree — apparent market consensus may be one company's portfolio decision.",
+    "what_must_be_checked_next": "Kayak is widely understood to be part of the same group. This capture does NOT establish that — Kayak's own surfaces were not searched for an ownership statement. If it holds, THREE of the seventeen share a parent, including two tier-1 entries, and the roster's independence assumption needs stating explicitly in every later artifact.",
+    "action": "Flagged for the roster audit alongside F-45 (Kayak prompting cross-modally) and F-54 (business goal 5 has no comparator). Three roster findings now pending, all discovered in capture rather than planning."
+  },
+
+  "finding_F86_A_DIRECT_HIDDEN_COST_CLAIM": {
+    "claim": "Rentalcars makes an explicit no-hidden-charges claim on the homepage.",
+    "evidence_verbatim_es": "Sin cargos ocultos",
+    "translation": "No hidden charges",
+    "supporting": "A homepage FAQ asks '¿Están todos los impuestos incluidos en el precio del alquiler?' (Are all taxes included in the rental price?)",
+    "confidence": "Verified that the CLAIM is made. NOT verified that it holds — no booking flow was walked, and car hire is the vertical where counter-desk charges, fuel policy, insurance excess and deposits classically appear after the headline price.",
+    "why_it_matters": "This is the third distinct position on price honesty observed. Google Flights commits to all-in pricing with a named exception (F-30). Kayak explicitly excludes baggage (F-46). Rentalcars asserts no hidden charges without naming an exception at all — the strongest claim and the least qualified.",
+    "the_test_that_is_owed": "Walk the booking to the payment gate and compare the headline price against the total. In car hire specifically, the gap between those two numbers IS the traveller's experience. Untested."
+  },
+
+  "finding_F87_HEDGED_REASSURANCE": {
+    "claim": "The cancellation promise carries a qualifier that most travellers will not weigh.",
+    "evidence_verbatim_es": "Cancelación gratuita en la mayoría de las reservas",
+    "translation": "Free cancellation on MOST bookings",
+    "confidence": "Verified",
+    "why_it_matters": "Compare Airbnb, which states a DATE — 'Cancelación gratuita antes del 5 de noviembre' — and Iberia, which distinguishes voluntary from operational and names the difference (F-56). 'La mayoría' is a promise a traveller cannot check against their own booking at the moment they read it. For Luma's stated user, an unresolvable qualifier is worse than a smaller specific promise.",
+    "the_transferable_rule": "A reassurance a traveller cannot apply to their own case is decoration. Airbnb's dated cancellation is the model; 'most bookings' is the anti-model."
+  },
+
+  "trust_signals_observed": {
+    "review_volume_verbatim_es": "Más de 5 millones de opiniones",
+    "parent_disclosure": "Booking Holdings Inc. named on the homepage",
+    "note": "Review count and corporate parentage are both used as trust devices. The second is unusual — most competitors do not name a parent company on the homepage."
+  },
+
+  "search_entry": {
+    "single_field_verbatim_es": "Aeropuerto, ciudad o estación",
+    "translation": "Airport, city or station",
+    "note": "'Estación' (station) in the placeholder — car hire pickup at rail stations is anticipated. Relevant to the scenario's on-site transport capability, though this is car hire, not transport ticketing."
+  },
+
+  "legal": { "Términos y condiciones": "/content/terms.es.html", "Política de privacidad": "/PrivacyPolicy.do" },
+
+  "our_product_decision_required": [
+    "Decision required: Luma will make reassurance claims. 'Sin cargos ocultos' and 'cancelación gratuita en la mayoría' are both unfalsifiable at the moment of reading. Every Luma promise should be checkable by the traveller against their own booking, or it is decoration.",
+    "Decision required for the ANALYSIS, not the product: how are corporate siblings counted? Booking.com and Rentalcars share a parent. Treating them as independent evidence inflates any consensus finding."
+  ],
+
+  "not_observed": [
+    "the booking flow to the payment gate — the only way to test F-86",
+    "insurance, excess, deposit and fuel policy presentation",
+    "sort axes on a results surface",
+    "whether Kayak carries an equivalent ownership statement — OWED and now material"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "competitor": "Expedia",
+  "capture": "s3-book / accommodation — detail through checkout to the card screen",
+  "captured_at": "2026-09-04T11:56Z",
+  "surface": "client's authenticated Chrome — One Key Blue tier",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "path_walked": ["/Hotel-Search", "/<property>.Hotel-Information", "/checkout/session/<id>"],
+  "stopped_at": "Card entry screen, heading 'Secure booking'. NO card, billing or personal data was entered at any point. Card fields were observed as page structure only.",
+
+  "finding_F21_CHECKOUT_SHAPE_DIFFERS": {
+    "claim": "Expedia collapses guest details and payment onto ONE page; Booking.com splits them across two, with no payment field present on its details step.",
+    "evidence": {
+      "expedia": "/checkout/session/<id> — sections: Who's checking in, Payment details, Verify Payment, Protect your hotel — all on one page, with card number / expiry / CVV fields present.",
+      "booking_com": "/book.html — required firstname, lastname, email, address1, city, country, phone. Zero card fields; payment is a later step."
+    },
+    "confidence": "Verified",
+    "reading": "Two opposite bets on commitment. Booking.com asks for identity first and defers money; Expedia asks for everything at once. For a low-confidence traveller these feel very different at the moment of highest anxiety.",
+    "note": "Booking.com asks for a full POSTAL ADDRESS before payment; Expedia asks only first name, last name and phone before the card block."
+  },
+
+  "finding_F22_CONFIRMSHAMING": {
+    "claim": "Expedia's insurance decline option is written as a confession of recklessness rather than a neutral choice.",
+    "evidence_verbatim": {
+      "accept_option": "Stay Protection Plan",
+      "decline_option": "I'm willing to risk my $358.59 stay in Lisbon"
+    },
+    "pattern_name": "Confirmshaming — a recognised deceptive-design pattern in which declining is phrased to induce guilt or fear.",
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "Luma's stated business objective is 'reducing travel stress'. The incumbent MANUFACTURES stress at the point of payment and monetises the relief. This is the sharpest available example of the market solving for conversion where Luma proposes to solve for confidence — and it is a direct decision, not an observation.",
+    "regulatory_note": "Deceptive design is in scope of EU consumer-protection enforcement and the EAA-adjacent regime the scenario already flags. Recorded as context, not legal advice."
+  },
+
+  "payment_surface_structure_observed_not_used": {
+    "methods_offered": ["Card", "Pay over time", "PayPal", "Apple Pay"],
+    "card_fields_present": ["card number (0000 0000 0000 0000)", "expiry (MM/YY)", "CVV", "billing ZIP"],
+    "persistence_option": "'Save this card for future use' checkbox",
+    "bnpl_offer_verbatim": "0% APR or as low as $33/mo. Learn more",
+    "bnpl_note": "Buy-now-pay-later financing offered on a $358 three-night hotel stay."
+  },
+
+  "price_construction": {
+    "nightly": "$112.77 per night including taxes",
+    "subtotal": "$338.30", "taxes_and_fees": "$20.29",
+    "protection_plan_add": "$27.90",
+    "total_with_protection": "$386.49", "total_without": "$358.59",
+    "assessment": "Itemised and legible. The protection plan is pre-selected as a priced line in the running total, so declining it lowers a total the traveller has already seen."
+  },
+
+  "detail_page_findings": {
+    "rate_options_observed": ["Non-Refundable", "Fully refundable before Oct 20",
+                              "Fully refundable before Nov 3", "Reserve now, pay later"],
+    "tier_specific_section": "This stay's Blue member benefits",
+    "member_saving_claim": "Save 28% or more when you book this stay",
+    "city_tax_disclosure_verbatim": "A tax is imposed by the city: EUR 4.00 per person, per night, up to 7 nights. This tax does not apply to children under...",
+    "vs_booking": "Expedia states the city tax rule explicitly and per-person. Booking.com's detail page said only 'Includes taxes and fees'. Expedia is more transparent at this point in the journey.",
+    "price_anchoring": ["The previous price was $571", "Sale $185 off"],
+    "urgency_devices_this_render": "none fired"
+  },
+
+  "our_product_decision_required": [
+    "Decision required: one-page checkout or staged. Expedia asks for everything at once; Booking.com asks identity first and defers money. Which is less frightening for someone who has never booked a trip?",
+    "Decision required: Luma will face the same insurance-attach economics. Does it offer protection with a neutral decline, or not at all? F-22 is the clearest case in the round of a competitor's revenue model contradicting Luma's stated objective.",
+    "Decision required: BNPL appears on a $358 stay. Is financing a reassurance feature or a risk transfer onto an inexperienced traveller?"
+  ],
+
+  "not_reached": [
+    { "surface": "payment submission, confirmation, itinerary", "reason": "operator does not transact and does not enter card details — absolute constraint" },
+    { "surface": "post-purchase management, Trips", "reason": "requires a completed booking" },
+    { "surface": "flights, cars, packages, activities, cruises funnels", "reason": "stays only so far" }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "competitor": "Booking.com",
+  "capture": "s2-plan-compare / accommodation — search results",
+  "url_path": "/searchresults.html",
+  "query_observed": "Lisbon, 2026-11-10 to 2026-11-13, 2 adults, 1 room",
+  "captured_at": "2026-09-04T11:08Z",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "result_count": "4,194 properties found",
+  "cards_rendered_first_paint": 26,
+
+  "finding_F09_LOAD_BEARING": {
+    "claim": "Booking.com offers no ranking axis based on effort, ease, stress or traveller confidence. Every axis is price, a quality proxy, distance, property type, or an opaque default.",
+    "method": "Opened the sort control and enumerated the full option list. This is a POSITIVE enumeration of what exists, not an absence-of-evidence inference.",
+    "full_option_list_verbatim": [
+      "Our top picks", "Homes & apartments first", "Price (lowest first)",
+      "Price (highest first)", "Best reviewed & lowest price", "Property rating (high to low)",
+      "Property rating (low to high)", "Property rating and price", "Distance from downtown",
+      "Top reviewed", "Genius discounts first"
+    ],
+    "axis_breakdown": {
+      "price": 4, "quality_proxy": 4, "distance": 1, "property_type": 1, "opaque_default": 1,
+      "effort_ease_stress_confidence": 0
+    },
+    "confidence": "Verified",
+    "scope_limit": "Accommodation search only, one market, one query. Flights, cars and attractions have their own sorters — not yet captured."
+  },
+
+  "finding_F10_REFUTES_PRIOR_HYPOTHESIS": {
+    "claim": "Booking.com DOES disclose that commercial terms affect ranking — so a blanket claim that competitors never explain their recommendations does not hold here.",
+    "evidence_verbatim": "Commission paid on bookings, and other factors can affect property rankings. Learn about these ranking parameters and how to select and modify them. Learn more",
+    "placement": "Persistent notice directly under the result count, above the first card.",
+    "confidence": "Verified",
+    "important_nuance": "This is a page-level regulatory-style disclosure about the ALGORITHM, not a per-result explanation of why THIS property is ranked here. The distinction matters: the disclosure exists, per-result reasoning does not."
+  },
+
+  "control_surface": {
+    "sort_options": 11,
+    "filter_groups": 22,
+    "filter_controls_checkboxes": 119,
+    "filter_group_titles": [
+      "Your budget (per night)", "Popular filters", "Property Type", "Bedrooms and bathrooms",
+      "Review score", "Facilities", "Room facilities", "Meals", "Property rating",
+      "Neighborhood", "Reservation policy", "Distance from center", "Bed preference",
+      "Travel group", "Fun Things To Do", "Brands", "Landmarks", "Highly rated features",
+      "Online Payment", "Certifications", "Property Accessibility", "Room Accessibility"
+    ],
+    "map_present": true
+  },
+
+  "card_level_signals_first_result": {
+    "free_cancellation": true, "no_prepayment_needed": true,
+    "genius_label_present_on_page": true, "genius_label_count": 4,
+    "urgency_devices_this_render": { "only_x_left": 0, "in_high_demand": 0, "booked_n_times": 0 }
+  },
+
+  "our_product_decision_required": [
+    "Decision required: Luma's stated differentiator is reducing stress. Booking.com's 11 sort axes contain no such axis. Is 'easiest trip' a rankable, defensible axis Luma can actually compute — and from what signal?",
+    "Decision required: a 'Travel group' filter and separate 'Property/Room Accessibility' groups already exist here. Luma's five user types need equivalent entry points or it is less capable than the incumbent at day one.",
+    "Decision required: Booking.com discloses commercial influence on ranking at page level. Does Luma explain ranking per result, which no observed competitor does?"
+  ],
+
+  "method_contamination_WARNING": {
+    "issue": "The capture browser is the client's own Chrome and carries third-party extensions that inject UI into the page. A 'Directo' deals panel and a 'vio' price-comparison bar were visible in the viewport during this capture and are NOT Booking.com surfaces.",
+    "detected_programmatically": false,
+    "detected_visually": true,
+    "action": "Screenshot-derived observations must be filtered against this. No injected element is recorded as a competitor feature in this file. Flagged to the client."
+  },
+
+  "not_observed": [
+    "empty state (no results) — not yet triggered",
+    "error state — not yet triggered",
+    "loading state — not captured",
+    "map view interaction",
+    "the 'Learn more' ranking-parameters page behind the disclosure"
+  ]
+}

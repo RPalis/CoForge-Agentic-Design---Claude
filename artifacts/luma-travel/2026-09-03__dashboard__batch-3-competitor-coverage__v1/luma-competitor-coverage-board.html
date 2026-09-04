@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luma Batch 3 &mdash; competitor coverage &amp; evidence-integrity board &mdash; CoForge</title>
+<meta name="generator" content="dashboard-analyst">
+<meta name="source" content="ART-011, ART-012">
+<style>
+:root {
+  /* colour — chrome inherited from ART-010 (design-system/tokens/tokens.json 0.2.0), by token path */
+  --ground:        color(srgb 0.933333 0.925490 0.901961);  /* semantic.background -> palette.bone.default */
+  --raised:        color(srgb 1.000000 1.000000 1.000000);  /* semantic.layer.02   -> palette.white.default */
+  --ink:           color(srgb 0.015686 0.070588 0.133333);  /* semantic.text.primary -> palette.ink.default */
+  --ink-2:         color(srgb 0.321569 0.321569 0.321569);  /* semantic.text.secondary -> palette.gray.70 */
+  --ink-3:         color(srgb 0.337255 0.317647 0.317647);  /* palette.warmGray.70 — axis + caption ink, 6.60:1 on ground */
+  --hairline:      color(srgb 0.776471 0.776471 0.776471);  /* semantic.border.subtle-01 -> palette.gray.30 */
+  --hairline-soft: color(srgb 0.898039 0.878431 0.874510);  /* palette.warmGray.20 — gridline */
+  --coral:         color(srgb 0.945098 0.356863 0.250980);  /* FILL ONLY — brand.md §3 */
+  --coral-text:    color(srgb 0.690196 0.219608 0.133333);  /* the text-safe coral role */
+
+  /* colour — two NEW ramps derived for this board, enumerated + validated against
+     palette.bone.default with the dataviz skill's validator (see validation.md §2).
+     Neither reuses ART-010's blue/orange/purple/magenta four, and neither is a
+     semantic.support.* hue, so nothing here can be misread as a status verdict. */
+  --seq-50: color(srgb 0.000000 0.615686 0.603922);  /* palette.teal.50 — SEQUENTIAL floor (2.83:1 mark) */
+  --seq-60: color(srgb 0.000000 0.490196 0.474510);  /* palette.teal.60 */
+  --seq-70: color(srgb 0.000000 0.364706 0.364706);  /* palette.teal.70 */
+  --seq-80: color(srgb 0.000000 0.254902 0.266667);  /* palette.teal.80 */
+  --seq-90: color(srgb 0.007843 0.168627 0.188235);  /* palette.teal.90 — SEQUENTIAL ceiling */
+  --tier-2: color(srgb 0.411765 0.439216 0.466667);  /* palette.coolGray.60 — ORDINAL: Tier 2, documented */
+  --tier-1: color(srgb 0.203922 0.227451 0.247059);  /* palette.coolGray.80 — ORDINAL: Tier 1, verified live */
+
+  --s01: 0.125rem; --s02: 0.25rem; --s03: 0.5rem;
+  --s04: 0.75rem; --s05: 1rem; --s06: 1.5rem;
+  --s07: 2rem; --s08: 2.5rem; --s09: 3rem;
+  --s10: 4rem;
+  --f01: 0.75rem; --f02: 0.875rem;
+  --f03: 1rem; --f04: 1.25rem;
+  --f05: 1.75rem; --f06: 2.5rem;
+  --w-reg: 400; --w-semi: 600;
+  --w-heavy: 700;
+  --tr-h1: -0.06rem; --tr-h2: -0.03rem;
+  --tr-h3: -0.015rem; --tr-body: 0rem;
+  --tr-cap: 0.01rem;
+  --sans: 'Anek Latin', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--sans); font-size: var(--f03); font-weight: var(--w-reg);
+  letter-spacing: var(--tr-body); line-height: 1.5;
+  margin: 0; padding: var(--s08) var(--s07) var(--s10);
+}
+.wrap { max-width: 68rem; margin: 0 auto; }
+
+h1 { font-size: var(--f06); font-weight: var(--w-heavy); letter-spacing: var(--tr-h1);
+     line-height: 1.05; margin: 0 0 var(--s03); }
+h2 { font-size: var(--f05); font-weight: var(--w-semi); letter-spacing: var(--tr-h2);
+     line-height: 1.15; margin: var(--s09) 0 var(--s02); }
+h3 { font-size: var(--f04); font-weight: var(--w-semi); letter-spacing: var(--tr-h3);
+     line-height: 1.25; margin: var(--s07) 0 var(--s03); }
+p  { margin: 0 0 var(--s04); max-width: 46rem; }
+.body-sm { font-size: var(--f02); }
+.caption { font-size: var(--f01); letter-spacing: var(--tr-cap); color: var(--ink-3); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+code, .mono { font-family: var(--mono); font-size: var(--f01); }
+.src { font-family: var(--mono); font-size: var(--f01); color: var(--ink-3);
+       letter-spacing: var(--tr-body); }
+.lede { font-size: var(--f04); font-weight: var(--w-reg); letter-spacing: var(--tr-h3);
+        line-height: 1.35; max-width: 44rem; }
+a { color: var(--coral-text); }
+
+.rule { border: 0; border-top: 1px solid var(--hairline); margin: var(--s07) 0; }
+.rule-strong { border: 0; border-top: 2px solid var(--ink); margin: var(--s05) 0 var(--s07); }
+
+.card { background: var(--raised); border: 1px solid var(--hairline);
+        border-radius: var(--s04); padding: var(--s06); }
+.peakcard { border-left: var(--s02) solid var(--coral); }
+
+.floor { background: var(--raised); border: 1px solid var(--hairline);
+         border-left: var(--s02) solid var(--coral);
+         border-radius: var(--s04); padding: var(--s06); margin: var(--s07) 0 var(--s08); }
+.floor h2 { margin: 0 0 var(--s03); font-size: var(--f04); letter-spacing: var(--tr-h3); }
+.floor ul { margin: 0; padding-left: var(--s05); }
+.floor li { margin: 0 0 var(--s03); max-width: 52rem; }
+.floor li:last-child { margin-bottom: 0; }
+
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s05); }
+.kpi { background: var(--raised); border: 1px solid var(--hairline);
+       border-radius: var(--s04); padding: var(--s05); }
+.kpi .val { font-family: var(--sans); font-size: var(--f06); font-weight: var(--w-heavy);
+            letter-spacing: var(--tr-h1); line-height: 1; display: block; }
+.kpi .lab { display: block; margin-top: var(--s03); font-size: var(--f02);
+            font-weight: var(--w-semi); }
+.kpi .flr { display: inline-block; margin-top: var(--s02); font-size: var(--f01);
+            font-family: var(--mono); color: var(--ink-3); }
+
+.chart { margin-top: var(--s05); }
+.row { display: grid; grid-template-columns: 17rem 1fr; gap: var(--s05);
+       align-items: center; padding: var(--s02) 0; }
+.row + .row { border-top: 1px solid var(--hairline-soft); }
+.rowlab { font-size: var(--f02); line-height: 1.25; }
+.rowlab .agent { font-weight: var(--w-semi); }
+.rowlab .task { display: block; color: var(--ink-2); font-size: var(--f01); }
+.track { display: grid; grid-template-columns: 1fr 8.5rem; align-items: center;
+          gap: var(--s04); }
+.plot { min-width: 0; background: var(--hairline-soft); border-radius: var(--s01); }
+.bar { height: 0.875rem; border-radius: var(--s01); }
+.val { font-family: var(--mono); font-size: var(--f01); font-variant-numeric: tabular-nums;
+       white-space: nowrap; text-align: right; }
+.axis { display: flex; justify-content: space-between; border-top: 1px solid var(--hairline);
+        margin-top: var(--s03); padding-top: var(--s02); }
+.axis span { font-family: var(--mono); font-size: var(--f01);
+             font-variant-numeric: tabular-nums; color: var(--ink-3); }
+
+.peak { display: inline-flex; align-items: center; gap: var(--s02); margin-top: var(--s01);
+        font-size: var(--f01); font-family: var(--mono); color: var(--coral-text); }
+.peak .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%;
+             background: var(--coral); flex: none; }
+
+.legend { display: flex; flex-wrap: wrap; gap: var(--s04) var(--s07); margin: var(--s05) 0 var(--s04); }
+.lg { display: inline-flex; align-items: center; gap: var(--s03); font-size: var(--f02); }
+.lg .sw { width: 0.875rem; height: 0.875rem; border-radius: var(--s01); flex: none; }
+.lg .gl { font-size: var(--f03); line-height: 1; color: var(--ink); }
+.lg .ct { font-family: var(--mono); font-size: var(--f01); color: var(--ink-2);
+          font-variant-numeric: tabular-nums; }
+
+/* -- row-state: shape + word only, NO hue. the three D-001/D-002 states -- */
+.rowstate { display: inline-flex; align-items: center; gap: var(--s02); font-size: var(--f02); white-space: nowrap; }
+.rowstate .gl { font-size: var(--f03); line-height: 1; color: var(--ink); }
+.rowstate.muted { color: var(--ink-3); font-style: italic; }
+
+/* -- ordinal tier chip: fill carries magnitude, word carries meaning (AA-safe) -- */
+.tierchip { display: inline-flex; align-items: center; gap: var(--s02);
+            font-size: var(--f01); font-weight: var(--w-semi); color: var(--ink); white-space: nowrap; }
+.tierchip .sw { width: 0.75rem; height: 0.75rem; border-radius: 50%; flex: none; }
+
+/* -- the deliberately-blank cell: D-001. visible, bordered, labelled — never a dash -- */
+.blank { border: 1px dashed var(--hairline); border-radius: var(--s02);
+         padding: var(--s02) var(--s03); display: inline-flex; align-items: center;
+         gap: var(--s02); color: var(--ink-3); font-size: var(--f01);
+         background-image: repeating-linear-gradient(45deg,
+           var(--hairline-soft) 0, var(--hairline-soft) 0.0625rem,
+           transparent 0.0625rem, transparent 0.5rem); }
+.blank .gl { color: var(--ink-3); font-size: var(--f02); }
+
+table { border-collapse: collapse; width: 100%; font-size: var(--f01); }
+caption { text-align: left; font-size: var(--f02); color: var(--ink-2);
+          padding: 0 0 var(--s04); max-width: 52rem; }
+th, td { text-align: left; vertical-align: top; padding: var(--s04) var(--s04) var(--s04) 0;
+         border-bottom: 1px solid var(--hairline); }
+thead th { font-weight: var(--w-semi); border-bottom: 2px solid var(--ink);
+           white-space: nowrap; }
+tbody tr:nth-child(even) { background: var(--raised); }
+td.n, th.n { text-align: right; font-family: var(--mono);
+             font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.unk { color: var(--ink-3); font-style: italic; }
+td.nw { white-space: nowrap; }
+
+.note { background: var(--raised); border: 1px solid var(--hairline);
+        border-radius: var(--s04); padding: var(--s06); margin-top: var(--s05); }
+blockquote { margin: 0 0 var(--s04); padding-left: var(--s05);
+             border-left: 2px solid var(--hairline); color: var(--ink-2);
+             font-size: var(--f02); max-width: 48rem; }
+footer { margin-top: var(--s09); padding-top: var(--s05);
+         border-top: 1px solid var(--hairline); }
+ol, ul { max-width: 48rem; }
+li { margin-bottom: var(--s03); }
+.footnotes { max-width: none; font-size: var(--f01); color: var(--ink-3); }
+.footnotes li { margin-bottom: var(--s02); max-width: 52rem; }
+
+@media (max-width: 60rem) {
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .row { grid-template-columns: 1fr; gap: var(--s02); }
+  table { font-size: var(--f01); }
+}
+@media print { body { padding: 0; } .card, .kpi, .floor, .note { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="src">dashboard &middot; v1 &middot; draft &middot; 2026-09-03 &middot; dashboard-analyst</p>
+  <h1>Luma Batch&nbsp;3 &mdash; competitor coverage &amp; evidence integrity</h1>
+  <p class="lede">14 competitors were confirmed in scope. This board renders how much of that
+  scope the study actually reached &mdash; not what the six it reached found.</p>
+  <p class="src">Sources: <code>ART-011</code> (coverage reconciliation), <code>ART-012</code>
+  (market findings, capped by ART-011) &middot; visual values:
+  <code>design-system/tokens/tokens.json</code> release 0.2.0</p>
+  <p class="src">Refresh: static. One desk-research pass, walkthroughs dated 21&nbsp;Jul 2026.
+  This board refreshes only if a later phase re-profiles the remaining eight competitors or
+  the source arithmetic is corrected at origin &mdash; it does not poll a live system.</p>
+  <hr class="rule-strong">
+</header>
+
+<section class="floor">
+  <h2>Read the ceiling before any number below</h2>
+  <p class="body-sm">Restated from ART-012&rsquo;s own opening section, because a dashboard is
+  the easiest place in this system for a coverage ceiling to disappear into a clean grid.</p>
+  <ul class="body-sm">
+    <li><b>14 confirmed in scope &middot; 6 profiled &middot; 8 never profiled</b>, and of
+      those 8, <b>2</b> (Kayak, Skyscanner) carry evidence only in an earlier, superseded
+      framing that may be cited as prior art and may never stand in for current coverage.
+      <code>Evidenced [ART-011 &sect; Coverage]</code>, <code>Evidenced [D-001]</code>,
+      <code>Evidenced [D-002]</code>.</li>
+    <li><b>98 of 770</b> planned feature cells (12.7%) rest on Tier&nbsp;1 live observation;
+      <b>189 of 770</b> (24.5%) rest on any evidence at all.
+      <code>Evidenced [ART-011 &sect; Evidence reached]</code>.</li>
+    <li><b>37 of 112</b> planned journey stage-cells (33%) carry any rating.
+      <code>Evidenced [ART-011 &sect; Evidence reached]</code>.</li>
+    <li>One of the five designated re-verification tests &mdash; the one the plan flags as
+      supporting a headline opportunity &mdash; <b>did not run</b>.
+      <code>Evidenced [ART-011 &sect; The untested claim]</code>.</li>
+  </ul>
+</section>
+
+<h2>The floor, in six numbers</h2>
+<p class="body-sm">Every metric below names its own source section and refresh cadence in its
+caption. Nothing here is an average of an average &mdash; each is either a plan denominator or
+a recount performed in ART-011 and cited at that section.</p>
+<div class="kpis">
+  <div class="kpi"><span class="val">6 / 14</span>
+    <span class="lab">competitors profiled</span>
+    <span class="flr">8 never profiled &middot; 2 prior-art only</span></div>
+  <div class="kpi"><span class="val">12.7%</span>
+    <span class="lab">feature cells on Tier&nbsp;1 (98 of 770)</span>
+    <span class="flr">ART-011 &sect; Evidence reached</span></div>
+  <div class="kpi"><span class="val">24.5%</span>
+    <span class="lab">feature cells on any evidence (189 of 770)</span>
+    <span class="flr">ART-011 &sect; Evidence reached</span></div>
+  <div class="kpi"><span class="val">33%</span>
+    <span class="lab">journey stage-cells rated (37 of 112)</span>
+    <span class="flr">ART-011 &sect; Evidence reached</span></div>
+  <div class="kpi"><span class="val">2 / 5</span>
+    <span class="lab">designated tests settled</span>
+    <span class="flr">ART-011 &sect; Prior claims &middot; Scoreboard</span></div>
+  <div class="kpi"><span class="val">0</span>
+    <span class="lab">matrix cells on Tier&nbsp;3 (user-supplied evidence)</span>
+    <span class="flr">never used anywhere in the study &middot; ART-011 &sect; Evidence reached</span></div>
+</div>
+<p class="caption" style="margin-top:var(--s04)">Refresh: static, tied to the 21&nbsp;Jul 2026
+walkthroughs behind ART-011/ART-012. Denominators (770 = 55 feature rows &times; 14
+confirmed competitors; 112 = 8 journey stages &times; 14) are plan-stated; numerators are the
+ART-011 recount, not the source&rsquo;s own stated totals &mdash; see the defect below.</p>
+
+<div class="card peakcard" style="margin-top:var(--s07)">
+  <h3 style="margin-top:0">F-01 &middot; the stated cell totals do not describe the stated
+  grid</h3>
+  <p class="body-sm">Marked, not argued: this is the single arithmetic fact on this board most
+  likely to change what a reader trusts elsewhere in the study, because the same defective
+  figure was carried into the stakeholder-facing report unchanged.</p>
+  <table style="margin-top:var(--s03)">
+    <thead><tr><th></th><th class="n">Yes</th><th class="n">No</th><th class="n">Partial</th>
+      <th class="n">Unknown</th><th class="n">Total</th><th>Grid it should describe</th></tr></thead>
+    <tbody>
+      <tr><td>Stated (Phase&nbsp;3 confidence summary, and Phase&nbsp;9 executive report)</td>
+        <td class="n">86</td><td class="n">48</td><td class="n">28</td><td class="n">113</td>
+        <td class="n"><b>275</b></td>
+        <td>55 rows &times; 6 columns = 330 &mdash; <b>275 = 55 &times; 5</b>, a five-column
+        total against a six-column grid</td></tr>
+      <tr><td>Recounted (ART-011, two independent passes: by value and by confidence tag)</td>
+        <td class="n">99</td><td class="n">55</td><td class="n">35</td><td class="n">141</td>
+        <td class="n"><b>330</b></td>
+        <td>Reconciles to the stated 55&times;6 grid exactly</td></tr>
+    </tbody>
+  </table>
+  <p class="body-sm" style="margin-top:var(--s04);margin-bottom:0">This board uses the
+  recounted 330 figure throughout. The defective 275 figure was reproduced verbatim in the
+  Phase&nbsp;9 executive report and is the document&rsquo;s own stakeholder-facing artifact
+  (F-05). <code>Evidenced [ART-011 &sect; Arithmetic defects]</code>.</p>
+</div>
+
+<h2>The fourteen</h2>
+<p class="body-sm">Rows, not columns &mdash; 14 exceeds any categorical palette that stays
+legible, and a six-column matrix would misrepresent a fourteen-row scope
+(<code>Evidenced [D-001]</code>). Colour here does two jobs only, on two ramps that never mix:
+an <b>ordinal</b> tier chip (evidence quality, within the six profiled) and, further down, a
+<b>sequential</b> ramp (coverage depth, by cluster). The three-way split below &mdash;
+profiled / prior-art-only / never-evaluated &mdash; carries <b>no colour at all</b>: shape and
+word only, so it cannot be misread as a verdict about any competitor.
+<code>Evidenced [ART-011 &sect; Coverage]</code>.</p>
+
+<div class="legend">
+  <span class="lg"><span class="gl" aria-hidden="true">&#9679;</span>Profiled<span class="ct">6</span></span>
+  <span class="lg"><span class="gl" aria-hidden="true">&#9680;</span>Prior-art only<span class="ct">2</span></span>
+  <span class="lg"><span class="gl" aria-hidden="true">&#9675;</span>Never evaluated<span class="ct">6</span></span>
+  <span class="lg"><span class="sw" style="background:var(--tier-1)"></span>Tier&nbsp;1 &middot; verified live<span class="ct">5</span></span>
+  <span class="lg"><span class="sw" style="background:var(--tier-2)"></span>Tier&nbsp;2 &middot; documented only<span class="ct">1</span></span>
+</div>
+
+<table>
+  <caption>All 14 confirmed competitors, ART-011&rsquo;s own numbering and category.
+  Source: <code>ART-011 &sect; Coverage</code>. Refresh: static &mdash; this table changes
+  only if a later phase profiles one of the eight.</caption>
+  <thead>
+    <tr><th class="n">#</th><th>Competitor</th><th>Category</th><th>Row state</th>
+      <th>Highest tier reached</th><th>What exists</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="n">1</td><td class="nw">Booking.com</td><td>direct</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#9679;</span>Profiled</span></td>
+      <td><span class="tierchip"><span class="sw" style="background:var(--tier-1)"></span>Tier&nbsp;1</span></td>
+      <td>Tier&nbsp;1 walkthrough + Tier&nbsp;2 docs</td></tr>
+    <tr><td class="n">2</td><td class="nw">Expedia</td><td>direct</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#9679;</span>Profiled</span></td>
+      <td><span class="tierchip"><span class="sw" style="background:var(--tier-1)"></span>Tier&nbsp;1</span></td>
+      <td>Tier&nbsp;1 walkthrough + Tier&nbsp;2 docs + one Tier&nbsp;5 vendor claim (Romie)</td></tr>
+    <tr><td class="n">3</td><td class="nw">Google Travel</td><td>direct</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#9679;</span>Profiled</span></td>
+      <td><span class="tierchip"><span class="sw" style="background:var(--tier-1)"></span>Tier&nbsp;1*</span></td>
+      <td>Tier&nbsp;1 walkthrough only, <b>signed in</b> &mdash; not comparable like-for-like<sup>*</sup></td></tr>
+    <tr><td class="n">4</td><td class="nw">Kayak</td><td>direct</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9680;</span>Prior-art only</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9680;</span>Evidence exists only in the earlier, superseded framing &mdash; not current coverage (D-002)</span></td></tr>
+    <tr><td class="n">5</td><td class="nw">Skyscanner</td><td>direct</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9680;</span>Prior-art only</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9680;</span>Evidence exists only in the earlier, superseded framing &mdash; not current coverage (D-002)</span></td></tr>
+    <tr><td class="n">6</td><td class="nw">Hopper</td><td>adjacent</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#9679;</span>Profiled</span></td>
+      <td><span class="tierchip"><span class="sw" style="background:var(--tier-1)"></span>Tier&nbsp;1&dagger;</span></td>
+      <td>Tier&nbsp;1 partial + Tier&nbsp;2 docs; results unreachable this run<sup>&dagger;</sup></td></tr>
+    <tr><td class="n">7</td><td class="nw">TripIt</td><td>adjacent</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#9679;</span>Profiled</span></td>
+      <td><span class="tierchip"><span class="sw" style="background:var(--tier-2)"></span>Tier&nbsp;2</span></td>
+      <td>Tier&nbsp;2 docs only; product behind an auth wall, never seen in operation</td></tr>
+    <tr><td class="n">8</td><td class="nw">Airbnb</td><td>adjacent</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9675;</span>Never evaluated</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9675;</span>Not researched this study &mdash; pre-scoped to a narrow pattern check, but that narrowing was never executed either<sup>&Dagger;</sup></span></td></tr>
+    <tr><td class="n">9</td><td class="nw">Tripadvisor</td><td>adjacent</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#9679;</span>Profiled</span></td>
+      <td><span class="tierchip"><span class="sw" style="background:var(--tier-1)"></span>Tier&nbsp;1&sect;</span></td>
+      <td>Tier&nbsp;1 walkthrough + Tier&nbsp;2 docs; AI planner pre-populated on load<sup>&sect;</sup></td></tr>
+    <tr><td class="n">10</td><td class="nw">Rentalcars.com</td><td>adjacent</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9675;</span>Never evaluated</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9675;</span>Not researched this study &mdash; pre-scoped to one time-boxed pass, but that pass never ran<sup>&Dagger;</sup></span></td></tr>
+    <tr><td class="n">11</td><td class="nw">Trainline</td><td>adjacent</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9675;</span>Never evaluated</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9675;</span>Not researched this study &mdash; admitted to scope specifically to test the transport-ticketing claim<sup>&para;</sup></span></td></tr>
+    <tr><td class="n">12</td><td class="nw">Omio</td><td>adjacent</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9675;</span>Never evaluated</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9675;</span>Not researched this study &mdash; admitted to scope specifically to test the transport-ticketing claim<sup>&para;</sup></span></td></tr>
+    <tr><td class="n">13</td><td class="nw">Citymapper</td><td>analogous</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9675;</span>Never evaluated</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9675;</span>Not researched this study &mdash; admitted to scope specifically to test the transport-ticketing claim<sup>&para;</sup></span></td></tr>
+    <tr><td class="n">14</td><td class="nw">Rome2Rio</td><td>analogous</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9675;</span>Never evaluated</span></td>
+      <td class="unk">&mdash;</td>
+      <td><span class="blank"><span class="gl" aria-hidden="true">&#9675;</span>Not researched this study &mdash; the fourth ground-transport competitor named for the same test<sup>&para;</sup></span></td></tr>
+  </tbody>
+</table>
+<ol class="footnotes">
+  <li><sup>*</sup> Google Travel was walked signed in while the other five were walked signed
+    out; its ranking and personalisation cells are not comparable like-for-like.
+    <code>Evidenced [ART-011 &sect; Evidence reached]</code>.</li>
+  <li><sup>&dagger;</sup> Hopper&rsquo;s flight results were unreachable this run; the
+    prediction feature is app-exclusive by the vendor&rsquo;s own statement.
+    <code>Evidenced [ART-011 &sect; Coverage]</code>.</li>
+  <li><sup>&Dagger;</sup> The benchmark plan narrowed Airbnb to one pre-purchase-guarantee
+    pattern and time-boxed Rentalcars.com to a single pass, before Phase&nbsp;2 began. Neither
+    narrowing was executed, because neither competitor was researched at all &mdash; a
+    narrowed profile and no profile are different results.
+    <code>Evidenced [ART-011 &sect; Coverage &middot; Two of the eight were pre-scoped]</code>.</li>
+  <li><sup>&sect;</sup> Tripadvisor&rsquo;s AI planner was observed running but pre-populated
+    on load; the originating prompt was not typed, so every claim resting on it carries that
+    caveat. <code>Evidenced [ART-012 &sect; Carried with a reduction]</code>.</li>
+  <li><sup>&para;</sup> Trainline, Omio and Citymapper were admitted to the confirmed 14
+    specifically to re-test &ldquo;no competitor sells public transport tickets&rdquo;; Rome2Rio
+    is the fourth ground-transport competitor. None of the four was profiled, so the
+    designated test for that claim did not run.
+    <code>Evidenced [ART-011 &sect; The untested claim]</code>.</li>
+</ol>
+
+<h2>Evidence reached, by capability cluster</h2>
+<p class="body-sm">Ten capability clusters (55 feature rows) across the <b>six profiled</b>
+competitors only &mdash; this chart cannot speak to the eight unprofiled. Bar length and fill
+both encode the same value: the share of that cluster&rsquo;s cells (rows &times; 6) that
+carry <i>any</i> evidence, High, Medium or Low. Fill is a single-hue sequential ramp
+(<code>palette.teal</code> 50&rarr;90, validated <code>--ordinal</code> against
+<code>palette.bone.default</code>, see validation.md &sect;2) bucketed into quintiles of this
+chart&rsquo;s own ten values, light = least evidenced, dark = most. Source:
+<code>ART-012 &sect; The feature matrix, across the six profiled</code>. Refresh: static.</p>
+<div class="chart">
+    <div class="row">
+      <div class="rowlab"><span class="agent">Loyalty</span>
+        <span class="task">10 of 12 cells evidenced &middot; 2 Unknown</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:83.3%;background:var(--seq-90)"></div></div>
+        <span class="val">83.3%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Vertical coverage</span>
+        <span class="task">32 of 42 cells evidenced &middot; 10 Unknown</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:76.2%;background:var(--seq-90)"></div></div>
+        <span class="val">76.2%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Reassurance and trust</span>
+        <span class="task">33 of 48 cells evidenced &middot; 15 Unknown</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:68.8%;background:var(--seq-80)"></div></div>
+        <span class="val">68.8%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Decision support</span>
+        <span class="task">41 of 60 cells evidenced &middot; 19 Unknown</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:68.3%;background:var(--seq-80)"></div></div>
+        <span class="val">68.3%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Conversational and AI</span>
+        <span class="task">10 of 18 cells evidenced &middot; 8 Unknown</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:55.6%;background:var(--seq-70)"></div></div>
+        <span class="val">55.6%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Personalisation and accessibility</span>
+        <span class="task">14 of 30 cells evidenced &middot; 16 Unknown</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:46.7%;background:var(--seq-70)"></div></div>
+        <span class="val">46.7%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Prepare and itinerary</span>
+        <span class="task">19 of 42 cells evidenced &middot; 23 Unknown &mdash; most Unknowns of any cluster</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:45.2%;background:var(--seq-60)"></div></div>
+        <span class="val">45.2%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">In destination</span>
+        <span class="task">13 of 30 cells evidenced &middot; 17 Unknown</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:43.3%;background:var(--seq-60)"></div></div>
+        <span class="val">43.3%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">Travel day</span>
+        <span class="task">11 of 30 cells evidenced &middot; 19 Unknown &middot; zero High cells</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:36.7%;background:var(--seq-50)"></div></div>
+        <span class="val">36.7%</span></div>
+    </div>
+    <div class="row">
+      <div class="rowlab"><span class="agent">After the trip</span>
+        <span class="task">6 of 18 cells evidenced &middot; 12 Unknown &middot; largest Unknown proportion, 67%</span></div>
+      <div class="track"><div class="plot"><div class="bar"
+        style="width:33.3%;background:var(--seq-50)"></div></div>
+        <span class="val">33.3%</span></div>
+    </div>
+  <div class="axis"><span>0%</span><span>100% of that cluster&rsquo;s cells evidenced</span></div>
+</div>
+<p class="caption" style="margin-top:var(--s04)">Read the two tails together: prepare-and-
+itinerary carries the most Unknown cells by <i>count</i> (23), but after-the-trip (67%) and
+travel day (63%) are thinner by <i>proportion</i> &mdash; and travel day and prepare are two of
+the three stages the plan itself designated for the deepest effort.
+<code>Evidenced [ART-012 &sect; The feature matrix, across the six profiled]</code>.</p>
+
+<h3>Evidence ladder used in the 330-cell matrix</h3>
+<div class="legend">
+  <span class="lg"><span class="sw" style="background:var(--tier-1)"></span>Tier&nbsp;1, live product<span class="ct">98 &middot; 29.7%</span></span>
+  <span class="lg"><span class="sw" style="background:var(--tier-2)"></span>Tier&nbsp;2, first-party docs<span class="ct">90 &middot; 27.3%</span></span>
+  <span class="lg"><span class="gl" aria-hidden="true">&#9675;</span>Tier&nbsp;5, vendor marketing<span class="ct">1 &middot; 0.3%</span></span>
+  <span class="lg"><span class="gl" aria-hidden="true">&#9675;</span>Unknown / untested<span class="ct">141 &middot; 42.7%</span></span>
+</div>
+<p class="body-sm">Tiers 3 and 4 never appear in this matrix at all. <b>Tier&nbsp;3 &mdash;
+screenshots supplied by the user &mdash; was never used anywhere in the whole study</b>, not
+only the matrix: every profile records &ldquo;evidence supplied by the user: none.&rdquo;
+Tier&nbsp;4 (third-party reporting) was used exactly once, outside the matrix, in the
+standing question about Expedia&rsquo;s assistant. <code>Evidenced [ART-011 &sect; Evidence
+reached]</code>.</p>
+
+<h2>The journey, across the six profiled</h2>
+<p class="body-sm">Eight stages. Colour-free by design: Strong / Adequate / Weak / Unknown is
+a judged label, not a magnitude, so it takes the table view rather than a third colour ramp.
+Every leader call is a reasoned judgement against an unresearched user, not a measurement
+(<code>Evidenced [ART-011 &sect; Evidence reached &middot; The journey grid]</code>). Source:
+<code>ART-012 &sect; The journey comparison, across the six profiled</code>. Refresh: static.</p>
+<table>
+  <caption><b>37 of 112</b> planned journey stage-cells (8 stages &times; 14 competitors) carry
+  any rating &mdash; 33%. Within the six profiled, 37 of 48 stage-cells are rated; 11 are
+  Unknown. <i>Unknown</i> means not reached this run, never verified absence.</caption>
+  <thead>
+    <tr><th>Competitor</th><th>1 Discover</th><th>2 Compare</th><th>3 Book</th>
+      <th>4 Prepare</th><th>5 Travel day</th><th>6 In destination</th><th>7 Return</th>
+      <th>8 After</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="nw">Expedia</td><td>Adequate (H)</td><td>Strong (H)</td><td>Strong (H)</td>
+      <td>Weak (H)</td><td class="unk">Unknown</td><td>Weak (H)</td><td class="unk">Unknown</td>
+      <td>Adequate (H)</td></tr>
+    <tr><td class="nw">Booking.com</td><td>Adequate (H)</td><td>Strong (H)</td><td>Strong (H)</td>
+      <td>Weak (H)</td><td>Weak (M)</td><td>Adequate (H)</td><td class="unk">Unknown</td>
+      <td>Adequate (H)</td></tr>
+    <tr><td class="nw">TripIt</td><td>Weak (M)</td><td>Weak (M)</td><td>Weak (H)</td>
+      <td>Strong (M)</td><td>Strong (M)</td><td>Adequate (M)</td><td>Adequate (M)</td>
+      <td>Adequate (M)</td></tr>
+    <tr><td class="nw">Hopper</td><td>Adequate (H)</td><td class="unk">Unknown</td><td>Adequate (M)</td>
+      <td>Weak (H)</td><td>Adequate (M)</td><td class="unk">Unknown</td><td class="unk">Unknown</td>
+      <td>Weak (H)</td></tr>
+    <tr><td class="nw">Google Travel</td><td class="unk">Unknown</td><td>Strong (H)</td><td>Adequate (H)</td>
+      <td>Weak (H)</td><td>Weak (M)</td><td class="unk">Unknown</td><td class="unk">Unknown</td>
+      <td>Weak (M)</td></tr>
+    <tr><td class="nw">Tripadvisor</td><td>Strong (H)</td><td>Strong (H)</td><td>Adequate (H)</td>
+      <td>Weak (H)</td><td class="unk">Unknown</td><td>Strong (H)</td><td class="unk">Unknown</td>
+      <td>Adequate (H)</td></tr>
+  </tbody>
+</table>
+<p class="caption" style="margin-top:var(--s04)">Stage 7, Return, is Unknown for five of six
+and the sixth is inferred from travel-day evidence &mdash; no product was walked through a
+return scenario at all. Travel day and Return are the emptiest columns.
+<code>Evidenced [ART-012 &sect; The journey comparison, across the six profiled]</code>.</p>
+
+<h2>Designated tests &mdash; the scoreboard</h2>
+<p class="body-sm">Five tests the benchmark plan itself designated for re-verification.
+<b>2 of 5 settled.</b> No hue: settlement is marked by shape and word, because a colour on
+&ldquo;not tested&rdquo; would read as a failing grade for the study, which is exactly the
+misreading D-001 exists to prevent. Source: <code>ART-011 &sect; Prior claims</code>.
+Refresh: static.</p>
+<table>
+  <thead><tr><th>#</th><th>Designated test</th><th>Ran?</th><th>Settled?</th></tr></thead>
+  <tbody>
+    <tr><td class="n">1</td><td>Airport interior wayfinding</td><td>yes</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#10003;</span>Falsified, at Tier&nbsp;2</span></td></tr>
+    <tr><td class="n">2</td><td>Explanation of recommendations</td><td>yes</td>
+      <td><span class="rowstate"><span class="gl" aria-hidden="true">&#10003;</span>Falsified, at Tier&nbsp;1, on 4 of 4 ranked surfaces</span></td></tr>
+    <tr><td class="n">3</td><td>Public transport tickets</td><td><b>no</b></td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9675;</span>Not tested &mdash; the competitors admitted to test it were never profiled</span></td></tr>
+    <tr><td class="n">4</td><td>Accessibility statements &ldquo;only Booking.com&rdquo;</td><td>partial</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9680;</span>Not settled &mdash; 2 of 5 never searched</span></td></tr>
+    <tr><td class="n">5</td><td>Expedia&rsquo;s assistant (standing question)</td><td>yes</td>
+      <td><span class="rowstate muted"><span class="gl" aria-hidden="true">&#9680;</span>Unresolved &mdash; ceiling stayed at Tier&nbsp;5/4</span></td></tr>
+  </tbody>
+</table>
+
+<h2>What this board does not do</h2>
+<ol class="body-sm">
+  <li><b>It does not carry the market findings.</b> Patterns, white space, opportunity
+    scoring and the strategy are in ART-012 and are not re-rendered here; this board is
+    scoped to coverage and evidence integrity, per brief. Reading those findings for
+    prioritisation is a Phase&nbsp;11 activity, not this one.</li>
+  <li><b>It does not verify against a live competitor product.</b> Every figure inherits
+    ART-011/ART-012's desk study, dated 21&nbsp;Jul 2026. Two profiled competitors document
+    that they run display tests and may order results differently across sessions.</li>
+  <li><b>It does not research the eight unprofiled competitors.</b> Their row is blank by
+    design (D-001); inventing a plausible figure for any of them would be exactly the defect
+    that decision exists to prevent.</li>
+  <li><b>It does not open <code>research/sources/</code>.</b> Every number traces to ART-011
+    or ART-012 by section heading, never to the underlying <code>[S-nn]</code> register those
+    artifacts declare &mdash; this board did not verify that register itself and does not
+    reuse its notation.</li>
+  <li><b>It does not judge the study.</b> F-01/F-05 are reported as arithmetic facts with
+    both figures shown; whether the recommendation should proceed while the transport-ticket
+    test is unrun is one of the questions ART-011/ART-012 route to a human at Gate&nbsp;A, not
+    a verdict this board renders.</li>
+</ol>
+
+<h2>Assumptions</h2>
+<ul class="body-sm">
+  <li><b>A-1.</b> ART-011&rsquo;s recount (330 cells, two independent passes) is accepted as
+    entered; this board did not re-derive it a third time from <code>build_inventory.py</code>,
+    which this agent does not have standing to open (see &ldquo;What this board does not
+    do,&rdquo; item 4).</li>
+  <li><b>A-2.</b> The quintile bucketing of the ten cluster percentages into the five teal
+    steps is this board&rsquo;s own binning, not a source figure &mdash; it ranks the ten
+    values against each other, not against a fixed external threshold. Every bar carries its
+    exact percentage as a direct label, so no reading depends on which bucket a value fell
+    into.</li>
+  <li><b>A-3.</b> The row-state and tier classifications (profiled / prior-art-only / never;
+    Tier&nbsp;1 / Tier&nbsp;2) are drawn from ART-011&rsquo;s own table and scoreboard, not
+    re-adjudicated here.</li>
+  <li><b>A-4.</b> Colour values are read from token release 0.2.0, whose bone, ink and coral
+    primitives carry a Gate&nbsp;A that a human has not yet cleared. If those values change,
+    this board is regenerated rather than adjusted by hand.</li>
+</ul>
+
+<h2>Gaps carried forward from ART-011</h2>
+<p class="body-sm">The full register is 26 entries at <code>ART-011 &sect; Gaps</code>. The
+three that would most change a reading of this specific board:</p>
+<ul class="body-sm">
+  <li><b>Eight competitors unprofiled</b> &mdash; every convergence claim, every vacancy
+    claim, and the transport-ticketing row depend on them.</li>
+  <li><b>The Phase&nbsp;3 and Phase&nbsp;9 cell totals do not reconcile</b> (F-01/F-05) &mdash;
+    this board substitutes the ART-011 recount throughout and says so at every use.</li>
+  <li><b>Source hashes were not recomputed</b> by ART-011 (no shell held at that dispatch),
+    so this board&rsquo;s numbers are two steps removed from the raw bytes: ART-011 attests to
+    the baseline manifest, and this board attests to ART-011.</li>
+</ul>
+
+<h2>Claim format</h2>
+<p class="body-sm">Per CLAUDE.md and ADR-017, every figure above is a <b>measurement</b>,
+inherited from ART-011/ART-012 and traceable to a named section in one of them. No
+<code>[E-nnn]</code> ID appears anywhere on this board and none is minted:
+<code>research/evidence-ledger.json</code> holds zero entries, no user was asked anything in
+this study, and no person is quoted. Citations use <code>[ART-nnn &sect; Section]</code>
+only, against real headings in the two named artifacts &mdash; never the
+<code>[S-nn]</code> notation those artifacts declare, because this board did not open
+<code>research/sources/</code> to verify it.</p>
+
+<footer>
+  <p class="src">Produced by dashboard-analyst &middot; status draft &middot; Gate&nbsp;B
+  &middot; created 2026-09-03<br>
+  Data: <code>ART-011</code> (coverage reconciliation) and <code>ART-012</code> (market
+  findings, capped by ART-011) &middot; visual values:
+  <code>design-system/tokens/tokens.json</code> release 0.2.0 &middot; brand rules:
+  <code>design-system/foundations/brand.md</code> &sect;3<br>
+  Palette derivation, validator verdicts, and the audit-system delta are in
+  <code>validation.md</code> beside this file.</p>
+</footer>
+
+</div>
+</body>
+</html>

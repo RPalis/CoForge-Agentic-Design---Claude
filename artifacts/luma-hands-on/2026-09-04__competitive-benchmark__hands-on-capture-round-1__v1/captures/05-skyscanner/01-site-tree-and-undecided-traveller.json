@@ -1,0 +1,79 @@
+{
+  "competitor": "Skyscanner",
+  "capture": "s0-site-tree-L1 + s1-dream-discover",
+  "url": "https://www.skyscanner.es/",
+  "captured_at": "2026-09-04T13:59Z",
+  "surface": "client's authenticated Chrome (session appears signed OUT on this product — 'Iniciar sesión' offered)",
+  "locale_served": "es-ES",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 2994, "links": 446 },
+
+  "finding_F61_LOCATION_DISAGREEMENT_ACROSS_THREE_PRODUCTS": {
+    "claim": "Three competitors, one browser session, one afternoon — and each asserts a different location for the same traveller.",
+    "evidence": [
+      "Google Travel AI planner: 'Estás en Toronto Todos los aeropuertos' (F-41)",
+      "Kayak: origin pre-filled 'Madrid (MAD)' (F-38 capture)",
+      "Skyscanner: 'Salida desde: Marsella (MRS)'"
+    ],
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "Each product states its guess as fact and none asks. For a confident traveller this is noise. For Luma's stated primary user — low confidence, needing reassurance at every step — three products asserting three different countries is a demonstration that these systems do not actually know them. A product whose entire proposition is trustworthiness cannot afford a confident wrong opening line.",
+    "the_transferable_decision": "Assert or ask. Every observed competitor asserts. Asking costs one interaction and buys accuracy plus the impression of care — and no competitor is doing it, so it is available.",
+    "caveat": "Cause not established for any of the three. Could be IP, CDN edge, account default, or prior session. Recorded as observed divergence, NOT as a geolocation defect in any product."
+  },
+
+  "finding_F62_DESTINATION_LESS_SEARCH": {
+    "claim": "Skyscanner offers search with no destination at all — 'Explora cualquier lugar'.",
+    "translation": "Explore anywhere",
+    "confidence": "Verified",
+    "why_it_matters": "This is the most radical form of the undecided-traveller affordance observed. Google Travel builds 'When to visit' and 'What you'll pay' for a traveller who has picked a place but not a date. Skyscanner removes the destination requirement entirely. Booking.com and Expedia both REQUIRE destination and dates before anything happens.",
+    "running_pattern_F26": "Confirms the refined hypothesis on a third product. Skyscanner does not complete the transaction and has a decision layer. Google Travel: hands off, has one. Kayak: hands off, has one. Booking.com and Expedia: transact, have none."
+  },
+
+  "finding_F63_THE_META_SEARCH_ADDRESSES_ITS_OWN_HANDOFF_CONFUSION": {
+    "claim": "Skyscanner's own FAQ headings directly address the confusion the handoff creates.",
+    "evidence_verbatim_es": [
+      "¿El vuelo se reserva con Skyscanner?",
+      "¿Qué ocurre después de reservar un vuelo?",
+      "¿A qué destino debería reservar un vuelo en estos momentos?"
+    ],
+    "translation": ["Is the flight booked with Skyscanner?", "What happens after booking a flight?",
+                    "Which destination should I book a flight to right now?"],
+    "confidence": "Verified",
+    "why_it_matters": "F-50 recorded that crossing the Kayak handoff drops all context — new brand, fresh consent gate, no thread back. Skyscanner evidently knows this is confusing enough to answer as a top-level FAQ. A competitor documenting its own seam is the strongest available evidence that the seam is a real user problem, not an analyst's inference.",
+    "for_luma": "The scenario's problem list opens with 'Information is spread across multiple apps' and 'Comparing... happens in different places and never lines up'. This is a competitor confirming that from the inside."
+  },
+
+  "price_alert_threshold": {
+    "verbatim_es": "Entérate de las bajadas de precios del 20 % o más",
+    "translation": "Find out about price drops of 20% or more",
+    "account_value_verbatim_es": "Inicia sesión y regístrate para recibir los vuelos que más bajen de precio directamente en tu bandeja de entrada",
+    "note": "A NAMED threshold — 20% — rather than a vague 'we'll tell you when prices drop'. Compare Kayak's 'Recibe alertas automáticas cuando cambien los precios' (when prices change) and Google's price tracking. Skyscanner is the only one observed to state the trigger.",
+    "account_value_class": "functional — alerts, not discounts. Same class as Google hotels (F-29), unlike Booking.com's commercial unlock.",
+    "confidence": "Verified"
+  },
+
+  "search_affordances_for_flexibility": [
+    "Incluir aeropuertos cercanos / Añade aeropuertos cercanos (include nearby airports) — on BOTH origin and destination",
+    "Vuelos directos (direct flights only) toggle",
+    "Maletas (bags) as a first-class search input",
+    "Elige tu destino — País, ciudad o aeropuerto (country, city OR airport as destination granularity)"
+  ],
+  "note_on_baggage": "Skyscanner puts BAGS in the search form itself. Kayak excludes baggage fees from headline prices (F-46) and offers it only as a filter. Iberia bundles 10kg into the basic fare (F-52). Three different treatments of the single most common hidden cost.",
+
+  "product_lines": { "Vuelos": "/vuelos", "Coches": "/carhire", "Hoteles": "/hoteles" },
+
+  "our_product_decision_required": [
+    "Decision required: assert the traveller's location or ask? Three competitors assert; three disagree. Asking is unoccupied and cheap.",
+    "Decision required: can Luma's search run with no destination? Its stage 1 is 'Dream & discover'. Skyscanner proves destination-less search is buildable; both transactional incumbents refuse it.",
+    "Decision required: state the alert threshold. '20% or more' is checkable; 'when prices change' is not. Precision is a trust device that costs nothing."
+  ],
+
+  "not_observed": [
+    "'Explora cualquier lugar' opened and run",
+    "sort axes on a live result set — OWED",
+    "the handoff and whether it differs from Kayak's",
+    "month-view / flexible-date calendar — searched for 'todo el mes', 'fechas flexibles': NO match on the homepage. Recorded as not observed here, not as absent.",
+    "hotels and car hire verticals"
+  ]
+}

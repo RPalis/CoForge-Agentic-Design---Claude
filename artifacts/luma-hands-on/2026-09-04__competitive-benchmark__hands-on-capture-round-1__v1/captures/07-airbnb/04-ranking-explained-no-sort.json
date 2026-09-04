@@ -1,0 +1,74 @@
+{
+  "competitor": "Airbnb",
+  "capture": "s2-plan-compare — ranking transparency",
+  "url": "https://www.airbnb.es/help/article/39/how-search-results-work",
+  "reached_from": "'Cómo ordenamos los resultados' — a link on the search results surface itself",
+  "captured_at": "2026-09-04T14:46Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture (first-party help documentation)",
+  "confidence": "Verified",
+  "document_size": "10,860 characters",
+
+  "finding_F75_MAXIMUM_EXPLANATION_ZERO_CONTROL": {
+    "claim": "Airbnb gives the traveller no way to reorder results and the most detailed explanation of its ordering found anywhere in the round.",
+    "confidence": "Verified",
+    "the_inversion": "Booking.com offers 11 sort axes and explains only that commission influences ranking. Expedia offers 6 and explains nothing. Google Flights offers 6 and names two criteria in one line. Airbnb offers ZERO and publishes ~10,800 characters naming five weighted factors, explaining each, and linking to it from the results page itself.",
+    "why_it_matters_for_luma": "Control and explanation are being treated as alternatives across this market, and nobody offers both. The unoccupied position is few axes, well explained — which is also the kinder position for a traveller who does not know what to sort by."
+  },
+
+  "the_stated_factors_verbatim_es": {
+    "headline": "El algoritmo tiene en cuenta muchos detalles para decidir cómo ordena los resultados, pero algunos tienen más peso que otros. En concreto, la calidad, la popularidad, el precio y, en el caso de los alojamientos, la ubicación, influyen mucho en el posicionamiento de los anuncios. El algoritmo también favorece la variedad y muestra a los viajeros anuncios de distintos anfitriones y con diferentes características y precios.",
+    "translation": "The algorithm considers many details, but some carry more weight. Specifically quality, popularity, price and — for stays — location strongly influence placement. The algorithm also favours VARIETY, showing listings from different hosts with different characteristics and prices.",
+    "factors": {
+      "Calidad": "content (photos, video), traveller ratings and reviews, communications",
+      "Popularidad": "how travellers interact — saves to favourites, bookings, messages to the host",
+      "Ubicación": "listings in areas popular with travellers rank higher",
+      "Precio": "rate influences enormously; adjusting it or offering discounts is the most direct way a host can move position",
+      "Hospitalidad y ajustes": "host behaviour and settings, including Superhost criteria — cancellation count, response speed"
+    }
+  },
+
+  "finding_F76_VARIETY_AS_A_STATED_RANKING_GOAL": {
+    "claim": "Airbnb states that its algorithm deliberately favours variety — showing different hosts, characteristics and price points rather than the single best-scoring set.",
+    "evidence_verbatim_es": "El algoritmo también favorece la variedad y muestra a los viajeros anuncios de distintos anfitriones y con diferentes características y precios",
+    "confidence": "Verified",
+    "why_it_matters": "No other competitor states a diversity objective in its ranking. Every other observed ranking optimises a single dimension or an opaque composite. For a traveller who does not yet know what they want — Luma's stated user — a deliberately varied first page is arguably more useful than a strictly optimal one, because it teaches the shape of the market rather than answering a question they cannot yet ask."
+  },
+
+  "finding_F77_NO_COMMERCIAL_INFLUENCE_FACTOR_STATED": {
+    "claim": "The five stated factors contain no commission, advertising or paid-placement term.",
+    "method": "Swept the full 10,860-character document for 'pag', 'comisi', 'publicidad', 'promocion', 'patrocin'. The only matches are a host-facing 'Comercializar y promocionar tu anuncio' navigation item and an unrelated refund-timing sentence.",
+    "confidence": "Verified as an observation about the DOCUMENT.",
+    "important_scope_limit": "This establishes what Airbnb SAYS about its ranking. It does not establish that no commercial factor exists — an omission from a help article is not evidence of absence in an algorithm. Recorded strictly as a difference in DISCLOSURE, not in behaviour.",
+    "the_spectrum_now": {
+      "Booking.com": "discloses that commission influences ranking; does not name criteria",
+      "Kayak": "marks each paid placement with the advertiser named",
+      "Google Flights": "names criteria ('price and convenience'); commercial influence not addressed",
+      "Airbnb": "names five criteria in detail; no commercial factor stated",
+      "Expedia": "nothing observed"
+    }
+  },
+
+  "closes_F69": {
+    "question": "Does a sort control live inside the Filtros panel?",
+    "answer": "No sort vocabulary was found on the results surface in two languages across two sweeps, and the results page instead links to a ranking EXPLANATION. F-69 stands: Airbnb offers zero sort axes.",
+    "residual": "The Filtros panel did not open as an inspectable dialog on two attempts, so the interior was never enumerated. The claim rests on the page-level sweep plus the presence of an explanation-instead-of-control affordance. Stated as a limit rather than closed silently."
+  },
+
+  "incidental_discovery": {
+    "top_level_categories": "Alojamientos · Experiencias · Servicios (Stays · Experiences · Services)",
+    "why_it_matters": "Three inventory types under one account. That is the closest observed shape to business goal 2 — increasing the share of trips containing more than one booking type — and it is why Airbnb is on the roster. Experiences and Services remain UNCAPTURED."
+  },
+
+  "our_product_decision_required": [
+    "Decision required: Luma can offer few axes AND explain them. Nobody does. The market treats control and explanation as a trade-off and there is no evidence they are one.",
+    "Decision required: is a deliberately VARIED first page better for a first-time traveller than an optimal one? Airbnb says variety is a goal. For a user who cannot yet articulate what they want, being shown the shape of the market may matter more than being shown the best match."
+  ],
+
+  "not_observed": [
+    "Experiencias and Servicios verticals — still owed, and they are the business-goal-2 evidence",
+    "the Filtros panel interior",
+    "post-purchase and trip management"
+  ]
+}

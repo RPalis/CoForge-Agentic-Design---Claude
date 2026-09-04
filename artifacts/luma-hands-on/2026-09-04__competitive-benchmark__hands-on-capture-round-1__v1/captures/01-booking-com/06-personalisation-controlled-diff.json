@@ -1,0 +1,59 @@
+{
+  "competitor": "Booking.com",
+  "capture": "personalisation — matched-pair controlled diff",
+  "captured_at": "2026-09-04T11:14Z",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "method": {
+    "design": "Matched pair on identical query. Treatment = client's authenticated Chrome (Genius Level 2). Control = separate DevTools-driven Chrome instance, signed out, no extensions installed.",
+    "query": "Lisbon, 2026-11-10 to 2026-11-13, 2 adults, 1 room",
+    "controlled_for": "same destination, dates, occupancy, market, and day of capture",
+    "single_variable": "authentication state",
+    "why_this_matters": "Personalisation claims are normally asserted from one session. This isolates what membership actually changes."
+  },
+
+  "result": {
+    "identical_across_both": {
+      "result_count": "Lisbon: 4,194 properties found",
+      "ranking_disclosure_present": true,
+      "sort_axes_shared": [
+        "Our top picks", "Homes & apartments first", "Price (lowest first)",
+        "Price (highest first)", "Best reviewed & lowest price",
+        "Property rating (high to low)", "Property rating (low to high)",
+        "Property rating and price", "Distance from downtown", "Top reviewed"
+      ]
+    },
+    "logged_out_sort_count": 10,
+    "logged_in_sort_count": 11,
+    "the_only_difference": "Genius discounts first"
+  },
+
+  "finding_F11": {
+    "claim": "Loyalty membership changes the ranking surface by exactly one axis, and that axis is another PRICE axis.",
+    "evidence": "Signed out: 10 sort options, no Genius entry. Signed in at Genius Level 2: the same 10 plus 'Genius discounts first'. Result count and ranking disclosure identical.",
+    "confidence": "Verified",
+    "why_it_matters": "Reinforces F-09 from the other direction. Booking.com's loyalty programme does not unlock an ease, effort or confidence axis — it unlocks a further discount axis. Across both states, zero of 11 axes concern how easy a trip will be."
+  },
+
+  "finding_F12": {
+    "claim": "Booking.com fires a Google One Tap sign-in prompt at a signed-out user during search.",
+    "evidence": "Navigating the signed-out instance to the search results URL opened a Google accounts sign-in page as a second tab.",
+    "confidence": "Verified",
+    "note": "Not interacted with. No credentials were entered at any point in this research."
+  },
+
+  "method_note_for_remaining_13": {
+    "capability_split": {
+      "clients_chrome_via_extension": "authenticated, personalised, BUT carries third-party extensions (Directo, vio) that inject UI, and exposes no network-protocol inspection",
+      "devtools_instance": "signed out and extension-clean, WITH network inspection, accessibility snapshots and device emulation"
+    },
+    "consequence": "Run both per competitor. The signed-out clean instance is the control and the source of any screenshot-derived claim; the authenticated instance supplies personalised and post-purchase surfaces. Contamination and personalisation stop being confounded."
+  },
+
+  "not_observed": [
+    "whether prices themselves differ between the two states (compared sort surface only, not price values)",
+    "whether result ORDER differs under an identical sort selection",
+    "logged-in-only surfaces beyond the sort list"
+  ]
+}

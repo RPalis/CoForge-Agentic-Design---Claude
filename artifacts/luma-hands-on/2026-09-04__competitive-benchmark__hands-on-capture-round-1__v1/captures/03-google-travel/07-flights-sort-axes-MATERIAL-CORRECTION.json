@@ -1,0 +1,47 @@
+{
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "s2-plan-compare / flights — ranking axes enumerated",
+  "captured_at": "2026-09-04T12:40Z",
+  "surface": "inspector instance (signed out, extension-clean)",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "method": "DevTools accessibility snapshot of the opened sort menu. Six menuitemradio nodes read directly.",
+
+  "sort_options_verbatim": [
+    "Top flights (checked, default)", "Price", "Departure time", "Arrival time", "Duration", "Emissions"
+  ],
+
+  "MATERIAL_CORRECTION_to_F09_F20_F25": {
+    "the_claim_as_previously_stated": "Across 20 enumerated ranking axes on three products, ZERO concern effort, ease, stress or confidence. This was described as the load-bearing finding of the round and the basis of Luma's differentiation.",
+    "what_this_capture_shows": [
+      "Google Flights offers 'Duration' as a sort axis. Duration is a direct effort/convenience dimension — how long the journey takes.",
+      "Google Flights offers 'Departure time' and 'Arrival time' as sort axes. Both are convenience dimensions, not price or quality.",
+      "Google Flights offers 'Emissions' as a sort axis — confirming F-34, which had recorded emissions as displayed-only and explicitly OWED the sortability test.",
+      "The default sort is named 'Top flights' and the page states it is 'Ranked based on price AND CONVENIENCE'. Convenience is named by the vendor as a ranking input."
+    ],
+    "the_corrected_claim": "The zero-effort-axis finding holds for ACCOMMODATION, where it was measured: 20 axes across Booking.com, Expedia and Google hotels, none concerning effort. It does NOT hold for FLIGHTS, where Google offers duration, departure time, arrival time and emissions, and explicitly ranks its default on convenience.",
+    "why_this_matters_more_than_the_original": "The original claim was measured on one vertical and stated as if it were about the market. Flights is a domain where effort is already quantified — duration in minutes, stops, emissions in kg — and competitors already rank on it. Accommodation is a domain where effort is NOT quantified and nobody ranks on it. The real finding is therefore sharper and more useful: EFFORT IS RANKED WHERE IT IS EASILY MEASURED AND IGNORED WHERE IT IS NOT.",
+    "consequence_for_luma": "'Easiest first' is not an unoccupied idea — it is an unoccupied idea IN ACCOMMODATION AND ON-SITE TRANSPORT, and a solved one in flights. Luma's differentiation cannot rest on inventing the concept. It rests on computing effort where nobody currently can: which hotel is easiest to reach from the airport, which apartment needs the fewest transfers, which activity is manageable in a language you do not speak.",
+    "how_this_was_caught": "By enumerating a second vertical on a competitor already captured, rather than generalising from the first. The same discipline that caught the F-28 over-reach."
+  },
+
+  "running_total_restated": {
+    "accommodation_axes": { "Booking.com": 11, "Expedia": 6, "Google hotels": 3, "total": 20, "effort_axes": 0 },
+    "flights_axes": { "Google flights": 6, "effort_or_convenience_axes": 4,
+                      "named": ["Departure time", "Arrival time", "Duration", "Emissions"] },
+    "note": "Flights axes for Booking.com, Expedia, Kayak, Skyscanner and Hopper are ALL still unmeasured. The flights picture rests on one product."
+  },
+
+  "finding_F35_EMISSIONS_IS_SORTABLE": {
+    "claim": "Emissions is a selectable sort axis, not merely a displayed attribute. F-34's OWED test is settled.",
+    "evidence": "menuitemradio 'Emissions' in the sort menu; per-result values 'Carbon emissions estimate: 115 kilograms. -17% emissions' with a 'Learn more about this emissions estimate' affordance.",
+    "confidence": "Verified",
+    "why_it_matters": "A non-price, non-quality, computed, relative axis that is sortable AND explained. This is the closest existing template for how an 'ease' axis would have to work: computed per option, expressed relative to a baseline, and accompanied by an explanation of the estimate."
+  },
+
+  "not_observed": [
+    "flights axes on any other competitor — the entire flights comparison rests on Google alone",
+    "the handoff after selecting a flight",
+    "price history graph and date grid opened"
+  ]
+}

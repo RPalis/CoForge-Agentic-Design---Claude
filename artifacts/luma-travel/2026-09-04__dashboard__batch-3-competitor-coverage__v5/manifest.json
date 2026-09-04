@@ -1,0 +1,65 @@
+{
+  "id": "ART-023",
+  "type": "dashboard",
+  "workstream": "luma-travel",
+  "title": "Luma Batch 3 — competitor coverage & evidence-integrity board (v5 — plain-language pass, applying ART-022; fixes C-039)",
+  "file": "luma-competitor-coverage-board.html",
+  "version": 5,
+  "supersedes": "ART-021",
+  "status": "draft",
+  "stage": "develop",
+  "produced_by": "dashboard-analyst",
+  "model": "claude-sonnet-5",
+  "skills_used": [
+    "dataviz"
+  ],
+  "findings": {
+    "findings_by": "dashboard-analyst",
+    "checked": 21,
+    "found": 1,
+    "method": "checked = every invariant v4 earned, reverified unchanged rather than assumed: (1) all 14 competitors, same order, same row ids -- diffed row-by-row against v4's own rows and confirmed byte-identical apart from the five restored rownotes; (2) 770 and 112 remain the only denominators (isotype cluster totals and journey grid size untouched); (3) zero legend elements (`grep -c legend` matches only prose inside the Meta changelog, not a `.legend*` class); (4) exactly 155 click-to-pin triggers, each still carrying `aria-haspopup`/`aria-controls`/`aria-expanded=\"false\"` (counted, matches v4); (5) no filter/sort/show-hide control introduced (`grep -inE` for select/input/checkbox/radio/sort-filter-hide-show buttons returns nothing, same as v4); (6) `beforeprint`/`afterprint` toggling the real `open` attribute is untouched in <script>, re-verified with an actual --print-to-pdf render + PyMuPDF text extraction (11 pages, both 'Changed from v3 to v4' and 'Changed from v4 to v5' phrases present, the new standfirst/gap-note text also present in the printed PDF); (7) `prefers-reduced-motion` block untouched; (8) `main > section + section` (--s10) and `main > section > h2` (--s05) spacing rules untouched -- the new standfirst/gap-note/definition paragraphs sit inside existing sections or before <main> entirely, so neither rule's selector is affected; (9) all six of v4's own interaction tests (click-to-pin open, focus-to-panel, Escape-closes-and-returns-focus, Enter-key parity, close button, scrollspy aria-current) re-run against the v5 payload over a live CDP session and reproduced identically; (10) every WCAG contrast ratio re-derived independently via the unmodified verify-encoding.py against the frozen token file (canonical-JSON sha256 1926c393f...cada1a7f, confirmed unchanged this session) -- no new colour was requested or used, so every ratio matches v4's own table exactly; (11) zero raw hex, zero raw px on padding/margin/gap/border-radius, zero PascalCase component-shaped tags, zero use of the deprecated/defective cf-chart-palette; (12) heading order unbroken (h1x1, h2x8, h3x6 -- one more h3 than v4, from the new 'Changed from v4 to v5' Meta subsection, no level skipped). found = 1: independently re-confirmed C-039 (the five `rownote` cells in 'The fourteen' -- rows 3, 6, 9, 11, 14 -- truncated mid-sentence with a bare ellipsis, while the untruncated sentence already existed verbatim in the same file's `#panel-data` JSON) by direct string comparison against the live v4 payload before touching anything, matching the copy deck's (ART-022) own claim exactly. Restored all five verbatim from `#panel-data`, not reworded. Because no generator script for this file exists anywhere in the repository (confirmed: `find . -iname '*generat*'` and a repo-wide grep for the `COMPETITORS` list and `rownote` construction logic named in ART-021's own manifest return nothing -- this file was produced and then hand/agent-edited directly, so there is no upstream 'truncation logic' to patch at the source), the guard against recurrence is a new script, `verify-rownotes.py`, which re-derives every `rownote` cell's text from the live payload and its `#panel-data` counterpart and fails if a cell is shorter than its panel-data body or ends in an ellipsis. Verified it passes on this file (all 14) and correctly fails with all five original defects when pointed at v4's own payload, proving it would have caught this class of defect had it existed at v4's authoring time."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-011",
+      "ART-012",
+      "ART-017",
+      "ART-018",
+      "ART-019",
+      "ART-020",
+      "ART-021",
+      "ART-022"
+    ],
+    "decisions": [
+      "D-001",
+      "D-002",
+      "ADR-017",
+      "ADR-021"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-04"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-04",
+  "notes": {
+    "why_a_new_id_and_not_ART-021_v5": "Same convention every prior version bump in this artifact family has used (ART-013/014→ART-016 for v3, ART-016→ART-021 for v4): a new sequential ART id per version, the immediately-prior version recorded in supersedes and named again in inputs.artifacts. ADR-003's directory contract versions by slug independent of the registry id, which is why the directory still says v5.",
+    "why_todays_date_and_not_v4s_date": "ART-022 (created 2026-09-04) already established that a version created on a later day carries that day's date in its directory name, distinct from the slug's original creation date -- the four prior dashboard versions (v1-v4) happened to all ship 2026-09-03, this one did not.",
+    "one_disagreement_with_the_copy_deck_ART-022": "The deck (§3) places the full 'Profiled means...' definition inside the hero's existing <div class=\"flanking\">, which is styled max-width:18rem specifically to sit beside the giant '6/14' figure. The deck's defining sentence (~30 words) does not fit that column without becoming a very tall, narrow ribbon beside a much shorter figure. Kept the deck's flanking text short (trimmed to the counts, same substance) and moved the defining sentence to a full-width <p class=\"cap\"> immediately below the hero row instead -- still the first thing a reader sees after the '6/14' headline, still zero clicks, still verbatim in substance, just not squeezed into a column sized for a different amount of text. This is a container change, not a wording override: content-comms owns the words (kept, near-verbatim) and this agent owns the layout it sits in.",
+    "measurement_method_for_the_jargon_reduction": "See validation.md § 'Measured jargon reduction' for the full re-runnable method (verify-jargon.py, beside this file) and why raw term-frequency is explicitly NOT used as the headline number (defining a term requires using it, so naive frequency rises, not falls, when the fix works).",
+    "why_the_standfirst_states_a_gap_instead_of_smoothing_it": "Per the brief and ART-022 §0/§6: ART-011/012 establish what kind of thing Luma is (a first-time-traveller travel product at ideation) but not what it sells or how it makes money. The 'referral layer' in ART-012 is the study's own unadopted recommendation (no acceptance recorded anywhere -- ART-011 G-12, ART-012 §Gaps row 7). Asserting it as the product would claim a decision nobody made, so the standfirst omits it and a visible, bordered <p class=\"gapnote\"> says so directly rather than silently having no sentence about it at all."
+  }
+}

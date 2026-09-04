@@ -1,0 +1,61 @@
+{
+  "competitor": "Kayak",
+  "capture": "s2-plan-compare / flights — ranking axes, live route MAD-LIS 2026-11-10 to 2026-11-13",
+  "captured_at": "2026-09-04T13:12Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es-es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "method_note": "Three selector sweeps failed to enumerate these; resolved with the accessibility find tool. Recorded because three empty results were again NOT treated as absence.",
+
+  "sort_tabs_verbatim_es": [
+    { "label": "El más barato", "translation": "Cheapest", "shows": "35 € · 7h 14m" },
+    { "label": "El mejor", "translation": "Best", "shows": "47 € · 1h 25m" },
+    { "label": "Menor duración", "translation": "Shortest duration", "shows": "1h 17m" }
+  ],
+
+  "finding_F42_THE_TAB_SHOWS_THE_TRADE_OFF": {
+    "claim": "Kayak's sort control displays the consequence of each choice on the control itself — price AND duration on every tab — so the trade-off is legible before the user commits to a sort.",
+    "worked_example": "Cheapest = 35 € / 7h 14m. Best = 47 € / 1h 25m. The tabs make visible that €12 buys back 5h 49m. Neither Booking.com, Expedia nor Google Travel shows any consequence on its sort control; all three require selecting a sort and then reading the result set to discover what changed.",
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "This is the single most transferable interaction observed in the round. It is not a new axis — it is making an existing trade-off VISIBLE AT THE POINT OF CHOICE. For a traveller who does not know what a reasonable trade looks like, that is the whole problem, and it costs no new data to build.",
+    "our_product_decision_required": "Decision required: does Luma's ranking control show what each choice costs? Kayak proves it is possible with two variables. Luma proposes to rank on ease, which is harder to display but the same pattern."
+  },
+
+  "finding_F43_EFFORT_RANKED_AGAIN": {
+    "claim": "Two of Kayak's three flight sort axes concern duration, confirming that effort IS ranked in flights on a second product.",
+    "axis_breakdown": { "price": 1, "effort_duration": 1, "composite_price_and_duration": 1 },
+    "running_flights_picture": {
+      "Google Flights": "6 axes — Top flights, Price, Departure time, Arrival time, Duration, Emissions. 4 concern effort or convenience.",
+      "Kayak": "3 axes — Cheapest, Best (composite), Shortest duration. 2 concern duration."
+    },
+    "consequence": "The corrected finding holds on a second product: effort is ranked where it is quantified. Flights quantify it natively; accommodation does not, and 20 accommodation axes across three products still contain none.",
+    "confidence": "Verified"
+  },
+
+  "finding_F44_AD_DISCLOSURE": {
+    "claim": "Kayak labels paid placements explicitly and in the first person of the advertiser.",
+    "evidence_verbatim_es": ["Este es un espacio publicitario de Air Europa. Lo estás viendo...",
+                             "Este es un espacio publicitario de eDreams. Lo estás viendo..."],
+    "translation": "This is an advertising space from Air Europa / eDreams. You are seeing it...",
+    "confidence": "Verified",
+    "comparison": "Booking.com discloses that commission INFLUENCES ranking without marking individual results. Kayak marks the individual placement and names the advertiser. Expedia's 'Sponsored' labelling was observed on Google's hotel surface, not Expedia's own — untested there.",
+    "why_it_matters": "Three competitors now sit on a visible spectrum of ranking honesty: name the criteria (Google), disclose commercial influence at page level (Booking.com), mark each paid placement (Kayak). Luma has a choice on that spectrum and it is a trust decision, not a compliance one."
+  },
+
+  "finding_F45_CROSS_MODAL_PROMPT": {
+    "claim": "From a flight result set, Kayak asks whether the traveller wants bus prices.",
+    "evidence_verbatim_es": "¿Te interesan los precios de los autobuses?",
+    "translation": "Are you interested in bus prices?",
+    "confidence": "Verified",
+    "why_it_matters": "The scenario's capability list requires on-site transport at stages 2, 3 and 6, and tier 3 of the roster exists because no tier-1 product was assumed to cover it. Here a tier-1 meta-search prompts cross-modally from air to coach. That partially undercuts the tier-3 argument and must be carried into the roster reasoning rather than ignored — it is evidence AGAINST a position this plan already took.",
+    "action": "Flagged for the roster audit. Does not remove the tier-3 competitors, since prompting for bus prices is not the same as ticketing on-site transport, but the argument in ART-024 section 2.2 needs this qualification added."
+  },
+
+  "not_observed": [
+    "whether a fuller sort menu exists beyond the three tabs",
+    "the handoff after 'Ver oferta'",
+    "price prediction / 'Calculadora de precios' opened",
+    "CO2 — searched, not present on this render (contrast with Google Flights, which sorts on it)"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "competitor": "TripIt",
+  "capture": "s0 + s4/s5 — itinerary aggregation, the trip-as-one-object test",
+  "url": "https://www.tripit.com/",
+  "captured_at": "2026-09-04T16:14Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 395, "links": 53, "visible_chars": 3228 },
+
+  "finding_F101_THE_ANSWER_TO_F78": {
+    "claim": "TripIt models the trip as one object — and does so by ingesting other products' confirmations, without selling anything.",
+    "the_mechanism_verbatim": "Unlike other travel apps, TripIt can organize your travel plans no matter where you book. Simply forward your confirmation emails to plans@tripit.com and in a m[inute]...",
+    "the_proposition_verbatim": "Imagine checking one place for your travel details and getting a heads up as things happen throughout your trip.",
+    "confidence": "Verified",
+    "why_it_answers_F78": "F-78 found that Airbnb — holding stays, experiences and services under one account — still presents three separate searches and drops the trip between them. The conclusion was that nobody models the trip as the object the traveller actually has. TripIt does. It achieves it by giving up the booking entirely: one email address, any source, no inventory, no transaction.",
+    "the_structural_trade": "Every competitor in this roster sits on one side of a line. Products that SELL cannot see the whole trip, because they only see what they sold. TripIt sees the whole trip precisely BECAUSE it sells nothing. That is the same structure as F-98 — the more a product can sell you, the less of the real answer it holds — now visible at the itinerary layer rather than the comparison layer.",
+    "for_luma": "Luma proposes to do both: sell the components AND hold the single trip view. No observed competitor does both. TripIt proves the view is buildable without inventory; Booking.com and Expedia prove inventory does not produce the view. Whether one product can hold both is the central unanswered question of this round."
+  },
+
+  "finding_F102_THE_USEFUL_PART_IS_PAYWALLED": {
+    "claim": "TripIt's organisation is free; the features that address traveller anxiety are behind TripIt Pro.",
+    "free_layer": "itinerary organisation from forwarded confirmation emails",
+    "pro_layer_verbatim": [
+      "Real-time flight alerts and helpful travel reminders",
+      "Need a reminder when it's time to leave for the airport?",
+      "Not sure where to eat in the airport or near your hotel?",
+      "Know Before You Go With TripIt Pro Travel Guidance",
+      "Even the most frequent flyer faces uncertainty when navigating international travel requirements. TripIt is taking the guesswork out of pre-trip requirements"
+    ],
+    "confidence": "Verified",
+    "why_it_matters": "The paywalled list maps almost exactly onto Luma's own Core Features: 'Live flight tracking', 'Gate notifications', 'Airport shopping and food recommendations', 'Entry requirements'. Four of Luma's named features are TripIt's paid tier.",
+    "the_uncomfortable_reading": "Combined with F-36 (Kayak gives away flight tracking) and F-31 (Google gives away price tracking and history), Luma's Core Features list is now observed split across competitors as: some given away free by products that do not sell, some sold as a subscription by a product that does not sell, and some sold as a per-trip add-on by Hopper (F-64). Luma proposes to bundle all of it with the booking. No observed competitor does that, and the reason may be that the economics do not work — which is a business-model finding, not a design one."
+  },
+
+  "finding_F103_ENTRY_REQUIREMENTS_AS_A_PRODUCT": {
+    "claim": "TripIt sells pre-trip entry-requirement guidance as a named Pro feature.",
+    "evidence_verbatim": "Even the most frequent flyer faces uncertainty when navigating international travel requirements. TripIt is taking the guesswork out of pre-trip requirements",
+    "confidence": "Verified",
+    "why_it_matters": "The scenario's stage 4 'Prepare' names 'Travel documents' and 'Entry requirements' as Luma capabilities, and its user list includes 'International travellers — visas, entry requirements, languages, currencies, connectivity'. This is the first observed competitor addressing that user type directly. F-59 recorded Iberia as the first to address families; this is the second of the scenario's five user types to be addressed by anything in the roster.",
+    "running_user_type_coverage": "Of the scenario's five primary users — leisure, frequent business, families with children, international, first-time — the roster has now been observed addressing families (Iberia Club, F-59) and international travellers (TripIt Pro, this finding). Leisure and frequent-business are served implicitly by everything. FIRST-TIME TRAVELLERS — Luma's stated primary user — remain addressed by NOTHING across 14 competitors and 103 findings."
+  },
+
+  "note_on_the_prior_round": {
+    "prior_claim": "Desk research recorded TripIt as having 'the best alerting and lowest-friction itinerary capture but sells nothing and paywalls the good parts'.",
+    "verdict": "SUPPORTED. Email-forward ingestion is confirmed as the mechanism; alerts and guidance are confirmed as Pro. This is one of the few prior-round claims to survive contact with the product intact.",
+    "confidence": "Verified"
+  },
+
+  "not_observed": [
+    "the authenticated TripIt experience — a sign-in wall is present and no account was created",
+    "what an organised itinerary actually looks like",
+    "TripIt Pro pricing",
+    "whether ingestion handles non-English confirmations or rail and activity bookings"
+  ]
+}

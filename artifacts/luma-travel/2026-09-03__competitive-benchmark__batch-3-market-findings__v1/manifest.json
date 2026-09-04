@@ -1,0 +1,53 @@
+{
+  "id": "ART-012",
+  "type": "competitive-benchmark",
+  "workstream": "luma-travel",
+  "title": "Luma competitor benchmark (Batch 3) — market findings across the six profiled competitors",
+  "file": "luma-market-findings-six-profiled.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "discover",
+  "produced_by": "research-synthesizer",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "research-synthesizer",
+    "checked": 120,
+    "found": 12,
+    "method": "checked = 120 distinct source claims examined for carry-forward, enumerated so the number can be re-derived: 55 feature rows (luma-feature-inventory.md section 1, ten clusters of 7+10+8+2+7+5+5+3+3+5); 8 journey stage rows (luma-journey-comparison.md, stage strength table); 6 table-stakes conventions (luma-pattern-analysis.md 1.1-1.6); 7 emerging patterns (2.1-2.7); 5 'appears to work well' items (3.1-3.5); 9 unsettled areas (4.1-4.9); 16 white-space items (luma-white-space-analysis.md, 3 unsolved + 4 badly solved + 5 deliberately unsolved + 4 cross-stage); 14 scored opportunities (luma-opportunity-scoring.md O1-O14). 55+8+6+7+5+9+16+14 = 120. found = 12 claims that could NOT be carried at the strength the source's own summary gives them; they are numbered 1-12 in the payload's 'Carried with a reduction' section, and each names what was reduced and why. Two arithmetic re-derivations were performed here rather than inherited: all 14 opportunity totals were re-added from their five criterion scores and ALL FOURTEEN AGREE, so no finding covers the scoring; and the Unknown cells were counted per cluster (10/42, 19/60, 15/48, 2/12, 23/42, 19/30, 17/30, 12/18, 8/18, 16/30 = 141 of 330), which is what supports the 'prepare carries the most Unknowns, after-the-trip the largest proportion' claim. The cell-total recount itself lives in ART-011 and is cited, not repeated. NOT DONE: nothing here was verified against the live competitor products, which have moved on since 21 July 2026; this artifact carries a desk study forward, it does not re-run it."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-011"
+    ],
+    "decisions": [
+      "D-001",
+      "D-002"
+    ],
+    "sources": [
+      "research/sources/luma-competitor-analysis/",
+      "research/sources-manifest.json"
+    ],
+    "tokens_version": null
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "tokens_version_is_null_deliberately": "Prose research about a third-party travel study. No design token, no CSS custom property, no rendered colour. Check 5f treats a declared version with no token reference as a warning and an undeclared version with token references as a blocker; null is the true value here, not an unfilled field.",
+    "not_readable_alone": "This artifact is capped by ART-011 and says so in its first section. Every market claim is scoped to six of fourteen competitors, and the coverage ceiling is restated at the top rather than left as a footnote. If this document is ever separated from ART-011, the separation itself is the defect: D-002 forbids Batch 3 findings being presented as current coverage of the confirmed fourteen, and six columns without their denominator is exactly that presentation.",
+    "citation_notation": "Sources cite as [S-nn], resolving to the register declared in ART-011 and to a sha256 in research/sources-manifest.json. [ART-011 § …] is used for the companion artifact, which is registered and whose headings are stable. No [E-nnn] appears: the ledger holds 0 records, and every user-facing statement in the source material is carried as the source's own 'Interpretation:' at Low, or not carried.",
+    "what_this_does_not_do": "It draws nothing. dashboard-analyst renders the coverage board and any matrix view, and is dispatched after this agent. The tables here are the data for that rendering, not the rendering. It also proposes no roadmap: prioritisation is a Phase 11 activity against a real backlog, and the study's own scored shortlist is reported as the study's, not adopted as ours."
+  }
+}

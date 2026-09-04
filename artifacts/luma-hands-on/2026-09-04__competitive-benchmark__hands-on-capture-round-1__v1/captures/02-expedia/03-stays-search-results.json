@@ -1,0 +1,67 @@
+{
+  "competitor": "Expedia",
+  "capture": "s2-plan-compare / accommodation — search results",
+  "url_path": "/Hotel-Search",
+  "query_observed": "Lisbon, 2026-11-10 to 2026-11-13, 2 adults, 1 room",
+  "captured_at": "2026-09-04T11:50Z",
+  "surface": "client's authenticated Chrome — One Key Blue tier visible",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "result_count": "499 properties in Lisbon, Lisbon District, Portugal",
+  "cards_rendered_first_paint": 17,
+
+  "finding_F19_INVENTORY_DEPTH": {
+    "claim": "For an identical city and date range, Expedia returns 499 properties where Booking.com returns 4,194 — roughly an eightfold difference.",
+    "evidence": "Both captured 2026-09-04, Lisbon, 2026-11-10 to 2026-11-13, 2 adults, 1 room.",
+    "confidence": "Verified",
+    "caveat": "Result counts are not directly comparable without knowing each platform's definition of a listing and its default geographic radius. Expedia's count is scoped to 'Lisbon District'. Recorded as a measured difference requiring interpretation, NOT as a claim that Expedia has 8x less inventory."
+  },
+
+  "finding_F20_SORT_AXES_TWO_OF_TWO": {
+    "claim": "Expedia offers no ranking axis based on effort, ease, stress or confidence. Enumerated positively from the opened control.",
+    "full_option_list_verbatim": [
+      "Recommended for you", "Price: low to high", "Price: high to low",
+      "Distance from downtown", "Guest rating + our picks", "Property class"
+    ],
+    "axis_breakdown": { "price": 2, "quality_proxy": 2, "distance": 1, "opaque_personalised": 1, "effort_ease_stress": 0 },
+    "running_total_across_competitors": "Booking.com 11 axes + Expedia 6 axes = 17 enumerated ranking axes across two products. Zero concern how easy or reassuring a trip will be.",
+    "confidence": "Verified",
+    "status": "Two of two. Still not a market claim — fifteen competitors remain."
+  },
+
+  "control_surface": {
+    "sort_options": 6,
+    "filter_headings": ["Total price", "Popular filters", "Neighborhood", "Guest rating",
+      "Property amenities", "Property class", "Room amenities", "Property type", "Property brand",
+      "Payment type", "Property cancellation options", "Traveler experience", "Availability",
+      "Room views", "Nearby activities", "Meal plans available", "Accessibility"],
+    "notable_vs_booking": "Expedia exposes 'Payment type' and 'Property cancellation options' as first-class filters; Booking.com exposes 'Reservation policy' and 'Online Payment'. Both let a traveller filter on commitment terms. Neither lets them sort on it."
+  },
+
+  "reassurance_devices_observed": ["Reserve now, pay later", "Fully refundable property"],
+  "urgency_devices_this_render": {
+    "observed": [],
+    "note": "No scarcity, demand or recent-activity device fired on this render. Booking.com's search render was likewise clear of them. Recorded as observed-absent on this render only, NOT as absent from the product."
+  },
+
+  "authenticated_state_effects": {
+    "tier_visible": "Blue tier",
+    "member_pricing_present": true,
+    "rewards_applied_by_default": "URL carries useRewards=true without the user electing it",
+    "promotional_line": "Members earn 30% more OneKeyCash in the app on eligible stays. Sept 2 - 4 only.",
+    "note": "App-exclusive earn bonus — a device to move the member off web and into the app."
+  },
+
+  "our_product_decision_required": [
+    "Decision required: two products, 17 ranking axes, none about effort. If Luma's differentiator is reducing stress, the ranking axis is the place it becomes real or stays marketing.",
+    "Decision required: both competitors let a traveller FILTER on cancellation and payment terms but not SORT on them. Commitment risk is a facet, never a ranking. Is 'least committing first' a Luma axis?",
+    "Decision required: Expedia applies rewards by default (useRewards=true) without asking. Does Luma opt the traveller in or make the choice visible?"
+  ],
+
+  "not_observed": [
+    "empty / no-results state", "error state", "loading state",
+    "logged-out comparison of the same query on this competitor",
+    "map view", "the 'Recommended for you' ranking explanation, if any"
+  ]
+}

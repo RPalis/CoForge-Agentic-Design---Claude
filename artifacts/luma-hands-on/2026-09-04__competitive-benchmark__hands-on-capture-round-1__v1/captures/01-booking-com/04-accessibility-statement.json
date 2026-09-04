@@ -1,0 +1,57 @@
+{
+  "competitor": "Booking.com",
+  "capture": "TC-accessibility-statement",
+  "url": "https://www.booking.com/content/accessibility_statement.html",
+  "captured_at": "2026-09-04T11:02Z",
+  "source_class": "Own capture (first-party document)",
+  "confidence": "Verified",
+  "published": "Jun 2025", "last_updated": "Aug 2025", "document_size_chars": 8125,
+
+  "structure": ["Description of services and measures", "Training and Education",
+    "Inclusive Design, Research, and Writing Practices", "Testing & QA Processes",
+    "Auditing and Evaluation", "Centralized Accessibility Support", "Feedback and Contact Information"],
+
+  "finding_F06": {
+    "claim": "The statement names no accessibility standard and makes no conformance claim.",
+    "evidence": "Searched the full 8,125-character document for WCAG, 'Web Content Accessibility', 'Level A/AA/AAA', 'EN 301 549', 'Section 508' and 'European Accessibility Act'. The only match is the phrase 'aligning with the currently applicable EU standards' — no standard named, no conformance level stated, no 'fully' or 'partially conformant' claim.",
+    "confidence": "Verified",
+    "why_it_matters": "Luma's own constraint is explicit: WCAG 2.2 AA. The market leader publishes a statement of intent without a testable claim.",
+    "scope_limit": "This concerns the WORDING of the published statement. It is not a finding about Booking.com's actual accessibility, which this capture does not test."
+  },
+
+  "finding_F07": {
+    "claim": "Accessibility of the actual travel experience is routed away from Booking.com to the supplier.",
+    "evidence_verbatim": "If you have any questions about your Travel Experience (wheelchair access, walk-in baths, etc.), contact the service provider of the Travel Experience (including but not limited to the owner of a hotel or other property, a museum or park...)",
+    "confidence": "Verified"
+  },
+
+  "finding_F08_cross_document": {
+    "claim": "Across three first-party documents Booking.com consistently occupies an intermediary position and pushes responsibility outward at every layer.",
+    "evidence": [
+      "Terms A19 / flights: 'We act solely as the Platform... have no liability to you in relation to your Booking.'",
+      "Terms / disruption: statutory EU 261/2004 rights are signposted rather than acted on.",
+      "Accessibility Statement: experience-level accessibility questions go to the service provider.",
+      "Genius: the one benefit that implies Booking.com acting FOR the traveller — priority support — requires 15 bookings in 2 years."
+    ],
+    "confidence": "Verified",
+    "why_it_matters": "Luma's stated goal is owning the traveller's confidence across the whole journey. The incumbent with the widest capability has contractually declined to own the failure moments. That is either the gap Luma fills or the reason nobody has."
+  },
+
+  "what_it_does_claim": [
+    "Operable interface: fully navigable by keyboard, works with assistive technologies",
+    "Screen reader compatibility: VoiceOver, TalkBack, NVDA, JAWS named",
+    "Auditing and evaluation practice exists; internal record keeping on conformance maintained",
+    "Centralized Accessibility Support function"
+  ],
+
+  "our_product_decision_required": [
+    "Decision required: Luma is bound to WCAG 2.2 AA by its own constraints. Does it publish a testable conformance claim, which no observed competitor yet does, and treat that as positioning rather than compliance overhead?",
+    "Decision required: who answers an accessibility question about the DESTINATION rather than the app? Every layer here routes it outward."
+  ],
+
+  "not_observed": [
+    "any actual accessibility audit result",
+    "whether the keyboard/screen-reader claims hold — not tested in this capture",
+    "the accessibility request route inside a live booking flow"
+  ]
+}

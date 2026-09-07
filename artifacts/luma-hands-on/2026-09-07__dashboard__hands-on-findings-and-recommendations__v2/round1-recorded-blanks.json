@@ -1,0 +1,1334 @@
+[
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "public transport ticket purchase"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "airport interior navigation / wayfinding"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "security wait times"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "lounge or Fast Track booking"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/02-loyalty-genius.json",
+  "key": "not_observed",
+  "item": "whether priority support materially differs in practice (would require a support interaction)"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/02-loyalty-genius.json",
+  "key": "not_observed",
+  "item": "whether tier is visible to partner properties"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/02-loyalty-genius.json",
+  "key": "not_observed",
+  "item": "any non-tenure loyalty mechanism"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+  "key": "not_observed",
+  "item": "Section B (Accommodations) contractual relationship in full — captured at heading level only"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+  "key": "not_observed",
+  "item": "whether the accessibility request mechanism is reachable in the booking flow"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+  "key": "not_observed",
+  "item": "the standalone Accessibility Statement"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/04-accessibility-statement.json",
+  "key": "not_observed",
+  "item": "any actual accessibility audit result"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/04-accessibility-statement.json",
+  "key": "not_observed",
+  "item": "whether the keyboard/screen-reader claims hold — not tested in this capture"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/04-accessibility-statement.json",
+  "key": "not_observed",
+  "item": "the accessibility request route inside a live booking flow"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/05-stays-search-results.json",
+  "key": "not_observed",
+  "item": "empty state (no results) — not yet triggered"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/05-stays-search-results.json",
+  "key": "not_observed",
+  "item": "error state — not yet triggered"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/05-stays-search-results.json",
+  "key": "not_observed",
+  "item": "loading state — not captured"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/05-stays-search-results.json",
+  "key": "not_observed",
+  "item": "map view interaction"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/05-stays-search-results.json",
+  "key": "not_observed",
+  "item": "the 'Learn more' ranking-parameters page behind the disclosure"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+  "key": "not_observed",
+  "item": "whether prices themselves differ between the two states (compared sort surface only, not price values)"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+  "key": "not_observed",
+  "item": "whether result ORDER differs under an identical sort selection"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+  "key": "not_observed",
+  "item": "logged-in-only surfaces beyond the sort list"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+  "key": "not_reached",
+  "item": "{\"surface\": \"payment step and its fields\", \"reason\": \"operator does not transact — standing constraint\"}"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+  "key": "not_reached",
+  "item": "{\"surface\": \"confirmation, manage-booking, post-purchase\", \"reason\": \"requires a completed booking\"}"
+ },
+ {
+  "competitor": "Booking.com",
+  "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+  "key": "not_reached",
+  "item": "{\"surface\": \"flights, car rental, attractions funnels\", \"reason\": \"not yet captured — stays only\"}"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "public transport ticketing"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "airport interior navigation"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "security wait times"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "lounge or Fast Track booking"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "One Key mechanics"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "item": "Romie anywhere"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/02-loyalty-one-key.json",
+  "key": "not_observed",
+  "item": "whether OneKeyCash expires — FAQ exists, answer uncaptured"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/02-loyalty-one-key.json",
+  "key": "not_observed",
+  "item": "what a 'trip element' counts as — one booking, or one component of a trip"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/02-loyalty-one-key.json",
+  "key": "not_observed",
+  "item": "VIP Access stay definition"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/02-loyalty-one-key.json",
+  "key": "not_observed",
+  "item": "the authenticated member view of this page — served generic marketing content"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "item": "empty / no-results state"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "item": "error state"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "item": "loading state"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "item": "logged-out comparison of the same query on this competitor"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "item": "map view"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "item": "the 'Recommended for you' ranking explanation, if any"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+  "key": "not_reached",
+  "item": "{\"surface\": \"payment submission, confirmation, itinerary\", \"reason\": \"operator does not transact and does not enter card details — absolute constraint\"}"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+  "key": "not_reached",
+  "item": "{\"surface\": \"post-purchase management, Trips\", \"reason\": \"requires a completed booking\"}"
+ },
+ {
+  "competitor": "Expedia",
+  "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+  "key": "not_reached",
+  "item": "{\"surface\": \"flights, cars, packages, activities, cruises funnels\", \"reason\": \"stays only so far\"}"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+  "key": "not_observed",
+  "item": "sort axes — control not located this render; OWED"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+  "key": "not_observed",
+  "item": "the four decision surfaces opened and assessed"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+  "key": "not_observed",
+  "item": "handoff destination and what happens after 'View prices'"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+  "key": "not_observed",
+  "item": "empty / error / no-results states"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+  "key": "not_observed",
+  "item": "flights and vacation rentals verticals"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+  "key": "not_observed",
+  "item": "the four decision surfaces opened and assessed — OWED, next capture"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+  "key": "not_observed",
+  "item": "flights and vacation rentals verticals"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+  "key": "not_observed",
+  "item": "handoff destination after 'View prices'"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+  "key": "not_observed",
+  "item": "empty / error / no-results states"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+  "key": "not_observed",
+  "item": "'Track prices' surface — not opened this pass"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+  "key": "not_observed",
+  "item": "whether these surfaces exist for destinations with thinner data"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+  "key": "not_observed",
+  "item": "the handoff after 'View prices'"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+  "key": "not_observed",
+  "item": "flights and vacation rentals verticals"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+  "key": "owed",
+  "item": "Expedia logged-out control capture — its matched pair is missing and F-29 currently rests on two of three"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+  "key": "owed",
+  "item": "'Track prices' opened and assessed on the authenticated surface"
+ },
+ {
+  "competitor": "Google Travel",
+  "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+  "key": "owed",
+  "item": "Google flights vertical and the handoff after 'View prices'"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+  "key": "not_observed",
+  "item": "date grid / price graph opened with a real route"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+  "key": "not_observed",
+  "item": "the handoff to airline or OTA after selection"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+  "key": "not_observed",
+  "item": "whether price insights appear for thin routes"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+  "key": "not_observed",
+  "item": "empty / error / no-results states"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/06-flights-live-route.json",
+  "key": "not_observed",
+  "item": "flights sort options enumerated — OWED"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/06-flights-live-route.json",
+  "key": "not_observed",
+  "item": "whether emissions is sortable — OWED"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/06-flights-live-route.json",
+  "key": "not_observed",
+  "item": "the handoff after selecting a flight — 'Book on Google' text not found; route untested"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/06-flights-live-route.json",
+  "key": "not_observed",
+  "item": "price history graph opened"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/06-flights-live-route.json",
+  "key": "not_observed",
+  "item": "date grid opened"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+  "key": "not_observed",
+  "item": "flights axes on any other competitor — the entire flights comparison rests on Google alone"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+  "key": "not_observed",
+  "item": "the handoff after selecting a flight"
+ },
+ {
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+  "key": "not_observed",
+  "item": "price history graph and date grid opened"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+  "key": "not_observed",
+  "item": "Whether the tracker requires an account, and what it does on disruption. OWED."
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+  "key": "not_observed",
+  "item": "sort axes on Kayak accommodation or flights — OWED, first attempt hit a landing page"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+  "key": "not_observed",
+  "item": "the handoff to a booking site"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+  "key": "not_observed",
+  "item": "price prediction opened on a real route"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+  "key": "not_observed",
+  "item": "Flight Tracker opened"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+  "key": "not_observed",
+  "item": "states: empty, error, no-results"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "item": "What the IA surface does. OWED — it was not opened."
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "item": "the IA surface opened — OWED"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "item": "saved items / favourites behind the heart control"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "item": "Viajes (Trips) authenticated view"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "item": "sort axes — still OWED on this competitor"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "item": "the handoff to a booking site"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "item": "What Kayak does with an uploaded photo. OWED — nothing was uploaded; no file belonging to the client was used or would be."
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "item": "the four suggestion starter cards resolved"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "item": "an actual AI conversation — no prompt was submitted"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "item": "what an uploaded photo produces"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "item": "Kayak sort axes — STILL OWED across two attempts"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "item": "the handoff to a booking site"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "item": "Trips / saved items authenticated views"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/04-flights-sort-axes.json",
+  "key": "not_observed",
+  "item": "whether a fuller sort menu exists beyond the three tabs"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/04-flights-sort-axes.json",
+  "key": "not_observed",
+  "item": "the handoff after 'Ver oferta'"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/04-flights-sort-axes.json",
+  "key": "not_observed",
+  "item": "price prediction / 'Calculadora de precios' opened"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/04-flights-sort-axes.json",
+  "key": "not_observed",
+  "item": "CO2 — searched, not present on this render (contrast with Google Flights, which sorts on it)"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+  "key": "not_observed",
+  "item": "price forecast / prediction language — searched for subirán, bajarán, compra ahora, predicción: NO match on this render. Recorded as NOT OBSERVED on this route and date, NOT as absent from the product. Kayak's price prediction is documented in its own FAQ."
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+  "key": "not_observed",
+  "item": "'Calculadora de precios' opened"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+  "key": "not_observed",
+  "item": "the handoff after 'Ver oferta'"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+  "key": "not_observed",
+  "item": "whether KAYAK Mix results are visually distinguished in the result list"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+  "key": "not_observed",
+  "item": "whether other Kayak results hand off to OTAs rather than the carrier"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+  "key": "not_observed",
+  "item": "whether the displayed price survives on the carrier's booking flow"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+  "key": "not_observed",
+  "item": "the return path — whether anything brings the traveller back to Kayak"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+  "key": "not_observed",
+  "item": "Kayak Trips / saved items"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+  "key": "not_observed",
+  "item": "the ranking document read in full — headings and samples captured only"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+  "key": "not_observed",
+  "item": "whether Booking.com publishes an equivalent document"
+ },
+ {
+  "competitor": "Kayak",
+  "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+  "key": "not_observed",
+  "item": "whether the roster's other entries disclose parentage"
+ },
+ {
+  "competitor": "Skyscanner",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "item": "'Explora cualquier lugar' opened and run"
+ },
+ {
+  "competitor": "Skyscanner",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "item": "sort axes on a live result set — OWED"
+ },
+ {
+  "competitor": "Skyscanner",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "item": "the handoff and whether it differs from Kayak's"
+ },
+ {
+  "competitor": "Skyscanner",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "item": "month-view / flexible-date calendar — searched for 'todo el mes', 'fechas flexibles': NO match on the homepage. Recorded as not observed here, not as absent."
+ },
+ {
+  "competitor": "Skyscanner",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "item": "hotels and car hire verticals"
+ },
+ {
+  "competitor": "Hopper",
+  "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+  "key": "not_observed",
+  "item": "the price of Premium Disruption Assistance — the single most important missing number"
+ },
+ {
+  "competitor": "Hopper",
+  "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+  "key": "not_observed",
+  "item": "whether it covers flights NOT booked through Hopper"
+ },
+ {
+  "competitor": "Hopper",
+  "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+  "key": "not_observed",
+  "item": "Price Prediction accuracy claims — the standing vendor-claim caution from the skill applies"
+ },
+ {
+  "competitor": "Hopper",
+  "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+  "key": "not_observed",
+  "item": "Price Freeze — searched for 'price freeze', 'lock in price': NO match on the homepage. Not observed, not absent."
+ },
+ {
+  "competitor": "Hopper",
+  "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+  "key": "not_observed",
+  "item": "everything app-gated"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+  "key": "not_observed",
+  "item": "AirCover surfaced during an actual booking flow — captured from the help centre, NOT from a live checkout. Whether it is visible BEFORE booking, which is the prior-round claim about it, is UNTESTED."
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+  "key": "not_observed",
+  "item": "AirCover for Hosts — noted as existing, 3-million damage protection mentioned; not pursued"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+  "key": "not_observed",
+  "item": "Airbnb site tree, search, sort axes, activities inventory — none captured"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+  "key": "not_observed",
+  "item": "whether Airbnb Experiences carry equivalent protection"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+  "key": "not_observed",
+  "item": "the Filtros panel opened — required to close F-69 completely"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+  "key": "not_observed",
+  "item": "a listing page and whether AirCover appears on it"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+  "key": "not_observed",
+  "item": "checkout and whether AirCover appears there"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+  "key": "not_observed",
+  "item": "Airbnb Experiences — the activities inventory that makes Airbnb the closest shape to business goal 2"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+  "key": "not_observed",
+  "item": "Filtros panel — still owed to fully close F-69"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+  "key": "not_observed",
+  "item": "Airbnb Experiences / activities inventory — the reason Airbnb is the closest shape to business goal 2, still uncaptured"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+  "key": "not_observed",
+  "item": "post-purchase and trip management"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+  "key": "not_observed",
+  "item": "whether AirCover appears further down the checkout page"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+  "key": "not_observed",
+  "item": "Experiencias and Servicios verticals — still owed, and they are the business-goal-2 evidence"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+  "key": "not_observed",
+  "item": "the Filtros panel interior"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+  "key": "not_observed",
+  "item": "post-purchase and trip management"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+  "key": "not_observed",
+  "item": "Servicios vertical — the third inventory type, uncaptured"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+  "key": "not_observed",
+  "item": "an experience detail page and its booking flow"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+  "key": "not_observed",
+  "item": "whether an experience booked separately appears alongside a stay in Trips"
+ },
+ {
+  "competitor": "Airbnb",
+  "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+  "key": "not_observed",
+  "item": "the Filtros panel interior on this vertical"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/01-discovery-first.json",
+  "key": "not_observed",
+  "item": "the AI trip planner — prior desk research noted it was pre-populated rather than typed; NOT located on the homepage this pass and therefore untested"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/01-discovery-first.json",
+  "key": "not_observed",
+  "item": "sort axes on any results surface"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/01-discovery-first.json",
+  "key": "not_observed",
+  "item": "a things-to-do results page"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/01-discovery-first.json",
+  "key": "not_observed",
+  "item": "whether duration is shown for activities — the gap found on Airbnb (F-79)"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+  "key": "not_observed",
+  "item": "an activity detail page and its booking flow"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+  "key": "not_observed",
+  "item": "whether duration or price basis is clarified at detail level"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+  "key": "not_observed",
+  "item": "the AI trip planner — still not located"
+ },
+ {
+  "competitor": "Tripadvisor",
+  "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+  "key": "not_observed",
+  "item": "hotels and restaurants verticals"
+ },
+ {
+  "competitor": "Rentalcars.com",
+  "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+  "key": "the_test_that_is_owed",
+  "item": "Walk the booking to the payment gate and compare the headline price against the total. In car hire specifically, the gap between those two numbers IS the traveller's experience. Untested."
+ },
+ {
+  "competitor": "Rentalcars.com",
+  "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+  "key": "not_observed",
+  "item": "the booking flow to the payment gate — the only way to test F-86"
+ },
+ {
+  "competitor": "Rentalcars.com",
+  "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+  "key": "not_observed",
+  "item": "insurance, excess, deposit and fuel policy presentation"
+ },
+ {
+  "competitor": "Rentalcars.com",
+  "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+  "key": "not_observed",
+  "item": "sort axes on a results surface"
+ },
+ {
+  "competitor": "Rentalcars.com",
+  "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+  "key": "not_observed",
+  "item": "whether Kayak carries an equivalent ownership statement — OWED and now material"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+  "key": "not_observed",
+  "item": "checkout, fare selection and ticket delivery — the tier-3 test, still OWED"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+  "key": "not_observed",
+  "item": "live departure boards or platform data"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+  "key": "not_observed",
+  "item": "what the compensation notification actually does when triggered"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+  "key": "not_observed",
+  "item": "whether the Genius popunder can be prevented before searching"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/02-ranking-names-effort.json",
+  "key": "fulfilment_test_CLOSED_AS_NOT_REACHED",
+  "item": "{\"the_question\": \"Tier 3 exists because Trainline was assumed to fulfil an on-site transport ticket end to end — barcode, mobile ticket, live boards.\", \"attempt"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/02-ranking-names-effort.json",
+  "key": "not_observed",
+  "item": "ticket delivery method — OWED, and it is the tier-3 test"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/02-ranking-names-effort.json",
+  "key": "not_observed",
+  "item": "checkout and payment gate"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/02-ranking-names-effort.json",
+  "key": "not_observed",
+  "item": "live departure boards"
+ },
+ {
+  "competitor": "Trainline",
+  "capture": "captures/10-trainline/02-ranking-names-effort.json",
+  "key": "not_observed",
+  "item": "what the delay-compensation notification does when triggered (F-90)"
+ },
+ {
+  "competitor": "Omio",
+  "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+  "key": "CAPTURE_BLOCKED_BY_CONSENT",
+  "item": "{\"what_happened\": \"A search for Madrid to Barcelona could not be completed. A cookie consent modal — 'Administrar preferencias de cookies' — intercepted the inp"
+ },
+ {
+  "competitor": "Omio",
+  "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+  "key": "not_observed",
+  "item": "the entire results and comparison surface — blocked at consent"
+ },
+ {
+  "competitor": "Omio",
+  "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+  "key": "not_observed",
+  "item": "sort axes, effort attributes, fulfilment"
+ },
+ {
+  "competitor": "Omio",
+  "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+  "key": "not_observed",
+  "item": "whether the accommodation toggle is pre-checked"
+ },
+ {
+  "competitor": "Omio",
+  "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+  "key": "not_observed",
+  "item": "the AI planner"
+ },
+ {
+  "competitor": "Rome2Rio",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "still_owed",
+  "item": "Citymapper (13) is the fourth tier-3 entry and the only one addressing movement WITHIN a destination rather than between cities. Untouched."
+ },
+ {
+  "competitor": "Rome2Rio",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "item": "full page render — 1,502 chars suggests partial"
+ },
+ {
+  "competitor": "Rome2Rio",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "item": "whether Rome2Rio hands off to booking partners further down the page"
+ },
+ {
+  "competitor": "Rome2Rio",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "item": "the accom_comparison=true parameter observed in the URL and its effect"
+ },
+ {
+  "competitor": "Rome2Rio",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "item": "step-by-step route detail — the 'how do I actually do this' layer Rome2Rio is known for"
+ },
+ {
+  "competitor": "Citymapper",
+  "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+  "key": "not_observed",
+  "item": "step-by-step route detail"
+ },
+ {
+  "competitor": "Citymapper",
+  "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+  "key": "not_observed",
+  "item": "whether tickets can be purchased for Lisbon"
+ },
+ {
+  "competitor": "Citymapper",
+  "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+  "key": "not_observed",
+  "item": "accessibility / step-free routing — searched, no match on this surface"
+ },
+ {
+  "competitor": "Citymapper",
+  "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+  "key": "not_observed",
+  "item": "live departure data and disruption alerts"
+ },
+ {
+  "competitor": "TripIt",
+  "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+  "key": "not_observed",
+  "item": "the authenticated TripIt experience — a sign-in wall is present and no account was created"
+ },
+ {
+  "competitor": "TripIt",
+  "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+  "key": "not_observed",
+  "item": "what an organised itinerary actually looks like"
+ },
+ {
+  "competitor": "TripIt",
+  "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+  "key": "not_observed",
+  "item": "TripIt Pro pricing"
+ },
+ {
+  "competitor": "TripIt",
+  "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+  "key": "not_observed",
+  "item": "whether ingestion handles non-English confirmations or rail and activity bookings"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "item": "Iberia site tree and s1 discovery"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "item": "Iberia Plus / Avios loyalty structure — no loyalty signal on this page"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "item": "airport services: lounges, Fast Track — the business-goal-5 comparator, the main reason Qatar and Iberia are on the roster"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "item": "seat selection, change and cancellation terms per fare family"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "item": "disruption handling and EU 261 posture — THE tier-4 test, untouched"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "item": "the payment gate on Iberia"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "item": "authenticated Iberia Plus member view"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+  "key": "not_observed_and_owed",
+  "item": "disruption and EU 261 posture — the central tier-4 test"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+  "key": "not_observed_and_owed",
+  "item": "Iberia Club loyalty structure and tier benefits"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+  "key": "not_observed_and_owed",
+  "item": "Manage booking / Mis viajes authenticated view"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+  "key": "not_observed_and_owed",
+  "item": "the payment gate on Iberia"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+  "key": "not_observed_and_owed",
+  "item": "whether Fast Track or lounge access is purchasable anywhere for economy fares"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+  "key": "not_observed_and_owed",
+  "item": "Iberia's actual EU 261 / passenger rights page, if reachable by search rather than navigation"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+  "key": "not_observed_and_owed",
+  "item": "Iberia Club loyalty tier structure"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+  "key": "not_observed_and_owed",
+  "item": "Mis viajes authenticated view"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+  "key": "not_observed_and_owed",
+  "item": "whether Turista Básica permits any refund at all"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+  "key": "not_observed_and_owed",
+  "item": "American Airlines and Qatar — the other two tier-4 products, which test whether F-56 is Iberia-specific"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "item": "What the child benefits actually are. OWED."
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "item": "the tier names and thresholds — 'Niveles Iberia Club y sus ventajas' not opened"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "item": "Avios expiry — searched for caduc/expir/vigencia/validez, no match on this page"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "item": "what the children's benefits are"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "item": "the authenticated member view — page served generic content despite an authenticated session"
+ },
+ {
+  "competitor": "Iberia",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "item": "oneworld alliance reciprocity — 'aerolíneas asociadas' named but not enumerated"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "item": "the CONTENT of the four disruption sections — headings captured, bodies not read"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "item": "AA's navigation findability — the symmetric test, OWED"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "item": "AAdvantage loyalty structure — the third airline programme, uncaptured"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "item": "AA booking flow, fares, airport services"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "item": "whether AA offers proactive disruption notification of the kind Trainline does (F-90)"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+  "key": "not_observed",
+  "item": "AAdvantage tier names and thresholds — two 404s on URL guesses; must be reached by navigation"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+  "key": "not_observed",
+  "item": "'Clubes y salas' — lounge access rules and whether purchasable"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+  "key": "not_observed",
+  "item": "whether the US Customer Service Plan is reachable from the Spanish site"
+ },
+ {
+  "competitor": "American Airlines",
+  "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+  "key": "not_observed",
+  "item": "AA booking flow"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "item": "lounge and Fast Track pricing and eligibility — the actual business-goal-5 answer, still OWED across all three airlines"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "item": "Privilege Club tier thresholds and what Qpoints cost"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "item": "Privilege Club Pro — what a paid loyalty subscription buys"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "item": "Transit Tours mechanics"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "item": "booking flow, fares, disruption content"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "item": "symmetric findability test on AA and Qatar"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+  "key": "not_observed",
+  "item": "buy-qpoints.html — whether purchased Qpoints count toward tier. THE decisive page for F-108."
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+  "key": "not_observed",
+  "item": "Privilege Club Pro — what a paid loyalty subscription adds"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+  "key": "not_observed",
+  "item": "Burgundy and Platinum benefit lists in full"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+  "key": "not_observed",
+  "item": "lounge access rules — guest privileges, which lounges, oneworld reciprocity"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+  "key": "not_observed",
+  "item": "Qcredit values and conversion"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+  "key": "the_numbers_NOT_captured",
+  "item": "The actual minimum balances and purchase caps sit in tables that did not render into extractable text (page returned 1,069 characters). Recorded as UNKNOWN rather than estimated."
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+  "key": "not_observed",
+  "item": "the minimum-balance and purchase-cap tables — rows did not render"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+  "key": "not_observed",
+  "item": "'Additional criteria for tier upgrade and retention'"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+  "key": "not_observed",
+  "item": "Privilege Club Pro"
+ },
+ {
+  "competitor": "Qatar Airways",
+  "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+  "key": "not_observed",
+  "item": "whether purchased Qpoints have any restriction on unlocking lounge access specifically"
+ }
+]

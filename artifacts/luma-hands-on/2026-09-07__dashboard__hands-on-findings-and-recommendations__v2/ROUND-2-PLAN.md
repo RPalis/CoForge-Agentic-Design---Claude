@@ -142,3 +142,95 @@ vendor-neutral version of a skill we already have in its Luma form).
 > **CALL 9 — Nobody quotes this round externally until item 6.** Both ART-026 versions are `draft`
 > and neither has been approved. The board is honest about its limits on its face, which makes it
 > safe to reason with internally and not yet safe to present as a finding about the market.
+
+
+---
+
+# Iteration 2 — 2026-09-07, after Phases 1 and 2 and the ranking
+
+Four things changed the plan. Three of them make it smaller.
+
+## What changed
+
+**1 · The capture list already existed and nobody had read it.**
+All 50 captures record what they did not observe. **222 named blanks**, each attached to a
+competitor and a capture file. Phase 3 as originally written — *build a capture plan using
+`ux-personas` and `ux-research-methods`* — was over-engineered. The round wrote the plan while it
+ran. Phase 3 is now *ranking an existing list*, which is done: `rank-blanks.py` →
+`round2-capture-ranked.json`.
+
+**2 · The fragility is concentrated in one surface, and it is the least-covered one.**
+Phase 1 found four conclusions that remain alone after an honest search. **All four are funnel
+observations** — rec-1, pain-2, pain-3, pain-10 — and only 6 of 17 competitors were ever walked to
+a payment gate. The board's least supportable claims sit exactly where the round looked least.
+
+> **CALL 10 — Tier 1 is the funnel, and it is 31 captures, not 111.** Walking the funnel on the
+> eleven competitors that recorded a funnel blank rescues the four unsupportable conclusions and
+> closes the largest single category of recorded blank at once. Five of those eleven — Qatar
+> Airways, American Airlines, Rentalcars.com, Citymapper, Tripadvisor — have never been walked to
+> a payment gate at all.
+
+**3 · The synthesis gap is larger than the capture gap, and it is free.**
+Phase 2: **60 of 72 unused findings are load-bearing.** 25 support conclusions that failed to cite
+them; 35 support 14 conclusions nobody drew. None needs a browser.
+
+> **CALL 11 — Apply the 25 class-A citations before capturing anything.** They cost one Gate A
+> review and no capture, and they change how fragile the board actually is. Measuring fragility
+> before applying them measures the wrong number — which I already did once (C-047).
+
+**4 · A third of the blanks will not rank mechanically.**
+76 of 222 did not categorise. That is not a low-priority tier, it is an **unranked** tier.
+
+> **CALL 12 — The 76 get an agent pass, not a guess.** Tier 6 is honestly labelled UNRANKED in the
+> output rather than sorted to the bottom, because sorting them to the bottom would be a judgement
+> disguised as arithmetic.
+
+## The ranking
+
+| Tier | n | What it is |
+|---|---|---|
+| **1** | **31** | Checkout, funnel and payment gate. Rescues the four still-alone conclusions |
+| **2** | **10** | Error, empty, no-results and offline states — **zero observed anywhere in the round** |
+| 3 | 24 | Handoff destinations and post-purchase — journey stages 4–8 |
+| 4 | 56 | Loyalty ladders, sort axes, pricing detail — deepens weight the board already carries |
+| 5 | 23 | Airport moment, authenticated surfaces, accessibility, AI planners |
+| **UNRANKED** | **76** | Did not categorise; owed an agent pass |
+| BLOCKED | 2 | Omio and Tripadvisor, refused at a consent wall — a decision, not effort |
+
+> **CALL 13 — Tier 1 + Tier 2 is the round.** 41 captures, about 80% of round 1's volume, aimed
+> instead of exploratory. That is one working session, not three. Tiers 3–5 are round 3, and
+> saying so now stops round 2 sprawling into everything.
+
+## Two findings that must be fixed before any new capture
+
+> **CALL 14 — Correct pain-8's attribution first, and it is not optional.** C-046: F-61 credits
+> "Estás en Toronto" to Google Travel; the capture records it on `kayak.es/ai` as Kayak's planner,
+> and no Google capture asserts a location anywhere in the round. Both Phase 1 and Phase 2 found
+> this independently. A misattributed observation about a named company is the most quotable kind
+> of wrong this project can produce, and it is currently rendered on the board.
+
+> **CALL 15 — Back-fill the missing provenance, which needs no browser.** 16 of 50 captures record
+> no `locale_served` (D-004) and 7 record no `surface` (CLAUDE.md). Locale is precisely what made
+> the American Airlines sweep return a false zero. These are gaps in the record, not in the data,
+> and they are recoverable from the session log.
+
+## What re-scraping is NOT for
+
+> **CALL 16 — Do not re-capture to re-verify what exists.** I checked the risk class that produced
+> the AA false zero: 16 findings rest on a zero result from a text sweep, ten of them on
+> Spanish-served surfaces. Reading the actual sweep terms in each — `derecho · compensa · reclama`,
+> `primer viaje · nuevo socio`, `ordenar · clasificar`, `reservar · comprar` — **the locale
+> discipline held in every case except AA, and that one was caught inside the round.** Re-capturing
+> these confirms what is already right. The gap is coverage, not correctness.
+
+## The sequence, revised
+
+1. Apply the 25 class-A citations · **Gate A** · no browser (CALL 11)
+2. Correct pain-8 and re-state F-61 · **Gate A** · no browser (CALL 14)
+3. Back-fill locale and surface on 23 captures · no browser (CALL 15)
+4. Agent pass over the 76 unranked blanks (CALL 12)
+5. Write the theme taxonomy and amend the confidence field (CALLS 6 and 7) — still blockers
+6. **Capture tiers 1 and 2** — 41 captures, main session, serial (CALLS 10 and 13)
+7. Re-synthesise, rebuild, and let design-critic and a11y-checker attack it again
+
+Steps 1–4 need no browser and can run while 5 is being decided.

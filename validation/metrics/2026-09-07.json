@@ -1,21 +1,21 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T12:27:22",
+  "generated_at": "2026-09-07T12:45:56",
   "project": "coforge",
   "session": {
-    "turns": 7161,
-    "duration_min": 18871.1,
+    "turns": 7193,
+    "duration_min": 18889.6,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14294,
-    "output": 8421286,
-    "cache_read": 3647478803,
-    "cache_creation": 65956720,
-    "billable": 8435580
+    "input": 14358,
+    "output": 8470346,
+    "cache_read": 3667732057,
+    "cache_creation": 66020165,
+    "billable": 8484704
   },
   "tools": {
-    "Bash": 1748,
+    "Bash": 1759,
     "Edit": 251,
     "mcp__chrome-devtools__evaluate_script": 124,
     "mcp__figma-console__figma_execute": 124,
@@ -102,7 +102,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 312429
+    "tokens_per_artifact": 314248
   },
   "gates": {
     "verdict": "FAIL",
@@ -114,8 +114,8 @@
     "source": "live-audit"
   },
   "corrections": {
-    "logged": 45,
-    "with_check": 34,
+    "logged": 47,
+    "with_check": 36,
     "unchecked": 11,
     "source": "validation/corrections.json"
   },

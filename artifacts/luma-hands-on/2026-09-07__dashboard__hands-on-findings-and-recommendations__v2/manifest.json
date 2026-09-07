@@ -42,8 +42,8 @@
     "ref": null
   },
   "payload": {
-    "bytes": 490200,
-    "sha256": "69707e2d4836843ea9a3e5bb165dc326d2fb77567c802288671e8aebc3435c49",
+    "bytes": 489934,
+    "sha256": "654bc724279419257ebccfa17018b19cd26abf24b09ee2a930c1a58e8981ee85",
     "charts": 11,
     "index_rows": 121,
     "detail_panels": 183,

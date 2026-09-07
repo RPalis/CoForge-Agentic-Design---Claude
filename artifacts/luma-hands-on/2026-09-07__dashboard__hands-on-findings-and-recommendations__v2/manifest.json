@@ -42,8 +42,8 @@
     "ref": null
   },
   "payload": {
-    "bytes": 466641,
-    "sha256": "dc5bfa7eecb20851b7950cb523601b8637ab509d87a9ceba0f8c5384c90e9594",
+    "bytes": 485614,
+    "sha256": "9a452fe567740899cab439f274ad676aa007aa61277d16c724be258b2a3246ea",
     "charts": 11,
     "index_rows": 121,
     "detail_panels": 183,
@@ -78,7 +78,9 @@
   "corrections_raised": [
     "C-043",
     "C-044",
-    "C-045"
+    "C-045",
+    "C-046",
+    "C-047"
   ],
   "notes": {
     "what_changed_from_v1": "v1 carried 0 charts and 9,591 visible words. v2 carries 11 charts and every one of v1's words, sections, 121 index rows and 183 detail panels intact. Nothing was removed to make room.",
@@ -90,6 +92,7 @@
       "design-critic raised items not yet actioned: the coverage chart's three background bands are arithmetic thirds rather than real thresholds; the confidence chart's 7 absence marks are contiguous and terminal and may still read as a third tier; the matrix totals column has no header.",
       "Phase 5 of the skill (journey comparison) is thin by construction — 25 of 136 journey stages were captured."
     ],
-    "why_the_builders_did_not_clear_their_own_checks": "design-critic and a11y-checker were dispatched against the assembled board and neither built it. Three of their findings were confirmed against the captures before being acted on, and one a11y finding was confirmed after my own first check of it returned the wrong answer."
+    "why_the_builders_did_not_clear_their_own_checks": "design-critic and a11y-checker were dispatched against the assembled board and neither built it. Three of their findings were confirmed against the captures before being acted on, and one a11y finding was confirmed after my own first check of it returned the wrong answer.",
+    "applied_2026_09_07": "21 class-A citations applied across 12 conclusions, from the Phase 2 triage, on the client's explicit approval. Only the classifications the agent marked `clear` were applied; three it marked `unsure` (F-8 to insight-3, F-88 to insight-1, F-99 to rec-6) were deliberately held. Effect: conclusions citing no finding 1 to 0; conclusions on a single finding 9 to 7; distinct findings carrying a conclusion 41 to 63; findings citing nothing 72 to 50. Also applied: the C-046 attribution correction to pain point 8 and a render-time correction on the F-61 index row."
   }
 }

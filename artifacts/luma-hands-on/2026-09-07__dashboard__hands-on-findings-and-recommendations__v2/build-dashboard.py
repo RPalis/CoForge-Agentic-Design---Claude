@@ -368,10 +368,12 @@ PAIN_POINTS = [
          body=["Moving from Airbnb's accommodation search to Experiences drops the dates entirely, even though both sit under the same account."],
          confidence_raw="Verified", scope_limit=None,
          sources=["captures/07-airbnb/05-experiences-and-business-goal-2.json (F78)"]),
-    dict(id="pain-8", title="Three products, one afternoon, three different guesses at where you are — and none of them asked.",
-         body=["Google's AI planner: ‘Estás en Toronto’. Kayak: origin pre-filled ‘Madrid (MAD)’. Skyscanner: ‘Salida desde: Marsella (MRS)’. Each states its guess as fact."],
-         confidence_raw="Verified", scope_limit="Cause not established for any of the three (IP, CDN edge, account default, prior session). Recorded as observed divergence, not a geolocation defect in any one product.",
-         sources=["captures/05-skyscanner/01-site-tree-and-undecided-traveller.json (F61)"]),
+    dict(id="pain-8", title="Two products, one afternoon, three different guesses at where you are — and one of them is arguing with itself.",
+         body=["Kayak's AI planner: \u2018Est\u00e1s en Toronto\u2019. Kayak's own flight search, minutes earlier in the same session: origin pre-filled \u2018Madrid (MAD)\u2019. Skyscanner: \u2018Salida desde: Marsella (MRS)\u2019. Each states its guess as fact \u2014 and one product contradicts itself across two of its own surfaces.",
+               "CORRECTED 2026-09-07 (C-046). This pain point previously read \u2018Google\u2019s AI planner\u2019 and \u2018three products\u2019. The capture recording \u2018Est\u00e1s en Toronto\u2019 is captures/04-kayak/03-ai-planner-and-first-empty-state.json \u2014 competitor Kayak, url kayak.es/ai \u2014 and no Google Travel capture in this round asserts a location anywhere. The misattribution originated in F-61\u2019s evidence list and was inherited here."],
+         confidence_raw="Verified", scope_limit="Cause not established for either product (IP, CDN edge, account default, prior session). Recorded as observed divergence, not a geolocation defect in any one product. F-61, the finding this rests on, names three competitors and credits the Toronto string to Google Travel; its own cited source records that string on Kayak. F-61 needs re-stating at source \u2014 see Method & corrections, C-046.",
+         sources=["captures/04-kayak/03-ai-planner-and-first-empty-state.json (F41 \u2014 the Toronto assertion, at its actual source)",
+                  "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json (F61 \u2014 the cross-product comparison, whose attribution is corrected here)"]),
     dict(id="pain-9", title="A cookie banner with no single-click way to say no, before you've searched anything.",
          body=["Omio's consent modal offered ‘Aceptarlas todas’ or ‘Gestionar ajustes’ — no direct reject — and states it shares personal data with 164 named partners. Tripadvisor presented the same shape. Neither product's results surface could be captured this round as a result."],
          confidence_raw="Verified", scope_limit=None,
@@ -528,6 +530,44 @@ NEXT_STEPS = [
          sources=["captures/11-omio/01-multimodal-and-164-partners.json",
                   "WORLD.md § 7 What this corpus cannot answer"]),
 ]
+
+# ---------------------------------------------------------------------------
+# Class-A citations applied 2026-09-07, from the Phase 2 triage.
+#
+# Each of these findings was already in the round and already supports the
+# conclusion named; the conclusion simply never cited it. research-synthesizer
+# classified them; the client approved applying them; they are added here rather
+# than edited into each dict so the change is visible in one place and reversible.
+#
+# ONLY the classifications the agent marked `clear` are applied. Three it marked
+# `unsure` are deliberately NOT applied and are listed in phase2-triage.json:
+# F-8 to insight-3, F-88 to insight-1, F-99 to rec-6. Adopting an unsure
+# classification without review is how C-046 happened.
+CLASS_A_CITATIONS = {
+    "insight-1": ["captures/03-google-travel/01-site-tree-and-decision-surfaces.json (F23)", "captures/03-google-travel/01-site-tree-and-decision-surfaces.json (F24)"],
+    "insight-2": ["captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json (F64)"],
+    "insight-3": ["captures/04-kayak/05-price-honesty-and-mix-risk.json (F47)", "captures/04-kayak/06-handoff-to-carrier.json (F49)", "captures/15-iberia/01-arrival-via-kayak-handoff.json (F51)"],
+    "insight-4": ["captures/01-booking-com/06-personalisation-controlled-diff.json (F11)", "captures/02-expedia/03-stays-search-results.json (F20)", "captures/03-google-travel/02-sort-axes-enumerated.json (F25)", "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json (F92)", "captures/13-citymapper/01-arrival-to-accommodation.json (F100)"],
+    "insight-6": ["captures/15-iberia/02-airport-services-business-goal-5.json (F55)"],
+    "pain-5": ["captures/16-american-airlines/02-spanish-site-and-a-method-correction.json (F112)"],
+    "pain-9": ["captures/11-omio/01-multimodal-and-164-partners.json (F94)"],
+    "rec-3": ["captures/07-airbnb/05-experiences-and-business-goal-2.json (F79)"],
+    "rec-4": ["captures/09-rentalcars/01-ownership-and-hidden-costs.json (F87)"],
+    "rec-6": ["captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json (F35)"],
+    "rec-7": ["captures/01-booking-com/07-stays-funnel-to-payment-gate.json (F15)"],
+    "rec-8": ["captures/03-google-travel/04-auth-gated-capability.json (F28)", "captures/03-google-travel/04-auth-gated-capability.json (F29)", "captures/15-iberia/04-loyalty-iberia-club.json (F58)"],
+}
+
+def _apply_class_a(seq):
+    for it in seq:
+        for extra in CLASS_A_CITATIONS.get(it["id"], []):
+            if extra not in (it.get("sources") or []):
+                it.setdefault("sources", []).append(extra)
+
+for _seq in (INSIGHTS, RECS, PAIN_POINTS):
+    _apply_class_a(_seq)
+_applied = sum(len(v) for v in CLASS_A_CITATIONS.values())
+print(f"class-A citations applied: {_applied} across {len(CLASS_A_CITATIONS)} conclusions")
 
 # ---- METHOD NOTES (transparency — the round correcting itself) ------------
 
@@ -723,6 +763,25 @@ def render_coverage_row(row):
   <span class="covnum">{row["num"]}<span class="covden">/{row["den"]}</span> <span class="covpct">({pct}%)</span></span>
 </div>'''
 
+# A correction that lands on a FINDING, not on a conclusion. The capture files are
+# immutable source and are not edited, so the correction is attached at render time
+# and travels with the row it corrects. Without this the index goes on displaying the
+# misattribution verbatim, unflagged, while the pain point above it has been fixed.
+FINDING_CORRECTIONS = {
+    "F61_LOCATION_DISAGREEMENT_ACROSS_THREE_PRODUCTS":
+        "CORRECTION C-046 (2026-09-07). This finding's evidence list attributes "
+        "\u2018Estás en Toronto Todos los aeropuertos\u2019 to a Google Travel AI planner. "
+        "The capture that records that string is "
+        "captures/04-kayak/03-ai-planner-and-first-empty-state.json \u2014 competitor Kayak, "
+        "url kayak.es/ai \u2014 where it is finding F-41. No Google Travel capture in this "
+        "round asserts a location anywhere; all Google captures were searched for "
+        "\u2018Estás en\u2019, \u2018You are in\u2019, \u2018Toronto\u2019 and "
+        "\u2018ubicación\u2019 and returned nothing. So this is TWO products, not three, and "
+        "the sharper reading is that Kayak contradicts itself across two of its own surfaces. "
+        "Found independently by two agents during Phase 1 and Phase 2 and confirmed against the "
+        "captures. The capture file is unedited; this correction is applied at render.",
+}
+
 def render_index_row(row, n):
     tier_key, tier_label = tier_of(row["confidence"], row.get("id"))
     conf_chip = chip(TIER_CHIP_LABEL[tier_key], f"chip--{tier_key}")
@@ -742,7 +801,11 @@ def render_index_row(row, n):
             body.append(f'Evidence: {e}')
     if not body:
         body = ["No further detail beyond the claim recorded for this item."]
-    add_panel(pid, f'{row["id"]} — {row["competitor"]}', f'{THEME_LABEL.get(row["theme"], row["theme"])} · {row["confidence"]}',
+    corr = FINDING_CORRECTIONS.get(row["id"])
+    if corr:
+        body.insert(0, corr)
+    add_panel(pid, f'{row["id"]} — {row["competitor"]}'
+              + (" \u2014 CORRECTED" if corr else ""), f'{THEME_LABEL.get(row["theme"], row["theme"])} · {row["confidence"]}',
               body, [f'[{row["source"]}]'])
     return (f'<tr data-detail="{pid}" tabindex="0" role="button" aria-haspopup="true" '
             f'aria-controls="detail-panel" aria-expanded="false" '

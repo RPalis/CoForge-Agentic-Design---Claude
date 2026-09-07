@@ -337,6 +337,17 @@
       "outcome": "found-defect",
       "found": "First dispatch of this agent. Seven corrections to its brief. (1) Only FOUR competitors are net-new, not seven — Airbnb, Tripadvisor and Rentalcars are already in the client's own standing set, and burying four real additions among seven weakens the argument that must survive. (2) Loyalty is NOT a ninth stage — it occurs inside other stages, and a ninth stage would discard the in-line occurrences where business goal 8's answer lives. (3) A capture may never become a ledger record — CLAUDE.md forbids minting a ledger ID for a measurement — with the sharp corollary that transcribing a user review from a competitor site would create an unresolvable user quote and breach prohibition 2. (4) The main session's 'write captures to a file immediately' advice DOUBLES cost rather than reducing it: context already spent is re-emitted as tool input; the real levers are the screenshot never entering context and the a11y tree going to disk unread. Revised to ~198k per competitor and 16-20 sessions, not 14. (5) Stage list crossed with state list yields 120 screens against a 40-70 budget. (6) The scenario names FIVE user types and SKILL.md names one — an undeclared disagreement that is the likely origin of the prior round's single-persona lens. (7) ADR-017 does not exist at the path given. Also found an airport-services roster gap: business goal 5 has no comparator among the fourteen. Self-reported a clean-room breach (C-040).",
       "report": "artifacts/luma-hands-on/2026-09-04__research-plan__competitor-ux-capture__v1/validation.md"
+    },
+    {
+      "date": "2026-09-04",
+      "agent": "dashboard-analyst",
+      "task": "Build the competitor findings and recommendations dashboard (ART-026)",
+      "tokens": 370904,
+      "tool_uses": 168,
+      "duration_ms": 2285268,
+      "outcome": "found-defect",
+      "found": "Built the board with a structural evidence/synthesis split encoded redundantly — a text chip AND a border shape, never colour alone — so a cropped screenshot still declares its register. FOUND A DEFECT IN THE ROUND'S OWN DATA, not in its brief: ART-024 mandates a Verified/Likely/Not-Verified tri-state, and across 50 capture files the round recorded Verified 169 times, Likely once, Not Verified zero. It refused to render three tiers over data with one value and built tiers matching reality instead. Main session confirmed the counts (C-042). Also caught that WORLD.md section 1 contains no problem list as the brief claimed, and that CAPTURE-INDEX counts 121 findings while WORLD.json fully carries 117 — resolving the 4 stubs from their capture files. Kept the GENERATOR inside the artifact, explicitly citing C-039, where a missing generator was the root cause of a truncation defect.",
+      "report": "artifacts/luma-hands-on/2026-09-04__dashboard__hands-on-findings-and-recommendations__v1/validation.md"
     }
   ]
 }

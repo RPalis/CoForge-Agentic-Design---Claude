@@ -1,0 +1,95 @@
+{
+  "id": "ART-026",
+  "type": "dashboard",
+  "workstream": "luma-hands-on",
+  "title": "Luma competitor research — findings, pain points, insights, recommendations, next steps",
+  "file": "luma-competitor-research-findings.html",
+  "version": 2,
+  "supersedes": "ART-026 v1",
+  "status": "draft",
+  "stage": "develop",
+  "produced_by": "main session, with dashboard-analyst (Phase 3 feature inventory), design-critic (adversarial review) and a11y-checker (WCAG 2.2 AA)",
+  "model": "claude-opus-5",
+  "skills_used": [
+    "luma-competitor-analysis-pro"
+  ],
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-024",
+      "ART-025"
+    ],
+    "decisions": [
+      "ADR-017",
+      "ADR-021",
+      "ADR-022",
+      "D-001",
+      "D-002",
+      "D-003",
+      "D-004"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json",
+      "phase3-feature-inventory.json",
+      "confidence-reconciliation.json",
+      "theme-audit.json"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "payload": {
+    "bytes": 466641,
+    "sha256": "dc5bfa7eecb20851b7950cb523601b8637ab509d87a9ceba0f8c5384c90e9594",
+    "charts": 11,
+    "index_rows": 121,
+    "detail_panels": 183,
+    "sections": 9
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-07",
+    "checks": [
+      {
+        "name": "verify-encoding.py",
+        "scope": "token contrast pairs",
+        "result": "PASS"
+      },
+      {
+        "name": "verify-charts.mjs",
+        "scope": "rendered-DOM chart layer: mark and text contrast, clipping on both axes, label overlap, redundant encoding, CSV presence",
+        "result": "PASS",
+        "detail": "407 marks worst 4.25:1 against a 3:1 floor · 59 matrix cell numbers worst 5.02:1 against 4.5:1 · 0 clipped · 0 overlapping · 11 rotated labels excluded by declaration and counted"
+      },
+      {
+        "name": "verify-interaction.mjs",
+        "scope": "panel open/close, focus management, Escape, Enter parity, 121 distinct index rows",
+        "result": "PASS"
+      }
+    ]
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-07",
+  "corrections_raised": [
+    "C-043",
+    "C-044",
+    "C-045"
+  ],
+  "notes": {
+    "what_changed_from_v1": "v1 carried 0 charts and 9,591 visible words. v2 carries 11 charts and every one of v1's words, sections, 121 index rows and 183 detail panels intact. Nothing was removed to make room.",
+    "gate_A": "NOT GRANTED. This artifact has not been through human approval and its status stays draft until it is.",
+    "known_open_items": [
+      "The theme field is unreliable — 48% of the rows the audit can speak about are filed under a theme their own id contradicts (C-045). ch-themes and ch-matrix state this on their own faces and claim only labelling, not coverage. Re-theming against a written taxonomy is owed to round 2 and is deliberately NOT done by hand here.",
+      "WORLD.json is still short by 4 rows and carries no subset warning (C-043). Regenerating it is generator work, not a hand edit.",
+      "CAPTURE-INDEX.json still holds 7 confidence pointers (C-044). They are rendered as 'No rating recorded' everywhere rather than promoted to a rating.",
+      "design-critic raised items not yet actioned: the coverage chart's three background bands are arithmetic thirds rather than real thresholds; the confidence chart's 7 absence marks are contiguous and terminal and may still read as a third tier; the matrix totals column has no header.",
+      "Phase 5 of the skill (journey comparison) is thin by construction — 25 of 136 journey stages were captured."
+    ],
+    "why_the_builders_did_not_clear_their_own_checks": "design-critic and a11y-checker were dispatched against the assembled board and neither built it. Three of their findings were confirmed against the captures before being acted on, and one a11y finding was confirmed after my own first check of it returned the wrong answer."
+  }
+}

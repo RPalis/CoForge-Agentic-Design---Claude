@@ -1,0 +1,64 @@
+{
+  "id": "ART-026",
+  "type": "dashboard",
+  "workstream": "luma-hands-on",
+  "title": "Luma competitor research — findings, pain points, insights, recommendations, next steps",
+  "file": "luma-competitor-research-findings.html",
+  "version": 1,
+  "supersedes": null,
+  "status": "superseded",
+  "stage": "develop",
+  "produced_by": "dashboard-analyst",
+  "model": "claude-sonnet-5",
+  "skills_used": [
+    "dataviz"
+  ],
+  "findings": {
+    "findings_by": "dashboard-analyst",
+    "checked": 14,
+    "found": 3,
+    "method": "checked = every structural invariant the brief and CLAUDE.md bind this artifact to, verified against the rendered payload rather than assumed from the generator source: (1) all five coverage ratios match WORLD.json's own coverage_warning object exactly (25/136, 47/68, 8/119, 6/17, 4/17), re-derived denominators (8 stages x17=136, 4 booking types x17=68, 7 states x17=119) checked by arithmetic, not copied; (2) the full evidence index carries exactly 121 rows, matching CAPTURE-INDEX.json's own findings_indexed count (build-dashboard.py asserts this at build time and would fail the build otherwise); (3) zero [E-nnn] citations anywhere (grep, confirmed empty); (4) zero raw hex / zero raw px on padding-margin-gap-border-radius-border-width (grep, confirmed empty -- the quoted finding text containing '$358.59' is a dollar-sign currency figure, not a hex colour, and does not match the hex regex at all); (5) zero PascalCase component-shaped tags anywhere including inside the JSON panel-data block (grep -noE '<[A-Z][A-Za-z0-9]+[ />]' returns nothing); (6) zero uses of the deprecated/defective cf-chart-palette; (7) every chip modifier class (chip--verified, chip--qualified, chip--evidence, chip--synthesis, chip--method, chip--likely) carries NO corresponding CSS rule -- grep confirms only .chip and .chip--outline are styled, so no chip can be misread as a colour-coded verdict; (8) zero filter/sort/show-hide controls as real DOM elements -- the one textual '<select>' substring is inside a quoted finding's evidence text inside a <script type=\"application/json\"> block (raw text per the HTML5 spec, not parsed as markup), confirmed by both grep and a live DOM query (verify-interaction.mjs, noFilterControls: true) returning zero actual <select>/<input>/checkbox/radio elements; (9) 183 click-to-pin triggers, each carrying aria-haspopup/aria-controls/aria-expanded=\"false\", re-verified live over CDP (click opens with the grid still visible, focus moves to the panel, Escape closes and returns focus to the exact trigger, Enter-key parity on a non-button trigger, the close button works, and scrollspy sets aria-current after the page settles -- verify-interaction.mjs, all 9 checks PASS); (10) every asserted contrast ratio re-derived independently and live from the frozen token file (verify-encoding.py, canonical-JSON sha256 1926c393f...cada1a7f confirmed unchanged, 21 pairs checked, all load-bearing pairs clear their WCAG 2.2 AA floor); (11) the ART-017 two-tone-focus-ring defect (semantic.focus at 1.003:1 on palette.teal.60) was checked and confirmed NOT to apply -- this dashboard uses ink-length bars for its one chart, no ordinal/sequential colour fill sits under any focusable element; (12) heading order unbroken (one h1 [sr-only], ten h2, sixty-nine h3, no skipped level) and every table carries a real <caption> and every header cell scope=; (13) print behaviour verified with an actual --print-to-pdf render + PyMuPDF text extraction (53 pages; 'Meta', 'Reviewed by', 'On confidence tiers' and 'Full evidence index' all present in the printed text, confirming the beforeprint/afterprint <details> handling and the @media print rules both work on the live render, not merely read from source); (14) design-system/tokens/tokens.json's canonical hash matches the frozen baseline exactly, both before and after this dispatch. found = 3, all corrections to the brief, not defects in the payload: (a) the brief's assumed Verified/Likely/Not-Verified confidence tri-state is not what the 50 capture files contain -- 'Not Verified' appears zero times and 'Likely' appears exactly once, superseded in the same round; this board renders three tiers that match the data instead (Verified / Verified-qualified / Method note), stated on the page itself under Meta; (b) 'the scenario's own problem list is in WORLD.md §1' does not hold -- §1 contains only product framing, no enumerated problem list -- so Pain points are derived directly from findings, the brief's own permitted fallback; (c) CAPTURE-INDEX.json counts 121 findings but WORLD.json's own 117 chunks leave 4 as bare 'see capture file' stubs -- all 4 resolved here directly from their named capture file so the Full evidence index carries all 121 with real content, none as a placeholder."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-024",
+      "ART-025"
+    ],
+    "decisions": [
+      "ADR-017",
+      "ADR-021",
+      "ADR-022",
+      "D-001",
+      "D-002",
+      "D-003",
+      "D-004"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-04"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-04",
+  "notes": {
+    "why_ART-024_is_listed_alongside_ART-025": "ART-024 (the research plan) is not a data source this board renders numbers from, but two of its recorded decisions (D-003 airline tier, D-004 locale-per-capture) are referenced directly in Findings and Method notes, and its own coverage formulas (7 states x 17, 4 booking types x 17) are what the Coverage section's denominators are checked against.",
+    "why_a_generator_script_ships_with_the_payload": "The prior dashboard family (ART-013..ART-023) had no generator anywhere in the repository -- named in that family's own v5 validation.md as the root cause of C-039, a hand-truncated cell that went unpatched at the source because no source existed to patch. build-dashboard.py IS that source here: it asserts len(FULL_INDEX)==121 and the tokens.json canonical hash at build time, and re-running it reproduces the payload from WORLD.json / CAPTURE-INDEX.json / tokens.json directly rather than from hand-transcription.",
+    "register_encoding_decision": "Evidence vs Synthesis is coded redundantly on every single card: a text chip ('Evidenced'/'Synthesis'/'Method', one word, no colour variant per cf-chip's own contract) AND a border shape (evidence: plain border; synthesis: solid coral left accent; method: dashed border on a shaded background) AND section placement. No channel is colour-alone, so a screenshot of one card cropped out of context still states its register in words, per the brief's explicit test.",
+    "why_cf-chip_cf-nav-rail_cf-detail-panel_are_described_as_instantiated_not_merely_informed_by": "Unlike the prior dashboard family (built before ADR-022, when these three were unpromoted proposals and explicitly NOT instantiated), all three are now level-1 entries in design-system/component-index.json, promoted 2026-09-03. This is their first real use. No code implementation of any of the three exists anywhere in the repository (checked: find -iname across the repo returns only the three component-spec artifacts) -- CoForge has not reached Build Stage 3 / L2, so there is no live component library or renderer to import from. This payload is static HTML/CSS/JS built to conform exactly to each spec's measured token list, variant set and ARIA/interaction contract, which is the same method screen-producer used to author the specs themselves.",
+    "citation_form": "Every citation is a capture-file path (e.g. captures/07-airbnb/01-aircover-included-not-sold.json), per the brief's explicit instruction, never [E-nnn] (the evidence ledger holds zero records) and never [ART-nnn § Section] (this board was instructed to render ART-025's own underlying evidence, not to treat ART-025 as an already-synthesised artifact to cite as a black box).",
+    "superseded_note": "Lifecycle change only; the payload is untouched and stays immutable. CLAUDE.md: versions are immutable, changes make v2, and v1 becomes superseded. v2 has not passed Gate A either — both versions are unapproved, and superseded here means 'a later version exists', not 'v1 was approved and replaced'."
+  },
+  "superseded_by": "ART-026 v2 (2026-09-07)"
+}

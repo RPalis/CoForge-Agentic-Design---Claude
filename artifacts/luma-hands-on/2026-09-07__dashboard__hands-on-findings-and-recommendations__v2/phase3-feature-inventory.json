@@ -1,0 +1,1362 @@
+{
+  "generated": "2026-09-07",
+  "method": "luma-competitor-analysis-pro, Phase 3 (Feature Inventory), restricted to four threads (A: ranking axes & effort; B: loyalty & the first-time traveller; C: the disruption gap; D: business goal 2, the trip as a single object). Phases 1-2 are complete and were not re-run. No web browsing was performed for this phase. Every fact below was re-read from the underlying capture file it cites -- not taken on trust from CAPTURE-INDEX.json's one-line claim text -- because the index is a generated summary and the capture file is the thing that resolves a claim.",
+  "sources": {
+    "capture_index": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/CAPTURE-INDEX.json",
+    "capture_index_role": "Superset index (121 findings across 50 capture files, 17 competitors) used to locate candidate findings per thread, per the task brief's instruction that CAPTURE-INDEX.json is the superset and WORLD.json is short by 4 rows (correction C-043). WORLD.json was not read for this artifact.",
+    "world_json_excluded": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/WORLD.json",
+    "round_learnings": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/ROUND-LEARNINGS.md",
+    "capture_files_read_in_full_for_this_phase": [
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/01-site-tree-L1.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/03-terms-and-conditions.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/04-accessibility-statement.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/05-stays-search-results.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/06-personalisation-controlled-diff.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/01-site-tree-L1.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/03-stays-search-results.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/02-sort-axes-enumerated.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/06-flights-live-route.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/04-flights-sort-axes.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/06-handoff-to-carrier.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/07-ownership-and-ranking-transparency.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/02-no-sort-and-total-price.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/04-ranking-explained-no-sort.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/05-experiences-and-business-goal-2.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/02-ranking-names-effort.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/11-omio/01-multimodal-and-164-partners.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/13-citymapper/01-arrival-to-accommodation.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/14-tripit/01-the-trip-as-one-object.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/01-arrival-via-kayak-handoff.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/03-disruption-the-tier4-test.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+      "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json"
+    ]
+  },
+  "normalisations": [
+    {
+      "merge": "'sort axis' / 'ranking axis' / 'sort option' / 'sort tab'",
+      "decision": "Treated as one concept throughout this file, labelled 'ranking axis'. The capture files use all four terms depending on which competitor's UI is being described (Booking.com/Expedia/Google/Airbnb: 'sort'; Kayak: 'sort tabs'; Trainline: no UI control, only a stated policy)."
+    },
+    {
+      "merge": "capture-level axis kind labels -> the six schema buckets (price / quality proxy / distance / property type / opaque default / effort-convenience)",
+      "decision": "Capture files use several near-synonymous labels for the same bucket: 'opaque_personalised' (Expedia) and 'opaque_default' (Booking.com, Google) were merged into one 'opaque default' bucket. 'effort_ease_stress_confidence', 'effort_ease_stress', 'effort_or_convenience_axes' and 'effort_duration' were all merged into one 'effort-convenience' bucket. This is a naming merge only; no axis was reclassified into a different bucket than its own capture file assigned it."
+    },
+    {
+      "merge": "Google Flights 'Emissions' axis -> effort-convenience bucket",
+      "decision": "Flagged rather than silently folded in. The capture that introduces Emissions (07-flights-sort-axes-MATERIAL-CORRECTION.json) explicitly counts it inside 'effort_or_convenience_axes': 4, alongside Departure time, Arrival time and Duration. A separate, earlier capture in the same file (finding F-34, inherited from 06-flights-live-route.json) describes emissions as 'neither price, quality proxy, nor distance' without asserting it IS an effort axis -- it is a carbon/sustainability measure, not literally a measure of traveller effort. This file follows the source's own later, more considered classification (the correction capture) and places Emissions in effort-convenience, but records the tension: a chart bucketing Emissions under 'effort' is following the vendor capture's own accounting, not an independent judgement that emissions measures effort."
+    },
+    {
+      "merge": "Kayak 'Best' (composite price+duration) axis -> counted once, toward the effort-convenience side",
+      "decision": "Kayak's own finding F-43 states 'two of three axes concern duration' -- meaning 'Best' (a composite of price AND duration) is counted on the duration/effort side, not split 0.5/0.5 across price and effort. This file preserves that whole-number counting rather than inventing a fractional split the source does not support."
+    },
+    {
+      "merge": "'loyalty tier' / 'loyalty level' / 'membership tier'",
+      "decision": "Booking.com's capture uses 'Genius Level', Expedia's uses 'tier', Qatar's uses 'tier', Iberia's programme was never observed to name tiers at all (see Thread B gap). Normalised to 'tier' throughout."
+    },
+    {
+      "merge": "'Avios' (Iberia) vs 'OneKeyCash' (Expedia) vs 'Genius discount %' (Booking) vs 'Avios/Qpoints/Qcredits' (Qatar)",
+      "decision": "NOT merged into one 'loyalty currency' concept for numeric comparison. They have different redemption mechanics (spendable currency vs automatic discount vs status-only points) and merging their numbers into one column would imply comparability the captures do not support. Kept as named, separate fields per programme."
+    },
+    {
+      "merge": "Thread C: 'disruption', 'passenger rights', 'delay/cancellation compensation' searches",
+      "decision": "Treated as one target concept ('disruption/passenger-rights help') for the purpose of stating whether a route exists, but the exact search-term lists differ per competitor and are preserved verbatim per entry rather than normalised to one canonical list, because the method itself changed between competitors (English terms on Iberia and Qatar; a first, WRONG-locale English sweep on American Airlines that returned a false null, corrected to Spanish terms) and collapsing the term lists would hide that method drift."
+    }
+  ],
+  "threads": {
+    "A": {
+      "definition": "Per product: total ranking/sort axes, the verbatim option list, an axis breakdown by kind, the vertical measured, and the capture file. A second, separate field records what each product PUBLISHES about how it ranks (a prose statement), independent of whether a sort control exists at all.",
+      "by_product": [
+        {
+          "competitor": "Booking.com",
+          "vertical": "accommodation",
+          "auth_state": "signed in, Genius Level 2",
+          "total_axes": {
+            "value": 11,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/05-stays-search-results.json",
+            "competitor": "Booking.com"
+          },
+          "option_list_verbatim": [
+            "Our top picks",
+            "Homes & apartments first",
+            "Price (lowest first)",
+            "Price (highest first)",
+            "Best reviewed & lowest price",
+            "Property rating (high to low)",
+            "Property rating (low to high)",
+            "Property rating and price",
+            "Distance from downtown",
+            "Top reviewed",
+            "Genius discounts first"
+          ],
+          "axis_breakdown": {
+            "price": 4,
+            "quality_proxy": 4,
+            "distance": 1,
+            "property_type": 1,
+            "opaque_default": 1,
+            "effort_convenience": 0
+          },
+          "axis_breakdown_source_note": "Breakdown as classified in the capture file itself (finding F-09), not re-derived.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/05-stays-search-results.json",
+          "tier": "T1",
+          "confidence": "Verified"
+        },
+        {
+          "competitor": "Booking.com",
+          "vertical": "accommodation",
+          "auth_state": "signed out (matched-pair control, extension-clean)",
+          "total_axes": {
+            "value": 10,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/06-personalisation-controlled-diff.json",
+            "competitor": "Booking.com"
+          },
+          "option_list_verbatim": [
+            "Our top picks",
+            "Homes & apartments first",
+            "Price (lowest first)",
+            "Price (highest first)",
+            "Best reviewed & lowest price",
+            "Property rating (high to low)",
+            "Property rating (low to high)",
+            "Property rating and price",
+            "Distance from downtown",
+            "Top reviewed"
+          ],
+          "axis_breakdown": {
+            "price": 3,
+            "quality_proxy": 4,
+            "distance": 1,
+            "property_type": 1,
+            "opaque_default": 1,
+            "effort_convenience": 0
+          },
+          "axis_breakdown_source_note": "Inferred, not independently re-enumerated: derived by removing exactly the one axis the capture identifies as the sole signed-in/signed-out difference ('Genius discounts first'), which finding F-11 in the same capture states is itself a price axis. The signed-in breakdown (price:4) minus that one price axis gives price:3 for signed-out. Every other bucket is unchanged because the capture states the other 10 options are IDENTICAL across both states.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/06-personalisation-controlled-diff.json",
+          "tier": "T1",
+          "confidence": "Verified for the total (10) and the option list; Inferred for the per-bucket breakdown as noted above."
+        },
+        {
+          "competitor": "Expedia",
+          "vertical": "accommodation",
+          "auth_state": "authenticated, One Key Blue tier visible",
+          "total_axes": {
+            "value": 6,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/03-stays-search-results.json",
+            "competitor": "Expedia"
+          },
+          "option_list_verbatim": [
+            "Recommended for you",
+            "Price: low to high",
+            "Price: high to low",
+            "Distance from downtown",
+            "Guest rating + our picks",
+            "Property class"
+          ],
+          "axis_breakdown": {
+            "price": 2,
+            "quality_proxy": 2,
+            "distance": 1,
+            "property_type": 0,
+            "opaque_default": 1,
+            "effort_convenience": 0
+          },
+          "axis_breakdown_source_note": "Capture's own label for the fourth bucket is 'opaque_personalised' (for 'Recommended for you') -- merged here into 'opaque_default' per the normalisations list. 'Property class' was left uncounted as property_type by the source capture; it does not classify 'Property class' at all in its own breakdown object (its four buckets sum to 6 without it), so it is folded into quality_proxy here on the basis that a star/property class is a quality proxy, which is an Inference beyond what the source stated -- flagged.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/03-stays-search-results.json",
+          "tier": "T1",
+          "confidence": "Verified for total and option list; the property_type/quality_proxy split is Inferred as noted."
+        },
+        {
+          "competitor": "Google Travel (hotels)",
+          "vertical": "accommodation",
+          "auth_state": "signed out, extension-clean",
+          "total_axes": {
+            "value": 3,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/02-sort-axes-enumerated.json",
+            "competitor": "Google Travel"
+          },
+          "option_list_verbatim": [
+            "Relevance (checked, default)",
+            "Lowest price",
+            "Highest rating"
+          ],
+          "axis_breakdown": {
+            "price": 1,
+            "quality_proxy": 1,
+            "distance": 0,
+            "property_type": 0,
+            "opaque_default": 1,
+            "effort_convenience": 0
+          },
+          "axis_breakdown_source_note": "Matches the capture's own breakdown exactly (F-25).",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/02-sort-axes-enumerated.json",
+          "tier": "T1",
+          "confidence": "Verified"
+        },
+        {
+          "competitor": "Airbnb",
+          "vertical": "accommodation",
+          "auth_state": "authenticated",
+          "total_axes": {
+            "value": 0,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/02-no-sort-and-total-price.json",
+            "competitor": "Airbnb"
+          },
+          "option_list_verbatim": [],
+          "axis_breakdown": {
+            "price": 0,
+            "quality_proxy": 0,
+            "distance": 0,
+            "property_type": 0,
+            "opaque_default": 0,
+            "effort_convenience": 0
+          },
+          "axis_breakdown_source_note": "Zero sort options found via a full-page text sweep in two languages ('ordenar', 'ordena por', 'sort', 'clasificar', 'relevancia') plus enumeration of all 22 page controls. The one caveat the source itself records: a 'Filtros' panel did not open as an inspectable dialog on two attempts, so its interior was never enumerated -- if a sort control lives inside Filtros, this number narrows to 'no sort on the primary results surface' rather than 'zero sort anywhere'. Recorded as a limit on the claim per the source, not smoothed over.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/02-no-sort-and-total-price.json",
+          "tier": "T1",
+          "confidence": "Verified, with the Filtros-panel caveat above."
+        },
+        {
+          "competitor": "Airbnb (Experiences)",
+          "vertical": "activities",
+          "auth_state": "authenticated",
+          "total_axes": {
+            "value": 0,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/05-experiences-and-business-goal-2.json",
+            "competitor": "Airbnb"
+          },
+          "option_list_verbatim": [],
+          "axis_breakdown": {
+            "price": 0,
+            "quality_proxy": 0,
+            "distance": 0,
+            "property_type": 0,
+            "opaque_default": 0,
+            "effort_convenience": 0
+          },
+          "axis_breakdown_source_note": "Not one of the anchor numbers named in the task brief. Included because it is a second activities-vertical data point beyond Tripadvisor. Source states 'sort_control: NONE -- consistent with F-69'. The sweep method used for the stays vertical (full-page text sweep) was not independently repeated on this render; recorded as consistent with, not a fresh confirmation of, zero.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/05-experiences-and-business-goal-2.json",
+          "tier": "T1",
+          "confidence": "Verified as consistent with F-69; not independently re-swept on this render."
+        },
+        {
+          "competitor": "Tripadvisor",
+          "vertical": "activities",
+          "auth_state": "authenticated",
+          "total_axes": {
+            "value": 0,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+            "competitor": "Tripadvisor"
+          },
+          "option_list_verbatim": [],
+          "axis_breakdown": {
+            "price": 0,
+            "quality_proxy": 0,
+            "distance": 0,
+            "property_type": 0,
+            "opaque_default": 0,
+            "effort_convenience": 0
+          },
+          "axis_breakdown_source_note": "Swept for 'ordenar por', 'ordena por', 'clasificar', 'sort' across 54,938 visible characters and enumerated all button/select controls; none found.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+          "tier": "T1",
+          "confidence": "Verified"
+        },
+        {
+          "competitor": "Google Flights",
+          "vertical": "flights",
+          "auth_state": "signed out, extension-clean",
+          "total_axes": {
+            "value": 6,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+            "competitor": "Google Travel"
+          },
+          "option_list_verbatim": [
+            "Top flights (checked, default)",
+            "Price",
+            "Departure time",
+            "Arrival time",
+            "Duration",
+            "Emissions"
+          ],
+          "axis_breakdown": {
+            "price": 1,
+            "quality_proxy": 0,
+            "distance": 0,
+            "property_type": 0,
+            "opaque_default": 1,
+            "effort_convenience": 4
+          },
+          "axis_breakdown_source_note": "effort_convenience(4) = Departure time, Arrival time, Duration, Emissions -- matches the capture's own 'effort_or_convenience_axes': 4 exactly. See the Emissions normalisation entry above for the caveat on classifying Emissions as effort.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+          "tier": "T1",
+          "confidence": "Verified"
+        },
+        {
+          "competitor": "Kayak",
+          "vertical": "flights",
+          "auth_state": "authenticated",
+          "locale_served": "es-es",
+          "total_axes": {
+            "value": 3,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/04-flights-sort-axes.json",
+            "competitor": "Kayak"
+          },
+          "option_list_verbatim": [
+            "El más barato (Cheapest) -- shows 35 EUR / 7h 14m",
+            "El mejor (Best, composite) -- shows 47 EUR / 1h 25m",
+            "Menor duración (Shortest duration) -- shows 1h 17m"
+          ],
+          "axis_breakdown": {
+            "price": 1,
+            "quality_proxy": 0,
+            "distance": 0,
+            "property_type": 0,
+            "opaque_default": 0,
+            "effort_convenience": 2
+          },
+          "axis_breakdown_source_note": "effort_convenience(2) = 'Best' (composite price+duration) + 'Shortest duration', matching F-43's 'two of three concern duration' exactly. 'Best' is a composite that also contains price; it is counted once, on the effort side, per the normalisation entry above -- not split.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/04-flights-sort-axes.json",
+          "tier": "T1",
+          "confidence": "Verified"
+        },
+        {
+          "competitor": "Trainline",
+          "vertical": "rail",
+          "auth_state": "authenticated",
+          "total_axes": {
+            "value": "NOT VERIFIED",
+            "tier": "T1",
+            "confidence": "NOT VERIFIED",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+            "competitor": "Trainline"
+          },
+          "option_list_verbatim": [],
+          "axis_breakdown": null,
+          "axis_breakdown_source_note": "No selectable sort control was found on the results surface (capture explicitly records 'sort_control: NOT FOUND on the results surface'; a 'Direct only' FILTER exists, which is not the same thing as a sort axis). Trainline does not have an enumerable axis COUNT the way the other six products do -- it has a stated ranking POLICY instead (see ranking-basis disclosure below). Reporting a number here would misrepresent a stated default ordering as a set of selectable options, which it is not shown to be. This matches the task anchor's own phrasing -- 'Trainline states its basis' -- rather than a number.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/02-ranking-names-effort.json",
+          "tier": "T1",
+          "confidence": "NOT VERIFIED as a sort-axis count; the stated ranking basis itself is Verified (see below)."
+        }
+      ],
+      "ranking_basis_disclosures": [
+        {
+          "competitor": "Booking.com",
+          "verbatim": "Commission paid on bookings, and other factors can affect property rankings. Learn about these ranking parameters and how to select and modify them. Learn more",
+          "char_count": {
+            "value": 159,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/05-stays-search-results.json",
+            "competitor": "Booking.com",
+            "verbatim": "Character count computed directly from the verbatim string quoted in the capture file (finding F-10); the capture itself does not state a length."
+          },
+          "placement": "Persistent notice under the result count, above the first card (search-results surface, not a linked document).",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/05-stays-search-results.json",
+          "scope_note": "Page-level regulatory-style disclosure that commercial terms INFLUENCE ranking. Does not name the ranking criteria and does not explain any individual result's position."
+        },
+        {
+          "competitor": "Expedia",
+          "verbatim": null,
+          "char_count": null,
+          "placement": null,
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/07-ownership-and-ranking-transparency.json",
+          "scope_note": "NOT VERIFIED -- searched across all Expedia captures read for this phase; the only record of Expedia's position is in Kayak's capture file, which states 'Expedia: nothing observed' in its disclosure-spectrum table. This is an absence in the capture record, not a claim that Expedia discloses nothing anywhere on its site."
+        },
+        {
+          "competitor": "Google Flights",
+          "verbatim": "Ranked based on price and convenience.",
+          "char_count": {
+            "value": 38,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/06-flights-live-route.json",
+            "competitor": "Google Travel",
+            "verbatim": "Computed from the core ranking sentence only ('Ranked based on price and convenience.'), not the fuller quoted passage that also covers the pricing-scope caveat (taxes/fees/bag fees), which is a separate disclosure about PRICE composition, not ranking."
+          },
+          "placement": "Inline on the live flight-results surface itself.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/06-flights-live-route.json",
+          "scope_note": "Names its two criteria (price, convenience) in one line. Commercial/paid-placement influence not addressed."
+        },
+        {
+          "competitor": "Kayak",
+          "verbatim": "Clasificación de los resultados de las propiedades: por defecto, los resultados se clasifican mediante nuestro algoritmo <<Recomendaciones>>, que se basa en varios factor[es]... (sentence truncated in the capture itself, mid-word)",
+          "char_count": {
+            "value": 18759,
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/07-ownership-and-ranking-transparency.json",
+            "competitor": "Kayak",
+            "verbatim": "This is the length of the WHOLE first-party document ('Como funciona nuestra web'), not the one truncated sample sentence quoted above -- the sentence's own length is NOT VERIFIED because the capture cuts it off with '[es]...' before it ends."
+          },
+          "placement": "Standalone first-party disclosure document at kayak.es/c/company/, structured per vertical (Flights, Stays, Cars, Recommendations, Trips).",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/07-ownership-and-ranking-transparency.json",
+          "scope_note": "Most extensive disclosure observed for any product on this thread, PLUS per-placement ad labelling naming the advertiser (a separate mechanism from the ranking document). The capture itself flags this may be an EU DSA/P2B regulatory-compliance artefact rather than a voluntary product choice -- recorded as Inferred, not verified, in the source."
+        },
+        {
+          "competitor": "Airbnb",
+          "verbatim": "El algoritmo tiene en cuenta muchos detalles para decidir como ordena los resultados, pero algunos tienen mas peso que otros. En concreto, la calidad, la popularidad, el precio y, en el caso de los alojamientos, la ubicacion, influyen mucho en el posicionamiento de los anuncios. El algoritmo tambien favorece la variedad y muestra a los viajeros anuncios de distintos anfitriones y con diferentes caracteristicas y precios.",
+          "char_count": {
+            "value": 424,
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/04-ranking-explained-no-sort.json",
+            "competitor": "Airbnb",
+            "verbatim": "Computed from the full headline quote given verbatim in the capture. The capture separately states the WHOLE help-article document is 10,860 characters ('document_size'); the two numbers measure different things (one sentence vs the whole article) and are both reported."
+          },
+          "document_size_chars": {
+            "value": 10860,
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/04-ranking-explained-no-sort.json",
+            "competitor": "Airbnb"
+          },
+          "placement": "First-party help article ('How search results work'), linked from the results page itself via 'Como ordenamos los resultados'.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/04-ranking-explained-no-sort.json",
+          "scope_note": "Names five weighted factors (quality, popularity, location, price, host behaviour/Superhost) plus a stated variety objective. No commission/advertising/paid-placement term found in a targeted sweep of the document -- the capture is explicit this establishes what Airbnb SAYS, not that no commercial factor exists in the algorithm."
+        },
+        {
+          "competitor": "Tripadvisor",
+          "verbatim": "Estas clasificaciones se basan en los datos de Tripadvisor: tenemos en cuenta las opiniones de los viajeros, las puntua[ciones]... (sentence truncated in the capture itself)",
+          "char_count": null,
+          "placement": "Inline on the activities results surface.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+          "scope_note": "NOT VERIFIED for a character count -- the capture truncates the quoted sentence mid-word, so its true length cannot be computed from what is on disk. The page itself is 54,938 visible characters, but that measures the whole results page, not this one disclosure sentence."
+        },
+        {
+          "competitor": "Trainline",
+          "verbatim": "We show tickets for the fastest available journeys with the smallest number of changes, highlighting the cheapest within these results. Some results may be sponsored.",
+          "char_count": {
+            "value": 166,
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/02-ranking-names-effort.json",
+            "competitor": "Trainline",
+            "verbatim": "Computed from the full, un-truncated verbatim sentence quoted in the capture."
+          },
+          "placement": "Inline on the rail results surface.",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/02-ranking-names-effort.json",
+          "scope_note": "The only ranking disclosure in the round that orders its stated criteria as effort-first: fastest, then fewest changes, then cheapest within that set. Also discloses sponsorship in the same sentence."
+        }
+      ],
+      "anchor_reconciliation": [
+        {
+          "anchor": "Booking.com 11 (signed in) vs 10 (signed out)",
+          "captures_show": "11 signed in (Genius Level 2), 10 signed out",
+          "verdict": "CONFIRMED, exact match",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/06-personalisation-controlled-diff.json"
+        },
+        {
+          "anchor": "Expedia 6",
+          "captures_show": 6,
+          "verdict": "CONFIRMED, exact match",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/03-stays-search-results.json"
+        },
+        {
+          "anchor": "Google hotels 3",
+          "captures_show": 3,
+          "verdict": "CONFIRMED, exact match",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/02-sort-axes-enumerated.json"
+        },
+        {
+          "anchor": "Airbnb 0",
+          "captures_show": 0,
+          "verdict": "CONFIRMED, exact match",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/02-no-sort-and-total-price.json"
+        },
+        {
+          "anchor": "Tripadvisor activities 0",
+          "captures_show": 0,
+          "verdict": "CONFIRMED, exact match",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json"
+        },
+        {
+          "anchor": "Google Flights 6 of which 4 are effort/convenience",
+          "captures_show": "6 total; 4 effort/convenience (Departure time, Arrival time, Duration, Emissions)",
+          "verdict": "CONFIRMED, exact match",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json"
+        },
+        {
+          "anchor": "Kayak flights 3 of which 2 concern duration",
+          "captures_show": "3 total; 2 concern duration (Best, Shortest duration)",
+          "verdict": "CONFIRMED, exact match",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/04-flights-sort-axes.json"
+        },
+        {
+          "anchor": "Trainline states its basis",
+          "captures_show": "Confirmed -- Trainline states a 3-part ranking policy (fastest, fewest changes, cheapest) but has NO enumerable sort-control axis count; see threadA.by_product entry.",
+          "verdict": "CONFIRMED as a qualitative fact; no numeric axis count exists to confirm or contest",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/02-ranking-names-effort.json"
+        }
+      ],
+      "anchor_reconciliation_summary": "All eight anchors given in the task brief were checked directly against the capture files and CONFIRMED with no discrepancy. None of the anchor numbers needed correcting."
+    },
+    "B": {
+      "definition": "Per programme: full tier ladder with exact numeric thresholds and what each tier grants, whether the entry tier is empty or non-empty, which benefits are help rather than price, and the result of the first-time-traveller text search.",
+      "by_programme": [
+        {
+          "programme": "Booking.com Genius",
+          "competitor": "Booking.com",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+          "observation_condition": "authenticated at Genius Level 2",
+          "tier_ladder": [
+            {
+              "tier": "Genius Level 1",
+              "threshold": {
+                "value": "entry",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+                "competitor": "Booking.com"
+              },
+              "grants_verbatim": [
+                "10% discount on stays",
+                "10% discount on rental cars"
+              ]
+            },
+            {
+              "tier": "Genius Level 2",
+              "threshold": {
+                "value": "5 completed bookings in 2 years",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+                "competitor": "Booking.com",
+                "verbatim": "Enjoy this level on select stays and rental cars worldwide upon completing 5 bookings in 2 years."
+              },
+              "grants_verbatim": [
+                "10-15% discount on stays",
+                "10-15% discount on rental cars"
+              ]
+            },
+            {
+              "tier": "Genius Level 3",
+              "threshold": {
+                "value": "15 completed bookings in 2 years",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+                "competitor": "Booking.com",
+                "verbatim": "Enjoy this level on select stays and rental cars worldwide upon completing 15 bookings in 2 years."
+              },
+              "grants_verbatim": [
+                "10-20% discount on stays",
+                "10-15% discount on rental cars",
+                "free breakfasts",
+                "free room upgrades",
+                "PRIORITY SUPPORT for stays"
+              ]
+            }
+          ],
+          "entry_tier_empty_or_not": {
+            "value": "non-empty -- grants 10% discount on stays and rental cars immediately",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+            "competitor": "Booking.com"
+          },
+          "benefits_that_are_help_not_price": {
+            "value": [
+              "Priority support for stays (Level 3 only)"
+            ],
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+            "competitor": "Booking.com",
+            "verbatim": "This is the only Genius benefit across all three levels that is a service/assistance benefit rather than a discount, free upgrade or free item. It requires 15 completed bookings in 2 years."
+          },
+          "first_time_traveller_search": {
+            "terms_searched": [
+              "first-time",
+              "new to Booking",
+              "beginner"
+            ],
+            "surface_searched": "full Genius explainer page (5,250 characters)",
+            "result": {
+              "value": "zero matches",
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/02-loyalty-genius.json",
+              "competitor": "Booking.com"
+            },
+            "scope_limit": "Absence on THIS page only, per the capture's own caveat. Not evidence of absence across the whole product."
+          }
+        },
+        {
+          "programme": "Expedia One Key",
+          "competitor": "Expedia",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+          "observation_condition": "authenticated Chrome; page served generic marketing content, no account tier reflected",
+          "tier_ladder": [
+            {
+              "tier": "Blue",
+              "threshold": {
+                "value": "0-4 trip elements",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+                "competitor": "Expedia"
+              },
+              "grants_verbatim": [
+                "1% OneKeyCash on eligible bookings"
+              ]
+            },
+            {
+              "tier": "Silver",
+              "threshold": {
+                "value": "5-14 trip elements",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+                "competitor": "Expedia"
+              },
+              "grants_verbatim": [
+                "2% OneKeyCash on eligible bookings"
+              ]
+            },
+            {
+              "tier": "Gold",
+              "threshold": {
+                "value": "15-29 trip elements",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+                "competitor": "Expedia"
+              },
+              "grants_verbatim": [
+                "3% OneKeyCash at VIP Access stays"
+              ]
+            },
+            {
+              "tier": "Platinum",
+              "threshold": {
+                "value": "30+ trip elements",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+                "competitor": "Expedia"
+              },
+              "grants_verbatim": [
+                "4% OneKeyCash at VIP Access stays"
+              ]
+            }
+          ],
+          "entry_tier_empty_or_not": {
+            "value": "non-empty -- Blue still earns 1% OneKeyCash, and Member Prices (10%+ savings) apply from membership independent of tier",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+            "competitor": "Expedia"
+          },
+          "benefits_that_are_help_not_price": {
+            "value": [],
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+            "competitor": "Expedia",
+            "verbatim": "None found. Every stated benefit across all four tiers and the parallel Member Prices mechanism is monetary (a cashback percentage or a price discount)."
+          },
+          "first_time_traveller_search": {
+            "terms_searched": [
+              "first-time",
+              "new member",
+              "beginner"
+            ],
+            "surface_searched": "full One Key programme page",
+            "result": {
+              "value": "zero matches",
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+              "competitor": "Expedia"
+            },
+            "scope_limit": "Homepage/programme-page only, generic marketing content; authenticated member view of this specific page was not reached."
+          },
+          "additional_mechanism_not_a_tier": {
+            "value": "What a 'trip element' counts as (one booking, or one component of a trip) was NOT captured; OneKeyCash expiry: an FAQ entry exists but its answer was not captured -- recorded as UNKNOWN, not as 'does not expire'.",
+            "tier": "T2",
+            "confidence": "NOT VERIFIED",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/02-expedia/02-loyalty-one-key.json",
+            "competitor": "Expedia"
+          }
+        },
+        {
+          "programme": "Iberia Club",
+          "competitor": "Iberia",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+          "observation_condition": "authenticated Chrome; page served generic programme content despite authenticated session",
+          "tier_ladder": {
+            "value": "NOT VERIFIED",
+            "tier": "T2",
+            "confidence": "NOT VERIFIED",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+            "competitor": "Iberia",
+            "verbatim": "The capture's own not_observed list states: \"the tier names and thresholds -- 'Niveles Iberia Club y sus ventajas' not opened\". No numeric tier ladder is on disk for Iberia Club. Per the task brief's rule, an unstated threshold is recorded as absent, not assumed to be zero or inferred from the other three ladders."
+          },
+          "currency_structure_verified_instead": {
+            "Avios": {
+              "value": "spendable currency; earnable off-platform via 90+ retail partner brands, before any flight is taken",
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+              "competitor": "Iberia",
+              "verbatim": "Acumular puntos Iberia Club es muy facil: te regalamos Avios cada vez que realices una compra en mas de 90 marcas asociadas al programa."
+            },
+            "Puntos_Elite": {
+              "value": "status currency, drives tier level; earned per euro spent on Iberia Group and partner-airline flights only",
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+              "competitor": "Iberia"
+            }
+          },
+          "entry_tier_empty_or_not": {
+            "value": "NOT VERIFIED -- no numbered entry tier was observed at all (see tier_ladder note); qualitatively, the AVIOS currency can start non-zero before a first flight (via retail spend), but the STATUS ladder's entry point and its threshold were not captured.",
+            "tier": "T2",
+            "confidence": "NOT VERIFIED",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+            "competitor": "Iberia"
+          },
+          "benefits_that_are_help_not_price": {
+            "value": "NOT VERIFIED -- programme states benefits 'also for children' (F-59) but the content of those child benefits was not captured, so whether they are help-type or price-type cannot be determined.",
+            "tier": "T2",
+            "confidence": "NOT VERIFIED",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+            "competitor": "Iberia"
+          },
+          "first_time_traveller_search": {
+            "terms_searched": [
+              "primer viaje",
+              "nuevo socio",
+              "principiante",
+              "primera vez"
+            ],
+            "surface_searched": "Iberia Club programme page",
+            "result": {
+              "value": "zero matches",
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/04-loyalty-iberia-club.json",
+              "competitor": "Iberia"
+            },
+            "scope_limit": "Single page; page served generic content despite an authenticated session."
+          }
+        },
+        {
+          "programme": "Qatar Airways Privilege Club",
+          "competitor": "Qatar Airways",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+          "observation_condition": "authenticated Chrome, en-gb locale",
+          "tier_ladder": [
+            {
+              "tier": "Burgundy",
+              "threshold": {
+                "value": "entry",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+                "competitor": "Qatar Airways"
+              },
+              "grants_verbatim": "entry-level member benefits (not itemised in the capture -- full Burgundy benefit list NOT VERIFIED, capture's own not_observed list flags this)"
+            },
+            {
+              "tier": "Silver",
+              "qualify_threshold": {
+                "value": "Earn 150 Qpoints within any 12-month period",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+                "competitor": "Qatar Airways"
+              },
+              "retain_threshold": {
+                "value": "Earn 135 Qpoints within last 12 months OR 270 Qpoints within last 24 months prior to renewal date",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+                "competitor": "Qatar Airways"
+              },
+              "grants_verbatim": [
+                "15kg extra baggage allowance, or one piece (depending on route)",
+                "Priority stand-by",
+                "Priority check-in",
+                "Priority boarding",
+                "Lounge access"
+              ]
+            },
+            {
+              "tier": "Gold",
+              "qualify_threshold": {
+                "value": "Earn 300 Qpoints within any 12-month period",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+                "competitor": "Qatar Airways"
+              },
+              "retain_threshold": {
+                "value": "Earn 270 Qpoints within last 12 months OR 540 Qpoints within last 24 months",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+                "competitor": "Qatar Airways"
+              },
+              "grants_verbatim": [
+                "20kg extra baggage allowance, or one piece",
+                "40 Qcredits to redeem for upgrades, excess baggage and more",
+                "oneworld benefits on other oneworld flights"
+              ]
+            },
+            {
+              "tier": "Platinum",
+              "qualify_threshold": {
+                "value": "Earn 600 Qpoints within any 12-month period",
+                "tier": "T2",
+                "confidence": "Verified",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+                "competitor": "Qatar Airways"
+              },
+              "retain_threshold": {
+                "value": "NOT VERIFIED -- not captured",
+                "tier": "T2",
+                "confidence": "NOT VERIFIED",
+                "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+                "competitor": "Qatar Airways"
+              },
+              "grants_verbatim": "NOT VERIFIED -- full Platinum benefit list not captured (capture's own not_observed list)"
+            }
+          ],
+          "entry_tier_empty_or_not": {
+            "value": "Stated to be non-empty ('entry-level member benefits') but the specific benefits are NOT VERIFIED -- not itemised anywhere in the capture.",
+            "tier": "T2",
+            "confidence": "Verified for existence of benefits; NOT VERIFIED for their content",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+            "competitor": "Qatar Airways"
+          },
+          "benefits_that_are_help_not_price": {
+            "value": [
+              "Priority stand-by (Silver)",
+              "Priority check-in (Silver)",
+              "Priority boarding (Silver)",
+              "Lounge access (Silver)"
+            ],
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+            "competitor": "Qatar Airways",
+            "verbatim": "These four Silver-tier benefits are convenience/assistance benefits rather than price discounts. Gold's '40 Qcredits' and baggage allowances are closer to monetary/utility value; oneworld reciprocity is help-adjacent (access to another network's ground services) but not itemised further."
+          },
+          "additional_currency_and_price": {
+            "three_currencies": {
+              "value": {
+                "Avios": "spendable, purchasable",
+                "Qpoints": "status, drives tier, purchasable",
+                "Qcredits": "utility, granted 40 at Gold"
+              },
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+              "competitor": "Qatar Airways"
+            },
+            "qpoint_unit_price": {
+              "value": "USD 25 per Qpoint",
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+              "competitor": "Qatar Airways",
+              "verbatim": "Purchase exclusively on qatarairways.com and pay only USD 25 for 1 Qpoint."
+            },
+            "purchased_qpoints_count_toward_tier": {
+              "value": "Confirmed they count toward BOTH upgrade and retention -- but purchase is capped and a minimum earned balance is required first; the exact minimum-balance and purchase-cap numbers are NOT VERIFIED (the constraint tables did not extract; page returned only 1,069 characters).",
+              "tier": "T2",
+              "confidence": "Verified for the mechanism; NOT VERIFIED for the numeric caps",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+              "competitor": "Qatar Airways"
+            },
+            "caution_against_a_derived_number": "The capture explicitly warns against reporting a computed 'price of Silver' (e.g. 150 Qpoints x $25 = $3,750) because the purchase cap means the full 150 cannot necessarily be bought outright. That computed figure is NOT reported as a real price anywhere in this file, per the source's own instruction."
+          },
+          "first_time_traveller_search": {
+            "terms_searched": [
+              "first-time",
+              "new member",
+              "beginner",
+              "just starting"
+            ],
+            "surface_searched": "Privilege Club membership-tiers page",
+            "result": {
+              "value": "zero matches",
+              "tier": "T2",
+              "confidence": "Verified",
+              "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+              "competitor": "Qatar Airways"
+            },
+            "scope_limit": "Single page."
+          }
+        },
+        {
+          "programme": "American Airlines AAdvantage",
+          "competitor": "American Airlines",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+          "observation_condition": "authenticated Chrome, Spanish-locale site (americanairlines.es, redirected from aa.com)",
+          "tier_ladder": {
+            "value": "NOT VERIFIED",
+            "tier": "T2",
+            "confidence": "NOT VERIFIED",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+            "competitor": "American Airlines",
+            "verbatim": "No tier ladder was captured at all. The capture's own note: 'Tier names, thresholds and lounge eligibility NOT captured -- the AAdvantage status page 404'd twice on URL guesses.' Only a single reward-unlock figure was observed (see below), which is not a tier structure."
+          },
+          "single_reward_figure_observed": {
+            "value": "Unlock rewards from 15,000 Loyalty Points",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+            "competitor": "American Airlines",
+            "verbatim": "Loyalty Point Rewards -- Desbloquee recompensas desde 15.000 Loyalty Points."
+          },
+          "entry_tier_empty_or_not": "NOT VERIFIED -- no tier ladder captured.",
+          "benefits_that_are_help_not_price": "NOT VERIFIED -- not captured beyond the single reward-unlock figure and a named 'Clubes y salas' (Clubs and lounges) destination whose eligibility rules were not opened.",
+          "first_time_traveller_search": {
+            "terms_searched": [],
+            "surface_searched": null,
+            "result": "NOT VERIFIED -- this specific text sweep was not run against AAdvantage content in the captures read for this phase. Do not treat this as a fifth confirmed null; it is an untested cell, distinct from the four program pages that WERE swept and returned zero."
+          }
+        }
+      ],
+      "cross_programme_pattern": {
+        "value": "Of the four programmes where the first-time-traveller sweep WAS run (Genius, One Key, Iberia Club, Privilege Club), all four returned zero matches across four different search-term sets, two intermediaries and two airlines.",
+        "tier": "T2",
+        "confidence": "Verified",
+        "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+        "competitor": "multiple",
+        "verbatim": "This restates the capture round's own F-02/F-18/F-60/F-110 chain. AAdvantage was NOT part of this four -- it was not swept -- so the correct denominator for this claim is four programmes, not five, and American Airlines must not be silently added as a fifth confirmed null."
+      }
+    },
+    "C": {
+      "definition": "Per company: whether a route to disruption/passenger-rights help exists from its own navigation, how it was tested (search terms, surfaces, number of labels checked, served locale), the result, and any contractual position on liability. Counter-cases included, not only the nulls.",
+      "by_company": [
+        {
+          "competitor": "Booking.com",
+          "route_from_own_navigation": {
+            "value": "NOT FORMALLY TESTED with a search-term sweep",
+            "tier": "T1/T2",
+            "confidence": "NOT VERIFIED as tested",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/01-site-tree-L1.json",
+            "competitor": "Booking.com",
+            "verbatim": "No capture runs a systematic search-term sweep of Booking.com's navigation for disruption/rights labels the way Iberia and Qatar were tested. What exists instead is a categorised site-tree listing (product lines, loyalty/account, legal/policy) with ~26 named destinations; none of the named destinations is labelled disruption, delay, cancellation, compensation or passenger rights -- the closest are 'Customer support' and 'Dispute resolution'. This is weaker evidence than a term-sweep null and must not be reported as an equivalent negative result."
+          },
+          "how_tested": {
+            "method": "site-tree categorisation, not a term sweep",
+            "surfaces": [
+              "homepage"
+            ],
+            "labels_checked": "~26 named nav/legal destinations enumerated (not the full 300-link homepage)",
+            "locale_served": "not stated in this capture"
+          },
+          "contractual_liability_position": {
+            "value": "Discloses liability for flights specifically: 'We act solely as the Platform and are not involved in the Third-Party Terms... have no liability to you in relation to your Booking.' Most flights are provided via a Third-Party Aggregator -- liability is disclaimed at the first hop.",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/03-terms-and-conditions.json",
+            "competitor": "Booking.com"
+          },
+          "counter_case": {
+            "value": "Booking.com DOES operate a proactive disruption mechanism, but only where it holds the direct supplier relationship: for pre-booked airport transfers, travellers must give flight details 24 hours ahead 'so your Service Provider can adjust the pick-up Time if your flight is delayed.' For the flight itself, the response is to point the traveller at statutory EU 261/2004 rights in the Terms of Service, not to act.",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/03-terms-and-conditions.json",
+            "competitor": "Booking.com"
+          },
+          "cross_document_pattern": {
+            "value": "Across three first-party documents (Terms of Service, Accessibility Statement, Genius programme page), Booking.com consistently occupies an intermediary position and routes responsibility outward: flight liability to the aggregator/airline, accessibility of the actual travel experience to the supplier, and the one benefit that implies acting FOR the traveller (Genius priority support) gated behind 15 bookings in 2 years.",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/04-accessibility-statement.json",
+            "competitor": "Booking.com"
+          }
+        },
+        {
+          "competitor": "Iberia",
+          "route_from_own_navigation": {
+            "value": "NO route found from the three surfaces tested",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/03-disruption-the-tier4-test.json",
+            "competitor": "Iberia"
+          },
+          "how_tested": {
+            "method": "full-text and link-label sweep across three surfaces",
+            "surfaces_and_label_counts": [
+              "iberia.com/es/ homepage -- 237 link labels after full scroll",
+              "iberia.com/es/preguntas-frecuentes/ (FAQ index) -- 130 link labels",
+              "iberia.com/es/cambios-y-reembolsos/ (changes and refunds page) -- full page text, 5,880 chars, plus all link labels"
+            ],
+            "terms_searched": [
+              "261",
+              "reglamento",
+              "derechos de los pasajeros",
+              "compensacion",
+              "indemnizacion",
+              "cancelacion por",
+              "gran retraso",
+              "overbooking",
+              "denegacion de embarque",
+              "reclamacion",
+              "incidencia"
+            ],
+            "locale_served": "es"
+          },
+          "result": {
+            "value": "Zero matches across all three surfaces and all eleven terms, other than one acknowledgement sentence on the changes-and-refunds page that names a different regime without linking to it: 'La informacion de esta pagina esta enfocada a cambios y reembolsos voluntarios. Si tu viaje se ha visto afectado por causas operativas, tus derechos y las opciones disponibles son diferentes.'",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/03-disruption-the-tier4-test.json",
+            "competitor": "Iberia"
+          },
+          "contractual_liability_position": {
+            "value": "Does not disclaim liability (EU 261 binds it as the operating carrier) but does not operationalise the disruption moment on any surface a traveller reaches either -- the capture's own framing is 'it acknowledges and abandons.'",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/03-disruption-the-tier4-test.json",
+            "competitor": "Iberia"
+          },
+          "findability_vs_existence_caveat": "This establishes NON-FINDABILITY from the three most plausible surfaces, not that Iberia has no EU 261 page anywhere (airlines are legally required to publish one). The capture is explicit about this distinction.",
+          "counter_case": null
+        },
+        {
+          "competitor": "American Airlines (US site, en locale)",
+          "route_from_own_navigation": {
+            "value": "NOT VERIFIED / UNTESTED",
+            "tier": "T2",
+            "confidence": "NOT VERIFIED",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+            "competitor": "American Airlines",
+            "verbatim": "The Customer Service Plan document WAS reached and read, but by guessing a URL after a 404, not by navigating from the homepage. The capture's own fairness caveat states: 'AA's document exists and is well-structured; whether a distressed traveller can FIND it from aa.com's navigation is untested... Any claim that AA is MORE FINDABLE than Iberia is NOT established and must not be made until the symmetric test is run.' That symmetric test was never run in the captures on disk."
+          },
+          "how_tested": {
+            "method": "URL-guess after a 404, then content read",
+            "surfaces": [
+              "customer-service-plan.html (reached by direct URL)"
+            ],
+            "labels_checked": "not applicable -- not a navigation test",
+            "locale_served": "en"
+          },
+          "content_found": {
+            "value": "A published Customer Service Plan with four disruption sections: 'Assistance when your flight has been delayed or canceled', 'Flight delays and cancellations', 'Essential customer needs during extraordinary delays', 'Tarmac delay contingency plan' -- plus a full accessibility-assistance section set.",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+            "competitor": "American Airlines"
+          },
+          "contractual_liability_position": "Not captured in these files beyond the Customer Service Plan's section headings; body text of the four sections was not read.",
+          "counter_case": {
+            "value": "This is a genuine counter-case to the 'nobody publishes a structured disruption commitment' framing -- AA operates under a WEAKER regulatory regime (US DOT vs EU 261) than Iberia and still publishes a more structured document, by content. But see the findability caveat: this is a content-level counter-case, not a navigation-level one.",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+            "competitor": "American Airlines"
+          }
+        },
+        {
+          "competitor": "American Airlines (Spanish-locale site, es)",
+          "route_from_own_navigation": {
+            "value": "YES -- a route exists and is prominent",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+            "competitor": "American Airlines"
+          },
+          "how_tested": {
+            "method": "corrected, locale-matched term sweep, after a first attempt in the wrong language returned a false null",
+            "first_attempt_WRONG": "English terms (delay, cancel, disrupt, compensat, rights, irregular, service plan, refund) run against a Spanish-served page -- zero matches for every category, which the capture flags as 'should have been the tell'",
+            "corrected_terms_es": [
+              "Actualizaciones de viaje",
+              "Alertas de viaje",
+              "Estado del vuelo",
+              "Clubes y salas"
+            ],
+            "surface": "americanairlines.es homepage (43 links, 1,325 visible characters) -- aa.com redirects here for a Spanish-locale session",
+            "locale_served": "es"
+          },
+          "result": {
+            "value": "'Actualizaciones de viaje' (Travel updates) appears as a HEADING, not a buried link, plus 'Alertas de viaje' (appearing twice) and 'Estado del vuelo' (Flight status) as links.",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+            "competitor": "American Airlines"
+          },
+          "important_caveat": "This is a MATERIALLY THINNER site (43 links) than the US site that hosts the four-section Customer Service Plan, and whether that Plan is reachable FROM this Spanish site is untested. So the Spanish-locale finding is a genuine positive navigation result, but for a thinner site whose relationship to the fuller US document is unknown.",
+          "contractual_liability_position": "Not additionally captured on this page.",
+          "counter_case": null
+        },
+        {
+          "competitor": "Qatar Airways",
+          "route_from_own_navigation": {
+            "value": "NO route found on the homepage surface",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+            "competitor": "Qatar Airways"
+          },
+          "how_tested": {
+            "method": "full link-label sweep",
+            "surfaces_and_label_counts": [
+              "homepage -- 289 links"
+            ],
+            "terms_searched": [
+              "disrupt",
+              "delay",
+              "cancel",
+              "irregular",
+              "compensat",
+              "rights",
+              "refund"
+            ],
+            "locale_served": "en-gb"
+          },
+          "result": {
+            "value": "Zero matches across all 289 homepage link labels and all seven terms.",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+            "competitor": "Qatar Airways"
+          },
+          "important_caveat": "Homepage-only test (unlike Iberia's three-surface test). The capture notes an unrelated operational advisory bar (about power banks) was present, which is not a disruption/rights route.",
+          "contractual_liability_position": "NOT VERIFIED -- not captured in the files read for this phase.",
+          "counter_case": null
+        },
+        {
+          "competitor": "Hopper",
+          "route_from_own_navigation": {
+            "value": "A route exists, but it sells disruption handling as a paid, app-only product rather than surfacing passenger-rights information for free.",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+            "competitor": "Hopper"
+          },
+          "how_tested": {
+            "method": "direct navigation to the named product page (homepage -> /product/premium-disruption-assistance), not a term sweep",
+            "locale_served": "en"
+          },
+          "product_found_verbatim": "Premium Disruption Assistance -- 'If your flight is delayed or canceled, instantly rebook on any airline. If you are not happy with the rebooking options, get a 100% refund of your flight instead.'",
+          "counter_case": {
+            "value": "The clearest counter-case to a 'nobody owns the disruption moment' framing: one competitor sells exactly that ownership, as a named product, with a broader promise ('rebook on ANY airline') than EU 261 obliges any airline to provide. The gap this reveals is narrower than 'nobody owns it' -- it is that ownership here is a PAID ADD-ON, 'Available in the Hopper app' (not reachable on the web surface), with its price NOT STATED anywhere captured.",
+            "tier": "T2",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+            "competitor": "Hopper"
+          },
+          "method_limit": "Hopper's web surface (1,769 DOM nodes, 89 links) is a functional search plus a marketing site for the app; the product's actual mechanics are unreachable by this method. Recorded as a method limit, not a product finding.",
+          "contractual_liability_position": "NOT VERIFIED -- price and exact terms of Premium Disruption Assistance not captured."
+        },
+        {
+          "competitor": "Trainline",
+          "route_from_own_navigation": {
+            "value": "Not tested as a navigation/rights-page route; instead, a distinct PROACTIVE mechanism was found on the search results surface.",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+            "competitor": "Trainline"
+          },
+          "counter_case": {
+            "value": "'Get notified instantly in case of delay or cancellation' AND 'Get notified when you qualify for delay compensation.' This is not a rights page a traveller must find -- it is the operator proactively telling the traveller, unprompted, that a right they already hold has been triggered.",
+            "tier": "T1",
+            "confidence": "Verified",
+            "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+            "competitor": "Trainline"
+          },
+          "contractual_liability_position": "NOT VERIFIED -- terms and conditions were not captured for Trainline.",
+          "how_tested": {
+            "method": "on-page copy read directly from the search results surface",
+            "locale_served": "en-us (requested /es, redirected to /en-us -- locale drift recorded in the capture)"
+          }
+        }
+      ],
+      "method_asymmetry_warning": {
+        "value": "The five 'route exists?' results above were NOT produced by the same method and are not safely comparable on one chart axis. Iberia's null is a three-surface, eleven-term sweep. Qatar's null is a one-surface, seven-term sweep. Booking.com's is a site-tree category read, not a sweep at all. American Airlines has two DIFFERENT results depending on which localised site is tested, and the higher-content US result was reached by URL guess, not navigation. Hopper's counter-case was found by direct navigation to a named product, not a sweep. A chart presenting these as one uniform 'disruption findability' metric across competitors would overstate how comparable the underlying tests are -- the source material itself raises this caveat explicitly for the AA/Iberia pair and it generalises to the whole set.",
+        "tier": "T1/T2",
+        "confidence": "Verified",
+        "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+        "competitor": "multiple"
+      }
+    },
+    "D": {
+      "definition": "What state a traveller carries across a product boundary and what is dropped. The Airbnb stays-to-Experiences date-drop is the known instance. This section searches the captures for any OTHER instance, on any competitor, and reports the count found.",
+      "known_instance": {
+        "value": "Airbnb: navigating from a dated Stays search (checkin 2026-11-10, checkout 2026-11-13) to Experiences produced a URL carrying NO dates. A full sweep of the 8,765-character Experiences results page for 'tu viaje', 'tu estancia', 'tu reserva', 'anadir al viaje', 'durante tu', 'itinerario' returned zero matches. This is within ONE company, one account, three inventories (stays, experiences, services) under one login.",
+        "tier": "T1",
+        "confidence": "Verified",
+        "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/07-airbnb/05-experiences-and-business-goal-2.json",
+        "competitor": "Airbnb"
+      },
+      "other_instances_found": {
+        "count": 1,
+        "statement": "Exactly one other instance of the same pattern -- trip state crossing a product boundary and arriving wrong -- was found in the capture set read for this phase.",
+        "instance": {
+          "value": "Trainline: a PRE-CHECKED 'Get up to 20% off stays with Genius' (Booking.com) cross-sell control in the Trainline search form, on search, opened a Booking.com hotel search in the original tab with checkin=2026-09-04, checkout=2026-09-05 -- today and tomorrow, not the travel dates the traveller had actually searched for on Trainline. The URL's own tracking label contains the word 'popunder'.",
+          "tier": "T1",
+          "confidence": "Verified",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+          "competitor": "Trainline"
+        },
+        "why_this_counts_as_a_second_instance": "Like the Airbnb case, a traveller's trip state (specifically, the dates) fails to survive a boundary crossing that a product itself initiates. It differs from the Airbnb case in two ways worth keeping distinct rather than merging: (1) it crosses a COMPANY boundary (Trainline to Booking.com) rather than a vertical boundary within one company; (2) the dates are not merely absent, they are present and WRONG (today/tomorrow), which is arguably a worse failure mode than Airbnb's silent absence."
+      },
+      "adjacent_but_distinct_observations": [
+        {
+          "value": "Kayak to Iberia handoff: the full itinerary (origin, destination, dates, flight number, fare code, displayed price) IS carried across the boundary intact and verified to survive (58.25 EUR appears on both sides). What is dropped instead is BRANDING/PROVENANCE CONTEXT: the destination page contains no trace of Kayak, and the traveller immediately faces a fresh cookie-consent gate. This is NOT counted as a third 'trip-state drop' instance because the trip data itself does not drop here -- only the sense of where the traveller came from does. Recorded separately so it is not conflated with the Airbnb/Trainline pattern.",
+          "tier": "T1",
+          "confidence": "Verified",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/04-kayak/06-handoff-to-carrier.json",
+          "competitor": "Kayak"
+        },
+        {
+          "value": "Iberia via the same Kayak handoff: the fare code Kayak passed (a Basic Economy / 'Turista Basica' fare) is presented back to the traveller as 'Has escogido la tarifa: Turista Basica' (You have chosen the fare) -- the underlying data survives the handoff accurately, but the AGENCY/DECISION context is misrepresented: the traveller did not choose this fare, Kayak's link did. Also not counted as a trip-STATE drop, since the fare code itself is carried correctly; what is misrepresented is whose decision it was.",
+          "tier": "T1",
+          "confidence": "Verified",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/15-iberia/01-arrival-via-kayak-handoff.json",
+          "competitor": "Iberia"
+        }
+      ],
+      "counter_case": {
+        "value": "TripIt models the trip as one object precisely by refusing to sell anything: travellers forward confirmation emails from any source to plans@tripit.com and TripIt assembles them into one itinerary view. It solves the boundary-drop problem by not having boundaries of its own -- it never initiates a cross-sell or a vertical switch that could drop state, because it has no verticals to switch between, only ingestion.",
+        "tier": "T2",
+        "confidence": "Verified",
+        "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/14-tripit/01-the-trip-as-one-object.json",
+        "competitor": "TripIt"
+      },
+      "not_counted_as_instances_but_relevant_context": [
+        {
+          "value": "Booking.com's own answer to multi-type trip attachment is three opt-in checkboxes inside the booking form (interested_flight, interested_car_rentals, interested_taxi) captured at checkout. This is a different mechanism from a boundary-crossing drop -- it is interest capture at a single moment, not a handoff between two searches -- so it is not counted as a 'drop' instance, but it is a third distinct model (alongside Airbnb's silent multi-vertical account and Trainline's pre-checked cross-sell) for how the round's competitors handle business goal 2.",
+          "tier": "T1",
+          "confidence": "Verified",
+          "capture_file": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+          "competitor": "Booking.com"
+        }
+      ],
+      "search_method_note": "This search was not a single uniform sweep across all 17 competitors and 50 capture files with one fixed term list -- no such sweep exists on disk. It was a review of every capture file that: (a) explicitly tests a cross-vertical or cross-company handoff, or (b) explicitly discusses trip state, itinerary, dates or context surviving or failing to survive a boundary. The two instances counted above are the only ones meeting that description found among the 50 capture files read for this phase."
+    }
+  },
+  "gaps": [
+    "Thread A -- accommodation: only four products have an enumerated ranking-axis count (Booking.com, Expedia, Google Travel, Airbnb). Skyscanner, Hopper, Omio, Tripadvisor and Rentalcars' accommodation/car sort controls were never opened or enumerated in the captures read for this phase. A same-vertical chart covering 'the market' would be four of at least nine accommodation-capable competitors on the roster.",
+    "Thread A -- flights: only two products have an enumerated ranking-axis count (Google Flights, Kayak). Booking.com, Expedia, Skyscanner and Hopper flights sort controls were never opened. The MATERIAL_CORRECTION capture itself states this outright: 'the entire flights comparison rests on Google alone' before Kayak's capture; even after Kayak it rests on two.",
+    "Thread A -- rail: Trainline has no enumerable sort-axis COUNT at all (no sort control was found on the results surface). A bar chart that puts a number next to Trainline alongside Booking.com's 11 or Google Flights' 6 would be inventing a number the capture does not provide. Only a qualitative, ordered policy statement exists for rail.",
+    "Thread A -- ranking-basis statement length: two of the seven disclosure statements collected (Kayak's per-vertical sample sentence, Tripadvisor's inline sentence) are quoted truncated, mid-word, in their own capture files. Their true character count is NOT VERIFIED and must not be estimated from the surrounding document's total length, which measures a different thing (the whole document, not the one sentence).",
+    "Thread B -- Iberia Club has no numeric tier ladder on disk at all; the page that would carry it ('Niveles Iberia Club y sus ventajas') was never opened. A four-programme tier-ladder comparison chart can only responsibly show three programmes (Booking.com, Expedia, Qatar) with real numbers; Iberia would need to be shown as a qualitative-only row or omitted, not interpolated.",
+    "Thread B -- American Airlines' AAdvantage programme has almost no data: one reward-unlock figure (15,000 Loyalty Points) and no tier names, thresholds, or benefit lists (two URL-guess 404s). It cannot be charted as a fourth or fifth full tier ladder.",
+    "Thread B -- the first-time-traveller null is confirmed for four programmes (Genius, One Key, Iberia Club, Privilege Club), not five. AAdvantage was never swept for this term set. A chart claiming '5 of 5 loyalty programmes never mention a first-time traveller' would overstate the tested sample by one.",
+    "Thread B -- Qatar's Qpoint purchase caps and minimum-earned-balance thresholds are unextracted (page returned 1,069 characters; the constraint tables did not render into text). Any 'cost to reach Silver' figure is explicitly flagged in the source as not computable, and none is reported here.",
+    "Thread C -- the five 'does a disruption route exist' results (Booking.com, Iberia, American Airlines x2, Qatar, Hopper) were produced by five different methods (site-tree category read; three-surface eleven-term sweep; URL-guess-then-read; corrected locale-matched sweep; one-surface seven-term sweep; direct navigation to a named product). None of Qatar's, Booking.com's or the AA-US result are method-matched to Iberia's, which is the only fully documented sweep. A single comparative chart ('who surfaces disruption help') would need to either restrict itself to the two method-matched tests (Iberia, Qatar's homepage sweep) or visually flag the method difference for the rest -- the source material raises this caveat explicitly and it should not be smoothed away by a chart.",
+    "Thread C -- no competitor's disruption/liability posture was tested with an actual disruption event (a real delayed or cancelled booking). Every finding here is about published statements and navigation/findability, not about what actually happens when a flight is disrupted. This is a structural limit of desk/hands-on capture, not a gap that more reading would close.",
+    "Thread D -- the two counted instances (Airbnb, Trainline) were found incidentally, not through a systematic cross-boundary test applied to all 17 competitors. The true denominator of 'how many competitors were actually tested for a boundary-state drop' is small and uneven (most competitors were never put through a matched, dated, cross-product walk the way Airbnb's stays-to-experiences and the Trainline-to-Booking.com paths were). A chart implying '2 of 17 competitors drop trip state' would misrepresent an incidental finding as a systematic measurement; the honest denominator is closer to 'of the handful of boundary crossings that were actually walked, 2 showed a drop and 2 showed data surviving intact (Kayak-to-Iberia, Iberia's fare-choice misattribution)'."
+  ],
+  "tier_coverage": {
+    "Booking.com": {
+      "tiers_reached": [
+        "T1 (live sort-control walkthrough, matched-pair signed-in/out diff, live booking-form walkthrough)",
+        "T2 (Terms of Service, Accessibility Statement, Genius programme page)"
+      ],
+      "notes": "No formal disruption-navigation search-term sweep was run (see Thread C)."
+    },
+    "Expedia": {
+      "tiers_reached": [
+        "T1 (live sort-control walkthrough)",
+        "T2 (One Key programme page)"
+      ],
+      "notes": "One Key programme page served generic marketing content even when authenticated; tier NUMBERS are Verified, but the earlier 'earn-and-burn vs tenure' framing was explicitly downgraded to Likely and later corrected in the source."
+    },
+    "Google Travel / Google Flights": {
+      "tiers_reached": [
+        "T1 (DevTools accessibility-snapshot-driven walkthrough of live sort menus and a live route)"
+      ],
+      "notes": "No first-party ranking-policy document found or read beyond the one on-page sentence."
+    },
+    "Kayak": {
+      "tiers_reached": [
+        "T1 (live sort tabs, live handoff)",
+        "T2 (ranking-transparency document, 'Como funciona nuestra web')"
+      ],
+      "notes": null
+    },
+    "Airbnb": {
+      "tiers_reached": [
+        "T1 (live results-page sweep, two verticals)",
+        "T2 (ranking-explanation help article)"
+      ],
+      "notes": "Filtros panel interior never opened (T1 gap, see Thread A)."
+    },
+    "Tripadvisor": {
+      "tiers_reached": [
+        "T1 (live results-page sweep)"
+      ],
+      "notes": "No first-party ranking document found beyond the one inline sentence."
+    },
+    "Trainline": {
+      "tiers_reached": [
+        "T1 (live results-page copy and search form)"
+      ],
+      "notes": "Checkout, fare selection and ticket delivery never reached (unrelated to these four threads but a standing gap in the source)."
+    },
+    "Iberia": {
+      "tiers_reached": [
+        "T1 (arrival state via the Kayak handoff)",
+        "T2 (Iberia Club programme page, changes-and-refunds page)"
+      ],
+      "notes": "No dedicated Iberia site-tree/s1 pass exists; the Kayak-handoff capture is explicitly marked PARTIAL_CAPTURE in the source."
+    },
+    "American Airlines": {
+      "tiers_reached": [
+        "T1 (Spanish-locale homepage walkthrough)",
+        "T2 (Customer Service Plan document, reached by URL guess, not navigation)"
+      ],
+      "notes": "AAdvantage tier structure never reached (two 404s)."
+    },
+    "Qatar Airways": {
+      "tiers_reached": [
+        "T1 (homepage link-label sweep)",
+        "T2 (Privilege Club tier page, Buy Qpoints page)"
+      ],
+      "notes": "Constraint tables on the Buy Qpoints page did not extract into readable text."
+    },
+    "Hopper": {
+      "tiers_reached": [
+        "T2 (marketing pages for search and for the named Premium Disruption Assistance product)"
+      ],
+      "notes": "Explicitly capped by a method limit: the product's real mechanics are app-gated and unreachable by this method (T6 for anything inside the app)."
+    },
+    "TripIt": {
+      "tiers_reached": [
+        "T2 (homepage marketing copy)"
+      ],
+      "notes": "Authenticated product experience never reached -- sign-in wall, no account created."
+    }
+  }
+}

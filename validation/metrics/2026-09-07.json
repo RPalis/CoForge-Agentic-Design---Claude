@@ -1,21 +1,21 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T12:50:24",
+  "generated_at": "2026-09-07T12:57:35",
   "project": "coforge",
   "session": {
-    "turns": 7211,
-    "duration_min": 18894.1,
+    "turns": 7241,
+    "duration_min": 18901.3,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14394,
-    "output": 8509473,
-    "cache_read": 3679503843,
-    "cache_creation": 66062121,
-    "billable": 8523867
+    "input": 14454,
+    "output": 8537620,
+    "cache_read": 3699760345,
+    "cache_creation": 66095915,
+    "billable": 8552074
   },
   "tools": {
-    "Bash": 1765,
+    "Bash": 1779,
     "Edit": 251,
     "mcp__chrome-devtools__evaluate_script": 124,
     "mcp__figma-console__figma_execute": 124,
@@ -25,7 +25,7 @@
     "mcp__Claude_Browser__computer": 71,
     "Artifact": 57,
     "mcp__claude-in-chrome__navigate": 44,
-    "SendUserFile": 39,
+    "SendUserFile": 40,
     "ToolSearch": 32,
     "mcp__chrome-devtools__take_screenshot": 29,
     "Read": 29,
@@ -42,11 +42,11 @@
     "mcp__claude-in-chrome__find": 13,
     "WebSearch": 10,
     "Skill": 9,
+    "mcp__ccd_session__mark_chapter": 8,
     "mcp__Claude_Browser__read_page": 8,
     "mcp__chrome-devtools__new_page": 8,
     "mcp__figma-console__figma_delete_variable_collection": 8,
     "WebFetch": 7,
-    "mcp__ccd_session__mark_chapter": 7,
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 6,
     "mcp__figma-console__figma_get_variables": 6,
@@ -102,7 +102,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 315699
+    "tokens_per_artifact": 316743
   },
   "gates": {
     "verdict": "FAIL",

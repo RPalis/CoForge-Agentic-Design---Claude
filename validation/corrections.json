@@ -502,6 +502,19 @@
       "check_note": "Extended so the chain figure must contain a node for every conclusion the board renders, and fails when the two counts disagree. The count itself now reads both reference formats.",
       "verifies": "FIXED and CHECKED. The chain counts finding ids and capture paths, pain-9 appears, and the verifier fails if the chart's conclusion count ever diverges from the board's again.",
       "would_have_caught": false
+    },
+    {
+      "id": "C-048",
+      "date": "2026-09-07",
+      "defect": "Provenance is missing from a fifth of round 1's captures and most of it cannot be recovered. 16 of 50 capture files record no locale under any of locale_served / locale / lang / language / hl, and 7 record no surface under any of surface / captured_by / captured_via / browser / instance. D-004 requires locale per capture and CLAUDE.md requires the browser surface on every capture, because the two browser surfaces disagree by construction and because a sweep run in the wrong locale returns a false zero — which is exactly what happened on American Airlines. A deep scan of all 16 locale-less files for locale/lang/hl/es-ES/en-GB/en-US/idioma found the value present in only two of them.",
+      "class": "a required provenance field absent at capture time, and unrecoverable afterwards",
+      "found_by": "the main session, while answering the client's question of whether the sites should be re-scraped to make sure nothing was left blank. Counting what the captures record about themselves turned up 222 recorded blanks and, separately, this: the blanks in the PROVENANCE had never been counted at all.",
+      "root_cause": "The fields were required by a decision (D-004) and by CLAUDE.md, and nothing enforced either. The captures that omit them are concentrated in the first two competitors captured — every Booking.com file and every Expedia file — which is the signature of a rule adopted after the round had already started rather than one ignored.",
+      "what_actually_varied": "Nothing about the observations. Every finding in these captures stands; what is missing is the record of the conditions it was made under. That matters most for the zero-result findings, where locale decides whether a zero is real.",
+      "check": "artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/provenance-overlay.json",
+      "check_note": "An overlay, not an edit: ART-025's capture files are a published artifact and were NOT modified. The overlay records 3 values recovered by TRANSCRIPTION (one surface recorded under the key captured_by; two locales carried as an explicit hl= parameter inside the capture) and names all 20 that are irrecoverable. Locale was deliberately NOT inferred from the language of the captured text — English content is evidence of a served language, not a record of one, and inferring it is the move that produced the American Airlines false zero.",
+      "verifies": "PARTIALLY FIXED, and honestly bounded. 3 of 23 recovered; 20 irrecoverable and named as such rather than filled in. What is owed to round 2 is not a repair of these files but a validator that refuses a capture lacking locale_served or surface, so the class cannot recur. A fifth of a round's provenance is not reconstructable after the fact, and the only real fix is to make it impossible to omit.",
+      "would_have_caught": false
     }
   ]
 }

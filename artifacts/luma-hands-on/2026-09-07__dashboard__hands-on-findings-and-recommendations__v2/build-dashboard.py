@@ -569,6 +569,33 @@ for _seq in (INSIGHTS, RECS, PAIN_POINTS):
 _applied = sum(len(v) for v in CLASS_A_CITATIONS.values())
 print(f"class-A citations applied: {_applied} across {len(CLASS_A_CITATIONS)} conclusions")
 
+# ---------------------------------------------------------------------------
+# Phase 1 corroborations, applied 2026-09-07 on the client's explicit approval.
+#
+# STRICTLY filtered: only candidates research-synthesizer rated BOTH
+# `corroborates` AND independent of the conclusion's existing capture. Everything
+# it rated `partially` (7), `related but does not corroborate` (3), or corroborating
+# but NOT independent (2) is deliberately NOT applied — a second observation on the
+# same surface of the same product is one observation, and citing it would inflate
+# the evidence base rather than strengthen it.
+#
+# Two entries name a capture BLOCK rather than a finding id, because that is where
+# the observation lives. The sources field already carries both formats (C-047).
+PHASE1_CORROBORATIONS = {
+    "pain-7": ["captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json (F91)"],
+    "pain-8": ["captures/04-kayak/03-ai-planner-and-first-empty-state.json (F41)", "captures/04-kayak/02-authenticated-ad-landing.json (§ authenticated_state_observed)"],
+    "rec-6": ["captures/02-expedia/03-stays-search-results.json (F20)", "captures/03-google-travel/02-sort-axes-enumerated.json (F25)", "captures/04-kayak/04-flights-sort-axes.json (F43)", "captures/07-airbnb/02-no-sort-and-total-price.json (F69)", "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json (F83)", "captures/07-airbnb/05-experiences-and-business-goal-2.json (§ note_on_duration)"],
+}
+
+for _seq in (INSIGHTS, RECS, PAIN_POINTS):
+    for _it in _seq:
+        for _extra in PHASE1_CORROBORATIONS.get(_it["id"], []):
+            if _extra not in (_it.get("sources") or []):
+                _it.setdefault("sources", []).append(_extra)
+print("phase-1 corroborations applied:",
+      sum(len(v) for v in PHASE1_CORROBORATIONS.values()),
+      "across", len(PHASE1_CORROBORATIONS), "conclusions")
+
 # ---- METHOD NOTES (transparency — the round correcting itself) ------------
 
 METHOD_NOTES = [

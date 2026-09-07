@@ -1,26 +1,26 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T12:18:20",
+  "generated_at": "2026-09-07T12:27:22",
   "project": "coforge",
   "session": {
-    "turns": 7142,
-    "duration_min": 18862.0,
+    "turns": 7161,
+    "duration_min": 18871.1,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14256,
-    "output": 8379627,
-    "cache_read": 3635968272,
-    "cache_creation": 65914228,
-    "billable": 8393883
+    "input": 14294,
+    "output": 8421286,
+    "cache_read": 3647478803,
+    "cache_creation": 65956720,
+    "billable": 8435580
   },
   "tools": {
-    "Bash": 1744,
+    "Bash": 1748,
     "Edit": 251,
     "mcp__chrome-devtools__evaluate_script": 124,
     "mcp__figma-console__figma_execute": 124,
     "Write": 114,
-    "Agent": 79,
+    "Agent": 81,
     "mcp__claude-in-chrome__javascript_tool": 79,
     "mcp__Claude_Browser__computer": 71,
     "Artifact": 57,
@@ -69,11 +69,11 @@
     "mcp__figma-console__figma_capture_screenshot": 2,
     "mcp__claude-in-chrome__list_connected_browsers": 2,
     "mcp__chrome-devtools__take_snapshot": 2,
+    "SearchSkills": 2,
     "mcp__Claude_Browser__read_console_messages": 1,
     "mcp__Claude_Browser__tabs_context": 1,
     "mcp__Claude_Browser__preview_stop": 1,
-    "mcp__Claude_Browser__tabs_create": 1,
-    "SearchSkills": 1
+    "mcp__Claude_Browser__tabs_create": 1
   },
   "skills": {
     "artifact-design": 5,
@@ -102,7 +102,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 310885
+    "tokens_per_artifact": 312429
   },
   "gates": {
     "verdict": "FAIL",

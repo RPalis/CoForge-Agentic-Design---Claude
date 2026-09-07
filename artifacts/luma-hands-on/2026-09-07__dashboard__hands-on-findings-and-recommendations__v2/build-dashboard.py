@@ -1026,18 +1026,32 @@ for _r in FULL_INDEX:
         _INDEX_BY_NUM.setdefault(_m.group(1).lstrip("0") or "0", _r)
 
 def _cited(item):
-    """Finding numbers a downstream item names, read only from its sources list."""
-    blob = json.dumps(item.get("sources"), ensure_ascii=False)
-    return sorted({m.group(1).lstrip("0") or "0" for m in _FID.finditer(blob)}
-                  & set(_INDEX_BY_NUM))
+    """What a downstream item names as its evidence.
+
+    The sources list uses TWO formats -- finding ids like F-09, and capture-file paths
+    like captures/01-booking-com/05-....json -- and both are real citations. An earlier
+    version read only the first, which under-counted every conclusion's evidence base
+    and dropped pain-9 (which cites a path and no id) out of the chart entirely (C-047).
+    """
+    srcs = item.get("sources") or []
+    blob = json.dumps(srcs, ensure_ascii=False)
+    ids = {m.group(1).lstrip("0") or "0" for m in _FID.finditer(blob)} & set(_INDEX_BY_NUM)
+    # a capture path is evidence in its own right; keep it distinct from a finding id so
+    # nothing pretends a path resolves to an indexed finding when it does not
+    paths = {x for x in srcs if isinstance(x, str) and x.startswith("captures/")}
+    return sorted(ids), sorted(paths)
 
 EVIDENCE_GRAPH = {
     "conclusions": [
-        dict(id=it["id"], kind=kind, title=it["title"], cites=_cited(it),
+        dict(id=it["id"], kind=kind, title=it["title"],
+             cites=_cited(it)[0], paths=_cited(it)[1],
+             base=len(_cited(it)[0]) + len(set(_cited(it)[1])
+                   - {_INDEX_BY_NUM[n]["source"] for n in _cited(it)[0]
+                      if _INDEX_BY_NUM[n].get("source")}),
              confidence=it.get("weakest_confidence") or "—")
         for kind, seq in (("Insight", INSIGHTS), ("Recommendation", RECS),
                           ("Pain point", PAIN_POINTS))
-        for it in seq if _cited(it)
+        for it in seq
     ],
     "finding_label": {k: f'F-{k} · {v["competitor"]}' for k, v in _INDEX_BY_NUM.items()},
     "total_findings": len(_INDEX_BY_NUM),

@@ -1,0 +1,1926 @@
+{
+  "generated": "2026-09-07",
+  "purpose": "Shared input for Phase 1 (corroboration) and Phase 2 (triage). Derived mechanically; anchors below are for reconciliation, not for adoption.",
+  "anchors": {
+    "conclusions": 26,
+    "single_capture": 9,
+    "distinct_findings_cited": 41,
+    "findings_total": 113,
+    "uncited": 72
+  },
+  "fragile_conclusions": [
+    {
+      "kind": "Recommendation",
+      "id": "rec-1",
+      "title": "Notify a traveller the moment they qualify for a right they already hold — not only when something has gone wrong.",
+      "cites": [
+        "90"
+      ],
+      "n": 1,
+      "body": "Trainline offers to notify a traveller when they QUALIFY FOR DELAY COMPENSATION, not merely when a delay occurs. It needs only the itinerary and the compensation rules — no inventory, no balance sheet, no insurance licence. Luma's scenario already assumes it holds the itinerary.",
+      "sources": [
+        "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json (F90)"
+      ],
+      "rests_on": "Rests on one Verified capture, in rail. No air, hotel or activity equivalent was observed anywhere in the roster — this is a single-competitor, single-vertical proof, not a corroborated pattern."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-2",
+      "title": "Show what each ranking choice costs, on the control itself.",
+      "cites": [
+        "42"
+      ],
+      "n": 1,
+      "body": "Kayak's sort tabs display the trade-off of each option directly — e.g. 35 € / 7h 14m against 47 € / 1h 25m — so the cost of a choice is visible before it is made. This is not a new axis; it is making an existing trade-off legible at the point of choice.",
+      "sources": [
+        "captures/04-kayak/04-flights-sort-axes.json (F42)"
+      ],
+      "rests_on": "Rests on one Verified capture, single competitor. No other product observed shows the consequence of a sort choice on the control itself."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-3",
+      "title": "Compare accommodation by one total price, never a nightly rate, at the moment of comparison.",
+      "cites": [
+        "70"
+      ],
+      "n": 1,
+      "body": "Airbnb shows total price only at search-results time (e.g. '203 € en total') and never a per-night figure; every other accommodation competitor observed leads with a nightly rate that must be multiplied and has fees added later. This removes arithmetic a first-time traveller cannot yet reliably do. (Airbnb itself relaxes this at checkout, once the traveller has already chosen — the nightly rate reappears there.)",
+      "sources": [
+        "captures/07-airbnb/02-no-sort-and-total-price.json (F70)",
+        "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (price_construction_at_checkout)"
+      ],
+      "rests_on": "Rests on one Verified capture. Airbnb is the only competitor doing this; every other observed competitor does the opposite, which is corroborating context, not independent confirmation that total-only is better."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-6",
+      "title": "Compute an ease/effort ranking axis for accommodation and on-site transport specifically — not for flights, where it is already solved, or activities, where duration is not yet a structured field anywhere observed.",
+      "cites": [
+        "93"
+      ],
+      "n": 1,
+      "body": "The corrected finding from this round: effort is ranked where it is already measured (flights, rail) and ignored where it is not (accommodation). Trainline is the existence proof for HOW to phrase it — effort first, price as the tiebreaker, explained in one sentence.",
+      "sources": [
+        "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+        "captures/10-trainline/02-ranking-names-effort.json (F93)"
+      ],
+      "rests_on": "Rests on a capture that explicitly narrows its own scope: the zero-effort-axis accommodation finding is measured on 3 products; the flights comparison rests on 1 product (Google). Both scope limits are stated in the source capture itself, not added here."
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-2",
+      "title": "A button that looks live can silently do nothing.",
+      "cites": [
+        "13"
+      ],
+      "n": 1,
+      "body": "Booking.com's primary ‘I'll reserve’ control produced no navigation until a room quantity was selected — and nothing on the page states this. It was never disabled; it was enabled and did nothing.",
+      "sources": [
+        "captures/01-booking-com/07-stays-funnel-to-payment-gate.json (F13)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-3",
+      "title": "Being signed out doesn't stop a sign-in prompt from interrupting your search.",
+      "cites": [
+        "12"
+      ],
+      "n": 1,
+      "body": "Navigating a signed-out Booking.com session to search results opened a Google One Tap sign-in prompt as a second tab.",
+      "sources": [
+        "captures/01-booking-com/06-personalisation-controlled-diff.json (F12)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-7",
+      "title": "Look at things to do near where you're staying, and the trip you were just building disappears — dates and all.",
+      "cites": [
+        "78"
+      ],
+      "n": 1,
+      "body": "Moving from Airbnb's accommodation search to Experiences drops the dates entirely, even though both sit under the same account.",
+      "sources": [
+        "captures/07-airbnb/05-experiences-and-business-goal-2.json (F78)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-8",
+      "title": "Three products, one afternoon, three different guesses at where you are — and none of them asked.",
+      "cites": [
+        "61"
+      ],
+      "n": 1,
+      "body": "Google's AI planner: ‘Estás en Toronto’. Kayak: origin pre-filled ‘Madrid (MAD)’. Skyscanner: ‘Salida desde: Marsella (MRS)’. Each states its guess as fact.",
+      "sources": [
+        "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json (F61)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-10",
+      "title": "Saying no to an add-on is written back to you as a confession.",
+      "cites": [
+        "22"
+      ],
+      "n": 1,
+      "body": "Expedia's insurance decline reads: ‘I'm willing to risk my $358.59 stay in Lisbon.’ A traveller who simply doesn't want the product is made to state a risk they are taking.",
+      "sources": [
+        "captures/02-expedia/04-stays-funnel-to-card-screen.json (F22)"
+      ],
+      "rests_on": null
+    }
+  ],
+  "all_conclusions": [
+    {
+      "kind": "Insight",
+      "id": "insight-1",
+      "title": "Nobody does both halves.",
+      "cites": [
+        "101",
+        "102",
+        "26",
+        "78",
+        "9",
+        "98"
+      ],
+      "n": 6,
+      "sources": [
+        "WORLD.md § 2 The finding that should govern the rest",
+        "captures/01-booking-com/05-stays-search-results.json (F09)",
+        "captures/03-google-travel/02-sort-axes-enumerated.json (F26)",
+        "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json (F98)",
+        "captures/14-tripit/01-the-trip-as-one-object.json (F101, F102)",
+        "captures/07-airbnb/05-experiences-and-business-goal-2.json (F78)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Insight",
+      "id": "insight-2",
+      "title": "Protection is sold as a product, or included as a property of the booking — and the seam between the two is covered by neither.",
+      "cites": [
+        "57",
+        "66",
+        "67",
+        "68"
+      ],
+      "n": 4,
+      "sources": [
+        "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+        "captures/07-airbnb/01-aircover-included-not-sold.json (F66, F67, F68)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Insight",
+      "id": "insight-3",
+      "title": "The disruption chain degrades at every hop, and no single participant is lying or failing on its own.",
+      "cites": [
+        "104",
+        "107",
+        "113",
+        "3",
+        "4",
+        "56",
+        "57"
+      ],
+      "n": 7,
+      "sources": [
+        "captures/15-iberia/03-disruption-the-tier4-test.json (F56, F57)",
+        "captures/17-qatar-airways/01-airport-services-and-buyable-status.json (F107)",
+        "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json (F104)",
+        "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json (F113)",
+        "captures/01-booking-com/03-terms-and-conditions.json (F03, F04)",
+        "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Insight",
+      "id": "insight-4",
+      "title": "Effort is ranked exactly where it is already measured, and computed nowhere else.",
+      "cites": [
+        "43",
+        "83",
+        "93"
+      ],
+      "n": 3,
+      "sources": [
+        "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+        "captures/04-kayak/04-flights-sort-axes.json (F43)",
+        "captures/10-trainline/02-ranking-names-effort.json (F93)",
+        "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json (F83)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Insight",
+      "id": "insight-5",
+      "title": "Control over ranking and explanation of ranking look like a trade-off — until one product has both.",
+      "cites": [
+        "69",
+        "75",
+        "89"
+      ],
+      "n": 3,
+      "sources": [
+        "captures/07-airbnb/04-ranking-explained-no-sort.json (F75)",
+        "captures/07-airbnb/02-no-sort-and-total-price.json (F69)",
+        "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json (disclosure_spectrum_updated)",
+        "captures/04-kayak/07-ownership-and-ranking-transparency.json (F89)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Insight",
+      "id": "insight-6",
+      "title": "Conversational AI is observed as baseline, not as a differentiator — on the products this round actually reached.",
+      "cites": [
+        "17",
+        "38",
+        "96"
+      ],
+      "n": 3,
+      "sources": [
+        "captures/04-kayak/03-ai-planner-and-first-empty-state.json (F38)",
+        "captures/15-iberia/01-site-tree-and-ibot.json",
+        "captures/11-omio/01-multimodal-and-164-partners.json (F96)",
+        "captures/02-expedia/01-site-tree-L1.json (F17)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Insight",
+      "id": "insight-7",
+      "title": "A confident wrong answer beats an honest question, almost everywhere.",
+      "cites": [
+        "61",
+        "80"
+      ],
+      "n": 2,
+      "sources": [
+        "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json (F61)",
+        "captures/08-tripadvisor/01-discovery-first.json (F80)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-1",
+      "title": "Notify a traveller the moment they qualify for a right they already hold — not only when something has gone wrong.",
+      "cites": [
+        "90"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json (F90)"
+      ],
+      "rests_on": "Rests on one Verified capture, in rail. No air, hotel or activity equivalent was observed anywhere in the roster — this is a single-competitor, single-vertical proof, not a corroborated pattern."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-2",
+      "title": "Show what each ranking choice costs, on the control itself.",
+      "cites": [
+        "42"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/04-kayak/04-flights-sort-axes.json (F42)"
+      ],
+      "rests_on": "Rests on one Verified capture, single competitor. No other product observed shows the consequence of a sort choice on the control itself."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-3",
+      "title": "Compare accommodation by one total price, never a nightly rate, at the moment of comparison.",
+      "cites": [
+        "70"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/07-airbnb/02-no-sort-and-total-price.json (F70)",
+        "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (price_construction_at_checkout)"
+      ],
+      "rests_on": "Rests on one Verified capture. Airbnb is the only competitor doing this; every other observed competitor does the opposite, which is corroborating context, not independent confirmation that total-only is better."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-4",
+      "title": "Publish what a protection or guarantee does NOT cover, in the same document that sells it — and go further than any observed competitor by surfacing it at the moment of comparison or payment, not only in a help centre.",
+      "cites": [
+        "67",
+        "71"
+      ],
+      "n": 2,
+      "sources": [
+        "captures/07-airbnb/01-aircover-included-not-sold.json (F67)",
+        "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (F71)"
+      ],
+      "rests_on": "Rests on two Verified captures of the SAME competitor. The plain-language-boundary half of this recommendation has a positive example (Airbnb). The surface-it-at-the-decision half has no positive example anywhere in the round — it is a gap the evidence identifies, not a pattern the evidence confirms works."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-5",
+      "title": "When a traveller can decline an add-on, ask neutrally — never phrase the decline as a confession.",
+      "cites": [
+        "22",
+        "72"
+      ],
+      "n": 2,
+      "sources": [
+        "captures/02-expedia/04-stays-funnel-to-card-screen.json (F22)",
+        "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (F72)"
+      ],
+      "rests_on": "Rests on a direct, paired comparison — both captures Verified, same funnel position, comparable amounts. The strongest-evidenced recommendation in this set."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-6",
+      "title": "Compute an ease/effort ranking axis for accommodation and on-site transport specifically — not for flights, where it is already solved, or activities, where duration is not yet a structured field anywhere observed.",
+      "cites": [
+        "93"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+        "captures/10-trainline/02-ranking-names-effort.json (F93)"
+      ],
+      "rests_on": "Rests on a capture that explicitly narrows its own scope: the zero-effort-axis accommodation finding is measured on 3 products; the flights comparison rests on 1 product (Google). Both scope limits are stated in the source capture itself, not added here."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-7",
+      "title": "Model the trip as one object across booking types before designing individual screens for each one — a data-model decision, not a UX one.",
+      "cites": [
+        "101",
+        "68",
+        "78"
+      ],
+      "n": 3,
+      "sources": [
+        "captures/07-airbnb/05-experiences-and-business-goal-2.json (F78)",
+        "captures/14-tripit/01-the-trip-as-one-object.json (F101)",
+        "captures/07-airbnb/01-aircover-included-not-sold.json (F68)"
+      ],
+      "rests_on": "Rests on three findings of mixed confidence: F78 and F101 are plain Verified; F68 (the seam) is Verified as description of stated scopes, with its consequence for a real traveller marked Inferred. This recommendation inherits the weaker of the three."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-8",
+      "title": "Design the retention mechanism explicitly for someone on their first trip — nothing on the roster currently does.",
+      "cites": [
+        "1",
+        "110",
+        "18",
+        "2",
+        "60"
+      ],
+      "n": 5,
+      "sources": [
+        "captures/01-booking-com/02-loyalty-genius.json (F01, F02)",
+        "captures/02-expedia/02-loyalty-one-key.json (F18)",
+        "captures/15-iberia/04-loyalty-iberia-club.json (F60)",
+        "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json (F110)"
+      ],
+      "rests_on": "Rests on four Verified findings, each scope-limited to 'absence on this page only, not the whole product' — stated in the source captures, carried through here rather than smoothed away."
+    },
+    {
+      "kind": "Recommendation",
+      "id": "rec-9",
+      "title": "Decide, before any screen is designed, whether disruption protection is something Luma sells or something Luma is.",
+      "cites": [
+        "22",
+        "57"
+      ],
+      "n": 2,
+      "sources": [
+        "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+        "captures/02-expedia/04-stays-funnel-to-card-screen.json (F22)"
+      ],
+      "rests_on": "Rests on the Hopper capture's own framing (Verified) plus the disruption-chain synthesis (Insight 3, itself carrying a compound confidence). This is a business-model decision the evidence poses; it does not answer it."
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-1",
+      "title": "You can't tell whether a recommendation is impartial or paid for.",
+      "cites": [
+        "26",
+        "32"
+      ],
+      "n": 2,
+      "sources": [
+        "captures/03-google-travel/02-sort-axes-enumerated.json (F26)",
+        "captures/03-google-travel/06-flights-live-route.json (F32, comparison)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-2",
+      "title": "A button that looks live can silently do nothing.",
+      "cites": [
+        "13"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/01-booking-com/07-stays-funnel-to-payment-gate.json (F13)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-3",
+      "title": "Being signed out doesn't stop a sign-in prompt from interrupting your search.",
+      "cites": [
+        "12"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/01-booking-com/06-personalisation-controlled-diff.json (F12)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-4",
+      "title": "Real protection can exist and still be invisible exactly when you'd want it.",
+      "cites": [
+        "66",
+        "67",
+        "71"
+      ],
+      "n": 3,
+      "sources": [
+        "captures/07-airbnb/01-aircover-included-not-sold.json (F66, F67)",
+        "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (F71)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-5",
+      "title": "The moment you most need help is the one you're least likely to find a route to.",
+      "cites": [
+        "107",
+        "3",
+        "56"
+      ],
+      "n": 3,
+      "sources": [
+        "captures/15-iberia/03-disruption-the-tier4-test.json (F56)",
+        "captures/17-qatar-airways/01-airport-services-and-buyable-status.json (F107)",
+        "captures/01-booking-com/03-terms-and-conditions.json (F03)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-6",
+      "title": "If this is your first trip, no loyalty programme on the roster has anything to say to you.",
+      "cites": [
+        "110",
+        "18",
+        "2",
+        "60"
+      ],
+      "n": 4,
+      "sources": [
+        "captures/01-booking-com/02-loyalty-genius.json (F02)",
+        "captures/02-expedia/02-loyalty-one-key.json (F18)",
+        "captures/15-iberia/04-loyalty-iberia-club.json (F60)",
+        "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json (F110)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-7",
+      "title": "Look at things to do near where you're staying, and the trip you were just building disappears — dates and all.",
+      "cites": [
+        "78"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/07-airbnb/05-experiences-and-business-goal-2.json (F78)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-8",
+      "title": "Three products, one afternoon, three different guesses at where you are — and none of them asked.",
+      "cites": [
+        "61"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json (F61)"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-9",
+      "title": "A cookie banner with no single-click way to say no, before you've searched anything.",
+      "cites": [],
+      "n": 0,
+      "sources": [
+        "captures/11-omio/01-multimodal-and-164-partners.json"
+      ],
+      "rests_on": null
+    },
+    {
+      "kind": "Pain point",
+      "id": "pain-10",
+      "title": "Saying no to an add-on is written back to you as a confession.",
+      "cites": [
+        "22"
+      ],
+      "n": 1,
+      "sources": [
+        "captures/02-expedia/04-stays-funnel-to-card-screen.json (F22)"
+      ],
+      "rests_on": null
+    }
+  ],
+  "uncited_findings": [
+    {
+      "num": "5",
+      "full_id": "F05",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+      "claim": "Accessibility is a contractual term, not only a design commitment — section A11 'Accessibility requests' sits in the Terms of Service."
+    },
+    {
+      "num": "6",
+      "full_id": "F06",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "claim": "The statement names no accessibility standard and makes no conformance claim."
+    },
+    {
+      "num": "7",
+      "full_id": "F07",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "claim": "Accessibility of the actual travel experience is routed away from Booking.com to the supplier."
+    },
+    {
+      "num": "8",
+      "full_id": "F08_cross_document",
+      "competitor": "Booking.com",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "claim": "Across three first-party documents Booking.com consistently occupies an intermediary position and pushes responsibility outward at every layer."
+    },
+    {
+      "num": "10",
+      "full_id": "F10_REFUTES_PRIOR_HYPOTHESIS",
+      "competitor": "Booking.com",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/01-booking-com/05-stays-search-results.json",
+      "claim": "Booking.com DOES disclose that commercial terms affect ranking — so a blanket claim that competitors never explain their recommendations does not hold here."
+    },
+    {
+      "num": "11",
+      "full_id": "F11",
+      "competitor": "Booking.com",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+      "claim": "Loyalty membership changes the ranking surface by exactly one axis, and that axis is another PRICE axis."
+    },
+    {
+      "num": "14",
+      "full_id": "F14",
+      "competitor": "Booking.com",
+      "theme": "price-honesty",
+      "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "claim": "No account is required to reach the booking form. There is no sign-in wall and no guest-checkout prompt either — the question is simply never asked."
+    },
+    {
+      "num": "15",
+      "full_id": "F15",
+      "competitor": "Booking.com",
+      "theme": "price-honesty",
+      "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "claim": "Booking.com's answer to multi-type trip attachment is three opt-in checkboxes inside the booking form."
+    },
+    {
+      "num": "16",
+      "full_id": "F16_vs_booking",
+      "competitor": "Expedia",
+      "theme": "method",
+      "capture": "captures/02-expedia/01-site-tree-L1.json",
+      "claim": "Expedia carries six verticals to Booking.com's four booking types, adding Packages and Cruises — but presents a far smaller link surface on the homepage."
+    },
+    {
+      "num": "19",
+      "full_id": "F19_INVENTORY_DEPTH",
+      "competitor": "Expedia",
+      "theme": "other",
+      "capture": "captures/02-expedia/03-stays-search-results.json",
+      "claim": "For an identical city and date range, Expedia returns 499 properties where Booking.com returns 4,194 — roughly an eightfold difference."
+    },
+    {
+      "num": "20",
+      "full_id": "F20_SORT_AXES_TWO_OF_TWO",
+      "competitor": "Expedia",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/02-expedia/03-stays-search-results.json",
+      "claim": "Expedia offers no ranking axis based on effort, ease, stress or confidence. Enumerated positively from the opened control."
+    },
+    {
+      "num": "21",
+      "full_id": "F21_CHECKOUT_SHAPE_DIFFERS",
+      "competitor": "Expedia",
+      "theme": "disruption-and-protection",
+      "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+      "claim": "Expedia collapses guest details and payment onto ONE page; Booking.com splits them across two, with no payment field present on its details step."
+    },
+    {
+      "num": "23",
+      "full_id": "F23_DECISION_SURFACES",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+      "claim": "Google Travel exposes four decision-support surfaces that neither Booking.com nor Expedia offers anywhere in their accommodation journey."
+    },
+    {
+      "num": "24",
+      "full_id": "F24_NO_TRANSACTION",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+      "claim": "Google Travel hands off rather than sells. No 'Book on Google' surface was present on the accommodation result."
+    },
+    {
+      "num": "25",
+      "full_id": "F25_THREE_OF_THREE",
+      "competitor": "Google Travel",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+      "claim": "Google Travel offers three ranking axes: an opaque default, price, and a quality proxy. None concerns effort, ease, stress or confidence."
+    },
+    {
+      "num": "27",
+      "full_id": "F27",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+      "claim": "Google Travel is the only product observed that tells a traveller what a normal price looks like before they search."
+    },
+    {
+      "num": "28",
+      "full_id": "F28",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+      "claim": "Authentication unlocks exactly one capability on Google Travel, and it is a functional one — persistent price monitoring — not a discount."
+    },
+    {
+      "num": "29",
+      "full_id": "F29_THE_CONTRAST",
+      "competitor": "Google Travel",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+      "claim": "Two products, two matched-pair diffs, one extra capability each — but of opposite kinds."
+    },
+    {
+      "num": "30",
+      "full_id": "F30_PRICE_HONESTY_COMMITMENT",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+      "claim": "Google Flights publishes an explicit all-in pricing commitment — the stated opposite of drip pricing."
+    },
+    {
+      "num": "31",
+      "full_id": "F31_BUILT_FOR_THE_UNDECIDED",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+      "claim": "Google Flights explicitly addresses a traveller who has not decided, in its own copy."
+    },
+    {
+      "num": "33",
+      "full_id": "F33_ACTIONABLE_ORIENTATION",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/06-flights-live-route.json",
+      "claim": "On a live route, Google states whether the current price is normal and when to buy — without requiring a booking, an account, or a commitment."
+    },
+    {
+      "num": "34",
+      "full_id": "F34_A_FOURTH_AXIS_EXISTS",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/06-flights-live-route.json",
+      "claim": "Google Flights surfaces a comparison dimension that is neither price, quality proxy, nor distance: carbon emissions, expressed relative to the route average."
+    },
+    {
+      "num": "35",
+      "full_id": "F35_EMISSIONS_IS_SORTABLE",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+      "claim": "Emissions is a selectable sort axis, not merely a displayed attribute. F-34's OWED test is settled."
+    },
+    {
+      "num": "36",
+      "full_id": "F36_FLIGHT_TRACKER",
+      "competitor": "Kayak",
+      "theme": "price-honesty",
+      "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+      "claim": "Kayak ships a standalone Flight Tracker at /tracker — a direct analogue of a named Luma core feature."
+    },
+    {
+      "num": "37",
+      "full_id": "F37_AD_LANDING_IS_NOT_DIFFERENT",
+      "competitor": "Kayak",
+      "theme": "decision-support",
+      "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+      "claim": "The ad-landing variant renders the same product surface as the clean URL. The tracking parameters produced no observable difference."
+    },
+    {
+      "num": "39",
+      "full_id": "F39_FIRST_EMPTY_STATE_CAPTURED",
+      "competitor": "Kayak",
+      "theme": "user-types",
+      "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+      "claim": "Kayak's AI planner ships a designed empty state. This is the first empty state observed anywhere in the round across four competitors."
+    },
+    {
+      "num": "40",
+      "full_id": "F40_MULTIMODAL_INPUT",
+      "competitor": "Kayak",
+      "theme": "trip-as-an-object",
+      "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+      "claim": "Kayak's travel AI accepts photo and file upload as planning input, not just text."
+    },
+    {
+      "num": "41",
+      "full_id": "F41_LOCATION_ASSERTION",
+      "competitor": "Kayak",
+      "theme": "method",
+      "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+      "claim": "The planner asserts the traveller's location unprompted, and asserted it incorrectly."
+    },
+    {
+      "num": "44",
+      "full_id": "F44_AD_DISCLOSURE",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/04-flights-sort-axes.json",
+      "claim": "Kayak labels paid placements explicitly and in the first person of the advertiser."
+    },
+    {
+      "num": "45",
+      "full_id": "F45_CROSS_MODAL_PROMPT",
+      "competitor": "Kayak",
+      "theme": "price-honesty",
+      "capture": "captures/04-kayak/04-flights-sort-axes.json",
+      "claim": "From a flight result set, Kayak asks whether the traveller wants bus prices."
+    },
+    {
+      "num": "46",
+      "full_id": "F46_DIRECT_CONTRADICTION_ON_PRICE_HONESTY",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+      "claim": "Two meta-search products state opposite pricing commitments for the same product category."
+    },
+    {
+      "num": "47",
+      "full_id": "F47_KAYAK_MIX_AND_UNOWNED_RISK",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+      "claim": "Kayak sells combined itineraries assembled from separate airlines, each governed by its own conditions, with no single carrier owning the journey."
+    },
+    {
+      "num": "48",
+      "full_id": "F48_HANDOFF_IS_TO_THE_OPERATOR",
+      "competitor": "Kayak",
+      "theme": "disruption-and-protection",
+      "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+      "claim": "Kayak's handoff on this result went directly to the airline that operates the flight, not to a reseller."
+    },
+    {
+      "num": "49",
+      "full_id": "F49_REFINES_F47_PROTECTION_SPECTRUM",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+      "claim": "Within a single Kayak result set, the protection a traveller ends up with varies enormously — and nothing in the ranking, sorting or price display reflects that."
+    },
+    {
+      "num": "50",
+      "full_id": "F50_CONTEXT_IS_DROPPED_AT_THE_BOUNDARY",
+      "competitor": "Kayak",
+      "theme": "decision-support",
+      "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+      "claim": "Crossing the handoff, the traveller loses all trace of the product that sent them and immediately faces a fresh consent gate."
+    },
+    {
+      "num": "51",
+      "full_id": "F51_CHEAPEST_ROUTES_TO_LEAST_FLEXIBLE",
+      "competitor": "Iberia",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+      "claim": "The meta-search handoff deposits the traveller, pre-selected, into the airline's most restrictive fare family."
+    },
+    {
+      "num": "52",
+      "full_id": "F52_THE_AIRLINE_IS_MORE_TRANSPARENT_THAN_ITS_REFERRER",
+      "competitor": "Iberia",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+      "claim": "Iberia states an all-in total with a named exception. Kayak, which sent the traveller here, states that its prices exclude baggage fees."
+    },
+    {
+      "num": "53",
+      "full_id": "F53_AIRPORT_SERVICES_ARE_A_FARE_CLASS_ENTITLEMENT",
+      "competitor": "Iberia",
+      "theme": "price-honesty",
+      "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+      "claim": "Iberia's airport services are bundled with Business class, not sold as add-ons. The page title scopes them to a fare class in its own words."
+    },
+    {
+      "num": "54",
+      "full_id": "F54_THE_BUSINESS_GOAL_HAS_A_PROBLEM",
+      "competitor": "Iberia",
+      "theme": "decision-support",
+      "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+      "claim": "Business goal 5 assumes airport services are a purchasable product. On the first supplier examined they are a fare-class entitlement, which changes who Luma would be selling to."
+    },
+    {
+      "num": "55",
+      "full_id": "F55_FOURTH_AI_ASSISTANT",
+      "competitor": "Iberia",
+      "theme": "other",
+      "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+      "claim": "Iberia ships a chat assistant, 'Ibot', present on this page."
+    },
+    {
+      "num": "58",
+      "full_id": "F58_THE_ONLY_PROGRAMME_A_NON_TRAVELLER_CAN_ENTER",
+      "competitor": "Iberia",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+      "claim": "Iberia Club is the only loyalty programme of the three examined whose currency can be earned without travelling at all."
+    },
+    {
+      "num": "59",
+      "full_id": "F59_BENEFITS_EXTEND_TO_CHILDREN",
+      "competitor": "Iberia",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+      "claim": "Iberia Club extends programme benefits to children as a stated feature."
+    },
+    {
+      "num": "62",
+      "full_id": "F62_DESTINATION_LESS_SEARCH",
+      "competitor": "Skyscanner",
+      "theme": "decision-support",
+      "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+      "claim": "Skyscanner offers search with no destination at all — 'Explora cualquier lugar'."
+    },
+    {
+      "num": "63",
+      "full_id": "F63_THE_META_SEARCH_ADDRESSES_ITS_OWN_HANDOFF_CONFUSION",
+      "competitor": "Skyscanner",
+      "theme": "dark-patterns-and-trust",
+      "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+      "claim": "Skyscanner's own FAQ headings directly address the confusion the handoff creates."
+    },
+    {
+      "num": "64",
+      "full_id": "F64_THE_FINTECH_FAMILY",
+      "competitor": "Hopper",
+      "theme": "price-honesty",
+      "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+      "claim": "Hopper ships a family of flexibility products, not a single one."
+    },
+    {
+      "num": "65",
+      "full_id": "F65_THE_BROWSER_LIMIT_MEASURED",
+      "competitor": "Hopper",
+      "theme": "price-honesty",
+      "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+      "claim": "Hopper's web surface permits search but gates its differentiating products behind the app."
+    },
+    {
+      "num": "73",
+      "full_id": "F73_PAY_LATER_AT_NO_COST",
+      "competitor": "Airbnb",
+      "theme": "user-types",
+      "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+      "claim": "Airbnb offers three payment timings, one of which defers the entire cost at no additional charge."
+    },
+    {
+      "num": "74",
+      "full_id": "F74_PRICE_CONTEXT_AT_COMMITMENT",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+      "claim": "Airbnb states whether the price is normal, at the moment of payment."
+    },
+    {
+      "num": "76",
+      "full_id": "F76_VARIETY_AS_A_STATED_RANKING_GOAL",
+      "competitor": "Airbnb",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+      "claim": "Airbnb states that its algorithm deliberately favours variety — showing different hosts, characteristics and price points rather than the single best-scoring set."
+    },
+    {
+      "num": "77",
+      "full_id": "F77_NO_COMMERCIAL_INFLUENCE_FACTOR_STATED",
+      "competitor": "Airbnb",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+      "claim": "The five stated factors contain no commission, advertising or paid-placement term."
+    },
+    {
+      "num": "79",
+      "full_id": "F79_PRICE_CONVENTION_INCONSISTENT_WITHIN_ONE_PRODUCT",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+      "claim": "Airbnb shows accommodation as a total for the stay and experiences as a price per traveller. The same product uses two conventions in two verticals."
+    },
+    {
+      "num": "81",
+      "full_id": "F81_DISCOVERY_IS_A_DESTINATION_NOT_A_BYPRODUCT",
+      "competitor": "Tripadvisor",
+      "theme": "decision-support",
+      "capture": "captures/08-tripadvisor/01-discovery-first.json",
+      "claim": "'Descubrir' (Discover) is a top-level navigation item, alongside 'Opinión' (Review)."
+    },
+    {
+      "num": "82",
+      "full_id": "F82_NO_FLIGHTS_VERTICAL",
+      "competitor": "Tripadvisor",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/08-tripadvisor/01-discovery-first.json",
+      "claim": "Tripadvisor's primary verticals are things to do, hotels and restaurants. No flights vertical was present on the homepage."
+    },
+    {
+      "num": "84",
+      "full_id": "F84_RANKING_EXPLAINED_AGAIN",
+      "competitor": "Tripadvisor",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+      "claim": "Tripadvisor states the basis of its rankings on the results surface."
+    },
+    {
+      "num": "85",
+      "full_id": "F85_ROSTER_INDEPENDENCE_PROBLEM",
+      "competitor": "Rentalcars.com",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "claim": "Rentalcars.com states on its own homepage that it is part of Booking Holdings — the same parent as Booking.com, competitor 1."
+    },
+    {
+      "num": "86",
+      "full_id": "F86_A_DIRECT_HIDDEN_COST_CLAIM",
+      "competitor": "Rentalcars.com",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "claim": "Rentalcars makes an explicit no-hidden-charges claim on the homepage."
+    },
+    {
+      "num": "87",
+      "full_id": "F87_HEDGED_REASSURANCE",
+      "competitor": "Rentalcars.com",
+      "theme": "disruption-and-protection",
+      "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "claim": "The cancellation promise carries a qualifier that most travellers will not weigh."
+    },
+    {
+      "num": "88",
+      "full_id": "F88_THREE_OF_SEVENTEEN_SHARE_A_PARENT",
+      "competitor": "Kayak",
+      "theme": "price-honesty",
+      "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+      "claim": "Booking.com, Kayak and Rentalcars.com — competitors 1, 4 and 9 on the roster — are all Booking Holdings companies. Verified from first-party statements on two of the three."
+    },
+    {
+      "num": "91",
+      "full_id": "F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER",
+      "competitor": "Trainline",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+      "claim": "Trainline's search form carries a PRE-CHECKED Booking.com Genius cross-sell which, on search, opened a Booking.com hotel search in the original tab — with dates that are not the travel dates."
+    },
+    {
+      "num": "92",
+      "full_id": "F92_EFFORT_ATTRIBUTES_ARE_FIRST_CLASS_IN_RAIL",
+      "competitor": "Trainline",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+      "claim": "Trainline surfaces duration and change-count per result and offers a 'Direct only' filter."
+    },
+    {
+      "num": "94",
+      "full_id": "F94_164_CONSENT_PARTNERS",
+      "competitor": "Omio",
+      "theme": "decision-support",
+      "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+      "claim": "Omio's consent modal states it shares personal data with 164 partners."
+    },
+    {
+      "num": "95",
+      "full_id": "F95_TRUE_MULTIMODAL_INPUT",
+      "competitor": "Omio",
+      "theme": "other",
+      "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+      "claim": "Omio accepts city, station, airport OR port in a single origin field and compares across four transport modes in one result set."
+    },
+    {
+      "num": "97",
+      "full_id": "F97_MODE_COMPARISON_WITH_THE_TRADE_OFF_VISIBLE",
+      "competitor": "Rome2Rio",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+      "claim": "Rome2Rio presents duration and price together, per transport mode, in one view — including modes no other roster competitor surfaces."
+    },
+    {
+      "num": "99",
+      "full_id": "F99_ATTRIBUTES_NOBODY_ELSE_SHOWS",
+      "competitor": "Citymapper",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+      "claim": "Citymapper presents transit options with frequency, calories and cross-mode alternatives alongside price and duration — three attributes absent from every other competitor in the roster."
+    },
+    {
+      "num": "100",
+      "full_id": "F100_EFFORT_MEASURED_IN_A_THIRD_UNIT",
+      "competitor": "Citymapper",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+      "claim": "Across the roster, effort is now observed measured in three different units, and which unit is used depends entirely on what the vertical can compute."
+    },
+    {
+      "num": "103",
+      "full_id": "F103_ENTRY_REQUIREMENTS_AS_A_PRODUCT",
+      "competitor": "TripIt",
+      "theme": "user-types",
+      "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+      "claim": "TripIt sells pre-trip entry-requirement guidance as a named Pro feature."
+    },
+    {
+      "num": "105",
+      "full_id": "F105_STATUS_ITSELF_IS_PURCHASABLE",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+      "claim": "Qatar Airways sells the loyalty currency, the STATUS points, and a paid subscription to the loyalty programme itself."
+    },
+    {
+      "num": "106",
+      "full_id": "F106_AIRPORT_SERVICES_ARE_A_PRODUCT_LINE_HERE",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+      "claim": "Qatar Airways treats the airport as a destination with its own product line, unlike Iberia where airport services are a Business-class entitlement."
+    },
+    {
+      "num": "108",
+      "full_id": "F108_SETTLED",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+      "claim": "F-108 inferred that lounge access is indirectly purchasable, because lounge access sits at Silver and Qpoints are sold — but flagged that many programmes exclude PURCHASED points from tier qualification, and that the inference was unverified."
+    },
+    {
+      "num": "109",
+      "full_id": "F109_THREE_CURRENCIES_IN_ONE_PROGRAMME",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+      "claim": "Privilege Club runs three distinct currencies."
+    },
+    {
+      "num": "111",
+      "full_id": "F111_STATUS_HAS_A_UNIT_PRICE",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+      "claim": "Qatar Airways publishes a unit price for loyalty status: USD 25 per Qpoint."
+    },
+    {
+      "num": "112",
+      "full_id": "F112_AA_SERVES_A_DIFFERENT_SITE_BY_LOCALE",
+      "competitor": "American Airlines",
+      "theme": "disruption-and-protection",
+      "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+      "claim": "aa.com redirects to americanairlines.es for a Spanish-locale session, serving a materially thinner site — 43 links against a US site that hosts a full Customer Service Plan."
+    }
+  ],
+  "finding_lookup": {
+    "1": {
+      "full_id": "F01",
+      "competitor": "Booking.com",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/01-booking-com/02-loyalty-genius.json",
+      "claim": "Priority support — the benefit a low-confidence traveller needs most — is gated behind 15 completed bookings in 2 years, so it is structurally unreachable by a first-time traveller."
+    },
+    "2": {
+      "full_id": "F02",
+      "competitor": "Booking.com",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/01-booking-com/02-loyalty-genius.json",
+      "claim": "The Genius programme never addresses a first-time traveller anywhere on its own explainer page."
+    },
+    "3": {
+      "full_id": "F03",
+      "competitor": "Booking.com",
+      "theme": "market-structure",
+      "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+      "claim": "The market leader contractually disclaims liability for the exact failure experience a reassurance-led product would want to own — at least for flights."
+    },
+    "4": {
+      "full_id": "F04",
+      "competitor": "Booking.com",
+      "theme": "disruption-and-protection",
+      "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+      "claim": "Booking.com does operate a disruption mechanism, but only where it holds the supplier relationship."
+    },
+    "5": {
+      "full_id": "F05",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+      "claim": "Accessibility is a contractual term, not only a design commitment — section A11 'Accessibility requests' sits in the Terms of Service."
+    },
+    "6": {
+      "full_id": "F06",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "claim": "The statement names no accessibility standard and makes no conformance claim."
+    },
+    "7": {
+      "full_id": "F07",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "claim": "Accessibility of the actual travel experience is routed away from Booking.com to the supplier."
+    },
+    "8": {
+      "full_id": "F08_cross_document",
+      "competitor": "Booking.com",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "claim": "Across three first-party documents Booking.com consistently occupies an intermediary position and pushes responsibility outward at every layer."
+    },
+    "9": {
+      "full_id": "F09_LOAD_BEARING",
+      "competitor": "Booking.com",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/01-booking-com/05-stays-search-results.json",
+      "claim": "Booking.com offers no ranking axis based on effort, ease, stress or traveller confidence. Every axis is price, a quality proxy, distance, property type, or an opaque default."
+    },
+    "10": {
+      "full_id": "F10_REFUTES_PRIOR_HYPOTHESIS",
+      "competitor": "Booking.com",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/01-booking-com/05-stays-search-results.json",
+      "claim": "Booking.com DOES disclose that commercial terms affect ranking — so a blanket claim that competitors never explain their recommendations does not hold here."
+    },
+    "11": {
+      "full_id": "F11",
+      "competitor": "Booking.com",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+      "claim": "Loyalty membership changes the ranking surface by exactly one axis, and that axis is another PRICE axis."
+    },
+    "12": {
+      "full_id": "F12",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+      "claim": "Booking.com fires a Google One Tap sign-in prompt at a signed-out user during search."
+    },
+    "13": {
+      "full_id": "F13",
+      "competitor": "Booking.com",
+      "theme": "other",
+      "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "claim": "The primary Reserve control is inert until a room quantity is selected, and nothing states this."
+    },
+    "14": {
+      "full_id": "F14",
+      "competitor": "Booking.com",
+      "theme": "price-honesty",
+      "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "claim": "No account is required to reach the booking form. There is no sign-in wall and no guest-checkout prompt either — the question is simply never asked."
+    },
+    "15": {
+      "full_id": "F15",
+      "competitor": "Booking.com",
+      "theme": "price-honesty",
+      "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "claim": "Booking.com's answer to multi-type trip attachment is three opt-in checkboxes inside the booking form."
+    },
+    "16": {
+      "full_id": "F16_vs_booking",
+      "competitor": "Expedia",
+      "theme": "method",
+      "capture": "captures/02-expedia/01-site-tree-L1.json",
+      "claim": "Expedia carries six verticals to Booking.com's four booking types, adding Packages and Cruises — but presents a far smaller link surface on the homepage."
+    },
+    "17": {
+      "full_id": "F17_ROMIE_ABSENT",
+      "competitor": "Expedia",
+      "theme": "other",
+      "capture": "captures/02-expedia/01-site-tree-L1.json",
+      "claim": "Romie — named in prior desk research as the most serious competitive threat and the top open question — does not appear anywhere on the Expedia homepage."
+    },
+    "18": {
+      "full_id": "F18_TWO_OF_TWO",
+      "competitor": "Expedia",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/02-expedia/02-loyalty-one-key.json",
+      "claim": "Both loyalty programmes examined so far gate their better rates behind accumulated bookings, and neither addresses a first-time traveller anywhere on its own explainer page."
+    },
+    "19": {
+      "full_id": "F19_INVENTORY_DEPTH",
+      "competitor": "Expedia",
+      "theme": "other",
+      "capture": "captures/02-expedia/03-stays-search-results.json",
+      "claim": "For an identical city and date range, Expedia returns 499 properties where Booking.com returns 4,194 — roughly an eightfold difference."
+    },
+    "20": {
+      "full_id": "F20_SORT_AXES_TWO_OF_TWO",
+      "competitor": "Expedia",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/02-expedia/03-stays-search-results.json",
+      "claim": "Expedia offers no ranking axis based on effort, ease, stress or confidence. Enumerated positively from the opened control."
+    },
+    "21": {
+      "full_id": "F21_CHECKOUT_SHAPE_DIFFERS",
+      "competitor": "Expedia",
+      "theme": "disruption-and-protection",
+      "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+      "claim": "Expedia collapses guest details and payment onto ONE page; Booking.com splits them across two, with no payment field present on its details step."
+    },
+    "22": {
+      "full_id": "F22_CONFIRMSHAMING",
+      "competitor": "Expedia",
+      "theme": "disruption-and-protection",
+      "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+      "claim": "Expedia's insurance decline option is written as a confession of recklessness rather than a neutral choice."
+    },
+    "23": {
+      "full_id": "F23_DECISION_SURFACES",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+      "claim": "Google Travel exposes four decision-support surfaces that neither Booking.com nor Expedia offers anywhere in their accommodation journey."
+    },
+    "24": {
+      "full_id": "F24_NO_TRANSACTION",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+      "claim": "Google Travel hands off rather than sells. No 'Book on Google' surface was present on the accommodation result."
+    },
+    "25": {
+      "full_id": "F25_THREE_OF_THREE",
+      "competitor": "Google Travel",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+      "claim": "Google Travel offers three ranking axes: an opaque default, price, and a quality proxy. None concerns effort, ease, stress or confidence."
+    },
+    "26": {
+      "full_id": "F26_INVERSE_RELATIONSHIP",
+      "competitor": "Google Travel",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+      "claim": "The product with the richest decision-support layer has the poorest ranking layer."
+    },
+    "27": {
+      "full_id": "F27",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+      "claim": "Google Travel is the only product observed that tells a traveller what a normal price looks like before they search."
+    },
+    "28": {
+      "full_id": "F28",
+      "competitor": "Google Travel",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+      "claim": "Authentication unlocks exactly one capability on Google Travel, and it is a functional one — persistent price monitoring — not a discount."
+    },
+    "29": {
+      "full_id": "F29_THE_CONTRAST",
+      "competitor": "Google Travel",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+      "claim": "Two products, two matched-pair diffs, one extra capability each — but of opposite kinds."
+    },
+    "30": {
+      "full_id": "F30_PRICE_HONESTY_COMMITMENT",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+      "claim": "Google Flights publishes an explicit all-in pricing commitment — the stated opposite of drip pricing."
+    },
+    "31": {
+      "full_id": "F31_BUILT_FOR_THE_UNDECIDED",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+      "claim": "Google Flights explicitly addresses a traveller who has not decided, in its own copy."
+    },
+    "32": {
+      "full_id": "F32_RANKING_IS_EXPLAINED",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/06-flights-live-route.json",
+      "claim": "Google Flights states its ranking criteria in plain language on the result set itself."
+    },
+    "33": {
+      "full_id": "F33_ACTIONABLE_ORIENTATION",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "price-honesty",
+      "capture": "captures/03-google-travel/06-flights-live-route.json",
+      "claim": "On a live route, Google states whether the current price is normal and when to buy — without requiring a booking, an account, or a commitment."
+    },
+    "34": {
+      "full_id": "F34_A_FOURTH_AXIS_EXISTS",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/06-flights-live-route.json",
+      "claim": "Google Flights surfaces a comparison dimension that is neither price, quality proxy, nor distance: carbon emissions, expressed relative to the route average."
+    },
+    "35": {
+      "full_id": "F35_EMISSIONS_IS_SORTABLE",
+      "competitor": "Google Travel — Flights vertical",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+      "claim": "Emissions is a selectable sort axis, not merely a displayed attribute. F-34's OWED test is settled."
+    },
+    "36": {
+      "full_id": "F36_FLIGHT_TRACKER",
+      "competitor": "Kayak",
+      "theme": "price-honesty",
+      "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+      "claim": "Kayak ships a standalone Flight Tracker at /tracker — a direct analogue of a named Luma core feature."
+    },
+    "37": {
+      "full_id": "F37_AD_LANDING_IS_NOT_DIFFERENT",
+      "competitor": "Kayak",
+      "theme": "decision-support",
+      "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+      "claim": "The ad-landing variant renders the same product surface as the clean URL. The tracking parameters produced no observable difference."
+    },
+    "38": {
+      "full_id": "F38_AI_SURFACE",
+      "competitor": "Kayak",
+      "theme": "other",
+      "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+      "claim": "Kayak places an 'IA' (AI) entry point directly beside its wordmark in the primary header."
+    },
+    "39": {
+      "full_id": "F39_FIRST_EMPTY_STATE_CAPTURED",
+      "competitor": "Kayak",
+      "theme": "user-types",
+      "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+      "claim": "Kayak's AI planner ships a designed empty state. This is the first empty state observed anywhere in the round across four competitors."
+    },
+    "40": {
+      "full_id": "F40_MULTIMODAL_INPUT",
+      "competitor": "Kayak",
+      "theme": "trip-as-an-object",
+      "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+      "claim": "Kayak's travel AI accepts photo and file upload as planning input, not just text."
+    },
+    "41": {
+      "full_id": "F41_LOCATION_ASSERTION",
+      "competitor": "Kayak",
+      "theme": "method",
+      "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+      "claim": "The planner asserts the traveller's location unprompted, and asserted it incorrectly."
+    },
+    "42": {
+      "full_id": "F42_THE_TAB_SHOWS_THE_TRADE_OFF",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/04-flights-sort-axes.json",
+      "claim": "Kayak's sort control displays the consequence of each choice on the control itself — price AND duration on every tab — so the trade-off is legible before the user commits to a sort."
+    },
+    "43": {
+      "full_id": "F43_EFFORT_RANKED_AGAIN",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/04-flights-sort-axes.json",
+      "claim": "Two of Kayak's three flight sort axes concern duration, confirming that effort IS ranked in flights on a second product."
+    },
+    "44": {
+      "full_id": "F44_AD_DISCLOSURE",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/04-flights-sort-axes.json",
+      "claim": "Kayak labels paid placements explicitly and in the first person of the advertiser."
+    },
+    "45": {
+      "full_id": "F45_CROSS_MODAL_PROMPT",
+      "competitor": "Kayak",
+      "theme": "price-honesty",
+      "capture": "captures/04-kayak/04-flights-sort-axes.json",
+      "claim": "From a flight result set, Kayak asks whether the traveller wants bus prices."
+    },
+    "46": {
+      "full_id": "F46_DIRECT_CONTRADICTION_ON_PRICE_HONESTY",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+      "claim": "Two meta-search products state opposite pricing commitments for the same product category."
+    },
+    "47": {
+      "full_id": "F47_KAYAK_MIX_AND_UNOWNED_RISK",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+      "claim": "Kayak sells combined itineraries assembled from separate airlines, each governed by its own conditions, with no single carrier owning the journey."
+    },
+    "48": {
+      "full_id": "F48_HANDOFF_IS_TO_THE_OPERATOR",
+      "competitor": "Kayak",
+      "theme": "disruption-and-protection",
+      "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+      "claim": "Kayak's handoff on this result went directly to the airline that operates the flight, not to a reseller."
+    },
+    "49": {
+      "full_id": "F49_REFINES_F47_PROTECTION_SPECTRUM",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+      "claim": "Within a single Kayak result set, the protection a traveller ends up with varies enormously — and nothing in the ranking, sorting or price display reflects that."
+    },
+    "50": {
+      "full_id": "F50_CONTEXT_IS_DROPPED_AT_THE_BOUNDARY",
+      "competitor": "Kayak",
+      "theme": "decision-support",
+      "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+      "claim": "Crossing the handoff, the traveller loses all trace of the product that sent them and immediately faces a fresh consent gate."
+    },
+    "88": {
+      "full_id": "F88_THREE_OF_SEVENTEEN_SHARE_A_PARENT",
+      "competitor": "Kayak",
+      "theme": "price-honesty",
+      "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+      "claim": "Booking.com, Kayak and Rentalcars.com — competitors 1, 4 and 9 on the roster — are all Booking Holdings companies. Verified from first-party statements on two of the three."
+    },
+    "89": {
+      "full_id": "F89_KAYAK_PUBLISHES_A_FULL_RANKING_DOCUMENT",
+      "competitor": "Kayak",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+      "claim": "Kayak publishes an 18,759-character document explaining how it recommends content and orders results, broken down per vertical."
+    },
+    "61": {
+      "full_id": "F61_LOCATION_DISAGREEMENT_ACROSS_THREE_PRODUCTS",
+      "competitor": "Skyscanner",
+      "theme": "decision-support",
+      "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+      "claim": "Three competitors, one browser session, one afternoon — and each asserts a different location for the same traveller."
+    },
+    "62": {
+      "full_id": "F62_DESTINATION_LESS_SEARCH",
+      "competitor": "Skyscanner",
+      "theme": "decision-support",
+      "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+      "claim": "Skyscanner offers search with no destination at all — 'Explora cualquier lugar'."
+    },
+    "63": {
+      "full_id": "F63_THE_META_SEARCH_ADDRESSES_ITS_OWN_HANDOFF_CONFUSION",
+      "competitor": "Skyscanner",
+      "theme": "dark-patterns-and-trust",
+      "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+      "claim": "Skyscanner's own FAQ headings directly address the confusion the handoff creates."
+    },
+    "64": {
+      "full_id": "F64_THE_FINTECH_FAMILY",
+      "competitor": "Hopper",
+      "theme": "price-honesty",
+      "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+      "claim": "Hopper ships a family of flexibility products, not a single one."
+    },
+    "65": {
+      "full_id": "F65_THE_BROWSER_LIMIT_MEASURED",
+      "competitor": "Hopper",
+      "theme": "price-honesty",
+      "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+      "claim": "Hopper's web surface permits search but gates its differentiating products behind the app."
+    },
+    "66": {
+      "full_id": "F66_INCLUDED_NOT_SOLD",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+      "claim": "AirCover is included in every accommodation booking at no cost. It is the opposite commercial model to Hopper's Premium Disruption Assistance, for the same category of promise."
+    },
+    "67": {
+      "full_id": "F67_THE_BOUNDARY_IS_NAMED_IN_PLAIN_LANGUAGE",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+      "claim": "Airbnb states what AirCover is NOT, in plain language, with concrete examples — inside the same document that sells the reassurance."
+    },
+    "68": {
+      "full_id": "F68_THE_GAP_BETWEEN_THE_TWO_MODELS",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+      "claim": "Placed together, Airbnb and Hopper cover opposite halves of the journey and neither covers the seam."
+    },
+    "69": {
+      "full_id": "F69_ZERO_SORT_AXES",
+      "competitor": "Airbnb",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+      "claim": "Airbnb offers no sort control at all. It is the only competitor observed with none."
+    },
+    "70": {
+      "full_id": "F70_TOTAL_PRICE_ONLY",
+      "competitor": "Airbnb",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+      "claim": "Airbnb displays the total price for the stay and never a nightly rate. Every other accommodation competitor observed leads with a nightly figure."
+    },
+    "71": {
+      "full_id": "F71_AIRCOVER_IS_NOT_SHOWN_AT_THE_DECISION_REFUTES_PRIOR_CLAIM",
+      "competitor": "Airbnb",
+      "theme": "NOT-IN-WORLD",
+      "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+      "claim": "see capture file"
+    },
+    "72": {
+      "full_id": "F72_NEUTRAL_INSURANCE_DECLINE_THE_ANTI_F22",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+      "claim": "Airbnb offers travel insurance at checkout with a neutral, priced question. Expedia phrases the same decision as a confession of recklessness."
+    },
+    "73": {
+      "full_id": "F73_PAY_LATER_AT_NO_COST",
+      "competitor": "Airbnb",
+      "theme": "user-types",
+      "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+      "claim": "Airbnb offers three payment timings, one of which defers the entire cost at no additional charge."
+    },
+    "74": {
+      "full_id": "F74_PRICE_CONTEXT_AT_COMMITMENT",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+      "claim": "Airbnb states whether the price is normal, at the moment of payment."
+    },
+    "75": {
+      "full_id": "F75_MAXIMUM_EXPLANATION_ZERO_CONTROL",
+      "competitor": "Airbnb",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+      "claim": "Airbnb gives the traveller no way to reorder results and the most detailed explanation of its ordering found anywhere in the round."
+    },
+    "76": {
+      "full_id": "F76_VARIETY_AS_A_STATED_RANKING_GOAL",
+      "competitor": "Airbnb",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+      "claim": "Airbnb states that its algorithm deliberately favours variety — showing different hosts, characteristics and price points rather than the single best-scoring set."
+    },
+    "77": {
+      "full_id": "F77_NO_COMMERCIAL_INFLUENCE_FACTOR_STATED",
+      "competitor": "Airbnb",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+      "claim": "The five stated factors contain no commission, advertising or paid-placement term."
+    },
+    "78": {
+      "full_id": "F78_THREE_INVENTORIES_ONE_ACCOUNT_ZERO_TRIP",
+      "competitor": "Airbnb",
+      "theme": "trip-as-an-object",
+      "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+      "claim": "Airbnb holds stays, experiences and services under one account and still does not model the trip as a single object. Moving from an accommodation search to experiences drops the trip entirely."
+    },
+    "79": {
+      "full_id": "F79_PRICE_CONVENTION_INCONSISTENT_WITHIN_ONE_PRODUCT",
+      "competitor": "Airbnb",
+      "theme": "price-honesty",
+      "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+      "claim": "Airbnb shows accommodation as a total for the stay and experiences as a price per traveller. The same product uses two conventions in two verticals."
+    },
+    "80": {
+      "full_id": "F80_THE_ENTRY_IS_A_QUESTION",
+      "competitor": "Tripadvisor",
+      "theme": "other",
+      "capture": "captures/08-tripadvisor/01-discovery-first.json",
+      "claim": "Tripadvisor's primary entry point is a question rather than a search field label."
+    },
+    "81": {
+      "full_id": "F81_DISCOVERY_IS_A_DESTINATION_NOT_A_BYPRODUCT",
+      "competitor": "Tripadvisor",
+      "theme": "decision-support",
+      "capture": "captures/08-tripadvisor/01-discovery-first.json",
+      "claim": "'Descubrir' (Discover) is a top-level navigation item, alongside 'Opinión' (Review)."
+    },
+    "82": {
+      "full_id": "F82_NO_FLIGHTS_VERTICAL",
+      "competitor": "Tripadvisor",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/08-tripadvisor/01-discovery-first.json",
+      "claim": "Tripadvisor's primary verticals are things to do, hotels and restaurants. No flights vertical was present on the homepage."
+    },
+    "83": {
+      "full_id": "F83_DURATION_IS_VISIBLE_BUT_NOT_STRUCTURED",
+      "competitor": "Tripadvisor",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+      "claim": "Tripadvisor surfaces activity duration — but only inside seller-written titles, never as a structured, comparable field."
+    },
+    "84": {
+      "full_id": "F84_RANKING_EXPLAINED_AGAIN",
+      "competitor": "Tripadvisor",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+      "claim": "Tripadvisor states the basis of its rankings on the results surface."
+    },
+    "85": {
+      "full_id": "F85_ROSTER_INDEPENDENCE_PROBLEM",
+      "competitor": "Rentalcars.com",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "claim": "Rentalcars.com states on its own homepage that it is part of Booking Holdings — the same parent as Booking.com, competitor 1."
+    },
+    "86": {
+      "full_id": "F86_A_DIRECT_HIDDEN_COST_CLAIM",
+      "competitor": "Rentalcars.com",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "claim": "Rentalcars makes an explicit no-hidden-charges claim on the homepage."
+    },
+    "87": {
+      "full_id": "F87_HEDGED_REASSURANCE",
+      "competitor": "Rentalcars.com",
+      "theme": "disruption-and-protection",
+      "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "claim": "The cancellation promise carries a qualifier that most travellers will not weigh."
+    },
+    "90": {
+      "full_id": "F90_PROACTIVE_COMPENSATION_NOTIFICATION",
+      "competitor": "Trainline",
+      "theme": "price-honesty",
+      "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+      "claim": "Trainline offers to notify the traveller when they QUALIFY FOR DELAY COMPENSATION — not merely when a delay occurs."
+    },
+    "91": {
+      "full_id": "F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER",
+      "competitor": "Trainline",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+      "claim": "Trainline's search form carries a PRE-CHECKED Booking.com Genius cross-sell which, on search, opened a Booking.com hotel search in the original tab — with dates that are not the travel dates."
+    },
+    "92": {
+      "full_id": "F92_EFFORT_ATTRIBUTES_ARE_FIRST_CLASS_IN_RAIL",
+      "competitor": "Trainline",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+      "claim": "Trainline surfaces duration and change-count per result and offers a 'Direct only' filter."
+    },
+    "93": {
+      "full_id": "F93_THE_ONLY_RANKING_THAT_NAMES_EFFORT_FIRST",
+      "competitor": "Trainline",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/10-trainline/02-ranking-names-effort.json",
+      "claim": "Trainline states its ranking basis and leads with two effort criteria before price."
+    },
+    "94": {
+      "full_id": "F94_164_CONSENT_PARTNERS",
+      "competitor": "Omio",
+      "theme": "decision-support",
+      "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+      "claim": "Omio's consent modal states it shares personal data with 164 partners."
+    },
+    "95": {
+      "full_id": "F95_TRUE_MULTIMODAL_INPUT",
+      "competitor": "Omio",
+      "theme": "other",
+      "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+      "claim": "Omio accepts city, station, airport OR port in a single origin field and compares across four transport modes in one result set."
+    },
+    "96": {
+      "full_id": "F96_FIFTH_AI_ASSISTANT",
+      "competitor": "Omio",
+      "theme": "other",
+      "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+      "claim": "Omio ships an AI planner as a primary tab beside the standard search — 'Planificador IA'."
+    },
+    "97": {
+      "full_id": "F97_MODE_COMPARISON_WITH_THE_TRADE_OFF_VISIBLE",
+      "competitor": "Rome2Rio",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+      "claim": "Rome2Rio presents duration and price together, per transport mode, in one view — including modes no other roster competitor surfaces."
+    },
+    "98": {
+      "full_id": "F98_NOT_SELLING_IS_WHAT_MAKES_IT_HONEST",
+      "competitor": "Rome2Rio",
+      "theme": "decision-support",
+      "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+      "claim": "Rome2Rio surfaces no booking or purchase language on the comparison view — consistent with the roster's assumption that it routes and compares without fulfilling."
+    },
+    "99": {
+      "full_id": "F99_ATTRIBUTES_NOBODY_ELSE_SHOWS",
+      "competitor": "Citymapper",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+      "claim": "Citymapper presents transit options with frequency, calories and cross-mode alternatives alongside price and duration — three attributes absent from every other competitor in the roster."
+    },
+    "100": {
+      "full_id": "F100_EFFORT_MEASURED_IN_A_THIRD_UNIT",
+      "competitor": "Citymapper",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+      "claim": "Across the roster, effort is now observed measured in three different units, and which unit is used depends entirely on what the vertical can compute."
+    },
+    "101": {
+      "full_id": "F101_THE_ANSWER_TO_F78",
+      "competitor": "TripIt",
+      "theme": "trip-as-an-object",
+      "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+      "claim": "TripIt models the trip as one object — and does so by ingesting other products' confirmations, without selling anything."
+    },
+    "102": {
+      "full_id": "F102_THE_USEFUL_PART_IS_PAYWALLED",
+      "competitor": "TripIt",
+      "theme": "price-honesty",
+      "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+      "claim": "TripIt's organisation is free; the features that address traveller anxiety are behind TripIt Pro."
+    },
+    "103": {
+      "full_id": "F103_ENTRY_REQUIREMENTS_AS_A_PRODUCT",
+      "competitor": "TripIt",
+      "theme": "user-types",
+      "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+      "claim": "TripIt sells pre-trip entry-requirement guidance as a named Pro feature."
+    },
+    "51": {
+      "full_id": "F51_CHEAPEST_ROUTES_TO_LEAST_FLEXIBLE",
+      "competitor": "Iberia",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+      "claim": "The meta-search handoff deposits the traveller, pre-selected, into the airline's most restrictive fare family."
+    },
+    "52": {
+      "full_id": "F52_THE_AIRLINE_IS_MORE_TRANSPARENT_THAN_ITS_REFERRER",
+      "competitor": "Iberia",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+      "claim": "Iberia states an all-in total with a named exception. Kayak, which sent the traveller here, states that its prices exclude baggage fees."
+    },
+    "53": {
+      "full_id": "F53_AIRPORT_SERVICES_ARE_A_FARE_CLASS_ENTITLEMENT",
+      "competitor": "Iberia",
+      "theme": "price-honesty",
+      "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+      "claim": "Iberia's airport services are bundled with Business class, not sold as add-ons. The page title scopes them to a fare class in its own words."
+    },
+    "54": {
+      "full_id": "F54_THE_BUSINESS_GOAL_HAS_A_PROBLEM",
+      "competitor": "Iberia",
+      "theme": "decision-support",
+      "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+      "claim": "Business goal 5 assumes airport services are a purchasable product. On the first supplier examined they are a fare-class entitlement, which changes who Luma would be selling to."
+    },
+    "55": {
+      "full_id": "F55_FOURTH_AI_ASSISTANT",
+      "competitor": "Iberia",
+      "theme": "other",
+      "capture": "captures/15-iberia/02-airport-services-business-goal-5.json",
+      "claim": "Iberia ships a chat assistant, 'Ibot', present on this page."
+    },
+    "56": {
+      "full_id": "F56_THE_SENTENCE_THAT_STOPS",
+      "competitor": "Iberia",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+      "claim": "Iberia explicitly distinguishes voluntary changes from operational disruption, states that the traveller's rights are different, and then provides no route to them."
+    },
+    "57": {
+      "full_id": "F57_THE_CHAIN_ACROSS_FIVE_COMPETITORS",
+      "competitor": "Iberia",
+      "theme": "ranking-and-comparison",
+      "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+      "claim": "Traced end to end, the traveller's protection degrades at every hop and is never displayed at any of them."
+    },
+    "58": {
+      "full_id": "F58_THE_ONLY_PROGRAMME_A_NON_TRAVELLER_CAN_ENTER",
+      "competitor": "Iberia",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+      "claim": "Iberia Club is the only loyalty programme of the three examined whose currency can be earned without travelling at all."
+    },
+    "59": {
+      "full_id": "F59_BENEFITS_EXTEND_TO_CHILDREN",
+      "competitor": "Iberia",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+      "claim": "Iberia Club extends programme benefits to children as a stated feature."
+    },
+    "60": {
+      "full_id": "F60_THIRD_OF_THREE_ON_FIRST_TIMERS",
+      "competitor": "Iberia",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+      "claim": "Three loyalty programmes, three full-page text searches, zero mentions of a first-time traveller."
+    },
+    "104": {
+      "full_id": "F104_A_PUBLISHED_COMMITMENT_DOCUMENT_WITH_NAMED_DISRUPTION_SECTIONS",
+      "competitor": "American Airlines",
+      "theme": "disruption-and-protection",
+      "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+      "claim": "American Airlines publishes a Customer Service Plan containing explicitly named disruption sections."
+    },
+    "112": {
+      "full_id": "F112_AA_SERVES_A_DIFFERENT_SITE_BY_LOCALE",
+      "competitor": "American Airlines",
+      "theme": "disruption-and-protection",
+      "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+      "claim": "aa.com redirects to americanairlines.es for a Spanish-locale session, serving a materially thinner site — 43 links against a US site that hosts a full Customer Service Plan."
+    },
+    "113": {
+      "full_id": "F113_DISRUPTION_IS_PROMINENT_HERE_AFTER_ALL",
+      "competitor": "American Airlines",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+      "claim": "AA's Spanish homepage surfaces travel disruption prominently — as a heading, not a buried link."
+    },
+    "105": {
+      "full_id": "F105_STATUS_ITSELF_IS_PURCHASABLE",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+      "claim": "Qatar Airways sells the loyalty currency, the STATUS points, and a paid subscription to the loyalty programme itself."
+    },
+    "106": {
+      "full_id": "F106_AIRPORT_SERVICES_ARE_A_PRODUCT_LINE_HERE",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+      "claim": "Qatar Airways treats the airport as a destination with its own product line, unlike Iberia where airport services are a Business-class entitlement."
+    },
+    "107": {
+      "full_id": "F107_DISRUPTION_ABSENT_FROM_NAVIGATION_TWO_OF_THREE_AIRLINES",
+      "competitor": "Qatar Airways",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+      "claim": "No disruption, delay, cancellation, compensation or passenger-rights destination appears in Qatar Airways' 289 homepage links."
+    },
+    "108": {
+      "full_id": "F108_SETTLED",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+      "claim": "F-108 inferred that lounge access is indirectly purchasable, because lounge access sits at Silver and Qpoints are sold — but flagged that many programmes exclude PURCHASED points from tier qualification, and that the inference was unverified."
+    },
+    "109": {
+      "full_id": "F109_THREE_CURRENCIES_IN_ONE_PROGRAMME",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+      "claim": "Privilege Club runs three distinct currencies."
+    },
+    "110": {
+      "full_id": "F110_FOUR_OF_FOUR_ON_FIRST_TIMERS",
+      "competitor": "Qatar Airways",
+      "theme": "loyalty-and-retention",
+      "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+      "claim": "Four loyalty programmes, four full-text searches, zero mentions of a first-time traveller."
+    },
+    "111": {
+      "full_id": "F111_STATUS_HAS_A_UNIT_PRICE",
+      "competitor": "Qatar Airways",
+      "theme": "price-honesty",
+      "capture": "captures/17-qatar-airways/03-buy-qpoints-F108-SETTLED.json",
+      "claim": "Qatar Airways publishes a unit price for loyalty status: USD 25 per Qpoint."
+    }
+  }
+}

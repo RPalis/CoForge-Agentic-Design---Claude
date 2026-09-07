@@ -1,0 +1,252 @@
+{
+  "generated": "2026-09-07",
+  "phase": "Phase 2 — triage of unused evidence",
+  "agent": "research-synthesizer",
+  "gate": "A — every classification below is a proposal. Nothing here is a fact about the board until a human accepts it.",
+  "scope": {
+    "input": "phase12-input.json (uncited_findings, all_conclusions, finding_lookup, anchors)",
+    "corroborating_reads": [
+      "WORLD.json (all 117 chunks — carries why_it_matters and scope_limit per finding, which the one-line claims omit)",
+      "WORLD.md §0-§5",
+      "captures/11-omio/01-multimodal-and-164-partners.json",
+      "captures/01-booking-com/04-accessibility-statement.json",
+      "captures/15-iberia/03-disruption-the-tier4-test.json",
+      "captures/04-kayak/03-ai-planner-and-first-empty-state.json"
+    ],
+    "id_namespace": "All F-nnn identifiers are capture-round finding IDs from CAPTURE-INDEX / WORLD. They are NOT research/evidence-ledger.json IDs and no ledger ID was minted for any measurement (ADR-017).",
+    "classes_are_exclusive": "Each finding carries exactly one class. Several class-B proposals also draw on findings classified A; where that happens the B entry names them and the overlap is stated, not hidden."
+  },
+
+  "counts": { "A": 25, "B": 35, "C": 8, "D": 4, "total": 72 },
+
+  "reconciliation": {
+    "anchors_reproduced": {
+      "conclusions": { "anchor": 26, "derived": 26, "match": true },
+      "single_capture": { "anchor": 9, "derived": 9, "match": true },
+      "distinct_findings_cited": { "anchor": 41, "derived": 41, "match": true },
+      "findings_total": { "anchor": 113, "derived": 113, "match": true },
+      "uncited": { "anchor": 72, "derived": 72, "match": true }
+    },
+    "method": "Recomputed the union of `cites` across all 26 conclusions (41 distinct numbers), subtracted from finding_lookup (113 keys), and compared the remainder to uncited_findings. Exact match, member for member.",
+    "disagreements": [
+      {
+        "id": "R-1",
+        "severity": "material",
+        "finding": "The fragility anchor undercounts by one. `single_capture: 9` is arithmetically correct for n=1, but pain-9 ('A cookie banner with no single-click way to say no') carries n=0 — zero citations — and is absent from fragile_conclusions, which filters on n=1. The board therefore has TEN conclusions resting on one finding or fewer, not nine, and the weakest of the ten is the one the anchor omits.",
+        "consequence": "pain-9 is the only conclusion on the board with no evidence ID at all. It is repairable today: see F94, classified A below."
+      },
+      {
+        "id": "R-2",
+        "severity": "material — a factual error inside an existing conclusion",
+        "finding": "pain-8 ('Three products, one afternoon, three different guesses at where you are') attributes 'Estás en Toronto' to Google's AI planner. The source capture does not support that. captures/04-kayak/03-ai-planner-and-first-empty-state.json records 'Estás en Toronto' as KAYAK's AI planner (F41), and its own observation field reads: 'The session is a Spanish-locale browser whose flight search pre-filled Madrid (MAD) as origin minutes earlier. The AI surface independently asserts Toronto. Two surfaces of one product disagree about where the traveller is.' The misattribution originates upstream in F61, whose evidence list reads 'Google Travel AI planner: Estás en Toronto (F-41)'.",
+        "consequence": "As sourced, pain-8 is TWO products disagreeing (Kayak with itself, and Skyscanner), not three. No Google location assertion appears anywhere in WORLD.json. WORLD's own rule is 'if a chunk and its source disagree, THE SOURCE WINS.' pain-8 and insight-7 need the attribution corrected before either is defended at Gate A. This does not destroy the pain point — two surfaces of ONE product disagreeing is arguably sharper — but the sentence as written is wrong."
+      },
+      {
+        "id": "R-3",
+        "severity": "informational — resolves part of C-043",
+        "finding": "WORLD.json's 117 reconciles exactly: 112 of the 113 numbered findings + 1 duplicate + 4 unnumbered records = 117. F71 is absent from WORLD entirely (finding_lookup already flags it theme 'NOT-IN-WORLD', claim 'see capture file'). F-108 appears twice, as F108_LOUNGE_ACCESS_IS_INDIRECTLY_PURCHASABLE and F108_SETTLED. The 4 unnumbered chunks are MATERIAL_CORRECTION_to_F09_F20_F25, PROHIBITION_2_NEAR_MISS_RECORDED, CAPTURE_BLOCKED_BY_CONSENT (Omio) and METHOD_CORRECTION_TO_MY_OWN_FINDABILITY_TEST (AA).",
+        "consequence": "F71 is load-bearing — it is cited by rec-4 AND pain-4 — and it is the one numbered finding missing from the retrieval corpus. Anything retrieving from WORLD rather than from captures/ cannot see it. The 121 vs 117 gap is therefore not one gap but two: 4 unnumbered records absorbed, and F71 dropped."
+      },
+      {
+        "id": "R-4",
+        "severity": "informational",
+        "finding": "Theme labels were ignored, as instructed, and the instruction was justified. Examples encountered: F82 'no flights vertical' filed under loyalty-and-retention; F85 ownership filed under loyalty-and-retention; F107 'disruption absent from navigation' filed under loyalty-and-retention; F57 'the disruption chain' filed under ranking-and-comparison; F94 'consent modal / 164 partners' filed under decision-support; F41 'location asserted incorrectly' filed under method. Every classification below was made from the claim text and, where that was insufficient, the capture file.",
+        "consequence": "Consistent with C-045. No classification here depends on a theme label."
+      },
+      {
+        "id": "R-5",
+        "severity": "informational",
+        "finding": "insight-6 lists captures/15-iberia/01-site-tree-and-ibot.json as a source but cites no Iberia finding number; the numbered Iberia assistant finding (F55) lives in capture 02 and is uncited. rec-6 lists captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json as a source but cites no finding from it; that file contains F35, uncited. insight-2 and rec-9 both list the Hopper capture as a source but cite no Hopper finding; F64 is uncited.",
+        "consequence": "Three conclusions cite a FILE where a finding ID exists. That is a mechanical, repeatable citation gap, not a judgement gap — and it accounts for a meaningful share of the class A list."
+      }
+    ]
+  },
+
+  "class_b_proposals": [
+    {
+      "ref": "B1",
+      "one_sentence": "It would say that the protection a traveller ends up holding varies enormously within a single result set — from a direct carrier booking with EU 261 duties to a self-assembled multi-carrier itinerary no carrier owns — that nothing in ranking, sorting or price reflects it, and that the referring product already holds the data needed to rank on it.",
+      "findings": ["48"],
+      "also_draws_on_findings_classified_A": ["47", "49", "51"],
+      "why_it_would_change_the_board": "The round's own capture text rates this above a recommendation that IS on the board: F49 records it as 'a stronger differentiation candidate than easiest first', which is rec-6. The board recommends the weaker of two candidates the same round generated and never wrote down the stronger one.",
+      "quote": "F49: 'Within a single Kayak result set, the protection a traveller ends up with varies enormously — and nothing in the ranking, sorting or price display reflects that.' F48: 'The meta-search that never sells has, on this path, delivered the traveller into the MOST protected version of the purchase available.'"
+    },
+    {
+      "ref": "B2",
+      "one_sentence": "It would say that ranking disclosure is not absent from this market but wildly uneven — four competitors disclose in four incompatible forms (page-level commercial-influence notice, per-placement advertiser labelling, plain-language criteria on the results surface, and a full published document) — so the traveller's problem is not that nobody explains, it is that no two explain the same thing in the same place.",
+      "findings": ["10", "44", "77", "84"],
+      "why_it_would_change_the_board": "It constrains pain-1 ('You can't tell whether a recommendation is impartial or paid for'), which currently reads as a blanket market claim on two citations. F10 is explicitly titled REFUTES_PRIOR_HYPOTHESIS and says a blanket claim 'does not hold here'. Leaving it uncited leaves pain-1 over-claiming against evidence the round already holds.",
+      "quote": "F10 evidence: 'Commission paid on bookings, and other factors can affect property rankings.' F44 evidence: 'Este es un espacio publicitario de Air Europa.'"
+    },
+    {
+      "ref": "B3",
+      "one_sentence": "It would say that stated price-completeness promises are made by most products and contradict each other inside the same category — an explicit all-in commitment with a named exception, an explicit exclusion of baggage, a supplier all-in total with a named exception, and an unqualified 'no hidden charges' — so a first-time traveller cannot rank products on a promise at all.",
+      "findings": ["30", "46", "52", "86"],
+      "why_it_would_change_the_board": "rec-3 currently makes price honesty an accommodation-display question. This says price honesty is also a CLAIMS question, and that the comparison layer was less honest than the supplier it referred to (F52) — inverting the assumption that intermediaries protect travellers from supplier opacity.",
+      "quote": "F52: 'Iberia states an all-in total with a named exception. Kayak, which sent the traveller here, states that its prices exclude baggage fees.'"
+    },
+    {
+      "ref": "B4",
+      "one_sentence": "It would say that telling a traveller whether the price in front of them is NORMAL is the round's cheapest observed answer to 'am I being taken advantage of', that it works at both ends of the journey — before the search and at the moment of payment — and that only two products do it and neither transactional incumbent does it at either point.",
+      "findings": ["27", "33", "74"],
+      "why_it_would_change_the_board": "Three findings, two competitors, opposite ends of the funnel, and no conclusion of any kind. It is directly buildable and it speaks to the stated primary user's central fear.",
+      "quote": "F33 evidence: 'Prices are currently typical' / 'The cheapest time to book is usually now, until Oct 17'. F74 evidence: 'El precio está por debajo de la media para 60 días'."
+    },
+    {
+      "ref": "B5",
+      "one_sentence": "It would say that the undecided traveller — the scenario's stage 1 — is already served by named affordances on three products (destination-less search, flexible-date tooling addressed to the undecided in the product's own copy, and discovery as a top-level navigation destination) while the two transactional incumbents require a destination and dates before anything happens at all.",
+      "findings": ["31", "62", "81"],
+      "why_it_would_change_the_board": "insight-1 covers this as a business-model claim (who can afford a decision layer). Nothing on the board covers it as a design claim — what the affordances actually ARE. These three are copyable tomorrow.",
+      "quote": "F62: \"Skyscanner offers search with no destination at all — 'Explora cualquier lugar'.\""
+    },
+    {
+      "ref": "B6",
+      "one_sentence": "It would say that the scenario's opening problem — comparison happening in different places and never lining up — is already solved for the transport half by at least three products (a cross-modal prompt from a flight result set, a single origin field accepting city/station/airport/port across four modes, and duration-and-price per mode in one view) and remains unsolved only where accommodation and activities join.",
+      "findings": ["45", "95", "97"],
+      "why_it_would_change_the_board": "It narrows Luma's opening substantially and honestly. F45's own capture says it 'partially undercuts the tier-3 argument and must be carried into the roster reasoning rather than ignored — it is evidence AGAINST a position this plan already took.' The board took the position and dropped the counter-evidence.",
+      "quote": "F95: 'Omio accepts city, station, airport OR port in a single origin field and compares across four transport modes in one result set.' Its own limit: 'Transport only... Omio unifies the transport half of the scenario's four booking types and not the other half.'"
+    },
+    {
+      "ref": "B7",
+      "one_sentence": "It would say that Luma starts behind on its own Core Features list — flight tracking is given away free and unbundled by a product that never sells the flight, document ingestion is already built as planning input, and the anxiety features are sold as someone else's subscription — so the only unoccupied position is bundling them WITH the booking, which nobody does and which may be a business-model constraint rather than an oversight.",
+      "findings": ["36", "40"],
+      "also_draws_on_findings_already_cited": ["102"],
+      "why_it_would_change_the_board": "This is stated plainly in the round's own WORLD.md §4 and appears nowhere in 26 conclusions. It changes the framing of the whole deck from 'here is the gap' to 'here is the gap, and here is what we are already behind on'.",
+      "quote": "F36: 'Kayak ships a standalone Flight Tracker at /tracker — a direct analogue of a named Luma core feature.'"
+    },
+    {
+      "ref": "B8",
+      "one_sentence": "It would say that business goal 5 rests on a premise the evidence contradicts: airport services are a fare-class entitlement on one airline and a standalone product line on another, so 'sell airport services' is not one business but two, and on the first supplier examined the buyer is a Business-class passenger rather than the stated primary user.",
+      "findings": ["53", "54", "106"],
+      "why_it_would_change_the_board": "A stated business goal is challenged by evidence from two airlines and the board says nothing. F54 carries two explicit 'Decision required' items, including that 'Goal 5 and the target user may be pulling in opposite directions, and that should be settled before design.'",
+      "quote": "F54: 'Business goal 5 assumes airport services are a purchasable product. On the first supplier examined they are a fare-class entitlement, which changes who Luma would be selling to.'"
+    },
+    {
+      "ref": "B9",
+      "one_sentence": "It would say that every loyalty programme observed measures the same single quantity — money spent with the operator — that one of them sells status outright at a published unit price, and that no programme measures whether the traveller actually had a good trip.",
+      "findings": ["105", "109", "111"],
+      "why_it_would_change_the_board": "rec-8 says design a retention mechanism for a first-timer without saying what it would MEASURE. This names the thing every incumbent measures, and gives the operator's own price for the benefit bundle being given away (USD 25 per Qpoint), turning a strategic question into an arithmetic one.",
+      "quote": "F109 (WORLD): 'every one of these programmes measures the same thing: money spent with the operator. None measures whether the traveller had a good trip.'"
+    },
+    {
+      "ref": "B10",
+      "one_sentence": "It would say that the market leader publishes an accessibility statement naming no standard and making no conformance claim, treats accessibility as a contractual term in its Terms of Service, and routes accessibility of the actual travel experience to the supplier — so a testable WCAG 2.2 AA claim, which Luma is bound to anyway, is unoccupied positioning rather than compliance overhead.",
+      "findings": ["5", "6", "7"],
+      "why_it_would_change_the_board": "WCAG 2.2 AA is a named Luma constraint and the board has no conclusion touching accessibility at all. The capture carries its own 'Decision required'.",
+      "quote": "F06: searched 8,125 chars for WCAG, EN 301 549, Section 508, European Accessibility Act — 'The only match is the phrase aligning with the currently applicable EU standards.'",
+      "scope_warning": "ONE competitor. This is the thinnest B in the set and must be presented as a single-competitor observation, not a market pattern."
+    },
+    {
+      "ref": "B11",
+      "one_sentence": "It would say that the comparison-to-purchase handoff is a known, documented user problem — crossing it drops every trace of the product that sent the traveller and imposes a second cookie decision inside one journey, and a meta-search answers that exact confusion in its own top-level FAQ.",
+      "findings": ["50", "63"],
+      "why_it_would_change_the_board": "F63 is the round's strongest available proof that a seam is a real user problem rather than an analyst's inference — a competitor documenting it against its own interest. That is a rare evidential form and it is uncited.",
+      "quote": "F63 evidence: '¿El vuelo se reserva con Skyscanner?' / '¿Qué ocurre después de reservar un vuelo?'"
+    },
+    {
+      "ref": "B12",
+      "one_sentence": "It would say that of the scenario's five named primary user types, exactly two are addressed by anything on the roster — families, by one airline's loyalty programme, and international travellers, by one subscription's entry-requirement product — so the finding is not that this market does not segment, it is that it segments and skips the stated primary user.",
+      "findings": ["59", "103"],
+      "why_it_would_change_the_board": "pain-6 says nothing speaks to a first-timer. This says the market DOES speak to two other named user types, which converts an absence into a deliberate-looking omission and sharpens pain-6 rather than repeating it.",
+      "quote": "F59 evidence: 'Las ventajas de Iberia Club, también para niños'. F103 (WORLD): 'this is the second of the scenario's five user types to be addressed by anything in the roster.'"
+    },
+    {
+      "ref": "B13",
+      "one_sentence": "It would say that one product states variety as a deliberate ranking objective — showing different hosts, characteristics and price points rather than the single best-scoring set — and that for a traveller who does not yet know what they want, a deliberately varied first page may teach the shape of the market better than an optimal one.",
+      "findings": ["76"],
+      "why_it_would_change_the_board": "Single finding, single competitor — but it is the only stated diversity objective in the round and it is an alternative to the whole 'rank better' framing the board rests on.",
+      "quote": "F76 evidence: 'El algoritmo también favorece la variedad y muestra a los viajeros anuncios de distintos anfitriones y con diferentes características y precios'."
+    },
+    {
+      "ref": "B14",
+      "one_sentence": "It would say that cross-vertical trip attachment is being obtained by default rather than by consent — one competitor ships a PRE-CHECKED cross-brand cross-sell that, on search, navigates the traveller's current tab to another company's hotel search carrying dates that are not the travel dates.",
+      "findings": ["91"],
+      "why_it_would_change_the_board": "Luma's business goal 2 IS multi-type attachment. The board recommends modelling the trip as one object (rec-7) without recording how the market currently obtains attachment: by pre-checked default at one competitor and by opt-in checkbox at another (F15, classified A for rec-7).",
+      "quote": "F91: 'a PRE-CHECKED Booking.com Genius cross-sell which, on search, opened a Booking.com hotel search in the original tab — with dates that are not the travel dates.'"
+    }
+  ],
+
+  "classifications": [
+    { "num": "5", "full_id": "F05", "competitor": "Booking.com", "class": "B", "conclusion": null, "proposed": "B10 — accessibility is promised contractually, unstandardised in the statement, and deflected for the actual travel experience.", "reason": "Real, verified, and part of the accessibility cluster — but the weakest of the three legs on its own.", "certainty": "unsure" },
+    { "num": "6", "full_id": "F06", "competitor": "Booking.com", "class": "B", "conclusion": null, "proposed": "B10", "reason": "A negative sweep of an 8,125-char document for six named standards. No board conclusion touches accessibility, and WCAG 2.2 AA is a stated Luma constraint.", "certainty": "clear" },
+    { "num": "7", "full_id": "F07", "competitor": "Booking.com", "class": "B", "conclusion": null, "proposed": "B10", "reason": "Verbatim first-party evidence that experience-level accessibility is routed to the supplier. Uncovered by any conclusion.", "certainty": "clear" },
+    { "num": "8", "full_id": "F08_cross_document", "competitor": "Booking.com", "class": "A", "conclusion": "insight-3", "reason": "Its evidence list contains two of insight-3's own cited legs (Terms A19 = F03, EU 261 signposting = F04) generalised across a third and fourth document. Alternative reading: a distinct B — deflection is structural at the market leader, not disruption-specific. Recorded as A because insight-3's thesis is exactly 'no single participant is failing on its own'.", "certainty": "unsure" },
+    { "num": "10", "full_id": "F10_REFUTES_PRIOR_HYPOTHESIS", "competitor": "Booking.com", "class": "B", "conclusion": null, "proposed": "B2", "reason": "Explicitly titled REFUTES_PRIOR_HYPOTHESIS. It cannot be class A for pain-1 because it partly contradicts it; it is the first leg of the disclosure spectrum nobody wrote up.", "certainty": "clear" },
+    { "num": "11", "full_id": "F11", "competitor": "Booking.com", "class": "A", "conclusion": "insight-4", "reason": "Its own why_it_matters states the insight-4 proposition numerically: 'Across both states, zero of 11 axes concern how easy a trip will be.' Secondary home: rec-8 (loyalty buys a price axis, not a capability).", "certainty": "clear" },
+    { "num": "14", "full_id": "F14", "competitor": "Booking.com", "class": "C", "conclusion": null, "reason": "Accurate funnel observation (no sign-in wall, no guest prompt, question never asked). Nothing on the board turns on it.", "certainty": "clear" },
+    { "num": "15", "full_id": "F15", "competitor": "Booking.com", "class": "A", "conclusion": "rec-7", "reason": "Its decision_for_luma states rec-7's dichotomy verbatim: 'is Luma's multi-type attachment a checkbox at checkout, or a consequence of the trip being modelled as one object? These produce very different products.' rec-7 argues the second and never cites the incumbent's version of the first.", "certainty": "clear" },
+    { "num": "16", "full_id": "F16_vs_booking", "competitor": "Expedia", "class": "C", "conclusion": null, "reason": "Measured surface-breadth difference carrying its own caveat that link count is a proxy for surface, not capability. Context.", "certainty": "clear" },
+    { "num": "19", "full_id": "F19_INVENTORY_DEPTH", "competitor": "Expedia", "class": "C", "conclusion": null, "reason": "The finding's own scope limit forbids the interesting reading: 'Recorded as a measured difference requiring interpretation, NOT as a claim that Expedia has 8x less inventory.'", "certainty": "clear" },
+    { "num": "20", "full_id": "F20_SORT_AXES_TWO_OF_TWO", "competitor": "Expedia", "class": "A", "conclusion": "insight-4", "reason": "One of the three accommodation products behind rec-6's own 'measured on 3 products' statement, and a direct instance of insight-4's 'computed nowhere else' half. Enumerated positively from the opened control, so it is a positive null, not an absence of looking.", "certainty": "clear" },
+    { "num": "21", "full_id": "F21_CHECKOUT_SHAPE_DIFFERS", "competitor": "Expedia", "class": "C", "conclusion": null, "reason": "One-page vs two-page checkout. Real and uncontested; no argument on the board rests on checkout shape.", "certainty": "clear" },
+    { "num": "23", "full_id": "F23_DECISION_SURFACES", "competitor": "Google Travel", "class": "A", "conclusion": "insight-1", "reason": "The measurement underneath insight-1's 'hands off / rich decision layer' row, and the direct precursor of F26 which insight-1 does cite (0 decision surfaces at both incumbents, 4 at Google).", "certainty": "clear" },
+    { "num": "24", "full_id": "F24_NO_TRANSACTION", "competitor": "Google Travel", "class": "A", "conclusion": "insight-1", "reason": "insight-1's governing table classifies Google as 'Hands off'. This is the verified basis of that row — 'book on google' searched, no match, forward control is 'View prices'.", "certainty": "clear" },
+    { "num": "25", "full_id": "F25_THREE_OF_THREE", "competitor": "Google Travel", "class": "A", "conclusion": "insight-4", "reason": "The third of the three accommodation products in the zero-effort-axis count. rec-6's rests_on references that count; neither rec-6 nor insight-4 cites this finding.", "certainty": "clear" },
+    { "num": "27", "full_id": "F27", "competitor": "Google Travel", "class": "B", "conclusion": null, "proposed": "B4", "reason": "'The only product observed that tells a traveller what a normal price looks like BEFORE they search.' No conclusion covers price-normality orientation.", "certainty": "clear" },
+    { "num": "28", "full_id": "F28", "competitor": "Google Travel", "class": "A", "conclusion": "rec-8", "reason": "rec-8 says design a retention mechanism for someone with no history. This is the only observed mechanism that works on day one: authentication buys a persisting CAPABILITY, not a discount a first-timer cannot earn.", "certainty": "clear" },
+    { "num": "29", "full_id": "F29_THE_CONTRAST", "competitor": "Google Travel", "class": "A", "conclusion": "rec-8", "reason": "Its why_it_matters names rec-8's problem explicitly: 'a directly usable answer to the retention problem F-18 left open' — and F-18 is one of rec-8's five citations.", "certainty": "clear" },
+    { "num": "30", "full_id": "F30_PRICE_HONESTY_COMMITMENT", "competitor": "Google Travel — Flights", "class": "B", "conclusion": null, "proposed": "B3", "reason": "An explicit published all-in commitment with a named exception — one of four mutually incompatible price promises the round captured.", "certainty": "clear" },
+    { "num": "31", "full_id": "F31_BUILT_FOR_THE_UNDECIDED", "competitor": "Google Travel — Flights", "class": "B", "conclusion": null, "proposed": "B5", "reason": "A competitor addressing the undecided traveller in its own copy, with the tooling named. No board conclusion covers stage-1 affordances as design.", "certainty": "clear" },
+    { "num": "33", "full_id": "F33_ACTIONABLE_ORIENTATION", "competitor": "Google Travel — Flights", "class": "B", "conclusion": null, "proposed": "B4", "reason": "'Prices are currently typical' plus a buy-by date, with no account and no commitment. The cheapest observed answer to the stated user's central fear, and uncited.", "certainty": "clear" },
+    { "num": "34", "full_id": "F34_A_FOURTH_AXIS_EXISTS", "competitor": "Google Travel — Flights", "class": "C", "conclusion": null, "reason": "Superseded within the round: F34 recorded emissions as a DISPLAYED attribute and marked the sortability test OWED; F35 settles it. Citing both double-counts one axis. Unsure — a reviewer could reasonably attach it to rec-6 alongside F35.", "certainty": "unsure" },
+    { "num": "35", "full_id": "F35_EMISSIONS_IS_SORTABLE", "competitor": "Google Travel — Flights", "class": "A", "conclusion": "rec-6", "reason": "rec-6 already lists this finding's capture FILE as a source and cites no finding from it. F35 is the working template rec-6 needs — 'computed per option, expressed relative to a baseline, and accompanied by an explanation of the estimate' — i.e. a non-price computed axis that is sortable AND explained.", "certainty": "clear" },
+    { "num": "36", "full_id": "F36_FLIGHT_TRACKER", "competitor": "Kayak", "class": "B", "conclusion": null, "proposed": "B7", "reason": "A named Luma core feature shipped free and unbundled by a product that never sells the flight. Nothing on the board records that Luma starts behind on its own feature list.", "certainty": "clear" },
+    { "num": "37", "full_id": "F37_AD_LANDING_IS_NOT_DIFFERENT", "competitor": "Kayak", "class": "D", "conclusion": null, "reason": "A null result from a controlled comparison the round ran on itself — its function is to establish that the ad-landing capture is comparable to the clean one. Node and link counts, one page, one moment. Unsure: it is also a (dull) fact about the competitor.", "certainty": "unsure" },
+    { "num": "39", "full_id": "F39_FIRST_EMPTY_STATE_CAPTURED", "competitor": "Kayak", "class": "C", "conclusion": null, "reason": "The competitor fact is real (a designed empty state exists). Its comparative force — 'the first empty state observed anywhere in the round' — is a coverage artefact: the round captured 8 of 119 states (6%). It cannot carry an argument about the market without becoming a claim about the round. Unsure between C and D for exactly that reason.", "certainty": "unsure" },
+    { "num": "40", "full_id": "F40_MULTIMODAL_INPUT", "competitor": "Kayak", "class": "B", "conclusion": null, "proposed": "B7", "reason": "Document ingestion — three named Luma core features — already built by a competitor as planning input, and from a second direction by TripIt. Uncited.", "certainty": "clear" },
+    { "num": "41", "full_id": "F41_LOCATION_ASSERTION", "competitor": "Kayak", "class": "A", "conclusion": "pain-8", "reason": "It is one of pain-8's three legs and is uncited (pain-8 cites only F61, the synthesis). NOTE: citing it exposes R-2 — the source attributes 'Estás en Toronto' to KAYAK's AI planner, not Google's, and records Kayak's own search asserting Madrid minutes earlier. pain-8 must be corrected as it is cited.", "certainty": "clear" },
+    { "num": "44", "full_id": "F44_AD_DISCLOSURE", "competitor": "Kayak", "class": "B", "conclusion": null, "proposed": "B2", "reason": "Its why_it_matters names the whole spectrum — 'name the criteria (Google), disclose commercial influence at page level (Booking.com), mark each paid placement (Kayak)' — which no conclusion states.", "certainty": "clear" },
+    { "num": "45", "full_id": "F45_CROSS_MODAL_PROMPT", "competitor": "Kayak", "class": "B", "conclusion": null, "proposed": "B6", "reason": "A tier-1 meta-search prompting air-to-coach. The capture flags it as 'evidence AGAINST a position this plan already took' and the board dropped it.", "certainty": "clear" },
+    { "num": "46", "full_id": "F46_DIRECT_CONTRADICTION_ON_PRICE_HONESTY", "competitor": "Kayak", "class": "B", "conclusion": null, "proposed": "B3", "reason": "Two meta-searches, same category, same week, opposite price promises. Carries a live locale confound (D-004) which the proposal must carry too.", "certainty": "clear" },
+    { "num": "47", "full_id": "F47_KAYAK_MIX_AND_UNOWNED_RISK", "competitor": "Kayak", "class": "A", "conclusion": "insight-3", "reason": "Named hop 2 of the chain insight-3 asserts. F57's source capture lists it: 'The cheapest result may be a KAYAK Mix with no carrier owning the journey (F-47).' insight-3 cites the synthesis and not the link.", "certainty": "clear" },
+    { "num": "48", "full_id": "F48_HANDOFF_IS_TO_THE_OPERATOR", "competitor": "Kayak", "class": "B", "conclusion": null, "proposed": "B1", "reason": "The protected end of the spectrum whose variance is the whole recourse argument — the same result set can deliver a direct carrier booking with EU 261 duties. Not a named hop of the F57 chain, so it is free to anchor B1.", "certainty": "clear" },
+    { "num": "49", "full_id": "F49_REFINES_F47_PROTECTION_SPECTRUM", "competitor": "Kayak", "class": "A", "conclusion": "insight-3", "reason": "Named in hop 1 of the F57 chain: 'Kayak ranks on price and duration and shows both on the control (F-42) — but not protection (F-49).' Also the origin of proposal B1; classified A because the chain link is airtight and the B is stated in the proposal.", "certainty": "clear" },
+    { "num": "50", "full_id": "F50_CONTEXT_IS_DROPPED_AT_THE_BOUNDARY", "competitor": "Kayak", "class": "B", "conclusion": null, "proposed": "B11", "reason": "Not a named hop of the F57 protection chain — it is a different failure (context and consent, not recourse) and no conclusion covers it.", "certainty": "clear" },
+    { "num": "51", "full_id": "F51_CHEAPEST_ROUTES_TO_LEAST_FLEXIBLE", "competitor": "Iberia", "class": "A", "conclusion": "insight-3", "reason": "Named hop 3 of the chain: 'The handoff pre-selects the airline's least flexible fare and calls it the traveller's choice (F-51).' insight-3 claims degradation 'at every hop' and cites no hop.", "certainty": "clear" },
+    { "num": "52", "full_id": "F52_THE_AIRLINE_IS_MORE_TRANSPARENT_THAN_ITS_REFERRER", "competitor": "Iberia", "class": "B", "conclusion": null, "proposed": "B3", "reason": "Inverts the assumption that intermediaries protect travellers from supplier opacity — on price, the supplier was the honest party. No conclusion says this.", "certainty": "clear" },
+    { "num": "53", "full_id": "F53_AIRPORT_SERVICES_ARE_A_FARE_CLASS_ENTITLEMENT", "competitor": "Iberia", "class": "B", "conclusion": null, "proposed": "B8", "reason": "The observation that makes business goal 5 ambiguous. Carries its own scope limit to one airline, one page, Spanish market.", "certainty": "clear" },
+    { "num": "54", "full_id": "F54_THE_BUSINESS_GOAL_HAS_A_PROBLEM", "competitor": "Iberia", "class": "B", "conclusion": null, "proposed": "B8", "reason": "A named business goal challenged in the capture's own words, with two 'Decision required' items, and nothing on the board. Its market inference is marked Inferred from a single capture — the proposal must inherit that.", "certainty": "clear" },
+    { "num": "55", "full_id": "F55_FOURTH_AI_ASSISTANT", "competitor": "Iberia", "class": "A", "conclusion": "insight-6", "reason": "insight-6 counts five assistants and lists an Iberia capture as a source while citing no Iberia finding. F55 is that finding, with verbatim evidence ('Avatar de Ibot', 'Abrir chat de Ibot').", "certainty": "clear" },
+    { "num": "58", "full_id": "F58_THE_ONLY_PROGRAMME_A_NON_TRAVELLER_CAN_ENTER", "competitor": "Iberia", "class": "A", "conclusion": "rec-8", "reason": "rec-8 recommends designing a retention mechanism for a zero-history traveller; this is the only observed mechanism that gives one something real on day one (currency earned without travelling). It also QUALIFIES pain-6 — the programme still never addresses a first-timer (F60) — and that tension should be stated where it is cited, not smoothed.", "certainty": "clear" },
+    { "num": "59", "full_id": "F59_BENEFITS_EXTEND_TO_CHILDREN", "competitor": "Iberia", "class": "B", "conclusion": null, "proposed": "B12", "reason": "The first roster feature addressed at any of the scenario's five named user types. Nothing on the board records which user types the market DOES serve.", "certainty": "clear" },
+    { "num": "62", "full_id": "F62_DESTINATION_LESS_SEARCH", "competitor": "Skyscanner", "class": "B", "conclusion": null, "proposed": "B5", "reason": "The most radical undecided-traveller affordance in the round — search with no destination. Uncited by anything.", "certainty": "clear" },
+    { "num": "63", "full_id": "F63_THE_META_SEARCH_ADDRESSES_ITS_OWN_HANDOFF_CONFUSION", "competitor": "Skyscanner", "class": "B", "conclusion": null, "proposed": "B11", "reason": "A competitor documenting its own seam in a top-level FAQ — evidence of a user problem that does not depend on our inference. Rare form, zero citations.", "certainty": "clear" },
+    { "num": "64", "full_id": "F64_THE_FINTECH_FAMILY", "competitor": "Hopper", "class": "A", "conclusion": "insight-2", "reason": "insight-2's 'sold as a product' pole. Both insight-2 and rec-9 list the Hopper capture as a source and cite no Hopper finding; F64 establishes it is a FAMILY of flexibility products, not one, which is the stronger form of the same pole.", "certainty": "clear" },
+    { "num": "65", "full_id": "F65_THE_BROWSER_LIMIT_MEASURED", "competitor": "Hopper", "class": "D", "conclusion": null, "reason": "Titled THE_BROWSER_LIMIT_MEASURED. It records why the round could not capture Hopper's differentiating products — a coverage record with a product-strategy fact attached.", "certainty": "clear" },
+    { "num": "73", "full_id": "F73_PAY_LATER_AT_NO_COST", "competitor": "Airbnb", "class": "C", "conclusion": null, "reason": "A genuinely interesting deferral-not-credit distinction, one competitor, no comparison captured and nothing else in the round bears on payment timing. Unsure between C and a thin B; chose C per the standard.", "certainty": "unsure" },
+    { "num": "74", "full_id": "F74_PRICE_CONTEXT_AT_COMMITMENT", "competitor": "Airbnb", "class": "B", "conclusion": null, "proposed": "B4", "reason": "The same orientation device as F27/F33 at the opposite end of the journey — the moment of maximum doubt. Two competitors, two ends, zero conclusions.", "certainty": "clear" },
+    { "num": "76", "full_id": "F76_VARIETY_AS_A_STATED_RANKING_GOAL", "competitor": "Airbnb", "class": "B", "conclusion": null, "proposed": "B13", "reason": "The only stated diversity objective in the round, quoted verbatim. Single source, so the proposal must be presented as one product's stated policy.", "certainty": "clear" },
+    { "num": "77", "full_id": "F77_NO_COMMERCIAL_INFLUENCE_FACTOR_STATED", "competitor": "Airbnb", "class": "B", "conclusion": null, "proposed": "B2", "reason": "The fourth position on the disclosure spectrum. Carries a hard scope limit — 'an omission from a help article is not evidence of absence in an algorithm' — which the proposal must carry verbatim.", "certainty": "clear" },
+    { "num": "79", "full_id": "F79_PRICE_CONVENTION_INCONSISTENT_WITHIN_ONE_PRODUCT", "competitor": "Airbnb", "class": "A", "conclusion": "rec-3", "reason": "rec-3 rests on one capture of one competitor and already notes that competitor relaxes the convention at checkout. F79 shows it also abandons it in the second vertical (per-traveller, plus a 'desde' floor price). It strengthens the recommendation's scope — never a nightly rate AND never a per-traveller rate — while being honest about the exemplar.", "certainty": "clear" },
+    { "num": "81", "full_id": "F81_DISCOVERY_IS_A_DESTINATION_NOT_A_BYPRODUCT", "competitor": "Tripadvisor", "class": "B", "conclusion": null, "proposed": "B5", "reason": "Discovery as a top-level navigation item rather than a state passed through en route to a search box. Stage-1 evidence with no conclusion attached.", "certainty": "clear" },
+    { "num": "82", "full_id": "F82_NO_FLIGHTS_VERTICAL", "competitor": "Tripadvisor", "class": "C", "conclusion": null, "reason": "Homepage-scoped vertical inventory. Useful roster context; no argument rests on it.", "certainty": "clear" },
+    { "num": "84", "full_id": "F84_RANKING_EXPLAINED_AGAIN", "competitor": "Tripadvisor", "class": "B", "conclusion": null, "proposed": "B2", "reason": "A fourth competitor stating its ranking basis on the results surface. Its capture is already a source for insight-5 under a different label, and this numbered finding is uncited.", "certainty": "clear" },
+    { "num": "85", "full_id": "F85_ROSTER_INDEPENDENCE_PROBLEM", "competitor": "Rentalcars.com", "class": "D", "conclusion": null, "reason": "Titled ROSTER_INDEPENDENCE_PROBLEM — its function is to flag that the 17-competitor roster contains related firms, which is a property of the round's design. Unsure: WORLD.md §2 also uses shared ownership as corroborating detail for insight-1 (see F88).", "certainty": "unsure" },
+    { "num": "86", "full_id": "F86_A_DIRECT_HIDDEN_COST_CLAIM", "competitor": "Rentalcars.com", "class": "B", "conclusion": null, "proposed": "B3", "reason": "'The strongest claim and the least qualified' — the unqualified end of the price-promise spectrum, in the vertical where post-headline charges are most classic. The finding itself says the claim is verified but NOT its truth.", "certainty": "clear" },
+    { "num": "87", "full_id": "F87_HEDGED_REASSURANCE", "competitor": "Rentalcars.com", "class": "A", "conclusion": "rec-4", "reason": "rec-4 recommends publishing the boundary of a promise inside the document that sells it and rests on two captures of ONE competitor. F87 is the clean negative example from a different competitor: a promise whose qualifier ('most bookings') a traveller cannot check against their own booking at the moment they read it.", "certainty": "clear" },
+    { "num": "88", "full_id": "F88_THREE_OF_SEVENTEEN_SHARE_A_PARENT", "competitor": "Kayak", "class": "A", "conclusion": "insight-1", "reason": "WORLD.md §2 — the section insight-1 cites as its source — closes with this as corroborating detail: two firms under one parent running opposite models deliberately 'strengthens this as a business-model claim'. Unsure: it is simultaneously a roster-independence caveat (see F85, classified D).", "certainty": "unsure" },
+    { "num": "91", "full_id": "F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER", "competitor": "Trainline", "class": "B", "conclusion": null, "proposed": "B14", "reason": "A dark pattern of a kind none of pain-2/3/10 covers — attachment obtained by default, cross-brand, hijacking the current tab, with wrong dates. Directly relevant to business goal 2.", "certainty": "clear" },
+    { "num": "92", "full_id": "F92_EFFORT_ATTRIBUTES_ARE_FIRST_CLASS_IN_RAIL", "competitor": "Trainline", "class": "A", "conclusion": "insight-4", "reason": "insight-4's 'ranked exactly where it is already measured' half, in rail, with per-result values and a 'Direct only' filter. It sits in the same capture as F90 (cited by rec-1) and was passed over.", "certainty": "clear" },
+    { "num": "94", "full_id": "F94_164_CONSENT_PARTNERS", "competitor": "Omio", "class": "A", "conclusion": "pain-9", "reason": "pain-9 is the ONLY conclusion on the board with zero citations, and its single source file is this capture. F94 is the only numbered finding in that file about the consent modal, and it supplies the substance of what the traveller cannot decline in one click: 'Nosotros y nuestros 164 socios tratamos tus datos personales'. This repairs the board's weakest conclusion at zero cost.", "certainty": "clear" },
+    { "num": "95", "full_id": "F95_TRUE_MULTIMODAL_INPUT", "competitor": "Omio", "class": "B", "conclusion": null, "proposed": "B6", "reason": "'The most direct answer observed to the scenario's own opening problem.' Its own limit — transport only — is what makes the proposal honest rather than triumphant.", "certainty": "clear" },
+    { "num": "97", "full_id": "F97_MODE_COMPARISON_WITH_THE_TRADE_OFF_VISIBLE", "competitor": "Rome2Rio", "class": "B", "conclusion": null, "proposed": "B6", "reason": "The same trade-off legibility rec-2 praises on a sort control, applied ACROSS modes. Its capture is already a source for insight-1 via F98; this finding is uncited.", "certainty": "clear" },
+    { "num": "99", "full_id": "F99_ATTRIBUTES_NOBODY_ELSE_SHOWS", "competitor": "Citymapper", "class": "A", "conclusion": "rec-6", "reason": "rec-6 names on-site transport as one of its two targets and cites nothing from the only on-site-transport product in the round. F99 supplies both the template (frequency, calories, cross-mode alternatives beside price and duration) and a complication (some of it is already surfaced there). Unsure — a reviewer could read this as narrowing rec-6 rather than supporting it, and that reading should be tested.", "certainty": "unsure" },
+    { "num": "100", "full_id": "F100_EFFORT_MEASURED_IN_A_THIRD_UNIT", "competitor": "Citymapper", "class": "A", "conclusion": "insight-4", "reason": "It states insight-4's mechanism outright — effort is measured in three units (time, carbon, calories) and 'which unit is used depends entirely on what the vertical can compute'. This is the sentence insight-4 is arguing for, and insight-4 does not cite it.", "certainty": "clear" },
+    { "num": "103", "full_id": "F103_ENTRY_REQUIREMENTS_AS_A_PRODUCT", "competitor": "TripIt", "class": "B", "conclusion": null, "proposed": "B12", "reason": "The second of the scenario's five user types addressed by anything on the roster. Its sibling F102 is cited by insight-1 for a different point; this one is unused.", "certainty": "clear" },
+    { "num": "105", "full_id": "F105_STATUS_ITSELF_IS_PURCHASABLE", "competitor": "Qatar Airways", "class": "B", "conclusion": null, "proposed": "B9", "reason": "Status as a product is the logical endpoint of tenure-based loyalty and raises a real strategic question for rec-8 ('the first-time traveller can simply pay to skip the ladder'). Unsure between B9 and class A for rec-8. Its own confidence limits it: the products exist as named destinations; mechanics and prices were NOT captured.", "certainty": "unsure" },
+    { "num": "106", "full_id": "F106_AIRPORT_SERVICES_ARE_A_PRODUCT_LINE_HERE", "competitor": "Qatar Airways", "class": "B", "conclusion": null, "proposed": "B8", "reason": "The second airline, taking the opposite model to F53 — which is what makes business goal 5 two businesses rather than one. Carries an explicit unknown: whether any of it is purchasable by an economy passenger was not determined.", "certainty": "clear" },
+    { "num": "108", "full_id": "F108_SETTLED", "competitor": "Qatar Airways", "class": "D", "conclusion": null, "reason": "Its claim text is a description of what F-108 previously inferred and flagged as unverified — a record of the round settling its own open inference. The substantive fact it settles is F111. Note it is also the duplicate id behind R-3.", "certainty": "clear" },
+    { "num": "109", "full_id": "F109_THREE_CURRENCIES_IN_ONE_PROGRAMME", "competitor": "Qatar Airways", "class": "B", "conclusion": null, "proposed": "B9", "reason": "Carries the sharpest unmade observation in the loyalty set: every programme measures money spent with the operator and none measures whether the trip went well.", "certainty": "clear" },
+    { "num": "111", "full_id": "F111_STATUS_HAS_A_UNIT_PRICE", "competitor": "Qatar Airways", "class": "B", "conclusion": null, "proposed": "B9", "reason": "USD 25 per Qpoint is the operator's own price on the benefit bundle. It converts rec-8's strategic question into an arithmetic one and is cited nowhere.", "certainty": "clear" },
+    { "num": "112", "full_id": "F112_AA_SERVES_A_DIFFERENT_SITE_BY_LOCALE", "competitor": "American Airlines", "class": "A", "conclusion": "pain-5", "reason": "pain-5 is that the route to help is hardest to find when it is most needed. F112 adds the mechanism nobody else supplies: the Customer Service Plan cited by insight-3 (F104) is not on the site a Spanish-locale session is served — 43 links against the US site. Access to disruption help depends on which country you load the page from. insight-3 cites F113 from this same capture and skips F112.", "certainty": "clear" }
+  ],
+
+  "assumptions": [
+    "That `cites` in phase12-input.json is a faithful transcription of what each conclusion actually cites in the board payload. I did not open the board document; I reconciled against the anchors, which matched.",
+    "That a finding 'would genuinely have been cited' is judged from the finding's own why_it_matters and the conclusion's stated proposition. Where a conclusion's full body was not available to me (the 17 non-fragile conclusions expose title + cites + sources only), class A rests on the title and citation set. Six A calls would be worth re-testing against the full body: 8, 23, 24, 79, 88, 99.",
+    "Class B proposals are descriptions of conclusions that could be drawn, not conclusions. None has passed Gate A. Several inherit scope limits from their source captures (single competitor, single market, single locale) and those limits are recorded on the proposal, not dropped.",
+    "The evidence base is one-sided in a way that matters for every proposal here: the round captured 25 of 136 journey stages (18%), 8 of 119 states (6%), and reached a payment gate on 6 of 17 competitors. Proposals about discovery, comparison, ranking, pricing and loyalty rest on broad coverage. Proposals touching disruption, post-purchase and failure states (B1, B11) rest on very little — which is exactly where Luma proposes to differentiate.",
+    "B1, B3, B6 and B8 each rest partly on findings whose captures record an unresolved confound or unknown (locale confound D-004 on F46; 'whether any is purchasable by an economy passenger was NOT determined' on F106). Those are stated, not smoothed.",
+    "I did not open research/sources/ and did not read or write research/evidence-ledger.json. No ledger ID was minted."
+  ]
+}

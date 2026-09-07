@@ -1,21 +1,21 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T12:09:46",
+  "generated_at": "2026-09-07T12:18:20",
   "project": "coforge",
   "session": {
-    "turns": 7116,
-    "duration_min": 18853.5,
+    "turns": 7142,
+    "duration_min": 18862.0,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14204,
-    "output": 8360102,
-    "cache_read": 3620741062,
-    "cache_creation": 65889375,
-    "billable": 8374306
+    "input": 14256,
+    "output": 8379627,
+    "cache_read": 3635968272,
+    "cache_creation": 65914228,
+    "billable": 8393883
   },
   "tools": {
-    "Bash": 1731,
+    "Bash": 1744,
     "Edit": 251,
     "mcp__chrome-devtools__evaluate_script": 124,
     "mcp__figma-console__figma_execute": 124,
@@ -83,7 +83,7 @@
     "luma-competitor-analysis-pro": 1
   },
   "artifacts": {
-    "total": 26,
+    "total": 27,
     "live": 19,
     "by_type": {
       "brand-extraction": 1,
@@ -91,7 +91,7 @@
       "a11y-audit": 3,
       "component-spec": 4,
       "prioritization": 2,
-      "dashboard": 6,
+      "dashboard": 7,
       "research-plan": 1,
       "ux-copy": 1,
       "metrics-scorecard": 1
@@ -99,15 +99,15 @@
     "by_status": {
       "in-review": 3,
       "approved": 2,
-      "superseded": 7,
+      "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 322089
+    "tokens_per_artifact": 310885
   },
   "gates": {
     "verdict": "FAIL",
-    "blocker": 5,
-    "error": 2,
+    "blocker": 1,
+    "error": 1,
     "warning": 5,
     "info": 6,
     "skipped": 0,

@@ -1,21 +1,21 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T18:59:46",
+  "generated_at": "2026-09-07T19:10:17",
   "project": "coforge",
   "session": {
-    "turns": 7493,
-    "duration_min": 19263.4,
+    "turns": 7527,
+    "duration_min": 19274.0,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14954,
-    "output": 8860955,
-    "cache_read": 3894850028,
-    "cache_creation": 68817798,
-    "billable": 8875909
+    "input": 15022,
+    "output": 8892140,
+    "cache_read": 3925707846,
+    "cache_creation": 68856358,
+    "billable": 8907162
   },
   "tools": {
-    "Bash": 1868,
+    "Bash": 1882,
     "Edit": 251,
     "mcp__chrome-devtools__evaluate_script": 133,
     "mcp__figma-console__figma_execute": 124,
@@ -25,15 +25,15 @@
     "mcp__Claude_Browser__computer": 71,
     "Artifact": 57,
     "mcp__claude-in-chrome__navigate": 44,
-    "SendUserFile": 41,
+    "SendUserFile": 42,
     "ToolSearch": 32,
-    "mcp__chrome-devtools__take_screenshot": 30,
+    "mcp__chrome-devtools__take_screenshot": 31,
     "Read": 29,
     "mcp__Claude_Browser__javascript_tool": 25,
     "mcp__Claude_Browser__navigate": 22,
     "mcp__figma-console__figma_delete_variable": 22,
     "AskUserQuestion": 21,
-    "mcp__chrome-devtools__navigate_page": 20,
+    "mcp__chrome-devtools__navigate_page": 21,
     "mcp__claude-in-chrome__computer": 20,
     "mcp__Claude_Browser__resize_window": 19,
     "mcp__figma-console__figma_import_tokens": 16,
@@ -102,7 +102,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 328737
+    "tokens_per_artifact": 329895
   },
   "gates": {
     "verdict": "FAIL",

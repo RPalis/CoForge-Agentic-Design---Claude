@@ -327,9 +327,8 @@ def chart_themes(L, themes, label_of):
             "eleven themes, most first: "
             + "; ".join(f"{label_of(t)} {n}" for t, n in order)
             + ". These are counts of theme LABELS, not of subjects: an audit of the theme "
-              "field found that among the rows it can speak about, 48% are filed under a theme "
-              "their own identifier contradicts, so the bars measure how findings were filed "
-              f"rather than what was examined. The catch-all theme holds {d.get('other',0)} "
+              "field found it unreliable, so the bars measure how findings were filed rather than "
+              f"what was examined. The catch-all theme holds {d.get('other',0)} "
               "findings, making it the fourth largest, which is itself a gap in the taxonomy. "
               f"Only {d.get('market-structure',0)} indexed row carries the market-structure "
               "label, although the roster-wide market finding this board leads with cites five "
@@ -337,10 +336,9 @@ def chart_themes(L, themes, label_of):
     return figure(
         "ch-themes", "Where the 121 findings landed",
         "\n".join(out), desc,
-        f'<b>This counts theme labels, not subjects.</b> An audit of the theme field found that '
-        f'among the rows it can speak about, 48% are filed under a theme their own identifier '
-        f'contradicts — so these bars measure how findings were <i>filed</i>, not what the round '
-        f'examined. Two entries are still worth naming. <b>“Other” is the fourth largest '
+        f'<b>This counts theme labels, not subjects.</b> An audit of the theme field found it unreliable — '
+        f'all three disruption findings are filed under Loyalty &amp; retention — so these bars '
+        f'measure how findings were <i>filed</i>, not what the round examined. Two entries are still worth naming. <b>“Other” is the fourth largest '
         f'theme</b>, and a catch-all that big is itself a gap in the taxonomy. And only <b>one '
         f'indexed row carries the “Market structure” label</b> — though the roster-wide market '
         f'finding this board leads with cites five separate captures and is not one of the 121 '
@@ -501,9 +499,8 @@ def chart_matrix(L, M, C, T, label_of):
                         for i in ro if M[i].sum())
             + f". Only {filled} of the {M.size} cells hold anything at all — but an empty cell "
             "means only that no finding carried that theme label. An audit of the theme field "
-            "found that among the rows it can speak about, 48% are filed under a theme their own "
-            "identifier contradicts; Iberia and Qatar both read empty under disruption while the "
-            "board carries a whole figure on their disruption sweeps. Rows, in the computed "
+            "found it unreliable. Iberia and Qatar both read empty under disruption while the board "
+            "carries a whole figure on their disruption sweeps. Rows, in the computed "
             "order, with their totals: "
             + "; ".join(f"{C[i]} {int(M[i].sum())}" for i in ro)
             + ". An empty cell means nothing was captured for that pair, which is not the same "
@@ -513,9 +510,8 @@ def chart_matrix(L, M, C, T, label_of):
         "\n".join(out), desc,
         f"<b>An empty cell means nothing carried that theme label</b> — which is not the same "
         f"as nothing being captured, and the difference is large. The theme field was audited "
-        f"after this chart was built: among the rows the audit can speak about, <b>48% file a "
-        f"finding under a theme its own identifier contradicts</b>. The clearest case is on this "
-        f"very grid — Iberia and Qatar both read empty under Disruption &amp; protection while "
+        f"after this chart was built and the field does not hold. The clearest case is on this "
+        f"very grid — <b>Iberia and Qatar both read empty under Disruption &amp; protection</b> while "
         f"this board devotes a whole figure to those two disruption sweeps, because all three "
         f"disruption findings are filed under Loyalty &amp; retention. Read this as a map of "
         f"<i>labelling</i>, not of coverage. Rows and columns are ordered by computed seriation; "

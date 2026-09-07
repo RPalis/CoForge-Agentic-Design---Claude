@@ -1,33 +1,33 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T13:27:09",
+  "generated_at": "2026-09-07T13:36:46",
   "project": "coforge",
   "session": {
-    "turns": 7295,
-    "duration_min": 18930.9,
+    "turns": 7332,
+    "duration_min": 18940.5,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14562,
-    "output": 8600079,
-    "cache_read": 3737936035,
-    "cache_creation": 66172209,
-    "billable": 8614641
+    "input": 14636,
+    "output": 8649738,
+    "cache_read": 3765264241,
+    "cache_creation": 66215554,
+    "billable": 8664374
   },
   "tools": {
-    "Bash": 1799,
+    "Bash": 1807,
     "Edit": 251,
-    "mcp__chrome-devtools__evaluate_script": 126,
+    "mcp__chrome-devtools__evaluate_script": 133,
     "mcp__figma-console__figma_execute": 124,
     "Write": 114,
-    "Agent": 82,
+    "Agent": 84,
     "mcp__claude-in-chrome__javascript_tool": 79,
     "mcp__Claude_Browser__computer": 71,
     "Artifact": 57,
     "mcp__claude-in-chrome__navigate": 44,
     "SendUserFile": 40,
     "ToolSearch": 32,
-    "mcp__chrome-devtools__take_screenshot": 29,
+    "mcp__chrome-devtools__take_screenshot": 30,
     "Read": 29,
     "mcp__Claude_Browser__javascript_tool": 25,
     "mcp__Claude_Browser__navigate": 22,
@@ -42,13 +42,13 @@
     "mcp__claude-in-chrome__find": 13,
     "WebSearch": 10,
     "Skill": 9,
-    "mcp__ccd_session__mark_chapter": 8,
+    "mcp__ccd_session__mark_chapter": 9,
+    "mcp__chrome-devtools__resize_page": 9,
     "mcp__Claude_Browser__read_page": 8,
     "mcp__chrome-devtools__new_page": 8,
     "mcp__figma-console__figma_delete_variable_collection": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
-    "mcp__chrome-devtools__resize_page": 7,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 6,
     "mcp__figma-console__figma_get_variables": 6,
     "mcp__figma-console__figma_export_tokens": 6,
@@ -102,7 +102,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 319061
+    "tokens_per_artifact": 320903
   },
   "gates": {
     "verdict": "FAIL",

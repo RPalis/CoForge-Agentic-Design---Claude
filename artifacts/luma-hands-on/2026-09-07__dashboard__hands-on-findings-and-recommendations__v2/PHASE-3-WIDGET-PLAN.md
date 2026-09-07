@@ -103,3 +103,68 @@ widget has somewhere to put the words rather than losing them.
 3. Then 2, 3, 4 — the three card groups
 4. Render, screenshot, run all three verifiers, check against `anti-patterns.md`
 5. design-critic and a11y-checker attack it
+
+---
+
+# Build plan, after loading `impeccable`, `dataviz`, `create-viz` and `brand.md`
+
+## One instrument is wrong for this job, and I am not using it
+
+`/data:create-viz` generates **matplotlib PNGs**. This board is a single self-contained HTML
+file whose charts are inline SVG carrying `aria-describedby` text alternatives, a working
+detail panel, keyboard focus management and a live-region readout. Raster images would delete
+all of it and fail every accessibility check we just passed.
+
+**Taken from it (its principles are sound):** a title states the insight, not the metric; grey
+the reference data and highlight the one that matters; sort by value not alphabet; zero
+baseline on bars. **Rejected: its toolchain.** Said plainly rather than quietly ignored.
+
+*(One documented exception to "sort by value": `ch-effort` is deliberately alphabetical, because
+sorted by count it reads as a league table of competitors when it measures our own effort.)*
+
+## Mode: Operate. The brand and the mode agree on three things
+
+| | brand.md | operate.md | ruling |
+|---|---|---|---|
+| Hierarchy | "Weight carries hierarchy before size does… the scale can stay short and dense" | "Tighter scale ratio, 1.125–1.2. Exaggerated contrast creates noise" | **Weight does the work. Short scale.** |
+| Accent | "Exactly one hot accent… its power comes entirely from scarcity" | "Accent for primary actions, current selection and state indicators only, not decoration" | **Coral marks state and the one number that matters. Nothing else.** |
+| Display face | Anek Latin 700, negative tracking, **headings only** | Constraint: "display fonts in UI labels, buttons, data" | **Anek for section headings. Never on a value, label or chip.** |
+
+**The binding brand rule, unchanged:** coral never carries body text, small labels, captions,
+legends, table values or form hints, on any ground. It fills, rules and marks. Where coral must
+be text, `coral.text` is a different role. Coral on bone is 2.82:1 — it fails AA as text and the
+brand says breaking this is breaking the brand.
+
+## The widget vocabulary — one row shape, reused
+
+`operate.md`: *"Consistent affordances across the surface. Same button shape. Same form-control
+vocabulary."* So groups 2–6 share **one row**, not five bespoke layouts:
+
+`[ title — one line, weight for rank ] [ facts — mono ] [ evidence meter ] [ state chip ]`
+
+| # | Replaces | Encodes | Accent earns its place by |
+|---|---|---|---|
+| 1 | coverage prose | five meters against target | the worst ratio; the target rule |
+| 2 | 15 finding cards | competitor · theme · confidence · evidence | a corrected finding |
+| 3 | 10 pain cards | confidence · evidence. **no severity** | — |
+| 4 | 7 insight cards | breadth: distinct competitors cited | — |
+| 5 | 9 rec cards | evidence base 1–8 | the 4 that remain evidentially alone |
+| 6 | 6 next-step cards | tier 1–5 · effort, from the 206 ranked rows | tier 1 |
+| 7 | 121-row index | **stays a table**, gains a filter row | the active filter |
+
+Prose is not deleted. Every row opens the detail panel that already exists, already manages
+focus and already passes its checks.
+
+## States, because Operate demands the full set
+Every row: default · hover · focus-visible · active · selected. Every meter: a zero case.
+The filter row: an empty-result state that teaches, not "nothing here". Motion 150–200ms,
+state only, and `prefers-reduced-motion` already zeroes it.
+
+## Verification, in one batched pass
+Build fully → screenshot desktop and narrow together → fix everything in one batch → confirm
+once → stop. Then `detect.mjs`, the three existing verifiers, `anti-patterns.md`, and only then
+design-critic and a11y-checker.
+
+**Not doing:** a palette validator run. It checks categorical palettes; this board has none by
+necessity (C-036) and the gray ramp's steps are already contrast-verified by
+`verify-charts.mjs` on the rendered DOM.

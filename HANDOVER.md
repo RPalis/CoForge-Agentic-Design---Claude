@@ -15,16 +15,18 @@ Everything below is on disk; nothing important lives only in a conversation.
 | Plans | `V2-ITERATION-PLAN.md`, `ROUND-2-PLAN.md`, `FINAL-CLEANING-PLAN.md` in the v2 directory |
 | Capture backlog | `round2-capture-ranked.json` (146 tiered) + `unranked-76-ranked.json` (60 rows) |
 
-## The one decision everything waits on
+## Status of the coverage figures — C-052 was largely WITHDRAWN
 
-**All five coverage ratios on the board fail to derive from the record (C-052).**
-The board says journey stages 25 of 136, booking types 47 of 68, states 8 of 119, payment
-gate 6 of 17, both browser surfaces 4 of 17. Derivation gives 34 of 255, ~10-15 of 68, an
-unknown, 3, and 3. Booking types at 69% is the only figure that makes coverage look
-adequate anywhere, and no derivation approaches it.
+An earlier claim that all five coverage ratios fail to derive was **wrong and is withdrawn**.
+Re-checked properly: *payment gate 6 of 17* derives to exactly 6, *both browser surfaces 4 of
+17* derives to exactly 4, and *states 8 of 119* and *booking types 47 of 68* are not
+contradicted. The original derivation searched capture titles instead of file contents.
 
-Recomputing and republishing them changes what this round claims about itself. That is
-Gate A. **Do not quote any coverage figure until it is settled.**
+**What remains open is narrow.** ART-024 §3.2 enumerates **fifteen** stage-units; the row
+*Journey stages 25 of 136* is built from **eight** stages × 17. The board reports the booking-type
+decomposition as its own separate row, so this may be a deliberate split — but the chart caption
+says every bar is "measured against what the research plan specified", and that specific claim is
+unverified. **A caption to fix or a split to document. Not a number to change.**
 
 ## Also open, in order
 

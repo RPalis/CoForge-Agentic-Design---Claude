@@ -190,13 +190,13 @@ assert CANON_HASH == EXPECTED_HASH, f"tokens.json canonical hash drifted: {CANON
 
 COVERAGE_ROWS = [
     dict(id="cov-1", label="Journey stages", num=25, den=136, pct=18,
-         note="8 stages × 17 competitors. Stages 4–8 (Prepare, Travel day, In destination, Return, After the trip) are largely uncaptured.",
+         note="8 journey stages × 17 competitors = 136 places we could have looked; we looked in 25. The 8 stages are Dream \u0026 discover, Plan \u0026 compare, Book, Prepare, Travel day, In destination, Return, After the trip. Stages 4–8 are largely uncaptured. Note the plan (ART-024 § 3.2) enumerates 15 stage-units, not 8, because Plan \u0026 compare and Book each split into four booking types — reported here as their own separate row.",
          cite=["WORLD.json § coverage_warning", "artifacts/.../ALL-COMPANIES-PLAN.md § What one competitor's complete pass means"]),
     dict(id="cov-2", label="Booking types", num=47, den=68, pct=69,
-         note="4 booking types (flights, on-site transport, on-site accommodation, on-site activities) × 17 competitors, stages 2–3 only.",
+         note="4 booking types × 17 competitors = 68 combinations; 47 were touched. The four are flights, on-site transport, on-site accommodation, and on-site activities, counted across stages 2 and 3 only (Plan \u0026 compare, and Book).",
          cite=["WORLD.json § coverage_warning"]),
     dict(id="cov-3", label="States per surface", num=8, den=119, pct=6,
-         note="7 states (default, empty, loading, error, no-results, offline, signed-out vs signed-in) × 17 competitors. Exactly one empty state captured in the whole round (Kayak's AI planner). Zero error, no-results or offline states captured anywhere.",
+         note="7 states × 17 competitors = 119 things we could have observed; we observed 8. A state is what a screen looks like when something is empty or goes wrong: empty (your saved list before you save anything), loading, error (a bad date), no-results (a search that finds nothing), offline (signal lost), and logged-out versus logged-in. Exactly one empty state was captured in the whole round — Kayak's AI planner — and ZERO error, no-results or offline states anywhere, despite the plan making five of these mandatory on every competitor. This is the board's weakest row and it is the area Luma proposes to differentiate in.",
          cite=["WORLD.json § coverage_warning", "ALL-COMPANIES-PLAN.md line 42"]),
     dict(id="cov-4", label="Walked to payment gate", num=6, den=17, pct=35,
          note="Of 17 roster competitors, 6 were walked as far as a payment/checkout gate (no transaction attempted, no card entered).",
@@ -439,11 +439,14 @@ INSIGHTS = [
                   "captures/11-omio/01-multimodal-and-164-partners.json (F96)",
                   "captures/02-expedia/01-site-tree-L1.json (F17)"]),
     dict(id="insight-7", title="A confident wrong answer beats an honest question, almost everywhere.",
-         body=["Three products assert three different locations for the same traveller in one afternoon, none asking first. Exactly one product in the round opens with a question instead of a command or an assertion: Tripadvisor's entry point is literally ‘¿Adónde vas?’ (Where are you going?) rather than a labelled search field."],
+         body=["Two products assert a location for the same traveller in one afternoon, and one of them contradicts itself: Kayak's AI planner says \u2018Est\u00e1s en Toronto\u2019 while Kayak's own flight search, minutes earlier in the same session, pre-fills \u2018Madrid (MAD)\u2019. Skyscanner asserts a third, \u2018Marsella (MRS)\u2019. None asks.",
+               "Against that, exactly one product in the round opens with a question rather than a command: Tripadvisor's entry point is \u2018\u00bfAd\u00f3nde vas?\u2019 (Where are you going?) rather than a labelled search field. That string is verified in Tripadvisor's own capture.",
+               "CORRECTED 2026-09-07 (C-046, C-050). This insight previously read \u2018three products assert three different locations\u2019 and rested partly on F-80's comparison of how Booking.com, Expedia and Airbnb label their search fields. Those three quotes do not appear in those companies' own captures and are withdrawn from this claim \u2014 the Tripadvisor observation stands on its own capture and does not need them."],
          weakest_confidence="verified",
-         confidence_note="Both component findings are plain Verified.",
-         sources=["captures/05-skyscanner/01-site-tree-and-undecided-traveller.json (F61)",
-                  "captures/08-tripadvisor/01-discovery-first.json (F80)"]),
+         confidence_note="The Kayak self-contradiction and the Tripadvisor question are each verified in their own captures. The comparison against other products' search-field labels is withdrawn as unverifiable, and this insight no longer rests on it.",
+         sources=["captures/04-kayak/03-ai-planner-and-first-empty-state.json (F41)",
+                  "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json (F61 \u2014 attribution corrected, see C-046)",
+                  "captures/08-tripadvisor/01-discovery-first.json (F80 \u2014 only its own verified entry-point string is used)"]),
 ]
 
 # ---- RECOMMENDATIONS (SYNTHESIS) ------------------------------------------
@@ -470,7 +473,8 @@ RECS = [
          rests_on="Rests on two Verified captures of the SAME competitor. The plain-language-boundary half of this recommendation has a positive example (Airbnb). The surface-it-at-the-decision half has no positive example anywhere in the round — it is a gap the evidence identifies, not a pattern the evidence confirms works.",
          weakest_confidence="verified",
          sources=["captures/07-airbnb/01-aircover-included-not-sold.json (F67)",
-                  "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (F71)"]),
+                  "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (F71)",
+                  "captures/09-rentalcars/01-ownership-and-hidden-costs.json (F87 \u2014 cited for Rentalcars\u2019 own hedged wording only; F-87 also draws an Airbnb comparison whose quoted cancellation date does not appear in any Airbnb capture (C-050), and this recommendation does not rest on it)"]),
     dict(id="rec-5", title="When a traveller can decline an add-on, ask neutrally — never phrase the decline as a confession.",
          body=["Expedia: accept = 'Stay Protection Plan'; decline = 'I'm willing to risk my $358.59 stay in Lisbon.' Airbnb, same point in the funnel, comparable money: '¿Quieres añadir un seguro de viaje? Sí, quiero añadirlo por 9,32 €' — a neutral, priced question. A larger competitor already declines to use the guilt framing at the identical moment, which is the clearest evidence in the round that this is a choice, not a requirement of the economics."],
          rests_on="Rests on a direct, paired comparison — both captures Verified, same funnel position, comparable amounts. The strongest-evidenced recommendation in this set.",
@@ -809,6 +813,24 @@ def render_coverage_row(row):
 # and travels with the row it corrects. Without this the index goes on displaying the
 # misattribution verbatim, unflagged, while the pain point above it has been fixed.
 FINDING_CORRECTIONS = {
+    "F80_THE_ENTRY_IS_A_QUESTION":
+        "CORRECTION C-050 (2026-09-07). This finding's own observation is sound and verified: "
+        "Tripadvisor's entry point reads \u2018\u00bfAd\u00f3nde vas?\u2019, a question rather than a "
+        "labelled field. Its COMPARISON clause is not. It states that Booking.com's field reads "
+        "\u2018Enter destination\u2019, that Expedia's reads \u2018Going to\u2019, and that Airbnb's "
+        "search chrome reads \u2018Cualquier lugar / Cualquier fecha\u2019. None of those three strings "
+        "appears anywhere in that company's own captures. They were written from memory rather than "
+        "resolved, which is the class of defect C-050 records across three capture files. The "
+        "comparison is withdrawn from every conclusion that used it; the Tripadvisor observation "
+        "stands on its own capture.",
+    "F87_HEDGED_REASSURANCE":
+        "CORRECTION C-050 (2026-09-07). The observation about Rentalcars.com is sound and verified: "
+        "\u2018Cancelaci\u00f3n gratuita en la mayor\u00eda de las reservas\u2019 \u2014 free "
+        "cancellation on MOST bookings \u2014 is a qualifier a traveller cannot check against their "
+        "own booking. The COMPARISON is not: it states that Airbnb \u2018states a DATE \u2014 "
+        "Cancelaci\u00f3n gratuita antes del 5 de noviembre\u2019, and that string appears in no "
+        "Airbnb capture in this round. Recommendation 4 cites this finding for the Rentalcars wording "
+        "only and does not rest on the Airbnb comparison.",
     "F61_LOCATION_DISAGREEMENT_ACROSS_THREE_PRODUCTS":
         "CORRECTION C-046 (2026-09-07). This finding's evidence list attributes "
         "\u2018Estás en Toronto Todos los aeropuertos\u2019 to a Google Travel AI planner. "

@@ -226,7 +226,11 @@ def chart_coverage(L, rows):
     desc = ("Five bullet graphs, one per coverage ratio. Each dark bar is how much of the "
             "capture plan was actually reached; the vertical rule at the right edge is the "
             "target, which is 100% because ART-024 specified the whole set in every case. "
-            "The three background bands are 0–33%, 33–66% and 66–100%. Reading, worst first: "
+            "What each denominator counts: journey stages, 8 stages \u00d7 17 competitors; "
+            "booking types, 4 types \u00d7 17; states per surface, 7 states \u00d7 17 \u2014 "
+            "empty, loading, error, no-results, offline, logged-out and logged-in; payment gate "
+            "and browser surfaces, 17 competitors each. "
+            "The plain track behind each bar is the full target; there are no performance bands. "
             + "; ".join(f'{r["label"]} {r["num"]} of {r["den"]}, {r["pct"]}%'
                         for r in sorted(rows, key=lambda r: r["pct"]))
             + f'. Every bar falls short of its target. The worst is {worst["label"].lower()} '
@@ -234,8 +238,13 @@ def chart_coverage(L, rows):
     return figure(
         "ch-coverage", "How much of the plan was actually captured",
         "\n".join(out), desc,
-        "Every bar is measured against what the research plan specified, not against a "
-        "comfortable baseline. The rule at the right edge is that target. Nothing reaches it.",
+        "Each bar is what was reached; the rule at the right edge is the whole set. "
+        "<b>Journey stages counts 8 stages \u00d7 17 competitors = 136.</b> The research plan "
+        "(ART-024 \u00a7 3.2) enumerates <b>fifteen</b> stage-units rather than eight, because "
+        "Plan &amp; compare and Book each split into four booking types \u2014 which this board "
+        "reports as its own separate row rather than folding in. So the two rows together cover "
+        "the plan\u2019s scope; neither row alone is the plan\u2019s denominator. Nothing reaches "
+        "its target.",
         "<code>[WORLD.json § coverage_warning]</code> · <code>[ART-024 § 2.2]</code>")
 
 

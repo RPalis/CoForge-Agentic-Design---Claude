@@ -33,7 +33,7 @@ Gate A. Severity and priority are human calls.
 <!-- STANDING-RULES:BEGIN -->
 ## Standing rules — earned, not asserted
 
-Generated from `validation/standing-rules.json`, which is checked against all 51 entries in `validation/corrections.json`. Every rule below cost this project a real defect; the cost is named so you can weigh it.
+Generated from `validation/standing-rules.json`, which is checked against all 52 entries in `validation/corrections.json`. Every rule below cost this project a real defect; the cost is named so you can weigh it.
 
 **SR-1 · Resolve, never recall.**
 Any claim naming a company, a number or a quote must be resolved to a file at the moment you write it. Never from memory, however certain — especially when it is a comparison against something you captured earlier in the same session. Confident, specific and wrong is the most damaging output this project can produce.
@@ -57,7 +57,7 @@ Reading the generator is not checking the output. Build-time arithmetic is not a
 
 **SR-6 · Nobody clears their own check, and every checker gets attacked.**
 The author is the one party who cannot audit their own work. Before reporting that a check works, plant the defect it exists to catch and confirm it fires. A validator whose author has not tried to defeat it is not yet a validator.
-*Earned by C-021, C-024, C-037, C-043 — Two checks declared working by their authors and both blind; one regex that matched only PascalCase and so never tested the prohibition it existed for.*
+*Earned by C-021, C-024, C-037, C-043, C-052 — Two checks declared working by their authors and both blind; one regex that matched only PascalCase and so never tested the prohibition it existed for. And C-052: I audited the board's five coverage ratios with a check that searched capture TITLES instead of file contents, got low numbers, and published the shortfall as a defect in the board. Three of the five derive exactly. The check was the broken thing, and I reported its result without attacking it first — two hours after writing this rule into every agent definition.*
 
 **SR-7 · Do not generalise from the first instance you examined.**
 One directory, one file format, one vertical, one competitor. Check a second before stating a pattern, and say how many you checked.

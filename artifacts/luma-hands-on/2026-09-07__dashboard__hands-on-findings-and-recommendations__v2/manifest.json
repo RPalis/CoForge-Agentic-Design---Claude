@@ -26,7 +26,9 @@
       "D-001",
       "D-002",
       "D-003",
-      "D-004"
+      "D-004",
+      "D-005",
+      "D-006"
     ],
     "sources": [
       "design-system/tokens/tokens.json",
@@ -42,8 +44,8 @@
     "ref": null
   },
   "payload": {
-    "bytes": 489934,
-    "sha256": "654bc724279419257ebccfa17018b19cd26abf24b09ee2a930c1a58e8981ee85",
+    "bytes": 496210,
+    "sha256": "ea04d48cd302a9093dfa214890c762c83f1ffeca807e18e8c320741a86557d13",
     "charts": 11,
     "index_rows": 121,
     "detail_panels": 183,
@@ -92,8 +94,8 @@
       "WORLD.json is still short by 4 rows and carries no subset warning (C-043). Regenerating it is generator work, not a hand edit.",
       "CAPTURE-INDEX.json still holds 7 confidence pointers (C-044). They are rendered as 'No rating recorded' everywhere rather than promoted to a rating.",
       "Phase 5 of the skill (journey comparison) is thin by construction — 25 of 136 journey stages were captured.",
-      "C-049: three of the seventeen roster competitors are one company (Booking Holdings). The board now discloses this wherever a roster count appears, but the counts are NOT recomputed into independent groups. How to present the roster is a Gate A decision and is owed before round 2 sets its own denominators.",
-      "Closed 2026-09-07: SC 1.4.10 reflow (the 121-row index table overflowed the PAGE and is now in a scrollable region — the charts were never the cause); ch-matrix's text alternative now enumerates all 59 cell values rather than row totals; the totals column has a header; the coverage chart's invented performance bands are deleted; the 7 unrated findings are drawn outside the confidence block behind a rule so they cannot read as a bottom tier."
+      "Closed 2026-09-07: SC 1.4.10 reflow (the 121-row index table overflowed the PAGE and is now in a scrollable region — the charts were never the cause); ch-matrix's text alternative now enumerates all 59 cell values rather than row totals; the totals column has a header; the coverage chart's invented performance bands are deleted; the 7 unrated findings are drawn outside the confidence block behind a rule so they cannot read as a bottom tier.",
+      "Closed 2026-09-07: C-049 by client decision (D-006) — the three Booking Holdings products count as three separate competitors and every 'of 17' stands; the disclosure remains. C-050's two board-facing instances re-stated: insight-7 no longer claims 'three products' or rests on F-80's unverifiable field-label comparison, and rec-4's F-87 citation is scoped to the Rentalcars wording. F-80 and F-87 now carry render-time corrections in the index, as F-61 already did. The five coverage denominators are spelled out on the board, and the caption no longer claims to measure against the plan's scope without saying that the plan enumerates fifteen stage-units where this row uses eight."
     ],
     "why_the_builders_did_not_clear_their_own_checks": "design-critic and a11y-checker were dispatched against the assembled board and neither built it. Three of their findings were confirmed against the captures before being acted on, and one a11y finding was confirmed after my own first check of it returned the wrong answer.",
     "applied_2026_09_07": "21 class-A citations applied across 12 conclusions, from the Phase 2 triage, on the client's explicit approval. Only the classifications the agent marked `clear` were applied; three it marked `unsure` (F-8 to insight-3, F-88 to insight-1, F-99 to rec-6) were deliberately held. Effect: conclusions citing no finding 1 to 0; conclusions on a single finding 9 to 7; distinct findings carrying a conclusion 41 to 63; findings citing nothing 72 to 50. Also applied: the C-046 attribution correction to pain point 8 and a render-time correction on the F-61 index row. Then Phase 1's corroborations: 9 citations across 3 conclusions, strictly filtered to candidates rated BOTH `corroborates` AND independent — the 7 rated `partially`, 3 rated `related but does not corroborate` and 2 corroborating-but-not-independent were held, because a second observation on the same surface of the same product is one observation. Net across both passes: conclusions resting on a single finding 9 to 6, and the 4 Phase 1 named as genuinely alone are still alone. Provenance: 3 of 23 missing fields recovered by transcription into provenance-overlay.json; 20 named irrecoverable; the capture files were not edited."

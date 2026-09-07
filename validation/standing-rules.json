@@ -60,9 +60,10 @@
         "C-021",
         "C-024",
         "C-037",
-        "C-043"
+        "C-043",
+        "C-052"
       ],
-      "cost": "Two checks declared working by their authors and both blind; one regex that matched only PascalCase and so never tested the prohibition it existed for."
+      "cost": "Two checks declared working by their authors and both blind; one regex that matched only PascalCase and so never tested the prohibition it existed for. And C-052: I audited the board's five coverage ratios with a check that searched capture TITLES instead of file contents, got low numbers, and published the shortfall as a defect in the board. Three of the five derive exactly. The check was the broken thing, and I reported its result without attacking it first — two hours after writing this rule into every agent definition."
     },
     {
       "id": "SR-7",

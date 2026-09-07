@@ -38,6 +38,25 @@
       "decision": "CAPTURE IN THE SERVED LOCALE. Translate key strings. Do not force a locale.",
       "why": "Forcing a locale captures a product configuration no real traveller in that market sees. For a Lisbon trip the Portuguese surface is arguably the truer artefact. Comparability is preserved at the SEMANTIC level by recording the locale on every capture and translating quoted strings, rather than at the surface level by suppressing what the product actually served.",
       "consequence": "Every capture now carries a `locale_served` field. Quoted evidence is recorded in the original AND in translation, so a later reader can check the translation rather than trust it. Cross-competitor claims must state when they compare across locales — a difference between a pt-BR surface and an en surface may be a MARKET difference, not a product difference, and that confound is now live and must be named wherever it applies. Supersedes the fixed-locale row of ART-024 section 4.1."
+    },
+    {
+      "id": "D-005",
+      "date": "2026-09-07",
+      "decision": "ART-024 §5.2's confidence tri-state is superseded for hands-on rounds. Verified / Likely / Not Verified is replaced by two fields that vary: corroboration_count (how many INDEPENDENT captures support the observation, where two findings from one capture file are one) and reach (one render · one route · one locale · one competitor · cross-competitor).",
+      "why": "C-042: across 50 capture files the mandated field took the value 'Verified' 169 times, 'Likely' once and 'Not Verified' never. C-044: it also holds 14 distinct strings including 7 pointers where a rating belongs. A field that cannot vary carries no signal, and the round's real variation was in SCOPE, which it recorded correctly in scope_limit and caveat fields while the mandated field said nothing.",
+      "scope": "Hands-on rounds only. The tri-state remains correct for DESK research, where Likely and Not Verified are the normal outputs of a vendor claim or an absent search result.",
+      "status": "recorded, not yet enforced",
+      "enforced_by": "validation/validate-capture.py already reports the corpus against this shape and rejects pointer strings. It does not yet REQUIRE the two fields, because round 1's captures predate the decision and would all fail. Requiring them is a round-2 switch.",
+      "supersedes": "ART-024 §5.2 for hands-on rounds. ART-024 v1 is a published artifact and is NOT edited; this decision is the amendment."
+    },
+    {
+      "id": "D-006",
+      "date": "2026-09-07",
+      "decision": "Booking.com, Kayak and Rentalcars.com are counted as THREE separate competitors. Every 'of 17' on the board stands.",
+      "decided_by": "the client, 2026-09-07",
+      "why": "They are three distinct products with distinct interfaces, and this is a UX analysis — what is being counted is products examined, not corporations. A shared parent does not merge two different checkouts into one observation.",
+      "what_this_does_not_change": "F-88 and F-85 stand and the disclosure stays on the board. The shared parent still matters for one thing: EVIDENCE INDEPENDENCE. A pattern observed on Booking.com and Kayak is two products but one company's product decisions, so it is weaker corroboration than the same pattern on two unrelated firms. The Phase 1 corroboration filter already honoured this and no conclusion is corroborated by two siblings alone.",
+      "supersedes": "the open question recorded in C-049."
     }
   ]
 }

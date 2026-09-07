@@ -182,7 +182,6 @@ def chart_coverage(L, rows):
     W, RH, LAB, PAD = 720, 52, 268, 8
     H = len(rows) * RH + 62
     bar, track = L.gray("90"), L.gray("20")
-    bands = [L.gray("10"), L.gray("20"), L.gray("30")]
     axw = W - LAB - 74
     out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
     for i, r in enumerate(rows):
@@ -200,9 +199,13 @@ def chart_coverage(L, rows):
                    f'fill="transparent"/>')
         out.append(f'<text x="0" y="{y+11}" class="c-lab">{esc(r["label"])}</text>')
         out.append(f'<text x="0" y="{y+27}" class="c-sub">{r["num"]} of {r["den"]}</text>')
-        for bi, b in enumerate(bands):  # 3 qualitative ranges, 0-33-66-100%
-            out.append(f'<rect class="c-struct" x="{LAB + axw*bi/3:.1f}" y="{y}" '
-                       f'width="{axw/3:.1f}" height="26" fill="{b}"/>')
+        # No qualitative bands. Few's bullet graph uses them to encode performance against
+        # a REAL standard — poor / satisfactory / good. No such standard exists here, so
+        # three bands at fixed thirds are arithmetic wearing the costume of a threshold,
+        # and a reader cannot tell which they are looking at (design-critic E5). The bar,
+        # the target rule and the printed percentage carry the whole message without them.
+        out.append(f'<rect class="c-struct" x="{LAB}" y="{y}" width="{axw}" height="26" '
+                   f'fill="{L.gray("20")}"/>')
         out.append(f'<rect x="{LAB}" y="{y+7}" width="{max(axw*frac,2):.1f}" height="12" fill="{bar}"/>')
         out.append(f'<line x1="{LAB+axw}" y1="{y-3}" x2="{LAB+axw}" y2="{y+29}" '
                    f'class="c-target"/>')
@@ -363,16 +366,29 @@ def chart_confidence(L, conf):
     assert total == 121, total
     COLS, S, R = 11, 26, 7.5
     GRID = COLS * S + 4
+    # The 7 unrated findings used to occupy the last cells of the last row of one
+    # 11x11 block, in a sequence that ran dark, mid, hollow. Shape alone does not undo
+    # that: a monotonic run ending in the emptiest mark reads as a ladder ending in
+    # "worst", and being last in a sorted run is itself a rank (design-critic W14).
+    # They are drawn BELOW the block, behind a rule, so the separation is spatial and
+    # not merely a difference of glyph.
     # viewBox must contain the LEGEND too, not just the grid -- at 360 wide the legend
     # text started at x=334 and ran ~290 user units past the edge, entirely clipped.
-    W, H = 660, COLS * S + 8
     dark, mid = L.gray("90"), L.gray("60")
+    RATED = conf["verified-exact"] + conf["verified-qualified"]
+    SPLIT_Y = ((RATED + COLS - 1) // COLS) * S + 34   # rule sits under the rated block
+    W = 660
+    H = SPLIT_Y + 62
     out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg c-svg-narrow" '
            f'xmlns="http://www.w3.org/2000/svg">']
     i = 0
     for cls, n in seq:
         for _ in range(n):
-            cx, cy = (i % COLS) * S + R + 2, (i // COLS) * S + R + 4
+            if i < RATED:
+                cx, cy = (i % COLS) * S + R + 2, (i // COLS) * S + R + 4
+            else:
+                k = i - RATED
+                cx, cy = (k % COLS) * S + R + 2, SPLIT_Y + 22 + R
             if cls == "verified-exact":
                 out.append(f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="{dark}"/>')
             elif cls == "verified-qualified":
@@ -383,6 +399,9 @@ def chart_confidence(L, conf):
                            f'<line x1="{cx-R+2}" y1="{cy+R-2}" x2="{cx+R-2}" y2="{cy-R+2}" '
                            f'stroke="{dark}" stroke-width="2"/>')
             i += 1
+    out.append(f'<line x1="0" y1="{SPLIT_Y}" x2="{GRID}" y2="{SPLIT_Y}" class="c-axis"/>')
+    out.append(f'<text x="0" y="{SPLIT_Y+16}" class="c-tick">below the rule: not a lower '
+               f'tier — no rating was recorded at all</text>')
     # legend, with shape + text -- never colour alone
     lx = GRID + 18
     for k, (cls, n) in enumerate(seq):
@@ -399,14 +418,17 @@ def chart_confidence(L, conf):
             lab = f"{n} carry no rating at all"
         out.append(g + f'<text x="{lx+26}" y="{y+4}" class="c-lab-sm">{esc(lab)}</text>')
     out.append("</svg>")
-    desc = ("A dot matrix of exactly 121 marks, eleven by eleven, one per finding. "
+    desc = ("A dot matrix of exactly 121 marks, one per finding, eleven to a row. "
+            "The 114 findings that carry a rating are in the block; the 7 that carry none sit "
+            "below a rule, separated from it, because they are not the bottom of a scale. "
             f'{conf["verified-exact"]} filled circles are findings rated exactly “Verified”. '
             f'{conf["verified-qualified"]} filled squares are findings rated “Verified” followed '
             "by a one-off sentence stating what specifically was not verified. "
             f'{conf["pointer"]} struck-through open circles are findings whose confidence field '
             "holds the literal string “see capture file” — a pointer where a rating belongs. "
             "Those seven are drawn as an absence, not as a third level of certainty, because "
-            "that is what they are: a missing rating, not a lower one.")
+            "that is what they are: a missing rating, not a lower one — which is why they are "
+            "drawn outside the block rather than at the end of it.")
     return figure(
         "ch-confidence", "What the confidence field actually contains",
         "\n".join(out), desc,
@@ -440,6 +462,10 @@ def chart_matrix(L, M, C, T, label_of):
         x = LAB + j * CW + CW / 2
         out.append(f'<text transform="translate({x},{HDR-8}) rotate(-52)" class="c-lab-sm">'
                    f'{esc(label_of(T[cj]))}</text>')
+    # the row-total column carried bare numbers under no header and could be read as a
+    # twelfth theme (design-critic W15)
+    out.append(f'<text transform="translate({LAB + len(co)*CW + 16},{HDR-8}) rotate(-52)" '
+               f'class="c-lab-sm">Total</text>')
     for i, ri in enumerate(ro):
         y = HDR + i * RH
         tot = int(M[ri].sum())
@@ -469,7 +495,11 @@ def chart_matrix(L, M, C, T, label_of):
             "and not the shade is what the cell actually says. Row and column order is computed "
             "by spectral seriation, so products captured on similar themes sit near each other; "
             "the order is not alphabetical and carries meaning. "
-            f"Only {filled} of the {M.size} cells hold anything at all — but an empty cell "
+            + ". Every non-empty cell, read row by row: "
+            + "; ".join(f"{C[i]}: " + ", ".join(f"{label_of(T[j])} {int(M[i][j])}"
+                                                for j in co if M[i][j])
+                        for i in ro if M[i].sum())
+            + f". Only {filled} of the {M.size} cells hold anything at all — but an empty cell "
             "means only that no finding carried that theme label. An audit of the theme field "
             "found that among the rows it can speak about, 48% are filed under a theme their own "
             "identifier contradicts; Iberia and Qatar both read empty under disruption while the "

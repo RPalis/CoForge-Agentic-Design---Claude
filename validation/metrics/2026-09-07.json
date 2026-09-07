@@ -1,23 +1,23 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T13:04:19",
+  "generated_at": "2026-09-07T13:27:09",
   "project": "coforge",
   "session": {
-    "turns": 7271,
-    "duration_min": 18908.0,
+    "turns": 7295,
+    "duration_min": 18930.9,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14514,
-    "output": 8574178,
-    "cache_read": 3720660671,
-    "cache_creation": 66141693,
-    "billable": 8588692
+    "input": 14562,
+    "output": 8600079,
+    "cache_read": 3737936035,
+    "cache_creation": 66172209,
+    "billable": 8614641
   },
   "tools": {
-    "Bash": 1791,
+    "Bash": 1799,
     "Edit": 251,
-    "mcp__chrome-devtools__evaluate_script": 124,
+    "mcp__chrome-devtools__evaluate_script": 126,
     "mcp__figma-console__figma_execute": 124,
     "Write": 114,
     "Agent": 82,
@@ -48,12 +48,12 @@
     "mcp__figma-console__figma_delete_variable_collection": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
+    "mcp__chrome-devtools__resize_page": 7,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 6,
     "mcp__figma-console__figma_get_variables": 6,
     "mcp__figma-console__figma_export_tokens": 6,
     "mcp__figma-console__figma_take_screenshot": 6,
     "mcp__chrome-devtools__emulate": 5,
-    "mcp__chrome-devtools__resize_page": 5,
     "mcp__claude-in-chrome__tabs_context_mcp": 5,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 4,
     "mcp__figma-console__figma_get_status": 4,
@@ -102,7 +102,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 318100
+    "tokens_per_artifact": 319061
   },
   "gates": {
     "verdict": "FAIL",
@@ -114,8 +114,8 @@
     "source": "live-audit"
   },
   "corrections": {
-    "logged": 48,
-    "with_check": 37,
+    "logged": 49,
+    "with_check": 38,
     "unchecked": 11,
     "source": "validation/corrections.json"
   },

@@ -134,6 +134,9 @@ code, .mono { font-family: var(--mono); font-size: var(--fz-cap); }
 .chip { display: inline-flex; align-items: center; padding: var(--s01) var(--s03);
   font-size: var(--fz-cap); font-weight: var(--w-sb); letter-spacing: var(--tr-cap);
   border-radius: 0; margin-right: var(--s02); }
+.tablewrap { overflow-x: auto; }
+.tablewrap:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+@media print { .tablewrap { overflow-x: visible; } }
 .chip--outline { border: var(--s01) solid var(--border-strong); color: var(--ink); background: transparent; }
 /* an absent rating is drawn as absent: dashed edge, secondary ink. It is not a tier,
    and it must not look like the bottom of a ladder (C-044). */
@@ -429,9 +432,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
 <g role="button" tabindex="0" class="c-row" data-detail="cov-1" aria-haspopup="true" aria-controls="detail-panel" aria-expanded="false" aria-label="Journey stages: 25 of 136, 18 per cent. Opens exact denominator and source."><rect class="c-hit" x="-4" y="8" width="720" height="46" fill="transparent"/>
 <text x="0" y="25" class="c-lab">Journey stages</text>
 <text x="0" y="41" class="c-sub">25 of 136</text>
-<rect class="c-struct" x="268.0" y="14" width="126.0" height="26" fill="color(srgb 0.956863 0.956863 0.956863)"/>
-<rect class="c-struct" x="394.0" y="14" width="126.0" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
-<rect class="c-struct" x="520.0" y="14" width="126.0" height="26" fill="color(srgb 0.776471 0.776471 0.776471)"/>
+<rect class="c-struct" x="268" y="14" width="378" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
 <rect x="268" y="21" width="69.5" height="12" fill="color(srgb 0.149020 0.149020 0.149020)"/>
 <line x1="646" y1="11" x2="646" y2="43" class="c-target"/>
 <text x="654" y="32" class="c-val">18%</text>
@@ -439,9 +440,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
 <g role="button" tabindex="0" class="c-row" data-detail="cov-2" aria-haspopup="true" aria-controls="detail-panel" aria-expanded="false" aria-label="Booking types: 47 of 68, 69 per cent. Opens exact denominator and source."><rect class="c-hit" x="-4" y="60" width="720" height="46" fill="transparent"/>
 <text x="0" y="77" class="c-lab">Booking types</text>
 <text x="0" y="93" class="c-sub">47 of 68</text>
-<rect class="c-struct" x="268.0" y="66" width="126.0" height="26" fill="color(srgb 0.956863 0.956863 0.956863)"/>
-<rect class="c-struct" x="394.0" y="66" width="126.0" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
-<rect class="c-struct" x="520.0" y="66" width="126.0" height="26" fill="color(srgb 0.776471 0.776471 0.776471)"/>
+<rect class="c-struct" x="268" y="66" width="378" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
 <rect x="268" y="73" width="261.3" height="12" fill="color(srgb 0.149020 0.149020 0.149020)"/>
 <line x1="646" y1="63" x2="646" y2="95" class="c-target"/>
 <text x="654" y="84" class="c-val">69%</text>
@@ -449,9 +448,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
 <g role="button" tabindex="0" class="c-row" data-detail="cov-3" aria-haspopup="true" aria-controls="detail-panel" aria-expanded="false" aria-label="States per surface: 8 of 119, 6 per cent. Opens exact denominator and source."><rect class="c-hit" x="-4" y="112" width="720" height="46" fill="transparent"/>
 <text x="0" y="129" class="c-lab">States per surface</text>
 <text x="0" y="145" class="c-sub">8 of 119</text>
-<rect class="c-struct" x="268.0" y="118" width="126.0" height="26" fill="color(srgb 0.956863 0.956863 0.956863)"/>
-<rect class="c-struct" x="394.0" y="118" width="126.0" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
-<rect class="c-struct" x="520.0" y="118" width="126.0" height="26" fill="color(srgb 0.776471 0.776471 0.776471)"/>
+<rect class="c-struct" x="268" y="118" width="378" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
 <rect x="268" y="125" width="25.4" height="12" fill="color(srgb 0.149020 0.149020 0.149020)"/>
 <line x1="646" y1="115" x2="646" y2="147" class="c-target"/>
 <text x="654" y="136" class="c-val">6%</text>
@@ -459,9 +456,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
 <g role="button" tabindex="0" class="c-row" data-detail="cov-4" aria-haspopup="true" aria-controls="detail-panel" aria-expanded="false" aria-label="Walked to payment gate: 6 of 17, 35 per cent. Opens exact denominator and source."><rect class="c-hit" x="-4" y="164" width="720" height="46" fill="transparent"/>
 <text x="0" y="181" class="c-lab">Walked to payment gate</text>
 <text x="0" y="197" class="c-sub">6 of 17</text>
-<rect class="c-struct" x="268.0" y="170" width="126.0" height="26" fill="color(srgb 0.956863 0.956863 0.956863)"/>
-<rect class="c-struct" x="394.0" y="170" width="126.0" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
-<rect class="c-struct" x="520.0" y="170" width="126.0" height="26" fill="color(srgb 0.776471 0.776471 0.776471)"/>
+<rect class="c-struct" x="268" y="170" width="378" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
 <rect x="268" y="177" width="133.4" height="12" fill="color(srgb 0.149020 0.149020 0.149020)"/>
 <line x1="646" y1="167" x2="646" y2="199" class="c-target"/>
 <text x="654" y="188" class="c-val">35%</text>
@@ -469,9 +464,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
 <g role="button" tabindex="0" class="c-row" data-detail="cov-5" aria-haspopup="true" aria-controls="detail-panel" aria-expanded="false" aria-label="Captured on both browser surfaces: 4 of 17, 24 per cent. Opens exact denominator and source."><rect class="c-hit" x="-4" y="216" width="720" height="46" fill="transparent"/>
 <text x="0" y="233" class="c-lab">Captured on both browser surfaces</text>
 <text x="0" y="249" class="c-sub">4 of 17</text>
-<rect class="c-struct" x="268.0" y="222" width="126.0" height="26" fill="color(srgb 0.956863 0.956863 0.956863)"/>
-<rect class="c-struct" x="394.0" y="222" width="126.0" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
-<rect class="c-struct" x="520.0" y="222" width="126.0" height="26" fill="color(srgb 0.776471 0.776471 0.776471)"/>
+<rect class="c-struct" x="268" y="222" width="378" height="26" fill="color(srgb 0.878431 0.878431 0.878431)"/>
 <rect x="268" y="229" width="88.9" height="12" fill="color(srgb 0.149020 0.149020 0.149020)"/>
 <line x1="646" y1="219" x2="646" y2="251" class="c-target"/>
 <text x="654" y="240" class="c-val">24%</text>
@@ -1556,7 +1549,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
   </figcaption>
   <div class="chart-body" role="img" aria-labelledby="ch-confidence-t" aria-describedby="ch-confidence-d">
     <span id="ch-confidence-t" class="vh">What the confidence field actually contains</span>
-    <svg viewBox="0 0 660 294" class="c-svg c-svg-narrow" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 660 382" class="c-svg c-svg-narrow" xmlns="http://www.w3.org/2000/svg">
 <circle cx="9.5" cy="11.5" r="7.5" fill="color(srgb 0.149020 0.149020 0.149020)"/>
 <circle cx="35.5" cy="11.5" r="7.5" fill="color(srgb 0.149020 0.149020 0.149020)"/>
 <circle cx="61.5" cy="11.5" r="7.5" fill="color(srgb 0.149020 0.149020 0.149020)"/>
@@ -1671,13 +1664,15 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
 <rect x="28.0" y="264.0" width="15.0" height="15.0" fill="color(srgb 0.435294 0.435294 0.435294)"/>
 <rect x="54.0" y="264.0" width="15.0" height="15.0" fill="color(srgb 0.435294 0.435294 0.435294)"/>
 <rect x="80.0" y="264.0" width="15.0" height="15.0" fill="color(srgb 0.435294 0.435294 0.435294)"/>
-<circle cx="113.5" cy="271.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="108.0" y1="277.0" x2="119.0" y2="266.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
-<circle cx="139.5" cy="271.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="134.0" y1="277.0" x2="145.0" y2="266.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
-<circle cx="165.5" cy="271.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="160.0" y1="277.0" x2="171.0" y2="266.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
-<circle cx="191.5" cy="271.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="186.0" y1="277.0" x2="197.0" y2="266.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
-<circle cx="217.5" cy="271.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="212.0" y1="277.0" x2="223.0" y2="266.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
-<circle cx="243.5" cy="271.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="238.0" y1="277.0" x2="249.0" y2="266.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
-<circle cx="269.5" cy="271.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="264.0" y1="277.0" x2="275.0" y2="266.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<circle cx="9.5" cy="349.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="4.0" y1="355.0" x2="15.0" y2="344.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<circle cx="35.5" cy="349.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="30.0" y1="355.0" x2="41.0" y2="344.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<circle cx="61.5" cy="349.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="56.0" y1="355.0" x2="67.0" y2="344.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<circle cx="87.5" cy="349.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="82.0" y1="355.0" x2="93.0" y2="344.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<circle cx="113.5" cy="349.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="108.0" y1="355.0" x2="119.0" y2="344.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<circle cx="139.5" cy="349.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="134.0" y1="355.0" x2="145.0" y2="344.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<circle cx="165.5" cy="349.5" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="160.0" y1="355.0" x2="171.0" y2="344.0" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/>
+<line x1="0" y1="320" x2="290" y2="320" class="c-axis"/>
+<text x="0" y="336" class="c-tick">below the rule: not a lower tier — no rating was recorded at all</text>
 <circle cx="316" cy="22" r="7.5" fill="color(srgb 0.149020 0.149020 0.149020)"/><text x="334" y="26" class="c-lab-sm">101 rated exactly “Verified”</text>
 <rect x="308" y="48.5" width="15.0" height="15.0" fill="color(srgb 0.435294 0.435294 0.435294)"/><text x="334" y="60" class="c-lab-sm">13 “Verified”, then a sentence saying what was not</text>
 <circle cx="316" cy="90" r="6.5" fill="none" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><line x1="310.5" y1="95.5" x2="321.5" y2="84.5" stroke="color(srgb 0.149020 0.149020 0.149020)" stroke-width="2"/><text x="334" y="94" class="c-lab-sm">7 carry no rating at all</text>
@@ -1685,7 +1680,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
   </div>
   
   
-  <p id="ch-confidence-d" class="chart-desc">A dot matrix of exactly 121 marks, eleven by eleven, one per finding. 101 filled circles are findings rated exactly “Verified”. 13 filled squares are findings rated “Verified” followed by a one-off sentence stating what specifically was not verified. 7 struck-through open circles are findings whose confidence field holds the literal string “see capture file” — a pointer where a rating belongs. Those seven are drawn as an absence, not as a third level of certainty, because that is what they are: a missing rating, not a lower one.</p>
+  <p id="ch-confidence-d" class="chart-desc">A dot matrix of exactly 121 marks, one per finding, eleven to a row. The 114 findings that carry a rating are in the block; the 7 that carry none sit below a rule, separated from it, because they are not the bottom of a scale. 101 filled circles are findings rated exactly “Verified”. 13 filled squares are findings rated “Verified” followed by a one-off sentence stating what specifically was not verified. 7 struck-through open circles are findings whose confidence field holds the literal string “see capture file” — a pointer where a rating belongs. Those seven are drawn as an absence, not as a third level of certainty, because that is what they are: a missing rating, not a lower one — which is why they are drawn outside the block rather than at the end of it.</p>
   <p class="srcline">Source: <code>[confidence-reconciliation.json § classification_0b]</code> · C-044</p>
 </figure>
     
@@ -1708,6 +1703,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
 <text transform="translate(565.0,100) rotate(-52)" class="c-lab-sm">User types</text>
 <text transform="translate(607.0,100) rotate(-52)" class="c-lab-sm">Trip as an object</text>
 <text transform="translate(649.0,100) rotate(-52)" class="c-lab-sm">Market structure</text>
+<text transform="translate(686,100) rotate(-52)" class="c-lab-sm">Total</text>
 <text x="0" y="125" class="c-lab-sm">TripIt</text>
 <rect class="c-struct" x="209" y="109" width="40" height="23" fill="none" stroke="color(srgb 0.776471 0.776471 0.776471)" stroke-width="1"/>
 <rect class="c-struct" x="251" y="109" width="40" height="23" fill="none" stroke="color(srgb 0.776471 0.776471 0.776471)" stroke-width="1"/>
@@ -1947,7 +1943,7 @@ footer { margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01)
   </div>
   
   
-  <p id="ch-matrix-d" class="chart-desc">A matrix of eighteen competitors against eleven themes; each cell prints the number of findings for that pair, and is shaded darker for larger counts, so the number and not the shade is what the cell actually says. Row and column order is computed by spectral seriation, so products captured on similar themes sit near each other; the order is not alphabetical and carries meaning. Only 59 of the 198 cells hold anything at all — but an empty cell means only that no finding carried that theme label. An audit of the theme field found that among the rows it can speak about, 48% are filed under a theme their own identifier contradicts; Iberia and Qatar both read empty under disruption while the board carries a whole figure on their disruption sweeps. Rows, in the computed order, with their totals: TripIt 3; American Airlines 4; Hopper 2; Rentalcars.com 3; Citymapper 2; Qatar Airways 8; Trainline 4; Google Travel 7; Airbnb 14; Google Travel — Flights vertical 8; Expedia 8; Booking.com 15; Iberia 10; Kayak 18; Tripadvisor 6; Rome2Rio 2; Omio 4; Skyscanner 3. An empty cell means nothing was captured for that pair, which is not the same as nothing being there.</p>
+  <p id="ch-matrix-d" class="chart-desc">A matrix of eighteen competitors against eleven themes; each cell prints the number of findings for that pair, and is shaded darker for larger counts, so the number and not the shade is what the cell actually says. Row and column order is computed by spectral seriation, so products captured on similar themes sit near each other; the order is not alphabetical and carries meaning. . Every non-empty cell, read row by row: TripIt: Price honesty 1, User types 1, Trip as an object 1; American Airlines: Loyalty & retention 2, Disruption & protection 2; Hopper: Price honesty 2; Rentalcars.com: Ranking & comparison 1, Loyalty & retention 1, Disruption & protection 1; Citymapper: Ranking & comparison 2; Qatar Airways: Loyalty & retention 2, Price honesty 6; Trainline: Ranking & comparison 2, Loyalty & retention 1, Price honesty 1; Google Travel: Ranking & comparison 3, Price honesty 4; Airbnb: Ranking & comparison 5, Price honesty 7, User types 1, Trip as an object 1; Google Travel — Flights vertical: Ranking & comparison 6, Price honesty 2; Expedia: Other 2, Ranking & comparison 1, Loyalty & retention 2, Disruption & protection 2, Method 1; Booking.com: Other 5, Ranking & comparison 3, Loyalty & retention 3, Price honesty 2, Disruption & protection 1, Market structure 1; Iberia: Decision support 1, Other 1, Ranking & comparison 3, Loyalty & retention 4, Price honesty 1; Kayak: Decision support 2, Other 1, Ranking & comparison 7, Price honesty 3, Disruption & protection 1, Method 2, User types 1, Trip as an object 1; Tripadvisor: Decision support 1, Other 1, Ranking & comparison 2, Loyalty & retention 1, Disruption & protection 1; Rome2Rio: Decision support 1, Ranking & comparison 1; Omio: Dark patterns & trust 1, Decision support 1, Other 2; Skyscanner: Dark patterns & trust 1, Decision support 2. Only 59 of the 198 cells hold anything at all — but an empty cell means only that no finding carried that theme label. An audit of the theme field found that among the rows it can speak about, 48% are filed under a theme their own identifier contradicts; Iberia and Qatar both read empty under disruption while the board carries a whole figure on their disruption sweeps. Rows, in the computed order, with their totals: TripIt 3; American Airlines 4; Hopper 2; Rentalcars.com 3; Citymapper 2; Qatar Airways 8; Trainline 4; Google Travel 7; Airbnb 14; Google Travel — Flights vertical 8; Expedia 8; Booking.com 15; Iberia 10; Kayak 18; Tripadvisor 6; Rome2Rio 2; Omio 4; Skyscanner 3. An empty cell means nothing was captured for that pair, which is not the same as nothing being there.</p>
   <p class="srcline">Source: <code>[WORLD.json § chunks]</code> + the 4 rows it omits (C-043) · theme reliability: <code>[theme-audit.json]</code>, C-045</p>
 </figure>
     <h3 class="subhead">The tables these charts are drawn from</h3>
@@ -2209,6 +2205,7 @@ Captured on both browser surfaces,4,17,24,&quot;Inspector instance (signed out, 
       the order <code>WORLD.json</code>'s own theme tally lists them, most items first. Click any
       row for its full supporting detail: why it matters, its scope limit, any decision it poses,
       and its verbatim evidence quote.</p>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Full evidence index, scrollable">
     <table class="idx">
       <caption>121 findings across 17 competitors and 11 themes. Confidence is rendered as it
         actually appears in the data — see Meta, "On confidence tiers" — not the
@@ -2351,6 +2348,7 @@ Captured on both browser surfaces,4,17,24,&quot;Inspector instance (signed out, 
 <tr data-detail="idx-121" tabindex="0" role="button" aria-haspopup="true" aria-controls="detail-panel" aria-expanded="false" aria-label="Evidence item 121: Iberia ships a chat assistant, &#x27;Ibot&#x27;, present on this page."><td class="n">121</td><th scope="row" class="nw">Iberia</th><td class="nw">Other</td><td><span class="chip chip--outline chip--verified">Verified</span></td><td class="claimcell">Iberia ships a chat assistant, &#x27;Ibot&#x27;, present on this page.</td></tr>
       </tbody>
     </table>
+    </div>
   </section>
 
   <h2 class="vh">Meta</h2>

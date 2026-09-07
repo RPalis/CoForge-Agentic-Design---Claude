@@ -1006,6 +1006,9 @@ code, .mono {{ font-family: var(--mono); font-size: var(--fz-cap); }}
 .chip {{ display: inline-flex; align-items: center; padding: var(--s01) var(--s03);
   font-size: var(--fz-cap); font-weight: var(--w-sb); letter-spacing: var(--tr-cap);
   border-radius: 0; margin-right: var(--s02); }}
+.tablewrap {{ overflow-x: auto; }}
+.tablewrap:focus-visible {{ outline: 2px solid var(--focus); outline-offset: 2px; }}
+@media print {{ .tablewrap {{ overflow-x: visible; }} }}
 .chip--outline {{ border: var(--s01) solid var(--border-strong); color: var(--ink); background: transparent; }}
 /* an absent rating is drawn as absent: dashed edge, secondary ink. It is not a tier,
    and it must not look like the bottom of a ladder (C-044). */
@@ -1448,6 +1451,7 @@ HTML = f'''<!DOCTYPE html>
       the order <code>WORLD.json</code>'s own theme tally lists them, most items first. Click any
       row for its full supporting detail: why it matters, its scope limit, any decision it poses,
       and its verbatim evidence quote.</p>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Full evidence index, scrollable">
     <table class="idx">
       <caption>121 findings across 17 competitors and 11 themes. Confidence is rendered as it
         actually appears in the data — see Meta, "On confidence tiers" — not the
@@ -1459,6 +1463,7 @@ HTML = f'''<!DOCTYPE html>
       {index_rows_html}
       </tbody>
     </table>
+    </div>
   </section>
 
   <h2 class="vh">Meta</h2>

@@ -8,6 +8,10 @@ defects (validation/corrections.json):
     C-045  theme        — 121 findings filed against an 11-value vocabulary nobody defined
     C-042 / C-044  confidence — 14 distinct strings where ART-024 §5.2 mandates 3,
                    including the literal string "see capture file" standing in for a rating
+    C-046 / C-050  attribution  — a comparison written inside one competitor's capture
+                   file quotes another competitor from memory; three confirmed instances
+                   (F-61, F-80, F-87) where the quoted string is not in the named
+                   competitor's own captures
 
 Severity: BLOCKER > ERROR > WARNING > INFO, same convention as audit-system.py.
 Exit 1 on blocker/error. Skipped checks are reported explicitly — SKIPPED IS NOT PASSED.
@@ -28,7 +32,7 @@ Run:
     never carried at all (theme was bolted on downstream, disconnected from source —
     reported below as its own finding, not assumed).
 """
-import json, os, re, sys, argparse, collections, datetime
+import json, os, re, sys, argparse, collections, datetime, unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def P(*a): return os.path.join(ROOT, *a)
@@ -494,6 +498,293 @@ def check_zero_result_sweeps(files):
         "no action" if n_flagged == 0 else "see warnings above")
 
 # ---------------------------------------------------------------------------
+# check 5 — attribution (C-046 / C-050)
+# ---------------------------------------------------------------------------
+# A cross-competitor comparison written inside one competitor's capture file quotes
+# another competitor from memory instead of resolving it. Three confirmed instances:
+#   F-61 (05-skyscanner) credits Google Travel with a string that is Kayak's (F-41).
+#   F-80 (08-tripadvisor) credits Booking.com and Airbnb with strings neither carries.
+#   F-87 (09-rentalcars) credits Airbnb with a date string it does not carry.
+# This check resolves every quoted string a finding attributes to a NAMED competitor
+# against that competitor's own capture files, and reports when the string is absent.
+#
+# DESIGN NOTE — a naive regex for "<Company>'s ... '<quote>'" flagged 23 of 62
+# candidates in the screening pass behind C-050, of which only 3 survived inspection.
+# The false positives were: a possessive apostrophe consuming the real opening quote
+# that follows it (finditer eats "Booking.com's" and the real quote's opening mark as
+# one bogus non-pair), a company name split from its own sentence because a domain
+# name's internal dot ("Booking.com") or an em-dash aside was treated as a sentence
+# boundary, and quotes that are rhetorical framing ("why should I?") or discussion
+# rather than attribution. This version fixes the first two with a manual quote-scanner
+# and a sentence-boundary rule that will not split on a mid-word dot or an em-dash, and
+# reduces (does not eliminate) the third by requiring a verb marker, an immediate colon,
+# or an immediate possessive-noun between the company name and the quote. It is NOT
+# proven complete — see the false-positive rate this run measured, reported below by
+# the report generator, not asserted here.
+
+SUPPLEMENTAL_ALIASES = {
+    # canonical competitor string (as literally recorded in a capture's own
+    # 'competitor' field) -> extra shorthand this corpus's own prose uses for it.
+    # Curated once, by inspection, while building this check -- NOT auto-derived,
+    # because a directory's own capture files never state these shorthands as their
+    # own 'competitor' value. Round 2 competitors get none until someone adds them
+    # here; that is a silent gap, not a crash, and is called out in the check's info
+    # line below so it is visible rather than assumed complete.
+    "Google Travel": ["Google Flights", "Google flights", "Google hotels", "Google's"],
+    "Booking.com": ["Booking Holdings"],
+    "American Airlines": ["AAdvantage"],
+    "Qatar Airways": ["Qatar Privilege Club"],
+    "Rentalcars.com": ["Rentalcars"],
+}
+
+ATTR_QUOTE_CHARS = ["'", '"']
+ATTR_VERB_MARKERS = re.compile(
+    r"\b(reads?|reading|says?|said|states?|stated|asserts?|asserted|shows?|showed|"
+    r"displays?|displayed|offers?|offered|writes?|wrote|written|instructs?|instructed|"
+    r"labell?ing|labell?ed|quotes?|quoted|publishes?|published|notes?|noted|describes?|"
+    r"described|claims?|claimed)\b", re.I)
+ATTR_POSSESSIVE_IMMEDIATE = re.compile(r"^'s(\s+[A-Za-z-]+){0,3}\s*$")
+ATTR_SENTENCE_SEP = re.compile(r"\.(?=\s|$)")  # a dot only ends a sentence when followed
+                                                 # by whitespace/end -- "Booking.com"
+                                                 # would otherwise split at its own dot
+
+def attr_normalize(s):
+    s = unicodedata.normalize("NFKC", s)
+    s = (s.replace("’", "'").replace("‘", "'")
+           .replace("“", '"').replace("”", '"')
+           .replace("–", "-").replace("—", "-")
+           .replace("…", "...").replace(" ", " "))
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+def attr_extract_quotes(text):
+    """Manual scan, not finditer. A possessive apostrophe ("Booking.com's") fails the
+    left-boundary test, but naive finditer still CONSUMES it and the genuine opening
+    quote right after it as one bogus, rejected pair -- eating the real opener before it
+    is ever tried. Scanning one character at a time and only jumping past a match when a
+    valid closer is found (right boundary + length in range) avoids that trap."""
+    out = []
+    for qc in ATTR_QUOTE_CHARS:
+        n = len(text)
+        i = 0
+        while i < n:
+            if text[i] != qc:
+                i += 1
+                continue
+            if not ((i == 0) or not text[i-1].isalnum()):
+                i += 1
+                continue
+            j = i + 1
+            closed_at = None
+            while j < n:
+                if text[j] == qc:
+                    length = j - i - 1
+                    after_ok = (j+1 >= n) or not text[j+1].isalnum()
+                    if after_ok and 3 <= length <= 160:
+                        closed_at = j
+                        break
+                    if after_ok and length > 160:
+                        break
+                j += 1
+            if closed_at is not None:
+                content = text[i+1:closed_at]
+                if re.search(r"[A-Za-zÀ-ÿ]", content):
+                    out.append((i, closed_at + 1, content))
+                i = closed_at + 1
+            else:
+                i += 1
+    return sorted(set(out))
+
+def attr_clause_bounds(text, idx):
+    left = 0
+    for m in ATTR_SENTENCE_SEP.finditer(text[:idx]):
+        left = m.end()
+    right = len(text)
+    m2 = ATTR_SENTENCE_SEP.search(text[idx:])
+    if m2:
+        right = idx + m2.start()
+    return left, right
+
+def attr_walk_strings(obj, path=""):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield from attr_walk_strings(v, f"{path}/{k}" if path else k)
+    elif isinstance(obj, list):
+        for i, v in enumerate(obj):
+            yield from attr_walk_strings(v, f"{path}[{i}]")
+    elif isinstance(obj, str):
+        yield (path, obj)
+
+def build_attribution_registry(files):
+    """Group capture files by directory (one competitor per directory, this round's
+    convention) and derive aliases from the 'competitor' field(s) actually recorded --
+    not a hardcoded company list, so a round-2 directory is picked up automatically.
+    Returns (dir_files, canonical_name_by_dir, alias_list sorted longest-first)."""
+    groups = collections.defaultdict(set)
+    dir_files = collections.defaultdict(list)
+    for f in files:
+        d = jload(f)
+        if not isinstance(d, dict):
+            continue
+        dirkey = os.path.dirname(f)
+        dir_files[dirkey].append(f)
+        comp = d.get("competitor")
+        if isinstance(comp, str) and comp.strip():
+            groups[dirkey].add(comp.strip())
+    canonical = {}
+    alias_list = []
+    for dirkey, names in groups.items():
+        canon = min(names, key=len)
+        canonical[dirkey] = canon
+        for n in names:
+            alias_list.append((n, dirkey))
+        for extra in SUPPLEMENTAL_ALIASES.get(canon, []):
+            alias_list.append((extra, dirkey))
+    alias_list.sort(key=lambda x: -len(x[0]))
+    return dir_files, canonical, alias_list
+
+def attr_find_companies_in(text, alias_list):
+    matches = []
+    for a, dirkey in alias_list:
+        for m in re.finditer(re.escape(a), text):
+            matches.append((m.start(), m.end(), a, dirkey))
+    matches.sort(key=lambda x: (x[0], -(x[1]-x[0])))
+    out, last_end = [], -1
+    for s, e, a, dirkey in matches:
+        if s >= last_end:
+            out.append((s, e, a, dirkey))
+            last_end = e
+    return out
+
+def build_own_text_index(dir_files, alias_list):
+    """A directory's 'own text' excludes any string that itself names a DIFFERENT
+    competitor: that string is cross-reference/comparison prose stored inside this
+    competitor's file, not this competitor's own captured UI content. Genuine captured
+    UI text (a placeholder, a label, an evidence_verbatim string) essentially never
+    mentions a rival by name. Skipping this filter makes resolution circular: the
+    sentence quoting a rival lives inside THIS file, so a naive substring search
+    'confirms' the rival's quote as this competitor's own text."""
+    idx = {}
+    for dirkey, flist in dir_files.items():
+        texts = []
+        for f in flist:
+            d = jload(f)
+            if not isinstance(d, dict):
+                continue
+            for _path, s in attr_walk_strings(d):
+                hits = attr_find_companies_in(s, alias_list)
+                if any(dk != dirkey for (_, _, _, dk) in hits):
+                    continue
+                texts.append(s)
+        idx[dirkey] = attr_normalize(" | ".join(texts))
+    return idx
+
+def extract_finding_id(field_path):
+    m = re.match(r"finding_(F\d+[A-Za-z0-9_]*)", field_path)
+    return m.group(1) if m else None
+
+def check_attribution(files):
+    dir_files, canonical, alias_list = build_attribution_registry(files)
+    if len(dir_files) < 2:
+        skip("attribution", "fewer than two competitor directories discoverable under "
+                             "the given path -- cross-competitor attribution cannot be "
+                             "checked against a single competitor's own captures")
+        return
+    own_text = build_own_text_index(dir_files, alias_list)
+
+    n_candidates = n_resolved_own = n_error = n_warning = n_selfcorrected = 0
+    for f in files:
+        d = jload(f)
+        if not isinstance(d, dict):
+            continue
+        own_dirkey = os.path.dirname(f)
+        for path, s in attr_walk_strings(d):
+            if len(s) < 8:
+                continue
+            comp_hits = attr_find_companies_in(s, alias_list)
+            if not comp_hits:
+                continue
+            for qs, qe, content in attr_extract_quotes(s):
+                cl_start, _cl_end = attr_clause_bounds(s, qs)
+                cands = [(cs, ce, a, dk) for (cs, ce, a, dk) in comp_hits
+                         if cs < qs and cs >= cl_start]
+                if not cands:
+                    continue
+                cs, ce, a, attributed_dir = max(cands, key=lambda x: x[0])
+                if attributed_dir == own_dirkey:
+                    continue  # self-reference, not a cross-competitor attribution
+                between = s[ce:qs]
+                colon_immediate = bool(re.search(r":\s*$", s[max(0, qs-2):qs]))
+                has_verb = bool(ATTR_VERB_MARKERS.search(between))
+                possessive_immediate = bool(ATTR_POSSESSIVE_IMMEDIATE.match(between))
+                if not (has_verb or colon_immediate or possessive_immediate):
+                    continue
+
+                n_candidates += 1
+                negated = (bool(re.search(r"\bnot\b", between, re.I))
+                           or bool(re.search(r"\bnot\b", s[qe:qe+120], re.I))
+                           or bool(re.search(r"\buntested\b", s[qe:qe+120], re.I)))
+                q_norm = attr_normalize(content)
+                attributed_name = canonical.get(attributed_dir, attributed_dir)
+                in_own = q_norm in own_text.get(attributed_dir, "")
+                elsewhere = [canonical.get(dk, dk) for dk, txt in own_text.items()
+                             if dk not in (attributed_dir, own_dirkey) and q_norm in txt]
+                fid = extract_finding_id(path.split("/")[0]) if "/" in path else \
+                      extract_finding_id(path)
+                loc = f"{rel(f)} :: {path}" + (f" (finding {fid})" if fid else "")
+
+                if in_own:
+                    n_resolved_own += 1
+                    continue
+                if elsewhere:
+                    if negated:
+                        n_selfcorrected += 1
+                        add("info", "attribution",
+                            f"quote {content!r} is attributed to {attributed_name} but "
+                            f"the same sentence hedges the attribution ('not "
+                            f"{attributed_name}'s own' / 'untested'), and the string is "
+                            f"only found in {', '.join(elsewhere)}'s own captures -- the "
+                            f"hedge matches the evidence. Not treated as a defect.",
+                            "no action -- this finding already disclosed the ambiguity "
+                            "it is now shown to have resolved correctly",
+                            file=loc)
+                    else:
+                        n_error += 1
+                        add("error", "attribution",
+                            f"quote {content!r} is attributed to {attributed_name} here, "
+                            f"but does not appear anywhere in {attributed_name}'s own "
+                            f"captures. It DOES appear in {', '.join(elsewhere)}'s own "
+                            f"captures -- this is a misattribution, not a paraphrase.",
+                            f"correct the attribution to {', '.join(elsewhere)}, or if "
+                            f"{attributed_name} genuinely displays this text elsewhere, "
+                            f"capture it there and cite that capture",
+                            file=loc)
+                else:
+                    n_warning += 1
+                    add("warning", "attribution",
+                        f"quote {content!r} is attributed to {attributed_name} here, but "
+                        f"does not appear anywhere in the captured corpus -- not in "
+                        f"{attributed_name}'s own captures, and not in any other "
+                        f"competitor's captures either. May be a translation, a "
+                        f"paraphrase, or a real string this round did not capture; it "
+                        f"cannot be verified from what is on disk.",
+                        f"resolve to an exact capture of {attributed_name}'s own page, "
+                        f"or mark the claim as a paraphrase rather than a quotation",
+                        file=loc)
+
+    add("info", "attribution",
+        f"{n_candidates} cross-competitor quote attributions examined across "
+        f"{len(dir_files)} competitor directories: {n_resolved_own} resolved to the "
+        f"named competitor's own captures, {n_error} misattributed to a DIFFERENT named "
+        f"competitor's captures, {n_warning} resolve to no capture in the corpus, "
+        f"{n_selfcorrected} were already self-hedged and independently confirmed. "
+        f"Extraction requires a verb marker, an immediate colon, or an immediate "
+        f"possessive noun between the company name and the quote (see docstring) -- "
+        f"this is a heuristic, not a parser, and under-detects free-form prose that "
+        f"names a company without one of those markers.",
+        "no action" if n_error == 0 else "see error findings above")
+
+
+# ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
 
@@ -524,6 +815,7 @@ def main():
         check_confidence(files)
         check_confidence_index(round_dir)
         check_zero_result_sweeps(files)
+        check_attribution(files)
 
     order = {"blocker": 0, "error": 1, "warning": 2, "info": 3}
     F.sort(key=lambda x: order[x["severity"]])

@@ -1,0 +1,955 @@
+{
+  "generated": "2026-09-07",
+  "agent": "research-ops",
+  "gate": "A — every tier below is a PROPOSAL awaiting human confirmation. Severity and priority are the researcher's call, not mine. Nothing here is applied to the board or to round-2 scope until a person accepts it.",
+  "scope": "The 76 blanks the mechanical pass left UNRANKED (tier 6) in round2-capture-ranked.json, ranked by which decision each one unblocks. No web research; every judgement is from files on disk.",
+  "tier_vocabulary": {
+    "source": "round2-capture-ranked.json § rule — reused verbatim so the two lists merge",
+    "1": "would corroborate a conclusion that is still alone after Phase 1 (rec-1, pain-2, pain-3, pain-10)",
+    "2": "falls in a category with zero observations anywhere: error, no-results, offline states",
+    "3": "would confirm or kill a class-B proposal (phase2-triage.json § class_b_proposals)",
+    "4": "deepens a conclusion the board already rests weight on",
+    "5": "real, and not currently load-bearing"
+  },
+  "method": {
+    "named_beneficiary_rule": "Tiers 1, 3 and 4 name the conclusion or proposal served. A row with no named beneficiary is tier 5, by rule, even where the blank is interesting.",
+    "tier_1_test": "Applied as the worked example sets it: the blank must be the corroboration test for rec-1, pain-2, pain-3 or pain-10 that the round wrote down and did not run. Topic adjacency is not enough. Phase 1's own gradings were used as the boundary — mechanism-only corroboration (F28 price alerts, F36 tracker) was graded 'partially' there, and blanks of that shape are NOT tier 1 here unless the capture itself names the unrun test.",
+    "merging": "Blanks that name one capture task in different words are merged into one row. merged_from lists every source blank verbatim with its capture path. 60 rows carry 76 source blanks.",
+    "superseded": "Ten source blanks across six rows were closed later in the same round by a subsequent capture. Those are ranked 5 with the closing capture named — they are not gaps, they are stale entries in a not_observed list. Two further rows (R06, R22) are partially closed; the open half is stated and ranked.",
+    "pain_2_note": "No blank among the 76 tests pain-2 (an enabled-but-inert primary control). The funnel blanks that would have are in the mechanical pass's tier 1, not in this set. Stated rather than forced.",
+    "capture_files_opened": [
+      "captures/03-google-travel/03-decision-surfaces-opened.json",
+      "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+      "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+      "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+      "captures/04-kayak/02-authenticated-ad-landing.json"
+    ],
+    "capture_root": "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/"
+  },
+  "counts": {
+    "rows": 60,
+    "source_blanks": 76,
+    "by_tier_rows": { "1": 5, "2": 1, "3": 18, "4": 19, "5": 17 },
+    "by_tier_source_blanks": { "1": 7, "2": 1, "3": 20, "4": 26, "5": 22 },
+    "by_effort_rows": { "single page": 35, "flow walk": 19, "authenticated": 3, "blocked": 3 },
+    "reconciliation": "5+1+18+19+17 = 60 rows. 7+1+20+26+22 = 76 source blanks, matching unranked-76.json exactly. 35+19+3+3 = 60 rows by effort."
+  },
+
+  "ranked": [
+    {
+      "id": "R09",
+      "tier": 1,
+      "competitor": "American Airlines",
+      "blank": "whether AA offers proactive disruption notification of the kind Trainline does (F-90)",
+      "serves": "rec-1 — Notify a traveller the moment they qualify for a right they already hold",
+      "effort": "authenticated",
+      "reason": "The round wrote down the corroboration test for its own weakest recommendation and never ran it; rec-1 rests on F-90 alone and this is F-90's air equivalent.",
+      "merged_from": [
+        { "item": "whether AA offers proactive disruption notification of the kind Trainline does (F-90)", "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json" }
+      ],
+      "source_captures": ["captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json"],
+      "note": "Phase 1 names the cheapest form: aa.com manage-booking notification settings. A published plan is not a push — publication is the thing rec-1 argues is insufficient, so the capture must reach the notification setting, not the Customer Service Plan."
+    },
+    {
+      "id": "R56",
+      "tier": 1,
+      "competitor": "Trainline",
+      "blank": "what the delay-compensation notification does when triggered (F-90)",
+      "serves": "rec-1 — the load-bearing capture's own unrun half",
+      "effort": "authenticated",
+      "reason": "rec-1's single citation is an OFFER to notify; nobody has seen what the notification contains, and Phase 1 lists opening it as one of two cheapest next captures.",
+      "merged_from": [
+        { "item": "what the compensation notification actually does when triggered", "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json" },
+        { "item": "what the delay-compensation notification does when triggered (F-90)", "capture": "captures/10-trainline/02-ranking-names-effort.json" }
+      ],
+      "source_captures": [
+        "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+        "captures/10-trainline/02-ranking-names-effort.json"
+      ],
+      "note": "The trigger cannot be manufactured — a real delay is required. What IS reachable is the opt-in/settings screen and the published compensation terms. Record that as the ceiling rather than presenting a settings screen as the notification."
+    },
+    {
+      "id": "R19",
+      "tier": 1,
+      "competitor": "Expedia (control missing for the Google Travel matched pair)",
+      "blank": "logged-out comparison of the same query on this competitor",
+      "serves": "pain-3 — Being signed out doesn't stop a sign-in prompt from interrupting your search",
+      "effort": "flow walk",
+      "reason": "Phase 1's named cheapest next capture for pain-3, recorded as OWED in the round itself, and the round has only two matched-pair signed-out diffs in total.",
+      "merged_from": [
+        { "item": "logged-out comparison of the same query on this competitor", "capture": "captures/02-expedia/03-stays-search-results.json" },
+        { "item": "Expedia logged-out control capture — its matched pair is missing and F-29 currently rests on two of three", "capture": "captures/03-google-travel/04-auth-gated-capability.json" }
+      ],
+      "source_captures": [
+        "captures/02-expedia/03-stays-search-results.json",
+        "captures/03-google-travel/04-auth-gated-capability.json"
+      ],
+      "note": "One capture, two payoffs: it is the pain-3 second instance AND the missing third leg of F-29, which rec-8 rests on. Must run on the extension-clean inspector instance to be a control at all (ART-024 §4.1b)."
+    },
+    {
+      "id": "R46",
+      "tier": 1,
+      "competitor": "Rentalcars.com",
+      "blank": "insurance, excess, deposit and fuel policy presentation",
+      "serves": "pain-10 — Saying no to an add-on is written back to you as a confession",
+      "effort": "flow walk",
+      "reason": "pain-10 is one instance on one funnel; car hire is the vertical where the protection decline is most standard, and this is the decline wording on a fourth product.",
+      "merged_from": [
+        { "item": "insurance, excess, deposit and fuel policy presentation", "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json" }
+      ],
+      "source_captures": ["captures/09-rentalcars/01-ownership-and-hidden-costs.json"],
+      "note": "The blank names presentation broadly; the pain-10 test is narrower — record the accept AND decline strings verbatim. The same walk also settles F-86 ('Sin cargos ocultos'), whose own capture calls the funnel walk 'the test that is owed'."
+    },
+    {
+      "id": "R32",
+      "tier": 1,
+      "competitor": "Kayak",
+      "blank": "Flight Tracker opened",
+      "serves": "rec-1 — and B7 (Luma starts behind on its own Core Features list)",
+      "effort": "single page",
+      "reason": "Phase 1 grades F36 'partially' for one stated reason — 'the capture explicitly did not establish what it does on disruption, which is precisely the claim rec-1 rests on'.",
+      "merged_from": [
+        { "item": "Flight Tracker opened", "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json" }
+      ],
+      "source_captures": ["captures/04-kayak/01-site-tree-and-decision-layer.json"],
+      "note": "Weakest of the five tier 1s and flagged as such. It may resolve only to the mechanism half — a tracker that reports a delay is notifying that something went wrong, not that an entitlement was triggered, which is the distinction rec-1 turns on. If it resolves that way it is a tier 3 for B7, not a corroboration of rec-1. A researcher could reasonably set this to 3 now."
+    },
+
+    {
+      "id": "R23",
+      "tier": 2,
+      "competitor": "Google Travel",
+      "blank": "whether these surfaces exist for destinations with thinner data",
+      "serves": "the degraded-data state class (zero observations round-wide); secondarily B4 — telling a traveller whether the price in front of them is NORMAL",
+      "effort": "single page",
+      "reason": "The round captured 8 of 119 states and not one degraded, empty or failed state of a decision surface; this is the only blank in the 76 that names one.",
+      "merged_from": [
+        { "item": "whether these surfaces exist for destinations with thinner data", "capture": "captures/03-google-travel/03-decision-surfaces-opened.json" }
+      ],
+      "source_captures": ["captures/03-google-travel/03-decision-surfaces-opened.json"],
+      "note": "Reading stated explicitly: a thin-data destination is a sparse-data state, not literally an error, no-results or offline state. If the researcher reads tier 2 strictly, this drops to tier 3 under B4 — B4 calls price-normality 'the round's cheapest observed answer' and a surface that only exists for Lisbon-scale cities is a much smaller answer. Either reading keeps it above tier 4."
+    },
+
+    {
+      "id": "R16",
+      "tier": 3,
+      "competitor": "Expedia",
+      "blank": "public transport ticketing",
+      "serves": "B6 — the transport half is solved and remains unsolved only where accommodation and activities join",
+      "effort": "single page",
+      "reason": "B6's claim is that the two halves join nowhere; an accommodation incumbent selling transport tickets would narrow it, and one that does not would confirm it.",
+      "merged_from": [
+        { "item": "public transport ticketing", "capture": "captures/02-expedia/01-site-tree-L1.json" }
+      ],
+      "source_captures": ["captures/02-expedia/01-site-tree-L1.json"],
+      "note": "Recorded in the source as not_observed_at_this_level — a homepage null, so an L2 sweep is needed before any absence claim."
+    },
+    {
+      "id": "R24",
+      "tier": 3,
+      "competitor": "Google Travel — Flights vertical",
+      "blank": "date grid opened",
+      "serves": "B5 — the undecided traveller is already served by named affordances on three products",
+      "effort": "flow walk",
+      "reason": "B5's Google leg is F31 ('explicitly addresses a traveller who has not decided'); the date grid is the tooling that claim points at and it was never opened.",
+      "merged_from": [
+        { "item": "date grid opened", "capture": "captures/03-google-travel/06-flights-live-route.json" }
+      ],
+      "source_captures": ["captures/03-google-travel/06-flights-live-route.json"]
+    },
+    {
+      "id": "R29",
+      "tier": 3,
+      "competitor": "Iberia",
+      "blank": "What the child benefits actually are. OWED.",
+      "serves": "B12 — the market segments and skips the stated primary user",
+      "effort": "single page",
+      "reason": "B12 rests on F59 (benefits extend to children) as one of two legs, and what the benefits ARE decides whether that leg is a real segment or a slogan.",
+      "merged_from": [
+        { "item": "What the child benefits actually are. OWED.", "capture": "captures/15-iberia/04-loyalty-iberia-club.json" },
+        { "item": "what the children's benefits are", "capture": "captures/15-iberia/04-loyalty-iberia-club.json" }
+      ],
+      "source_captures": ["captures/15-iberia/04-loyalty-iberia-club.json"]
+    },
+    {
+      "id": "R34",
+      "tier": 3,
+      "competitor": "Kayak",
+      "blank": "What Kayak does with an uploaded photo. OWED — nothing was uploaded; no file belonging to the client was used or would be.",
+      "serves": "B7 — document ingestion is already built by a competitor as planning input",
+      "effort": "flow walk",
+      "reason": "B7 rests on F40 recording that upload is ACCEPTED; whether anything useful comes back is what decides how far behind Luma actually starts.",
+      "merged_from": [
+        { "item": "What Kayak does with an uploaded photo. OWED — nothing was uploaded; no file belonging to the client was used or would be.", "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json" },
+        { "item": "what an uploaded photo produces", "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json" }
+      ],
+      "source_captures": ["captures/04-kayak/03-ai-planner-and-first-empty-state.json"],
+      "note": "Carry the round's own constraint forward: no client-owned file is used. A synthetic booking confirmation must be authored for the test, and the fact that it is synthetic recorded on the capture."
+    },
+    {
+      "id": "R35",
+      "tier": 3,
+      "competitor": "Kayak",
+      "blank": "the four suggestion starter cards resolved",
+      "serves": "B5 — what the stage-1 affordances actually ARE",
+      "effort": "flow walk",
+      "reason": "B5's value is that the affordances are copyable tomorrow; four starter prompts on a fourth product is exactly that evidence and it sits unread in an already-captured empty state.",
+      "merged_from": [
+        { "item": "the four suggestion starter cards resolved", "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json" }
+      ],
+      "source_captures": ["captures/04-kayak/03-ai-planner-and-first-empty-state.json"]
+    },
+    {
+      "id": "R36",
+      "tier": 3,
+      "competitor": "Kayak",
+      "blank": "'Calculadora de precios' opened",
+      "serves": "B4 — only two products tell a traveller whether the price is normal, and neither transactional incumbent does",
+      "effort": "single page",
+      "reason": "B4's force is scarcity (two products); a price calculator on a third would narrow it, and its own capture also records price-forecast language as unsuccessfully searched for rather than absent.",
+      "merged_from": [
+        { "item": "'Calculadora de precios' opened", "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json" }
+      ],
+      "source_captures": ["captures/04-kayak/05-price-honesty-and-mix-risk.json"],
+      "note": "Judged from position, not from content — the capture records the control's label and nothing about what it computes. If it turns out to be a baggage/fee calculator rather than a normality signal, it is a B3 row, not a B4 row. Listed in could_not_judge."
+    },
+    {
+      "id": "R37",
+      "tier": 3,
+      "competitor": "Kayak",
+      "blank": "whether KAYAK Mix results are visually distinguished in the result list",
+      "serves": "B1 — protection varies enormously within one result set and nothing in ranking, sorting or price reflects it",
+      "effort": "flow walk",
+      "reason": "B1's whole claim is that the unprotected itinerary is not marked; whether Mix results carry any visual mark confirms or kills it directly.",
+      "merged_from": [
+        { "item": "whether KAYAK Mix results are visually distinguished in the result list", "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json" }
+      ],
+      "source_captures": ["captures/04-kayak/05-price-honesty-and-mix-risk.json"],
+      "note": "The round's own capture rates B1's underlying finding above a recommendation already on the board ('a stronger differentiation candidate than easiest first'). This is the cheapest test in the B1 set."
+    },
+    {
+      "id": "R38",
+      "tier": 3,
+      "competitor": "Kayak",
+      "blank": "whether other Kayak results hand off to OTAs rather than the carrier",
+      "serves": "B1 — the protection spectrum inside one result set",
+      "effort": "flow walk",
+      "reason": "B1 rests on F48, a single handoff that happened to reach the operator; whether other results reach resellers is the variance the proposal asserts and has not measured.",
+      "merged_from": [
+        { "item": "whether other Kayak results hand off to OTAs rather than the carrier", "capture": "captures/04-kayak/06-handoff-to-carrier.json" }
+      ],
+      "source_captures": ["captures/04-kayak/06-handoff-to-carrier.json"]
+    },
+    {
+      "id": "R39",
+      "tier": 3,
+      "competitor": "Kayak",
+      "blank": "the return path — whether anything brings the traveller back to Kayak",
+      "serves": "B11 — the comparison-to-purchase handoff is a known, documented user problem",
+      "effort": "flow walk",
+      "reason": "B11 rests on F50 ('loses all trace of the product that sent them'); an existing return path would qualify that sentence, and none was looked for.",
+      "merged_from": [
+        { "item": "the return path — whether anything brings the traveller back to Kayak", "capture": "captures/04-kayak/06-handoff-to-carrier.json" }
+      ],
+      "source_captures": ["captures/04-kayak/06-handoff-to-carrier.json"]
+    },
+    {
+      "id": "R40",
+      "tier": 3,
+      "competitor": "Kayak",
+      "blank": "whether Booking.com publishes an equivalent document",
+      "serves": "B2 — ranking disclosure is not absent but wildly uneven, in four incompatible forms",
+      "effort": "single page",
+      "reason": "B2's Booking.com leg is a page-level notice (F10); a full published document would move Booking to a different position on the spectrum and change what B2 says.",
+      "merged_from": [
+        { "item": "whether Booking.com publishes an equivalent document", "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json" }
+      ],
+      "source_captures": ["captures/04-kayak/07-ownership-and-ranking-transparency.json"],
+      "note": "Also deepens insight-5, which cites F89 from this capture."
+    },
+    {
+      "id": "R42",
+      "tier": 3,
+      "competitor": "Omio",
+      "blank": "whether the accommodation toggle is pre-checked",
+      "serves": "B14 — cross-vertical trip attachment is obtained by default rather than by consent",
+      "effort": "blocked",
+      "reason": "B14 rests on one competitor (F91); Omio is the round's identified third instance of the same pattern and its pre-checked state is the single fact that would make B14 a pattern rather than an anecdote.",
+      "merged_from": [
+        { "item": "whether the accommodation toggle is pre-checked", "capture": "captures/11-omio/01-multimodal-and-164-partners.json" }
+      ],
+      "source_captures": ["captures/11-omio/01-multimodal-and-164-partners.json"],
+      "note": "Blocked, not merely hard: the round recorded CAPTURE_BLOCKED_BY_CONSENT on this surface with no compliant path forward. This needs a consent-handling decision from a human before any effort is spent. Also bears on pain-7."
+    },
+    {
+      "id": "R43",
+      "tier": 3,
+      "competitor": "Qatar Airways",
+      "blank": "Transit Tours mechanics",
+      "serves": "B8 — business goal 5 rests on a premise the evidence contradicts",
+      "effort": "single page",
+      "reason": "B8 carries an explicit unknown — whether any airport product is purchasable by an economy passenger — and Transit Tours is the named product that would settle it.",
+      "merged_from": [
+        { "item": "Transit Tours mechanics", "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json" }
+      ],
+      "source_captures": ["captures/17-qatar-airways/01-airport-services-and-buyable-status.json"]
+    },
+    {
+      "id": "R45",
+      "tier": 3,
+      "competitor": "Qatar Airways",
+      "blank": "Qcredit values and conversion",
+      "serves": "B9 — every loyalty programme measures money spent with the operator, and one sells status outright",
+      "effort": "single page",
+      "reason": "B9 turns a strategic question into an arithmetic one using published unit prices; the third currency's conversion rate is the missing term in that arithmetic.",
+      "merged_from": [
+        { "item": "Qcredit values and conversion", "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json" }
+      ],
+      "source_captures": ["captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json"]
+    },
+    {
+      "id": "R48",
+      "tier": 3,
+      "competitor": "Rome2Rio",
+      "blank": "full page render — 1,502 chars suggests partial",
+      "serves": "B6 — the transport half is already solved by at least three products",
+      "effort": "single page",
+      "reason": "F97 is a leg of B6 and its own capture flags that only 1,502 visible characters rendered, so the finding rests on a page nobody has seen whole.",
+      "merged_from": [
+        { "item": "full page render — 1,502 chars suggests partial", "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json" }
+      ],
+      "source_captures": ["captures/12-rome2rio/01-mode-comparison-with-tradeoff.json"],
+      "note": "Cheapest row in the whole backlog: a re-render. It also firms up the only 'partially' corroboration rec-2 has, which Phase 1 records as carrying this exact caveat."
+    },
+    {
+      "id": "R50",
+      "tier": 3,
+      "competitor": "Rome2Rio",
+      "blank": "the accom_comparison=true parameter observed in the URL and its effect",
+      "serves": "B6 — 'remains unsolved only where accommodation and activities join'",
+      "effort": "single page",
+      "reason": "A parameter named accom_comparison inside a transport product is the most direct available challenge to B6's closing clause, and the round saw it and did not resolve it.",
+      "merged_from": [
+        { "item": "the accom_comparison=true parameter observed in the URL and its effect", "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json" }
+      ],
+      "source_captures": ["captures/12-rome2rio/01-mode-comparison-with-tradeoff.json"]
+    },
+    {
+      "id": "R52",
+      "tier": 3,
+      "competitor": "Skyscanner",
+      "blank": "'Explora cualquier lugar' opened and run",
+      "serves": "B5 — the undecided traveller is already served by named affordances",
+      "effort": "flow walk",
+      "reason": "F62 is B5's most radical leg and only the label was captured; what destination-less search actually returns is what makes it copyable or not.",
+      "merged_from": [
+        { "item": "'Explora cualquier lugar' opened and run", "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json" }
+      ],
+      "source_captures": ["captures/05-skyscanner/01-site-tree-and-undecided-traveller.json"]
+    },
+    {
+      "id": "R53",
+      "tier": 3,
+      "competitor": "Skyscanner",
+      "blank": "month-view / flexible-date calendar — searched for 'todo el mes', 'fechas flexibles': NO match on the homepage. Recorded as not observed here, not as absent.",
+      "serves": "B5 — flexible-date tooling addressed to the undecided",
+      "effort": "flow walk",
+      "reason": "B5 credits flexible-date tooling to Google alone; whether the destination-less product also has it decides whether B5 describes one product or a pattern.",
+      "merged_from": [
+        { "item": "month-view / flexible-date calendar — searched for 'todo el mes', 'fechas flexibles': NO match on the homepage. Recorded as not observed here, not as absent.", "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json" }
+      ],
+      "source_captures": ["captures/05-skyscanner/01-site-tree-and-undecided-traveller.json"],
+      "note": "The blank is disciplined about its own null and the round-2 capture must be too: the homepage search failed, so the calendar must be opened from the search form, not concluded absent."
+    },
+    {
+      "id": "R57",
+      "tier": 3,
+      "competitor": "TripIt",
+      "blank": "TripIt Pro pricing",
+      "serves": "B7 — the anxiety features are sold as someone else's subscription",
+      "effort": "single page",
+      "reason": "B7 asserts Luma's core features are already sold as a subscription; the price is the term that turns that from a framing into an arithmetic comparison, exactly as F111 does for status.",
+      "merged_from": [
+        { "item": "TripIt Pro pricing", "capture": "captures/14-tripit/01-the-trip-as-one-object.json" }
+      ],
+      "source_captures": ["captures/14-tripit/01-the-trip-as-one-object.json"]
+    },
+
+    {
+      "id": "R03",
+      "tier": 4,
+      "competitor": "Airbnb",
+      "blank": "the Filtros panel interior",
+      "serves": "insight-5 (cites F69) and rec-6 (F69 is its accommodation corroboration)",
+      "effort": "single page",
+      "reason": "F69 — 'the only competitor observed with no sort control' — is explicitly narrowed by its own capture to 'no sort on the results surface' until this panel is opened.",
+      "merged_from": [
+        { "item": "the Filtros panel opened — required to close F-69 completely", "capture": "captures/07-airbnb/02-no-sort-and-total-price.json" },
+        { "item": "Filtros panel — still owed to fully close F-69", "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json" },
+        { "item": "the Filtros panel interior", "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json" },
+        { "item": "the Filtros panel interior on this vertical", "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json" }
+      ],
+      "source_captures": [
+        "captures/07-airbnb/02-no-sort-and-total-price.json",
+        "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+        "captures/07-airbnb/04-ranking-explained-no-sort.json",
+        "captures/07-airbnb/05-experiences-and-business-goal-2.json"
+      ],
+      "note": "4 source blanks — the most-repeated blank in the round. The highest-value tier 4 in this set because it can WEAKEN rather than deepen: a sort control inside the panel would cut against insight-5's premise and against rec-6's fourth accommodation data point. The fourth instance is the experiences vertical, a different surface, so this is two captures on one panel, not one."
+    },
+    {
+      "id": "R06",
+      "tier": 4,
+      "competitor": "Airbnb",
+      "blank": "Servicios vertical — the third inventory type, uncaptured",
+      "serves": "pain-7 and rec-7 — model the trip as one object across booking types",
+      "effort": "flow walk",
+      "reason": "Phase 1 says pain-7 as titled — losing the trip inside ONE account — still rests on one capture; a dated search carried into a third vertical of the same account is the second instance at the same strength.",
+      "merged_from": [
+        { "item": "Experiencias and Servicios verticals — still owed, and they are the business-goal-2 evidence", "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json" },
+        { "item": "Servicios vertical — the third inventory type, uncaptured", "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json" }
+      ],
+      "source_captures": [
+        "captures/07-airbnb/04-ranking-explained-no-sort.json",
+        "captures/07-airbnb/05-experiences-and-business-goal-2.json"
+      ],
+      "note": "Partially closed: the Experiencias half of the first blank was answered by capture 05 (F78, F79); only Servicios is open. Walk it dated, from a stays search, and record the URL parameters — that is what makes it comparable to F78."
+    },
+    {
+      "id": "R02",
+      "tier": 4,
+      "competitor": "Airbnb",
+      "blank": "whether Airbnb Experiences carry equivalent protection",
+      "serves": "insight-2 and rec-7 (both rest on F68, the seam between protection scopes)",
+      "effort": "single page",
+      "reason": "insight-2's whole claim is that the seam between included and sold protection is covered by neither; a seam inside one product's own two verticals is the sharpest available form of it.",
+      "merged_from": [
+        { "item": "whether Airbnb Experiences carry equivalent protection", "capture": "captures/07-airbnb/01-aircover-included-not-sold.json" }
+      ],
+      "source_captures": ["captures/07-airbnb/01-aircover-included-not-sold.json"]
+    },
+    {
+      "id": "R07",
+      "tier": 4,
+      "competitor": "American Airlines",
+      "blank": "the CONTENT of the four disruption sections — headings captured, bodies not read",
+      "serves": "insight-3 (cites F104, which IS the four headings) and pain-5",
+      "effort": "single page",
+      "reason": "insight-3 rests on section headings whose bodies nobody has read, which is a citation that could not survive being checked.",
+      "merged_from": [
+        { "item": "the CONTENT of the four disruption sections — headings captured, bodies not read", "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json" }
+      ],
+      "source_captures": ["captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json"],
+      "note": "Deliberately NOT tier 1. If a body states that AA notifies proactively, that is a published commitment, not an observed push — and publication is precisely what rec-1 argues is insufficient. Ranking it 1 would import a claim as an observation."
+    },
+    {
+      "id": "R08",
+      "tier": 4,
+      "competitor": "American Airlines; Qatar Airways",
+      "blank": "symmetric findability test on AA and Qatar",
+      "serves": "pain-5 — the moment you most need help is the one you're least likely to find a route to",
+      "effort": "flow walk",
+      "reason": "pain-5 rests on findability nulls at Iberia, Qatar and Booking.com; the round names the symmetric test on two carriers as owed and never ran it on either.",
+      "merged_from": [
+        { "item": "AA's navigation findability — the symmetric test, OWED", "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json" },
+        { "item": "symmetric findability test on AA and Qatar", "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json" }
+      ],
+      "source_captures": [
+        "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+        "captures/17-qatar-airways/01-airport-services-and-buyable-status.json"
+      ],
+      "note": "The AA capture also carries METHOD_CORRECTION_TO_MY_OWN_FINDABILITY_TEST — the method must be re-read before the test is re-run, or the correction is wasted."
+    },
+    {
+      "id": "R10",
+      "tier": 4,
+      "competitor": "American Airlines",
+      "blank": "whether the US Customer Service Plan is reachable from the Spanish site",
+      "serves": "pain-5 and insight-3 (F112, F113)",
+      "effort": "single page",
+      "reason": "F112 already shows a Spanish-locale session is served a 43-link site; whether the plan insight-3 cites is reachable from it decides whether the disruption chain degrades by locale as well as by hop.",
+      "merged_from": [
+        { "item": "whether the US Customer Service Plan is reachable from the Spanish site", "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json" }
+      ],
+      "source_captures": ["captures/16-american-airlines/02-spanish-site-and-a-method-correction.json"]
+    },
+    {
+      "id": "R11",
+      "tier": 4,
+      "competitor": "Booking.com",
+      "blank": "whether priority support materially differs in practice (would require a support interaction)",
+      "serves": "rec-8 and pain-6 (both rest on F01 — priority support gated behind 15 bookings)",
+      "effort": "blocked",
+      "reason": "F01 is the sharpest single fact under pain-6 and it is verified only as a stated gate, never as a difference a traveller would feel.",
+      "merged_from": [
+        { "item": "whether priority support materially differs in practice (would require a support interaction)", "capture": "captures/01-booking-com/02-loyalty-genius.json" }
+      ],
+      "source_captures": ["captures/01-booking-com/02-loyalty-genius.json"],
+      "note": "Blocked on purpose: opening a support interaction as a non-customer to measure response quality is a research-ethics call, not a capture task. It needs a human decision before it is scheduled, and it may simply be unanswerable within this method."
+    },
+    {
+      "id": "R12",
+      "tier": 4,
+      "competitor": "Booking.com",
+      "blank": "Section B (Accommodations) contractual relationship in full — captured at heading level only",
+      "serves": "insight-3 and pain-5 (both cite F03; insight-3 also cites F04)",
+      "effort": "single page",
+      "reason": "insight-3's 'no single participant is failing on its own' rests on what these terms actually allocate, and the terms were read at heading level only.",
+      "merged_from": [
+        { "item": "Section B (Accommodations) contractual relationship in full — captured at heading level only", "capture": "captures/01-booking-com/03-terms-and-conditions.json" }
+      ],
+      "source_captures": ["captures/01-booking-com/03-terms-and-conditions.json"]
+    },
+    {
+      "id": "R14",
+      "tier": 4,
+      "competitor": "Citymapper",
+      "blank": "step-by-step route detail",
+      "serves": "rec-6 — compute an ease/effort axis for accommodation and on-site transport",
+      "effort": "flow walk",
+      "reason": "rec-6 names on-site transport as one of two targets and Citymapper is the round's only on-site-transport product; Phase 1 calls its effort attributes the richest observed anywhere.",
+      "merged_from": [
+        { "item": "step-by-step route detail", "capture": "captures/13-citymapper/01-arrival-to-accommodation.json" }
+      ],
+      "source_captures": ["captures/13-citymapper/01-arrival-to-accommodation.json"],
+      "note": "What would settle rec-6's contested scope is whether Citymapper offers an effort SORT AXIS, which no blank in this set names. If the route detail is captured, enumerate the ordering controls in the same pass — that turns a tier 4 into the answer to Phase 1's open scope question."
+    },
+    {
+      "id": "R17",
+      "tier": 4,
+      "competitor": "Expedia",
+      "blank": "whether OneKeyCash expires — FAQ exists, answer uncaptured",
+      "serves": "rec-8 and pain-6 (both cite F18)",
+      "effort": "single page",
+      "reason": "Expiry is the specific mechanism that decides whether a loyalty currency is worth anything to someone on their first trip, which is exactly what rec-8 and pain-6 claim.",
+      "merged_from": [
+        { "item": "whether OneKeyCash expires — FAQ exists, answer uncaptured", "capture": "captures/02-expedia/02-loyalty-one-key.json" }
+      ],
+      "source_captures": ["captures/02-expedia/02-loyalty-one-key.json"]
+    },
+    {
+      "id": "R18",
+      "tier": 4,
+      "competitor": "Expedia",
+      "blank": "VIP Access stay definition",
+      "serves": "rec-8 and pain-6 (F18)",
+      "effort": "single page",
+      "reason": "pain-6's four findings each carry the scope limit 'this page only'; a benefit definition that names a stay threshold either confirms the gate or removes it.",
+      "merged_from": [
+        { "item": "VIP Access stay definition", "capture": "captures/02-expedia/02-loyalty-one-key.json" }
+      ],
+      "source_captures": ["captures/02-expedia/02-loyalty-one-key.json"]
+    },
+    {
+      "id": "R22",
+      "tier": 4,
+      "competitor": "Google Travel",
+      "blank": "flights and vacation rentals verticals",
+      "serves": "rec-3 (total price vs nightly, accommodation) and rec-6 (zero effort axes, measured on 3 accommodation products)",
+      "effort": "flow walk",
+      "reason": "The flights half was closed later in the round; vacation rentals is an uncaptured fourth accommodation product for two recommendations that both state their sample size as three.",
+      "merged_from": [
+        { "item": "flights and vacation rentals verticals", "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json" },
+        { "item": "flights and vacation rentals verticals", "capture": "captures/03-google-travel/02-sort-axes-enumerated.json" },
+        { "item": "flights and vacation rentals verticals", "capture": "captures/03-google-travel/03-decision-surfaces-opened.json" }
+      ],
+      "source_captures": [
+        "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+        "captures/03-google-travel/02-sort-axes-enumerated.json",
+        "captures/03-google-travel/03-decision-surfaces-opened.json"
+      ],
+      "note": "3 source blanks, repeated across three consecutive captures. Partially closed: flights was subsequently captured (05, 06, 07 → F30–F35), so only vacation rentals is open. Capture the sort control and the price convention in one pass to serve both recommendations."
+    },
+    {
+      "id": "R25",
+      "tier": 4,
+      "competitor": "Hopper",
+      "blank": "whether it covers flights NOT booked through Hopper",
+      "serves": "insight-2 and rec-9 (both list the Hopper capture as a source; F64 is its 'sold as a product' pole)",
+      "effort": "single page",
+      "reason": "rec-9 asks whether protection is something Luma sells or something Luma is; whether the sold product covers a booking made elsewhere is the same question answered by an incumbent.",
+      "merged_from": [
+        { "item": "whether it covers flights NOT booked through Hopper", "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json" }
+      ],
+      "source_captures": ["captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json"],
+      "note": "May be answerable from web terms/FAQ without hitting the app gate F65 records. If it is not, this becomes blocked like R26."
+    },
+    {
+      "id": "R26",
+      "tier": 4,
+      "competitor": "Hopper",
+      "blank": "everything app-gated",
+      "serves": "insight-2 and rec-9",
+      "effort": "blocked",
+      "reason": "The products behind the gate ARE the pole insight-2 and rec-9 rest on, and F65 records that the browser cannot reach them.",
+      "merged_from": [
+        { "item": "everything app-gated", "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json" }
+      ],
+      "source_captures": ["captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json"],
+      "note": "Needs a decision, not effort: app capture is outside the round's two-browser method (ART-024 §4.1b). Either scope a device pass or accept that two conclusions rest on a product the round could only see the outside of."
+    },
+    {
+      "id": "R28",
+      "tier": 4,
+      "competitor": "Iberia",
+      "blank": "Iberia's actual EU 261 / passenger rights page, if reachable by search rather than navigation",
+      "serves": "pain-5 and insight-3 (both cite F56, 'the sentence that stops')",
+      "effort": "single page",
+      "reason": "F56 is a navigation null across three surfaces and 367+ link labels; a page reachable by site search would narrow it from 'no route' to 'no route by navigation', which is a materially weaker claim.",
+      "merged_from": [
+        { "item": "Iberia's actual EU 261 / passenger rights page, if reachable by search rather than navigation", "capture": "captures/15-iberia/03-disruption-the-tier4-test.json" }
+      ],
+      "source_captures": ["captures/15-iberia/03-disruption-the-tier4-test.json"],
+      "note": "One of the few rows that can weaken a load-bearing finding rather than deepen it. Worth running early for that reason."
+    },
+    {
+      "id": "R30",
+      "tier": 4,
+      "competitor": "Iberia",
+      "blank": "Avios expiry — searched for caduc/expir/vigencia/validez, no match on this page",
+      "serves": "rec-8 and pain-6 (F58, F60)",
+      "effort": "single page",
+      "reason": "F58 makes Iberia Club the only programme a non-traveller can enter, and whether its currency expires decides whether that entry is worth anything on a first trip.",
+      "merged_from": [
+        { "item": "Avios expiry — searched for caduc/expir/vigencia/validez, no match on this page", "capture": "captures/15-iberia/04-loyalty-iberia-club.json" }
+      ],
+      "source_captures": ["captures/15-iberia/04-loyalty-iberia-club.json"]
+    },
+    {
+      "id": "R44",
+      "tier": 4,
+      "competitor": "Qatar Airways",
+      "blank": "Burgundy and Platinum benefit lists in full",
+      "serves": "rec-8 and pain-6 (both cite F110)",
+      "effort": "single page",
+      "reason": "F110 carries the scope limit 'absence on this page only'; completing the tier benefit lists is what tests that limit instead of inheriting it.",
+      "merged_from": [
+        { "item": "Burgundy and Platinum benefit lists in full", "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json" }
+      ],
+      "source_captures": ["captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json"]
+    },
+    {
+      "id": "R49",
+      "tier": 4,
+      "competitor": "Rome2Rio",
+      "blank": "whether Rome2Rio hands off to booking partners further down the page",
+      "serves": "insight-1 — Nobody does both halves (cites F98 from this capture)",
+      "effort": "flow walk",
+      "reason": "insight-1 classifies each product by whether it decides, transacts or both, and this product's transacting half was never looked at.",
+      "merged_from": [
+        { "item": "whether Rome2Rio hands off to booking partners further down the page", "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json" }
+      ],
+      "source_captures": ["captures/12-rome2rio/01-mode-comparison-with-tradeoff.json"],
+      "note": "Depends on R48 — the page rendered only 1,502 characters, which is why 'further down the page' was never reached. Run R48 first."
+    },
+    {
+      "id": "R58",
+      "tier": 4,
+      "competitor": "TripIt",
+      "blank": "whether ingestion handles non-English confirmations or rail and activity bookings",
+      "serves": "rec-7 — model the trip as one object (cites F101) and insight-1 (F101, F102)",
+      "effort": "authenticated",
+      "reason": "rec-7 recommends copying TripIt's trip object; whether that object spans rail and activities is the scope test of the exemplar, and Luma's scenario is four booking types in two languages.",
+      "merged_from": [
+        { "item": "whether ingestion handles non-English confirmations or rail and activity bookings", "capture": "captures/14-tripit/01-the-trip-as-one-object.json" }
+      ],
+      "source_captures": ["captures/14-tripit/01-the-trip-as-one-object.json"],
+      "note": "Requires an account and a synthetic confirmation email. No client-owned booking is used — same constraint the round applied to R34."
+    },
+
+    {
+      "id": "R01",
+      "tier": 5,
+      "competitor": "Airbnb",
+      "blank": "AirCover for Hosts — noted as existing, 3-million damage protection mentioned; not pursued",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Host-side protection; every AirCover conclusion on the board (pain-4, rec-4, insight-2) is about what the traveller sees, so no conclusion turns on it.",
+      "merged_from": [
+        { "item": "AirCover for Hosts — noted as existing, 3-million damage protection mentioned; not pursued", "capture": "captures/07-airbnb/01-aircover-included-not-sold.json" }
+      ],
+      "source_captures": ["captures/07-airbnb/01-aircover-included-not-sold.json"],
+      "note": "Judgement call: a reviewer building a two-sided marketplace would rank it higher. Named here so the call is visible rather than buried in a 5."
+    },
+    {
+      "id": "R04",
+      "tier": 5,
+      "competitor": "Airbnb",
+      "blank": "a listing page and whether AirCover appears on it",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Closed later in the round: capture 03 searched three surfaces including the listing page and produced F71 ('same two footer-consistent matches after full render').",
+      "merged_from": [
+        { "item": "a listing page and whether AirCover appears on it", "capture": "captures/07-airbnb/02-no-sort-and-total-price.json" }
+      ],
+      "source_captures": ["captures/07-airbnb/02-no-sort-and-total-price.json"],
+      "note": "Superseded by captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json. The checkout half of the same question is still open and is already tier 1 in the mechanical pass."
+    },
+    {
+      "id": "R05",
+      "tier": 5,
+      "competitor": "Airbnb",
+      "blank": "Airbnb Experiences — the activities inventory that makes Airbnb the closest shape to business goal 2",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Closed later in the round by capture 05, which produced F78, F79 and the duration note.",
+      "merged_from": [
+        { "item": "Airbnb Experiences — the activities inventory that makes Airbnb the closest shape to business goal 2", "capture": "captures/07-airbnb/02-no-sort-and-total-price.json" },
+        { "item": "Airbnb Experiences / activities inventory — the reason Airbnb is the closest shape to business goal 2, still uncaptured", "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json" }
+      ],
+      "source_captures": [
+        "captures/07-airbnb/02-no-sort-and-total-price.json",
+        "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json"
+      ],
+      "note": "Superseded by captures/07-airbnb/05-experiences-and-business-goal-2.json. Results surface only — the experience detail page and its booking flow remain open and are already tier 1 in the mechanical pass."
+    },
+    {
+      "id": "R13",
+      "tier": 5,
+      "competitor": "Booking.com",
+      "blank": "map view interaction",
+      "serves": null,
+      "effort": "flow walk",
+      "reason": "No conclusion on the board turns on map as a comparison surface.",
+      "merged_from": [
+        { "item": "map view interaction", "capture": "captures/01-booking-com/05-stays-search-results.json" }
+      ],
+      "source_captures": ["captures/01-booking-com/05-stays-search-results.json"],
+      "note": "Paired with R20 (Expedia). If a researcher decides map is a ranking surface, both rise together to tier 4 under insight-4 — that is a scope decision, not something the record settles."
+    },
+    {
+      "id": "R15",
+      "tier": 5,
+      "competitor": "Citymapper",
+      "blank": "live departure data and disruption alerts",
+      "serves": null,
+      "effort": "flow walk",
+      "reason": "A disruption alert notifies that something has gone wrong, which is the half rec-1 explicitly contrasts itself against, so it is not rec-1 corroboration.",
+      "merged_from": [
+        { "item": "live departure data and disruption alerts", "capture": "captures/13-citymapper/01-arrival-to-accommodation.json" }
+      ],
+      "source_captures": ["captures/13-citymapper/01-arrival-to-accommodation.json"],
+      "note": "Consistency check: Phase 1 graded F28 (price monitoring) and F36 (flight tracker) as mechanism-only and therefore NOT corroboration. Ranking this 1 would apply a looser standard than Phase 1 used. A researcher who accepts mechanism-only corroboration should promote this and R32 together."
+    },
+    {
+      "id": "R20",
+      "tier": 5,
+      "competitor": "Expedia",
+      "blank": "map view",
+      "serves": null,
+      "effort": "flow walk",
+      "reason": "Same as R13 — no conclusion rests on map view.",
+      "merged_from": [
+        { "item": "map view", "capture": "captures/02-expedia/03-stays-search-results.json" }
+      ],
+      "source_captures": ["captures/02-expedia/03-stays-search-results.json"]
+    },
+    {
+      "id": "R21",
+      "tier": 5,
+      "competitor": "Google Travel",
+      "blank": "the four decision surfaces opened and assessed — OWED, next capture",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Closed later in the round: capture 03 opened three surfaces and capture 04 resolved the fourth (price tracking) as F28.",
+      "merged_from": [
+        { "item": "the four decision surfaces opened and assessed", "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json" },
+        { "item": "the four decision surfaces opened and assessed — OWED, next capture", "capture": "captures/03-google-travel/02-sort-axes-enumerated.json" }
+      ],
+      "source_captures": [
+        "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+        "captures/03-google-travel/02-sort-axes-enumerated.json"
+      ],
+      "note": "Judgement stated: capture 03's own not_observed still lists \"'Track prices' surface — not opened this pass\", and I am treating capture 04 (F28, persistent price monitoring) as closing it. If the researcher reads those as different surfaces, one quarter of this blank is still open and it becomes a tier 4 under rec-8."
+    },
+    {
+      "id": "R27",
+      "tier": 5,
+      "competitor": "Iberia",
+      "blank": "Iberia site tree and s1 discovery",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Groundwork for a fuller pass rather than a test of anything; no conclusion turns on an airline's discovery surface.",
+      "merged_from": [
+        { "item": "Iberia site tree and s1 discovery", "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json" }
+      ],
+      "source_captures": ["captures/15-iberia/01-arrival-via-kayak-handoff.json"]
+    },
+    {
+      "id": "R31",
+      "tier": 5,
+      "competitor": "Iberia",
+      "blank": "oneworld alliance reciprocity — 'aerolíneas asociadas' named but not enumerated",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Alliance reciprocity appears in no conclusion and in no class-B proposal.",
+      "merged_from": [
+        { "item": "oneworld alliance reciprocity — 'aerolíneas asociadas' named but not enumerated", "capture": "captures/15-iberia/04-loyalty-iberia-club.json" }
+      ],
+      "source_captures": ["captures/15-iberia/04-loyalty-iberia-club.json"]
+    },
+    {
+      "id": "R33",
+      "tier": 5,
+      "competitor": "Kayak",
+      "blank": "the IA surface opened — OWED",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Closed later in the round: capture 03 opened the AI planner and produced F38, F39, F40 and F41.",
+      "merged_from": [
+        { "item": "What the IA surface does. OWED — it was not opened.", "capture": "captures/04-kayak/02-authenticated-ad-landing.json" },
+        { "item": "the IA surface opened — OWED", "capture": "captures/04-kayak/02-authenticated-ad-landing.json" }
+      ],
+      "source_captures": ["captures/04-kayak/02-authenticated-ad-landing.json"],
+      "note": "Ambiguity resolved by opening the capture: 'IA' is inteligencia artificial, F38's header entry point, not information architecture. Superseded by captures/04-kayak/03-ai-planner-and-first-empty-state.json."
+    },
+    {
+      "id": "R41",
+      "tier": 5,
+      "competitor": "Kayak",
+      "blank": "whether the roster's other entries disclose parentage",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Its beneficiary is the round's method (F85, ROSTER_INDEPENDENCE_PROBLEM, classified D), not a conclusion — and by the named-beneficiary rule that is a 5.",
+      "merged_from": [
+        { "item": "whether the roster's other entries disclose parentage", "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json" }
+      ],
+      "source_captures": ["captures/04-kayak/07-ownership-and-ranking-transparency.json"],
+      "note": "The row most likely to be justly promoted by a human. Every claim of the form 'N of 17 competitors do X' silently assumes independence, and F88 already shows 3 of 17 share a parent. It is cheap and it changes how every count is read — but it repairs the method, not a decision, which is what the tiers rank."
+    },
+    {
+      "id": "R47",
+      "tier": 5,
+      "competitor": "Rentalcars.com",
+      "blank": "whether Kayak carries an equivalent ownership statement — OWED and now material",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Closed later in the round by the Kayak ownership capture, which produced F88 naming all three Booking Holdings companies.",
+      "merged_from": [
+        { "item": "whether Kayak carries an equivalent ownership statement — OWED and now material", "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json" }
+      ],
+      "source_captures": ["captures/09-rentalcars/01-ownership-and-hidden-costs.json"],
+      "note": "Superseded by captures/04-kayak/07-ownership-and-ranking-transparency.json. F88 states 'Verified from first-party statements on two of the three' — which third is unverified should be checked before the row is closed."
+    },
+    {
+      "id": "R51",
+      "tier": 5,
+      "competitor": "Rome2Rio",
+      "blank": "step-by-step route detail — the 'how do I actually do this' layer Rome2Rio is known for",
+      "serves": null,
+      "effort": "flow walk",
+      "reason": "City-to-city route detail is not named by any conclusion; rec-6 names on-site transport specifically, which is why Citymapper's equivalent (R14) is a 4 and this is a 5.",
+      "merged_from": [
+        { "item": "step-by-step route detail — the 'how do I actually do this' layer Rome2Rio is known for", "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json" }
+      ],
+      "source_captures": ["captures/12-rome2rio/01-mode-comparison-with-tradeoff.json"],
+      "note": "The 4/5 split between two identically-worded blanks rests entirely on rec-6's wording, and Phase 1 records that rec-6's scope is contradicted within the round. If Gate A re-scopes rec-6, revisit this row and R14 together."
+    },
+    {
+      "id": "R54",
+      "tier": 5,
+      "competitor": "Skyscanner",
+      "blank": "hotels and car hire verticals",
+      "serves": null,
+      "effort": "single page",
+      "reason": "A vertical census; no conclusion or proposal turns on which verticals this product carries.",
+      "merged_from": [
+        { "item": "hotels and car hire verticals", "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json" }
+      ],
+      "source_captures": ["captures/05-skyscanner/01-site-tree-and-undecided-traveller.json"]
+    },
+    {
+      "id": "R55",
+      "tier": 5,
+      "competitor": "Trainline",
+      "blank": "live departure boards",
+      "serves": null,
+      "effort": "single page",
+      "reason": "A departure board is passive display, not a notification, so it bears on neither rec-1 nor insight-4; nothing else on the board rests on it.",
+      "merged_from": [
+        { "item": "live departure boards or platform data", "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json" },
+        { "item": "live departure boards", "capture": "captures/10-trainline/02-ranking-names-effort.json" }
+      ],
+      "source_captures": [
+        "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+        "captures/10-trainline/02-ranking-names-effort.json"
+      ]
+    },
+    {
+      "id": "R59",
+      "tier": 5,
+      "competitor": "Tripadvisor",
+      "blank": "a things-to-do results page / whether duration is shown for activities — the gap found on Airbnb (F-79)",
+      "serves": null,
+      "effort": "single page",
+      "reason": "Closed later in the round by capture 02, which produced F83 (duration visible in seller titles, not structured) and F84.",
+      "merged_from": [
+        { "item": "a things-to-do results page", "capture": "captures/08-tripadvisor/01-discovery-first.json" },
+        { "item": "whether duration is shown for activities — the gap found on Airbnb (F-79)", "capture": "captures/08-tripadvisor/01-discovery-first.json" }
+      ],
+      "source_captures": ["captures/08-tripadvisor/01-discovery-first.json"],
+      "note": "Superseded by captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json. F83 is one of rec-6's corroborations, so this blank produced load-bearing evidence and then stayed on the list."
+    },
+    {
+      "id": "R60",
+      "tier": 5,
+      "competitor": "Tripadvisor",
+      "blank": "hotels and restaurants verticals",
+      "serves": null,
+      "effort": "single page",
+      "reason": "A vertical census (F82 already covers the homepage level); no conclusion rests on it.",
+      "merged_from": [
+        { "item": "hotels and restaurants verticals", "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json" }
+      ],
+      "source_captures": ["captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json"]
+    }
+  ],
+
+  "could_not_judge": [
+    {
+      "id": "R36",
+      "blank": "'Calculadora de precios' opened (Kayak)",
+      "what_is_missing": "The capture records the control's label and nothing about what it computes. Assigned tier 3 under B4 on position alone — it sits in a price-construction capture beside price-tracking copy. If it is a baggage/fee calculator it belongs under B3 instead.",
+      "ranked": 3
+    },
+    {
+      "id": "R21",
+      "blank": "the four decision surfaces opened and assessed (Google Travel)",
+      "what_is_missing": "Whether capture 04's 'persistent price monitoring' (F28) is the same surface as capture 03's unopened 'Track prices'. Read as the same and therefore superseded; a reader who splits them has one open surface and a tier 4.",
+      "ranked": 5
+    },
+    {
+      "id": "R51 and R14",
+      "blank": "step-by-step route detail (Rome2Rio vs Citymapper)",
+      "what_is_missing": "The 5/4 split depends entirely on rec-6's wording, which Phase 1 records as contradicted within the round (on-site transport vs on-site activities). If Gate A re-scopes rec-6, these two rows must be re-ranked together.",
+      "ranked": "5 and 4"
+    },
+    {
+      "id": "R01",
+      "blank": "AirCover for Hosts (Airbnb)",
+      "what_is_missing": "Whether supply-side protection is in scope for Luma at all. Nothing in the record says. Ranked 5 on the traveller-side reading of pain-4, rec-4 and insight-2.",
+      "ranked": 5
+    },
+    {
+      "id": "R13 and R20",
+      "blank": "map view (Booking.com and Expedia)",
+      "what_is_missing": "Whether a map counts as a ranking or comparison surface for insight-4 and rec-2. The round never opened one, so the record cannot say. Both ranked 5; they rise or fall together.",
+      "ranked": 5
+    },
+    {
+      "id": "R43",
+      "blank": "Transit Tours mechanics (Qatar Airways)",
+      "what_is_missing": "Whether Transit Tours are the airport product B8 turns on or a marketing page. Assigned tier 3 because B8's own recorded unknown — 'whether any of it is purchasable by an economy passenger' — is the question this surface would answer.",
+      "ranked": 3
+    }
+  ],
+
+  "assumptions": [
+    "Assumption — 'Would corroborate' is judged at the same strictness Phase 1 used on itself. Mechanism-only evidence (a product that watches something and pushes a message) was graded 'partially' there and is not tier 1 here. Applying a looser test would manufacture tier 1s.",
+    "Assumption — A blank is treated as CLOSED only when a later capture in the same round names the same surface and produces a finding from it. Ten source blanks across six rows meet that test (R04, R05, R21, R33, R47, R59). Where the closure is partial (R06 Airbnb Experiencias vs Servicios; R22 Google flights vs vacation rentals), the open half is stated and ranked, not absorbed.",
+    "Assumption — Effort is the cheapest capture that would answer the blank, not the fullest. 'authenticated' means an account is required; 'blocked' means a human decision is required before effort is worth spending (a consent wall, an app gate, or a research-ethics call), not that the work is large.",
+    "Assumption — Class-B proposals are unmade conclusions, so 'confirm or kill' is read literally: a tier 3 row is one whose result changes what the proposal would say, not one that adds colour to it.",
+    "Assumption — I did not open 45 of the 50 capture files. Five were opened where wording was insufficient. Rows judged from the blank's wording plus the Phase 1 and Phase 2 artifacts could in principle be re-ranked by someone who opens the rest, and six such rows are listed in could_not_judge.",
+    "One-sidedness carried forward — Phase 1's closing note applies to this backlog too: research/evidence-ledger.json holds zero records, so no amount of competitor capture makes any of these pain points a traveller's report of being harmed. Every tier 1 here makes an OBSERVATION sturdier. Only Phase 1 fieldwork makes it a user problem."
+  ]
+}

@@ -1,0 +1,686 @@
+[
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "AirCover for Hosts — noted as existing, 3-million damage protection mentioned; not pursued",
+  "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "whether Airbnb Experiences carry equivalent protection",
+  "capture": "captures/07-airbnb/01-aircover-included-not-sold.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "the Filtros panel opened — required to close F-69 completely",
+  "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "a listing page and whether AirCover appears on it",
+  "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "Airbnb Experiences — the activities inventory that makes Airbnb the closest shape to business goal 2",
+  "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "Filtros panel — still owed to fully close F-69",
+  "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "Airbnb Experiences / activities inventory — the reason Airbnb is the closest shape to business goal 2, still uncaptured",
+  "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "Experiencias and Servicios verticals — still owed, and they are the business-goal-2 evidence",
+  "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "the Filtros panel interior",
+  "capture": "captures/07-airbnb/04-ranking-explained-no-sort.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "Servicios vertical — the third inventory type, uncaptured",
+  "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Airbnb",
+  "category": "other",
+  "item": "the Filtros panel interior on this vertical",
+  "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "American Airlines",
+  "category": "other",
+  "item": "the CONTENT of the four disruption sections — headings captured, bodies not read",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "American Airlines",
+  "category": "other",
+  "item": "AA's navigation findability — the symmetric test, OWED",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "American Airlines",
+  "category": "other",
+  "item": "whether AA offers proactive disruption notification of the kind Trainline does (F-90)",
+  "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "American Airlines",
+  "category": "other",
+  "item": "whether the US Customer Service Plan is reachable from the Spanish site",
+  "capture": "captures/16-american-airlines/02-spanish-site-and-a-method-correction.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Booking.com",
+  "category": "other",
+  "item": "whether priority support materially differs in practice (would require a support interaction)",
+  "capture": "captures/01-booking-com/02-loyalty-genius.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Booking.com",
+  "category": "other",
+  "item": "Section B (Accommodations) contractual relationship in full — captured at heading level only",
+  "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Booking.com",
+  "category": "other",
+  "item": "map view interaction",
+  "capture": "captures/01-booking-com/05-stays-search-results.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Citymapper",
+  "category": "other",
+  "item": "step-by-step route detail",
+  "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Citymapper",
+  "category": "other",
+  "item": "live departure data and disruption alerts",
+  "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Expedia",
+  "category": "other",
+  "item": "public transport ticketing",
+  "capture": "captures/02-expedia/01-site-tree-L1.json",
+  "key": "not_observed_at_this_level",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Expedia",
+  "category": "other",
+  "item": "whether OneKeyCash expires — FAQ exists, answer uncaptured",
+  "capture": "captures/02-expedia/02-loyalty-one-key.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Expedia",
+  "category": "other",
+  "item": "VIP Access stay definition",
+  "capture": "captures/02-expedia/02-loyalty-one-key.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Expedia",
+  "category": "other",
+  "item": "logged-out comparison of the same query on this competitor",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Expedia",
+  "category": "other",
+  "item": "map view",
+  "capture": "captures/02-expedia/03-stays-search-results.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel",
+  "category": "other",
+  "item": "the four decision surfaces opened and assessed",
+  "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel",
+  "category": "other",
+  "item": "flights and vacation rentals verticals",
+  "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel",
+  "category": "other",
+  "item": "the four decision surfaces opened and assessed — OWED, next capture",
+  "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel",
+  "category": "other",
+  "item": "flights and vacation rentals verticals",
+  "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel",
+  "category": "other",
+  "item": "whether these surfaces exist for destinations with thinner data",
+  "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel",
+  "category": "other",
+  "item": "flights and vacation rentals verticals",
+  "capture": "captures/03-google-travel/03-decision-surfaces-opened.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel",
+  "category": "other",
+  "item": "Expedia logged-out control capture — its matched pair is missing and F-29 currently rests on two of three",
+  "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+  "key": "owed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Google Travel — Flights vertical",
+  "category": "other",
+  "item": "date grid opened",
+  "capture": "captures/03-google-travel/06-flights-live-route.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Hopper",
+  "category": "other",
+  "item": "whether it covers flights NOT booked through Hopper",
+  "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Hopper",
+  "category": "other",
+  "item": "everything app-gated",
+  "capture": "captures/06-hopper/01-disruption-as-a-product-QUALIFIES-F57.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Iberia",
+  "category": "other",
+  "item": "Iberia site tree and s1 discovery",
+  "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+  "key": "not_observed_and_OWED_for_the_full_iberia_pass",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Iberia",
+  "category": "other",
+  "item": "Iberia's actual EU 261 / passenger rights page, if reachable by search rather than navigation",
+  "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+  "key": "not_observed_and_owed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Iberia",
+  "category": "other",
+  "item": "What the child benefits actually are. OWED.",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Iberia",
+  "category": "other",
+  "item": "Avios expiry — searched for caduc/expir/vigencia/validez, no match on this page",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Iberia",
+  "category": "other",
+  "item": "what the children's benefits are",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Iberia",
+  "category": "other",
+  "item": "oneworld alliance reciprocity — 'aerolíneas asociadas' named but not enumerated",
+  "capture": "captures/15-iberia/04-loyalty-iberia-club.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "Flight Tracker opened",
+  "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "What the IA surface does. OWED — it was not opened.",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "the IA surface opened — OWED",
+  "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "What Kayak does with an uploaded photo. OWED — nothing was uploaded; no file belonging to the client was used or would be.",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "the four suggestion starter cards resolved",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "what an uploaded photo produces",
+  "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "'Calculadora de precios' opened",
+  "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "whether KAYAK Mix results are visually distinguished in the result list",
+  "capture": "captures/04-kayak/05-price-honesty-and-mix-risk.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "whether other Kayak results hand off to OTAs rather than the carrier",
+  "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "the return path — whether anything brings the traveller back to Kayak",
+  "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "whether Booking.com publishes an equivalent document",
+  "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Kayak",
+  "category": "other",
+  "item": "whether the roster's other entries disclose parentage",
+  "capture": "captures/04-kayak/07-ownership-and-ranking-transparency.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Omio",
+  "category": "other",
+  "item": "whether the accommodation toggle is pre-checked",
+  "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Qatar Airways",
+  "category": "other",
+  "item": "Transit Tours mechanics",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Qatar Airways",
+  "category": "other",
+  "item": "symmetric findability test on AA and Qatar",
+  "capture": "captures/17-qatar-airways/01-airport-services-and-buyable-status.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Qatar Airways",
+  "category": "other",
+  "item": "Burgundy and Platinum benefit lists in full",
+  "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Qatar Airways",
+  "category": "other",
+  "item": "Qcredit values and conversion",
+  "capture": "captures/17-qatar-airways/02-privilege-club-tiers-and-buyable-lounge-access.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Rentalcars.com",
+  "category": "other",
+  "item": "insurance, excess, deposit and fuel policy presentation",
+  "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Rentalcars.com",
+  "category": "other",
+  "item": "whether Kayak carries an equivalent ownership statement — OWED and now material",
+  "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Rome2Rio",
+  "category": "other",
+  "item": "full page render — 1,502 chars suggests partial",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Rome2Rio",
+  "category": "other",
+  "item": "whether Rome2Rio hands off to booking partners further down the page",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Rome2Rio",
+  "category": "other",
+  "item": "the accom_comparison=true parameter observed in the URL and its effect",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Rome2Rio",
+  "category": "other",
+  "item": "step-by-step route detail — the 'how do I actually do this' layer Rome2Rio is known for",
+  "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Skyscanner",
+  "category": "other",
+  "item": "'Explora cualquier lugar' opened and run",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Skyscanner",
+  "category": "other",
+  "item": "month-view / flexible-date calendar — searched for 'todo el mes', 'fechas flexibles': NO match on the homepage. Recorded as not observed here, not as absent.",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Skyscanner",
+  "category": "other",
+  "item": "hotels and car hire verticals",
+  "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Trainline",
+  "category": "other",
+  "item": "live departure boards or platform data",
+  "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Trainline",
+  "category": "other",
+  "item": "what the compensation notification actually does when triggered",
+  "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Trainline",
+  "category": "other",
+  "item": "live departure boards",
+  "capture": "captures/10-trainline/02-ranking-names-effort.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Trainline",
+  "category": "other",
+  "item": "what the delay-compensation notification does when triggered (F-90)",
+  "capture": "captures/10-trainline/02-ranking-names-effort.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "TripIt",
+  "category": "other",
+  "item": "TripIt Pro pricing",
+  "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "TripIt",
+  "category": "other",
+  "item": "whether ingestion handles non-English confirmations or rail and activity bookings",
+  "capture": "captures/14-tripit/01-the-trip-as-one-object.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Tripadvisor",
+  "category": "other",
+  "item": "a things-to-do results page",
+  "capture": "captures/08-tripadvisor/01-discovery-first.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Tripadvisor",
+  "category": "other",
+  "item": "whether duration is shown for activities — the gap found on Airbnb (F-79)",
+  "capture": "captures/08-tripadvisor/01-discovery-first.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ },
+ {
+  "tier": 6,
+  "competitor": "Tripadvisor",
+  "category": "other",
+  "item": "hotels and restaurants verticals",
+  "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+  "key": "not_observed",
+  "rationale": "DID NOT CATEGORISE MECHANICALLY — needs a human or agent pass before it can be ranked honestly"
+ }
+]

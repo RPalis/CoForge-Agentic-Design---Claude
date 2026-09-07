@@ -596,6 +596,20 @@ print("phase-1 corroborations applied:",
       sum(len(v) for v in PHASE1_CORROBORATIONS.values()),
       "across", len(PHASE1_CORROBORATIONS), "conclusions")
 
+# ---------------------------------------------------------------------------
+# The roster is not seventeen independent companies (C-049). The round established
+# this itself and recorded it twice as a decision required for the ANALYSIS; nothing
+# carried it into the counts. Disclosed wherever a roster count appears.
+ROSTER_INDEPENDENCE = (
+    "Three of the seventeen are one company. <b>Booking.com, Kayak and Rentalcars.com are all "
+    "Booking Holdings</b>, stated on two of the three products&rsquo; own pages. So every "
+    "&ldquo;of 17&rdquo; on this board counts seventeen products but fifteen independent "
+    "companies, and two conclusions are narrower than they look: the disruption-chain insight "
+    "cites five competitors that are four independent groups, and the effort-ranking insight "
+    "seven that are six. The round wrote this instruction to itself and the board did not follow "
+    "it until now. <code>[F-88]</code> · <code>[F-85]</code>")
+
+
 # ---- METHOD NOTES (transparency — the round correcting itself) ------------
 
 METHOD_NOTES = [
@@ -1029,6 +1043,7 @@ code, .mono {{ font-family: var(--mono); font-size: var(--fz-cap); }}
 .covpct {{ color: var(--ink-2); font-size: var(--fz-cap); }}
 .coveragewarn {{ background: var(--raised); border: var(--s01) solid var(--border-strong);
   border-left: var(--s03) solid var(--ink); padding: var(--s05); margin: var(--s05) 0 var(--s07); max-width: 52rem; }}
+.rosternote {{ border-left: 2px solid var(--border-strong); padding-left: var(--s04); margin-top: var(--s05); }}
 .coveragewarn h3 {{ font-size: var(--fz-sm); text-transform: uppercase; letter-spacing: var(--tr-cap); }}
 
 .kpis {{ display: grid; grid-template-columns: repeat(5,1fr); gap: var(--s05); margin: var(--s06) 0; }}
@@ -1317,6 +1332,7 @@ HTML = f'''<!DOCTYPE html>
     <h2>Coverage — read this before anything else on this board</h2>
     <div class="coveragewarn">
       <h3>No competitor is complete. All 17 touched; none exhausted.</h3>
+      <p class="cap rosternote">{ROSTER_INDEPENDENCE}</p>
       <p class="cap">Findings on discovery, comparison, ranking, loyalty and pricing rest on broad
         coverage below. Findings on <b>post-purchase, disruption and failure states rest on very
         little</b> — which is exactly where Luma proposes to differentiate. Weight every

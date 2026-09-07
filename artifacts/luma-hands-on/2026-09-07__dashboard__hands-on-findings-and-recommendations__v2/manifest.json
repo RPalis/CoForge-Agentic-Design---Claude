@@ -42,8 +42,8 @@
     "ref": null
   },
   "payload": {
-    "bytes": 488448,
-    "sha256": "fe7ccc82ebac0185bd6125361270e893d422f9da06a9a5139e3338a09205140e",
+    "bytes": 489179,
+    "sha256": "e325f735778df76163703e845419543e15aff63401e029141afdcdac2b2352c2",
     "charts": 11,
     "index_rows": 121,
     "detail_panels": 183,
@@ -81,7 +81,8 @@
     "C-045",
     "C-046",
     "C-047",
-    "C-048"
+    "C-048",
+    "C-049"
   ],
   "notes": {
     "what_changed_from_v1": "v1 carried 0 charts and 9,591 visible words. v2 carries 11 charts and every one of v1's words, sections, 121 index rows and 183 detail panels intact. Nothing was removed to make room.",
@@ -91,7 +92,8 @@
       "WORLD.json is still short by 4 rows and carries no subset warning (C-043). Regenerating it is generator work, not a hand edit.",
       "CAPTURE-INDEX.json still holds 7 confidence pointers (C-044). They are rendered as 'No rating recorded' everywhere rather than promoted to a rating.",
       "design-critic raised items not yet actioned: the coverage chart's three background bands are arithmetic thirds rather than real thresholds; the confidence chart's 7 absence marks are contiguous and terminal and may still read as a third tier; the matrix totals column has no header.",
-      "Phase 5 of the skill (journey comparison) is thin by construction — 25 of 136 journey stages were captured."
+      "Phase 5 of the skill (journey comparison) is thin by construction — 25 of 136 journey stages were captured.",
+      "C-049: three of the seventeen roster competitors are one company (Booking Holdings). The board now discloses this wherever a roster count appears, but the counts are NOT recomputed into independent groups. How to present the roster is a Gate A decision and is owed before round 2 sets its own denominators."
     ],
     "why_the_builders_did_not_clear_their_own_checks": "design-critic and a11y-checker were dispatched against the assembled board and neither built it. Three of their findings were confirmed against the captures before being acted on, and one a11y finding was confirmed after my own first check of it returned the wrong answer.",
     "applied_2026_09_07": "21 class-A citations applied across 12 conclusions, from the Phase 2 triage, on the client's explicit approval. Only the classifications the agent marked `clear` were applied; three it marked `unsure` (F-8 to insight-3, F-88 to insight-1, F-99 to rec-6) were deliberately held. Effect: conclusions citing no finding 1 to 0; conclusions on a single finding 9 to 7; distinct findings carrying a conclusion 41 to 63; findings citing nothing 72 to 50. Also applied: the C-046 attribution correction to pain point 8 and a render-time correction on the F-61 index row. Then Phase 1's corroborations: 9 citations across 3 conclusions, strictly filtered to candidates rated BOTH `corroborates` AND independent — the 7 rated `partially`, 3 rated `related but does not corroborate` and 2 corroborating-but-not-independent were held, because a second observation on the same surface of the same product is one observation. Net across both passes: conclusions resting on a single finding 9 to 6, and the 4 Phase 1 named as genuinely alone are still alone. Provenance: 3 of 23 missing fields recovered by transcription into provenance-overlay.json; 20 named irrecoverable; the capture files were not edited."

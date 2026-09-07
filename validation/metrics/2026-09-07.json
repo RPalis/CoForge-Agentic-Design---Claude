@@ -1,26 +1,26 @@
 {
   "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T12:57:35",
+  "generated_at": "2026-09-07T13:04:19",
   "project": "coforge",
   "session": {
-    "turns": 7241,
-    "duration_min": 18901.3,
+    "turns": 7271,
+    "duration_min": 18908.0,
     "transcripts": 3
   },
   "tokens": {
-    "input": 14454,
-    "output": 8537620,
-    "cache_read": 3699760345,
-    "cache_creation": 66095915,
-    "billable": 8552074
+    "input": 14514,
+    "output": 8574178,
+    "cache_read": 3720660671,
+    "cache_creation": 66141693,
+    "billable": 8588692
   },
   "tools": {
-    "Bash": 1779,
+    "Bash": 1791,
     "Edit": 251,
     "mcp__chrome-devtools__evaluate_script": 124,
     "mcp__figma-console__figma_execute": 124,
     "Write": 114,
-    "Agent": 81,
+    "Agent": 82,
     "mcp__claude-in-chrome__javascript_tool": 79,
     "mcp__Claude_Browser__computer": 71,
     "Artifact": 57,
@@ -102,7 +102,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 316743
+    "tokens_per_artifact": 318100
   },
   "gates": {
     "verdict": "FAIL",
@@ -114,8 +114,8 @@
     "source": "live-audit"
   },
   "corrections": {
-    "logged": 47,
-    "with_check": 36,
+    "logged": 48,
+    "with_check": 37,
     "unchecked": 11,
     "source": "validation/corrections.json"
   },

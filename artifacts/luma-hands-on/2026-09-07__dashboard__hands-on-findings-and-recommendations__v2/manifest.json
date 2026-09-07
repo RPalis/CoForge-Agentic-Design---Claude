@@ -88,7 +88,7 @@
     "what_changed_from_v1": "v1 carried 0 charts and 9,591 visible words. v2 carries 11 charts and every one of v1's words, sections, 121 index rows and 183 detail panels intact. Nothing was removed to make room.",
     "gate_A": "NOT GRANTED. This artifact has not been through human approval and its status stays draft until it is.",
     "known_open_items": [
-      "The theme field is unreliable — 48% of the rows the audit can speak about are filed under a theme their own id contradicts (C-045). ch-themes and ch-matrix state this on their own faces and claim only labelling, not coverage. Re-theming against a written taxonomy is owed to round 2 and is deliberately NOT done by hand here.",
+      "The theme field is unreliable (C-045): all three disruption findings are filed under loyalty-and-retention, so the matrix draws Iberia and Qatar as empty under Disruption while the board devotes a figure to their disruption sweeps. ch-themes and ch-matrix state this on their own faces and claim labelling, not coverage. NOTE: an earlier '48%' rate here was WITHDRAWN — the audit's matcher had four false positives and its agrees side is unreliable too, so no rate is quotable; the named cases are what stand. Re-theming against a written taxonomy is owed to round 2 and is deliberately NOT done by hand.",
       "WORLD.json is still short by 4 rows and carries no subset warning (C-043). Regenerating it is generator work, not a hand edit.",
       "CAPTURE-INDEX.json still holds 7 confidence pointers (C-044). They are rendered as 'No rating recorded' everywhere rather than promoted to a rating.",
       "Phase 5 of the skill (journey comparison) is thin by construction — 25 of 136 journey stages were captured.",

@@ -1,0 +1,16 @@
+{
+ "c1_phases": 9551,
+ "c1_cost": 3447,
+ "c1_daily": 8742,
+ "c1_time": 2097,
+ "c2_agents": 7164,
+ "c2_layers": 5249,
+ "c2_tools": 5863,
+ "c3_confidence": 2585,
+ "c3_workflow": 5563,
+ "c3_learned": 3360,
+ "c4_discoverers": 2890,
+ "c4_components": 2238,
+ "c4_artifacts": 2576,
+ "c4_rules": 2607
+}

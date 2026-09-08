@@ -4,7 +4,9 @@
 Scope: CoForge only (~/Projects/coforge). Hermes is a separate workflow and is
 not measured here.
 
-Counting rule: the four transcripts are NESTED FORKS, so every record is keyed on
+Counting rule: three of the four transcripts are NESTED FORKS of one another
+(614669de subset-of cd819c59 subset-of a9b9d131); the fourth, 485550c2, is a
+separate earlier session that overlaps none of them. Every record is keyed on
 message uuid and counted exactly once. Summing the files double-counts 55%.
 
 Pricing: Opus 5 list, $5.00/M input and $25.00/M output. Cache read is 0.1x input
@@ -16,6 +18,11 @@ import json, glob, os, collections, subprocess, datetime
 
 REPO = "/Users/raquelpalis/Projects/coforge"
 TX   = "/Users/raquelpalis/.claude/projects/-Users-raquelpalis-Projects-coforge"
+# The corpus this board measures includes the session that is building the board,
+# so "the latest record" advanced every time the pipeline ran and the output never
+# settled. FREEZE is an explicit cutoff: records after it are excluded, so re-running
+# reproduces the same bytes. Moving it is a deliberate act, not a side effect.
+FREEZE = "2026-09-08T12:11"
 PRICE = {"in": 5.00, "out": 25.00, "cache_read": 0.50, "cache_write_5m": 6.25, "cache_write_1h": 10.00}
 
 def git(*a):
@@ -29,8 +36,11 @@ for p in sorted(glob.glob(f"{TX}/*.jsonl"), key=os.path.getsize):
             try: d = json.loads(line)
             except Exception: continue
             u = d.get("uuid")
+            ts = d.get("timestamp") or ""
+            if ts and ts[:16] > FREEZE: continue      # after the cutoff: not in this report
             if u and u not in rec: rec[u] = d
 
+max_ts = ''
 day = collections.defaultdict(collections.Counter)
 daymins = collections.defaultdict(set)
 dayspan = collections.defaultdict(list)
@@ -40,6 +50,7 @@ for d in rec.values():
     ts = d.get("timestamp"); k = ts[:10] if ts else None
     m = d.get("message") or {}
     if not isinstance(m, dict): m = {}
+    if ts and ts > max_ts: max_ts = ts
     if k: daymins[k].add(ts[:16]); dayspan[k].append(ts)
     if d.get("type") == "user" and not d.get("isMeta"):
         c = m.get("content")
@@ -140,6 +151,13 @@ for c in corr:
 repo["corrections_by_discoverer"] = dict(who.most_common())
 
 out = {"generated": datetime.date.today().isoformat(),
+       # The cutoff of the DATA, not the moment the script ran. Using "now" made
+       # the output mutate on every run, so the file never settled and a byte-exact
+       # transfer could not be guaranteed -- and "frozen" would have been a lie.
+       "frozen_at": FREEZE.replace("T", " "),
+       "corroboration": ("The repository's own collector (validation/collect-metrics.py), repaired and "
+         "self-tested independently, counts the same corpus and agrees with this board to within 2%; "
+         "the residual is the minutes between the two runs."),
        "scope": "CoForge only (~/Projects/coforge). Hermes is a separate workflow, not measured here.",
        "counting_rule": "every transcript record counted once, keyed on message uuid; the four transcripts are nested forks",
        "unique_records": len(rec), "user_turns": user_turns, "assistant_turns": asst,

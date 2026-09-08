@@ -1,6 +1,6 @@
 {
   "run_id": "2026-09-08",
-  "generated_at": "2026-09-08T13:23:10",
+  "generated_at": "2026-09-08T14:02:49",
   "project": "coforge",
   "provenance": {
     "schema_version": "2",
@@ -8,29 +8,29 @@
     "detail": "validation/metrics.schema.json"
   },
   "session": {
-    "turns": 5737,
+    "turns": 5862,
     "transcripts": 4,
-    "unique_records": 15467,
-    "non_message_records": 2858,
-    "active_minutes_distinct": 1395,
-    "active_hours_distinct_minutes": 23.2,
-    "elapsed_span_by_day_hours": 93.6
+    "unique_records": 15733,
+    "non_message_records": 2904,
+    "active_minutes_distinct": 1417,
+    "active_hours_distinct_minutes": 23.6,
+    "elapsed_span_by_day_hours": 94.3
   },
   "tokens": {
-    "input": 11438,
-    "output": 7121378,
-    "cache_read": 2900975698,
-    "cache_creation": 58365910,
-    "billable": 7132816
+    "input": 11688,
+    "output": 7361244,
+    "cache_read": 2975475772,
+    "cache_creation": 58771539,
+    "billable": 7372932
   },
   "tools": {
-    "Bash": 1437,
+    "Bash": 1464,
     "Edit": 126,
     "mcp__chrome-devtools__evaluate_script": 116,
+    "mcp__figma-console__figma_execute": 82,
     "mcp__claude-in-chrome__javascript_tool": 79,
-    "mcp__figma-console__figma_execute": 71,
     "mcp__Claude_Browser__computer": 65,
-    "Agent": 64,
+    "Agent": 65,
     "Write": 58,
     "mcp__claude-in-chrome__navigate": 44,
     "Read": 37,
@@ -56,6 +56,7 @@
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
+    "mcp__figma-console__figma_take_screenshot": 7,
     "mcp__chrome-devtools__new_page": 5,
     "mcp__claude-in-chrome__tabs_context_mcp": 5,
     "mcp__chrome-devtools__list_pages": 5,
@@ -66,7 +67,6 @@
     "mcp__figma-console__figma_get_status": 3,
     "mcp__figma-console__figma_get_variables": 3,
     "mcp__figma-console__figma_export_tokens": 3,
-    "mcp__figma-console__figma_take_screenshot": 3,
     "mcp__Claude_Browser__find": 2,
     "mcp__ccd_session_mgmt__set_session_title": 2,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 2,
@@ -115,11 +115,11 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 264178
+    "tokens_per_artifact": 273072
   },
   "gates": {
     "verdict": "FAIL",
-    "blocker": 1,
+    "blocker": 28,
     "error": 1,
     "warning": 5,
     "info": 6,

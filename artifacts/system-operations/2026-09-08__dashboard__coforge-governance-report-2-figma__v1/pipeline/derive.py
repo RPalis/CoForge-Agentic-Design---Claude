@@ -3,15 +3,15 @@
 Both were separate scripts and a dataset rebuild silently dropped one of them,
 so they now run as part of the pipeline instead of from memory."""
 import json, collections
-d=json.load(open('board-dataset.json'))
+d=json.load(open('board-dataset.frozen.json'))
 
 # --- phases, boundaries derived from commit content and ADR dates
 PHASES=[("P1 · Agentic creation","2026-08-25","2026-08-27",
   "The system that builds: 14 agents, the routing table, Gate A/B, the artifact taxonomy, ADR-001 to ADR-014."),
  ("P2 · DS Foundations","2026-08-28","2026-08-31",
-  "Brand approved at Gate A, 829 tokens across five axes, the first L1 primitives, token release 0.2.0."),
+  "Brand approved at Gate A, 829 tokens across five axes, and the first L1 primitives."),
  ("P3 · Figma migration","2026-09-01","2026-09-02",
-  "Tokens reach Figma as variables, the Carbon adapter lands 208 components, CI runs the audit on a real PR."),
+  "Token release 0.2.0 is cut, tokens reach Figma as variables, the Carbon adapter lands 208 components, CI runs the audit on a real PR."),
  ("P4 · First application","2026-09-03","2026-09-08",
   "The system is pointed at real work: Batch 3, capture round 1 across 17 competitors, the findings dashboard.")]
 by=d["by_day"]; ch=d["repo"]["churn_by_day"]; cm=d["repo"]["commits_by_day"]; P=d["price_per_million"]
@@ -41,6 +41,24 @@ CHECKS=[".py",".mjs","the gate","hook","health report","symmetry check","check-v
 SELF=["the main session","the author","writing an independent","the same independent","noticing",
       "asking whether","asking which","designing against","reading back","checking the unit",
       "binding the figma","diffing the exported","materialising","a manual document audit","external research"]
+# SR-4: no vocabulary without a written definition, before first use.
+CATEGORY_DEFINITIONS = {
+ "a dispatched agent": "A subagent from the roster, given a task, that reported the defect. "
+   "The defect was not what it was sent to find in most cases.",
+ "an automated check firing on its own": "A validator, hook or gate that failed by itself, on a run "
+   "nobody made in order to find this. If a person chose to re-run a check, that is NOT this category "
+   "-- the finding came from the decision to look, not from the machine.",
+ "the human, by asking": "The client asked a question, and answering it exposed the defect.",
+ "the author, self-caught": "Whoever made the change found it themselves, including by deliberately "
+   "re-running or re-deriving something they already had a result for.",
+}
+# Two entries the keyword matcher put in the wrong bucket, on a bare '.py' substring.
+# Both describe the AUTHOR choosing to re-run a check, which the definition above
+# explicitly excludes from the automated bucket. Found by dashboard-analyst.
+OVERRIDES = {
+ "C-023": "the author, self-caught",   # "the failure being too FAST" -- noticed an anomaly, then reproduced it by hand
+ "C-030": "the author, self-caught",   # "by RUNNING check-figma-live.py rather than trusting its last recorded result"
+}
 def first(f,ts):
     p=[f.find(t) for t in ts if f.find(t)!=-1]; return min(p) if p else 10**6
 cnt=collections.Counter()
@@ -50,12 +68,16 @@ for x in C:
     c={"a dispatched agent":first(f,AGENTS),"the human, by asking":first(f,HUMAN),
        "an automated check firing":first(f,CHECKS),"the author, self-caught":first(f,SELF)}
     k=min(c,key=c.get)
-    cnt["the author, self-caught" if c[k]==10**6 else k]+=1
+    k = "the author, self-caught" if c[k]==10**6 else k
+    k = OVERRIDES.get(x["id"], k)
+    if k == "an automated check firing": k = "an automated check firing on its own"
+    cnt[k]+=1
 other=sum(v for k,v in cnt.items() if k!="the author, self-caught")
 json.dump({"by_discoverer":dict(cnt),"total":len(C),"found_by_other":other,
-  "rule":"classified by the FIRST actor named in found_by"},open('discoverers.json','w'),indent=1)
+  "rule":"classified by the FIRST actor named in found_by, with two explicit overrides",
+  "definitions":CATEGORY_DEFINITIONS,"overrides":OVERRIDES},open('discoverers.json','w'),indent=1)
 d["repo"]["corrections"]=len(C)
 d["repo"]["corrections_by_discoverer"]=dict(cnt)
-json.dump(d,open('board-dataset.json','w'),indent=1)
+json.dump(d,open('board-dataset.frozen.json','w'),indent=1)
 print(f"phases: {len(rows)} · corrections {len(C)} · found by other than the author: {other}/{len(C)} ({round(100*other/len(C))}%)")
 for k,v in cnt.most_common(): print(f"    {v:>3}  {k}")

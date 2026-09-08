@@ -1,11 +1,21 @@
 {
  "by_discoverer": {
-  "the author, self-caught": 18,
-  "an automated check firing": 7,
+  "the author, self-caught": 20,
+  "an automated check firing on its own": 5,
   "a dispatched agent": 26,
   "the human, by asking": 6
  },
  "total": 57,
- "found_by_other": 39,
- "rule": "classified by the FIRST actor named in found_by"
+ "found_by_other": 37,
+ "rule": "classified by the FIRST actor named in found_by, with two explicit overrides",
+ "definitions": {
+  "a dispatched agent": "A subagent from the roster, given a task, that reported the defect. The defect was not what it was sent to find in most cases.",
+  "an automated check firing on its own": "A validator, hook or gate that failed by itself, on a run nobody made in order to find this. If a person chose to re-run a check, that is NOT this category -- the finding came from the decision to look, not from the machine.",
+  "the human, by asking": "The client asked a question, and answering it exposed the defect.",
+  "the author, self-caught": "Whoever made the change found it themselves, including by deliberately re-running or re-deriving something they already had a result for."
+ },
+ "overrides": {
+  "C-023": "the author, self-caught",
+  "C-030": "the author, self-caught"
+ }
 }

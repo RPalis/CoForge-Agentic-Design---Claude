@@ -4,6 +4,19 @@
 // one-way, so a defect imported is a defect owned.
 import http from "node:http";
 const PORT = 9333;
+// The harness this loads was never shipped with the pipeline, so a fresh clone
+// loaded Chrome's neterror page, found zero charts, collected zero failures and
+// printed PASS. A check that cannot fail is not a check (SR-11); skipped is not
+// passed (SR-9). The harness is now built here, from the shipped SVGs, and the
+// run refuses to report a verdict on an empty set.
+import fs from "node:fs";
+const SVGS = fs.readdirSync(process.cwd() + "/..").filter(f => f.endsWith(".svg")).sort();
+if (SVGS.length === 0) { console.error("no SVG frames found beside the pipeline"); process.exit(2); }
+fs.writeFileSync(process.cwd() + "/verify-frames.html",
+  `<meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">` +
+  `<style>body{margin:0;background:#9a978f}svg{display:block;margin:0 0 40px}</style>` +
+  SVGS.map(f => `<section data-chart="${f.replace(/\.svg$/, "")}">` +
+    fs.readFileSync(process.cwd() + "/../" + f, "utf8") + `</section>`).join(""));
 const URL = "file://" + process.cwd() + "/verify-frames.html";
 const g = p => new Promise(r => http.request({host:"localhost",port:PORT,path:p}, x => {
   let d=""; x.on("data",c=>d+=c); x.on("end",()=>r(JSON.parse(d))); }).end());
@@ -85,6 +98,8 @@ console.log(JSON.stringify(await ev(`(() => {
     if (lowText < 4.5) out.fails.push(name+': text at '+lowText.toFixed(2)+':1 (<4.5)');
     if (lowMark < 3.0) out.fails.push(name+': mark at '+lowMark.toFixed(2)+':1 (<3)');
   });
+  // an empty result set is not a pass
+  if (out.charts.length === 0) { out.fails.push('no charts were found on the page — the harness did not load'); }
   out.verdict = out.fails.length ? 'FAIL' : 'PASS';
   return out;
 })()`), null, 1));

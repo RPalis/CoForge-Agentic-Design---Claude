@@ -3,7 +3,7 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from svgkit import *
 
-D = json.load(open("board-dataset.json"))
+D = json.load(open("board-dataset.frozen.json"))
 R = D["repo"]; T = D["tokens"]; C = D["cost_illustrative_usd"]; PH = D["phases"]
 W = 2280                      # content width inside a 2400 frame
 OUT = {}
@@ -45,8 +45,15 @@ def c1_phases():
             bw = (cw - 40) * (p[key] / m)
             o.append(rect(bx, y + 6, bw, 20, P["ink"]))
             o.append(txt(bx, y + 52, fmt(p[key], unit), size=20, mono=True, weight=600))
-    o.append(line(0, ytop + 22 + len(PH)*rowh - 12, W, ytop + 22 + len(PH)*rowh - 12, P["gray60"]))
-    emit("c1_phases", W, ytop + 22 + len(PH)*rowh + 10, "".join(o),
+    yend = ytop + 22 + len(PH)*rowh - 12
+    o.append(line(0, yend, W, yend, P["gray60"]))
+    exact = sum(v.get("active_minutes",0) for v in D["by_day"].values())/60
+    partsum = sum(p["active_h"] for p in PH)
+    if abs(partsum - round(exact,1)) > 0.001:
+        o.append(txt(0, yend + 30, f"Each phase's hours are rounded on their own, so the four add up to "
+                     f"{partsum:.1f}h against an exact total of {exact:.1f}h. The total is the measured "
+                     f"figure; the parts are the rounded ones.", size=14, fill=P["ink2"]))
+    emit("c1_phases", W, ytop + 22 + len(PH)*rowh + 46, "".join(o),
          "Four phases: build the system, give it a design language, move that language into Figma, then point it at real work",
          "Every figure below is counted from the git history and the session logs. Nothing is estimated.")
 
@@ -204,14 +211,14 @@ def c3_learned():
                 "an agent sent in specifically to attack the work.", size=16)
     emit("c3_learned", W, endy + 60, body,
          "What this round taught us — all of it found by attacking our own work",
-         "Six defects, logged as corrections C-046 and C-053 to C-056, each with the fix and a test that proves the fix.")
+         "Six defects across five corrections — C-046, and C-053 to C-056 — each with its fix and a test that proves the fix bites.")
 
 # ---------------------------------------------------------------- FRAME 4
 def c4_discoverers():
     dd = json.load(open("discoverers.json"))["by_discoverer"]
-    order = ["a dispatched agent","an automated check firing","the human, by asking","the author, self-caught"]
+    order = ["a dispatched agent","an automated check firing on its own","the human, by asking","the author, self-caught"]
     labels = {"a dispatched agent":"An agent sent in to check someone else's work",
-              "an automated check firing":"An automatic check, firing on its own",
+              "an automated check firing on its own":"An automatic check, firing on its own",
               "the human, by asking":"You, by asking a question",
               "the author, self-caught":"Whoever made the mistake, catching it themselves"}
     rows = [(labels[k], dd.get(k,0), "") for k in order]
@@ -249,7 +256,7 @@ def c4_artifacts():
     body += txt(0, endy + 36, f'{st.get("approved",0)} of {R["artifacts_total"]} deliverables have been '
                 f'approved by a person. The rest are waiting, or were replaced.', size=16)
     emit("c4_artifacts", W, endy + 60, body,
-         "32 deliverables produced; two have a human signature on them",
+         f"{R['artifacts_total']} deliverables produced; {st.get('approved',0)} have a human signature on them",
          "Every deliverable carries a status. Nothing is 'done' until a person says so — that is Gate A.")
 
 def c4_rules():

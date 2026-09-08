@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from svgkit import *
 import charts as CH
 
-D = json.load(open("board-dataset.json"))
+D = json.load(open("board-dataset.frozen.json"))
 W, PAD, GAP = 2400, 60, 46
 CONTENT = W - PAD*2
 
@@ -56,22 +56,31 @@ def frame(key, kicker, title, sub, chart_names, means, nexts):
             yy += 24*len(lines) + 18
     y = yy + 30
     o.append(line(PAD, y, W-PAD, y, P["rule"], 1)); y += 30
-    o.append(txt(PAD, y+18, "CoForge · measured from the git history and the session logs on 2026-09-08 · "
-                "every transcript record counted once · dollars are illustrative at Opus 5 list price and were never billed",
+    o.append(txt(PAD, y+18, f"CoForge · measured from the git history and the session logs, frozen at "
+                f"{D['frozen_at']} UTC (the last record in the corpus, not the time the script ran) · "
+                f"every transcript record counted once, keyed on message uuid · "
+                f"dollars are illustrative at Opus 5 list price and were never billed",
                 size=14, fill=P["ink2"]))
-    y += 50
+    o.append(txt(PAD, y+40, "The repository counts do not include this report: it was committed after the "
+                "figures were frozen, so the artifact and commit totals here are one behind by construction.",
+                size=14, fill=P["ink2"]))
+    y += 72
     body = rect(0, 0, W, y, P["ground"]) + "".join(o)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{y}" '
             f'viewBox="0 0 {W} {y}">{body}</svg>')
 
 R = D["repo"]; C = D["cost_illustrative_usd"]
 ACT = sum(v.get("active_minutes",0) for v in D["by_day"].values())/60
+import json as _j
+_dd = _j.load(open('discoverers.json'))
+PCT = round(100*_dd['found_by_other']/_dd['total'])
 PH4 = next(p["active_h"] for p in D["phases"] if p["phase"].startswith("P4"))
 DEFINED = ["system-keeper","dashboard-analyst","token-keeper","a11y-checker","research-synthesizer",
            "design-critic","orchestrator","research-ops","screen-producer","content-comms",
            "brand-director","diagram-cartographer","evidence-clerk","handoff-scribe"]
 IDLE = sum(1 for a in DEFINED if D["subagents"].get(a, 0) == 0)
 DISPATCHES = sum(D["subagents"].get(a, 0) for a in DEFINED)
+SEP7PCT = round(100*D['by_day']['2026-09-07']['out'] / sum(v.get('out',0) for v in D['by_day'].values()))
 F = {}
 
 F["f1_summary"] = frame("f1", "REPORT 2 · FRAME 1 OF 4",
@@ -81,7 +90,7 @@ F["f1_summary"] = frame("f1", "REPORT 2 · FRAME 1 OF 4",
   ["c1_phases","c1_cost","c1_daily","c1_time"],
   [f"The heaviest phase was not building the system — it was using it. First application took {PH4:.1f} of the {ACT:.1f} active hours.",
    f"Cost is dominated by re-reading, not by writing. {round(100*C['cache_read']/C['total_1h_ttl'])}% of the bill is the agents re-sending the conversation.",
-   "The work is bursty. One day, Sep 7, produced more than the first three phases combined.",
+   f"The work is bursty. The busiest single day, Sep 7, produced {SEP7PCT}% of everything the agents wrote in fourteen days.",
    "'How long did it take' has two honest answers four times apart, so the board defines which one it uses."],
   ["Shorten sessions, or compact them. The re-reading cost grows with the square of the conversation length.",
    "Keep the two time definitions in the metrics schema so future reports stay comparable.",
@@ -98,7 +107,7 @@ F["f2_blueprint"] = frame("f2", "REPORT 2 · FRAME 2 OF 4",
    "The busiest tools are reading and running things — the agents spend most of their effort checking, not writing.",
    "No agent holds a Figma tool. This board was written by the main session, because the grant was never made."],
   ["Make the ADR-007 Figma grant now that a real file exists, and test it rather than assume it.",
-   "Give the four unused agents their first real task, or retire them from the roster.",
+   f"Give the {IDLE} unused agents their first real task, or retire them from the roster.",
    f"Keep the routing table as the single place that decides who does what — it already routed {DISPATCHES} dispatches to the roster.",
    "Add a counter for the autonomy ladder, which is still declared but not operative."])
 
@@ -121,10 +130,10 @@ F["f4_contract"] = frame("f4", "REPORT 2 · FRAME 4 OF 4",
   ["The promises the system makes, and how much of it is actually being used.",
    "The contract is short on purpose: two prohibitions, two sources of truth, and one way in."],
   ["c4_discoverers","c4_components","c4_artifacts","c4_rules"],
-  ["68% of mistakes were found by someone other than whoever made them. That single fact is the design.",
-   "The design system is still RED: 208 of 219 components were bought in, not designed here.",
-   "Two of 32 deliverables carry a human signature. Everything else is draft or superseded.",
-   f"{R['corrections']} mistakes have been distilled into {R['standing_rules']} rules, and the rules reach all 14 agents automatically."],
+  [f"{PCT}% of mistakes were found by someone other than whoever made them. That single fact is the design.",
+   f"The design system is still RED: {R['components_total']-R['components_authored_here']} of {R['components_total']} components were bought in, not designed here.",
+   f"{R['artifacts_by_status'].get('approved',0)} of {R['artifacts_total']} deliverables carry a human signature. Everything else is draft or superseded.",
+   f"{R['corrections']} mistakes have been distilled into {R['standing_rules']} rules, and the rules reach all {R['agents_defined']} agents automatically."],
   ["Never let the author of a change be the one who clears it. It is the highest-yield rule here.",
    "Author and promote real L2 components, or stop describing the index as a design system.",
    "Move the finished deliverables through Gate A so 'approved' means something.",

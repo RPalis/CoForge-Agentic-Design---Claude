@@ -1,0 +1,72 @@
+{
+  "id": "ART-028",
+  "type": "handoff-spec",
+  "workstream": "design-system-authoring",
+  "version": 1,
+  "title": "CoForge shareable artifact package — competitor analysis + design system foundations, self-contained HTML, plus a Figma Make brief for 1:1 rebuild",
+  "file": "coforge-artifacts.zip",
+  "status": "draft",
+  "created": "2026-09-08",
+  "owner_agent": "main session",
+  "level": 1,
+  "what_it_is": "A zip anyone can open from disk with no server, build step or network. Two HTML documents plus a README and a Figma Make brief.",
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-025",
+      "ART-026"
+    ],
+    "decisions": [
+      "ADR-012",
+      "ADR-021",
+      "ADR-022"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json",
+      "design-system/foundations/brand.md",
+      "artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "contents": {
+    "01-competitor-analysis.html": {
+      "bytes": 477899,
+      "sha256": "2f8b65bd9d8ce0e9f1e8be9f2fc031c5ad0d2fbf5a886b4c6c646f7d9289c272"
+    },
+    "02-design-system-foundations.html": {
+      "bytes": 42709,
+      "sha256": "146389975b8abebbc08894eaf4445f3dd2654b500e273e40ad64081d78e7c0ff"
+    },
+    "FIGMA-MAKE.md": {
+      "bytes": 7157,
+      "sha256": "4c49e444c2d30a58bf98d3dbc5a9fab9bf9f5381a39e0119e184f86483e87d7b"
+    },
+    "README.md": {
+      "bytes": 3326,
+      "sha256": "0860797c59e566d363b116afb51c5e202d7e255047ec7b7c0b61856b18990fa9"
+    },
+    "index.html": {
+      "bytes": 3939,
+      "sha256": "18a1da8cd643f8beb60298d7c014e698ea343b32abcdeac171da4306a321d38c"
+    }
+  },
+  "provenance": {
+    "01-competitor-analysis.html": "BYTE-IDENTICAL to the published ART-026 v2 payload — copied, never transformed. Verified with cmp.",
+    "02-design-system-foundations.html": "GENERATED at build time from tokens.json. Every contrast ratio computed from the token values; every rule quoted is the token's own $description. 829 of 829 tokens resolve, 823 carry a description.",
+    "FIGMA-MAKE.md": "GENERATED from the same token file, so the brief cannot drift from the system it describes."
+  },
+  "verified": {
+    "method": "each page loaded in headless Chrome at 1440px and 390px; text contrast measured against the element actually behind it; horizontal overflow; and every network request recorded",
+    "external_network_requests": 0,
+    "text_contrast_failures": 0,
+    "horizontal_overflow": false,
+    "verified_from": "a clean extraction of the zip, not the build directory"
+  },
+  "known_limits": [
+    "Fonts are NOT embedded. Anek Latin and Source Code Pro are Open Font License faces; a machine without them installed falls back to its system sans, which shifts line breaks and type texture. Colour, spacing, structure and every figure are unaffected. Embedding them would require downloading the font files, which has not been done.",
+    "No independent agent has attacked this package.",
+    "Gate A has not been given; status is draft."
+  ],
+  "commit": "11a652f"
+}

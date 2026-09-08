@@ -1,6 +1,6 @@
 {
   "run_id": "2026-09-08",
-  "generated_at": "2026-09-08T14:02:49",
+  "generated_at": "2026-09-08T14:24:06",
   "project": "coforge",
   "provenance": {
     "schema_version": "2",
@@ -8,26 +8,26 @@
     "detail": "validation/metrics.schema.json"
   },
   "session": {
-    "turns": 5862,
+    "turns": 5953,
     "transcripts": 4,
-    "unique_records": 15733,
-    "non_message_records": 2904,
-    "active_minutes_distinct": 1417,
-    "active_hours_distinct_minutes": 23.6,
-    "elapsed_span_by_day_hours": 94.3
+    "unique_records": 15931,
+    "non_message_records": 2940,
+    "active_minutes_distinct": 1437,
+    "active_hours_distinct_minutes": 23.9,
+    "elapsed_span_by_day_hours": 94.6
   },
   "tokens": {
-    "input": 11688,
-    "output": 7361244,
-    "cache_read": 2975475772,
-    "cache_creation": 58771539,
-    "billable": 7372932
+    "input": 11870,
+    "output": 7628361,
+    "cache_read": 3042651470,
+    "cache_creation": 59237705,
+    "billable": 7640231
   },
   "tools": {
-    "Bash": 1464,
+    "Bash": 1484,
     "Edit": 126,
     "mcp__chrome-devtools__evaluate_script": 116,
-    "mcp__figma-console__figma_execute": 82,
+    "mcp__figma-console__figma_execute": 94,
     "mcp__claude-in-chrome__javascript_tool": 79,
     "mcp__Claude_Browser__computer": 65,
     "Agent": 65,
@@ -53,10 +53,10 @@
     "mcp__ccd_session__mark_chapter": 8,
     "mcp__chrome-devtools__resize_page": 8,
     "mcp__figma-console__figma_import_tokens": 8,
+    "mcp__figma-console__figma_take_screenshot": 8,
     "WebFetch": 7,
     "mcp__Claude_Browser__get_page_text": 7,
     "mcp__Claude_Browser__read_page": 7,
-    "mcp__figma-console__figma_take_screenshot": 7,
     "mcp__chrome-devtools__new_page": 5,
     "mcp__claude-in-chrome__tabs_context_mcp": 5,
     "mcp__chrome-devtools__list_pages": 5,
@@ -115,7 +115,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 273072
+    "tokens_per_artifact": 282972
   },
   "gates": {
     "verdict": "FAIL",

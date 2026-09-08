@@ -1,0 +1,14 @@
+{
+ "--ground": "#eeece6",
+ "--ink": "#041222",
+ "--ink-2": "#525252",
+ "--raised": "#ffffff",
+ "--coral": "#f15b40",
+ "--coral-text": "#b03822",
+ "--rule": "#e0e0e0",
+ "--border-strong": "#6f6f6f",
+ "--gray-60": "#6f6f6f",
+ "--layer-accent-01": "#e0e0e0",
+ "--gap-90": "#262626",
+ "--focus": "#0f62fe"
+}

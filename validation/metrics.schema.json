@@ -2,44 +2,272 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "coforge/metrics.schema.json",
   "title": "CoForge run record",
-  "description": "Defined BEFORE measuring, so measurements are not invented ad hoc — the same argument as the component contract schema (ADR-013). PRIVACY: counts and identifiers only. No conversation content, no file contents, no free text. Enforced by a self-check in collect-metrics.py.",
+  "description": "Defined BEFORE measuring, so measurements are not invented ad hoc \u2014 the same argument as the component contract schema (ADR-013). PRIVACY: counts and identifiers only. No conversation content, no file contents, no free text. Enforced by a self-check in collect-metrics.py. Every property below carries a written definition (C-057, 2026-09-08) because a number whose definition is not written down cannot be compared across runs \u2014 the ADR-014 argument, extended from 'has a schema' to 'every field in the schema is defined', after two fields (gates.source, corrections.with_check/unchecked) were found emitted by the collector but absent from this schema \u2014 meaning nothing here was ever actually validated against what gets written.",
   "type": "object",
-  "required": ["run_id","generated_at","tokens","artifacts","gates","readiness"],
+  "required": [
+    "run_id",
+    "generated_at",
+    "tokens",
+    "artifacts",
+    "gates",
+    "readiness"
+  ],
   "additionalProperties": false,
   "properties": {
-    "run_id":       {"type":"string","description":"ISO date of the run"},
-    "generated_at": {"type":"string"},
-    "project":      {"type":"string"},
+    "run_id": {
+      "type": "string",
+      "description": "ISO date the record was generated FOR. One record per calendar day; re-running the collector on the same day overwrites that day's file (idempotent), it never creates a second file for the same date."
+    },
+    "generated_at": {
+      "type": "string",
+      "description": "ISO timestamp the collector actually ran, local time. Can differ from run_id's date only if the collector is run after midnight for the previous day's close-out."
+    },
+    "project": {
+      "type": "string",
+      "description": "os.path.basename of the repository root at collection time \u2014 an identifier, not a path."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Present ONLY on records written schema_version 2 (2026-09-08) or later. ITS ABSENCE IS THE MARKER for a pre-fix record: those records summed every raw transcript file in ~/.claude/projects/<slug>/*.jsonl, including nested conversation forks that are supersets of one another, and are inflated by roughly 2.1x on this project's corpus (C-057). Never backfilled onto old records \u2014 that would let a guessed method stand in for a measured one, which is the defect this field exists to prevent. See validation/reports/2026-09-08__collector-dedup-fix.md.",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "description": "Version of THIS schema file the record was written against. '2' = uuid-deduplicated counting (2026-09-08 onward). No 'schema_version 1' value was ever stamped \u2014 version 1 records are recognisable only by having no provenance block at all."
+        },
+        "counting_method": {
+          "type": "string",
+          "description": "Machine-readable tag for how transcript records were aggregated. 'uuid-dedup-v1': every record is keyed by its message uuid when present, else by a sha256 of its own canonical JSON, and only the first occurrence of a key is counted \u2014 so a record appearing in several overlapping transcript files (a session and its forks) contributes exactly once."
+        },
+        "detail": {
+          "type": "string",
+          "description": "Pointer to where the full prose definition of counting_method lives \u2014 validation/metrics.schema.json (this file) and validation/reports/2026-09-08__collector-dedup-fix.md. Kept short deliberately: the privacy check refuses any record value that reads as prose, so definitions live in the schema/report, never inlined into the record itself."
+        }
+      }
+    },
     "session": {
-      "type":"object","additionalProperties": false,
-      "properties":{"turns":{"type":"integer"},"duration_min":{"type":"number"},
-                    "transcripts":{"type":"integer"}}},
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Facts about the transcript corpus itself, all computed AFTER de-duplication (see provenance). Pre-schema_version-2 records instead carry a single ambiguous 'duration_min' field (first-timestamp-to-last-timestamp across the WHOLE multi-day range, not de-duplicated) \u2014 retired, not reused, because it answered neither of the two questions defined below.",
+      "properties": {
+        "turns": {
+          "type": "integer",
+          "description": "Count of DE-DUPLICATED transcript records that carry a `usage` block \u2014 i.e. one model completion with token accounting, counted once even if it appears in multiple nested transcript files."
+        },
+        "transcripts": {
+          "type": "integer",
+          "description": "Count of *.jsonl FILES read in ~/.claude/projects/<slug>/. This is a file count, not an event count, and is NOT de-duplicated \u2014 nested forks each count as one file even though their contents overlap. Use unique_records for the de-duplicated event count."
+        },
+        "unique_records": {
+          "type": "integer",
+          "description": "Count of distinct de-duplication keys (uuid, or content-hash for records with no uuid) seen across ALL transcript files combined. This is the true number of distinct events; it is smaller than the sum of each file's own record count whenever any file is a fork of another."
+        },
+        "non_message_records": {
+          "type": "integer",
+          "description": "Of unique_records, how many are session/UI bookkeeping events with no uuid and no usage block (queue-operation, custom-title, mode, ai-title, atis-latch, bridge-session, frame-link, artifact-*-ledger). Verified empirically (2026-09-08, this project's corpus) that none of these ever carry token usage, so they are excluded from turns/tokens/tools without loss. Reported here so that exclusion is visible, not silent."
+        },
+        "active_minutes_distinct": {
+          "type": "integer",
+          "description": "Count of distinct UTC calendar-minutes (YYYY-MM-DDTHH:MM) in which at least one de-duplicated record carries a timestamp. A LOWER BOUND on time spent: a minute with ten records and a minute with one record both count as 1, and it never counts a minute nothing happened in."
+        },
+        "active_hours_distinct_minutes": {
+          "type": "number",
+          "description": "active_minutes_distinct / 60, rounded to 1 decimal. One of the two DEFINED 'how long was this session' readings \u2014 the smaller one, because it counts only minutes with recorded activity."
+        },
+        "elapsed_span_by_day_hours": {
+          "type": "number",
+          "description": "Group de-duplicated timestamps by UTC calendar day; for each day take (latest timestamp \u2212 earliest timestamp) in hours; sum across all days present. The OTHER defined 'how long' reading \u2014 an UPPER BOUND, because it counts every gap WITHIN a day (a lunch break, a long pause) as active time. Does NOT count the overnight gap between days, so it is smaller than a single first-to-last span over the whole multi-day range would be. On this project's 2026-09-08 corpus this reads ~151.1h against ~32.0h for active_hours_distinct_minutes \u2014 both correct, answering different questions."
+        },
+        "duration_min": {
+          "type": "number",
+          "description": "LEGACY, schema_version < 2 only. First-timestamp-to-last-timestamp across the ENTIRE multi-day range (not per-day, not de-duplicated), in minutes. Retired because it is a third, more ambiguous reading than either active_hours_distinct_minutes or elapsed_span_by_day_hours and was never named as such. Not emitted by schema_version 2+."
+        }
+      }
+    },
     "tokens": {
-      "type":"object","additionalProperties": false,
-      "description":"Billable = input + output. Cache figures reported separately because they dominate volume but not cost.",
-      "properties":{"input":{"type":"integer"},"output":{"type":"integer"},
-                    "cache_read":{"type":"integer"},"cache_creation":{"type":"integer"},
-                    "billable":{"type":"integer"}}},
-    "tools":  {"type":"object","description":"tool name → call count"},
-    "skills": {"type":"object","description":"skill name → activation count"},
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Billable = input + output. Cache figures reported separately because they dominate volume but not cost. Schema_version 2+: summed over DE-DUPLICATED transcript records only (see provenance) \u2014 pre-fix records summed every transcript file including nested forks and are inflated roughly 2.1x on this project's corpus.",
+      "properties": {
+        "input": {
+          "type": "integer",
+          "description": "Sum of input_tokens across de-duplicated turns."
+        },
+        "output": {
+          "type": "integer",
+          "description": "Sum of output_tokens across de-duplicated turns."
+        },
+        "cache_read": {
+          "type": "integer",
+          "description": "Sum of cache_read_input_tokens across de-duplicated turns. Dominates volume, excluded from billable."
+        },
+        "cache_creation": {
+          "type": "integer",
+          "description": "Sum of cache_creation_input_tokens across de-duplicated turns. Excluded from billable."
+        },
+        "billable": {
+          "type": "integer",
+          "description": "input + output only. The figure comparable to invoiced cost; cache figures are reported alongside but not folded in."
+        }
+      }
+    },
+    "tools": {
+      "type": "object",
+      "description": "tool name \u2192 call count. One call per tool_use content block on a de-duplicated turn; a tool_use block belonging to a record already counted (via an overlapping transcript fork) is not re-counted."
+    },
+    "skills": {
+      "type": "object",
+      "description": "skill name \u2192 activation count, drawn from the Skill tool's `skill` input on de-duplicated turns only."
+    },
     "artifacts": {
-      "type":"object","additionalProperties": false,
-      "properties":{"total":{"type":"integer"},"live":{"type":"integer"},
-                    "by_type":{"type":"object"},"by_status":{"type":"object"},
-                    "tokens_per_artifact":{"type":["integer","null"]}}},
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Snapshot of artifacts/_registry.json at collection time \u2014 not derived from transcripts, not subject to the de-duplication fix.",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Count of all entries in _registry.json regardless of status."
+        },
+        "live": {
+          "type": "integer",
+          "description": "total minus entries with status superseded or archived."
+        },
+        "by_type": {
+          "type": "object",
+          "description": "artifact type \u2192 count."
+        },
+        "by_status": {
+          "type": "object",
+          "description": "lifecycle status \u2192 count."
+        },
+        "tokens_per_artifact": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "billable tokens / artifacts.total, rounded. null when total is 0 (never divide by zero silently)."
+        }
+      }
+    },
     "gates": {
-      "type":"object","additionalProperties": false,
-      "description":"skipped is tracked as a first-class outcome — skipped is not passed",
-      "properties":{"verdict":{"type":"string"},"blocker":{"type":"integer"},
-                    "error":{"type":"integer"},"warning":{"type":"integer"},
-                    "info":{"type":"integer"},"skipped":{"type":"integer"}}},
-    "corrections": {"type":"object","additionalProperties": false,
-                    "properties":{"logged":{"type":"integer"},"promoted":{"type":"integer"}}},
-    "governance":  {"type":"object","additionalProperties": false,
-                    "properties":{"adrs":{"type":"integer"},"agents":{"type":"integer"},
-                                  "artifact_types":{"type":"integer"}}},
-    "readiness":   {"type":"object","additionalProperties": false,
-                    "properties":{"l1":{"type":"number"},"l2":{"type":"number"},
-                                  "workflow":{"type":"number"}}}
+      "type": "object",
+      "additionalProperties": false,
+      "description": "skipped is tracked as a first-class outcome \u2014 skipped is not passed. Derived by RUNNING validation/audit-system.py --json live at collection time, never by parsing a report file (C-026).",
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "description": "Overall audit verdict string (e.g. PASS/FAIL/BLOCKED) as returned by the live audit run, or UNKNOWN/UNAVAILABLE on failure to run."
+        },
+        "blocker": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Count of blocker-severity findings from the live audit run. null (not 0) if the audit could not be run \u2014 zero is a measurement, null is an admission it wasn't taken."
+        },
+        "error": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Count of error-severity findings. null if the audit could not be run."
+        },
+        "warning": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Count of warning-severity findings. null if the audit could not be run."
+        },
+        "info": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Count of info-severity findings. null if the audit could not be run."
+        },
+        "skipped": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Count of checks the audit itself reported as skipped (not passed). null if the audit could not be run."
+        },
+        "source": {
+          "type": "string",
+          "description": "'live-audit' if validation/audit-system.py --json was actually invoked and returned successfully this run; 'unavailable' if the subprocess call failed or timed out. Set to 'live-audit' ONLY after the subprocess returns, never before \u2014 a marker set before the thing it attests to has happened is the same defect as a value nothing applies to."
+        }
+      }
+    },
+    "corrections": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Snapshot of validation/corrections.json at collection time (not memory/corrections.md, which is gitignored and would read 0 in a fresh clone \u2014 C-026).",
+      "properties": {
+        "logged": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Total entries in the ledger. null if the ledger file could not be read."
+        },
+        "with_check": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Entries carrying a non-empty `check` field naming the validator that would catch the defect again."
+        },
+        "unchecked": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Entries with no `check` field \u2014 a found-and-fixed defect with no third leg (SR: 'found and fixed is two of three')."
+        },
+        "source": {
+          "type": "string",
+          "description": "Always 'validation/corrections.json' \u2014 recorded so a reader never has to guess which of the two 'corrections.md' files in this repo produced the count."
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Simple file-count facts about the repo's own governance surface, not derived from transcripts.",
+      "properties": {
+        "adrs": {
+          "type": "integer",
+          "description": "Count of decisions/*.md files."
+        },
+        "agents": {
+          "type": "integer",
+          "description": "Count of .claude/agents/*.md files."
+        },
+        "artifact_types": {
+          "type": "integer",
+          "description": "The `count` field from artifacts/_types.json \u2014 the number of registered artifact types."
+        }
+      }
+    },
+    "readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Percentages parsed from a live run of validation/readiness-audit.py. Empty object ({}) if that run failed \u2014 absence, not zero, on failure.",
+      "properties": {
+        "l1": {
+          "type": "number",
+          "description": "L1 Foundations readiness percentage, as reported by readiness-audit.py."
+        },
+        "l2": {
+          "type": "number",
+          "description": "L2 Complete readiness percentage, as reported by readiness-audit.py."
+        },
+        "workflow": {
+          "type": "number",
+          "description": "Workflow readiness percentage, as reported by readiness-audit.py."
+        }
+      }
+    }
   }
 }

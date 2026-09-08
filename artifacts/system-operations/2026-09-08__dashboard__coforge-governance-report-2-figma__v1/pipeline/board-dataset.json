@@ -1,0 +1,402 @@
+{
+ "generated": "2026-09-08",
+ "scope": "CoForge only (~/Projects/coforge). Hermes is a separate workflow, not measured here.",
+ "counting_rule": "every transcript record counted once, keyed on message uuid; the four transcripts are nested forks",
+ "unique_records": 12614,
+ "user_turns": 441,
+ "assistant_turns": 5740,
+ "tool_calls": 2516,
+ "tools": {
+  "Bash": 1438,
+  "Edit": 126,
+  "mcp__chrome-devtools__evaluate_script": 116,
+  "mcp__claude-in-chrome__javascript_tool": 79,
+  "mcp__figma-console__figma_execute": 71,
+  "mcp__Claude_Browser__computer": 65,
+  "Agent": 64,
+  "Write": 58,
+  "mcp__claude-in-chrome__navigate": 44,
+  "Read": 37,
+  "Artifact": 35,
+  "SendUserFile": 34,
+  "mcp__chrome-devtools__take_screenshot": 26,
+  "mcp__Claude_Browser__javascript_tool": 25,
+  "ToolSearch": 24,
+  "mcp__Claude_Browser__navigate": 20,
+  "mcp__chrome-devtools__navigate_page": 20,
+  "mcp__claude-in-chrome__computer": 20,
+  "mcp__Claude_Browser__resize_window": 19,
+  "AskUserQuestion": 17,
+  "mcp__Claude_Browser__browser_batch": 13,
+  "mcp__claude-in-chrome__find": 13,
+  "Skill": 11,
+  "mcp__Claude_Browser__preview_start": 11,
+  "mcp__figma-console__figma_delete_variable": 11,
+  "WebSearch": 10,
+  "mcp__ccd_session__mark_chapter": 8,
+  "mcp__chrome-devtools__resize_page": 8,
+  "mcp__figma-console__figma_import_tokens": 8,
+  "WebFetch": 7,
+  "mcp__Claude_Browser__get_page_text": 7,
+  "mcp__Claude_Browser__read_page": 7,
+  "mcp__chrome-devtools__new_page": 5,
+  "mcp__claude-in-chrome__tabs_context_mcp": 5,
+  "mcp__chrome-devtools__list_pages": 5,
+  "mcp__figma-console__figma_delete_variable_collection": 4,
+  "mcp__claude-in-chrome__browser_batch": 4,
+  "mcp__chrome-devtools__emulate": 3,
+  "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 3,
+  "mcp__figma-console__figma_get_status": 3,
+  "mcp__figma-console__figma_get_variables": 3,
+  "mcp__figma-console__figma_export_tokens": 3,
+  "mcp__figma-console__figma_take_screenshot": 3,
+  "mcp__Claude_Browser__find": 2,
+  "mcp__ccd_session_mgmt__set_session_title": 2,
+  "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 2,
+  "mcp__claude-in-chrome__list_connected_browsers": 2,
+  "mcp__chrome-devtools__take_snapshot": 2,
+  "SearchSkills": 2,
+  "mcp__Claude_Browser__read_console_messages": 1,
+  "mcp__Claude_Browser__tabs_context": 1,
+  "mcp__Claude_Browser__preview_stop": 1,
+  "mcp__Claude_Browser__tabs_close": 1,
+  "mcp__chrome-devtools__list_network_requests": 1,
+  "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_design_system_kit": 1,
+  "mcp__figma-console__figma_list_open_files": 1,
+  "mcp__figma-console__figma_navigate": 1,
+  "mcp__figma-console__figma_capture_screenshot": 1,
+  "mcp__Claude_Browser__tabs_create": 1,
+  "mcp__figma-console__figjam_get_board_contents": 1
+ },
+ "subagents": {
+  "system-keeper": 16,
+  "token-keeper": 9,
+  "general-purpose": 9,
+  "dashboard-analyst": 8,
+  "a11y-checker": 5,
+  "orchestrator": 4,
+  "research-synthesizer": 4,
+  "design-critic": 3,
+  "research-ops": 2,
+  "brand-director": 1,
+  "Plan": 1,
+  "screen-producer": 1,
+  "content-comms": 1
+ },
+ "tokens": {
+  "in": 11444,
+  "out": 7126415,
+  "cache_read": 2902536151,
+  "cache_write": 58368958
+ },
+ "price_per_million": {
+  "in": 5.0,
+  "out": 25.0,
+  "cache_read": 0.5,
+  "cache_write_5m": 6.25,
+  "cache_write_1h": 10.0
+ },
+ "cost_illustrative_usd": {
+  "input": 0.06,
+  "output": 178.16,
+  "cache_read": 1451.27,
+  "cache_write_5m": 364.81,
+  "cache_write_1h": 583.69,
+  "total_5m_ttl": 1994.29,
+  "total_1h_ttl": 2213.18
+ },
+ "by_day": {
+  "2026-08-25": {
+   "user_turns": 20,
+   "in": 938,
+   "out": 863098,
+   "cache_read": 167334506,
+   "cache_write": 2073963,
+   "assistant_turns": 469,
+   "tool_calls": 233,
+   "active_minutes": 100,
+   "span_minutes": 477
+  },
+  "2026-08-26": {
+   "user_turns": 21,
+   "in": 406,
+   "out": 300781,
+   "cache_read": 118120458,
+   "cache_write": 10738794,
+   "assistant_turns": 203,
+   "tool_calls": 80,
+   "active_minutes": 62,
+   "span_minutes": 615
+  },
+  "2026-08-27": {
+   "user_turns": 34,
+   "in": 1156,
+   "out": 752388,
+   "cache_read": 201902488,
+   "cache_write": 8020014,
+   "assistant_turns": 578,
+   "tool_calls": 275,
+   "active_minutes": 145,
+   "span_minutes": 548
+  },
+  "2026-08-28": {
+   "in": 1058,
+   "out": 474091,
+   "cache_read": 326507203,
+   "cache_write": 2608866,
+   "assistant_turns": 530,
+   "tool_calls": 250,
+   "user_turns": 48,
+   "active_minutes": 115,
+   "span_minutes": 378
+  },
+  "2026-08-31": {
+   "user_turns": 53,
+   "in": 694,
+   "out": 311279,
+   "cache_read": 260619919,
+   "cache_write": 5591067,
+   "assistant_turns": 348,
+   "tool_calls": 141,
+   "active_minutes": 99,
+   "span_minutes": 382
+  },
+  "2026-09-01": {
+   "user_turns": 29,
+   "in": 1056,
+   "out": 606371,
+   "cache_read": 169644449,
+   "cache_write": 2266352,
+   "assistant_turns": 528,
+   "tool_calls": 226,
+   "active_minutes": 105,
+   "span_minutes": 279
+  },
+  "2026-09-02": {
+   "user_turns": 44,
+   "in": 886,
+   "out": 512030,
+   "cache_read": 306438784,
+   "cache_write": 2976789,
+   "assistant_turns": 443,
+   "tool_calls": 182,
+   "active_minutes": 120,
+   "span_minutes": 373
+  },
+  "2026-09-03": {
+   "user_turns": 56,
+   "in": 682,
+   "out": 449189,
+   "cache_read": 152435723,
+   "cache_write": 7391860,
+   "assistant_turns": 350,
+   "tool_calls": 124,
+   "active_minutes": 141,
+   "span_minutes": 900
+  },
+  "2026-09-04": {
+   "user_turns": 69,
+   "in": 1594,
+   "out": 914364,
+   "cache_read": 526756085,
+   "cache_write": 3969707,
+   "assistant_turns": 798,
+   "tool_calls": 339,
+   "active_minutes": 193,
+   "span_minutes": 673
+  },
+  "2026-09-07": {
+   "user_turns": 58,
+   "in": 2260,
+   "out": 1428954,
+   "cache_read": 553667313,
+   "cache_write": 10026611,
+   "assistant_turns": 1134,
+   "tool_calls": 530,
+   "active_minutes": 242,
+   "span_minutes": 614
+  },
+  "2026-09-08": {
+   "in": 714,
+   "out": 513870,
+   "cache_read": 119109223,
+   "cache_write": 2704935,
+   "assistant_turns": 359,
+   "user_turns": 9,
+   "tool_calls": 136,
+   "active_minutes": 65,
+   "span_minutes": 238
+  }
+ },
+ "repo": {
+  "commits_total": 80,
+  "first_commit": "2026-08-26",
+  "last_commit": "2026-09-08",
+  "commits_by_day": {
+   "2026-08-26": 1,
+   "2026-08-27": 3,
+   "2026-08-28": 18,
+   "2026-08-31": 11,
+   "2026-09-01": 6,
+   "2026-09-02": 13,
+   "2026-09-03": 3,
+   "2026-09-04": 2,
+   "2026-09-07": 22,
+   "2026-09-08": 1
+  },
+  "churn_by_day": {
+   "2026-08-26": {
+    "added": 7696,
+    "deleted": 0
+   },
+   "2026-08-27": {
+    "added": 11957,
+    "deleted": 157
+   },
+   "2026-08-28": {
+    "added": 27452,
+    "deleted": 2353
+   },
+   "2026-08-31": {
+    "added": 2109,
+    "deleted": 221
+   },
+   "2026-09-01": {
+    "added": 10793,
+    "deleted": 171
+   },
+   "2026-09-02": {
+    "added": 15106,
+    "deleted": 3036
+   },
+   "2026-09-03": {
+    "added": 145,
+    "deleted": 16
+   },
+   "2026-09-04": {
+    "added": 28158,
+    "deleted": 97
+   },
+   "2026-09-07": {
+    "added": 28545,
+    "deleted": 804
+   },
+   "2026-09-08": {
+    "added": 2666,
+    "deleted": 770
+   }
+  },
+  "artifacts_total": 32,
+  "artifacts_by_status": {
+   "draft": 19,
+   "superseded": 8,
+   "in-review": 3,
+   "approved": 2
+  },
+  "artifacts_by_type": {
+   "competitive-benchmark": 7,
+   "dashboard": 7,
+   "component-spec": 4,
+   "a11y-audit": 4,
+   "brand-extraction": 2,
+   "prioritization": 2,
+   "ux-copy": 1,
+   "": 1,
+   "heuristic-review": 1,
+   "design-critique": 1,
+   "metrics-scorecard": 1,
+   "research-plan": 1
+  },
+  "adrs": 22,
+  "agents_defined": 14,
+  "tokens": 829,
+  "components_total": 219,
+  "components_by_level": {
+   "1": 11,
+   "2": 208
+  },
+  "components_authored_here": 11,
+  "evidence_ledger_records": 0,
+  "corrections": 57,
+  "standing_rules": 11,
+  "validation_reports": 31,
+  "corrections_by_discoverer": {
+   "the author, self-caught": 18,
+   "an automated check firing": 7,
+   "a dispatched agent": 26,
+   "the human, by asking": 6
+  }
+ },
+ "frozen_at": "2026-09-08 13:23",
+ "corroboration": "The repository's own collector (validation/collect-metrics.py), repaired and self-tested independently, reports 7.12M output tokens and 2.90B cache reads for the same corpus. This board's independent count agrees within 2%; the gap is the minutes between the two runs.",
+ "phases": [
+  {
+   "phase": "P1 \u00b7 Agentic creation",
+   "from": "2026-08-25",
+   "to": "2026-08-27",
+   "blurb": "The system that builds: 14 agents, the routing table, Gate A/B, the artifact taxonomy, ADR-001 to ADR-014.",
+   "days": 3,
+   "active_h": 5.1,
+   "user_turns": 75,
+   "assistant_turns": 1250,
+   "tool_calls": 588,
+   "output_tokens": 1916267,
+   "cache_read": 487357452,
+   "cache_write": 20832771,
+   "commits": 4,
+   "lines_added": 19653,
+   "cost_usd": 499.93
+  },
+  {
+   "phase": "P2 \u00b7 DS Foundations",
+   "from": "2026-08-28",
+   "to": "2026-08-31",
+   "blurb": "Brand approved at Gate A, 829 tokens across five axes, the first L1 primitives, token release 0.2.0.",
+   "days": 2,
+   "active_h": 3.6,
+   "user_turns": 101,
+   "assistant_turns": 878,
+   "tool_calls": 391,
+   "output_tokens": 785370,
+   "cache_read": 587127122,
+   "cache_write": 8199933,
+   "commits": 29,
+   "lines_added": 29561,
+   "cost_usd": 395.21
+  },
+  {
+   "phase": "P3 \u00b7 Figma migration",
+   "from": "2026-09-01",
+   "to": "2026-09-02",
+   "blurb": "Tokens reach Figma as variables, the Carbon adapter lands 208 components, CI runs the audit on a real PR.",
+   "days": 2,
+   "active_h": 3.8,
+   "user_turns": 73,
+   "assistant_turns": 971,
+   "tool_calls": 408,
+   "output_tokens": 1118401,
+   "cache_read": 476083233,
+   "cache_write": 5243141,
+   "commits": 19,
+   "lines_added": 25899,
+   "cost_usd": 318.44
+  },
+  {
+   "phase": "P4 \u00b7 First application",
+   "from": "2026-09-03",
+   "to": "2026-09-08",
+   "blurb": "The system is pointed at real work: Batch 3, capture round 1 across 17 competitors, the findings dashboard.",
+   "days": 4,
+   "active_h": 10.7,
+   "user_turns": 192,
+   "assistant_turns": 2641,
+   "tool_calls": 1129,
+   "output_tokens": 3306377,
+   "cache_read": 1351968344,
+   "cache_write": 24093113,
+   "commits": 28,
+   "lines_added": 59514,
+   "cost_usd": 999.6
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "by_discoverer": {
+  "the author, self-caught": 18,
+  "an automated check firing": 7,
+  "a dispatched agent": 26,
+  "the human, by asking": 6
+ },
+ "total": 57,
+ "found_by_other": 39,
+ "rule": "classified by the FIRST actor named in found_by"
+}

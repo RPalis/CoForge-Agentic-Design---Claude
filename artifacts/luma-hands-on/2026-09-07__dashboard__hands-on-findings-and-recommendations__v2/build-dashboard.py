@@ -19,7 +19,7 @@ Reads:
 Writes:
   luma-competitor-research-findings.html (beside this script)
 """
-import json, hashlib, os, re, sys, html as _html
+import json, hashlib, os, re, sys, collections, html as _html
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import charts
 
@@ -845,6 +845,55 @@ FINDING_CORRECTIONS = {
         "captures. The capture file is unedited; this correction is applied at render.",
 }
 
+
+_FIDRE = re.compile(r"F-?(\d{1,3})\b")
+def _evidence_n(item):
+    """Count of DISTINCT resolvable findings behind a card. Real data, not a
+    decorative meter — craft-floor refuses sparklines standing in for content."""
+    blob = json.dumps(item.get("sources"), ensure_ascii=False)
+    return len({m.group(1).lstrip("0") for m in _FIDRE.finditer(blob)} & set(_INDEX_BY_NUM))
+
+def render_row(item, kind, who=None, state=None, meter_max=8, alone=False):
+    """The one row shape. kind sets the panel's register line."""
+    pid = item["id"]
+    n = _evidence_n(item)
+    body = item["body"] if isinstance(item.get("body"), list) else [str(item.get("body", ""))]
+    conf = item.get("confidence_raw") or item.get("weakest_confidence") or ""
+    add_panel(pid, item["title"], f'{kind}{" · " + who if who else ""}{" · " + conf if conf else ""}',
+              ([f'Scope limit: {item["scope_limit"]}'] if item.get("scope_limit") else [])
+              + body
+              + ([f'Rests on: {item["rests_on"]}'] if item.get("rests_on") else [])
+              + ([f'Confidence: {item["confidence_note"]}'] if item.get("confidence_note") else []),
+              [f'[{sx}]' for sx in item.get("sources", [])])
+    # spoken only when it is not already in the title, so the name does not stutter
+    who_said = f' {who}.' if who and who.lower() not in item["title"].lower() else ""
+    pips = "".join(f'<i class="{"on" if k < n else ""}"></i>' for k in range(meter_max))
+    meter = (f'<span class="meter {"meter--alone" if alone else ""}" aria-hidden="true">{pips}</span>'
+             if n else '<span class="meter__z" aria-hidden="true">no finding cited</span>')
+    st = f'<span class="st {"st--" + state if state else ""}">{esc(state or "")}</span>' if state else '<span></span>'
+    sub = f'<span class="row__sub">{esc(item["scope_limit"][:110])}…</span>' if item.get("scope_limit") else ""
+    return f'''<button type="button" class="row" data-detail="{pid}"
+    aria-haspopup="true" aria-controls="detail-panel" aria-expanded="false"
+    aria-label="{esc(item["title"]).rstrip(".")}.{who_said} {n} finding{"s" if n != 1 else ""} cited{". " + state if state else ""}. Opens full text and sources.">
+  <span class="row__t">{esc(item["title"])}{sub}</span>
+  <span class="row__who">{esc(who or "")}</span>
+  {meter}
+  <span class="row__n">{n if n else "0"}<span class="row__nu"> finding{"s" if n != 1 else ""}</span></span>
+  {st}
+</button>'''
+
+def render_group(title, items, kind, who_key=None, state_fn=None, meter_max=8):
+    rows = "".join(render_row(it, kind,
+                              who=(it.get(who_key) if who_key else None),
+                              state=(state_fn(it) if state_fn else None),
+                              meter_max=meter_max,
+                              alone=(state_fn(it) == "alone" if state_fn else False))
+                   for it in items)
+    ns = sum(_evidence_n(it) for it in items)
+    return (f'<div class="grouphead"><h3>{esc(title)}</h3>'
+            f'<span class="n">{len(items)} · {ns} findings cited</span></div>'
+            f'<div class="rows">{rows}</div>')
+
 def render_index_row(row, n):
     tier_key, tier_label = tier_of(row["confidence"], row.get("id"))
     conf_chip = chip(TIER_CHIP_LABEL[tier_key], f"chip--{tier_key}")
@@ -872,6 +921,7 @@ def render_index_row(row, n):
               body, [f'[{row["source"]}]'])
     return (f'<tr data-detail="{pid}" tabindex="0" role="button" aria-haspopup="true" '
             f'aria-controls="detail-panel" aria-expanded="false" '
+            f'data-comp="{esc(row["competitor"])}" '
             f'aria-label="Evidence item {n}: {esc(row["claim"])}">'
             f'<td class="n">{n}</td>'
             f'<th scope="row" class="nw">{esc(row["competitor"])}</th>'
@@ -935,6 +985,8 @@ CSS = f"""
   --dur-dismiss: 150ms; --ease-out: cubic-bezier(0.2,0,1,0.9);
 
   --rail-w: 16rem; --panel-w: 22rem;
+  --rule: {css_rgb(C["layer_accent"])};
+  --gray-60: {css_rgb(C["border"])};
 }}
 
 @media (prefers-reduced-motion: reduce) {{
@@ -980,17 +1032,17 @@ code, .mono {{ font-family: var(--mono); font-size: var(--fz-cap); }}
 /* ---- cf-nav-rail (ADR-022, promoted -- first use). Placement=left,
    sticky=true, depth=2. Plain <nav><a> in DOM order, one Tab stop each;
    scrollspy is progressive enhancement and never required for navigation. */
-.rail {{ background: var(--rail-bg); border-right: var(--s01) solid var(--border-strong);
+.rail {{ background: var(--rail-bg); border-right: 1px solid var(--border-strong);
   position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto;
   padding: var(--s05) var(--s04); }}
 .rail .stat {{ display: block; padding-bottom: var(--s04); margin-bottom: var(--s04);
-  border-bottom: var(--s01) solid var(--border-strong); }}
+  border-bottom: 1px solid var(--border-strong); }}
 .rail .stat .fig {{ font-family: var(--mono); font-size: var(--fz-h2); font-weight: var(--w-heavy); display: block; line-height: 1; }}
 .rail .stat .lab {{ font-size: var(--fz-cap); color: var(--ink-2); }}
 .rail ol {{ list-style: none; margin: 0; padding: 0; }}
 .rail li {{ margin: 0; }}
 .rail a {{ display: block; color: var(--ink); text-decoration: none; font-size: var(--fz-sm);
-  padding: var(--s02) var(--s03) var(--s02) var(--s04); border-left: var(--s01) solid transparent;
+  padding: var(--s02) var(--s03) var(--s02) var(--s04); border-left: 1px solid transparent;
   transition: border-color var(--dur-fast) var(--ease-std); }}
 .rail a.sub {{ padding-left: var(--s07); font-size: var(--fz-cap); color: var(--ink-2); }}
 .rail a[aria-current="location"] {{ font-weight: var(--w-sb); color: var(--ink); border-left-color: var(--ink); }}
@@ -1001,17 +1053,17 @@ code, .mono {{ font-family: var(--mono); font-size: var(--fz-cap); }}
    operable behind it. Not a modal: no aria-modal, no scrim, no focus trap. */
 .panel {{ position: sticky; top: 0; align-self: start; width: var(--panel-w);
   height: 100vh; overflow-y: auto; background: var(--raised);
-  border-left: var(--s01) solid var(--border-strong); padding: var(--s06);
+  border-left: 1px solid var(--border-strong); padding: var(--s06);
   transition: transform var(--dur-reveal) var(--ease-in), opacity var(--dur-reveal) var(--ease-in); }}
 .panel[hidden] {{ display: none; }}
 .panel.empty .fields, .panel.empty .close {{ display: none; }}
 .panel h2 {{ font-size: var(--fz-h3); letter-spacing: var(--tr-h3); margin-bottom: var(--s02); }}
 .panel .pmeta {{ font-size: var(--fz-cap); color: var(--ink-2); margin-bottom: var(--s04);
-  padding-bottom: var(--s04); border-bottom: var(--s01) solid var(--border-strong); }}
+  padding-bottom: var(--s04); border-bottom: 1px solid var(--border-strong); }}
 .panel .pbody p {{ max-width: none; font-size: var(--fz-sm); }}
 .panel .pcite {{ margin-top: var(--s04); }}
 .panel .close {{ position: absolute; top: var(--s04); right: var(--s04);
-  background: transparent; border: var(--s01) solid var(--border-strong); color: var(--ink);
+  background: transparent; border: 1px solid var(--border-strong); color: var(--ink);
   font-family: var(--sans); font-size: var(--fz-cap); padding: var(--s02) var(--s03);
   cursor: pointer; min-height: var(--s06); }}
 .panel .placeholder {{ color: var(--ink-2); font-size: var(--fz-sm); }}
@@ -1031,7 +1083,121 @@ code, .mono {{ font-family: var(--mono); font-size: var(--fz-cap); }}
 .tablewrap {{ overflow-x: auto; }}
 .tablewrap:focus-visible {{ outline: 2px solid var(--focus); outline-offset: 2px; }}
 @media print {{ .tablewrap {{ overflow-x: visible; }} }}
-.chip--outline {{ border: var(--s01) solid var(--border-strong); color: var(--ink); background: transparent; }}
+
+/* ---- the row: one shape, five groups ---------------------------------- */
+/* Cards are the lazy container and nested cards are always wrong, so the
+   groups share a row instead. Weight carries rank, not size (brand.md § 4:
+   "a table header earns its rank by weight, so the scale can stay short"). */
+.rows {{ border-top: 1px solid var(--border-strong); }}
+.row {{
+  display: grid; grid-template-columns: 1fr auto auto auto auto; align-items: baseline;
+  gap: var(--s05); width: 100%; text-align: left;
+  padding: var(--s04) var(--s03); border-bottom: 1px solid var(--rule);
+  background: transparent; border-left: 0; border-right: 0; border-top: 0;
+  font: inherit; color: inherit; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-std);
+}}
+.row:hover {{ background: var(--rail-bg); }}
+.row:focus-visible {{ outline: 2px solid var(--focus); outline-offset: -2px; }}
+.row[aria-expanded="true"] {{ background: var(--rail-bg); }}
+.row[aria-expanded="true"] .row__t {{ font-weight: var(--w-heavy); }}
+.row__t {{ font-weight: var(--w-sb); line-height: 1.35; }}
+.row__t .row__sub {{ display: block; font-weight: var(--w-reg); color: var(--ink-2);
+  font-size: var(--fz-sm); margin-top: var(--s01); }}
+/* mono for measurement, never as a costume for "technical" */
+.row__nu {{ display: none; color: var(--ink-2); font-family: var(--body); }}
+.row__n {{ font-family: var(--mono); font-variant-numeric: tabular-nums;
+  font-size: var(--fz-sm); color: var(--ink-2); white-space: nowrap; }}
+.row__who {{ font-size: var(--fz-sm); color: var(--ink-2); white-space: nowrap; }}
+
+/* the evidence meter — real data (count of resolvable sources), never decoration */
+.meter {{ display: flex; gap: 2px; align-items: center; }}
+.meter i {{ width: 6px; height: 14px; display: block; background: transparent;
+  box-shadow: inset 0 0 0 1px var(--gray-60); }}
+.meter i.on {{ background: var(--ink); box-shadow: none; }}
+/* pips are always ink: coral at 6px separated from an empty pip by 1.53:1,
+   and the alone state is carried in words by .st--alone beside it. */
+.meter--alone i.on {{ background: var(--ink); }}
+.meter__z {{ font-family: var(--mono); font-size: var(--fz-cap); color: var(--ink-2); }}
+
+/* state chip. Coral marks STATE only — never text below large size (brand § 3) */
+.st {{ font-size: var(--fz-cap); letter-spacing: var(--tr-cap); text-transform: uppercase;
+  font-weight: var(--w-sb); white-space: nowrap; color: var(--ink-2); }}
+.st--alone {{ color: var(--coral-text); }}
+.st--alone::before {{ content: ""; display: inline-block; width: var(--s03);
+  height: var(--s03); background: var(--coral); margin-right: var(--s02); }}
+.st--corrected::before {{ content: ""; display: inline-block; width: var(--s03);
+  height: var(--s03); border: 1px solid var(--coral); margin-right: var(--s02); }}
+
+/* group heading — Anek carries headings; never a value, label or chip */
+.grouphead {{ display: flex; align-items: baseline; gap: var(--s04);
+  margin: var(--s08) 0 var(--s03); }}
+.grouphead h3 {{ font-size: var(--fz-h3); letter-spacing: var(--tr-h3); margin: 0; }}
+.grouphead .n {{ font-family: var(--mono); font-variant-numeric: tabular-nums;
+  font-size: var(--fz-sm); color: var(--ink-2); }}
+
+@media (max-width: 60rem) {{
+  .row {{ grid-template-columns: 1fr auto; row-gap: var(--s02); }}
+  .row__nu {{ display: inline; }}
+  .row__who {{ grid-column: 1; }}
+}}
+
+/* Selection, caret, scrollbars and numerals ship with browser defaults that
+   belong to no design system. Themed from the palette. */
+::selection {{ background: var(--coral); color: var(--raised); }}
+html {{ accent-color: var(--ink); caret-color: var(--coral); scrollbar-color: var(--gray-60) var(--ground); }}
+*::-webkit-scrollbar {{ width: 11px; height: 11px; }}
+*::-webkit-scrollbar-track {{ background: var(--ground); }}
+*::-webkit-scrollbar-thumb {{ background: var(--gray-60); border: 3px solid var(--ground); }}
+*::-webkit-scrollbar-thumb:hover {{ background: var(--ink-2); }}
+/* every figure on this board is compared to another figure: line them up */
+.row__n, .idx td, .covnum, .meter__z, code {{
+  font-variant-numeric: tabular-nums; }}
+a {{ text-underline-offset: 0.18em; text-decoration-thickness: 1px; }}
+
+
+/* filter row — one row above the content it filters (dataviz interaction.md).
+   Controls are cf-chip, a promoted L1 primitive: ADR-021 does not exempt a
+   bespoke cross-filtering brush from the membrane, so none is invented here. */
+.filters {{ display: flex; flex-wrap: wrap; gap: var(--s02); align-items: center;
+  margin: var(--s05) 0 var(--s04); }}
+.filters .lab {{ font-size: var(--fz-cap); text-transform: uppercase;
+  letter-spacing: var(--tr-cap); color: var(--ink-2); margin-right: var(--s02); }}
+.fchip {{ font: inherit; font-size: var(--fz-sm); padding: var(--s02) var(--s04);
+  border: 1px solid var(--border-strong); background: var(--raised); color: var(--ink);
+  cursor: pointer; transition: background var(--dur-fast) var(--ease-std); }}
+.fchip:hover {{ background: var(--layer-accent-01); }}
+.fchip:focus-visible {{ outline: 2px solid var(--focus); outline-offset: 2px; }}
+.fchip[aria-pressed="true"] {{ background: var(--ink); color: var(--raised);
+  border-color: var(--ink); }}
+.fchip[aria-pressed="true"]::before {{ content: ""; display: inline-block;
+  width: var(--s03); height: var(--s03); background: var(--coral);
+  margin-right: var(--s02); vertical-align: baseline; }}
+.idx tr[hidden] {{ display: none; }}
+/* Forced colours override author background, colour and border-COLOUR, so the
+   pressed chip's ink/bone inversion and its coral square both vanish and pressed
+   becomes indistinguishable from unpressed. Border STYLE and outline survive, so
+   the state is restated in a channel the mode cannot flatten. Raised by the
+   widget a11y audit as needs-render; rendered and confirmed under
+   Emulation.setEmulatedMedia forced-colors:active. */
+@media (forced-colors: active) {{
+  .fchip {{ border-style: solid; }}
+  /* Do NOT repaint here. Naming Highlight/HighlightText with
+     forced-color-adjust:none resolved to white on white under the default forced
+     palette -- verified by render, which is how this was caught. The system paints
+     the chip; the state is carried only in channels forced colours preserve. */
+  .fchip[aria-pressed="true"] {{ border-style: double; border-width: 3px;
+    outline: 2px solid; outline-offset: 2px; }}
+  .fchip[aria-pressed="true"]::before {{ background: CanvasText; }}
+  .meter i {{ border: 1px solid; }}
+  .meter i.on {{ background: CanvasText; }}
+}}
+.filternote {{ font-size: var(--fz-cap); color: var(--ink-2); max-width: 52rem;
+  margin: 0 0 var(--s03); }}
+.fnone {{ padding: var(--s06) var(--s03); color: var(--ink-2); font-size: var(--fz-sm);
+  border-bottom: 1px solid var(--rule); }}
+
+.chip--outline {{ border: 1px solid var(--border-strong); color: var(--ink); background: transparent; }}
 /* an absent rating is drawn as absent: dashed edge, secondary ink. It is not a tier,
    and it must not look like the bottom of a ladder (C-044). */
 .chip--norating {{ border-style: dashed; color: var(--ink-2); }}
@@ -1040,50 +1206,50 @@ code, .mono {{ font-family: var(--mono); font-size: var(--fz-cap); }}
    shape, never colour alone, so a screenshot of one card out of context
    still reads its register. --------------------------------------------- */
 .cardgrid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: var(--s06); }}
-.card {{ background: var(--raised); border: var(--s01) solid var(--border-strong); padding: var(--s05);
+.card {{ background: var(--raised); border: 1px solid var(--border-strong); padding: var(--s05);
   cursor: pointer; }}
 .card:hover, .card:focus-visible {{ background: var(--rail-bg); }}
 .card__tags {{ margin-bottom: var(--s03); }}
 .card__who {{ font-size: var(--fz-cap); color: var(--ink-2); font-weight: var(--w-sb); }}
 .card__title {{ font-size: var(--fz-h3); letter-spacing: var(--tr-h3); margin-bottom: var(--s03); }}
 .card p {{ font-size: var(--fz-sm); max-width: none; }}
-.card--evidence {{ border-left-width: var(--s01); }}
-.card--synthesis {{ border-left: var(--s03) solid var(--coral); }}
-.card--method {{ border-left: var(--s03) dashed var(--border-strong); background: var(--rail-bg); }}
+.card--evidence {{ border-left-width: 1px; }}
+.card--synthesis {{ border-left: 1px solid var(--coral); }}
+.card--method {{ border-left: 1px dashed var(--border-strong); background: var(--rail-bg); }}
 .scopelimit, .confnote, .restson {{ font-size: var(--fz-cap); color: var(--ink-2);
-  padding-left: var(--s04); border-left: var(--s01) solid var(--border-strong); margin: var(--s04) 0; }}
+  padding-left: var(--s04); border-left: 1px solid var(--border-strong); margin: var(--s04) 0; }}
 
 /* ---- coverage bars: chart anatomy (ADR-021) -- ink-length bars, no
    colour-coded fill, so the semantic.focus-on-teal.60 case (ART-017) never
    arises here. Direct numeric labels, no legend. -------------------------- */
 .covlist {{ display: flex; flex-direction: column; gap: var(--s05); margin: var(--s06) 0; }}
 .covrow {{ display: grid; grid-template-columns: 14rem 1fr 9rem; align-items: center; gap: var(--s04);
-  cursor: pointer; padding: var(--s02); border: var(--s01) solid transparent; }}
+  cursor: pointer; padding: var(--s02); border: 1px solid transparent; }}
 .covrow:hover, .covrow:focus-visible {{ border-color: var(--border-strong); background: var(--rail-bg); }}
 .covlab {{ font-size: var(--fz-sm); font-weight: var(--w-sb); }}
-.covbar {{ display: block; height: var(--s06); border: var(--s01) solid var(--border-strong); background: var(--ground); position: relative; }}
+.covbar {{ display: block; height: var(--s06); border: 1px solid var(--border-strong); background: var(--ground); position: relative; }}
 .covbar__fill {{ display: block; height: 100%; background: var(--ink); }}
 .covnum {{ font-family: var(--mono); font-size: var(--fz-sm); text-align: right; white-space: nowrap; }}
 .covden {{ color: var(--ink-2); }}
 .covpct {{ color: var(--ink-2); font-size: var(--fz-cap); }}
-.coveragewarn {{ background: var(--raised); border: var(--s01) solid var(--border-strong);
-  border-left: var(--s03) solid var(--ink); padding: var(--s05); margin: var(--s05) 0 var(--s07); max-width: 52rem; }}
-.rosternote {{ border-left: 2px solid var(--border-strong); padding-left: var(--s04); margin-top: var(--s05); }}
+.coveragewarn {{ background: var(--raised); border: 1px solid var(--border-strong);
+  border-left: 1px solid var(--ink); padding: var(--s05); margin: var(--s05) 0 var(--s07); max-width: 52rem; }}
+.rosternote {{ border-left: 1px solid var(--border-strong); padding-left: var(--s04); margin-top: var(--s05); }}
 .coveragewarn h3 {{ font-size: var(--fz-sm); text-transform: uppercase; letter-spacing: var(--tr-cap); }}
 
-.kpis {{ display: grid; grid-template-columns: repeat(5,1fr); gap: var(--s05); margin: var(--s06) 0; }}
-.kpi {{ border-left: var(--s01) solid var(--border-strong); padding-left: var(--s04); }}
-.kpi .val {{ font-size: var(--fz-h2); font-weight: var(--w-heavy); display: block; font-family: var(--mono); }}
-.kpi .lab {{ display: block; margin-top: var(--s02); font-size: var(--fz-cap); font-weight: var(--w-sb); }}
+.ledger {{ margin: var(--s06) 0 var(--s07); max-width: 52rem; }}
+.ledger > div {{ display: grid; grid-template-columns: 5.5rem 1fr; gap: var(--s05);
+  align-items: baseline; padding: var(--s04) 0; border-top: 1px solid var(--rule); }}
+.ledger > div:last-child {{ border-bottom: 1px solid var(--rule); }}
+.ledger dt {{ font-family: var(--mono); font-variant-numeric: tabular-nums;
+  font-size: var(--fz-h3); font-weight: var(--w-heavy); text-align: right; }}
+.ledger dt .of {{ font-size: var(--fz-sm); color: var(--ink-2); font-weight: 400; }}
+.ledger dd {{ margin: 0; font-size: var(--fz-sm); }}
+@media (max-width: 40rem) {{ .ledger > div {{ grid-template-columns: 4rem 1fr; gap: var(--s04); }} }}
 
-.hero {{ display: flex; align-items: baseline; gap: var(--s07); flex-wrap: wrap; margin: 0 0 var(--s04); }}
-.hero .figure {{ font-size: var(--fz-display); font-weight: var(--w-heavy); line-height: 1; }}
-.hero .denom {{ font-size: var(--fz-h2); font-weight: var(--w-heavy); color: var(--ink-2); }}
-.hero .figlab {{ font-size: var(--fz-sm); font-weight: var(--w-heavy); display: block; margin-top: var(--s02); }}
-.hero .flanking {{ font-size: var(--fz-sm); color: var(--ink-2); max-width: 22rem; }}
 
 .reminderbanner {{ background: var(--gap-90); color: var(--raised); padding: var(--s05); margin: 0 0 var(--s07);
-  max-width: 52rem; border-left: var(--s03) solid var(--raised); }}
+  max-width: 52rem; border-left: 1px solid var(--raised); }}
 .reminderbanner p {{ color: var(--raised); margin: 0; }}
 .reminderbanner b {{ color: var(--raised); }}
 
@@ -1092,8 +1258,8 @@ table.idx {{ border-collapse: collapse; width: 100%; font-size: var(--fz-sm); }}
 table.idx caption {{ text-align: left; font-size: var(--fz-cap); color: var(--ink-2);
   padding-bottom: var(--s04); caption-side: top; max-width: 52rem; }}
 table.idx th, table.idx td {{ text-align: left; padding: var(--s03) var(--s04) var(--s03) 0;
-  border-bottom: var(--s01) solid var(--border-strong); vertical-align: top; }}
-table.idx thead th {{ font-weight: var(--w-heavy); border-bottom: 2px solid var(--ink);
+  border-bottom: 1px solid var(--border-strong); vertical-align: top; }}
+table.idx thead th {{ font-weight: var(--w-heavy); border-bottom: 1px solid var(--ink);
   font-size: var(--fz-cap); white-space: nowrap; position: sticky; top: 0; background: var(--ground); }}
 table.idx td.n {{ text-align: right; font-family: var(--mono); white-space: nowrap; color: var(--ink-2); }}
 table.idx td.nw, table.idx th.nw {{ white-space: nowrap; }}
@@ -1101,31 +1267,31 @@ table.idx tbody tr {{ cursor: pointer; }}
 table.idx tbody tr:hover, table.idx tbody tr:focus-visible {{ background: var(--rail-bg); }}
 table.idx .claimcell {{ max-width: 34rem; }}
 .themegroup td {{ background: var(--rail-bg); font-weight: var(--w-heavy); font-size: var(--fz-cap);
-  text-transform: uppercase; letter-spacing: var(--tr-cap); border-bottom: var(--s01) solid var(--border-strong); }}
+  text-transform: uppercase; letter-spacing: var(--tr-cap); border-bottom: 1px solid var(--border-strong); }}
 
 details.meta summary {{ cursor: pointer; font-weight: var(--w-heavy); font-size: var(--fz-sm);
-  padding: var(--s03) 0; border-top: var(--s01) solid var(--border-strong); }}
-details.meta .body {{ padding: var(--s03) 0 var(--s05) var(--s04); border-left: var(--s01) solid var(--border-strong); }}
+  padding: var(--s03) 0; border-top: 1px solid var(--border-strong); }}
+details.meta .body {{ padding: var(--s03) 0 var(--s05) var(--s04); border-left: 1px solid var(--border-strong); }}
 details.meta ul, details.meta ol {{ padding-left: var(--s05); }}
 details.meta li {{ margin-bottom: var(--s02); }}
-footer {{ margin-top: var(--s09); padding-top: var(--s05); border-top: var(--s01) solid var(--border-strong); }}
+footer {{ margin-top: var(--s09); padding-top: var(--s05); border-top: 1px solid var(--border-strong); }}
 
 @media (max-width: 68rem) {{
   .shell {{ grid-template-columns: 1fr; }}
   .rail {{ position: sticky; top: 0; height: auto; max-height: 3.5rem; overflow-x: auto; overflow-y: hidden;
-    border-right: none; border-bottom: var(--s01) solid var(--border-strong);
+    border-right: none; border-bottom: 1px solid var(--border-strong);
     display: flex; align-items: center; white-space: nowrap; z-index: 10; }}
   .rail .stat {{ display: inline-flex; align-items: baseline; gap: var(--s02); border-bottom: none;
-    border-right: var(--s01) solid var(--border-strong); padding: 0 var(--s04) 0 0; margin: 0 var(--s04) 0 0; }}
+    border-right: 1px solid var(--border-strong); padding: 0 var(--s04) 0 0; margin: 0 var(--s04) 0 0; }}
   .rail .stat .fig {{ font-size: var(--fz-sm); }}
   .rail ol {{ display: flex; }}
-  .rail a {{ padding: var(--s03); border-left: none; border-bottom: var(--s01) solid transparent; }}
+  .rail a {{ padding: var(--s03); border-left: none; border-bottom: 1px solid transparent; }}
   .rail a[aria-current="location"] {{ border-left: none; border-bottom-color: var(--ink); }}
   .rail a.sub {{ display: none; }}
   .kpis {{ grid-template-columns: repeat(2,1fr); }}
   .covrow {{ grid-template-columns: 1fr; gap: var(--s02); }}
   .panel {{ position: fixed; inset: auto 0 0 0; width: 100%; height: 60vh; border-left: none;
-    border-top: var(--s01) solid var(--border-strong); }}
+    border-top: 1px solid var(--border-strong); }}
   .shellgrid.panel-open {{ grid-template-columns: minmax(0,1fr); }}
 }}
 
@@ -1264,7 +1430,13 @@ for key in FINDINGS_SUB_ORDER:
     group = FINDINGS[key]
     anchor = f"find-{key}"
     nav_findings_subs.append(f'<li><a href="#{anchor}" class="sub">{esc(group["label"])}</a></li>')
-    cards = "\n".join(render_finding_card(it) for it in group["items"])
+    cards = "".join(
+        render_row(it, "Finding", who=it.get("competitor"),
+                   state=("corrected" if "correct" in (it.get("title","") + " "
+                          + " ".join(it.get("body") or [])).lower()[:400] else None),
+                   meter_max=5)
+        for it in group["items"])
+    cards = f'<div class="rows">{cards}</div>' 
     # the route diagram's subject IS this thread; it sat in the section intro and
     # pre-empted Market structure, which the nav rail points at first (design-critic W16)
     lead = {"disruption": CHARTS["nulls"],
@@ -1277,13 +1449,21 @@ for key in FINDINGS_SUB_ORDER:
   <div class="cardgrid">{cards}</div>''')
 findings_html = "\n".join(findings_sections_html)
 
-painpoints_html = "\n".join(render_pain_card(it) for it in PAIN_POINTS)
-insights_html = "\n".join(render_insight_card(it) for it in INSIGHTS)
-recs_html = "\n".join(render_rec_card(it, i + 1) for i, it in enumerate(RECS))
-next_html = "\n".join(render_next_card(it, i + 1) for i, it in enumerate(NEXT_STEPS))
-method_html = "\n".join(render_method_card(it) for it in METHOD_NOTES)
+painpoints_html = render_group("Pain points", PAIN_POINTS, "Pain point")
+insights_html = render_group("Insights", INSIGHTS, "Insight", meter_max=10)
+# the four Phase 1 named as still evidentially alone, plus pain-9 which cites a
+# capture path and no finding id. Coral marks state — that is what the accent is for.
+_ALONE = {"rec-1", "rec-2", "pain-2", "pain-3", "pain-10", "pain-9"}
+recs_html = render_group("Recommendations", RECS, "Recommendation",
+                         state_fn=lambda it: "alone" if it["id"] in _ALONE else None)
+next_html = render_group("Next steps", NEXT_STEPS, "Next step", meter_max=2)
+method_html = render_group("Method \u0026 corrections", METHOD_NOTES, "Method note", meter_max=3)
 
 # full index, grouped by theme with a group header row
+# every competitor in the index, most-cited first -- a partial chip set meant ten
+# of the seventeen could not be isolated by this control at all
+_FILTER_COMPS = [c for c, _ in collections.Counter(
+    r["competitor"] for r in FULL_INDEX).most_common()]
 index_rows_html = []
 n = 0
 current_theme = None
@@ -1364,20 +1544,14 @@ HTML = f'''<!DOCTYPE html>
         Recommendation and Insight below against these five numbers, not only against its own
         citation.</p>
     </div>
-    <div class="hero">
-      <div><span class="figure num">17<span class="denom">/17</span></span>
-        <span class="figlab">competitors touched · 0 complete</span></div>
-      <div class="flanking"><b>50</b> capture files · <b>121</b> findings indexed · <b>6</b>
-        findings the round corrected in its own earlier version, every one by capturing more
-        rather than reasoning harder (see Method &amp; corrections).</div>
-    </div>
-    <div class="kpis">
-      <div class="kpi"><span class="val">50</span><span class="lab">capture files, across all 17 roster competitors</span></div>
-      <div class="kpi"><span class="val">121</span><span class="lab">findings indexed (117 in WORLD.json + 4 resolved directly from their capture files — see Full evidence index)</span></div>
-      <div class="kpi"><span class="val">6</span><span class="lab">findings this round corrected in its own earlier version</span></div>
-      <div class="kpi"><span class="val">2</span><span class="lab">competitors blocked at cookie consent, with no reject affordance (Omio, Tripadvisor)</span></div>
-      <div class="kpi"><span class="val">1</span><span class="lab">empty state captured in the entire round (Kayak's AI planner) — zero error, no-results or offline states, anywhere</span></div>
-    </div>
+    <dl class="ledger">
+      <div><dt aria-label="17 of 17">17<span class="of">/17</span></dt><dd>competitor products touched. <b>None complete</b> — every one of the seventeen has unvisited surfaces.</dd></div>
+      <div><dt>50</dt><dd>capture files, across all 17 roster competitors.</dd></div>
+      <div><dt>121</dt><dd>findings indexed — 117 in <code>WORLD.json</code> plus 4 resolved directly from their capture files (see Full evidence index).</dd></div>
+      <div><dt>6</dt><dd>findings this round corrected in its own earlier version, every one by capturing more rather than reasoning harder (see Method &amp; corrections).</dd></div>
+      <div><dt>2</dt><dd>competitors blocked at cookie consent with no reject affordance (Omio, Tripadvisor).</dd></div>
+      <div><dt>1</dt><dd>empty state captured in the entire round (Kayak's AI planner) — no error, no-results or offline state was reached anywhere.</dd></div>
+    </dl>
     {CHARTS["coverage"]}
 
     <p class="srcline">Source: <code>[WORLD.json § coverage_warning]</code> · <code>[WORLD.md § 0]</code></p>
@@ -1473,6 +1647,15 @@ HTML = f'''<!DOCTYPE html>
       the order <code>WORLD.json</code>'s own theme tally lists them, most items first. Click any
       row for its full supporting detail: why it matters, its scope limit, any decision it poses,
       and its verbatim evidence quote.</p>
+    <div class="filters" data-filters role="group" aria-label="Filter the evidence index by competitor">
+      <span class="lab">Filter this index by competitor</span>
+      {"".join(f'<button type="button" class="fchip" data-f="{esc(c)}" aria-pressed="false">{esc(c)}</button>' for c in _FILTER_COMPS)}
+    </div>
+    <p class="filternote">Eighteen buttons, seventeen competitors: the index labels Google
+      Travel two ways &mdash; <b>Google Travel</b> (7 rows) and <b>Google Travel &mdash; Flights
+      vertical</b> (8 rows). Either button alone shows part of it. The capture files are
+      immutable, so the split is disclosed here rather than merged away.</p>
+    <p id="filter-status" role="status" aria-live="polite" class="cap">All findings shown.</p>
     <div class="tablewrap" tabindex="0" role="region" aria-label="Full evidence index, scrollable">
     <table class="idx">
       <caption>121 findings across 17 competitors and 11 themes. Confidence is rendered as it
@@ -1646,8 +1829,16 @@ HTML = f'''<!DOCTYPE html>
     document.querySelectorAll('[aria-expanded="true"]').forEach(function(el) {{
       el.setAttribute('aria-expanded', 'false');
     }});
-    if (lastTrigger && document.contains(lastTrigger)) {{
+    // presence is not reachability: a filtered-away row is still in the DOM but
+    // display:none, and .focus() on it is a documented no-op that would strand
+    // the keyboard user at <body>. offsetParent is null for a display:none node.
+    if (lastTrigger && document.contains(lastTrigger)
+        && !lastTrigger.hidden && lastTrigger.offsetParent !== null) {{
       lastTrigger.focus();
+    }} else {{
+      var back = document.getElementById('filter-status') || document.body;
+      back.setAttribute('tabindex', '-1');
+      back.focus({{preventScroll: true}});
     }}
     lastTrigger = null;
   }}
@@ -1705,6 +1896,45 @@ HTML = f'''<!DOCTYPE html>
   }});
 }})();
 {CHARTS['chain_js']}
+
+(function(){{
+  var wrap = document.querySelector('[data-filters]');
+  if (!wrap) return;
+  var table = document.querySelector('table.idx');
+  var rows = [].slice.call(table.querySelectorAll('tbody tr'));
+  var none = document.createElement('p');
+  none.className = 'fnone'; none.hidden = true;
+  none.textContent = 'No finding matches this filter. Clear a filter to see the rest — every one of the 121 findings is still here.';
+  table.parentNode.insertBefore(none, table.nextSibling);
+  var active = null;
+  function apply(){{
+    var shown = 0;
+    rows.forEach(function(tr){{
+      if (tr.classList.contains('themegroup')) {{ tr.hidden = !!active; return; }}
+      // the competitor cell, not the whole row: matching tr.textContent made a
+      // row whose CLAIM mentions Booking.com appear under the Booking.com filter
+      var hit = !active || tr.getAttribute('data-comp') === active;
+      tr.hidden = !hit; if (hit) shown++;
+    }});
+    none.hidden = shown > 0;
+    wrap.querySelectorAll('.fchip').forEach(function(b){{
+      b.setAttribute('aria-pressed', String(b.dataset.f === active));
+    }});
+    var live = document.getElementById('filter-status');
+    var total = rows.filter(function(r){{ return !r.classList.contains('themegroup'); }}).length;
+    if (live) live.textContent = !active ? 'All findings shown.'
+      : shown === 0
+        ? 'No finding matches ' + active + '. Press the same button again to clear the filter; all ' + total + ' findings are still here.'
+        : shown + ' of ' + total + ' findings shown, filtered by ' + active + '.';
+  }}
+  wrap.addEventListener('click', function(e){{
+    var b = e.target.closest('.fchip'); if (!b) return;
+    active = (active === b.dataset.f) ? null : b.dataset.f;
+    apply();
+  }});
+  apply();
+}})();
+
 </script>
 
 </body>

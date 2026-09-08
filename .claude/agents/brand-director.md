@@ -29,7 +29,7 @@ Gate A, suggest-only, never graduates.
 <!-- STANDING-RULES:BEGIN -->
 ## Standing rules — earned, not asserted
 
-Generated from `validation/standing-rules.json`, which is checked against all 52 entries in `validation/corrections.json`. Every rule below cost this project a real defect; the cost is named so you can weigh it.
+Generated from `validation/standing-rules.json`, which is checked against all 56 entries in `validation/corrections.json`. Every rule below cost this project a real defect; the cost is named so you can weigh it.
 
 **SR-1 · Resolve, never recall.**
 Any claim naming a company, a number or a quote must be resolved to a file at the moment you write it. Never from memory, however certain — especially when it is a comparison against something you captured earlier in the same session. Confident, specific and wrong is the most damaging output this project can produce.
@@ -53,7 +53,7 @@ Reading the generator is not checking the output. Build-time arithmetic is not a
 
 **SR-6 · Nobody clears their own check, and every checker gets attacked.**
 The author is the one party who cannot audit their own work. Before reporting that a check works, plant the defect it exists to catch and confirm it fires. A validator whose author has not tried to defeat it is not yet a validator.
-*Earned by C-021, C-024, C-037, C-043, C-052 — Two checks declared working by their authors and both blind; one regex that matched only PascalCase and so never tested the prohibition it existed for. And C-052: I audited the board's five coverage ratios with a check that searched capture TITLES instead of file contents, got low numbers, and published the shortfall as a defect in the board. Three of the five derive exactly. The check was the broken thing, and I reported its result without attacking it first — two hours after writing this rule into every agent definition.*
+*Earned by C-021, C-024, C-037, C-043, C-052, C-053, C-054, C-055 — Two checks declared working by their authors and both blind; one regex that matched only PascalCase and so never tested the prohibition it existed for. And C-052: I audited the board's five coverage ratios with a check that searched capture TITLES instead of file contents, got low numbers, and published the shortfall as a defect in the board. Three of the five derive exactly. The check was the broken thing, and I reported its result without attacking it first — two hours after writing this rule into every agent definition. And on 2026-09-07 the rule paid out as designed: an attacker who did not write the checkers planted nine defects, six caught and three missed, and found a real one already shipping -- a bar chart whose bars rendered at 1.45:1 and passed clean. The author had run those checkers green on that exact build many times.*
 
 **SR-7 · Do not generalise from the first instance you examined.**
 One directory, one file format, one vertical, one competitor. Check a second before stating a pattern, and say how many you checked.
@@ -70,6 +70,10 @@ A check that could not run must report as skipped, never fold into a pass. A mis
 **SR-10 · A lesson recorded is not a lesson delivered.**
 Writing a correction down does not stop it recurring. Ask who would repeat this defect, and whether anything puts the record in front of them before they act. If the answer is a person remembering to mention it, that is not a mechanism.
 *Earned by C-051 — Fifty corrections logged, and twelve of fourteen agents dispatched knowing none of them. The check that generates this block caught its own author leaving C-051 uncovered within a minute of being written.*
+
+**SR-11 · A check that cannot fail is not a check.**
+Before trusting a green result, ask what would have to be true for this check to report FAIL, and then make that true. Four ways a check quietly cannot fail: it exempts an element on the strength of a class name nothing has to earn; its justification rests on a second check whose selector never reaches the same elements; it measures a resting page while claiming to test an interactive state; or it fails OPEN, so that breaking it produces a pass. Every exemption must name the mechanical property that makes an element exempt, and that property must be asserted, not described in a comment.
+*Earned by C-053, C-054, C-055, C-056 — A bar chart shipped with 1.45:1 bars because they wore a class the checker exempted by name. A contrast exemption justified by a redundancy check hard-scoped to a single figure, so it stood alone everywhere else. A pressed-state check that never pressed anything, unable to see the exact defect its own comment claimed to guard. And three colour predicates disabled by double-escaping, reporting clean while testing nothing -- hit three times in one hour, including inside the fix written to repair it. All four reported PASS.*
 
 If you cannot follow one of these for a specific task, say so in your return and say why. Do not quietly work around it.
 <!-- STANDING-RULES:END -->

@@ -36,7 +36,18 @@ const evaluate = async expr => {
 
 await send("Page.enable");
 await send("Page.navigate", { url: FILE_URL });
-await new Promise(r => setTimeout(r, 2500));
+// A fixed wait raced the render: an attack (2026-09-07) recorded one spurious FAIL on
+// an unmodified, previously-passing build, and a spurious FAIL is not harmless -- it
+// teaches the reader to discount this checker's failures. Poll for the page's own
+// readiness, and say so plainly if it never arrives rather than measuring a half-page.
+let ready = false;
+for (let t = 0; t < 40 && !ready; t++) {
+  await new Promise(r => setTimeout(r, 150));
+  ready = await evaluate(`document.readyState === 'complete' &&
+    document.querySelectorAll('figure.chart svg').length >= 11 &&
+    document.querySelectorAll('#ch-matrix .c-cell').length > 0`).catch(() => false);
+}
+if (!ready) { console.error("page never reached a measurable state"); process.exit(2); }
 
 const report = await evaluate(`(() => {
   const px = s => { const m = (s||'').match(/[\\d.]+/g);
@@ -92,6 +103,33 @@ const report = await evaluate(`(() => {
   //   .c-cellbg  = matrix cell shading: REDUNDANT behind a printed number, and the
   //                number's own contrast is checked separately above
   const exempt = { struct: 0, cellbg: 0, worstStruct: 99, worstCellbg: 99 };
+  // An attack (2026-09-07, system-keeper) defeated both exemptions by writing the
+  // class name onto a fabricated data point, and found the same pattern already
+  // SHIPPING: ch-axes drew its total bars -- width = axw*total/mx, with their own
+  // legend entry -- as .c-struct at 1.45:1, invisible bars in a bar chart, passing
+  // clean. A class name is now a claim the element must substantiate:
+  //   .c-struct  a TRACK. Every structural rect in a figure must share one width;
+  //              a rect whose width varies with data is a mark, whatever it wears.
+  //   .c-cellbg  matrix shading ONLY, and only inside #ch-matrix, because the
+  //              redundancy check that justifies it is scoped to #ch-matrix and the
+  //              two never composed anywhere else.
+  const structW = {};
+  document.querySelectorAll('figure.chart svg rect.c-struct').forEach(r => {
+    const id = (r.closest('figure') || {}).id || '?';
+    (structW[id] = structW[id] || new Set()).add(+r.getBBox().width.toFixed(1));
+  });
+  // A track is a REPEATED element of one size -- one per row, tick or cell. So the
+  // claim needs two things a single fabricated shape cannot supply: at least two
+  // instances, and one width among them. And only a line or a rect can be a track
+  // at all; a circle, polygon or path wearing the class is a mark that dressed up.
+  const structN = {};
+  document.querySelectorAll('figure.chart svg rect.c-struct').forEach(r => {
+    const id = (r.closest('figure') || {}).id || '?'; structN[id] = (structN[id]||0) + 1; });
+  const trackFigures = new Set(Object.keys(structW)
+    .filter(k => structW[k].size === 1 && structN[k] >= 2));
+  out.structuralClaim = Object.keys(structW).map(k => ({ figure: k,
+    instances: structN[k], distinctWidths: structW[k].size,
+    honoured: structW[k].size === 1 && structN[k] >= 2 }));
   // Sample EVERY drawable element type, not just circle and rect. The route diagram
   // is built from line and polygon, and an earlier version of this check saw none of
   // it -- a checker blind to a whole element type passes vacuously on it.
@@ -102,14 +140,31 @@ const report = await evaluate(`(() => {
     if (!f || f === 'none') return;
     const c0 = px(f); if (!c0) return;
     const c = cr(c0, ground);
+    const fig = (m.closest('figure') || {}).id || '?';
+    // a mark may carry its contrast on its stroke instead of its fill (the outlined
+    // total bars, the outlined meter pip): take whichever channel is stronger
+    const alt = (cs.fill === 'none' || m.tagName === 'line') ? null : px(cs.stroke);
+    const cBest = alt ? Math.max(c, cr(alt, ground)) : c;
     if (m.classList.contains('c-struct')) {
-      exempt.struct++; exempt.worstStruct = Math.min(exempt.worstStruct, c); return; }
+      // honoured only where the figure's structural rects really are one track width
+      const isTrack = (m.tagName === 'line') ||
+                      (m.tagName === 'rect' && trackFigures.has(fig));
+      if (isTrack) {
+        exempt.struct++; exempt.worstStruct = Math.min(exempt.worstStruct, c); return; }
+      out.failures.push('c-struct not substantiated in ' + fig + ' (<' + m.tagName +
+        '>, ' + (structN[fig]||0) + ' structural rects, ' +
+        ((structW[fig]||{size:0}).size) + ' distinct widths): checked as a mark');
+    }
     if (m.classList.contains('c-cellbg')) {
-      exempt.cellbg++; exempt.worstCellbg = Math.min(exempt.worstCellbg, c); return; }
+      if (m.closest('#ch-matrix')) {
+        exempt.cellbg++; exempt.worstCellbg = Math.min(exempt.worstCellbg, c); return; }
+      out.failures.push('c-cellbg claimed outside #ch-matrix in ' + fig +
+        ': the redundancy check that justifies this exemption does not reach here');
+    }
     marks++;
-    if (c < worstMark) worstMark = c;
-    if (c < 3.0) out.failures.push('chart mark at ' + c.toFixed(2) + ':1 < 3:1 (' +
-      (m.closest('figure')||{}).id + ')');
+    if (cBest < worstMark) worstMark = cBest;
+    if (cBest < 3.0) out.failures.push('chart mark at ' + cBest.toFixed(2) + ':1 < 3:1 (' +
+      fig + ')');
   });
   out.marks = { checked: marks, worstRatio: +worstMark.toFixed(2), floor: 3.0 };
   out.declaredExemptions = {

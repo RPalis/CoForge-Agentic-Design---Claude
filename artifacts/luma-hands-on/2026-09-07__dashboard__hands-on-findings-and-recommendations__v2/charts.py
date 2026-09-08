@@ -183,7 +183,7 @@ def chart_coverage(L, rows):
     H = len(rows) * RH + 62
     bar, track = L.gray("90"), L.gray("20")
     axw = W - LAB - 74
-    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     for i, r in enumerate(rows):
         y = i * RH + 14
         frac = r["num"] / r["den"]
@@ -267,7 +267,7 @@ def chart_effort(L, comps, caps):
     colw = W - LAB - 26
     fmax, cmax = max(comps.values()), max(caps.values())
     dot, ghost, rule = L.gray("90"), L.gray("60"), L.gray("30")
-    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     out.append(f'<text x="{LAB}" y="10" class="c-tick">findings indexed · 0–{fmax}</text>')
     w = colw - 34
     for i, c in enumerate(order):
@@ -319,7 +319,7 @@ def chart_themes(L, themes, label_of):
     axw = W - LAB - 46
     mx = order[0][1]
     fill, track = L.gray("90"), L.gray("20")
-    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     for i, (t, n) in enumerate(order):
         y = i * RH + 10
         out.append(f'<text x="0" y="{y+14}" class="c-lab-sm">{esc(label_of(t))}</text>')
@@ -386,7 +386,7 @@ def chart_confidence(L, conf):
     SPLIT_Y = ((RATED + COLS - 1) // COLS) * S + 34   # rule sits under the rated block
     W = 660
     H = SPLIT_Y + 62
-    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg c-svg-narrow" '
+    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg c-svg-narrow" style="min-width:{W*0.92:.0f}px" '
            f'xmlns="http://www.w3.org/2000/svg">']
     i = 0
     for cls, n in seq:
@@ -464,7 +464,7 @@ def chart_matrix(L, M, C, T, label_of):
             if v <= hi:
                 return s
         return "100"
-    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    out = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     for j, cj in enumerate(co):
         x = LAB + j * CW + CW / 2
         out.append(f'<text transform="translate({x},{HDR-8}) rotate(-52)" class="c-lab-sm">'
@@ -621,7 +621,7 @@ def chart_nulls(L):
     DEST, DESTW = 596, 176
     H = TOP + len(ROUTES) * RH + 16
     ink, mid, faint = L.gray("100"), L.gray("70"), L.gray("40")
-    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     o.append(f'<text x="0" y="16" class="c-q">Can a passenger whose flight is cancelled '
              f'reach their rights from the airline&#8217;s own site?</text>')
     # the destination every line is trying to reach
@@ -735,13 +735,13 @@ def chart_css(L):
 .chart-note {{ font-size: var(--fz-sm); color: var(--ink); margin: var(--s05) 0 var(--s02);
   max-width: 68ch; line-height: 1.55; }}
 .chart-desc {{ font-size: var(--fz-cap); color: var(--ink-2); margin: var(--s04) 0 var(--s02);
-  max-width: 74ch; line-height: 1.55; border-left: 2px solid {L.gray('30')};
+  max-width: 74ch; line-height: 1.55; border-left: 1px solid {L.gray('30')};
   padding-left: var(--s04); }}
-.c-svg {{ width: 100%; min-width: 30rem; height: auto; display: block; }}
+.c-svg {{ width: 100%; height: auto; display: block; }}  /* minimum is inline, per viewBox */
 /* a chart whose viewBox is intrinsically small must not be stretched to the column
    width -- at full width its marks rendered at roughly 3x and read as decoration. */
-.c-svg-narrow {{ max-width: 41rem; min-width: 26rem; }}
-.c-svg-fluid  {{ min-width: 0; }}
+.c-svg-narrow {{ max-width: 41rem; }}
+.c-svg-fluid  {{ min-width: 0 !important; }}
 .c-field {{ width: 100%; max-width: 15rem; height: auto; display: block; margin: var(--s03) 0; }}
 .c-lab, .c-lab-sm, .c-sub, .c-val, .c-val-sm, .c-tick {{
   font-family: var(--sans); fill: var(--ink); }}
@@ -785,14 +785,14 @@ def chart_css(L):
 .nullzero, .nullhit {{ font-family: var(--mono); font-size: var(--fz-h2);
   font-weight: var(--w-heavy); line-height: 1; margin-right: var(--s02); }}
 .nullhit {{ font-size: var(--fz-h3); }}
-.nullblock-found {{ border-width: 2px; }}
+.nullblock-found {{ border-width: 1px; }}
 .nullres .cap {{ display: block; margin-top: var(--s02); font-size: var(--fz-cap);
   color: var(--ink-2); line-height: 1.5; }}
 """ + CHAIN_CSS.format(a=L.gray('20'), b=L.gray('100')) + """
 @media print {{
   .chart-body {{ overflow-x: visible; }}
-  .c-svg {{ min-width: 0; }}
-  .c-svg-narrow {{ min-width: 0; max-width: 100%; }}
+  .c-svg {{ min-width: 0 !important; }}
+  .c-svg-narrow {{ max-width: 100%; }}
   .chart {{ break-inside: avoid; }}
   .nullblock {{ break-inside: avoid; }}
   #chain-svg.tracing .chain-node:not(.on) {{ opacity: 1; }}
@@ -899,7 +899,8 @@ def chart_axes(L):
     H = n * RH + len(GROUPS) * GAP + 84
     axw, mx = W - LAB - 116, 11
     other, eff = L.gray("30"), L.gray("100")
-    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    outline = L.gray("60")   # 4.30:1 on the ground -- clears the 3:1 mark floor
+    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     o.append('<text x="0" y="14" class="c-q">Ways to reorder results, and how many of them '
              'concern how hard the trip will be</text>')
     y = 40
@@ -913,8 +914,14 @@ def chart_axes(L):
                 o.append(f'<text x="{LAB}" y="{y+15}" class="c-val-sm">no sort control at all</text>')
             else:
                 bw = axw * total / mx
-                o.append(f'<rect class="c-struct" x="{LAB}" y="{y+3}" width="{bw:.1f}" '
-                         f'height="16" fill="{other}"/>')
+                # NOT c-struct: this bar's width is axw*total/mx -- it encodes a value
+                # and carries its own legend entry, so it is a data mark and must clear
+                # the 3:1 floor. It did not: gray-30 fill is 1.45:1 on the ground, an
+                # invisible bar in a bar chart, exempted for months by its class name.
+                # Light fill for weight, visible outline for legibility -- the same
+                # filled-vs-outlined vocabulary the evidence meters use.
+                o.append(f'<rect x="{LAB}" y="{y+3}" width="{bw:.1f}" height="16" '
+                         f'fill="{other}" stroke="{outline}" stroke-width="1"/>')
                 if effort:
                     ew = axw * effort / mx
                     o.append(f'<rect x="{LAB}" y="{y+3}" width="{ew:.1f}" height="16" fill="{eff}"/>')
@@ -928,7 +935,8 @@ def chart_axes(L):
     o.append(f'<rect x="{LAB}" y="{H-42}" width="13" height="13" fill="{eff}"/>')
     o.append(f'<text x="{LAB+19}" y="{H-31}" class="c-tick">axes about effort, ease or '
              f'convenience</text>')
-    o.append(f'<rect class="c-struct" x="{LAB}" y="{H-22}" width="13" height="13" fill="{other}"/>')
+    o.append(f'<rect x="{LAB}" y="{H-22}" width="13" height="13" fill="{other}" '
+             f'stroke="{outline}" stroke-width="1"/>')
     o.append(f'<text x="{LAB+19}" y="{H-11}" class="c-tick">axes about price, rating, '
              f'distance or an unexplained default</text>')
     o.append("</svg>")
@@ -980,7 +988,7 @@ def chart_quadrant(L):
     W, H, L0, B0 = 760, 430, 250, 340
     axw, axh = 420, 286
     mx = 11
-    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     o.append('<text x="0" y="14" class="c-q">Can a traveller reorder the results — and is '
              'the ordering ever explained?</text>')
     for i in range(len(LEVELS)):
@@ -1077,7 +1085,7 @@ def chart_loyalty(L):
     NL = chr(10)
     W, LAB, MAXN = 760, 176, 33
     axw = W - LAB - 40
-    o = [f'<svg viewBox="0 0 {W} 352" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    o = [f'<svg viewBox="0 0 {W} 352" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     o.append('<text x="0" y="14" class="c-q">How much travel you must already have done '
              'before each reward unlocks</text>')
     y = 84
@@ -1153,7 +1161,7 @@ def chart_handoff(L):
     ]
     W, RH, LAB = 740, 104, 168
     H = len(CASES) * RH + 74
-    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" xmlns="http://www.w3.org/2000/svg">']
+    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" style="min-width:{W*0.92:.0f}px" xmlns="http://www.w3.org/2000/svg">']
     o.append('<text x="0" y="14" class="c-q">What the traveller is still holding after '
              'crossing from one part of a trip to the next</text>')
     for i, c in enumerate(CASES):
@@ -1227,7 +1235,7 @@ def chart_chain(L, g):
     # -- so the resting state must clear the 3:1 mark floor rather than be declared
     # structural. gray.60 is 4.25:1 on the ground; gray.40 was 2.01:1 and failed.
     ink, dim = L.gray("100"), L.gray("60")
-    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" id="chain-svg" '
+    o = [f'<svg viewBox="0 0 {W} {H}" class="c-svg" id="chain-svg" style="min-width:{W*0.92:.0f}px" '
          f'xmlns="http://www.w3.org/2000/svg">']
     o.append('<text x="0" y="14" class="c-q">What every conclusion on this board rests on</text>')
     o.append(f'<text x="0" y="40" class="c-lab">Conclusions</text>')
@@ -1329,7 +1337,7 @@ CHAIN_CSS = """
 .chain-node.on text {{ font-weight: 700; }}
 .chain-node.on circle {{ stroke: {b}; stroke-width: 3; paint-order: stroke; }}
 .chain-readout {{ font-family: var(--mono); font-size: var(--fz-sm); color: var(--ink);
-  border-left: 3px solid var(--border-strong); padding: var(--s03) var(--s05);
+  border-left: 1px solid var(--border-strong); padding: var(--s03) var(--s05);
   margin: var(--s04) 0 0; min-height: 1.4em; }}
 """
 

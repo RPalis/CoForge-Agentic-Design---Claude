@@ -1,32 +1,32 @@
 {
-  "run_id": "2026-09-07",
-  "generated_at": "2026-09-07T19:44:49",
+  "run_id": "2026-09-08",
+  "generated_at": "2026-09-08T10:07:48",
   "project": "coforge",
   "session": {
-    "turns": 12128,
-    "duration_min": 19308.5,
+    "turns": 12277,
+    "duration_min": 20171.5,
     "transcripts": 4
   },
   "tokens": {
-    "input": 24196,
-    "output": 14137264,
-    "cache_read": 6346187542,
-    "cache_creation": 105580081,
-    "billable": 14161460
+    "input": 24488,
+    "output": 14306045,
+    "cache_read": 6381599742,
+    "cache_creation": 106279797,
+    "billable": 14330533
   },
   "tools": {
-    "Bash": 3049,
+    "Bash": 3101,
     "Edit": 377,
     "mcp__chrome-devtools__evaluate_script": 249,
     "mcp__figma-console__figma_execute": 186,
     "Write": 172,
     "mcp__claude-in-chrome__javascript_tool": 158,
-    "Agent": 145,
+    "Agent": 148,
     "mcp__claude-in-chrome__navigate": 88,
     "Artifact": 84,
     "mcp__Claude_Browser__computer": 78,
     "SendUserFile": 68,
-    "Read": 58,
+    "Read": 63,
     "mcp__chrome-devtools__take_screenshot": 57,
     "ToolSearch": 49,
     "mcp__chrome-devtools__navigate_page": 41,
@@ -103,7 +103,7 @@
       "superseded": 8,
       "draft": 14
     },
-    "tokens_per_artifact": 524499
+    "tokens_per_artifact": 530760
   },
   "gates": {
     "verdict": "FAIL",
@@ -115,8 +115,8 @@
     "source": "live-audit"
   },
   "corrections": {
-    "logged": 52,
-    "with_check": 40,
+    "logged": 56,
+    "with_check": 44,
     "unchecked": 12,
     "source": "validation/corrections.json"
   },

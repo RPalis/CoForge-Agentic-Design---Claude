@@ -567,6 +567,58 @@
       "check_note": "None yet. What is owed is a check that recomputes each coverage ratio from the captures and the plan's stated scope and fails when a stated ratio and a derived one disagree. Every one of the five coverage rows should be re-derived, not only this one — the other four have never been checked either.",
       "verifies": "MOSTLY WITHDRAWN. Three of five ratios derive or are uncontradicted. What remains open is narrow: the journey-stages denominator uses 8 stages where the plan enumerates 15 stage-units, and the chart caption's claim to measure 'against what the research plan specified' is therefore unverified. That is a caption to fix or a split to document, not a number to change. NOTHING on the board was altered on the basis of the original, wrong claim. The lesson is SR-6, which I wrote into all fourteen agent definitions two hours before breaking it: I did not attack my own check before reporting its result, and a check that searched titles instead of contents was not a check. It is the sixth time in this project a check has been wrong, and the first time the author caught it themselves — only because someone asked for a plain-language example.",
       "would_have_caught": false
+    },
+    {
+      "id": "C-053",
+      "date": "2026-09-07",
+      "defect": "A bar chart shipped with invisible bars and the checker called it clean. ch-axes ('Ways to reorder results') drew its total-count bars with class=\"c-struct\", the class verify-charts.mjs exempts from the 3:1 mark floor as 'axis tracks and qualitative bands: context, never read alone'. Those bars are not context: each width is axw*total/mx, a value, and the light fill carries its OWN legend entry ('axes about price, rating, distance or an unexplained default'). Measured on the real render: 1.45:1 against the ground, across bars of 372 / 202.9 / 101.5 units.",
+      "class": "a checker exemption granted on the strength of a class name, hiding a real data mark that encodes a value and has its own legend entry",
+      "found_by": "system-keeper, attacking verify-charts.mjs on instruction, working in a scratch copy. NOT found by the author, who wrote both the chart and the checker and had run the checker green on this exact build repeatedly.",
+      "root_cause": "The exemption trusted a class NAME and required nothing of the element. The class became a way to silence the check rather than a description of what the element is. The reported aggregate (worstStructuralRatio 1.12) was driven by legitimate hairline axis tracks and averaged these bars out of view.",
+      "what_actually_varied": "The three real tracks are constant: ch-coverage 5 rects all 378 wide, ch-themes 11 all 464, ch-matrix 139 all 40. ch-axes had 6 rects at 4 distinct widths, because its widths come from data. Track versus value is mechanically separable, and nothing had separated them.",
+      "check": "artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/verify-charts.mjs",
+      "check_note": "The exemption must now be substantiated: honoured only for a <line>, or a <rect> in a figure holding >=2 structural rects that all share ONE width. A circle, polygon or path wearing the class, a lone rect, or rects of differing widths are checked as marks. The report prints instances and distinctWidths per figure so the claim is visible rather than assumed.",
+      "verifies": "FIXED and CHECKED, 2026-09-07. charts.py: the bars and legend swatch lost the class and gained a gray-60 outline (4.25:1) over the light fill -- the same filled-versus-outlined vocabulary the evidence meters use. Marks checked rose 485 to 491, worst mark 4.25:1. Re-planting the attacker's exact circle plant, plus a lone rect, now FAILS with a named reason; the real artifact still passes.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-054",
+      "date": "2026-09-07",
+      "defect": "Two checks documented as composing into one guarantee never shared scope. verify-charts.mjs exempted .c-cellbg from the contrast floor on the stated grounds that the cell's number is checked separately and check 5 proves shadedCells === numbersPrinted. The contrast loop scans 'figure.chart svg' across every chart; the redundancy check is hard-scoped to '#ch-matrix rect'. A .c-cellbg element outside the matrix collected the exemption with none of the backstop. Reproduced 3 of 3 in ch-quadrant.",
+      "class": "an exemption justified by a second check that does not reach where the exemption applies",
+      "found_by": "system-keeper, same attack.",
+      "root_cause": "The justifying comment described an intended composition of two checks and nobody verified the selectors overlapped. The comment was true of the matrix and false everywhere else -- and the comment is what a future reader trusts.",
+      "what_actually_varied": "Inside #ch-matrix the composition is real: 59 shaded cells, 59 printed numbers. Only outside it does the exemption stand alone.",
+      "check": "artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/verify-charts.mjs",
+      "check_note": "The .c-cellbg exemption is now honoured only inside #ch-matrix -- exactly the scope its backstop reaches. Outside it the element is an ordinary mark and the failure names the reason.",
+      "verifies": "FIXED and CHECKED, 2026-09-07. Re-planting a .c-cellbg rect in ch-quadrant now FAILS; the real artifact passes.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-055",
+      "date": "2026-09-07",
+      "defect": "verify-widgets.mjs carried a check for the filter chip's pressed state, with a comment claiming the pressed state 'also inverts ground and gains a leading block' so it is not colour-alone. The probe never clicked anything, so no chip was ever pressed when the measurement ran. The check was vacuous and a genuinely colour-alone pressed state would have shipped green.",
+      "class": "a check on an interactive state that never enters that state",
+      "found_by": "system-keeper, same attack. Rated ERROR: the defect the check names is precisely the defect it cannot see.",
+      "root_cause": "The checker measured a resting page and reasoned about an interactive one. Same family as C-021 and C-024: a check believed working by its author and load-bearing on nothing.",
+      "what_actually_varied": "Every other widget assertion in the file measures a rendered element and is sound. Only the state-dependent one was vacuous.",
+      "check": "artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/verify-widgets.mjs",
+      "check_note": "The probe now drives the control: clicks a chip, measures both states, asserts aria-pressed flips, asserts rows actually filter (114 hidden), and asserts the pressed state carries a channel beyond hue. A third pass runs the whole probe under forced-colors emulation and there demands specifically a border-style, border-width or outline difference.",
+      "verifies": "FIXED and CHECKED, 2026-09-07. Re-planted a colour-only pressed state: FAILS in all three modes. The forced-colors pass also closes the deferred item the a11y audit raised and could not test, and it caught a second defect while being written -- a first forced-colors rule that named Highlight/HighlightText with forced-color-adjust:none rendered white on white.",
+      "would_have_caught": false
+    },
+    {
+      "id": "C-056",
+      "date": "2026-09-07",
+      "defect": "Every colour test in verify-widgets.mjs was silently disabled by escaping. The probe is a JS template literal built inside a Python heredoc, so backslashes are consumed twice: /rgba\\(0, 0, 0, 0\\)|transparent/ arrived at the page as /rgba(0, 0, 0, 0)|transparent/ -- a capture group matching the literal text 'rgba0, 0, 0, 0', which never occurs. Three tests reported clean while testing nothing, and bgOf() resolved every element's background to <body> instead of its real ground.",
+      "class": "a test that fails OPEN -- when broken it reports success",
+      "found_by": "the author, by disbelieving a PASS after an encoding change. The same bug was then hit twice more within the hour, including inside the fix written to repair it, which used /\\s/g and arrived as /s/g. system-keeper independently re-audited both verifiers for surviving instances and found none, proving it by execution rather than by reading.",
+      "root_cause": "A regex crossing two escaping layers is unreviewable by eye, and this class of failure is invisible and reassuring: a broken colour test returns clean.",
+      "what_actually_varied": "The arithmetic (relative luminance, contrast ratio) was correct throughout. Only the colour-recognition predicates were disabled, so ratios were computed against the wrong ground rather than computed wrongly.",
+      "check": "artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/verify-widgets.mjs",
+      "check_note": "Every escape sequence was removed from the probe strings; the colour tests are plain string operations (split/join, startsWith, indexOf). Standing practice: no escape sequence inside a probe string that crosses a language boundary.",
+      "verifies": "FIXED and CHECKED, 2026-09-07. With the predicates live, the pip test immediately failed on 39 real elements and passed only after the encoding was actually corrected.",
+      "would_have_caught": false
     }
   ]
 }

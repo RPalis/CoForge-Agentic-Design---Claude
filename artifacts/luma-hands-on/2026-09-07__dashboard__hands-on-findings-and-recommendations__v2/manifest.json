@@ -72,6 +72,27 @@
         "scope": "panel open/close, focus management, Escape, Enter parity, 121 distinct index rows",
         "result": "PASS"
       }
+    ],
+    "checkers": [
+      {
+        "file": "verify-charts.mjs",
+        "checks": "rendered-DOM chart layer: figure semantics, mark contrast vs the real ground, substantiated exemptions, clipping on both axes, label overlap, redundant encoding, CSV presence",
+        "result": "PASS, 491 marks, worst 4.25:1, 0 clipped, 0 overlapping",
+        "attested": false
+      },
+      {
+        "file": "verify-widgets.mjs",
+        "checks": "rendered-DOM widget layer in three modes (desktop, narrow, forced-colors): border ceiling, evidence meters, filter chips driven through their pressed state, row text contrast, horizontal overflow",
+        "result": "PASS in all three modes",
+        "attested": false
+      },
+      {
+        "note": "NEITHER checker is covered by the machinery hash in validation/attestation.json: check 5g never descends into artifacts/. Recorded there as W-3 and deliberately not closed in the same session, because closing it changes the machinery and invalidates the attestation just granted. Both were independently attacked on 2026-09-07 (9 defects planted, 6 caught, 3 missed) and all three misses are fixed and re-planted; see validation/reports/2026-09-07__widget-verifier-attack.md and corrections C-053 to C-056."
+      }
+    ],
+    "independent_review": [
+      "validation/reports/2026-09-07__widget-verifier-attack.md — system-keeper, adversarial",
+      "validation/reports/2026-09-07__widget-a11y-audit.md — a11y-checker, WCAG 2.2 AA"
     ]
   },
   "autonomy": "draft",

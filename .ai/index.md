@@ -20,7 +20,7 @@
 | raw_sources | 2 |
 | tokens | 829 |
 | components | 219 |
-| artifacts | 27 |
+| artifacts | 29 |
 | brand_status | approved |
 | brand_defined | True |
 

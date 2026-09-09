@@ -1,6 +1,6 @@
 {
   "run_id": "2026-09-09",
-  "generated_at": "2026-09-09T17:07:12",
+  "generated_at": "2026-09-09T17:42:26",
   "project": "coforge",
   "provenance": {
     "schema_version": "2",
@@ -8,33 +8,33 @@
     "detail": "validation/metrics.schema.json"
   },
   "session": {
-    "turns": 6446,
+    "turns": 6544,
     "transcripts": 5,
-    "unique_records": 17106,
-    "non_message_records": 3125,
-    "active_minutes_distinct": 1536,
-    "active_hours_distinct_minutes": 25.6,
-    "elapsed_span_by_day_hours": 107.4
+    "unique_records": 17345,
+    "non_message_records": 3161,
+    "active_minutes_distinct": 1551,
+    "active_hours_distinct_minutes": 25.9,
+    "elapsed_span_by_day_hours": 107.9
   },
   "tokens": {
-    "input": 12850,
-    "output": 8242676,
-    "cache_read": 3214642079,
-    "cache_creation": 65999198,
-    "billable": 8255526
+    "input": 13046,
+    "output": 8368640,
+    "cache_read": 3257421639,
+    "cache_creation": 66178459,
+    "billable": 8381686
   },
   "tools": {
-    "Bash": 1684,
+    "Bash": 1716,
     "Edit": 126,
     "mcp__chrome-devtools__evaluate_script": 116,
     "mcp__figma-console__figma_execute": 94,
     "mcp__claude-in-chrome__javascript_tool": 79,
-    "Agent": 69,
-    "mcp__Claude_Browser__computer": 65,
-    "Write": 58,
+    "Agent": 70,
+    "mcp__Claude_Browser__computer": 66,
+    "Write": 61,
     "Read": 44,
     "mcp__claude-in-chrome__navigate": 44,
-    "SendUserFile": 35,
+    "SendUserFile": 36,
     "Artifact": 35,
     "ToolSearch": 27,
     "mcp__chrome-devtools__take_screenshot": 26,
@@ -44,10 +44,10 @@
     "mcp__chrome-devtools__navigate_page": 20,
     "mcp__claude-in-chrome__computer": 20,
     "mcp__Claude_Browser__resize_window": 19,
-    "mcp__Claude_Browser__browser_batch": 13,
+    "mcp__Claude_Browser__browser_batch": 18,
+    "Skill": 13,
     "mcp__claude-in-chrome__find": 13,
-    "Skill": 11,
-    "mcp__Claude_Browser__preview_start": 11,
+    "mcp__Claude_Browser__preview_start": 12,
     "mcp__figma-console__figma_delete_variable": 11,
     "WebSearch": 10,
     "mcp__ccd_session__mark_chapter": 8,
@@ -87,8 +87,8 @@
     "mcp__figma-console__figjam_get_board_contents": 1
   },
   "skills": {
-    "artifact-design": 3,
-    "dataviz": 2,
+    "artifact-design": 4,
+    "dataviz": 3,
     "anthropic-skills:docx": 1,
     "impeccable": 1,
     "luma-competitor-analysis-pro": 1,
@@ -97,8 +97,8 @@
     "claude-api": 1
   },
   "artifacts": {
-    "total": 29,
-    "live": 21,
+    "total": 30,
+    "live": 22,
     "by_type": {
       "brand-extraction": 1,
       "competitive-benchmark": 7,
@@ -109,15 +109,16 @@
       "dashboard": 8,
       "research-plan": 1,
       "ux-copy": 1,
+      "interview-analysis": 1,
       "metrics-scorecard": 1
     },
     "by_status": {
       "in-review": 3,
       "approved": 2,
       "superseded": 8,
-      "draft": 16
+      "draft": 17
     },
-    "tokens_per_artifact": 284673
+    "tokens_per_artifact": 279390
   },
   "gates": {
     "verdict": "PASS",

@@ -79,6 +79,11 @@ figcaption b{color:var(--ink);font-weight:600}
   text-anchor:middle;font-variant-numeric:tabular-nums}
 .fig .band-l{font-size:15px;font-weight:600;fill:var(--ink);text-anchor:end}
 .fig .band-n{font-family:var(--mono);font-size:10px;fill:var(--ink-3);text-anchor:end}
+.fig .stl{font-size:14px;fill:var(--ink);text-anchor:end}
+.fig .track{fill:var(--rule);opacity:.45}
+.fig .bar{stroke:none}
+.fig .barv{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--ink);font-variant-numeric:tabular-nums}
+.fig .stn{font-family:var(--mono);font-size:9.5px;fill:var(--ink-3);text-anchor:end}
 .s-s1{fill:var(--s1);stroke:var(--s1)}
 .s-s2{fill:var(--s2);stroke:var(--s2)}
 .s-s3{fill:var(--s3);stroke:var(--s3)}
@@ -1013,6 +1018,136 @@ a{color:inherit}
     series sit on one lightness step and measure 1.055:1 against each other. The palette on
     this page was built from CoForge ramps at four different steps and validated by
     measurement, in both themes, before any chart was drawn.</li>
+  </ul>
+</section>
+
+<section>
+  <hr class="rulel">
+  <h2>The guide asks people to design the product</h2>
+  <p>Every one of the forty interviews ends the same way: <em>if you could change one thing,
+  what would it be?</em> It is asked in all 40, in three segment-specific wordings. It is a
+  reasonable closing question and it is also a solution-eliciting one &#8212; it invites a
+  feature request rather than a description of a problem.</p>
+  <p>That matters because of where it lands. The roster's &#8220;voiced need /
+  opportunity&#8221; column &#8212; the closest thing this corpus has to a product
+  requirement &#8212; is downstream of that answer for at least 21 of the 40 participants on
+  a conservative match. So the opportunity list is substantially a transcription of what
+  people said when asked to name a fix, not what they struggled with when asked to tell a
+  story.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 366" role="img" width="100%" aria-labelledby="st-t st-d" class="fig">
+<title id="st-t">Journey stages probed, out of 40 interviews</title>
+<desc id="st-d">Return and after is probed in one interview of forty. Prepare is probed in ten, all of them first-time travellers.</desc>
+<line class="grid" x1="214.0" y1="34" x2="214.0" y2="338"/>
+<text class="ax mid" x="214.0" y="358">0</text>
+<line class="grid" x1="331.5" y1="34" x2="331.5" y2="338"/>
+<text class="ax mid" x="331.5" y="358">10</text>
+<line class="grid" x1="449.0" y1="34" x2="449.0" y2="338"/>
+<text class="ax mid" x="449.0" y="358">20</text>
+<line class="grid" x1="566.5" y1="34" x2="566.5" y2="338"/>
+<text class="ax mid" x="566.5" y="358">30</text>
+<line class="grid" x1="684.0" y1="34" x2="684.0" y2="338"/>
+<text class="ax mid" x="684.0" y="358">40</text>
+<text class="stl" x="200" y="53">Dream &amp; discover</text>
+<text class="stn" x="200" y="65">generous — only the grand-tour opener touches it</text>
+<rect class="track" x="214" y="40" width="470" height="26" rx="3"/>
+<rect class="bar s-s1" x="214" y="40" width="470.0" height="26" rx="3"><title>Dream &amp; discover: 40 of 40 interviews</title></rect>
+<text class="barv" x="693.0" y="58">40</text>
+<text class="stl" x="200" y="91">Plan &amp; compare</text>
+<rect class="track" x="214" y="78" width="470" height="26" rx="3"/>
+<rect class="bar s-s1" x="214" y="78" width="352.5" height="26" rx="3"><title>Plan &amp; compare: 30 of 40 interviews</title></rect>
+<text class="barv" x="575.5" y="96">30</text>
+<text class="stl" x="200" y="129">Book</text>
+<rect class="track" x="214" y="116" width="470" height="26" rx="3"/>
+<rect class="bar s-s1" x="214" y="116" width="470.0" height="26" rx="3"><title>Book: 40 of 40 interviews</title></rect>
+<text class="barv" x="693.0" y="134">40</text>
+<text class="stl" x="200" y="167">Prepare (docs, entry)</text>
+<text class="stn" x="200" y="179">first-time segment only</text>
+<rect class="track" x="214" y="154" width="470" height="26" rx="3"/>
+<rect class="bar s-s2" x="214" y="154" width="117.5" height="26" rx="3"><title>Prepare (docs, entry): 10 of 40 interviews</title></rect>
+<text class="barv" x="340.5" y="172">10</text>
+<text class="stl" x="200" y="205">Travel day</text>
+<text class="stn" x="200" y="217">business + families only</text>
+<rect class="track" x="214" y="192" width="470" height="26" rx="3"/>
+<rect class="bar s-s1" x="214" y="192" width="235.0" height="26" rx="3"><title>Travel day: 20 of 40 interviews</title></rect>
+<text class="barv" x="458.0" y="210">20</text>
+<text class="stl" x="200" y="243">In destination</text>
+<rect class="track" x="214" y="230" width="470" height="26" rx="3"/>
+<rect class="bar s-s1" x="214" y="230" width="246.75" height="26" rx="3"><title>In destination: 21 of 40 interviews</title></rect>
+<text class="barv" x="469.75" y="248">21</text>
+<text class="stl" x="200" y="281">Return &amp; after</text>
+<text class="stn" x="200" y="293">one interview in forty</text>
+<rect class="track" x="214" y="268" width="470" height="26" rx="3"/>
+<rect class="bar s-s2" x="214" y="268" width="11.75" height="26" rx="3"><title>Return &amp; after: 1 of 40 interviews</title></rect>
+<text class="barv" x="234.75" y="286">1</text>
+<text class="stl" x="200" y="319">Reflect</text>
+<text class="stn" x="200" y="331">the solution-eliciting closer</text>
+<rect class="track" x="214" y="306" width="470" height="26" rx="3"/>
+<rect class="bar s-s1" x="214" y="306" width="470.0" height="26" rx="3"><title>Reflect: 40 of 40 interviews</title></rect>
+<text class="barv" x="693.0" y="324">40</text>
+<text class="ax" x="214" y="378">interviews in which a moderator question touches the stage, of 40</text>
+</svg>
+    <figcaption><b>Coverage is real data, unlike theme frequency.</b> Return and after is
+    touched in one interview of forty. Prepare is touched in ten, all first-time travellers,
+    because only that segment's guide asks about documents. Dream and discover reads as
+    complete only if the grand-tour opener counts as probing it, which is generous &#8212;
+    the supplied review calls that stage thin and on a stricter reading it is right.
+    Stage mapping here is keyword-based and approximate; the one-of-forty is not close
+    enough to the line for that to matter.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <hr class="rulel">
+  <h2>What to change</h2>
+  <p>Three groups, in the order they pay off. Everything here is drawn from the corpus
+  rather than from the market.</p>
+
+  <h3>The guide, before you field it with anyone</h3>
+  <ul>
+    <li><b>Stop ending on a solution.</b> Keep the question if you like it, but ask a
+    problem-side question after it, and stop treating the answers as demand. A wish named in
+    the last minute of an interview is the weakest signal in the transcript, and here it is
+    the one that became the opportunity list.</li>
+    <li><b>Add a return-and-after probe.</b> One interview in forty touches the stage. For
+    business travellers the whole expenses pain lives there, and it is currently reached
+    sideways through a cost question rather than directly.</li>
+    <li><b>Give the four guides a shared spine.</b> Exactly one question is asked of all 40.
+    Each segment has about eight core questions of its own. That makes cross-segment
+    comparison nearly impossible &#8212; and it is the second reason, after the lattice, that
+    the &#8220;cuts across every segment&#8221; claim could not have been supported.</li>
+    <li><b>Test a repair that fails.</b> Seven curveball behaviours, seventeen instances, and
+    every single one resolves on the moderator's first attempt. Real participants do not.
+    The guide has never been tested against a second refusal.</li>
+    <li><b>Fix or drop the terse band.</b> Terse and average differ by 1.5 words. Either make
+    terse genuinely terse or admit there are two bands, because right now one third of the
+    roster is testing nothing.</li>
+  </ul>
+
+  <h3>The generator, if there is another synthetic round</h3>
+  <ul>
+    <li><b>Let themes cross segments.</b> Sample them, do not rotate them. Until a theme can
+    appear anywhere, no frequency and no segment difference can ever mean anything, and every
+    such finding will be circular in exactly the way this one was.</li>
+    <li><b>Vary how many pains a participant has.</b> Exactly two each is what makes the
+    totals arithmetic.</li>
+    <li><b>Define what counts as an access need and count it once.</b> The corpus states
+    eleven; the review says eight; nothing says which definition is in use.</li>
+  </ul>
+
+  <h3>CoForge itself</h3>
+  <ul>
+    <li><b>Sign or reject ADR-024.</b> This artifact depends on it and it is still proposed.</li>
+    <li><b>Give the interview-analysis checklist a synthetic branch</b>, or rule that the type
+    does not accept synthetic corpora. Today it demands ledger citations that ADR-024
+    forbids.</li>
+    <li><b>Build the check ADR-024 admits it is owed:</b> an <span class="pill p-upheld">[E-nnn]</span>
+    citation inside an artifact declaring <span class="pill p-upheld">corpus: synthetic</span>
+    should be a blocker. It is prose until then, which is the weakest layer.</li>
+    <li><b>Promote the validated palette through the membrane</b> to replace the defective
+    <span class="pill p-upheld">cf-chart-palette</span>. It exists and is measured; it is not
+    yet in the index.</li>
   </ul>
 </section>
 

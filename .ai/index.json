@@ -418,7 +418,7 @@
     {
       "file": "decisions/ADR-023-on-token-for-self-contained-artifacts.md",
       "title": "ADR-023 \u2014 What \"on-token\" means for a self-contained artifact",
-      "status": "PROPOSED \u2014 awaiting Gate A sign-off (this ADR changes what a gate accepts)"
+      "status": "ACCEPTED \u2014 signed off by Agentic Designer - RP, 2026-09-09 (Gate A), by merging PR #6"
     }
   ],
   "relationships": [

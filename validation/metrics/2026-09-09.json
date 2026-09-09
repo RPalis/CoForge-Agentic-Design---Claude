@@ -1,6 +1,6 @@
 {
   "run_id": "2026-09-09",
-  "generated_at": "2026-09-09T10:32:29",
+  "generated_at": "2026-09-09T13:11:56",
   "project": "coforge",
   "provenance": {
     "schema_version": "2",
@@ -8,42 +8,42 @@
     "detail": "validation/metrics.schema.json"
   },
   "session": {
-    "turns": 6117,
+    "turns": 6312,
     "transcripts": 5,
-    "unique_records": 16335,
-    "non_message_records": 3005,
-    "active_minutes_distinct": 1468,
-    "active_hours_distinct_minutes": 24.5,
-    "elapsed_span_by_day_hours": 100.8
+    "unique_records": 16769,
+    "non_message_records": 3063,
+    "active_minutes_distinct": 1506,
+    "active_hours_distinct_minutes": 25.1,
+    "elapsed_span_by_day_hours": 103.4
   },
   "tokens": {
-    "input": 12194,
-    "output": 7838588,
-    "cache_read": 3134538025,
-    "cache_creation": 64745420,
-    "billable": 7850782
+    "input": 12582,
+    "output": 8077161,
+    "cache_read": 3171766651,
+    "cache_creation": 65735512,
+    "billable": 8089743
   },
   "tools": {
-    "Bash": 1555,
+    "Bash": 1634,
     "Edit": 126,
     "mcp__chrome-devtools__evaluate_script": 116,
     "mcp__figma-console__figma_execute": 94,
     "mcp__claude-in-chrome__javascript_tool": 79,
+    "Agent": 68,
     "mcp__Claude_Browser__computer": 65,
-    "Agent": 65,
     "Write": 58,
     "mcp__claude-in-chrome__navigate": 44,
     "Read": 38,
     "SendUserFile": 35,
     "Artifact": 35,
+    "ToolSearch": 26,
     "mcp__chrome-devtools__take_screenshot": 26,
     "mcp__Claude_Browser__javascript_tool": 25,
-    "ToolSearch": 24,
+    "AskUserQuestion": 20,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__chrome-devtools__navigate_page": 20,
     "mcp__claude-in-chrome__computer": 20,
     "mcp__Claude_Browser__resize_window": 19,
-    "AskUserQuestion": 17,
     "mcp__Claude_Browser__browser_batch": 13,
     "mcp__claude-in-chrome__find": 13,
     "Skill": 11,
@@ -96,15 +96,16 @@
     "claude-api": 1
   },
   "artifacts": {
-    "total": 27,
-    "live": 19,
+    "total": 29,
+    "live": 21,
     "by_type": {
       "brand-extraction": 1,
       "competitive-benchmark": 7,
       "a11y-audit": 3,
       "component-spec": 4,
+      "handoff-spec": 1,
       "prioritization": 2,
-      "dashboard": 7,
+      "dashboard": 8,
       "research-plan": 1,
       "ux-copy": 1,
       "metrics-scorecard": 1
@@ -113,15 +114,15 @@
       "in-review": 3,
       "approved": 2,
       "superseded": 8,
-      "draft": 14
+      "draft": 16
     },
-    "tokens_per_artifact": 290770
+    "tokens_per_artifact": 278957
   },
   "gates": {
     "verdict": "FAIL",
-    "blocker": 33,
-    "error": 1,
-    "warning": 5,
+    "blocker": 0,
+    "error": 2,
+    "warning": 7,
     "info": 6,
     "skipped": 0,
     "source": "live-audit"
@@ -133,7 +134,7 @@
     "source": "validation/corrections.json"
   },
   "governance": {
-    "adrs": 22,
+    "adrs": 23,
     "agents": 14,
     "artifact_types": 41
   },

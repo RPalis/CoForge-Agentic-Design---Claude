@@ -893,15 +893,38 @@ tok = jload("design-system/tokens/tokens.json") or {}
 if not any(isinstance(v, dict) and v for k, v in tok.items() if not k.startswith("$")):
     skip("tokens", "tokens.json is empty (DS state RED) — raw values cannot be checked until Build Stage 2")
 else:
-    for base in ("artifacts", "design-system/components"):
-        for dp, _, fs in os.walk(P(base)):
-            for f in fs:
-                if not f.endswith((".html", ".css", ".svg", ".jsx", ".tsx")): continue
-                fp = os.path.join(dp, f)
-                for mm in re.finditer(r"#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b",
-                                      open(fp, encoding="utf-8", errors="ignore").read()):
-                    add("blocker", "tokens", f"{os.path.relpath(fp, ROOT)}: raw colour {mm.group(0)}",
-                        "replace with a token from design-system/tokens/tokens.json"); break
+    # C-058 / ADR-023. This tested a SPELLING and failed in both directions at once:
+    # it could not read color(srgb ...), so 708 literals in ART-026 v2 reported clean
+    # for days; and it flagged 30 literals that ARE token values, because a
+    # self-contained artifact that opens offline cannot reference a custom property
+    # defined in a token file at rest. It now tests the PROPERTY the rule states —
+    # does this value resolve to a token — across every notation, and reports every
+    # occurrence rather than stopping at the first per file.
+    sys.path.insert(0, P("validation"))
+    import colour_resolve
+    _tokenset = colour_resolve.token_rgb(tok)
+    if not _tokenset:
+        skip("tokens", "tokens.json declares no colour values — literals cannot be resolved")
+    else:
+        for base in ("artifacts", "design-system/components"):
+            for dp, _, fs in os.walk(P(base)):
+                for f in fs:
+                    if not f.endswith((".html", ".css", ".svg", ".jsx", ".tsx")): continue
+                    fp = os.path.join(dp, f)
+                    text = open(fp, encoding="utf-8", errors="ignore").read()
+                    bad = colour_resolve.off_token(text, _tokenset)
+                    if not bad: continue
+                    seen = {}
+                    for lit, why in bad:
+                        seen.setdefault((lit, why), 0)
+                        seen[(lit, why)] += 1
+                    for (lit, why), n in sorted(seen.items(), key=lambda x: -x[1]):
+                        add("blocker", "tokens",
+                            f"{os.path.relpath(fp, ROOT)}: off-token colour {lit}"
+                            + (f" (x{n})" if n > 1 else "") + f" — {why}",
+                            "use a value from design-system/tokens/tokens.json. The literal "
+                            "itself is fine — a self-contained artifact must inline it — but "
+                            "it has to BE a token value (ADR-023)")
 
 # ---------- output ----------
 order = {"blocker": 0, "error": 1, "warning": 2, "info": 3}

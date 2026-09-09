@@ -505,7 +505,7 @@
       "produced_by": "content-comms",
       "supersedes": null,
       "evidence": [],
-      "tokens_version": null,
+      "tokens_version": "0.2.0",
       "surface": {
         "kind": "local",
         "ref": null

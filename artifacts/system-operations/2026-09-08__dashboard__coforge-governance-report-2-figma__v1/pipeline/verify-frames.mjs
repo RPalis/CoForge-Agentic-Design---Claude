@@ -14,7 +14,7 @@ const SVGS = fs.readdirSync(process.cwd() + "/..").filter(f => f.endsWith(".svg"
 if (SVGS.length === 0) { console.error("no SVG frames found beside the pipeline"); process.exit(2); }
 fs.writeFileSync(process.cwd() + "/verify-frames.html",
   `<meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">` +
-  `<style>body{margin:0;background:#9a978f}svg{display:block;margin:0 0 40px}</style>` +
+  `<style>body{margin:0;background:#9c9696}svg{display:block;margin:0 0 40px}</style>` +
   SVGS.map(f => `<section data-chart="${f.replace(/\.svg$/, "")}">` +
     fs.readFileSync(process.cwd() + "/../" + f, "utf8") + `</section>`).join(""));
 const URL = "file://" + process.cwd() + "/verify-frames.html";

@@ -19,10 +19,17 @@
   },
   "inputs": {
     "evidence": [],
-    "artifacts": ["ART-011", "ART-012", "ART-021"],
-    "decisions": ["D-001", "D-002"],
+    "artifacts": [
+      "ART-011",
+      "ART-012",
+      "ART-021"
+    ],
+    "decisions": [
+      "D-001",
+      "D-002"
+    ],
     "sources": [],
-    "tokens_version": null
+    "tokens_version": "0.2.0"
   },
   "surface": {
     "kind": "local",

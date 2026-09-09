@@ -21,7 +21,7 @@
   "counts": {
     "agents": 14,
     "artifact_types": 41,
-    "adrs": 22,
+    "adrs": 23,
     "relationships": 159
   },
   "agents": [
@@ -414,6 +414,11 @@
       "file": "decisions/ADR-022-first-authored-l1-promotions.md",
       "title": "ADR-022 \u2014 First promotions through the membrane: cf-chip, cf-nav-rail, cf-detail-panel",
       "status": "ACCEPTED \u2014 signed off by Agentic Designer - RP, 2026-09-03 (Gate A)"
+    },
+    {
+      "file": "decisions/ADR-023-on-token-for-self-contained-artifacts.md",
+      "title": "ADR-023 \u2014 What \"on-token\" means for a self-contained artifact",
+      "status": "PROPOSED \u2014 awaiting Gate A sign-off (this ADR changes what a gate accepts)"
     }
   ],
   "relationships": [

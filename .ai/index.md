@@ -5,7 +5,7 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-14 agents · 41 artifact types · 22 ADRs · 159 relationships
+14 agents · 41 artifact types · 23 ADRs · 159 relationships
 
 
 ## State
@@ -90,3 +90,4 @@
 - [ADR-020 — Finder agents: scoped Write, and a denominator on every finding](decisions/ADR-020-finder-agents.md) — Accepted · 2026-08-31
 - [ADR-021 — The dataviz layer: chart marks are not components](decisions/ADR-021-dataviz-layer.md) — ACCEPTED — Gate A, human decision recorded 2026-09-03
 - [ADR-022 — First promotions through the membrane: cf-chip, cf-nav-rail, cf-detail-panel](decisions/ADR-022-first-authored-l1-promotions.md) — ACCEPTED — signed off by Agentic Designer - RP, 2026-09-03 (Gate A)
+- [ADR-023 — What "on-token" means for a self-contained artifact](decisions/ADR-023-on-token-for-self-contained-artifacts.md) — PROPOSED — awaiting Gate A sign-off (this ADR changes what a gate accepts)

@@ -74,10 +74,15 @@ def main():
                          "raw values CANNOT be checked until Build Stage 2")
     else:
         hit = False
-        for m in re.finditer(r"#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b", content):
-            r.add("blocker", "tokens", f"raw colour {m.group(0)}",
-                  "replace with a colour token from design-system/tokens/tokens.json "
-                  "(run: python3 validation/audit-system.py --suggest-token " + m.group(0) + ")")
+        # ADR-023 / C-058. Shares ONE resolver with audit-system.py check 6. Two
+        # copies of a colour rule is two rules: the hook and the audit would drift,
+        # and a write the hook let through would fail in CI with no explanation.
+        sys.path.insert(0, os.path.join(ROOT, "validation"))
+        import colour_resolve
+        for lit, why in colour_resolve.off_token(content, colour_resolve.token_rgb(tokens)):
+            r.add("blocker", "tokens", f"off-token colour {lit} — {why}",
+                  "use a value from design-system/tokens/tokens.json. Inlining the literal "
+                  "is fine; it has to BE a token value (ADR-023)")
             hit = True; break
         for m in re.finditer(r"(?<![\w-])(?:padding|margin|gap|border-radius)\s*:\s*\d+px", content):
             r.add("blocker", "tokens", f"raw spacing {m.group(0)!r}",

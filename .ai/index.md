@@ -90,4 +90,4 @@
 - [ADR-020 — Finder agents: scoped Write, and a denominator on every finding](decisions/ADR-020-finder-agents.md) — Accepted · 2026-08-31
 - [ADR-021 — The dataviz layer: chart marks are not components](decisions/ADR-021-dataviz-layer.md) — ACCEPTED — Gate A, human decision recorded 2026-09-03
 - [ADR-022 — First promotions through the membrane: cf-chip, cf-nav-rail, cf-detail-panel](decisions/ADR-022-first-authored-l1-promotions.md) — ACCEPTED — signed off by Agentic Designer - RP, 2026-09-03 (Gate A)
-- [ADR-023 — What "on-token" means for a self-contained artifact](decisions/ADR-023-on-token-for-self-contained-artifacts.md) — PROPOSED — awaiting Gate A sign-off (this ADR changes what a gate accepts)
+- [ADR-023 — What "on-token" means for a self-contained artifact](decisions/ADR-023-on-token-for-self-contained-artifacts.md) — ACCEPTED — signed off by Agentic Designer - RP, 2026-09-09 (Gate A), on merging PR #6 (recorded in PR #7, which carries the sign-off commit PR #6 merged without)

@@ -5,7 +5,7 @@
 > **Load once at session start. Fetch detail on demand. If a lookup is missing here, re-run the script.**
 
 
-14 agents · 41 artifact types · 23 ADRs · 159 relationships
+14 agents · 41 artifact types · 24 ADRs · 159 relationships
 
 
 ## State
@@ -20,7 +20,7 @@
 | raw_sources | 2 |
 | tokens | 829 |
 | components | 219 |
-| artifacts | 29 |
+| artifacts | 30 |
 | brand_status | approved |
 | brand_defined | True |
 
@@ -91,3 +91,4 @@
 - [ADR-021 — The dataviz layer: chart marks are not components](decisions/ADR-021-dataviz-layer.md) — ACCEPTED — Gate A, human decision recorded 2026-09-03
 - [ADR-022 — First promotions through the membrane: cf-chip, cf-nav-rail, cf-detail-panel](decisions/ADR-022-first-authored-l1-promotions.md) — ACCEPTED — signed off by Agentic Designer - RP, 2026-09-03 (Gate A)
 - [ADR-023 — What "on-token" means for a self-contained artifact](decisions/ADR-023-on-token-for-self-contained-artifacts.md) — ACCEPTED — signed off by Agentic Designer - RP, 2026-09-09 (Gate A), on merging PR #6 (recorded in PR #7, which carries the sign-off commit PR #6 merged without)
+- [ADR-024 — A synthetic participant corpus is measurement, never testimony](decisions/ADR-024-synthetic-corpora-are-measurement-not-testimony.md) — PROPOSED — awaiting Gate A sign-off (this ADR governs what may enter the evidence ledger)

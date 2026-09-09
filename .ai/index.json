@@ -14,14 +14,14 @@
     "raw_sources": 2,
     "tokens": 829,
     "components": 219,
-    "artifacts": 29,
+    "artifacts": 30,
     "brand_status": "approved",
     "brand_defined": true
   },
   "counts": {
     "agents": 14,
     "artifact_types": 41,
-    "adrs": 23,
+    "adrs": 24,
     "relationships": 159
   },
   "agents": [
@@ -419,6 +419,11 @@
       "file": "decisions/ADR-023-on-token-for-self-contained-artifacts.md",
       "title": "ADR-023 \u2014 What \"on-token\" means for a self-contained artifact",
       "status": "ACCEPTED \u2014 signed off by Agentic Designer - RP, 2026-09-09 (Gate A), on merging PR #6 (recorded in PR #7, which carries the sign-off commit PR #6 merged without)"
+    },
+    {
+      "file": "decisions/ADR-024-synthetic-corpora-are-measurement-not-testimony.md",
+      "title": "ADR-024 \u2014 A synthetic participant corpus is measurement, never testimony",
+      "status": "PROPOSED \u2014 awaiting Gate A sign-off (this ADR governs what may enter the evidence ledger)"
     }
   ],
   "relationships": [

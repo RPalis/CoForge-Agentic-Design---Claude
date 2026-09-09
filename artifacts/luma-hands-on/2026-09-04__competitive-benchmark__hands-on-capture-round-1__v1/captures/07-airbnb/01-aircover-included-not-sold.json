@@ -1,0 +1,68 @@
+{
+  "competitor": "Airbnb",
+  "capture": "reassurance layer — AirCover for guests",
+  "url": "https://www.airbnb.es/help/article/3218 (from /aircover)",
+  "captured_at": "2026-09-04T14:16Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture (first-party help documentation)",
+  "confidence": "Verified",
+
+  "finding_F66_INCLUDED_NOT_SOLD": {
+    "claim": "AirCover is included in every accommodation booking at no cost. It is the opposite commercial model to Hopper's Premium Disruption Assistance, for the same category of promise.",
+    "evidence_verbatim_es": "Todas las reservas de alojamientos incluyen AirCover para huéspedes",
+    "translation": "All accommodation bookings include AirCover for guests",
+    "the_pair": {
+      "Hopper": "Premium Disruption Assistance — a PAID add-on, app-only, price not published (F-65)",
+      "Airbnb": "AirCover — INCLUDED in every booking, free, documented in the public help centre"
+    },
+    "confidence": "Verified",
+    "why_this_pair_is_the_answer": "The correction to F-57 posed the question: is protection a PRODUCT YOU BUY or a PROPERTY OF THE THING YOU BOUGHT? These two competitors are the two answers, running simultaneously in the same market. Luma does not need to invent a position — it needs to choose between two that already exist and are both viable."
+  },
+
+  "what_aircover_covers": {
+    "triggers_verbatim_es": [
+      "Si el anfitrión cancela antes de la llegada",
+      "Si el alojamiento es muy diferente de lo que se anunciaba y el anfitrión no puede resolver el problema"
+    ],
+    "translation": ["If the host cancels before arrival", "If the listing is very different from advertised and the host cannot resolve it"],
+    "remedy_verbatim_es": "Nuestro equipo puede ayudarte a encontrar un alojamiento similar, teniendo en cuenta la ubicación y los servicios, en función de la disponibilidad a precios comparables",
+    "translation": "Our team can help you find similar accommodation, considering location and amenities, subject to availability at comparable prices",
+    "support_channel": "Línea de protección 24 horas (24-hour protection line)",
+    "refund_timing_verbatim_es": "Aunque se emiten prácticamente de inmediato, la mayoría de los reembolsos llegan en un plazo de 15 días",
+    "translation": "Although issued almost immediately, most refunds arrive within 15 days"
+  },
+
+  "finding_F67_THE_BOUNDARY_IS_NAMED_IN_PLAIN_LANGUAGE": {
+    "claim": "Airbnb states what AirCover is NOT, in plain language, with concrete examples — inside the same document that sells the reassurance.",
+    "evidence_verbatim_es": "AirCover para huéspedes no es una póliza de seguro. No cubre problemas relacionados con el viaje (por ejemplo, si tu viaje se retrasa debido a una tormenta o si tu equipaje resulta dañado por tu compañía aérea)",
+    "translation": "AirCover for guests is not an insurance policy. It does not cover travel-related problems (for example, if your trip is delayed due to a storm or your baggage is damaged by your airline)",
+    "confidence": "Verified",
+    "why_it_matters_MOST": "This is the single best example of honest reassurance found in the round. AirCover covers the ACCOMMODATION failing — not the JOURNEY failing — and Airbnb says so, unprompted, with examples a traveller would actually recognise, in the same page that promises the protection.",
+    "contrast_with_the_round": [
+      "Expedia: makes declining protection an admission of recklessness (F-22)",
+      "Iberia: names the disruption regime and does not link to it (F-56)",
+      "Booking.com: disclaims flight liability in terms most travellers never read (F-03)",
+      "Airbnb: states the boundary in the marketing document itself, with examples"
+    ],
+    "for_luma": "Luma proposes to cover the WHOLE journey. AirCover demonstrates that a bounded promise, stated honestly, is more trustworthy than an unbounded one. The transferable technique is not the coverage — it is publishing the edge of the coverage in the same breath as the coverage."
+  },
+
+  "finding_F68_THE_GAP_BETWEEN_THE_TWO_MODELS": {
+    "claim": "Placed together, Airbnb and Hopper cover opposite halves of the journey and neither covers the seam.",
+    "evidence": {
+      "Airbnb AirCover": "covers accommodation failure. Explicitly excludes travel delay and airline baggage damage.",
+      "Hopper Premium Disruption Assistance": "covers flight delay and cancellation. No accommodation coverage observed."
+    },
+    "the_seam": "A traveller whose flight is cancelled still holds an accommodation booking they can no longer reach, and whose host cancellation protection does not trigger because the host did nothing wrong. Neither product covers that. It is precisely the scenario's own problem statement: 'Booking each part separately leaves no single view of the trip or its total cost.'",
+    "confidence": "Verified as a description of the two products' stated scopes. The consequence is Inferred — no traveller was observed in this state.",
+    "for_luma": "This is a narrower and more defensible opportunity than 'own the whole chain'. The seam between a covered flight and a covered stay is uncovered by both specialists, and it exists only because the two bookings are separate objects. Luma proposes to model the trip as ONE object — which is the only structure in which that seam can be closed."
+  },
+
+  "not_observed": [
+    "AirCover surfaced during an actual booking flow — captured from the help centre, NOT from a live checkout. Whether it is visible BEFORE booking, which is the prior-round claim about it, is UNTESTED.",
+    "AirCover for Hosts — noted as existing, 3-million damage protection mentioned; not pursued",
+    "Airbnb site tree, search, sort axes, activities inventory — none captured",
+    "whether Airbnb Experiences carry equivalent protection"
+  ]
+}

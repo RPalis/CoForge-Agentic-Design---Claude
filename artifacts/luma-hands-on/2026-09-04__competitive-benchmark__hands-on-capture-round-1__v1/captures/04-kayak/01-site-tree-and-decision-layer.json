@@ -1,0 +1,69 @@
+{
+  "competitor": "Kayak",
+  "capture": "s0-site-tree-L1 + s1-dream-discover / decision layer",
+  "urls": ["https://www.kayak.co.uk/ (en-gb)", "https://www.kayak.es/flights?lang=es (es-es)"],
+  "captured_at": "2026-09-04T12:52Z",
+  "surface": "inspector instance (signed out, extension-clean)",
+  "locale_served": "captured on BOTH en-gb and es-es; quoted evidence marked per locale (D-004)",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "method_note": "The client supplied a kayak.es URL carrying gclid and aid ad-tracking parameters. These were STRIPPED before navigation — they identify the client's ad click and are not part of the product. Capture used https://www.kayak.es/flights?lang=es.",
+  "discarded_capture": "A first attempt at /hotels/Lisbon,Portugal/... redirected to the /stays landing page — not a result set. Nothing was recorded from it; the sort-option sweep returned the country picker, which would have been a false enumeration.",
+
+  "product_lines_en_gb": {
+    "Flights": "/flights", "Hotels": "/hotels", "Hire Cars": "/cars",
+    "Explore": "/explore", "Flight Tracker": "/tracker",
+    "Trips": "/trips", "Price Alerts": "/notifications"
+  },
+  "legal_en_gb": { "Terms of Use": "/terms-of-use", "Privacy": "/privacy" },
+
+  "decision_layer_es_es": {
+    "Explorar": { "translation": "Explore", "kind": "destination discovery without fixed inputs" },
+    "Mejor momento para viajar": { "translation": "Best time to travel", "kind": "seasonality guidance" },
+    "Alertas de precios": { "translation": "Price alerts",
+      "verbatim_es": "Entérate si cambian los precios", "translation_2": "Find out if prices change" },
+    "herramienta de predicción de precios": { "translation": "price prediction tool",
+      "verbatim_es": "¿Cómo puede ayudarme la herramienta de predicción de precios de KAYAK a elegir el mejor momento para comprar?",
+      "translation_2": "How can KAYAK's price prediction tool help me choose the best time to buy?" },
+    "búsqueda de fechas flexibles": { "translation": "flexible date search",
+      "verbatim_es": "¿Qué es la búsqueda de fechas flexibles de KAYAK y por qué debería usarla?" }
+  },
+
+  "REFINEMENT_of_F26": {
+    "F26_as_stated": "The product with the richest decision-support layer has the poorest ranking layer — measured across Booking.com (0 decision surfaces), Expedia (0) and Google Travel (4). Framed as a property of Google.",
+    "what_Kayak_shows": "Kayak also has a decision layer: Explore, Best time to travel, Price alerts, price prediction, flexible dates, and a standalone Flight Tracker. It is not a Google idiosyncrasy.",
+    "the_refined_finding": "Decision-support tracks BUSINESS MODEL, not company. The two products that do NOT complete the transaction — Google Travel and Kayak, both of which hand off — have built rich decision layers. The two that DO complete it — Booking.com and Expedia — have none, and instead deploy price anchoring and urgency at the point of choice.",
+    "confidence": "Verified",
+    "why_the_refinement_is_stronger": "As stated, F-26 was a fact about one company and easy to dismiss. As refined, it is a structural claim with a mechanism: a product that earns on the transaction is incentivised to close, and a product that earns on the referral is incentivised to be TRUSTED, because trust is what brings the traveller back to click through again.",
+    "what_would_falsify_it": "A transactional competitor with a genuine decision layer, or a meta-search without one. Skyscanner (5), Hopper (6), Trainline (10), Rome2Rio (12) all test it directly and none is captured yet."
+  },
+
+  "finding_F36_FLIGHT_TRACKER": {
+    "claim": "Kayak ships a standalone Flight Tracker at /tracker — a direct analogue of a named Luma core feature.",
+    "confidence": "Verified",
+    "why_it_matters": "Luma's Core Features list includes 'Live flight tracking'. Kayak gives it away free, unbundled from any booking, as a top-level product. Combined with Google's price tracking and price history, two of Luma's named features already exist as free-standing free tools from products that never sell the flight.",
+    "not_observed": "Whether the tracker requires an account, and what it does on disruption. OWED."
+  },
+
+  "account_value_proposition": {
+    "en_gb_verbatim": "Sign in or create an account to save searches, create Price Alerts, see Private Deals, and more.",
+    "es_es_verbatim": "Guarda todos tus planes en un solo lugar",
+    "translation": "Save all your plans in one place",
+    "comparison_to_F29": "Kayak's account offer MIXES capability (saved searches, price alerts) with commercial benefit (Private Deals). Booking.com's was purely commercial (a discount sort axis); Google hotels' was purely functional (price tracking). Kayak sits between them.",
+    "confidence": "Verified"
+  },
+
+  "our_product_decision_required": [
+    "Decision required: two of Luma's named core features — live flight tracking and price monitoring — are already free, unbundled tools from Kayak and Google. Luma cannot differentiate by having them. What does it add?",
+    "Decision required: if decision-support really tracks business model, Luma must decide which side it is on BEFORE designing the layer. It proposes to complete transactions AND be the trusted advisor. No observed competitor does both.",
+    "Decision required: what does a Luma account buy on day one — capability, commercial benefit, or both? Three competitors, three different answers."
+  ],
+
+  "not_observed": [
+    "sort axes on Kayak accommodation or flights — OWED, first attempt hit a landing page",
+    "the handoff to a booking site",
+    "price prediction opened on a real route",
+    "Flight Tracker opened",
+    "states: empty, error, no-results"
+  ]
+}

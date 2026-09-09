@@ -1,0 +1,51 @@
+{
+  "competitor": "Kayak",
+  "capture": "s2-plan-compare / flights — price construction and itinerary risk",
+  "captured_at": "2026-09-04T13:18Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es-es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F46_DIRECT_CONTRADICTION_ON_PRICE_HONESTY": {
+    "claim": "Two meta-search products state opposite pricing commitments for the same product category.",
+    "evidence": {
+      "Google Flights (en, F-30)": "Prices are final prices and include all taxes and fees, including payment fees for the cheapest common payment method",
+      "Kayak (es)": "Los precios son por persona y no incluyen tasas de equipaje. Es posible que algunos precios de trenes y autobuses no incluyan...",
+      "translation": "Prices are per person and DO NOT include baggage fees. Some train and bus prices may not include..."
+    },
+    "confidence": "Verified",
+    "why_it_matters": "Baggage is the canonical hidden cost in air travel and the one a first-time traveller is least likely to anticipate. Google commits to an all-in price and names the edge case; Kayak explicitly excludes baggage and warns that some rail and coach prices are incomplete too. Same category, same week, opposite promises.",
+    "for_luma": "A stated all-in price commitment is a POLICY, not a build. It costs nothing at ideation and it is the difference between these two products at the exact moment Luma's user is most anxious. One of these is a differentiator available for free.",
+    "caveat": "Captured on different locales (en vs es-es) — a locale confound is live per D-004. Baggage inclusion policy could in principle vary by market. Flagged; not resolved."
+  },
+
+  "finding_F47_KAYAK_MIX_AND_UNOWNED_RISK": {
+    "claim": "Kayak sells combined itineraries assembled from separate airlines, each governed by its own conditions, with no single carrier owning the journey.",
+    "evidence_verbatim_es": "KAYAK Mix ofrece vuelos desde o hacia un destino con varias aerolíneas, los cuales están sujetos a los requisitos y condiciones de reserva de cada una de ellas",
+    "translation": "KAYAK Mix offers flights to or from a destination with several airlines, which are subject to the booking requirements and conditions of each of them",
+    "confidence": "Verified",
+    "why_it_matters_MOST": "This is the F-08 intermediary thread at its sharpest. A self-connected itinerary has NO protecting carrier: miss the second leg because the first was late and no airline owes you rebooking, because no airline sold you the journey. The cheapest result is therefore frequently the one with the least protection — and the sort control that surfaces it (F-42, 'El más barato', 35 € / 7h 14m) shows price and duration but NOT risk.",
+    "the_gap_this_exposes": "Across four competitors, ranking axes cover price, quality, distance, duration and emissions. NONE covers protection, recourse or what happens when it goes wrong. That is the axis Luma's stated positioning actually implies — and it is genuinely unoccupied, unlike 'easiest', which flights already rank.",
+    "our_product_decision_required": "Decision required: can Luma rank or flag by RECOURSE — is this itinerary protected, and by whom? It is computable from data already visible (single ticket vs self-connect, carrier vs aggregator, cancellation terms). No competitor observed does it. This is a stronger differentiation candidate than 'easiest first'."
+  },
+
+  "price_construction_observed": {
+    "excluded_from_headline": ["baggage fees (explicitly)", "airline surcharges — 'Tasas de aerolíneas' present as a concept"],
+    "baggage_filters_exist": ["Equipaje de mano (carry-on)", "Equipaje facturado (checked)"],
+    "note": "Baggage is filterable but excluded from the headline price. A traveller can filter for it but is not shown its cost in the ranked price."
+  },
+
+  "price_tracking_verbatim_es": [
+    "Seguir los precios. Recibe alertas automáticas cuando cambien los precios.",
+    "Activa la alerta de precios y no te pierdas ni una oferta"
+  ],
+  "translation": ["Track prices. Receive automatic alerts when prices change.", "Turn on price alerts and don't miss a deal"],
+
+  "not_observed": [
+    "price forecast / prediction language — searched for subirán, bajarán, compra ahora, predicción: NO match on this render. Recorded as NOT OBSERVED on this route and date, NOT as absent from the product. Kayak's price prediction is documented in its own FAQ.",
+    "'Calculadora de precios' opened",
+    "the handoff after 'Ver oferta'",
+    "whether KAYAK Mix results are visually distinguished in the result list"
+  ]
+}

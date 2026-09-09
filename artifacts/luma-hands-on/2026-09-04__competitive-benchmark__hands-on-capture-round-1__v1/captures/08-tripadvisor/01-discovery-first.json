@@ -1,0 +1,68 @@
+{
+  "competitor": "Tripadvisor",
+  "capture": "s0-site-tree-L1 + s1-dream-discover",
+  "url": "https://www.tripadvisor.es/",
+  "captured_at": "2026-09-04T15:02Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es-ES",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 1849, "links": 84, "visible_chars": 5648 },
+
+  "consent_state_RECORDED_NOT_RESOLVED": {
+    "banner": "present — 'Aceptación de cookies' / 'Tenemos en cuenta tu privacidad'",
+    "options_found_by_sweep": ["Aceptación de cookies"],
+    "no_reject_affordance_located": "Swept all buttons and links for 'rechazar', 'denegar', 'solo las necesarias', 'reject', 'configurar'. Only an acceptance control was found.",
+    "action_taken": "NONE. Accept was not clicked — consenting on the client's behalf is outside the operator's authority, and the standing instruction is to DECLINE non-essential, which no available control offered.",
+    "consequence": "The banner persists across this capture. Page content rendered regardless. Recorded so a later reader knows the consent state during capture rather than assuming it."
+  },
+
+  "finding_F80_THE_ENTRY_IS_A_QUESTION": {
+    "claim": "Tripadvisor's primary entry point is a question rather than a search field label.",
+    "evidence_verbatim_es": "¿Adónde vas?",
+    "translation": "Where are you going?",
+    "supporting": "Secondary heading: 'Busca cosas que hacer según tus intereses' (Search things to do according to your interests) — an interest-led rather than destination-led entry.",
+    "confidence": "Verified",
+    "comparison": "Booking.com's field reads 'Enter destination'. Expedia's reads 'Going to'. Airbnb's search chrome reads 'Cualquier lugar / Cualquier fecha' (Anywhere / Any date). Tripadvisor asks; the transactional products instruct.",
+    "why_it_matters": "F-61 established that three competitors ASSERT the traveller's location and none asks. This is the same distinction at the other end: a product that opens with a question rather than a command. For a low-confidence user the difference between 'Enter destination' and 'Where are you going?' is small in words and large in posture."
+  },
+
+  "finding_F81_DISCOVERY_IS_A_DESTINATION_NOT_A_BYPRODUCT": {
+    "claim": "'Descubrir' (Discover) is a top-level navigation item, alongside 'Opinión' (Review).",
+    "evidence": "Primary nav: Descubrir · Opinión · Más. Vertical tabs: Cosas que hacer · Hoteles · Restaurantes.",
+    "confidence": "Verified",
+    "why_it_matters": "This confirms the roster rationale for Tripadvisor — it was included as the product assumed to lead with discovery rather than a search box, covering the scenario's stage 1 'Dream & discover'. It does. Discovery is a place you can go, not a state you pass through on the way to a search.",
+    "editorial_surfaces_verbatim_es": ["Imprescindibles en lugares increíbles", "Ideas para ponerte en marcha",
+      "Tours inolvidables en bicicleta por todo el mundo", "Lugares emblemáticos que tienes que ver",
+      "Premios Lo mejor de lo mejor de Travellers' Choice"],
+    "translation_sample": ["Must-sees in incredible places", "Ideas to get you going", "Unforgettable bike tours worldwide"]
+  },
+
+  "finding_F82_NO_FLIGHTS_VERTICAL": {
+    "claim": "Tripadvisor's primary verticals are things to do, hotels and restaurants. No flights vertical was present on the homepage.",
+    "confidence": "Verified for the homepage surface",
+    "why_it_matters_for_the_roster": "Against the scenario's capability list, Tripadvisor covers activities and accommodation and does NOT cover flights or on-site transport. It is a stage-1 and stage-6 product — dream/discover and in-destination — with nothing in between. That is a narrower footprint than the roster tiering implied and should be carried into any capability matrix rather than assumed.",
+    "scope_limit": "Homepage only. A flights surface may exist elsewhere on the site."
+  },
+
+  "reviews_as_the_asset": {
+    "verbatim_from_title": "Tripadvisor: más de mil millones de opiniones y contribuciones sobre hoteles, atracciones, restaurantes",
+    "translation": "over a billion reviews and contributions",
+    "note": "The review corpus is stated as the product's identity in the page title itself. 'Opinión' is a primary nav item — the product invites CONTRIBUTION as a first-class action, which no other competitor captured does.",
+    "confidence": "Verified",
+    "prohibition_2_note": "Competitor reviews are real people's words. Per CLAUDE.md and ART-024 section 5.4, review TEXT is never transcribed into any capture or the evidence ledger. The review MECHANISM is described; no review content is recorded."
+  },
+
+  "our_product_decision_required": [
+    "Decision required: does Luma's entry ask or instruct? 'Where are you going?' versus 'Enter destination' costs nothing and sets the posture for the whole product.",
+    "Decision required: is discovery a destination in Luma's IA, or a state before search? Tripadvisor makes it a place. Booking.com and Expedia have no such place at all.",
+    "Decision required: Tripadvisor invites contribution ('Opinión' in primary nav). Luma's user is a FIRST-TIME traveller with nothing to contribute yet. What is the equivalent first-class action for someone who has not travelled?"
+  ],
+
+  "not_observed": [
+    "the AI trip planner — prior desk research noted it was pre-populated rather than typed; NOT located on the homepage this pass and therefore untested",
+    "sort axes on any results surface",
+    "a things-to-do results page",
+    "whether duration is shown for activities — the gap found on Airbnb (F-79)"
+  ]
+}

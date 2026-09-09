@@ -1,0 +1,55 @@
+{
+  "competitor": "Booking.com",
+  "capture": "L-loyalty-programme",
+  "url": "https://www.booking.com/genius.html",
+  "captured_at": "2026-09-04T10:57Z",
+  "source_class": "Own capture",
+  "observation_condition": "authenticated account at Genius Level 2 (tier noted because member pricing cannot be interpreted without it; no account holder data recorded)",
+  "confidence": "Verified",
+
+  "tier_structure": [
+    { "level": "Genius Level 1", "qualify": "entry",
+      "benefits": ["10% discount on stays", "10% discount on rental cars"] },
+    { "level": "Genius Level 2", "qualify": "5 completed bookings in 2 years",
+      "benefits": ["10-15% discount on stays", "10-15% discount on rental cars"] },
+    { "level": "Genius Level 3", "qualify": "15 completed bookings in 2 years",
+      "benefits": ["10-20% discount on stays", "10-15% discount on rental cars",
+                   "free breakfasts", "free room upgrades", "PRIORITY SUPPORT for stays"] }
+  ],
+
+  "mechanics_verbatim": {
+    "level_2_rule": "Enjoy this level on select stays and rental cars worldwide upon completing 5 bookings in 2 years.",
+    "level_3_rule": "Enjoy this level on select stays and rental cars worldwide upon completing 15 bookings in 2 years.",
+    "application": "All discounts and rewards are automatically applied when you book",
+    "discount_base": "Discounts are applied to the price before taxes and fees.",
+    "identification": "participating properties and rental cars carry a blue Genius label"
+  },
+
+  "finding_F01": {
+    "claim": "Priority support — the benefit a low-confidence traveller needs most — is gated behind 15 completed bookings in 2 years, so it is structurally unreachable by a first-time traveller.",
+    "evidence": "Level 3 benefit list includes 'Priority support for stays'; Level 3 qualifying rule is 15 bookings in 2 years, captured verbatim above.",
+    "confidence": "Verified",
+    "status": "This was previously an unverified desk-research hypothesis. It is now observed first-hand on the vendor's own page."
+  },
+
+  "finding_F02": {
+    "claim": "The Genius programme never addresses a first-time traveller anywhere on its own explainer page.",
+    "evidence": "Full page text (5,250 chars) contains no match for 'first-time', 'new to Booking', or 'beginner'.",
+    "confidence": "Verified",
+    "caveat": "Absence on THIS page only. Not evidence of absence across the product."
+  },
+
+  "our_product_decision_required": [
+    "Luma is at ideation — nothing built. Decision required: does Luma reward accumulated bookings (which excludes its stated primary user at the moment of greatest need), or invert the model and front-load reassurance to first-time travellers?",
+    "Decision required: if support priority is a retention lever, is it earned or granted? Booking.com earns it at 15 bookings; Luma's user has zero.",
+    "Decision required: Genius applies discounts automatically with no user action. Luma must decide whether its own value is legible before booking rather than after."
+  ],
+
+  "business_goal_link": "Scenario business goal 8 — 'Increase repeat bookings and long-term engagement'. Booking.com's answer is a purely tenure-based ladder.",
+
+  "not_observed": [
+    "whether priority support materially differs in practice (would require a support interaction)",
+    "whether tier is visible to partner properties",
+    "any non-tenure loyalty mechanism"
+  ]
+}

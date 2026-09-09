@@ -1,7 +1,7 @@
 # CoForge Design System
 
 **State: RED** — a *declared* state, not a count (2026-08-28). Foundations are done:
-829 tokens across five axes, `brand.md` approved at Gate A, 8 L1 primitives. RED holds
+829 tokens across five axes, `brand.md` approved at Gate A, 11 L1 primitives. RED holds
 until the component index carries **L2** entries — L1 primitives existing does not make
 a design system exist. `screen-producer` is unblocked for L1 output and stays blocked
 for L2. See the DS fork in `CLAUDE.md`.

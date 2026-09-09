@@ -1,0 +1,55 @@
+{
+  "id": "ART-013",
+  "type": "dashboard",
+  "workstream": "luma-travel",
+  "title": "Luma Batch 3 — competitor coverage & evidence-integrity board",
+  "file": "luma-competitor-coverage-board.html",
+  "version": 1,
+  "supersedes": null,
+  "status": "superseded",
+  "stage": "develop",
+  "produced_by": "dashboard-analyst",
+  "model": "claude-opus-5",
+  "skills_used": [
+    "dataviz"
+  ],
+  "findings": {
+    "findings_by": "dashboard-analyst",
+    "checked": 24,
+    "found": 1,
+    "method": "checked = 24 figures carried onto the board, each traced to a named section in ART-011 or ART-012 rather than re-derived from research/sources/, which this agent did not open: 14/6/8/2/6 (coverage split), 98/770 and 189/770 (feature-cell reach), 37/112 (journey-cell reach), 2/5 (designated-test scoreboard), the 0-uses-of-Tier-3 claim, the 330-cell recount (99/55/35/141 and 98/90/1/141), the ten per-cluster Unknown counts (10/42, 19/60, 15/48, 2/12, 23/42, 19/30, 17/30, 12/18, 8/18, 16/30), the six per-cluster evidenced percentages this board derives from them (76.2%, 68.3%, 68.75%, 83.3%, 45.2%, 36.7%, 43.3%, 33.3%, 55.6%, 46.7% — ten values, listed as six distinct figures repeat across bins), the per-competitor tier-reached classification for the six profiled, and the F-01/F-05 arithmetic-defect pair (275 vs 330, and 275 = 55×5). found = 1: this agent's own brief asserted the sequential/status split as already-decided encoding; the dataviz skill's own job table (color-formula.md, 'The four jobs') defines Status as a small FIXED scale with RESERVED meaning (good→critical), never themed — applying it to 'evidence tier' would make 'never profiled' read as a critical/failing state, which is the exact misreading D-001 exists to prevent. 'Tier reached' is instead an ORDINAL job (position in a fixed ladder: Tier 2 < Tier 1) and is rendered as an ordinal one-hue ramp (validated --ordinal), while the three-way profiled/prior-art/never split — the part of the brief's 'status' language that actually maps to D-001/D-002 — carries no hue at all: shape (●/◐/○) and word only, so it cannot be misread as a verdict on any competitor. This substitution, and why, is recorded in validation.md §2 and in the brief-correction note below. NOT DONE and not claimed: no figure was re-derived from research/sources/ or from build_inventory.py; no live competitor product was checked; no market-findings content (patterns, white space, opportunity scoring, strategy) was rendered, by scope choice stated on the board itself."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-011",
+      "ART-012",
+      "ART-010"
+    ],
+    "decisions": [
+      "D-001",
+      "D-002"
+    ],
+    "sources": [],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "why_type_dashboard_not_data_viz": "data-viz is 'a single chart or visualisation with its data source' — this board carries a KPI strip, a 14-row coverage table, a ten-cluster bar chart, a journey table, and a five-row test scoreboard: several distinct metrics under one owner, which is what the 'dashboard' type (level 1, owner dashboard-analyst) is defined to hold. 'Refresh' is declared explicitly on the board and here: static, tied to the 21 Jul 2026 walkthroughs behind ART-011/ART-012, and would only change if a later research phase re-profiles the remaining eight competitors or the source arithmetic is corrected at origin.",
+    "why_this_is_not_a_merge_of_ART-011_and_ART-012": "This artifact renders both but originates neither claim. Every number is cited to the artifact that made it, not restated as this artifact's own finding — consistent with the brief's instruction to render conclusions, not reach them.",
+    "why_ART-010_is_listed_as_an_input": "Not a data source — a method and chrome lineage. The ground/raised/ink/hairline/coral chrome variables and the enumerate-then-validate palette method are inherited unchanged from ART-010's construction (same tokens.json release, 0.2.0). The two NEW ramps this board needed (sequential teal, ordinal coolGray) were derived here, by the same method, because ART-010 had no sequential or ordinal job and did not need them.",
+    "why_teal_and_coolGray_and_not_ART-010s_four_hues": "ART-010's blue.60/orange.70/purple.70/magenta.60 are a validated CATEGORICAL (identity) set, bound to a different meaning (found-defect/delivered/refused/attested) in a sibling artifact. This board needs no categorical/identity job at all — the brief's own framing settles that competitors are rows, not colour-coded series — so reusing those four would import a categorical meaning this board doesn't have and risk a reader conflating the two artifacts' colour meanings. Two new single-hue ramps were enumerated and validated instead: teal (sequential, coverage depth) and coolGray (ordinal, evidence tier). Full validator transcripts in validation.md §2.",
+    "no_S-nn_citations": "ART-011 and ART-012 declare a local [S-nn] source register resolving into research/sources/luma-competitor-analysis/. This board was instructed not to open research/sources/ and did not. Every citation here is [ART-nnn § Section] against the two artifacts actually read; the [S-nn] notation is never reused, because reusing it would misrepresent verification this agent did not perform."
+  }
+}

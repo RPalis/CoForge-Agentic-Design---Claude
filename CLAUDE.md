@@ -20,8 +20,10 @@ catalogue the adapter ingested, not a system anyone built. See "DS fork" below.
 The only rules written here. Prose is the weakest enforcement layer, so this list
 stays at two.
 
-1. Never create a component that is not in `design-system/component-index.json`.
-   File a proposal in `decisions/` instead.
+1. Never create a **component** that is not in `design-system/component-index.json`.
+   File a proposal in `decisions/` instead. This governs product UI; it has never
+   governed chart marks or chart anatomy — narrowed in wording, not in force, once
+   the dataviz layer made the scope worth stating (ADR-021).
 2. Never write a user quote that is not in `research/evidence-ledger.json`.
 
 Everything stronger is enforced by tools, hooks and CI — not by prose.
@@ -41,7 +43,7 @@ Everything stronger is enforced by tools, hooks and CI — not by prose.
 - **Design Loop Phases 1–11** — what the system does once built. Cyclical.
 
 Current position (2026-08-28): **Build Stage 0–2 complete for foundations.**
-`brand.md` approved at Gate A; 829 tokens across five axes; 8 L1 primitives.
+`brand.md` approved at Gate A; 829 tokens across five axes; 11 L1 primitives (8 foundational + 3 promoted 2026-09-03, ADR-022).
 **Design Loop still not runnable** — it needs the evidence spine (ledger is empty)
 and L2 components (adapter #1, ADR-013 link 1, in progress).
 
@@ -82,15 +84,23 @@ a suggested fix. **Skipped checks are always reported: skipped is not passed.**
 
 Tool-gating outranks prohibition. Never solve with prose what a permission can solve.
 
-## Two output levels (ADR-012)
+## Two output levels (ADR-012), and a third governed layer beside them (ADR-021)
 
 - **L1 Foundations** — branded documents, decks, dashboards, diagrams. Needs tokens +
-  `brand.md` + the 8 level-1 primitives. **35 of 41 artifact types.** Available at Build Stage 2.
+  `brand.md` + the 11 level-1 primitives. **35 of 41 artifact types.** Available at Build Stage 2.
 - **L2 Complete** — responsive web prototypes and product UI. Needs the full component index,
   Code Connect and the CoForge MCP. 6 artifact types. Build Stage 3.
 
 Gate B applies at both levels. L1 is not exempt — its component vocabulary is *restricted to
 level-1 entries*, which is stricter than exempting it and costs one field in the index.
+
+These two levels describe **components** — things the membrane governs. **Dataviz** (chart
+marks and chart anatomy: a mark, a legend, a tooltip, an axis label) is a third layer beside
+them, not a rung on this ladder: it is governed at Gate B by an encoding contract, never by
+the membrane, because no design system examined registers a chart mark as a component
+(ADR-021). The dividing rule: drawn by the chart's own rendering logic, it is dataviz; a
+separate element a person clicks or reads as a number — a KPI tile, a filter, a table — is
+still an ordinary component and this table still applies to it.
 
 ## The DS fork
 
@@ -244,6 +254,20 @@ without a baseline you cannot tell whether the skill helped. Assertions are writ
 - **A clean board is when to look hardest.** Findings falling fast is evidence something
   changed a lot, not evidence it was repaired.
 - A correction that recurs twice is promoted into this file as a standing rule.
+
+## Browser surfaces — two, and they disagree by construction
+
+Hands-on capture uses **both** and they are not interchangeable (ART-024 §4.1b).
+
+- `chrome-devtools` — signed out, **extension-clean**, has network + protocol inspection.
+  **Every screenshot-derived or "the page shows X" claim comes from here.**
+- `claude-in-chrome` — the human's real browser: authenticated, reaches loyalty tier,
+  post-purchase and member pricing. **Carries third-party extensions that inject page UI a
+  page-context selector cannot detect** — found only by looking, during the Booking.com pilot.
+
+Run them as a matched pair on an identical query and personalisation becomes a measured
+difference instead of an assertion. Record which surface produced every capture. No agent holds
+either — only the main session can drive a browser.
 
 ## Output surfaces
 

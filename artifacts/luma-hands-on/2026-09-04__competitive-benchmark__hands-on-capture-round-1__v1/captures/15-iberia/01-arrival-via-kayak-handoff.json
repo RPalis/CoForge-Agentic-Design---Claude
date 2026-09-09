@@ -1,0 +1,61 @@
+{
+  "competitor": "Iberia",
+  "roster_position": "15 — tier 4, airline direct (D-003)",
+  "capture": "s3-book / flights — fare selection, reached via Kayak handoff",
+  "captured_at": "2026-09-04T13:30Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "PARTIAL_CAPTURE_WARNING": "This is NOT Iberia's competitor pass. It is the destination of a Kayak handoff, entered mid-journey at fare selection. No Iberia site tree, no s1, no loyalty, no airport services. The full tier-4 pass is still owed and must not be mistaken for a re-pass.",
+
+  "arrival_state": {
+    "entry_point": "deep link from kayak.es carrying the full itinerary and fare code",
+    "fare_preselected_verbatim_es": "Has escogido la tarifa: Turista Básica",
+    "translation": "You have chosen the fare: Basic Economy",
+    "note": "The traveller did not choose this. Kayak's result carried FareCode1=AANNANB4 and Iberia states it back as the traveller's own choice."
+  },
+
+  "finding_F51_CHEAPEST_ROUTES_TO_LEAST_FLEXIBLE": {
+    "claim": "The meta-search handoff deposits the traveller, pre-selected, into the airline's most restrictive fare family.",
+    "chain_observed": "Kayak sort 'El más barato' / lowest displayed result -> handoff URL carries the basic fare code -> Iberia opens with 'Turista Básica' already chosen.",
+    "confidence": "Verified",
+    "why_it_matters": "F-49 established that protection varies across a Kayak result set and is never displayed. This shows the mechanism completing: the cheapest path is not merely less protected in the abstract, it ARRIVES pre-committed to the least flexible fare, described to the traveller as their own decision. A first-time traveller who clicked 'cheapest' has now, without a further choice, selected the fare with the least change and cancellation freedom.",
+    "our_product_decision_required": "Decision required: if Luma hands off, does it hand off to a CHOICE or to a pre-selected commitment? Kayak's convenience here is also the removal of a decision the traveller did not know they were making."
+  },
+
+  "finding_F52_THE_AIRLINE_IS_MORE_TRANSPARENT_THAN_ITS_REFERRER": {
+    "claim": "Iberia states an all-in total with a named exception. Kayak, which sent the traveller here, states that its prices exclude baggage fees.",
+    "evidence": {
+      "Iberia_verbatim_es": "Precio total, incluye tarifa aérea, tasas (salvo las que se cobren en determinados aeropuertos en el momento de facturar), gastos de gestión, cargos...",
+      "translation": "Total price, includes airfare, taxes (except those charged at certain airports at check-in), handling fees, charges...",
+      "Kayak_verbatim_es": "Los precios son por persona y no incluyen tasas de equipaje (F-46)"
+    },
+    "confidence": "Verified",
+    "why_it_matters": "The supplier is more honest about price construction than the comparison layer above it — and names the specific exception rather than gesturing at one. This inverts the assumption that intermediaries protect travellers from supplier opacity. On price, the opposite held here.",
+    "significance_for_tier_4": "This is the first evidence bearing on the reason tier 4 was added: with no supplier in the sample, claims about 'the market' were claims about intermediaries. One supplier surface already contradicts one."
+  },
+
+  "price_consistency_check": {
+    "kayak_displayed": "58,25 € (passed as DisplayedPrice=58.25 in the handoff URL)",
+    "iberia_shows": ["28 € Turista", "31 € Turista", "58,25 €"],
+    "observation": "The 58,25 € figure Kayak passed appears on the Iberia page. The 28 € and 31 € are the individual leg fares.",
+    "assessment": "Price survived the handoff intact on this result. Recorded as observed, one result only.",
+    "confidence": "Verified"
+  },
+
+  "fare_content_observed": {
+    "Turista Básica includes": ["Equipaje de mano personal (personal carry-on)", "Equipaje de hasta 10 kg (cabin bag up to 10 kg)"],
+    "note": "A 10 kg cabin allowance IS included in the basic fare — which means Kayak's blanket 'prices do not include baggage fees' understates what this particular fare carries. The warning is generic; the fare is specific."
+  },
+
+  "not_observed_and_OWED_for_the_full_iberia_pass": [
+    "Iberia site tree and s1 discovery",
+    "Iberia Plus / Avios loyalty structure — no loyalty signal on this page",
+    "airport services: lounges, Fast Track — the business-goal-5 comparator, the main reason Qatar and Iberia are on the roster",
+    "seat selection, change and cancellation terms per fare family",
+    "disruption handling and EU 261 posture — THE tier-4 test, untouched",
+    "the payment gate on Iberia",
+    "authenticated Iberia Plus member view"
+  ]
+}

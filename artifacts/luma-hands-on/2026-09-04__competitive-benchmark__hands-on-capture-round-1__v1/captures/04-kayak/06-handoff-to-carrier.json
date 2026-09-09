@@ -1,0 +1,65 @@
+{
+  "competitor": "Kayak",
+  "capture": "s3-book / flights — the handoff boundary",
+  "captured_at": "2026-09-04T13:24Z",
+  "surface": "client's authenticated Chrome",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "action_taken": "Clicked 'Ver oferta' on the first result (Iberia, 59 € basic fare). Observed the destination only. No form completed, no data entered, no transaction.",
+
+  "handoff_observed": {
+    "from": "kayak.es flight results",
+    "to": "iberia.com — the OPERATING CARRIER, not an OTA",
+    "opens_in": "a new tab; the Kayak result set remains behind",
+    "destination_title": "Reserva de vuelos: selección de vuelos"
+  },
+
+  "finding_F48_HANDOFF_IS_TO_THE_OPERATOR": {
+    "claim": "Kayak's handoff on this result went directly to the airline that operates the flight, not to a reseller.",
+    "confidence": "Verified",
+    "why_it_matters": "It means the traveller ends up holding a DIRECT carrier booking — with the carrier's own obligations, including EU 261/2004 rebooking duties. The meta-search that never sells has, on this path, delivered the traveller into the MOST protected version of the purchase available.",
+    "scope_limit": "One result, one route, one fare. Other Kayak results hand off to OTAs (eDreams and others were present as advertisers on the same page). This is not a claim that Kayak always routes to the operator."
+  },
+
+  "finding_F49_REFINES_F47_PROTECTION_SPECTRUM": {
+    "claim": "Within a single Kayak result set, the protection a traveller ends up with varies enormously — and nothing in the ranking, sorting or price display reflects that.",
+    "the_spectrum_observed_on_one_page": [
+      "Direct carrier booking via handoff to iberia.com — full carrier obligation (this capture)",
+      "OTA booking via a reseller handoff — carrier obligation mediated by a third party",
+      "KAYAK Mix — self-connected across airlines, each under its own conditions, no carrier owning the journey (F-47)"
+    ],
+    "confidence": "Verified",
+    "the_sharp_point": "'El más barato' (35 € / 7h 14m) and 'El mejor' (47 € / 1h 25m) show price and duration on the control (F-42) — an unusually honest trade-off display. But the third variable, WHO IS RESPONSIBLE IF THIS FAILS, is not shown anywhere, is not sortable, and varies between adjacent results in the same list.",
+    "our_product_decision_required": "Decision required: this is the clearest evidence yet for a 'protected first' axis. It is computable from data Kayak already holds — it knows whether a result is a Mix, an OTA handoff or a carrier handoff, because it constructs the handoff URL. The information exists and is simply not surfaced. Luma would not need new data to rank on it."
+  },
+
+  "finding_F50_CONTEXT_IS_DROPPED_AT_THE_BOUNDARY": {
+    "claim": "Crossing the handoff, the traveller loses all trace of the product that sent them and immediately faces a fresh consent gate.",
+    "evidence": [
+      "Destination page contains no Kayak branding or context (checked: no 'kayak' string in visible text)",
+      "OneTrust consent checkboxes (ot-group-id-C0002 through C0005) present on arrival — a second cookie decision within one journey"
+    ],
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "The scenario's problem list opens with 'Comparing flights, transport, accommodation and activities happens in different places and never lines up' and 'Information is spread across multiple apps'. This capture is that problem happening in two clicks: a traveller who compared on Kayak is now on an unfamiliar site, re-consenting to cookies, with no thread back. For a first-time traveller this is the moment confidence is most likely to break."
+  },
+
+  "handoff_payload_analysed": {
+    "what_kayak_passes_to_the_carrier": [
+      "Full itinerary: Origin1=MAD, Destination1=LIS, DepartureDate1=20261110, FlightNumber1=539, and the return leg",
+      "Fare identity: Cabin=Economy, BookingCode1=A, FareCode1=AANNANB4",
+      "DisplayedPrice=58.25 with DisplayedPriceCurrency=EUR",
+      "Attribution: ReferralId=kayak, etf-publisher=Kayak, utm_source=kayak, utm_campaign=ES.fsr"
+    ],
+    "notable": "Kayak passes the price it DISPLAYED to the carrier. That is a price-consistency mechanism — the receiving site knows what the traveller was promised. Whether the carrier honours it was not tested.",
+    "verified_on_arrival": "58,25 € appears among the prices rendered on the Iberia page, alongside 28 € and 31 € fare options."
+  },
+
+  "note_for_the_roster": "Iberia is competitor 15 in the plan (tier 4, airline direct). It has now been touched incidentally as the destination of a Kayak handoff. This is NOT its capture — no Iberia journey was walked. Recorded so the later Iberia pass is not mistaken for a re-pass.",
+
+  "not_observed": [
+    "whether other Kayak results hand off to OTAs rather than the carrier",
+    "whether the displayed price survives on the carrier's booking flow",
+    "the return path — whether anything brings the traveller back to Kayak",
+    "Kayak Trips / saved items"
+  ]
+}

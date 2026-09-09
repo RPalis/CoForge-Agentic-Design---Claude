@@ -1,0 +1,719 @@
+{
+  "artifact": "phase1-corroboration",
+  "generated": "2026-09-07",
+  "agent": "research-synthesizer",
+  "gate": "A — suggest only. Nothing here is applied to the board. Every verdict needs a human.",
+  "scope": "Corroboration sweep for the 9 conclusions on the v2 board that cite exactly one finding. No web research. Evidence read from the round-1 capture artifact only.",
+
+  "method": {
+    "search_index": "All 113 claims in phase12-input.json finding_lookup were read as the search index, plus the 121-entry CAPTURE-INDEX.json (which carries 8 entries the 113 excludes).",
+    "capture_files_read_in_full": [
+      "captures/01-booking-com/06-personalisation-controlled-diff.json",
+      "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+      "captures/03-google-travel/04-auth-gated-capability.json",
+      "captures/03-google-travel/05-flights-decision-layer.json",
+      "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+      "captures/04-kayak/01-site-tree-and-decision-layer.json",
+      "captures/04-kayak/02-authenticated-ad-landing.json",
+      "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+      "captures/04-kayak/04-flights-sort-axes.json",
+      "captures/04-kayak/06-handoff-to-carrier.json",
+      "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+      "captures/07-airbnb/02-no-sort-and-total-price.json",
+      "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+      "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+      "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+      "captures/11-omio/01-multimodal-and-164-partners.json",
+      "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+      "captures/13-citymapper/01-arrival-to-accommodation.json",
+      "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json"
+    ],
+    "capture_files_not_read": "30 of 50. Candidates that did not survive the claim-level screen were not opened. This is a real coverage limit and is stated rather than hidden.",
+    "independence_test_applied": "A candidate is INDEPENDENT only if it is a different capture file AND (different competitor OR a materially different surface). Two findings in one capture file are one observation. Two surfaces of one product captured in one pass are treated as one observation unless the capture itself records them as disagreeing.",
+    "corroboration_test_applied": "Would this observation still support the conclusion if the cited capture turned out to be wrong? If no, it is not corroboration however adjacent it is."
+  },
+
+  "verdict_counts": {
+    "now_corroborated": 2,
+    "partially": 3,
+    "still_alone": 4
+  },
+
+  "conclusions": [
+    {
+      "id": "rec-1",
+      "kind": "Recommendation",
+      "title": "Notify a traveller the moment they qualify for a right they already hold — not only when something has gone wrong.",
+      "current_citation": {
+        "findings": ["F90_PROACTIVE_COMPENSATION_NOTIFICATION"],
+        "captures": ["captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json"],
+        "verbatim_evidence_in_the_cited_capture": ["Get notified instantly in case of delay or cancellation.", "Get notified when you qualify for delay compensation."]
+      },
+      "verdict": "still_alone",
+      "candidates": [
+        {
+          "finding_num": "28",
+          "full_id": "F28",
+          "competitor": "Google Travel",
+          "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+          "what_it_observes": "\"Authentication unlocks exactly one capability on Google Travel, and it is a functional one — persistent price monitoring — not a discount.\" The same capture reasons: \"price tracking is monitoring over time — it implies the product acts while the traveller is away.\"",
+          "independent": true,
+          "independence_note": "Different competitor, different capture file, and a different browser surface — this was a matched-pair diff whose control was the inspector instance (signed out, extension-clean), where the Trainline capture was the client's authenticated Chrome.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "It corroborates the MECHANISM half only: a competitor already watches something on the traveller's behalf between sessions and pushes a notification. It does not corroborate the load-bearing half. The object monitored is a market price, not an entitlement the traveller already holds. If the Trainline capture were withdrawn, F28 would not support this recommendation."
+        },
+        {
+          "finding_num": "36",
+          "full_id": "F36_FLIGHT_TRACKER",
+          "competitor": "Kayak",
+          "capture": "captures/04-kayak/01-site-tree-and-decision-layer.json",
+          "what_it_observes": "\"Kayak ships a standalone Flight Tracker at /tracker — a direct analogue of a named Luma core feature.\" The same capture records as not observed: \"Whether the tracker requires an account, and what it does on disruption. OWED.\"",
+          "independent": true,
+          "independence_note": "Different competitor, different capture file, inspector instance (signed out).",
+          "confidence": "partially — narrows or qualifies",
+          "why": "Proves free-standing itinerary monitoring is a shipped, unbundled product on a second competitor. But the capture explicitly did not establish what it does on disruption, which is precisely the claim rec-1 rests on."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/05-skyscanner/01-site-tree-and-undecided-traveller.json § price_alert_threshold",
+          "is_numbered_finding": false,
+          "competitor": "Skyscanner",
+          "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+          "what_it_observes": "\"Entérate de las bajadas de precios del 20 % o más\" — a NAMED alert threshold rather than a vague promise. Classed in the capture as \"functional — alerts, not discounts\".",
+          "independent": true,
+          "independence_note": "Different competitor and capture file. Not raised to a numbered finding, so it cannot be cited in the F-nnn form the board uses.",
+          "confidence": "related but does not corroborate",
+          "why": "A third proactive-notification product, and the only one that states its trigger precisely. Still a price alert. Nothing about a right."
+        },
+        {
+          "finding_num": "104",
+          "full_id": "F104_A_PUBLISHED_COMMITMENT_DOCUMENT_WITH_NAMED_DISRUPTION_SECTIONS",
+          "competitor": "American Airlines",
+          "capture": "captures/16-american-airlines/01-disruption-a-choice-not-a-statute.json",
+          "what_it_observes": "AA publishes a Customer Service Plan with sections named \"Assistance when your flight has been delayed or canceled\", \"Flight delays and cancellations\", \"Essential customer needs during extraordinary delays\", \"Tarmac delay contingency plan\".",
+          "independent": true,
+          "independence_note": "Different competitor, capture file and vertical (air).",
+          "confidence": "related but does not corroborate",
+          "why": "Rights are PUBLISHED here, not PUSHED. Publication is the thing rec-1 argues is insufficient. Decisively, this capture's own not_observed list reads: \"whether AA offers proactive disruption notification of the kind Trainline does (F-90)\". The round recorded the corroborating test as unrun."
+        },
+        {
+          "finding_num": "56",
+          "full_id": "F56_THE_SENTENCE_THAT_STOPS",
+          "competitor": "Iberia",
+          "capture": "captures/15-iberia/03-disruption-the-tier4-test.json",
+          "what_it_observes": "Iberia names the operational-disruption regime — \"tus derechos y las opciones disponibles son diferentes\" — and provides no link; three surfaces and 367+ link labels searched, zero matches.",
+          "independent": true,
+          "independence_note": "Different competitor and capture file. Quoted here from the AA capture, which reproduces the Iberia verbatim in its comparison block.",
+          "confidence": "related but does not corroborate",
+          "why": "The photographic negative of rec-1. It corroborates the ABSENCE clause in the rests_on note ('no air equivalent was observed'), which is a different claim from the recommendation. Corroborating a gap is not corroborating a solution."
+        }
+      ],
+      "note": "Four other findings (F107 Qatar, F03/F04 Booking.com, F64 Hopper) sit in the same absence-corroborating class and were not enumerated individually; none observes a proactive entitlement notification."
+    },
+
+    {
+      "id": "rec-2",
+      "kind": "Recommendation",
+      "title": "Show what each ranking choice costs, on the control itself.",
+      "current_citation": {
+        "findings": ["F42_THE_TAB_SHOWS_THE_TRADE_OFF"],
+        "captures": ["captures/04-kayak/04-flights-sort-axes.json"],
+        "verbatim_evidence_in_the_cited_capture": ["El más barato — 35 € · 7h 14m", "El mejor — 47 € · 1h 25m", "Menor duración — 1h 17m"]
+      },
+      "verdict": "partially",
+      "candidates": [
+        {
+          "finding_num": "97",
+          "full_id": "F97_MODE_COMPARISON_WITH_THE_TRADE_OFF_VISIBLE",
+          "competitor": "Rome2Rio",
+          "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+          "what_it_observes": "Durations 3h 2m / 3h 16m / 6h 20m / 7h 13m / 8h 5m rendered against prices 30 € / 85 € / 139 € / 157 € / 160 €, per transport mode, in one view, with a \"MÁS BARATO\" badge on the cheapest.",
+          "independent": true,
+          "independence_note": "Different competitor, capture file, vertical (city-to-city transport) and route than the Kayak flights capture.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "The consequence of each option is visible before the option is taken — the same principle. But it is a RESULT/mode list, not a ranking control. rec-2 is written about the control, and Rome2Rio has no observed sort control. Caveat: the Rome2Rio capture reasons explicitly from F-42 ('Rome2Rio does the same thing ACROSS MODES'), so the interpretive link was made by the same analyst; the observation itself (durations, prices, cheapest badge) stands on its own. Second caveat recorded in the capture: only 1,502 visible characters rendered."
+        },
+        {
+          "finding_num": "99",
+          "full_id": "F99_ATTRIBUTES_NOBODY_ELSE_SHOWS",
+          "competitor": "Citymapper",
+          "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+          "what_it_observes": "Route options rendered as \"1,90 € · 39 min · 'Every 7 min'\" and \"1,90 € · 49 min\", with alternatives \"Walk 94 min · 389 cal\", \"Cycle 56 min · 234 cal\", \"Cab 33 min\".",
+          "independent": true,
+          "independence_note": "Different competitor, capture file, city and vertical (in-destination transport).",
+          "confidence": "partially — narrows or qualifies",
+          "why": "Every option carries its own money, time and effort cost at the point of choice, across three attributes rather than two — a stronger version of the principle. Again it is an options list, not a ranking control; Citymapper's sort axes were never enumerated in this round."
+        },
+        {
+          "finding_num": "92",
+          "full_id": "F92_EFFORT_ATTRIBUTES_ARE_FIRST_CLASS_IN_RAIL",
+          "competitor": "Trainline",
+          "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+          "what_it_observes": "\"3h 23m, 0 changes\", \"3h 20m\", \"3h 44m\", \"3h 2m\" per result plus a 'Direct only' filter. The same capture records: \"sort_control: NOT FOUND on the results surface.\"",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "related but does not corroborate",
+          "why": "Per-result attributes, not a consequence shown on a control — and the capture affirms there is no sort control here at all to carry one."
+        },
+        {
+          "finding_num": "11",
+          "full_id": "F11",
+          "competitor": "Booking.com",
+          "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+          "what_it_observes": "Ten sort options enumerated signed out, eleven signed in ('Genius discounts first' the only addition) — all named by axis, none carrying a value.",
+          "independent": true,
+          "independence_note": "Different competitor, capture file, and a matched-pair design across two browser surfaces.",
+          "confidence": "related but does not corroborate",
+          "why": "Corroborates the SCARCITY half of F42's worked example — 'Neither Booking.com, Expedia nor Google Travel shows any consequence on its sort control' — from an independent enumeration. It cannot corroborate that showing the consequence works, only that almost nobody does it."
+        }
+      ]
+    },
+
+    {
+      "id": "rec-3",
+      "kind": "Recommendation",
+      "title": "Compare accommodation by one total price, never a nightly rate, at the moment of comparison.",
+      "current_citation": {
+        "findings": ["F70_TOTAL_PRICE_ONLY"],
+        "captures": [
+          "captures/07-airbnb/02-no-sort-and-total-price.json",
+          "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json (price_construction_at_checkout — a capture key, not a finding ID)"
+        ],
+        "verbatim_evidence_in_the_cited_capture": ["203 € en total", "199 € en total", "270 € en total", "244 € en total", "swept for 'por noche', '/ noche', 'noche' — ZERO matches"]
+      },
+      "verdict": "partially",
+      "candidates": [
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/02-expedia/04-stays-funnel-to-card-screen.json § price_construction",
+          "is_numbered_finding": false,
+          "competitor": "Expedia",
+          "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+          "what_it_observes": "\"nightly: $112.77 per night including taxes\", subtotal $338.30, taxes and fees $20.29, total without protection $358.59.",
+          "independent": true,
+          "independence_note": "Different competitor, different capture file, captured 2.5 hours before the Airbnb results capture.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "This independently corroborates the SECOND sentence of F70 — 'Every other accommodation competitor observed leads with a nightly figure' — which the board currently sources only from Airbnb's own capture. It does not corroborate that total-only is achievable or better; it establishes the problem, not the answer. Not raised to a numbered finding, so it is not citable in the board's F-nnn form as it stands."
+        },
+        {
+          "finding_num": "30",
+          "full_id": "F30_PRICE_HONESTY_COMMITMENT",
+          "competitor": "Google Travel — Flights vertical",
+          "capture": "captures/03-google-travel/05-flights-decision-layer.json",
+          "what_it_observes": "\"Prices are final prices and include all taxes and fees, including payment fees for the cheapest common payment method\" — stated platform-wide, before any search.",
+          "independent": true,
+          "independence_note": "Different competitor, capture file, vertical, and browser surface (inspector instance, signed out).",
+          "confidence": "partially — narrows or qualifies",
+          "why": "Corroborates the underlying principle — one final figure, stated at comparison, no arithmetic and no late additions — as an independently shipped practice. It is in flights, and all-in is not the same claim as total-for-the-stay-rather-than-nightly. rec-3's specific accommodation claim remains on one capture."
+        },
+        {
+          "finding_num": "52",
+          "full_id": "F52_THE_AIRLINE_IS_MORE_TRANSPARENT_THAN_ITS_REFERRER",
+          "competitor": "Iberia",
+          "capture": "captures/15-iberia/01-arrival-via-kayak-handoff.json",
+          "what_it_observes": "Iberia states an all-in total with a named exception; Kayak, which sent the traveller there, states its prices exclude baggage fees.",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "A third independent product committing to one all-in figure at comparison, and a paired counter-example in the same observation. Air, not accommodation."
+        },
+        {
+          "finding_num": "79",
+          "full_id": "F79_PRICE_CONVENTION_INCONSISTENT_WITHIN_ONE_PRODUCT",
+          "competitor": "Airbnb",
+          "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+          "what_it_observes": "\"Desde 25 € por viajero\", \"70 € por viajero\", \"44 € por viajero (antes: 55 €)\" — Airbnb's experiences vertical prices per traveller with a 'from' floor, where its stays vertical prices as a total.",
+          "independent": false,
+          "independence_note": "SAME competitor. Different capture file (05 vs 02) and a different vertical, but one product, one pass, one account. Not an independent confirmation.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "It qualifies rec-3 AGAINST itself. The one product that proves total-only abandons the convention in the vertical the traveller reaches second, reintroducing multiplication and a floor price that is not the price. rec-3 should carry this limit; the board currently does not."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json § price_convention",
+          "is_numbered_finding": false,
+          "competitor": "Tripadvisor",
+          "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+          "what_it_observes": "Prices shown as plain figures (100 €, 75 €, 104 €…) with no 'por viajero' or 'por grupo' qualifier. Recorded as AMBIGUOUS — the pricing basis itself is UNKNOWN.",
+          "independent": true,
+          "independence_note": "Different competitor and capture file; activities vertical.",
+          "confidence": "related but does not corroborate",
+          "why": "A third pricing convention — an unstated one. It sharpens the general problem and says nothing about nightly versus total in accommodation."
+        }
+      ]
+    },
+
+    {
+      "id": "rec-6",
+      "kind": "Recommendation",
+      "title": "Compute an ease/effort ranking axis for accommodation and on-site transport specifically — not for flights, where it is already solved, or activities, where duration is not yet a structured field anywhere observed.",
+      "current_citation": {
+        "findings": ["F93_THE_ONLY_RANKING_THAT_NAMES_EFFORT_FIRST"],
+        "captures": [
+          "captures/10-trainline/02-ranking-names-effort.json",
+          "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json (MATERIAL_CORRECTION_to_F09_F20_F25 — carries a substantive claim but no finding ID)"
+        ]
+      },
+      "verdict": "now_corroborated",
+      "verdict_qualifier": "Corroborated on its premise and CONTRADICTED on its scope. Both belong in the same Gate A decision.",
+      "candidates": [
+        {
+          "finding_num": "43",
+          "full_id": "F43_EFFORT_RANKED_AGAIN",
+          "competitor": "Kayak",
+          "capture": "captures/04-kayak/04-flights-sort-axes.json",
+          "what_it_observes": "\"Two of Kayak's three flight sort axes concern duration, confirming that effort IS ranked in flights on a second product.\" Axis breakdown: price 1, effort/duration 1, composite price-and-duration 1.",
+          "independent": true,
+          "independence_note": "Different competitor, capture file and browser surface (client's authenticated Chrome) from the cited Google correction capture (inspector instance, signed out).",
+          "confidence": "corroborates",
+          "why": "This is the exact gap the cited capture flagged in its own running_total: 'The flights picture rests on one product.' F43 settles it on a second. The 'flights, where it is already solved' clause of rec-6 no longer rests on Google alone. F43 is already cited by insight-4 but NOT by rec-6 — the board is not currently drawing on evidence it already holds."
+        },
+        {
+          "finding_num": "69",
+          "full_id": "F69_ZERO_SORT_AXES",
+          "competitor": "Airbnb",
+          "capture": "captures/07-airbnb/02-no-sort-and-total-price.json",
+          "what_it_observes": "\"Airbnb offers no sort control at all. It is the only competitor observed with none.\" Positive sweep across two languages: zero <select> elements, 22 controls enumerated, only 'Filtros' is ranking-adjacent.",
+          "independent": true,
+          "independence_note": "Different competitor and capture file from every product in the cited 20-axis count.",
+          "confidence": "corroborates",
+          "why": "Extends the accommodation sample from three products to four with still zero effort axes. Carry the capture's own caveat: the 'Filtros' panel was not opened, so the finding narrows to 'no sort on the results surface'."
+        },
+        {
+          "finding_num": "20",
+          "full_id": "F20_SORT_AXES_TWO_OF_TWO",
+          "competitor": "Expedia",
+          "capture": "captures/02-expedia/03-stays-search-results.json",
+          "what_it_observes": "\"Expedia offers no ranking axis based on effort, ease, stress or confidence. Enumerated positively from the opened control.\"",
+          "independent": true,
+          "independence_note": "Different competitor and capture file — but see why.",
+          "confidence": "corroborates",
+          "why": "Independent as an observation, NOT as new information: F20 and F25 are two of the three products already aggregated inside the 20-axis count in the capture rec-6 cites. What they add is resolvability — the board currently cites that aggregate through a file with no finding ID, and these two give it citable components."
+        },
+        {
+          "finding_num": "25",
+          "full_id": "F25_THREE_OF_THREE",
+          "competitor": "Google Travel",
+          "capture": "captures/03-google-travel/02-sort-axes-enumerated.json",
+          "what_it_observes": "\"Google Travel offers three ranking axes: an opaque default, price, and a quality proxy. None concerns effort, ease, stress or confidence.\"",
+          "independent": true,
+          "independence_note": "Different capture file from the cited correction capture, same competitor family (Google Travel hotels vs Google Flights) — a genuinely different vertical and surface.",
+          "confidence": "corroborates",
+          "why": "Same reasoning as F20: resolves one third of the cited aggregate to a citable finding."
+        },
+        {
+          "finding_num": "99 and 100",
+          "full_id": "F99_ATTRIBUTES_NOBODY_ELSE_SHOWS + F100_EFFORT_MEASURED_IN_A_THIRD_UNIT",
+          "competitor": "Citymapper",
+          "capture": "captures/13-citymapper/01-arrival-to-accommodation.json",
+          "what_it_observes": "On-site transport options carrying frequency ('Every 7 min'), calories (389 cal walking, 234 cycling), duration and price together. F100 states the remaining gap as: \"Luma's opportunity … is to compute one where the data does not yet exist: accommodation and on-site ACTIVITIES.\"",
+          "independent": true,
+          "independence_note": "Different competitor, capture file, city and vertical. Captured 16:06Z — three and a half hours AFTER the Google correction capture (12:40Z) that supplied rec-6's scope.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "This is the most consequential thing in this sweep. rec-6 tells Luma to compute an effort axis for 'accommodation and on-site transport', inheriting the wording of the cited correction capture: \"unoccupied … IN ACCOMMODATION AND ON-SITE TRANSPORT\". The Citymapper capture, taken later in the same round, shows on-site transport is the RICHEST effort surface observed anywhere — three attributes no other competitor shows — and restates the gap as accommodation and on-site ACTIVITIES. Two captures in one round disagree about which vertical the gap is in. The narrow reading that survives both: on-site transport already displays effort ATTRIBUTES richly but was never observed to offer an effort SORT AXIS. rec-6 should be re-scoped at Gate A, not simply strengthened."
+        },
+        {
+          "finding_num": "83",
+          "full_id": "F83_DURATION_IS_VISIBLE_BUT_NOT_STRUCTURED",
+          "competitor": "Tripadvisor",
+          "capture": "captures/08-tripadvisor/02-activities-duration-and-a-near-miss.json",
+          "what_it_observes": "Duration appears only inside seller-written titles — 'excursión de 10 horas', 'Tour Privado Tuk Tuk de 4 Horas', '2, 3, o 4 Horas' — with no duration filter, sort or field.",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "corroborates",
+          "why": "Corroborates the 'not activities' EXCLUSION clause of rec-6 — the one clause I expected to be weakest. Already cited by insight-4, not by rec-6."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/07-airbnb/05-experiences-and-business-goal-2.json § note_on_duration",
+          "is_numbered_finding": false,
+          "competitor": "Airbnb",
+          "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+          "what_it_observes": "\"Experiences show price and category but not duration on the results surface\" — searched for 'N horas' and 'duración', no match.",
+          "independent": true,
+          "independence_note": "Different competitor from F83, different capture file.",
+          "confidence": "corroborates",
+          "why": "A second, independent activities product where duration is not a structured field — and here not shown at all. The exclusion clause now rests on two competitors, not one."
+        },
+        {
+          "finding_num": "92",
+          "full_id": "F92_EFFORT_ATTRIBUTES_ARE_FIRST_CLASS_IN_RAIL",
+          "competitor": "Trainline",
+          "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+          "what_it_observes": "Duration and change-count per result plus a 'Direct only' filter.",
+          "independent": false,
+          "independence_note": "SAME competitor as the cited F93, different capture file within the same capture pass. I read this as one observation, not two.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "Deepens the Trainline evidence rather than confirming it from outside. Note it also cuts against F93's framing: Trainline names effort in its RANKING but offers no sort control at all on the results surface."
+        },
+        {
+          "finding_num": "97",
+          "full_id": "F97_MODE_COMPARISON_WITH_THE_TRADE_OFF_VISIBLE",
+          "competitor": "Rome2Rio",
+          "capture": "captures/12-rome2rio/01-mode-comparison-with-tradeoff.json",
+          "what_it_observes": "Duration and price together per mode, with the cheapest badged.",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "More evidence that between-city transport surfaces effort natively. Adds to the same tension F99/F100 raise about rec-6's scope."
+        }
+      ]
+    },
+
+    {
+      "id": "pain-2",
+      "kind": "Pain point",
+      "title": "A button that looks live can silently do nothing.",
+      "current_citation": {
+        "findings": ["F13"],
+        "captures": ["captures/01-booking-com/07-stays-funnel-to-payment-gate.json"],
+        "verbatim_evidence_in_the_cited_capture": ["clicking 'I'll reserve' produced no navigation", "The button was never disabled — it was enabled and did nothing."]
+      },
+      "verdict": "still_alone",
+      "candidates": [
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/11-omio/01-multimodal-and-164-partners.json § CAPTURE_BLOCKED_BY_CONSENT",
+          "is_numbered_finding": false,
+          "competitor": "Omio",
+          "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+          "what_it_observes": "\"A search for Madrid to Barcelona could not be completed. A cookie consent modal — 'Administrar preferencias de cookies' — intercepted the input and blocked the search form.\"",
+          "independent": true,
+          "independence_note": "Different competitor, capture file and surface.",
+          "confidence": "related but does not corroborate",
+          "why": "Different failure mode. The obstruction is on screen and named; the user is not left guessing. F13's whole force is that nothing on the page states the condition. This observation is pain-9's evidence, and folding it into pain-2 would double-count it."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/04-kayak/02-authenticated-ad-landing.json § method_correction",
+          "is_numbered_finding": false,
+          "competitor": "Kayak",
+          "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+          "what_it_observes": "A text sweep for account UI returned empty because Kayak's account control is an avatar image with no text — \"an empty result is a prompt to look, never a finding.\"",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "related but does not corroborate",
+          "why": "This is a defect in the analyst's instrument, not in the traveller's experience. Adjacent in shape, unrelated in substance. Naming it is worth more than counting it."
+        }
+      ],
+      "coverage_note": "The round had almost no opportunity to find a second instance. Only two funnels were walked to a payment gate — Booking.com and Expedia — and interaction-level behaviour was tested on essentially those two surfaces. A sample of two produced one defect. That is a research design limit, not evidence that the defect is rare."
+    },
+
+    {
+      "id": "pain-3",
+      "kind": "Pain point",
+      "title": "Being signed out doesn't stop a sign-in prompt from interrupting your search.",
+      "current_citation": {
+        "findings": ["F12"],
+        "captures": ["captures/01-booking-com/06-personalisation-controlled-diff.json"],
+        "verbatim_evidence_in_the_cited_capture": ["Navigating the signed-out instance to the search results URL opened a Google accounts sign-in page as a second tab."]
+      },
+      "verdict": "still_alone",
+      "candidates": [
+        {
+          "finding_num": "50",
+          "full_id": "F50_CONTEXT_IS_DROPPED_AT_THE_BOUNDARY",
+          "competitor": "Kayak",
+          "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+          "what_it_observes": "\"OneTrust consent checkboxes (ot-group-id-C0002 through C0005) present on arrival — a second cookie decision within one journey.\"",
+          "independent": true,
+          "independence_note": "Different competitor, capture file and surface.",
+          "confidence": "related but does not corroborate",
+          "why": "A consent gate, not an authentication prompt, and it appears at a cross-domain boundary where it is expected. F12's sting is that a third-party sign-in opened mid-search on a site the traveller had not asked to sign into."
+        },
+        {
+          "finding_num": "14",
+          "full_id": "F14",
+          "competitor": "Booking.com",
+          "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+          "what_it_observes": "\"At /book.html signed out: no 'sign in', 'create an account' or 'continue as guest' text present. The form is served directly.\"",
+          "independent": false,
+          "independence_note": "SAME competitor, same browser surface (inspector instance, signed out), different capture file twelve minutes later.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "Narrows pain-3 rather than confirming it. The same product never asks about an account where asking would be conventional — at the booking form — and fires a third-party One Tap where it is not. That contrast is more precise than the pain point as written, and it comes from one competitor."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/05-skyscanner/01-site-tree-and-undecided-traveller.json § surface",
+          "is_numbered_finding": false,
+          "competitor": "Skyscanner",
+          "capture": "captures/05-skyscanner/01-site-tree-and-undecided-traveller.json",
+          "what_it_observes": "\"session appears signed OUT on this product — 'Iniciar sesión' offered\".",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "related but does not corroborate",
+          "why": "A sign-in that is offered, not one that interrupts. It is the well-behaved case, and it is worth recording that the well-behaved case is what the rest of the round shows."
+        }
+      ],
+      "coverage_note": "Only two matched-pair signed-out diffs were run in the entire round — Booking.com and Google Travel. The sample capable of producing a second instance of this pain is two products."
+    },
+
+    {
+      "id": "pain-7",
+      "kind": "Pain point",
+      "title": "Look at things to do near where you're staying, and the trip you were just building disappears — dates and all.",
+      "current_citation": {
+        "findings": ["F78_THREE_INVENTORIES_ONE_ACCOUNT_ZERO_TRIP"],
+        "captures": ["captures/07-airbnb/05-experiences-and-business-goal-2.json"],
+        "verbatim_evidence_in_the_cited_capture": ["swept for 'tu viaje', 'tu estancia', 'tu reserva', 'añadir al viaje', 'durante tu', 'itinerario'. ZERO matches", "Navigating from the dated stays search (checkin 2026-11-10, checkout 2026-11-13) to Experiences produced a URL carrying NO dates."]
+      },
+      "verdict": "now_corroborated",
+      "candidates": [
+        {
+          "finding_num": "91",
+          "full_id": "F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER",
+          "competitor": "Trainline",
+          "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+          "what_it_observes": "A pre-checked cross-sell in the search form opened a hotel search whose dates were \"checkin=2026-09-04, checkout=2026-09-05 — today and tomorrow. The journey searched was for a different date entirely.\" The capture's own assessment: \"it arrives pre-filled with the WRONG DATES, so the cross-sell is not even useful.\"",
+          "independent": true,
+          "independence_note": "Different competitor, capture file, vertical pair (rail → accommodation), and browser surface than the Airbnb capture.",
+          "confidence": "corroborates",
+          "why": "It survives the falsification test. If the Airbnb capture were withdrawn tomorrow, this would still evidence that moving from one booking type to an adjacent one does not carry the trip's dates. Two independent products, two different vertical pairs, the same failure. Qualification that must travel with it: F91 crosses a COMPANY boundary where F78 stays inside one account — so it corroborates the phenomenon at a structurally weaker position, where losing context is easier to excuse. F78 remains the stronger of the two and the only one inside a single account."
+        },
+        {
+          "finding_num": "15",
+          "full_id": "F15",
+          "competitor": "Booking.com",
+          "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+          "what_it_observes": "\"Form carries checkboxes named interested_flight, interested_car_rentals, interested_taxi.\" The capture reads this as \"interest capture at checkout, not as a connected trip.\"",
+          "independent": true,
+          "independence_note": "Different competitor, capture file and surface.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "Corroborates from the opposite direction: the market leader's answer to multi-type attachment holds no trip object at all, so there is nothing that could survive a vertical switch. It supports the general claim (nobody models the trip) without observing the specific loss event."
+        },
+        {
+          "finding_num": "50",
+          "full_id": "F50_CONTEXT_IS_DROPPED_AT_THE_BOUNDARY",
+          "competitor": "Kayak",
+          "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+          "what_it_observes": "\"Destination page contains no Kayak branding or context.\" But the same capture also records that Kayak passes \"Origin1=MAD, Destination1=LIS, DepartureDate1=20261110, FlightNumber1=539, and the return leg\" plus \"DisplayedPrice=58.25\" to the carrier.",
+          "independent": true,
+          "independence_note": "Different competitor, capture file and surface.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "It cuts both ways and the board should know it. The BRAND thread is lost; the ITINERARY is not — Kayak carries the full trip across a company boundary. That is a counter-example to any reading of pain-7 as 'context always drops at a boundary'. The technical carry is demonstrably possible; Airbnb chose not to do it inside its own account."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/11-omio/01-multimodal-and-164-partners.json § accommodation_toggle",
+          "is_numbered_finding": false,
+          "competitor": "Omio",
+          "capture": "captures/11-omio/01-multimodal-and-164-partners.json",
+          "what_it_observes": "\"'Buscar alojamiento' (Search accommodation) as a toggle inside the transport search form … Whether Omio's is pre-checked and whether it opens a popunder was NOT determined; the consent modal blocked the interaction.\"",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "related but does not corroborate",
+          "why": "A third instance of the cross-vertical attach pattern whose date-carrying behaviour was never observed. It marks where a third data point would come from, and honestly records that it was not obtained."
+        },
+        {
+          "finding_num": "79",
+          "full_id": "F79_PRICE_CONVENTION_INCONSISTENT_WITHIN_ONE_PRODUCT",
+          "competitor": "Airbnb",
+          "capture": "captures/07-airbnb/05-experiences-and-business-goal-2.json",
+          "what_it_observes": "The stays/experiences pricing inconsistency.",
+          "independent": false,
+          "independence_note": "SAME capture file as the cited F78. One observation, not two.",
+          "confidence": "related but does not corroborate",
+          "why": "Listed only to rule it out. Two findings in one capture file can never corroborate each other, however different their claims."
+        }
+      ],
+      "verdict_qualifier": "The general pain — a trip does not survive a move between booking types — is now corroborated on two independent products. The pain point AS TITLED, about accommodation to activities under one account, remains on one capture."
+    },
+
+    {
+      "id": "pain-8",
+      "kind": "Pain point",
+      "title": "Three products, one afternoon, three different guesses at where you are — and none of them asked.",
+      "current_citation": {
+        "findings": ["F61_LOCATION_DISAGREEMENT_ACROSS_THREE_PRODUCTS"],
+        "captures": ["captures/05-skyscanner/01-site-tree-and-undecided-traveller.json"],
+        "verbatim_evidence_in_the_cited_capture": ["Google Travel AI planner: 'Estás en Toronto Todos los aeropuertos' (F-41)", "Kayak: origin pre-filled 'Madrid (MAD)' (F-38 capture)", "Skyscanner: 'Salida desde: Marsella (MRS)'"]
+      },
+      "verdict": "partially",
+      "candidates": [
+        {
+          "finding_num": "41",
+          "full_id": "F41_LOCATION_ASSERTION",
+          "competitor": "Kayak",
+          "capture": "captures/04-kayak/03-ai-planner-and-first-empty-state.json",
+          "what_it_observes": "On https://www.kayak.es/ai at 13:05Z: \"Estás en Toronto Todos los aeropuertos\". \"The planner asserts the traveller's location unprompted, and asserted it incorrectly.\" And: \"The session is a Spanish-locale browser whose flight search pre-filled Madrid (MAD) as origin minutes earlier. The AI surface independently asserts Toronto. Two surfaces of one product disagree about where the traveller is.\"",
+          "independent": true,
+          "independence_note": "Different capture file, recorded 54 minutes before the Skyscanner capture, on the same browser surface (client's authenticated Chrome).",
+          "confidence": "corroborates",
+          "why": "It independently corroborates the PHENOMENON — a product stating the traveller's location as fact, unprompted, wrongly, in its opening line. It does NOT corroborate the three-product framing. It contradicts it: F41 records the Toronto verbatim as KAYAK's AI planner, on kayak.es/ai. The cited F61 attributes that identical string to the 'Google Travel AI planner' while citing (F-41). pain-8's body repeats the Google attribution. The primary capture is the one that wins."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/04-kayak/02-authenticated-ad-landing.json § authenticated_state_observed",
+          "is_numbered_finding": false,
+          "competitor": "Kayak",
+          "capture": "captures/04-kayak/02-authenticated-ad-landing.json",
+          "what_it_observes": "\"origin_prefilled: Madrid (MAD) — pre-populated as the departure city without the user entering it\", at 12:58Z.",
+          "independent": true,
+          "independence_note": "Different capture file from both F61 and F41. Same competitor as F41.",
+          "confidence": "corroborates",
+          "why": "Independently records the Madrid leg that F61 attributes to it. Combined with F41, the Toronto and Madrid assertions are both Kayak — two surfaces of ONE product, seven minutes apart. Under this sweep's own independence rule that is one product disagreeing with itself, not two products disagreeing with each other."
+        },
+        {
+          "finding_num": null,
+          "full_id": "browser-surface reconciliation across captures/03-google-travel/*",
+          "is_numbered_finding": false,
+          "competitor": "Google Travel",
+          "capture": "captures/03-google-travel/04, /05, /07",
+          "what_it_observes": "No Google Travel capture in the round records a location assertion. The Google captures that state a surface state 'inspector instance (signed out, extension-clean)'; the Kayak and Skyscanner captures state 'client's authenticated Chrome'.",
+          "independent": true,
+          "independence_note": "Derived from the surface fields of three capture files.",
+          "confidence": "related but does not corroborate",
+          "why": "Two problems for pain-8's 'one browser session' claim. There is no primary capture of a Google location assertion at all, and the Google surfaces in this round are a different browser instance from the Kayak and Skyscanner ones. Under ART-024 §4.1b those two surfaces disagree by construction, so a divergence spanning them is not a clean measurement."
+        }
+      ],
+      "verdict_qualifier": "The phenomenon is corroborated; the headline is not. On the evidence the honest restatement is: one product asserted two different locations on two of its own surfaces seven minutes apart, and a second product asserted a third — none of them asked. That is arguably a sharper pain point than the one on the board, and it does not require the Google attribution the evidence cannot support.",
+      "carried_caveat": "F61's own caveat, which the board drops: \"Cause not established for any of the three. Could be IP, CDN edge, account default, or prior session. Recorded as observed divergence, NOT as a geolocation defect in any product.\" F41 carries the identical caveat."
+    },
+
+    {
+      "id": "pain-10",
+      "kind": "Pain point",
+      "title": "Saying no to an add-on is written back to you as a confession.",
+      "current_citation": {
+        "findings": ["F22_CONFIRMSHAMING"],
+        "captures": ["captures/02-expedia/04-stays-funnel-to-card-screen.json"],
+        "verbatim_evidence_in_the_cited_capture": ["accept_option: Stay Protection Plan", "decline_option: I'm willing to risk my $358.59 stay in Lisbon"]
+      },
+      "verdict": "still_alone",
+      "candidates": [
+        {
+          "finding_num": "91",
+          "full_id": "F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER",
+          "competitor": "Trainline",
+          "capture": "captures/10-trainline/01-fulfilment-compensation-and-a-popunder.json",
+          "what_it_observes": "\"'Get up to 20% off stays with Genius' with a Booking.com badge, checkbox CHECKED by default in the search form\", firing a window whose own tracking label contains the word POPUNDER. The capture states: \"Same family as Expedia's confirmshaming (F-22) … Third distinct dark-pattern observation in the round.\"",
+          "independent": true,
+          "independence_note": "Different competitor, capture file, vertical and funnel position.",
+          "confidence": "partially — narrows or qualifies",
+          "why": "It corroborates that hostile add-on attachment is not unique to Expedia. It does not corroborate pain-10, which is about the WORDING of a decline. The mechanism here is opt-out pre-checking — the traveller is never asked, so there is no decline to phrase. The 'same family' grouping is the analyst's interpretation in the capture, not an observation; treating it as corroboration would import that interpretation as evidence."
+        },
+        {
+          "finding_num": "72",
+          "full_id": "F72_NEUTRAL_INSURANCE_DECLINE_THE_ANTI_F22",
+          "competitor": "Airbnb",
+          "capture": "captures/07-airbnb/03-listing-and-checkout-to-payment-gate.json",
+          "what_it_observes": "\"Airbnb offers travel insurance at checkout with a neutral, priced question.\"",
+          "independent": true,
+          "independence_note": "Different competitor, capture file and surface — a genuinely independent observation of the same decision point.",
+          "confidence": "related but does not corroborate",
+          "why": "It is the counter-example, and it is logically incapable of corroborating pain-10. It proves a neutral alternative exists at the same funnel position — which strengthens rec-5 and says nothing about how common the shaming is. Worth flagging: rec-5's rests_on calls itself 'the strongest-evidenced recommendation in this set' on the strength of the F22/F72 pair, but the PAIN it addresses is a sample of one. The pairing is strong; the prevalence is unmeasured."
+        },
+        {
+          "finding_num": null,
+          "full_id": "capture-block: captures/02-expedia/04-stays-funnel-to-card-screen.json § price_construction",
+          "is_numbered_finding": false,
+          "competitor": "Expedia",
+          "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+          "what_it_observes": "\"The protection plan is pre-selected as a priced line in the running total, so declining it lowers a total the traveller has already seen.\"",
+          "independent": false,
+          "independence_note": "SAME capture file as F22. One observation.",
+          "confidence": "related but does not corroborate",
+          "why": "A second mechanism at the same moment on the same page — anchoring stacked on shaming. It makes the single instance richer, not more numerous. Listed to rule it out explicitly, because it reads like a second data point and is not."
+        },
+        {
+          "finding_num": "87",
+          "full_id": "F87_HEDGED_REASSURANCE",
+          "competitor": "Rentalcars.com",
+          "capture": "captures/09-rentalcars/01-ownership-and-hidden-costs.json",
+          "what_it_observes": "\"The cancellation promise carries a qualifier that most travellers will not weigh.\"",
+          "independent": true,
+          "independence_note": "Different competitor and capture file.",
+          "confidence": "related but does not corroborate",
+          "why": "Hedged reassurance, not a coerced decline. Grouping every trust-adjacent observation under one pain point is exactly the cherry-pick this sweep is meant to prevent."
+        }
+      ]
+    }
+  ],
+
+  "still_alone_after_an_honest_search": [
+    {
+      "id": "rec-1",
+      "title": "Notify a traveller the moment they qualify for a right they already hold.",
+      "research_question": "Does any air, hotel or activity supplier proactively notify a traveller that an entitlement has been triggered, as opposed to publishing the entitlement or notifying about a price? The round recorded this as unrun: captures/16-american-airlines/01 § not_observed — \"whether AA offers proactive disruption notification of the kind Trainline does (F-90)\".",
+      "cheapest_next_capture": "aa.com and iberia.com post-booking / manage-booking notification settings; Trainline's own notification opened to see what it actually sends."
+    },
+    {
+      "id": "pain-2",
+      "title": "A button that looks live can silently do nothing.",
+      "research_question": "Is an enabled-but-inert primary control a Booking.com defect or a category pattern? Unanswerable from this round: only two funnels were walked to a payment gate.",
+      "cheapest_next_capture": "Walk the primary CTA on three more property/detail pages under a deliberately incomplete selection state."
+    },
+    {
+      "id": "pain-3",
+      "title": "Being signed out doesn't stop a sign-in prompt from interrupting your search.",
+      "research_question": "Do other products fire third-party authentication prompts at signed-out sessions mid-search? Only two matched-pair signed-out diffs exist in the round.",
+      "cheapest_next_capture": "Run the signed-out matched-pair diff on Expedia, Airbnb and Skyscanner — Expedia's is already recorded as OWED in captures/03-google-travel/04 § owed."
+    },
+    {
+      "id": "pain-10",
+      "title": "Saying no to an add-on is written back to you as a confession.",
+      "research_question": "How common is confirmshaming at the decline? Observed once, in one funnel, on one competitor. The Airbnb counter-example is not a second instance.",
+      "cheapest_next_capture": "Reach the insurance/protection decision on Booking.com, Kayak's handoff destination and Trainline checkout and record the decline wording verbatim."
+    }
+  ],
+
+  "reconciliation": {
+    "conclusions": {
+      "anchor": 26,
+      "derived": 26,
+      "match": true,
+      "note": "7 insights + 9 recommendations + 10 pain points."
+    },
+    "distinct_findings_cited": {
+      "anchor": 41,
+      "derived": 41,
+      "match": true,
+      "note": "Union of all cites arrays across the 26 conclusions: 1,2,3,4,9,12,13,17,18,22,26,32,38,42,43,56,57,60,61,66,67,68,69,70,71,72,75,78,80,83,89,90,93,96,98,101,102,104,107,110,113."
+    },
+    "findings_total": {
+      "anchor": 113,
+      "derived": 113,
+      "match": true,
+      "note": "CAPTURE-INDEX.json declares 121. The 8-entry difference resolves exactly: 7 non-finding index entries (correction_to_own_earlier_claim, CORRECTION_to_F28, MATERIAL_CORRECTION_to_F09_F20_F25, method_correction, PROHIBITION_2_NEAR_MISS_RECORDED, CAPTURE_BLOCKED_BY_CONSENT, METHOD_CORRECTION_TO_MY_OWN_FINDABILITY_TEST) plus F108_LOUNGE_ACCESS_IS_INDIRECTLY_PURCHASABLE, superseded by F108_SETTLED. 113 is defensible."
+    },
+    "uncited": {
+      "anchor": 72,
+      "derived": 72,
+      "match": true,
+      "note": "113 − 41, and the uncited_findings array holds exactly 72 entries."
+    },
+    "single_capture": {
+      "anchor": 9,
+      "derived": "9 conclusions cite exactly one numbered finding; 10 rest on one or zero findings.",
+      "match": "partial",
+      "disagreements": [
+        "The label is imprecise. rec-3 and rec-6 each cite ONE finding but list TWO capture files in sources. They are single-FINDING, not single-CAPTURE. rec-6 in particular draws its entire scope from the second, uncited capture.",
+        "pain-9 ('A cookie banner with no single-click way to say no') cites ZERO findings — cites: [], n: 0 — and its only source is a capture file with no finding ID. By any reading it is more fragile than the nine and it is absent from fragile_conclusions. Not analysed here because it was out of scope, but it should not stay off the list. Incidentally it is corroborated: captures/11-omio/01 records 'Tripadvisor presented the same shape (F-80 capture) … Two of eleven competitors have now blocked capture at consent with no compliant path forward.'"
+      ]
+    },
+    "theme_adjacency_preliminary_count": {
+      "anchor_as_stated_in_the_task": "22, 22, 22, 21, 6, 6, 6, 4, 1",
+      "derived": "22 (ranking-and-comparison ×3: rec-2/F42, rec-3/F70, rec-6/F93), 22 (price-honesty: rec-1/F90), 6 (other ×2: pain-2/F13, pain-3/F12), 6 (decision-support: pain-8/F61), 4 (disruption-and-protection: pain-10/F22), 1 (trip-as-an-object: pain-7/F78)",
+      "match": "8 of 9",
+      "disagreement": "I count 22 uncited findings on theme price-honesty, not 21. Enumerated: 14,15,23,24,27,28,31,33,36,45,53,64,65,73,74,79,88,105,106,108,109,111. Small, but stated rather than smoothed. It changes nothing in the verdicts — theme was a search hint only, and it was a poor one: the corroboration that mattered most crossed themes every time. F91 (theme loyalty-and-retention) corroborated a trip-as-an-object pain; F43 (ranking-and-comparison) corroborated a recommendation cited from a price-honesty capture; F13 and F12 both carry theme 'other'."
+    },
+    "not_verified": [
+      "WORLD.json's 117 vs CAPTURE-INDEX's 121 (C-043) — not opened, not reconciled, out of scope of this sweep. Stated so nobody reads its absence as a clean result.",
+      "30 of 50 capture files were not opened. Candidates screened out at claim level could in principle hold corroborating detail in their bodies."
+    ],
+    "citation_integrity_findings": [
+      "F61 (cited by pain-8 and insight-7) misattributes 'Estás en Toronto Todos los aeropuertos' to the 'Google Travel AI planner' while citing (F-41). The primary capture, captures/04-kayak/03, records that verbatim on https://www.kayak.es/ai as KAYAK's planner. pain-8's body inherits the error. Per CAPTURE-INDEX's own rule — 'If this index and a capture file disagree, the capture file wins' — the capture wins.",
+      "Three conclusions cite capture keys that are not finding IDs and cannot resolve in the Evidenced [F-nnn] form: rec-3 ('price_construction_at_checkout'), insight-5 ('disclosure_spectrum_updated'), rec-6 and insight-4 (the MATERIAL_CORRECTION capture, which carries a substantive claim and no ID). The MATERIAL_CORRECTION case matters most: it is the sole source of rec-6's scope.",
+      "rec-6's scope is contradicted within the round. Its cited capture (12:40Z) says the gap is 'ACCOMMODATION AND ON-SITE TRANSPORT'; F100 (16:06Z) says 'accommodation and on-site ACTIVITIES' and F99 shows on-site transport carrying the richest effort attributes in the round."
+    ]
+  },
+
+  "assumptions": [
+    "Assumption — Independence is judged from capture metadata (competitor, capture file, browser surface, timestamp), not from causal knowledge. Two products can produce correlated observations for reasons no capture recorded; the Skyscanner and Kayak location captures share one browser session, one afternoon and one IP, which is a shared cause I cannot rule out and which F61 itself flags as unestablished.",
+    "Assumption — Absence of a corroborating finding is treated as absence of a corroborating OBSERVATION, never as evidence the phenomenon is rare. The round is explicit that no competitor was exhausted ('NO COMPETITOR IS COMPLETE'), and coverage is heavily skewed: Booking.com, Google Travel and Kayak have 7 captures each; Hopper, Skyscanner, Rome2Rio, Citymapper, TripIt and Omio have 1. Four of the still_alone verdicts sit on thinly-captured surface classes, not on well-searched empty ones.",
+    "Assumption — Where I proposed a capture block that was never raised to a numbered finding, I assumed the board would accept a resolvable file-plus-section reference. If the board requires F-nnn form, those candidates must first be promoted to findings by the evidence owner; I did not create IDs for them, and minting one would be the exact failure the claim-format rule exists to prevent.",
+    "Assumption — I read the analyst's interpretive prose inside capture files (why_it_matters, assessment, pattern_family) as interpretation, not observation, and graded only the observed strings. Where a capture asserts a cross-competitor pattern in its own prose, I did not let that assertion stand in for a second observation. This is why F91 is 'partially' for pain-10 despite its capture calling it the same family as F22.",
+    "One-sidedness declared — Every conclusion on this board rests on an analyst observing a product surface. research/evidence-ledger.json holds zero records. Not one of the ten pain points is a traveller's report of being harmed; each is an inference that a described surface would harm the stated primary user. The Tripadvisor capture shows the discipline held under pressure (PROHIBITION_2_NEAR_MISS_RECORDED — review text pulled twice by regex and discarded at write time). That is the right call, and it leaves the whole board without testimony. Corroborating a pain point across two products makes the OBSERVATION sturdier; it does not make it a user problem. No amount of competitor capture can close that gap — only Phase 1 fieldwork can."
+  ]
+}

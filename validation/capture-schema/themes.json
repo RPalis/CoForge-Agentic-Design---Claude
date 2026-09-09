@@ -1,0 +1,514 @@
+{
+  "$comment": "THEME TAXONOMY for hands-on competitor capture rounds. GATE A PROPOSAL — suggest-only, nothing here is approved and nothing here has been applied. Derived by research-synthesizer from the 121 findings of round 1 (ART-025 CAPTURE-INDEX.json) and the mechanical audit theme-audit.json, in response to C-045. Round 1 used these eleven slugs with no definition anywhere; this file recovers what they were being used to mean and, where usage was inconsistent, chooses. NO capture file, no finding, no theme value and no dashboard was modified in producing this. Every `near_misses` entry is a PROPOSED move for a human to accept or reject, not a change.",
+  "generated": "2026-09-07",
+  "generated_by": "research-synthesizer",
+  "gate": "A",
+  "status": "proposed",
+  "derived_from": [
+    "artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/CAPTURE-INDEX.json",
+    "artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/theme-audit.json",
+    "validation/corrections.json C-043 C-044 C-045 C-046 C-049"
+  ],
+  "method_and_limits": {
+    "what_was_read": "CAPTURE-INDEX.json claim summaries for all 121 rows, and the filed theme for all 121 rows from theme-audit.json. The 50 capture files themselves were NOT opened.",
+    "consequence": "Four rows carry claim 'see capture file' (correction_to_own_earlier_claim, CORRECTION_to_F28, method_correction, F71). Judgements about those four rest on the row id and on C-043's description of them, not on claim text, and are marked low_confidence.",
+    "scale_of_proposal": "42 of 121 rows (35%) keep their filed primary theme. 79 (65%) are proposed to move. The audit's 48% contradiction rate is an explicit LOWER BOUND over the 29 rows it could speak about, so 65% is compatible with it — but the gap is filled by one agent's judgement, not by the ledger. Ratify the DEFINITIONS first; treat the per-row list as worked examples of the definitions rather than as a migration script.",
+    "audit_false_positives_found": [
+      {
+        "id": "F83_DURATION_IS_VISIBLE_BUT_NOT_STRUCTURED",
+        "audit_verdict": "CONTRADICTS (id names market-structure)",
+        "reality": "The audit's id matcher hit the substring 'STRUCTURED'. The finding is about a duration field not being structured for comparison. It has nothing to do with market structure and its filed theme, ranking-and-comparison, is correct."
+      },
+      {
+        "id": "correction_to_own_earlier_claim",
+        "audit_verdict": "CONTRADICTS (id names method)",
+        "reality": "Matched the substring 'correction'. Per C-043 it corrects a mis-framing of Expedia One Key — a claim about a competitor, not about how the round was run. Its filed theme, loyalty-and-retention, is correct."
+      },
+      {
+        "id": "CORRECTION_to_F28",
+        "audit_verdict": "CONTRADICTS (id names method)",
+        "reality": "Matched 'correction'. Per C-043 it corrects the scope of Google Track-prices (gated per vertical, not per account) — a competitor claim."
+      },
+      {
+        "id": "MATERIAL_CORRECTION_to_F09_F20_F25",
+        "audit_verdict": "CONTRADICTS (id names method)",
+        "reality": "Matched 'correction'. Its claim text is about 20 enumerated ranking axes; it is a competitor claim and its filed theme, ranking-and-comparison, is correct."
+      }
+    ],
+    "audit_false_positive_note": "4 of the audit's 14 CONTRADICTS verdicts are artifacts of substring matching. The audit says of itself that it never reads claim prose, so this is a known property, not a defect in it — but a validator built on this file must NOT treat theme-audit.json verdicts as ground truth."
+  },
+
+  "single_valued": false,
+  "field_shape": {
+    "field": "themes",
+    "type": "array of slug strings",
+    "min_items": 1,
+    "max_items": 3,
+    "ordered": true,
+    "primary": "themes[0]",
+    "charts": "Only themes[0] may be counted in any chart, matrix cell or 'N findings on X' claim. Secondary themes are for retrieval and for coverage questions ('what did we see about disruption anywhere'), never for counting.",
+    "backward_compatibility": "Round 1's single-valued `theme` string is equivalent to a one-element `themes` array. A validator may accept either and MUST normalise the string form to [value].",
+    "why_not_single_valued": "Round 1 assumed single-valued and never said so, which forced every genuinely two-subject finding into a coin flip that nobody could audit. F-107 ('No disruption, delay, cancellation, compensation or passenger-rights destination appears in Qatar Airways' 289 homepage links') was captured during a loyalty sweep and is about disruption; single-valuedness made that an either/or and the round chose the sweep. As ['disruption-and-protection', 'loyalty-and-retention'] the record is simply true and the matrix cell stops lying.",
+    "why_not_unordered": "An unordered set makes every count ambiguous — a finding with two themes would inflate two bars and the totals would exceed the denominator. Ordering costs one decision per finding and makes every chart's denominator exactly the row count."
+  },
+  "tie_break": "SUBJECT TEST, then PRECEDENCE. (1) Subject test: the primary theme is the theme of the product mechanism, document or surface that was OBSERVED — not the theme of the consequence inferred from it. F-01 observed a benefit gate ('gated behind 15 completed bookings in 2 years') and inferred an effect on first-timers, so its primary is loyalty-and-retention and user-types is secondary. F-02 observed an absence of address to a class of traveller ('never addresses a first-time traveller anywhere on its own explainer page'), so its primary is user-types and loyalty-and-retention is secondary. (2) If two themes both describe the observed artefact, the one earlier in `theme_precedence` wins. The precedence order exists so that two people who agree on the facts cannot disagree on the label.",
+  "theme_precedence": [
+    "accessibility-and-inclusion",
+    "disruption-and-protection",
+    "dark-patterns-and-trust",
+    "ai-assistants",
+    "trip-as-an-object",
+    "loyalty-and-retention",
+    "user-types",
+    "market-structure",
+    "price-honesty",
+    "ranking-and-comparison",
+    "decision-support",
+    "other"
+  ],
+  "theme_precedence_rationale": "Ordered from most specific to most absorbent. The two themes that swallowed everything in round 1 — price-honesty (29 rows) and ranking-and-comparison (36 rows) — sit near the bottom deliberately, so they receive a finding only when nothing narrower describes the observed artefact. `other` is last and is a quarantine, not a category. KNOWN SIDE EFFECT, stated rather than hidden: a late theme is starved by construction. Under this order price-honesty holds 6 of 121 rather than 29. That is the correct semantics of the name — a finding about whether the price shown is the price paid — but it means the round has materially less price-honesty evidence than its own label implied, and any board conclusion leaning on 'price honesty' should be re-read against 6 findings, not 29.",
+
+  "record_kind": {
+    "$comment": "Ruling on special case 2. `method` is NOT a theme and must not share a vocabulary with the other ten.",
+    "field": "record_kind",
+    "required": true,
+    "values": ["finding", "method-note", "capture-limit"],
+    "default": "finding",
+    "rule": "`themes` is required when record_kind == 'finding' and MUST BE ABSENT otherwise. A row that is not a finding carries no competitor theme, because it makes no claim about a competitor.",
+    "definitions": {
+      "finding": "A claim about a competitor's product, document or commercial position.",
+      "method-note": "A claim about how this round was run — a self-correction to the round's own procedure, a sweep that was mis-specified, a near miss against a repository prohibition. It changes what the round's other rows mean; it says nothing about a competitor.",
+      "capture-limit": "A record that a capture could not be completed or was bounded, and why."
+    },
+    "correction_disambiguation": "A row whose id contains 'CORRECTION' is NOT automatically a method-note. Test: what does it correct? If it corrects a claim about a competitor, it is a finding and carries themes. If it corrects how the round was run, it is a method-note. This test reclassifies 3 of the audit's 14 CONTRADICTS verdicts as false positives (see method_and_limits).",
+    "round_1_rows_that_are_not_findings": [
+      {"id": "method_correction", "record_kind": "method-note", "why": "Kayak's empty text sweep was mis-read as absence. Corrects the sweep, not Kayak."},
+      {"id": "METHOD_CORRECTION_TO_MY_OWN_FINDABILITY_TEST", "record_kind": "method-note", "why": "'I ran the symmetric findability sweep on AA using ENGLISH terms ... against a page served in SPANISH.' The subject is the sweep."},
+      {"id": "PROHIBITION_2_NEAR_MISS_RECORDED", "record_kind": "method-note", "why": "'Two extraction sweeps on this page returned TRAVELLER REVIEW TEXT.' The subject is the extraction, and the risk is to prohibition 2."},
+      {"id": "CAPTURE_BLOCKED_BY_CONSENT", "record_kind": "capture-limit", "why": "'A search for Madrid to Barcelona could not be completed.' Records a bounded capture."}
+    ],
+    "deprecation": "The slug `method` is retained in `vocabulary` ONLY so round 1 rows remain readable. It is DEPRECATED for round 2: a validator must reject `method` in `themes` on any row generated after this file is approved, and must instead require record_kind.",
+    "why_a_different_axis": "A theme answers 'what is this finding about in the market'. `method` answers 'is this a finding at all'. Sharing one field made 5 of round 1's 14 recorded contradictions, because a method row still had to pick a competitor theme and every choice was wrong. It also silently inflated whichever theme it landed in — two method rows are counted as ranking-and-comparison evidence on the current board."
+  },
+
+  "other_policy": {
+    "$comment": "Ruling on special case 1.",
+    "ruling": "BOTH, and the second is the operative one. `other` gets a definition so a validator can accept it, and its round-1 population is an admission that the vocabulary was short — not a residual tail. All 12 rows filed `other` have a home; 6 of them have a home that did not exist.",
+    "evidence": "The 12 rows are not a scatter. They are three clusters and two strays: accessibility (F-05, F-06, F-07 — all Booking.com, all about the accessibility statement and its contractual status), AI assistants (F-38, F-55, F-96 — and the round was plainly tracking this itself, since two of the ids are literally 'FOURTH AI ASSISTANT' and 'FIFTH AI ASSISTANT': a census run against a category with no label), market composition (F-17 Romie absent, F-19 inventory depth), and F-12, F-13, F-80, F-95 which each belong to an existing theme. A residual bucket that is the fourth-largest category and decomposes into named clusters is a missing-vocabulary signal.",
+    "quota": "A validator MUST error when `other` exceeds 5% of a round's findings, and MUST warn at 3%. Round 1 sat at 9.9%. The quota is the detector for exactly this defect: it fires when a theme is missing, before anyone builds a chart on the gap.",
+    "note_required": "A row whose themes[0] is `other` MUST carry a non-empty `theme_note` of at least 40 characters saying what it is about. `other` with no note is unreviewable and a validator must reject it.",
+    "after_reassignment": "Under this taxonomy `other` holds exactly 1 of 121 rows (F-21, the shape of Expedia's checkout). One quarantined row with a note is `other` working; twelve is `other` failing."
+  },
+
+  "vocabulary": [
+    "market-structure",
+    "ranking-and-comparison",
+    "price-honesty",
+    "loyalty-and-retention",
+    "disruption-and-protection",
+    "decision-support",
+    "trip-as-an-object",
+    "user-types",
+    "dark-patterns-and-trust",
+    "accessibility-and-inclusion",
+    "ai-assistants",
+    "other",
+    "method"
+  ],
+
+  "themes": {
+    "market-structure": {
+      "definition": "What a product IS in the market: whether it sells, refers or merely compares; whose inventory it carries and how much of it; who owns it and who owns its siblings; and where contractual responsibility sits when it is not the traveller's.",
+      "boundary_rules": [
+        {"vs": "disruption-and-protection", "test": "Does the finding describe a mechanism a traveller could USE or ENCOUNTER when a trip fails — a page, a policy route, a product, a notification? Then disruption-and-protection. Does it only say who bears responsibility, with no traveller-facing mechanism? Then market-structure. F-03 records a disclaimer and offers no route, so it is market-structure; F-04 records that a disruption mechanism exists but is conditional, so it is disruption-and-protection."},
+        {"vs": "ranking-and-comparison", "test": "Does the finding concern the ORDER or presentation of a result set, or the EXISTENCE, SIZE or SOURCE of the inventory behind it? '499 properties where Booking.com returns 4,194' is inventory, so market-structure."},
+        {"vs": "price-honesty", "test": "Is the money in the finding the price of a trip, or the commercial arrangement that produces prices? A paywall, a fare-class bundling, an ancillary product line and a commission relationship are market-structure even though each has a price attached."},
+        {"vs": "decision-support", "test": "Both cover 'this product does not sell'. If the finding's point is that the traveller therefore gets neutral information, it is decision-support. If its point is what the company is, it is market-structure."}
+      ],
+      "anchors": [
+        {"id": "F03", "why": "'The market leader contractually disclaims liability for the exact failure experience a reassurance-led product would want to own — at least for flights.' A contractual position on who is answerable. The only row round 1 filed here, and correctly."},
+        {"id": "F24_NO_TRANSACTION", "why": "'Google Travel hands off rather than sells. No \"Book on Google\" surface was present on the accommodation result.' The business model itself."},
+        {"id": "F88_THREE_OF_SEVENTEEN_SHARE_A_PARENT", "why": "'Booking.com, Kayak and Rentalcars.com — competitors 1, 4 and 9 on the roster — are all Booking Holdings companies.' Ownership, and per C-049 the fact that invalidates every 'N of 17' count on the board."},
+        {"id": "F85_ROSTER_INDEPENDENCE_PROBLEM", "why": "'Rentalcars.com states on its own homepage that it is part of Booking Holdings — the same parent as Booking.com, competitor 1.' First-party ownership statement."}
+      ],
+      "near_misses": [],
+      "counts_round_1": {"filed": 1, "proposed": 17}
+    },
+
+    "ranking-and-comparison": {
+      "definition": "How a product orders a set of bookable options and what it lets a traveller do to that order — sort axes, filters, the attributes shown per result, and any published explanation of the ordering, including disclosure of commercial influence on it.",
+      "boundary_rules": [
+        {"vs": "price-honesty", "test": "Remove the price from the finding. If it survives, it is ranking-and-comparison. Remove the ordering. If it survives, it is price-honesty. F-09 ('no ranking axis based on effort, ease, stress or traveller confidence') survives with no price, so ranking. F-70 ('displays the total price for the stay and never a nightly rate') survives with no ordering, so price-honesty."},
+        {"vs": "decision-support", "test": "Does the finding concern the arrangement or content of a list of bookable options? Then ranking-and-comparison. Does it concern a surface that presents no bookable options in order — a price history, a guide, a tracker, an explore view? Then decision-support."},
+        {"vs": "disruption-and-protection", "test": "A finding about what the ranking FAILS to encode is filed by the subject of the missing information, not by the ranking. F-49 ('the protection a traveller ends up with varies enormously — and nothing in the ranking, sorting or price display reflects that') is about protection; the ranking is where the gap was noticed, not what the gap is about."},
+        {"vs": "market-structure", "test": "Ranking is about arrangement; market-structure is about supply. If deleting every sort control from the product would leave the finding true, it is not ranking."}
+      ],
+      "anchors": [
+        {"id": "F09_LOAD_BEARING", "why": "'Booking.com offers no ranking axis based on effort, ease, stress or traveller confidence. Every axis is price, a quality proxy, distance, property type, or an opaque default.' The round's canonical enumeration of sort axes."},
+        {"id": "F69_ZERO_SORT_AXES", "why": "'Airbnb offers no sort control at all. It is the only competitor observed with none.' A measured property of the ordering layer."},
+        {"id": "F84_RANKING_EXPLAINED_AGAIN", "why": "'Tripadvisor states the basis of its rankings on the results surface.' Published explanation of ordering."},
+        {"id": "F93_THE_ONLY_RANKING_THAT_NAMES_EFFORT_FIRST", "why": "'Trainline states its ranking basis and leads with two effort criteria before price.'"}
+      ],
+      "near_misses": [
+        {"id": "F30_PRICE_HONESTY_COMMITMENT", "currently": "ranking-and-comparison", "propose": "price-honesty", "why": "'Google Flights publishes an explicit all-in pricing commitment — the stated opposite of drip pricing.' Survives with the ordering removed. Also flagged by the audit."},
+        {"id": "F46_DIRECT_CONTRADICTION_ON_PRICE_HONESTY", "currently": "ranking-and-comparison", "propose": "price-honesty", "why": "'Two meta-search products state opposite pricing commitments for the same product category.' The subject is the commitments. Also flagged by the audit."},
+        {"id": "F70_TOTAL_PRICE_ONLY", "currently": "ranking-and-comparison", "propose": "price-honesty", "why": "A price convention, not an ordering. Also flagged by the audit."},
+        {"id": "F52_THE_AIRLINE_IS_MORE_TRANSPARENT_THAN_ITS_REFERRER", "currently": "ranking-and-comparison", "propose": "price-honesty", "why": "'Iberia states an all-in total with a named exception. Kayak, which sent the traveller here, states that its prices exclude baggage fees.' Purely about what a displayed price includes."},
+        {"id": "F86_A_DIRECT_HIDDEN_COST_CLAIM", "currently": "ranking-and-comparison", "propose": "price-honesty", "why": "'Rentalcars makes an explicit no-hidden-charges claim on the homepage.' A claim about price composition, made off the result set entirely."},
+        {"id": "F49_REFINES_F47_PROTECTION_SPECTRUM", "currently": "ranking-and-comparison", "propose": "disruption-and-protection", "why": "The varying quantity is protection. The ranking is the place it is invisible, not the subject. Also flagged by the audit."},
+        {"id": "F47_KAYAK_MIX_AND_UNOWNED_RISK", "currently": "ranking-and-comparison", "propose": "disruption-and-protection", "why": "'Kayak sells combined itineraries assembled from separate airlines, each governed by its own conditions, with no single carrier owning the journey.' Who owns the journey when it breaks."},
+        {"id": "F57_THE_CHAIN_ACROSS_FIVE_COMPETITORS", "currently": "ranking-and-comparison", "propose": "disruption-and-protection", "why": "'Traced end to end, the traveller's protection degrades at every hop and is never displayed at any of them.'"},
+        {"id": "F51_CHEAPEST_ROUTES_TO_LEAST_FLEXIBLE", "currently": "ranking-and-comparison", "propose": "disruption-and-protection", "why": "'The meta-search handoff deposits the traveller, pre-selected, into the airline's most restrictive fare family.' Fare family is the traveller's change and cancellation rights. Secondary: dark-patterns-and-trust, for the pre-selection."},
+        {"id": "F11", "currently": "ranking-and-comparison", "propose": "loyalty-and-retention", "why": "'Loyalty membership changes the ranking surface by exactly one axis, and that axis is another PRICE axis.' The observed artefact is what membership buys."},
+        {"id": "F29_THE_CONTRAST", "currently": "ranking-and-comparison", "propose": "loyalty-and-retention", "why": "'Two products, two matched-pair diffs, one extra capability each — but of opposite kinds.' A comparison of what authentication unlocks."},
+        {"id": "CORRECTION_to_F28", "currently": "ranking-and-comparison", "propose": "loyalty-and-retention", "why": "Per C-043 it corrects the scope of Google Track-prices — gated per vertical, not per account. It is a finding about what an account gets you. NOT a method-note despite its id. low_confidence: claim text is 'see capture file'."},
+        {"id": "F45_CROSS_MODAL_PROMPT", "currently": "price-honesty", "propose": "ranking-and-comparison", "why": "Listed here as an INBOUND example. 'From a flight result set, Kayak asks whether the traveller wants bus prices' is cross-mode comparison offered from a result set."}
+      ],
+      "counts_round_1": {"filed": 36, "proposed": 25}
+    },
+
+    "price-honesty": {
+      "definition": "Whether the price a product shows is the price the traveller pays: what the displayed figure includes and excludes, the convention it is expressed in, fees revealed later, and any first-party commitment or disclaimer about that composition.",
+      "boundary_rules": [
+        {"vs": "decision-support", "test": "Could the finding be checked by comparing the displayed price against the final charged total? Then price-honesty. Does checking it require comparing the displayed price against OTHER prices, in time or across the market? Then decision-support. 'Google states whether the current price is normal and when to buy' needs a comparison set, so it is decision-support even though every word of it is about price."},
+        {"vs": "loyalty-and-retention", "test": "Is the money the price of a TRIP, or the price of a PROGRAMME BENEFIT? 'USD 25 per Qpoint' is the price of status, so loyalty-and-retention. 'Prices exclude baggage fees' is the price of a trip, so price-honesty."},
+        {"vs": "dark-patterns-and-trust", "test": "Is the misleading element a NUMBER or the composition of a number? Then price-honesty. Is it a control, a default, a wording or a modal? Then dark-patterns-and-trust."},
+        {"vs": "market-structure", "test": "A paywall, a bundle, a fare-class entitlement and an ancillary product line describe WHAT IS SOLD TO WHOM and are market-structure. Price-honesty is only about the accuracy of a figure once something is being sold."},
+        {"vs": "ranking-and-comparison", "test": "The removal test in ranking-and-comparison, applied in the other direction."}
+      ],
+      "anchors": [
+        {"id": "F79_PRICE_CONVENTION_INCONSISTENT_WITHIN_ONE_PRODUCT", "why": "'Airbnb shows accommodation as a total for the stay and experiences as a price per traveller. The same product uses two conventions in two verticals.' Pure price convention."},
+        {"id": "F52_THE_AIRLINE_IS_MORE_TRANSPARENT_THAN_ITS_REFERRER", "why": "All-in total with a named exception, against a referrer that excludes baggage fees. Exactly the include/exclude question."},
+        {"id": "F30_PRICE_HONESTY_COMMITMENT", "why": "'Google Flights publishes an explicit all-in pricing commitment — the stated opposite of drip pricing.'"},
+        {"id": "F70_TOTAL_PRICE_ONLY", "why": "'Airbnb displays the total price for the stay and never a nightly rate. Every other accommodation competitor observed leads with a nightly figure.'"}
+      ],
+      "near_misses": [
+        {"id": "F23_DECISION_SURFACES", "currently": "price-honesty", "propose": "decision-support", "why": "'Google Travel exposes four decision-support surfaces that neither Booking.com nor Expedia offers anywhere in their accommodation journey.' The finding names the theme in its own text. Also flagged by the audit."},
+        {"id": "F27", "currently": "price-honesty", "propose": "decision-support", "why": "'the only product observed that tells a traveller what a normal price looks like before they search' — requires a comparison set, and precedes any transaction."},
+        {"id": "F33_ACTIONABLE_ORIENTATION", "currently": "price-honesty", "propose": "decision-support", "why": "'states whether the current price is normal and when to buy — without requiring a booking, an account, or a commitment.'"},
+        {"id": "F74_PRICE_CONTEXT_AT_COMMITMENT", "currently": "price-honesty", "propose": "decision-support", "why": "'Airbnb states whether the price is normal, at the moment of payment.' The audit marks this row 'agrees' because its id contains PRICE; that is substring matching, not evidence. Same test as F-27 and F-33, different moment in the journey."},
+        {"id": "F36_FLIGHT_TRACKER", "currently": "price-honesty", "propose": "decision-support", "why": "'Kayak ships a standalone Flight Tracker at /tracker.' A monitoring surface with no bookable list and no price composition claim."},
+        {"id": "F24_NO_TRANSACTION", "currently": "price-honesty", "propose": "market-structure", "why": "'Google Travel hands off rather than sells.' Business model."},
+        {"id": "F88_THREE_OF_SEVENTEEN_SHARE_A_PARENT", "currently": "price-honesty", "propose": "market-structure", "why": "Corporate ownership. Per C-049 its real subject is the roster."},
+        {"id": "F53_AIRPORT_SERVICES_ARE_A_FARE_CLASS_ENTITLEMENT", "currently": "price-honesty", "propose": "market-structure", "why": "'Iberia's airport services are bundled with Business class, not sold as add-ons.' What is sold, and to whom."},
+        {"id": "F106_AIRPORT_SERVICES_ARE_A_PRODUCT_LINE_HERE", "currently": "price-honesty", "propose": "market-structure", "why": "'Qatar Airways treats the airport as a destination with its own product line, unlike Iberia where airport services are a Business-class entitlement.' The paired opposite of F-53."},
+        {"id": "F102_THE_USEFUL_PART_IS_PAYWALLED", "currently": "price-honesty", "propose": "market-structure", "why": "'TripIt's organisation is free; the features that address traveller anxiety are behind TripIt Pro.' A packaging decision, not a price accuracy claim. Secondary: disruption-and-protection, since the paywalled features are the anxiety ones."},
+        {"id": "F65_THE_BROWSER_LIMIT_MEASURED", "currently": "price-honesty", "propose": "market-structure", "why": "'Hopper's web surface permits search but gates its differentiating products behind the app.' What the web surface carries. It also bounded the capture, which belongs in a capture note rather than in the theme."},
+        {"id": "F31_BUILT_FOR_THE_UNDECIDED", "currently": "price-honesty", "propose": "user-types", "why": "'Google Flights explicitly addresses a traveller who has not decided, in its own copy.' The observed artefact is copy addressed to a class of traveller."},
+        {"id": "F66_INCLUDED_NOT_SOLD", "currently": "price-honesty", "propose": "disruption-and-protection", "why": "'AirCover is included in every accommodation booking at no cost. It is the opposite commercial model to Hopper's Premium Disruption Assistance, for the same category of promise.' The category of promise is protection."},
+        {"id": "F67_THE_BOUNDARY_IS_NAMED_IN_PLAIN_LANGUAGE", "currently": "price-honesty", "propose": "disruption-and-protection", "why": "'Airbnb states what AirCover is NOT, in plain language, with concrete examples.' The scope of a protection product. Secondary: dark-patterns-and-trust, as a deliberate-honesty case."},
+        {"id": "F68_THE_GAP_BETWEEN_THE_TWO_MODELS", "currently": "price-honesty", "propose": "disruption-and-protection", "why": "'Airbnb and Hopper cover opposite halves of the journey and neither covers the seam.' Coverage of failure."},
+        {"id": "F64_THE_FINTECH_FAMILY", "currently": "price-honesty", "propose": "disruption-and-protection", "why": "'Hopper ships a family of flexibility products, not a single one.' Flexibility products are protection products."},
+        {"id": "F71_AIRCOVER_IS_NOT_SHOWN_AT_THE_DECISION_REFUTES_PRIOR_CLAIM", "currently": "price-honesty", "propose": "disruption-and-protection", "why": "A protection product absent from the surface where the traveller decides. Secondary: decision-support, which is what the audit's id match names. low_confidence: claim text is 'see capture file'; judgement rests on the id and C-043."},
+        {"id": "F90_PROACTIVE_COMPENSATION_NOTIFICATION", "currently": "price-honesty", "propose": "disruption-and-protection", "why": "'Trainline offers to notify the traveller when they QUALIFY FOR DELAY COMPENSATION — not merely when a delay occurs.'"},
+        {"id": "F72_NEUTRAL_INSURANCE_DECLINE_THE_ANTI_F22", "currently": "price-honesty", "propose": "dark-patterns-and-trust", "why": "'Airbnb offers travel insurance at checkout with a neutral, priced question. Expedia phrases the same decision as a confession of recklessness.' The subject is the wording of a choice, and the finding defines itself against F-22."},
+        {"id": "F105_STATUS_ITSELF_IS_PURCHASABLE", "currently": "price-honesty", "propose": "loyalty-and-retention", "why": "'Qatar Airways sells the loyalty currency, the STATUS points, and a paid subscription to the loyalty programme itself.' The price of a programme benefit."},
+        {"id": "F108_LOUNGE_ACCESS_IS_INDIRECTLY_PURCHASABLE", "currently": "price-honesty", "propose": "loyalty-and-retention", "why": "Tier mechanics and programme currency."},
+        {"id": "F109_THREE_CURRENCIES_IN_ONE_PROGRAMME", "currently": "price-honesty", "propose": "loyalty-and-retention", "why": "'Privilege Club runs three distinct currencies.'"},
+        {"id": "F108_SETTLED", "currently": "price-honesty", "propose": "loyalty-and-retention", "why": "Settles the F-108 inference about tier qualification. Same subject."},
+        {"id": "F111_STATUS_HAS_A_UNIT_PRICE", "currently": "price-honesty", "propose": "loyalty-and-retention", "why": "'Qatar Airways publishes a unit price for loyalty status: USD 25 per Qpoint.' The audit marks it 'agrees' on the substring PRICE; under the trip-price / benefit-price test it is loyalty."},
+        {"id": "F28", "currently": "price-honesty", "propose": "loyalty-and-retention", "why": "'Authentication unlocks exactly one capability on Google Travel, and it is a functional one — persistent price monitoring — not a discount.' What an account gets you. Secondary: decision-support."},
+        {"id": "F14", "currently": "price-honesty", "propose": "user-types", "why": "'No account is required to reach the booking form. There is no sign-in wall and no guest-checkout prompt either — the question is simply never asked.' The treatment of the unregistered traveller."},
+        {"id": "F15", "currently": "price-honesty", "propose": "trip-as-an-object", "why": "'Booking.com's answer to multi-type trip attachment is three opt-in checkboxes inside the booking form.' Multi-type trip attachment is the trip-as-an-object question."}
+      ],
+      "counts_round_1": {"filed": 29, "proposed": 6}
+    },
+
+    "loyalty-and-retention": {
+      "definition": "The mechanics of membership: tiers, gates, currencies, benefits, what an account or a membership unlocks that a signed-out traveller does not get, and what it costs to reach.",
+      "boundary_rules": [
+        {"vs": "user-types", "test": "Is the observed fact a property of the MECHANISM (a gate, a tier, a currency, a benefit), or an absence of address to a NAMED CLASS of traveller? F-01 observed a gate ('behind 15 completed bookings in 2 years') so it is loyalty; F-02 observed that the programme 'never addresses a first-time traveller anywhere on its own explainer page' so it is user-types. Both carry the other as secondary."},
+        {"vs": "price-honesty", "test": "Trip price or programme-benefit price. See price-honesty."},
+        {"vs": "disruption-and-protection", "test": "THE KNOWN CONFUSION, and the one that produced C-045. Being FOUND during a loyalty sweep does not make a finding a loyalty finding. Test: does the claim mention a delay, cancellation, disruption, compensation, passenger right, refund or protection product? Then disruption-and-protection is at least the primary candidate, whatever surface it was found on. F-107 counts disruption vocabulary in a homepage link list; F-113 is about a disruption heading; F-56 is about rights during operational disruption. None of the three mentions a tier, a currency or a benefit."},
+        {"vs": "dark-patterns-and-trust", "test": "A loyalty cross-sell that is pre-checked or opens an unrequested window is filed by the pattern, not by the brand on it. F-91 is about a pre-checked box and a popunder that happen to carry Genius branding."}
+      ],
+      "anchors": [
+        {"id": "F01", "why": "'Priority support — the benefit a low-confidence traveller needs most — is gated behind 15 completed bookings in 2 years.' A benefit and its gate."},
+        {"id": "F58_THE_ONLY_PROGRAMME_A_NON_TRAVELLER_CAN_ENTER", "why": "'Iberia Club is the only loyalty programme of the three examined whose currency can be earned without travelling at all.' Programme currency mechanics."},
+        {"id": "F59_BENEFITS_EXTEND_TO_CHILDREN", "why": "'Iberia Club extends programme benefits to children as a stated feature.'"},
+        {"id": "F111_STATUS_HAS_A_UNIT_PRICE", "why": "'Qatar Airways publishes a unit price for loyalty status: USD 25 per Qpoint.' The price of a programme benefit, proposed inbound from price-honesty."}
+      ],
+      "near_misses": [
+        {"id": "F107_DISRUPTION_ABSENT_FROM_NAVIGATION_TWO_OF_THREE_AIRLINES", "currently": "loyalty-and-retention", "propose": "disruption-and-protection", "why": "'No disruption, delay, cancellation, compensation or passenger-rights destination appears in Qatar Airways' 289 homepage links.' The claim contains no loyalty term at all. This is one of the three rows named in C-045 and one of the two that render Qatar as EMPTY under Disruption on the matrix."},
+        {"id": "F113_DISRUPTION_IS_PROMINENT_HERE_AFTER_ALL", "currently": "loyalty-and-retention", "propose": "disruption-and-protection", "why": "'AA's Spanish homepage surfaces travel disruption prominently — as a heading, not a buried link.' Named in C-045."},
+        {"id": "F56_THE_SENTENCE_THAT_STOPS", "currently": "loyalty-and-retention", "propose": "disruption-and-protection", "why": "'Iberia explicitly distinguishes voluntary changes from operational disruption, states that the traveller's rights are different, and then provides no route to them.' Named in C-045. Its capture file is even called 03-disruption-the-tier4-test.json."},
+        {"id": "F02", "currently": "loyalty-and-retention", "propose": "user-types", "why": "'The Genius programme never addresses a first-time traveller anywhere on its own explainer page.' The observed fact is an absence of address to a class. Secondary: loyalty-and-retention. THIS MOVE IS THE FILE'S BIGGEST JUDGEMENT CALL — see open_questions Q1."},
+        {"id": "F18_TWO_OF_TWO", "currently": "loyalty-and-retention", "propose": "user-types", "why": "'Both loyalty programmes examined so far gate their better rates behind accumulated bookings, and neither addresses a first-time traveller anywhere on its own explainer page.' Genuinely two claims; the second is the one the round kept counting. See Q1."},
+        {"id": "F60_THIRD_OF_THREE_ON_FIRST_TIMERS", "currently": "loyalty-and-retention", "propose": "user-types", "why": "'Three loyalty programmes, three full-page text searches, zero mentions of a first-time traveller.' The measurement is of address to a class. See Q1."},
+        {"id": "F110_FOUR_OF_FOUR_ON_FIRST_TIMERS", "currently": "loyalty-and-retention", "propose": "user-types", "why": "'Four loyalty programmes, four full-text searches, zero mentions of a first-time traveller.' See Q1."},
+        {"id": "F82_NO_FLIGHTS_VERTICAL", "currently": "loyalty-and-retention", "propose": "market-structure", "why": "'Tripadvisor's primary verticals are things to do, hotels and restaurants. No flights vertical was present on the homepage.' What the product carries. Nothing about membership."},
+        {"id": "F85_ROSTER_INDEPENDENCE_PROBLEM", "currently": "loyalty-and-retention", "propose": "market-structure", "why": "Corporate ownership stated first-party."},
+        {"id": "F08_cross_document", "currently": "loyalty-and-retention", "propose": "market-structure", "why": "'Across three first-party documents Booking.com consistently occupies an intermediary position and pushes responsibility outward at every layer.' A structural position."},
+        {"id": "F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER", "currently": "loyalty-and-retention", "propose": "dark-patterns-and-trust", "why": "A pre-checked box that opens a window in the original tab with dates that are not the travel dates. The Genius branding is incidental to the pattern."},
+        {"id": "METHOD_CORRECTION_TO_MY_OWN_FINDABILITY_TEST", "currently": "loyalty-and-retention", "propose": "record_kind: method-note, no theme", "why": "English sweep terms against a Spanish page. Corrects the round, not American Airlines. Flagged by the audit."}
+      ],
+      "counts_round_1": {"filed": 16, "proposed": 11}
+    },
+
+    "disruption-and-protection": {
+      "definition": "What happens when the trip goes wrong, and who is answerable: delay, cancellation, compensation and passenger rights; protection, flexibility and insurance products; and whether any of it is findable, routable or displayed at the point it would matter.",
+      "boundary_rules": [
+        {"vs": "loyalty-and-retention", "test": "The vocabulary test, stated in full under loyalty-and-retention. Being captured during a loyalty sweep is not evidence of theme."},
+        {"vs": "market-structure", "test": "Is there a traveller-facing mechanism — a page, a route, a product, a notification? Then disruption-and-protection. Is it only an allocation of responsibility with no mechanism offered? Then market-structure."},
+        {"vs": "price-honesty", "test": "A protection product with a price is still protection. The price is only the subject when the finding is about what the figure includes."},
+        {"vs": "ranking-and-comparison", "test": "'The ranking does not show X' is filed under X."},
+        {"vs": "dark-patterns-and-trust", "test": "An insurance offer is disruption-and-protection when the finding is about the cover; it is dark-patterns-and-trust when the finding is about how the choice is worded or defaulted. F-72's subject is the wording; F-66's subject is the cover."}
+      ],
+      "anchors": [
+        {"id": "F104_A_PUBLISHED_COMMITMENT_DOCUMENT_WITH_NAMED_DISRUPTION_SECTIONS", "why": "'American Airlines publishes a Customer Service Plan containing explicitly named disruption sections.' The only round-1 row the audit could confirm agrees."},
+        {"id": "F56_THE_SENTENCE_THAT_STOPS", "why": "Rights during operational disruption, distinguished and then not routed to."},
+        {"id": "F107_DISRUPTION_ABSENT_FROM_NAVIGATION_TWO_OF_THREE_AIRLINES", "why": "A negative sweep across 289 homepage links for disruption, delay, cancellation, compensation and passenger rights."},
+        {"id": "F66_INCLUDED_NOT_SOLD", "why": "'AirCover is included in every accommodation booking at no cost.' A protection product and its commercial model."}
+      ],
+      "near_misses": [
+        {"id": "F22_CONFIRMSHAMING", "currently": "disruption-and-protection", "propose": "dark-patterns-and-trust", "why": "'Expedia's insurance decline option is written as a confession of recklessness rather than a neutral choice.' The subject is the wording of a decline control. Insurance is the topic it happens to appear on."},
+        {"id": "F21_CHECKOUT_SHAPE_DIFFERS", "currently": "disruption-and-protection", "propose": "other (with theme_note)", "why": "'Expedia collapses guest details and payment onto ONE page; Booking.com splits them across two.' Nothing about failure, protection or liability. No theme in this vocabulary fits it — it is the one legitimate quarantine row in the round. See proposed_new_themes note on funnel shape."},
+        {"id": "F48_HANDOFF_IS_TO_THE_OPERATOR", "currently": "disruption-and-protection", "propose": "market-structure", "why": "'Kayak's handoff on this result went directly to the airline that operates the flight, not to a reseller.' Who the commercial parties are. No failure mechanism is described. Secondary: disruption-and-protection, because it is the good case of F-47's risk."},
+        {"id": "F112_AA_SERVES_A_DIFFERENT_SITE_BY_LOCALE", "currently": "disruption-and-protection", "propose": "market-structure", "why": "'aa.com redirects to americanairlines.es for a Spanish-locale session, serving a materially thinner site — 43 links against a US site that hosts a full Customer Service Plan.' What the product serves, by market. The Customer Service Plan is the example, not the subject. Per C-048 this is also the locale case that produced a false zero."},
+        {"id": "PROHIBITION_2_NEAR_MISS_RECORDED", "currently": "disruption-and-protection", "propose": "record_kind: method-note, no theme", "why": "'Two extraction sweeps on this page returned TRAVELLER REVIEW TEXT.' About the round's extraction and prohibition 2. No competitor claim at all."}
+      ],
+      "counts_round_1": {"filed": 8, "proposed": 16}
+    },
+
+    "decision-support": {
+      "definition": "Information a product gives a traveller to reduce uncertainty, on surfaces that are not an ordered list of bookable options: price history and price normality, buy timing, trackers, destination-less and exploratory search, guides and discovery surfaces, and the context a product carries or drops as the traveller moves.",
+      "boundary_rules": [
+        {"vs": "ranking-and-comparison", "test": "Does the finding concern the arrangement or content of a list of bookable options? Then ranking. A surface with no ordered bookable list is decision-support."},
+        {"vs": "price-honesty", "test": "Composition versus meaning. See price-honesty. If checking the claim requires other prices, it is decision-support."},
+        {"vs": "trip-as-an-object", "test": "Both cover continuity. Decision-support is about information carried WITHIN one decision; trip-as-an-object is about a journey persisting ACROSS bookings, verticals or time. F-50 loses the referring product at a handoff, which is journey continuity, so trip-as-an-object."},
+        {"vs": "market-structure", "test": "'Does not sell' is market-structure when the point is what the company is, and decision-support when the point is that the traveller therefore gets neutral information."},
+        {"vs": "other", "test": "decision-support is NOT the residual bucket for anything informational. If the finding names no surface a traveller could use to decide, it does not belong here."}
+      ],
+      "anchors": [
+        {"id": "F27", "why": "'Google Travel is the only product observed that tells a traveller what a normal price looks like before they search.'"},
+        {"id": "F33_ACTIONABLE_ORIENTATION", "why": "'On a live route, Google states whether the current price is normal and when to buy — without requiring a booking, an account, or a commitment.'"},
+        {"id": "F62_DESTINATION_LESS_SEARCH", "why": "'Skyscanner offers search with no destination at all — \"Explora cualquier lugar\".' A surface for a traveller who cannot yet name a result set."},
+        {"id": "F81_DISCOVERY_IS_A_DESTINATION_NOT_A_BYPRODUCT", "why": "'\"Descubrir\" (Discover) is a top-level navigation item, alongside \"Opinión\" (Review).'"}
+      ],
+      "near_misses": [
+        {"id": "F98_NOT_SELLING_IS_WHAT_MAKES_IT_HONEST", "currently": "decision-support", "propose": "market-structure", "why": "'Rome2Rio surfaces no booking or purchase language on the comparison view — consistent with the roster's assumption that it routes and compares without fulfilling.' The claim as written is about what the company does, not about what the traveller learns. Secondary: price-honesty, which is what the audit's id match names."},
+        {"id": "F54_THE_BUSINESS_GOAL_HAS_A_PROBLEM", "currently": "decision-support", "propose": "market-structure", "why": "'Business goal 5 assumes airport services are a purchasable product. On the first supplier examined they are a fare-class entitlement, which changes who Luma would be selling to.' Who sells what to whom. Pairs with F-53 and F-106."},
+        {"id": "F94_164_CONSENT_PARTNERS", "currently": "decision-support", "propose": "dark-patterns-and-trust", "why": "'Omio's consent modal states it shares personal data with 164 partners.' Consent and tracking are the trust half of dark-patterns-and-trust."},
+        {"id": "F50_CONTEXT_IS_DROPPED_AT_THE_BOUNDARY", "currently": "decision-support", "propose": "trip-as-an-object", "why": "'Crossing the handoff, the traveller loses all trace of the product that sent them and immediately faces a fresh consent gate.' Journey continuity across a boundary. Secondary: decision-support."},
+        {"id": "F37_AD_LANDING_IS_NOT_DIFFERENT", "currently": "decision-support", "propose": "dark-patterns-and-trust", "why": "'The ad-landing variant renders the same product surface as the clean URL. The tracking parameters produced no observable difference.' A negative result on cloaking — the absence of a dark pattern is evidence about the same question."},
+        {"id": "F61_LOCATION_DISAGREEMENT_ACROSS_THREE_PRODUCTS", "currently": "decision-support", "propose": "decision-support (no move)", "why": "Kept, but flagged: per C-046 this finding attributes a Kayak observation to Google Travel and the correct shape is 'one product contradicts itself and a second disagrees with both'. The theme is unaffected; the row is not."}
+      ],
+      "counts_round_1": {"filed": 8, "proposed": 9}
+    },
+
+    "trip-as-an-object": {
+      "definition": "Whether a product holds the whole journey as one persistent thing — across verticals, across bookings, across suppliers and across time — or only as a series of separate transactions.",
+      "boundary_rules": [
+        {"vs": "decision-support", "test": "Within one decision, or across bookings and verticals? Across is trip-as-an-object."},
+        {"vs": "market-structure", "test": "Carrying six verticals is market-structure. Whether those verticals share one trip object is trip-as-an-object. F-78 is the explicit statement of the difference: 'three inventories, one account, zero trip'."},
+        {"vs": "ai-assistants", "test": "A planner that accepts trip input is filed under ai-assistants when the finding is about the assistant surface, and under trip-as-an-object when the finding is about what persists after the conversation ends."}
+      ],
+      "anchors": [
+        {"id": "F78_THREE_INVENTORIES_ONE_ACCOUNT_ZERO_TRIP", "why": "'Airbnb holds stays, experiences and services under one account and still does not model the trip as a single object. Moving from an accommodation search to experiences drops the trip entirely.'"},
+        {"id": "F101_THE_ANSWER_TO_F78", "why": "'TripIt models the trip as one object — and does so by ingesting other products' confirmations, without selling anything.'"},
+        {"id": "F15", "why": "'Booking.com's answer to multi-type trip attachment is three opt-in checkboxes inside the booking form.' Proposed inbound from price-honesty; it is the round's weakest observed trip object."}
+      ],
+      "near_misses": [
+        {"id": "F40_MULTIMODAL_INPUT", "currently": "trip-as-an-object", "propose": "ai-assistants", "why": "'Kayak's travel AI accepts photo and file upload as planning input, not just text.' The observed artefact is the assistant's input surface. Nothing in the claim concerns whether a trip persists."}
+      ],
+      "counts_round_1": {"filed": 3, "proposed": 4}
+    },
+
+    "user-types": {
+      "definition": "How a product treats an identifiable class of traveller — the first-timer, the undecided, the unregistered, the cash-constrained, the cross-border traveller — including addressing them in copy, serving them with a feature, excluding them by design, or never mentioning them at all.",
+      "boundary_rules": [
+        {"vs": "loyalty-and-retention", "test": "Mechanism versus address. See loyalty-and-retention. A measurement of whether a class of traveller is mentioned is user-types even when the document measured is a loyalty page."},
+        {"vs": "decision-support", "test": "Does the finding name a class of traveller? Then user-types. Does it name a surface without naming who it is for? Then decision-support. F-31 names the undecided explicitly and in the product's own copy; F-62 names a search mode."},
+        {"vs": "market-structure", "test": "A paid feature that serves a class of traveller is user-types when the finding is about the need, and market-structure when it is about the packaging. F-103 names the need (entry requirements) and is borderline — recorded as such."}
+      ],
+      "anchors": [
+        {"id": "F31_BUILT_FOR_THE_UNDECIDED", "why": "'Google Flights explicitly addresses a traveller who has not decided, in its own copy.' The class is named by the product."},
+        {"id": "F39_FIRST_EMPTY_STATE_CAPTURED", "why": "'Kayak's AI planner ships a designed empty state. This is the first empty state observed anywhere in the round across four competitors.' A designed state for a traveller with nothing yet. Note: proposed to move to ai-assistants under precedence — see near_misses."},
+        {"id": "F60_THIRD_OF_THREE_ON_FIRST_TIMERS", "why": "'Three loyalty programmes, three full-page text searches, zero mentions of a first-time traveller.' A direct measurement of address to a class."},
+        {"id": "F73_PAY_LATER_AT_NO_COST", "why": "'Airbnb offers three payment timings, one of which defers the entire cost at no additional charge.' Serving a traveller who cannot pay now."}
+      ],
+      "near_misses": [
+        {"id": "F39_FIRST_EMPTY_STATE_CAPTURED", "currently": "user-types", "propose": "ai-assistants", "why": "The empty state belongs to the AI planner, and ai-assistants precedes user-types. Secondary: user-types. Listed as an anchor above AND here deliberately: it is a clean example of the theme's meaning and still loses the precedence contest, which is the kind of case the precedence order exists to settle."},
+        {"id": "F103_ENTRY_REQUIREMENTS_AS_A_PRODUCT", "currently": "user-types", "propose": "user-types (no move, flagged)", "why": "'TripIt sells pre-trip entry-requirement guidance as a named Pro feature.' Precedence keeps it here over market-structure, but the observed artefact is a paid feature. If Gate A prefers packaging over need, this row moves and the boundary rule above must be rewritten."}
+      ],
+      "counts_round_1": {"filed": 3, "proposed": 8}
+    },
+
+    "dark-patterns-and-trust": {
+      "definition": "Interface behaviour that steers, deceives, defaults or obstructs — pre-checked options, confirmshaming, inert or unexplained controls, unrequested prompts and windows, consent and data-sharing gates — and the inverse case, where a product words a choice neutrally or discloses a commercial influence it did not have to.",
+      "boundary_rules": [
+        {"vs": "price-honesty", "test": "Number or control. A misleading figure is price-honesty; a misleading control, default, wording or modal is dark-patterns-and-trust."},
+        {"vs": "ranking-and-comparison", "test": "Ad disclosure ON a result set is ranking-and-comparison, because it explains the ordering. Ad behaviour AWAY from the result set — a cloaked landing page, a popunder — is dark-patterns-and-trust."},
+        {"vs": "disruption-and-protection", "test": "Cover or wording. See disruption-and-protection."},
+        {"vs": "method", "test": "A consent modal that BLOCKED THE CAPTURE is a capture-limit record. A consent modal whose CONTENT was read is a finding. Omio produced both from one visit: CAPTURE_BLOCKED_BY_CONSENT is the limit, F-94 is the finding."}
+      ],
+      "anchors": [
+        {"id": "F22_CONFIRMSHAMING", "why": "'Expedia's insurance decline option is written as a confession of recklessness rather than a neutral choice.' The round's textbook case."},
+        {"id": "F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER", "why": "'Trainline's search form carries a PRE-CHECKED Booking.com Genius cross-sell which, on search, opened a Booking.com hotel search in the original tab — with dates that are not the travel dates.' Pre-checked default plus an unrequested window plus wrong data."},
+        {"id": "F72_NEUTRAL_INSURANCE_DECLINE_THE_ANTI_F22", "why": "The inverse case, and the round named it that way itself: 'the anti-F22'. A taxonomy that cannot file the good behaviour under the same theme as the bad one cannot support a comparison."},
+        {"id": "F94_164_CONSENT_PARTNERS", "why": "'Omio's consent modal states it shares personal data with 164 partners.'"}
+      ],
+      "near_misses": [
+        {"id": "CAPTURE_BLOCKED_BY_CONSENT", "currently": "dark-patterns-and-trust", "propose": "record_kind: capture-limit, no theme", "why": "'A search for Madrid to Barcelona could not be completed.' The record is about the capture. The consent modal's content is separately recorded as F-94, which is the finding."},
+        {"id": "F63_THE_META_SEARCH_ADDRESSES_ITS_OWN_HANDOFF_CONFUSION", "currently": "dark-patterns-and-trust", "propose": "dark-patterns-and-trust (no move)", "why": "'Skyscanner's own FAQ headings directly address the confusion the handoff creates.' A product acknowledging a trust problem it creates. Kept, and it is the only round-1 row filed here that stays."}
+      ],
+      "counts_round_1": {"filed": 2, "proposed": 8}
+    },
+
+    "method": {
+      "definition": "DEPRECATED AS A THEME. Round 1 used it for records about how the round itself was run — a self-correction to a sweep, a mis-specified test, a near miss against prohibition 2, a blocked capture. It is not a subject a competitor can have.",
+      "boundary_rules": [
+        {"vs": "every other theme", "test": "Does the record make a claim about a competitor's product, document or commercial position? Then it is a finding and carries a theme. Does it make a claim only about the round's own procedure or limits? Then record_kind is method-note or capture-limit and it carries NO theme."},
+        {"vs": "itself", "test": "A row whose id contains CORRECTION is not automatically a method row. What does it correct — a competitor claim, or the procedure? Applying this test reclassifies correction_to_own_earlier_claim, CORRECTION_to_F28 and MATERIAL_CORRECTION_to_F09_F20_F25 as findings, and therefore reclassifies 3 of the audit's 14 CONTRADICTS verdicts as false positives."}
+      ],
+      "anchors": [
+        {"id": "method_correction", "why": "Per C-043, Kayak's empty text sweep was not absence. Corrects the sweep. The only row round 1 filed here that the audit could confirm agrees. low_confidence: claim text is 'see capture file'."},
+        {"id": "METHOD_CORRECTION_TO_MY_OWN_FINDABILITY_TEST", "why": "'I ran the symmetric findability sweep on AA using ENGLISH terms ... against a page served in SPANISH. It returned zero matches for every category including loyalty and lounges, which should have been the tell.' Entirely about the instrument."},
+        {"id": "PROHIBITION_2_NEAR_MISS_RECORDED", "why": "Two extraction sweeps returned traveller review text. A record about the round's own risk of violating prohibition 2."}
+      ],
+      "near_misses": [
+        {"id": "F16_vs_booking", "currently": "method", "propose": "market-structure", "why": "'Expedia carries six verticals to Booking.com's four booking types, adding Packages and Cruises — but presents a far smaller link surface on the homepage.' A claim about two competitors. Being comparative is not being methodological."},
+        {"id": "F41_LOCATION_ASSERTION", "currently": "method", "propose": "ai-assistants", "why": "'The planner asserts the traveller's location unprompted, and asserted it incorrectly.' A product behaviour. It also affected the session's context, which belongs in a capture note, not in the theme. Per C-046 this row is the true source of the observation F-61 misattributes to Google Travel."}
+      ],
+      "counts_round_1": {"filed": 3, "proposed": 0}
+    },
+
+    "other": {
+      "definition": "The finding is about a competitor and NO theme in the vocabulary describes what it is about. A quarantine slot for a single unclassifiable row, not a category. Requires a `theme_note` of at least 40 characters. Subject to a 5% error quota and a 3% warning quota per round.",
+      "boundary_rules": [
+        {"vs": "every other theme", "test": "`other` is only correct after all other definitions have been tried and failed. A validator cannot enforce that, so the quota enforces it statistically instead: if `other` exceeds 5% of a round, the vocabulary is short and the correct response is to propose a theme, not to file more rows here."},
+        {"vs": "method", "test": "`other` is for findings. A record about the round is never `other`; it is a method-note or a capture-limit."},
+        {"vs": "decision-support", "test": "decision-support is the theme most often mistaken for a residual bucket, because almost anything can be called informational. If the finding names no surface a traveller could use to decide, it is `other`, not decision-support."}
+      ],
+      "anchors": [],
+      "anchors_note": "DELIBERATELY EMPTY. There is no finding in round 1 that is unambiguously `other`, which is the whole ruling: 12 of 12 rows filed here have a home, and 6 of them have a home that does not yet exist. The nearest thing to a legitimate member is F-21, proposed inbound from disruption-and-protection.",
+      "near_misses": [
+        {"id": "F05", "currently": "other", "propose": "accessibility-and-inclusion (proposed theme)", "why": "'Accessibility is a contractual term, not only a design commitment — section A11 \"Accessibility requests\" sits in the Terms of Service.'"},
+        {"id": "F06", "currently": "other", "propose": "accessibility-and-inclusion (proposed theme)", "why": "'The statement names no accessibility standard and makes no conformance claim.'"},
+        {"id": "F07", "currently": "other", "propose": "accessibility-and-inclusion (proposed theme)", "why": "'Accessibility of the actual travel experience is routed away from Booking.com to the supplier.' Secondary: market-structure, for the routing."},
+        {"id": "F38_AI_SURFACE", "currently": "other", "propose": "ai-assistants (proposed theme)", "why": "'Kayak places an \"IA\" (AI) entry point directly beside its wordmark in the primary header.'"},
+        {"id": "F55_FOURTH_AI_ASSISTANT", "currently": "other", "propose": "ai-assistants (proposed theme)", "why": "'Iberia ships a chat assistant, \"Ibot\", present on this page.' The id is an ordinal in a census the round was running without a label for it."},
+        {"id": "F96_FIFTH_AI_ASSISTANT", "currently": "other", "propose": "ai-assistants (proposed theme)", "why": "'Omio ships an AI planner as a primary tab beside the standard search — \"Planificador IA\".' The fifth ordinal."},
+        {"id": "F12", "currently": "other", "propose": "dark-patterns-and-trust", "why": "'Booking.com fires a Google One Tap sign-in prompt at a signed-out user during search.' An unrequested prompt."},
+        {"id": "F13", "currently": "other", "propose": "dark-patterns-and-trust", "why": "'The primary Reserve control is inert until a room quantity is selected, and nothing states this.' An unexplained inert control is obstruction by design."},
+        {"id": "F17_ROMIE_ABSENT", "currently": "other", "propose": "market-structure", "why": "'Romie — named in prior desk research as the most serious competitive threat and the top open question — does not appear anywhere on the Expedia homepage.' What the product surfaces of its own portfolio."},
+        {"id": "F19_INVENTORY_DEPTH", "currently": "other", "propose": "market-structure", "why": "'For an identical city and date range, Expedia returns 499 properties where Booking.com returns 4,194 — roughly an eightfold difference.' Inventory size."},
+        {"id": "F80_THE_ENTRY_IS_A_QUESTION", "currently": "other", "propose": "decision-support", "why": "'Tripadvisor's primary entry point is a question rather than a search field label.' An entry surface built to orient rather than to take a query. Pairs with F-81, which round 1 filed as decision-support."},
+        {"id": "F95_TRUE_MULTIMODAL_INPUT", "currently": "other", "propose": "ranking-and-comparison", "why": "'Omio accepts city, station, airport OR port in a single origin field and compares across four transport modes in one result set.' Cross-mode comparison in one result set. Pairs with F-97, which round 1 filed as ranking-and-comparison."},
+        {"id": "F21_CHECKOUT_SHAPE_DIFFERS", "currently": "disruption-and-protection", "propose": "other (with theme_note)", "why": "INBOUND. The only round-1 finding this vocabulary genuinely cannot place. Suggested theme_note: 'The shape of the booking funnel — how many pages, and what is collected on each. No theme covers funnel structure.'"}
+      ],
+      "counts_round_1": {"filed": 12, "proposed": 1}
+    }
+  },
+
+  "proposed_new_themes": [
+    {
+      "slug": "ai-assistants",
+      "definition": "A product's conversational or generative planning surface: where it is placed, what it accepts as input, what it does when empty, and what it asserts about the traveller.",
+      "evidence_that_it_is_missing": "Two round-1 ids are ordinals in a census the round was running with no label for it — F55_FOURTH_AI_ASSISTANT and F96_FIFTH_AI_ASSISTANT. A round that is counting instances of a category has a category. The six members were scattered across four different themes: other (F-38, F-55, F-96), user-types (F-39), trip-as-an-object (F-40) and method (F-41).",
+      "proposed_members": ["F38_AI_SURFACE", "F39_FIRST_EMPTY_STATE_CAPTURED", "F40_MULTIMODAL_INPUT", "F41_LOCATION_ASSERTION", "F55_FOURTH_AI_ASSISTANT", "F96_FIFTH_AI_ASSISTANT"],
+      "competitors_covered": ["Kayak", "Iberia", "Omio"],
+      "boundary_rules": [
+        {"vs": "trip-as-an-object", "test": "The assistant surface, or what survives after the conversation? Surface is ai-assistants."},
+        {"vs": "decision-support", "test": "Is the finding about the assistant as a thing, or about a specific piece of information a traveller receives? A price-history chart is decision-support even if an assistant renders it."},
+        {"vs": "user-types", "test": "An empty state, an onboarding prompt or a designed first-run belongs to the surface it is part of. F-39 is an empty state OF the planner."}
+      ],
+      "strength": "STRONGEST of the two. Six members, three competitors, and the round's own ordinal naming as evidence of intent."
+    },
+    {
+      "slug": "accessibility-and-inclusion",
+      "definition": "What a product commits to, discloses or disclaims about accessibility — standards named or not named, conformance claimed or not claimed, and where responsibility for the accessibility of the travel itself is placed.",
+      "evidence_that_it_is_missing": "Three round-1 findings, all filed `other`, all about the same subject, and one of them (F-05) records that accessibility appears as a CONTRACTUAL term rather than a design commitment — which is a market-relevant observation with nowhere to go in an eleven-value vocabulary.",
+      "proposed_members": ["F05", "F06", "F07"],
+      "competitors_covered": ["Booking.com"],
+      "boundary_rules": [
+        {"vs": "market-structure", "test": "Routing accessibility responsibility to a supplier is accessibility-and-inclusion when the subject is accessibility, and market-structure when the subject is the routing pattern across all responsibilities. F-07 is the former; F-08 is the latter."},
+        {"vs": "user-types", "test": "user-types is about classes of TRAVELLER defined by journey stage or circumstance. Disability access has a distinct legal and contractual surface and should not be filed as one segment among many."}
+      ],
+      "strength": "WEAKER, and stated as such. All three members come from ONE competitor and from one document family. Three findings from one company is a cluster in the capture, not necessarily a category in the market. Recommended decision: approve the slug, and require round 2 to sweep accessibility statements on at least four more competitors before any chart counts it."
+    }
+  ],
+
+  "themes_considered_and_rejected": [
+    {
+      "slug": "funnel-and-checkout-shape",
+      "why_rejected": "Only one finding survives precedence with this as its only possible home — F-21, 'Expedia collapses guest details and payment onto ONE page; Booking.com splits them across two'. The other candidates each have a stronger home: F-13 is an inert control (dark-patterns-and-trust), F-14 is the treatment of the unregistered traveller (user-types), F-73 serves a cash-constrained traveller (user-types), F-50 is journey continuity (trip-as-an-object). A theme with one anchor is not decidable — nobody can tell from one example where its edges are. F-21 goes to `other` with a note. If round 2 produces three or more findings whose ONLY subject is the shape of the booking funnel, propose it then, from those three."
+    }
+  ],
+
+  "merges_considered": [
+    {
+      "pair": ["market-structure", "disruption-and-protection"],
+      "verdict": "SEPARABLE — kept apart",
+      "test_that_saved_it": "Is there a traveller-facing mechanism? F-03 disclaims liability and offers no route (market-structure); F-04 operates a disruption mechanism conditionally (disruption-and-protection). Without this test the two are indistinguishable on every liability finding in the round, and the merge would have been the honest answer."
+    },
+    {
+      "pair": ["price-honesty", "dark-patterns-and-trust"],
+      "verdict": "SEPARABLE — kept apart",
+      "test_that_saved_it": "Number or control. A misleading figure versus a misleading control, default or wording."
+    },
+    {
+      "pair": ["decision-support", "ranking-and-comparison"],
+      "verdict": "SEPARABLE — kept apart",
+      "test_that_saved_it": "Presence of an ordered list of bookable options. F-26 ('the product with the richest decision-support layer has the poorest ranking layer') is the round's own evidence that it treated these as two distinct layers."
+    }
+  ],
+
+  "validator_requirements": [
+    "Every finding row carries record_kind. Rows with record_kind != 'finding' MUST NOT carry themes; rows with record_kind == 'finding' MUST carry a non-empty themes array.",
+    "Every slug in themes must appear in `vocabulary`.",
+    "themes has 1 to 3 items, no duplicates.",
+    "`other` may only appear at themes[0], never as a secondary, and requires theme_note of >= 40 characters.",
+    "`method` in themes is an ERROR on any row generated after this file is approved, and a WARNING on round-1 rows retained for history.",
+    "`other` > 5% of a round's findings is an ERROR naming the count and the threshold; > 3% is a WARNING. Skipped is not passed: if the denominator cannot be computed, report that, do not pass.",
+    "Any chart, matrix or 'N findings on X' claim must count themes[0] only, and must state that it counts labels rather than subjects until a round has been themed against an APPROVED version of this file.",
+    "A matrix cell that is empty must be captioned 'no finding carries this label', never 'nothing was captured' — the C-045 wording fix, made a requirement rather than a one-time edit.",
+    "theme-audit.json verdicts are a heuristic lower bound and MUST NOT be used as ground truth by any validator: 4 of its 14 CONTRADICTS verdicts are substring-matching artifacts, listed in method_and_limits.audit_false_positives_found."
+  ],
+
+  "open_questions": [
+    {
+      "id": "Q1",
+      "question": "Do the four 'first-timer' sweep findings — F-02, F-18, F-60, F-110 — belong to user-types or to loyalty-and-retention?",
+      "why_it_matters": "This is the single highest-impact judgement in the file. It moves four rows, it is the round's most-repeated pattern ('four loyalty programmes, four full-text searches, zero mentions of a first-time traveller'), and it decides whether the round's central negative result is filed under the surface it was found on or under the subject it measured.",
+      "my_recommendation": "user-types primary, loyalty-and-retention secondary, on the subject test: what was OBSERVED is an absence of address to a class of traveller. The multi-valued field means nothing is lost either way.",
+      "the_alternative": "Keep all four in loyalty-and-retention and make user-types secondary. This preserves the round's own reading and keeps the loyalty sweep legible as one block. It also leaves user-types at 4 rows, which is thin enough that a chart of it would be noise.",
+      "gate": "A"
+    },
+    {
+      "id": "Q2",
+      "question": "Is ranking-and-comparison, at a proposed 25 of 121 rows, one theme or two?",
+      "why_it_matters": "It remains the largest theme after this taxonomy. Two sub-populations are visible: the ORDERING layer (sort axes, filters, published ranking explanations, ad disclosure — F-09, F-69, F-84, F-89, F-93) and the COMPARABILITY layer (which attributes are exposed per result and whether they are structured — F-83, F-92, F-99, F-100). Luma's differentiation argument rests on the second, and it is currently invisible inside the first.",
+      "my_recommendation": "Do NOT split now. Splitting a theme on a round-1 population risks fitting the split to the sample. Revisit after round 2, when the comparability rows can be counted independently.",
+      "gate": "A"
+    },
+    {
+      "id": "Q3",
+      "question": "Is price-honesty at 6 of 121 a correct measurement or a starvation artifact of the precedence order?",
+      "why_it_matters": "The round labelled 29 rows price-honesty and this taxonomy keeps 6. If the 6 is right, then any board conclusion that reads as 'the market has a price honesty problem, we have 29 findings' is resting on 6. If the precedence order is wrong, the number is an artifact of my ordering rather than of the evidence.",
+      "my_recommendation": "I believe the 6 is correct and the 29 was a money-shaped catch-all — but I am the one who wrote the precedence order, and this repository's own record (C-021, C-024) is that an author checking their own check is the weakest link. Have someone who did not write this file re-derive the price-honesty population from the definition alone, without reading the precedence order, and compare.",
+      "gate": "A"
+    },
+    {
+      "id": "Q4",
+      "question": "Does F-03 belong to market-structure or disruption-and-protection?",
+      "why_it_matters": "It is the ONLY row round 1 filed under market-structure, so if it moves, the theme as-used has no surviving anchor from its own filings and would rest entirely on rows I proposed to move into it.",
+      "my_recommendation": "market-structure, on the mechanism test — a disclaimer offers the traveller no route. Recorded because the answer is close and the boundary rule was written to make this case come out this way, which is a thing to know when reading it.",
+      "gate": "A"
+    },
+    {
+      "id": "Q5",
+      "question": "Should accessibility-and-inclusion be approved on three findings from one competitor?",
+      "why_it_matters": "Approving a theme on a single-competitor cluster risks encoding one company's document structure as a market category. Rejecting it sends three findings back to `other` and pushes `other` over its own 5% quota again.",
+      "my_recommendation": "Approve the slug, forbid counting it in any chart until at least four competitors have been swept for accessibility statements in round 2.",
+      "gate": "A"
+    },
+    {
+      "id": "Q6",
+      "question": "What happens to round 1's existing theme values?",
+      "why_it_matters": "C-045 was closed by DEMOTING what the charts may claim, not by re-labelling, precisely because hand re-theming 121 findings is the inference the record exists to prevent. This file does not change that. Applying the 79 proposed moves is a separate decision from approving the definitions, and it should be a separate approval.",
+      "my_recommendation": "Approve the definitions and the field shape first. Then re-theme round 1 from the definitions as a fresh pass — by an agent that has not read my per-row list — and treat agreement with my list as corroboration rather than as the method.",
+      "gate": "A"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "competitor": "Google Travel",
+  "capture": "personalisation — matched-pair controlled diff",
+  "captured_at": "2026-09-04T12:24Z",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "method": {
+    "design": "Same matched-pair design as the Booking.com diff. Treatment = client's authenticated Chrome. Control = inspector instance, signed out, extension-clean, consent declined.",
+    "query": "Lisbon accommodation search, hl=en",
+    "single_variable": "authentication state"
+  },
+
+  "result": {
+    "signed_out_surfaces": ["Where to stay", "When to visit", "What you'll pay"],
+    "signed_in_surfaces": ["Track prices", "Where to stay", "When to visit", "What you'll pay"],
+    "the_only_difference": "Track prices",
+    "verification": "Signed-out page text searched for 'track prices' and for any 'track' language — zero matches. Not inferred from a missing control; confirmed against full page text."
+  },
+
+  "finding_F28": {
+    "claim": "Authentication unlocks exactly one capability on Google Travel, and it is a functional one — persistent price monitoring — not a discount.",
+    "confidence": "Verified"
+  },
+
+  "finding_F29_THE_CONTRAST": {
+    "claim": "Two products, two matched-pair diffs, one extra capability each — but of opposite kinds.",
+    "evidence": {
+      "Booking.com": "Signing in adds ONE sort axis: 'Genius discounts first'. A commercial unlock — another way to rank by price.",
+      "Google Travel": "Signing in adds ONE capability: 'Track prices'. A functional unlock — the product does something over time that it otherwise cannot."
+    },
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "Both products ask a traveller to create an account. Booking.com's answer to 'why should I?' is a better price; Google's is a capability that persists between sessions. For a first-time traveller — who has no booking history to convert into a discount — only the second kind of reason is available on day one. This is a directly usable answer to the retention problem F-18 left open.",
+    "scope_limit": "Two products. Expedia's logged-out state was not captured, so its diff is OWED and its absence is a real gap in this comparison."
+  },
+
+  "our_product_decision_required": [
+    "Decision required: what does a Luma account BUY on day one, before any booking exists? Booking.com's and Expedia's answers both require history the target user does not have. Google's does not.",
+    "Decision required: price tracking is monitoring over time — it implies the product acts while the traveller is away. That is the same shape as Luma's stated 'live flight tracking' and 'gate notifications'. Is watching-on-your-behalf the account's core value rather than a discount?"
+  ],
+
+  "owed": [
+    "Expedia logged-out control capture — its matched pair is missing and F-29 currently rests on two of three",
+    "'Track prices' opened and assessed on the authenticated surface",
+    "Google flights vertical and the handoff after 'View prices'"
+  ]
+}

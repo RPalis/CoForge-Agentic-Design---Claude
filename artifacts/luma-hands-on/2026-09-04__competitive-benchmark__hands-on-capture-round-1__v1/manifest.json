@@ -1,0 +1,35 @@
+{
+  "id": "ART-025",
+  "type": "competitive-benchmark",
+  "workstream": "luma-hands-on",
+  "title": "Hands-on competitor UX capture — round 1",
+  "created": "2026-09-04",
+  "owner_agent": "main session (browser capture is not delegable — no agent holds a browser tool)",
+  "status": "draft",
+  "file": "CAPTURE-INDEX.json",
+  "inputs": {
+    "artifacts": [
+      "ART-024"
+    ],
+    "evidence": [],
+    "tokens_version": null,
+    "external": [
+      "Luma test project scenario.pdf",
+      "luma-competitor-analysis.skill (method only; Prior findings section quarantined per clean-room)"
+    ]
+  },
+  "decisions_applied": [
+    "D-003 airline tier",
+    "D-004 capture served locale, do not force"
+  ],
+  "why_here_not_scratch": "scratch/ is gitignored. These 50 capture files are the round's only primary evidence and would not survive a clone. Moved into artifacts/ so the record is durable. They remain RAW CAPTURES, not synthesis — no claim here has been through Gate A.",
+  "prohibition_2_note": "No competitor review text is transcribed in any capture. Review MECHANISMS are described; review words are not. One near-miss recorded in 08-tripadvisor/02.",
+  "constraints_honoured": [
+    "no account created",
+    "no credential entered",
+    "no card/billing/personal data entered",
+    "no transaction attempted",
+    "ad-tracking parameters stripped from a client-supplied URL",
+    "no cookie consent accepted on the client's behalf"
+  ]
+}

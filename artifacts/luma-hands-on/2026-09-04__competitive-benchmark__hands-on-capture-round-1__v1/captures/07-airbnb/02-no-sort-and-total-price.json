@@ -1,0 +1,64 @@
+{
+  "competitor": "Airbnb",
+  "capture": "s2-plan-compare / accommodation — search results",
+  "url_path": "/s/Lisboa--Portugal/homes",
+  "query_observed": "Lisboa, 2026-11-10 to 2026-11-13, 2 adults",
+  "captured_at": "2026-09-04T14:24Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F69_ZERO_SORT_AXES": {
+    "claim": "Airbnb offers no sort control at all. It is the only competitor observed with none.",
+    "method": "Full page text swept for 'ordenar', 'ordena por', 'sort', 'clasificar', 'relevancia' — zero matches. Zero <select> elements. Every button and combobox enumerated (22 controls): the only ranking-adjacent control is 'Filtros'. This is a positive sweep across two languages, not a failed selector.",
+    "running_total_restated": {
+      "Booking.com": 11, "Expedia": 6, "Google Travel hotels": 3, "Airbnb": 0,
+      "accommodation_axes_total": 20,
+      "axes_concerning_effort_or_ease": 0
+    },
+    "confidence": "Verified",
+    "caveat": "The 'Filtros' panel was NOT opened. If a sort lives inside it, this finding narrows to 'no sort on the results surface'. Recorded as a limit on the claim, not a hedge on the sweep.",
+    "why_it_matters": "Airbnb gives the traveller filters but not ordering. You accept its ranking or you refine the set. For a first-time traveller that is arguably kinder — fewer decisions — and arguably worse: no recourse if the ranking does not suit you, and no visibility into why it ranked that way. Booking.com offers 11 ways to reorder and explains none of them; Airbnb offers zero and likewise explains nothing."
+  },
+
+  "finding_F70_TOTAL_PRICE_ONLY": {
+    "claim": "Airbnb displays the total price for the stay and never a nightly rate. Every other accommodation competitor observed leads with a nightly figure.",
+    "evidence": "Prices render as '203 € en total', '199 € en total', '270 € en total', '244 € en total'. Full page swept for 'por noche', '/ noche', 'noche' — ZERO matches.",
+    "comparison": {
+      "Expedia": "'$112.77 per night including taxes' — nightly leads",
+      "Booking.com": "nightly rate on cards; total appears at property level",
+      "Airbnb": "total only, no nightly figure anywhere on the results surface"
+    },
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "Nightly pricing is the industry's standard way of making a stay look cheaper than it is — the traveller multiplies, and the fees arrive later. Airbnb removes that arithmetic entirely at the point of comparison. For a first-time traveller who does not yet know that a €112 night is really €450, this is the single most useful pricing decision observed in the round, and it costs nothing to adopt.",
+    "note": "Some cards show a higher struck-through figure beside the total (238 € / 203 €, 288 € / 199 €), so price anchoring is still present — but anchored TOTAL against TOTAL, not nightly against nightly."
+  },
+
+  "aircover_before_booking_TEST_RESULT": {
+    "the_claim_under_test": "Prior desk research held that AirCover's value is naming the safety net and showing it BEFORE booking rather than after failure.",
+    "what_was_found": "'AirCover' does appear in the search results page text — but the two matches are 'AirCover' and 'AirCover para anfitriones' (for hosts), consistent with footer navigation rather than a per-listing reassurance badge.",
+    "verdict": "PARTIALLY SUPPORTED, and weaker than the claim implies. AirCover is reachable from the results surface; it is NOT surfaced per result at the moment of comparison. Whether it appears on the listing page or in checkout is still UNTESTED — the listing page was not opened.",
+    "confidence": "Verified for what was searched; the claim itself remains OPEN.",
+    "why_recorded_this_way": "This is a prior-round claim being re-verified, exactly as the clean-room design intended. It is neither confirmed nor refuted yet, and saying so is the point."
+  },
+
+  "other_signals": {
+    "free_cancellation_present": "'Cancelación gratuita' appears as a filter and as a card signal",
+    "pay_later_signal": "'0 € hoy' (0 € today) observed — payment deferral surfaced at results level",
+    "map_available": "'Mostrar mapa'",
+    "hotels_in_inventory": "'Hotel' and 'Mostrar hoteles destacados' — Airbnb carries hotel inventory, not only homes"
+  },
+
+  "our_product_decision_required": [
+    "Decision required: show total or nightly? Every competitor except Airbnb leads with nightly. Total-first is unoccupied by four of five accommodation products and directly serves a traveller who cannot yet do the arithmetic in their head.",
+    "Decision required: how many ways to reorder? The range observed is 0 to 11 and NONE of the five explains its ranking to the traveller. Both extremes are defensible; the unoccupied position is offering few axes and explaining them."
+  ],
+
+  "not_observed": [
+    "the Filtros panel opened — required to close F-69 completely",
+    "a listing page and whether AirCover appears on it",
+    "checkout and whether AirCover appears there",
+    "Airbnb Experiences — the activities inventory that makes Airbnb the closest shape to business goal 2"
+  ]
+}

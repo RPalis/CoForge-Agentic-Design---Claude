@@ -1,0 +1,76 @@
+{
+  "competitor": "Qatar Airways",
+  "capture": "L-loyalty — Privilege Club tier structure",
+  "url": "https://www.qatarairways.com/en-gb/Privilege-Club/membership-tiers.html",
+  "captured_at": "2026-09-04T16:38Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en-gb",
+  "source_class": "Own capture (first-party programme documentation)",
+  "confidence": "Verified",
+
+  "tier_structure": [
+    { "tier": "Burgundy", "qualify": "entry", "benefits": "entry-level member benefits" },
+    { "tier": "Silver", "qualify_verbatim": "Earn 150 Qpoints within any 12-month period.",
+      "retain_verbatim": "Earn 135 Qpoints within last 12 months or 270 Qpoints within last 24 months prior to renewal date.",
+      "benefits_verbatim": ["15kg extra baggage allowance, or one piece (depending on your route)",
+        "Priority stand-by", "Priority check-in", "Priority boarding", "LOUNGE ACCESS"] },
+    { "tier": "Gold", "qualify_verbatim": "Earn 300 Qpoints within any 12-month period",
+      "retain_verbatim": "Earn 270 Qpoints within last 12 months or 540 Qpoints within last 24 months",
+      "benefits_verbatim": ["20kg extra baggage allowance, or one piece",
+        "40 Qcredits to redeem for upgrades, excess baggage and much more",
+        "oneworld benefits on other oneworld flights"] },
+    { "tier": "Platinum", "qualify_verbatim": "Earn 600 Qpoints within any 12-month period." }
+  ],
+
+  "finding_F108_LOUNGE_ACCESS_IS_INDIRECTLY_PURCHASABLE": {
+    "claim": "Lounge access sits at Silver — the first tier above entry — and Qpoints, the currency that reaches Silver, are sold by Qatar Airways.",
+    "the_chain": "F-105 established 'Buy Qpoints' exists as a named product. This capture establishes lounge access is a Silver benefit and Silver costs 150 Qpoints in 12 months. Therefore lounge access is reachable BY PURCHASE, without flying the qualifying volume.",
+    "confidence": "Verified that both facts hold. The INFERENCE that one can buy enough Qpoints to reach Silver is Inferred — purchase limits and whether bought Qpoints count toward tier qualification were NOT captured, and many programmes explicitly exclude purchased points from tier progression.",
+    "what_would_settle_it": "Open /en-gb/Privilege-Club/buy-qpoints.html and read whether purchased Qpoints count toward tier status. This is the single most important unopened page on this competitor.",
+    "why_it_matters_for_BUSINESS_GOAL_5": {
+      "the_goal": "Increase usage of airport services such as lounges and Fast Track",
+      "F-53 found": "Iberia bundles airport services with Business class — no price, no purchase path",
+      "F-54 raised": "if they come free with premium cabins, the market for SELLING them is economy passengers, a business the scenario has not scoped",
+      "this_capture_adds": "Qatar offers a THIRD route: lounge access as a loyalty-tier benefit, with the tier currency purchasable. Not a lounge pass, not a fare-class entitlement — a status product. That is a genuinely different commercial model and it is the closest thing to an answer business goal 5 has received."
+    }
+  },
+
+  "finding_F109_THREE_CURRENCIES_IN_ONE_PROGRAMME": {
+    "claim": "Privilege Club runs three distinct currencies.",
+    "the_three": {
+      "Avios": "spendable — redeemed for flights and rewards (F-105: purchasable)",
+      "Qpoints": "status — drives tier progression (F-105: purchasable)",
+      "Qcredits": "utility — 'to redeem for upgrades, excess baggage and much more', granted 40 at Gold"
+    },
+    "confidence": "Verified",
+    "the_full_comparison_across_four_programmes": {
+      "Booking.com Genius": "0 currencies — a discount tier gated by booking count",
+      "Expedia One Key": "1 currency (OneKeyCash) + tier by Trip Elements",
+      "Iberia Club": "2 currencies (Avios spendable, Elite Points status), Avios earnable off-platform",
+      "Qatar Privilege Club": "3 currencies, two of them purchasable, plus a paid membership tier above the free programme"
+    },
+    "for_luma": "Complexity scales with the operator's ability to monetise it. Luma at ideation has no basis for three currencies and, per F-58, its user starts at zero on all of them. The transferable observation is NOT the currency design — it is that every one of these programmes measures the same thing: money spent with the operator. None measures whether the traveller had a good trip."
+  },
+
+  "finding_F110_FOUR_OF_FOUR_ON_FIRST_TIMERS": {
+    "claim": "Four loyalty programmes, four full-text searches, zero mentions of a first-time traveller.",
+    "evidence": "This page searched for 'first-time', 'new member', 'beginner', 'just starting' — no match. Same null recorded for Genius (F-02), One Key (F-18) and Iberia Club (F-60).",
+    "confidence": "Verified",
+    "status": "Four of four, across two intermediaries and two airlines — two distinct business models and two regulatory regimes. This is now the most robust repeated null in the round.",
+    "the_reading": "Loyalty programmes are built for the traveller who already travels. That is not an oversight; it is what loyalty means. Luma's stated primary user is definitionally outside every one of them, and no observed competitor has tried to solve that."
+  },
+
+  "retention_mechanics_note": {
+    "observation": "Every tier above Burgundy has a RETENTION threshold lower than its qualification threshold — Silver qualifies at 150 and retains at 135; Gold qualifies at 300 and retains at 270.",
+    "why_it_is_interesting": "The programme is easier to keep than to reach. That is a deliberate anti-churn design and the only observed loyalty mechanic that reduces pressure on an existing member rather than increasing it.",
+    "confidence": "Verified"
+  },
+
+  "not_observed": [
+    "buy-qpoints.html — whether purchased Qpoints count toward tier. THE decisive page for F-108.",
+    "Privilege Club Pro — what a paid loyalty subscription adds",
+    "Burgundy and Platinum benefit lists in full",
+    "lounge access rules — guest privileges, which lounges, oneworld reciprocity",
+    "Qcredit values and conversion"
+  ]
+}

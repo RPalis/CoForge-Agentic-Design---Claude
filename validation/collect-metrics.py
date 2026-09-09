@@ -12,12 +12,26 @@ writing and refuses to emit if any value looks like prose.
 
     python3 validation/collect-metrics.py            # write today's record + rollup
     python3 validation/collect-metrics.py --stdout   # print, write nothing
+    python3 validation/collect-metrics.py --selftest # plant faults, prove the dedup catches them
+
+SCHEMA_VERSION / COUNTING_METHOD (C-057, 2026-09-08)
+-----------------------------------------------------
+Every record this collector writes from this version on carries a `provenance`
+block naming both. Records written before 2026-09-08 carry NO `provenance` key
+at all — that absence is the marker. Do not backfill it: it would let a
+guessed method stand in for a measured one, which is the exact defect being
+fixed. See validation/reports/2026-09-08__collector-dedup-fix.md for the
+inflation this replaced (naive sum over transcript files double- and
+triple-counted nested conversation forks by ~2.1x).
 """
-import collections, datetime, glob, json, os, re, sys, subprocess
+import collections, datetime, glob, hashlib, json, os, re, sys, subprocess
 
 ROOT = os.environ.get("CLAUDE_PROJECT_DIR") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def P(*a): return os.path.join(ROOT, *a)
 MAXLEN = 64  # no legitimate metric value is longer than this
+
+SCHEMA_VERSION = "2"
+COUNTING_METHOD = "uuid-dedup-v1"
 
 def transcript_dir():
     slug = "-" + re.sub(r"[/\s]", "-", os.path.abspath(ROOT).lstrip("/"))
@@ -28,23 +42,75 @@ def transcript_dir():
     cands = [c for c in cands if os.path.isdir(c) and glob.glob(os.path.join(c, "*.jsonl"))]
     return max(cands, key=os.path.getmtime) if cands else None
 
-def from_transcripts():
-    d = transcript_dir()
+def record_key(rec):
+    """Stable de-dup key for one transcript line.
+
+    C-057. `~/.claude/projects/<slug>/*.jsonl` files are NOT independent
+    sessions — they are nested conversation forks (rewind / resume), each a
+    superset of the ones before it. Measured on this project 2026-09-08:
+    614669de (5,261 uuids) subset-of cd819c59 (9,908 uuids) subset-of
+    a9b9d131 (10,807 uuids), plus one disjoint file 485550c2 (1,646 uuids).
+    Summing every file counted the shared history two or three times —
+    ~55% of records were duplicates and the naive total was ~2.1x the true
+    figure. Keying on message `uuid` and counting each key once fixes it,
+    because a uuid is stable across every fork that happens to include it.
+
+    Records with NO `uuid` (queue-operation, custom-title, mode, ai-title,
+    atis-latch, bridge-session, frame-link, artifact-*-ledger, ...) are
+    session/UI bookkeeping, not conversation turns. Verified empirically
+    (2026-09-08, all 4 transcript files, this project): not one of them
+    ever carries a `usage` block, so excluding them from token/turn counts
+    loses no billing signal — that is a measured fact about this corpus,
+    not an assumption, and it is re-checked by --selftest on every run of
+    the fix, not just asserted once. They are real events, though, and are
+    wanted for the active-time metrics, and forked files were found to
+    reproduce them BYTE-FOR-BYTE (15,140/15,141 lines identical between a
+    fork and its nested parent) — so they get a fallback key: a sha256 of
+    the record's own canonical JSON. Identical content -> identical hash ->
+    counted once, the same guarantee a uuid gives a real turn. A record
+    with neither a uuid nor a computable hash cannot occur, so this
+    function always returns a key; nothing is silently dropped or silently
+    duplicated by an unhandled case.
+    """
+    u = rec.get("uuid")
+    if u:
+        return ("uuid", u)
+    blob = json.dumps(rec, sort_keys=True, ensure_ascii=True)
+    return ("hash", hashlib.sha256(blob.encode("utf-8")).hexdigest())
+
+def from_transcripts(d=None):
+    """Join every transcript file into ONE set of de-duplicated events.
+
+    `d` is injectable so --selftest (and any future test) can point this at
+    a synthetic fixture directory instead of the real transcript folder —
+    the whole point is that this function must be provably correct on a
+    planted case, not just plausible on the one corpus it has always seen.
+    """
+    if d is None:
+        d = transcript_dir()
     tok = collections.Counter(); tools = collections.Counter(); skills = collections.Counter()
-    turns = 0; first = last = None; files = 0
-    for fp in glob.glob(os.path.join(d, "*.jsonl")) if d else []:
+    turns = 0; files = 0; non_message_records = 0
+    seen = set()          # dedup keys already counted, across ALL files including nested forks
+    timestamps = []        # one entry per DE-DUPLICATED record that carries a timestamp
+    for fp in sorted(glob.glob(os.path.join(d, "*.jsonl"))) if d else []:
         files += 1
         for line in open(fp, encoding="utf-8", errors="ignore"):
             try: rec = json.loads(line)
             except Exception: continue
+            key = record_key(rec)
+            if key in seen:
+                continue   # already counted — this line is a nested fork's copy of a prior event
+            seen.add(key)
             ts = rec.get("timestamp")
-            if ts: first = min(first or ts, ts); last = max(last or ts, ts)
+            if ts: timestamps.append(ts)
             msg = rec.get("message") or {}
             u = msg.get("usage") or rec.get("usage")
             if u:
                 turns += 1
                 for k in ("input_tokens","output_tokens","cache_read_input_tokens","cache_creation_input_tokens"):
                     if isinstance(u.get(k), int): tok[k] += u[k]
+            elif not rec.get("uuid"):
+                non_message_records += 1   # bookkeeping event, not a conversation turn
             content = msg.get("content")
             if isinstance(content, list):
                 for b in content:
@@ -54,14 +120,56 @@ def from_transcripts():
                         if name == "Skill":
                             s = (b.get("input") or {}).get("skill")
                             if s: skills[s] += 1
-    dur = None
-    if first and last:
+    active_minutes, elapsed_span_hours = _time_metrics(timestamps)
+    return {
+        "tok": tok, "tools": tools, "skills": skills, "turns": turns, "files": files,
+        "non_message_records": non_message_records,
+        "unique_records": len(seen),
+        "active_minutes_distinct": active_minutes,
+        "active_hours_distinct_minutes": round(active_minutes / 60, 1),
+        "elapsed_span_by_day_hours": elapsed_span_hours,
+    }
+
+def _time_metrics(timestamps):
+    """Two DEFINED readings of "how long was this session active" (C-057).
+
+    A number whose definition is not written down cannot be compared across
+    runs (ADR-014). This corpus gives two very different, both defensible,
+    answers — 32.0h and 151.1h — depending which question is asked, so both
+    are emitted under names that state the question rather than one field
+    called "hours" or "duration_min" that answers neither one legibly.
+
+    active_minutes_distinct — count of distinct UTC calendar-minutes
+    (`YYYY-MM-DDTHH:MM`) in which at least one de-duplicated record carries
+    a timestamp. Undercounts true elapsed time (a minute with ten records
+    and a minute with one record count the same), but never counts idle
+    time — a minute nothing happened in is not in the set.
+
+    elapsed_span_by_day_hours — group de-duplicated timestamps by UTC
+    calendar day; for each day take (latest − earliest) in hours; sum
+    across days. Counts every gap WITHIN a working day (lunch, a long
+    review pause) as active, so it is a wall-clock span, not a measure of
+    engaged time — it is an upper bound, the same way active_minutes is a
+    lower bound. It does NOT count the overnight gap BETWEEN days, which is
+    why it is smaller than a single first-to-last span over the whole
+    multi-day range would be.
+    """
+    if not timestamps:
+        return 0, 0.0
+    minute_buckets = set()
+    by_day = collections.defaultdict(list)
+    for ts in timestamps:
+        if len(ts) >= 16:
+            minute_buckets.add(ts[:16])
         try:
-            f = datetime.datetime.fromisoformat(first.replace("Z","+00:00"))
-            l = datetime.datetime.fromisoformat(last.replace("Z","+00:00"))
-            dur = round((l-f).total_seconds()/60, 1)
-        except Exception: pass
-    return tok, tools, skills, turns, dur, files
+            t = datetime.datetime.fromisoformat(ts.replace("Z", "+00:00"))
+        except Exception:
+            continue
+        by_day[t.date()].append(t)
+    span_hours = 0.0
+    for day, ts_list in by_day.items():
+        span_hours += (max(ts_list) - min(ts_list)).total_seconds() / 3600
+    return len(minute_buckets), round(span_hours, 1)
 
 def from_audit():
     """Gate counts, derived by RUNNING the audit — never by parsing a report file.
@@ -146,59 +254,205 @@ def privacy_check(obj, path="$"):
         elif len(obj) > MAXLEN: bad.append(f"{path}: {len(obj)} chars (limit {MAXLEN})")
     return bad
 
-tok, tools, skills, turns, dur, nfiles = from_transcripts()
-arts = from_registry()
-billable = tok["input_tokens"] + tok["output_tokens"]
-rec = {
-  "run_id": datetime.date.today().isoformat(),
-  "generated_at": datetime.datetime.now().replace(microsecond=0).isoformat(),
-  "project": os.path.basename(ROOT),
-  "session": {"turns": turns, "duration_min": dur, "transcripts": nfiles},
-  "tokens": {"input": tok["input_tokens"], "output": tok["output_tokens"],
-             "cache_read": tok["cache_read_input_tokens"],
-             "cache_creation": tok["cache_creation_input_tokens"], "billable": billable},
-  "tools": dict(tools.most_common()),
-  "skills": dict(skills.most_common()),
-  "artifacts": {**arts,
-      "tokens_per_artifact": round(billable/arts["total"]) if arts["total"] else None},
-  "gates": from_audit(),
-  "corrections": from_corrections(),
-  "governance": {"adrs": len(glob.glob(P("decisions/*.md"))),
-                 "agents": len(glob.glob(P(".claude/agents/*.md"))),
-                 "artifact_types": json.load(open(P("artifacts/_types.json")))["count"]},
-  "readiness": from_readiness(),
-}
+def build_record():
+    t = from_transcripts()
+    arts = from_registry()
+    billable = t["tok"]["input_tokens"] + t["tok"]["output_tokens"]
+    rec = {
+      "run_id": datetime.date.today().isoformat(),
+      "generated_at": datetime.datetime.now().replace(microsecond=0).isoformat(),
+      "project": os.path.basename(ROOT),
+      # Full prose definition of counting_method lives in validation/metrics.schema.json
+      # and validation/reports/2026-09-08__collector-dedup-fix.md — NOT embedded here.
+      # The privacy check (below) refuses any value over MAXLEN chars or containing a
+      # newline, and correctly rejected an earlier draft of this block that inlined the
+      # long-form explanation as a string value. Keep this short on purpose.
+      "provenance": {
+          "schema_version": SCHEMA_VERSION,
+          "counting_method": COUNTING_METHOD,
+          "detail": "validation/metrics.schema.json",
+      },
+      "session": {
+          "turns": t["turns"],
+          "transcripts": t["files"],
+          "unique_records": t["unique_records"],
+          "non_message_records": t["non_message_records"],
+          "active_minutes_distinct": t["active_minutes_distinct"],
+          "active_hours_distinct_minutes": t["active_hours_distinct_minutes"],
+          "elapsed_span_by_day_hours": t["elapsed_span_by_day_hours"],
+      },
+      "tokens": {"input": t["tok"]["input_tokens"], "output": t["tok"]["output_tokens"],
+                 "cache_read": t["tok"]["cache_read_input_tokens"],
+                 "cache_creation": t["tok"]["cache_creation_input_tokens"], "billable": billable},
+      "tools": dict(t["tools"].most_common()),
+      "skills": dict(t["skills"].most_common()),
+      "artifacts": {**arts,
+          "tokens_per_artifact": round(billable/arts["total"]) if arts["total"] else None},
+      "gates": from_audit(),
+      "corrections": from_corrections(),
+      "governance": {"adrs": len(glob.glob(P("decisions/*.md"))),
+                     "agents": len(glob.glob(P(".claude/agents/*.md"))),
+                     "artifact_types": json.load(open(P("artifacts/_types.json")))["count"]},
+      "readiness": from_readiness(),
+    }
+    return rec
 
-leaks = privacy_check(rec)
-if leaks:
-    sys.stderr.write("REFUSING TO WRITE — privacy check failed:\n")
-    for l in leaks: sys.stderr.write("  " + l + "\n")
-    sys.exit(1)
+# ---------------------------------------------------------------------------
+# SELF-TEST — plants the exact defect this fix closes and proves it is caught.
+# SR-11: a check that cannot fail is not a check. Run with --selftest; touches
+# no repository file, reads no real transcript, writes nothing.
+# ---------------------------------------------------------------------------
+def _selftest():
+    import tempfile, shutil
 
-if "--stdout" in sys.argv:
-    print(json.dumps(rec, indent=2)); sys.exit(0)
+    failures = []
+    def check(name, cond, detail=""):
+        status = "PASS" if cond else "FAIL"
+        print(f"  [{status}] {name}" + (f" — {detail}" if detail and not cond else ""))
+        if not cond: failures.append(name)
 
-os.makedirs(P("validation/metrics"), exist_ok=True)
-out = P("validation/metrics", f"{rec['run_id']}.json")
-json.dump(rec, open(out, "w"), indent=2)
+    tmp = tempfile.mkdtemp(prefix="collect-metrics-selftest-")
+    try:
+        # --- Scenario 1: nested forks, the real defect -----------------------
+        # session-A has 2 turns. session-B is A PLUS 1 more turn (a fork/resume).
+        # session-C is B PLUS 1 more turn (a further fork). Naive summing counts
+        # the shared turns 3x; correct dedup counts each uuid once = 4 unique
+        # turns total, 400 output tokens total.
+        def turn(uuid, out_tok, ts):
+            return json.dumps({
+                "type": "assistant", "uuid": uuid, "timestamp": ts,
+                "message": {"usage": {"input_tokens": 1, "output_tokens": out_tok,
+                                       "cache_read_input_tokens": 0, "cache_creation_input_tokens": 0},
+                            "content": [{"type": "tool_use", "name": "Bash", "input": {}}]},
+            })
+        t1 = turn("uuid-1", 100, "2026-09-01T10:00:00.000Z")
+        t2 = turn("uuid-2", 100, "2026-09-01T10:01:00.000Z")
+        t3 = turn("uuid-3", 100, "2026-09-01T10:02:00.000Z")
+        t4 = turn("uuid-4", 100, "2026-09-01T11:30:00.000Z")
 
-runs = [json.load(open(f)) for f in sorted(glob.glob(P("validation/metrics/*.json")))]
-L = ["# Metrics", "", "> GENERATED by `validation/collect-metrics.py`. Never hand-edit.",
-     "> Counts only — no conversation content. Enforced by a privacy check before write.", "",
-     "| Run | Turns | Billable tokens | Artifacts | Verdict | Skipped | L1 | L2 |",
-     "|---|---|---|---|---|---|---|---|"]
-def _cell(v):
-    """None is not 0 and must not print as one."""
-    return "—" if v is None else v
-for r in runs:
-    rd = r.get("readiness", {})
-    L.append(f"| {r['run_id']} | {r['session']['turns']} | {r['tokens']['billable']:,} | "
-             f"{r['artifacts']['total']} | {r['gates']['verdict']} | "
-             f"{_cell(r['gates'].get('skipped'))} | "
-             f"{_cell(rd.get('l1'))}% | {_cell(rd.get('l2'))}% |")
-open(P("validation/metrics/METRICS.md"), "w").write("\n".join(L) + "\n")
-print(f"run record → validation/metrics/{rec['run_id']}.json")
-print(f"  {rec['session']['turns']} turns · {billable:,} billable tokens · "
-      f"{arts['total']} artifacts · gates {rec['gates']['verdict']} · "
-      f"L1 {rec['readiness'].get('l1','?')}% L2 {rec['readiness'].get('l2','?')}%")
-print("  privacy check: PASSED — no free text in the record")
+        session_a = [t1, t2]
+        session_b = [t1, t2, t3]              # fork of A: superset
+        session_c = [t1, t2, t3, t4]           # fork of B: superset
+
+        for name, lines in [("session-A.jsonl", session_a),
+                             ("session-B.jsonl", session_b),
+                             ("session-C.jsonl", session_c)]:
+            open(os.path.join(tmp, name), "w").write("\n".join(lines) + "\n")
+
+        r = from_transcripts(tmp)
+        check("dedup: turns counted once each across nested forks",
+              r["turns"] == 4, f"got {r['turns']}, naive sum would be 9")
+        check("dedup: output tokens counted once each across nested forks",
+              r["tok"]["output_tokens"] == 400, f"got {r['tok']['output_tokens']}, naive sum would be 900")
+        check("dedup: tool_use blocks not re-counted from forked copies",
+              r["tools"]["Bash"] == 4, f"got {r['tools']['Bash']}, naive sum would be 9")
+
+        shutil.rmtree(tmp); tmp = tempfile.mkdtemp(prefix="collect-metrics-selftest-")
+
+        # --- Scenario 2: records with no uuid ---------------------------------
+        # (a) a bookkeeping record with no uuid and no usage, duplicated
+        #     byte-for-byte across two "forked" files -> must be counted ONCE
+        #     via the content-hash fallback, not zero and not twice.
+        # (b) an adversarial record with no uuid that DOES carry usage (never
+        #     observed in this project's real transcripts, but the code must
+        #     not silently drop token data if that assumption is ever wrong) ->
+        #     its tokens must still be counted, exactly once even if duplicated.
+        bookkeeping = json.dumps({"type": "mode", "mode": "normal", "sessionId": "x",
+                                   "timestamp": "2026-09-01T09:00:00.000Z"})
+        no_uuid_with_usage = json.dumps({
+            "type": "assistant", "timestamp": "2026-09-01T09:05:00.000Z",
+            "message": {"usage": {"input_tokens": 1, "output_tokens": 50,
+                                   "cache_read_input_tokens": 0, "cache_creation_input_tokens": 0}},
+        })
+        open(os.path.join(tmp, "fork-1.jsonl"), "w").write(
+            "\n".join([bookkeeping, no_uuid_with_usage]) + "\n")
+        open(os.path.join(tmp, "fork-2.jsonl"), "w").write(   # byte-identical duplicate, as real forks are
+            "\n".join([bookkeeping, no_uuid_with_usage]) + "\n")
+
+        r2 = from_transcripts(tmp)
+        check("no-uuid bookkeeping record counted once, not vanished, not doubled",
+              r2["non_message_records"] == 1, f"got {r2['non_message_records']}")
+        check("no-uuid record WITH usage still contributes tokens exactly once",
+              r2["tok"]["output_tokens"] == 50, f"got {r2['tok']['output_tokens']}")
+        check("no-uuid record with usage is not miscounted as a bookkeeping record",
+              r2["turns"] == 1, f"got {r2['turns']}")
+
+        shutil.rmtree(tmp); tmp = tempfile.mkdtemp(prefix="collect-metrics-selftest-")
+
+        # --- Scenario 3: the two time metrics are actually different ---------
+        # Two records 90 minutes apart on the same day, plus one record the
+        # next day. active_minutes_distinct should be small (3 minutes' worth
+        # of activity); elapsed_span_by_day_hours should show the 90-minute
+        # gap counted as "active" within day 1, but NOT the overnight gap.
+        ts_a = turn("uuid-a", 10, "2026-09-01T09:00:00.000Z")
+        ts_b = turn("uuid-b", 10, "2026-09-01T10:30:00.000Z")
+        ts_c = turn("uuid-c", 10, "2026-09-02T09:00:00.000Z")
+        open(os.path.join(tmp, "day.jsonl"), "w").write("\n".join([ts_a, ts_b, ts_c]) + "\n")
+        r3 = from_transcripts(tmp)
+        check("active_minutes_distinct counts only the minutes actually timestamped",
+              r3["active_minutes_distinct"] == 3, f"got {r3['active_minutes_distinct']}")
+        check("elapsed_span_by_day_hours sums within-day gaps but not the overnight gap",
+              r3["elapsed_span_by_day_hours"] == 1.5, f"got {r3['elapsed_span_by_day_hours']}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    print()
+    if failures:
+        print(f"SELFTEST FAILED: {len(failures)} check(s) did not pass: {failures}")
+        return 1
+    print(f"SELFTEST PASSED: all planted-fault checks caught correctly.")
+    return 0
+
+def main():
+    if "--selftest" in sys.argv:
+        sys.exit(_selftest())
+
+    rec = build_record()
+    billable = rec["tokens"]["billable"]
+    arts = rec["artifacts"]
+
+    leaks = privacy_check(rec)
+    if leaks:
+        sys.stderr.write("REFUSING TO WRITE — privacy check failed:\n")
+        for l in leaks: sys.stderr.write("  " + l + "\n")
+        sys.exit(1)
+
+    if "--stdout" in sys.argv:
+        print(json.dumps(rec, indent=2)); sys.exit(0)
+
+    os.makedirs(P("validation/metrics"), exist_ok=True)
+    out = P("validation/metrics", f"{rec['run_id']}.json")
+    json.dump(rec, open(out, "w"), indent=2)
+
+    runs = [json.load(open(f)) for f in sorted(glob.glob(P("validation/metrics/*.json")))]
+    L = ["# Metrics", "", "> GENERATED by `validation/collect-metrics.py`. Never hand-edit.",
+         "> Counts only — no conversation content. Enforced by a privacy check before write.",
+         "> Records with a `provenance` block are de-duplicated by message uuid across nested",
+         "> transcript forks (schema_version 2+, 2026-09-08 onward). Records WITHOUT a",
+         "> `provenance` block predate the fix and summed every transcript file including",
+         "> nested forks — treat them as upper bounds, not measurements. See",
+         "> validation/reports/2026-09-08__collector-dedup-fix.md.", "",
+         "| Run | Turns | Billable tokens | Artifacts | Verdict | Skipped | L1 | L2 | Provenance |",
+         "|---|---|---|---|---|---|---|---|---|"]
+    def _cell(v):
+        """None is not 0 and must not print as one."""
+        return "—" if v is None else v
+    for r in runs:
+        rd = r.get("readiness", {})
+        prov = r.get("provenance", {}).get("counting_method", "pre-fix (naive sum, inflated)")
+        L.append(f"| {r['run_id']} | {r['session']['turns']} | {r['tokens']['billable']:,} | "
+                 f"{r['artifacts']['total']} | {r['gates']['verdict']} | "
+                 f"{_cell(r['gates'].get('skipped'))} | "
+                 f"{_cell(rd.get('l1'))}% | {_cell(rd.get('l2'))}% | {prov} |")
+    open(P("validation/metrics/METRICS.md"), "w").write("\n".join(L) + "\n")
+    print(f"run record → validation/metrics/{rec['run_id']}.json")
+    print(f"  {rec['session']['turns']} turns · {billable:,} billable tokens · "
+          f"{arts['total']} artifacts · gates {rec['gates']['verdict']} · "
+          f"L1 {rec['readiness'].get('l1','?')}% L2 {rec['readiness'].get('l2','?')}%")
+    print(f"  active time: {rec['session']['active_hours_distinct_minutes']}h (distinct minutes) / "
+          f"{rec['session']['elapsed_span_by_day_hours']}h (elapsed span by day) — two different "
+          f"definitions, see validation/metrics.schema.json")
+    print("  privacy check: PASSED — no free text in the record")
+
+if __name__ == "__main__":
+    main()

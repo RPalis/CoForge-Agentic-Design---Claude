@@ -1,0 +1,67 @@
+{
+  "competitor": "Booking.com",
+  "capture": "TC-terms-of-service",
+  "url": "https://www.booking.com/content/terms.html",
+  "captured_at": "2026-09-04T11:00Z",
+  "source_class": "Own capture (first-party document)",
+  "confidence": "Verified",
+  "document_size_chars": 89087,
+
+  "structure": {
+    "section_A": "All Travel Experiences — A1 Definitions … A22 Modification clause",
+    "notable_sections": {
+      "A11": "Accessibility requests",
+      "A13": "Genius",
+      "A14": "Rewards, Credits & Wallet",
+      "A16": "What if something goes wrong?",
+      "A19": "Limitation of liability",
+      "A21": "Linked travel arrangements"
+    },
+    "section_B": "Accommodations — B1 Scope, B2 Contractual relationship, B3 What we will do"
+  },
+
+  "finding_F03": {
+    "claim": "The market leader contractually disclaims liability for the exact failure experience a reassurance-led product would want to own — at least for flights.",
+    "evidence_verbatim": [
+      "We act solely as the Platform and are not involved in the Third-Party Terms. We are not responsible for your ticket or any extras you may buy and (to the fullest extent permitted by law) have no liability to you in relation to your Booking.",
+      "Most Flights on our Platform are provided via a Third-Party Aggregator, which acts as an intermediary to the airline(s)."
+    ],
+    "reading": "Flights are two intermediaries deep: traveller -> Booking.com -> Third-Party Aggregator -> airline. Liability is disclaimed at the first hop.",
+    "confidence": "Verified",
+    "scope_limit": "Quoted clauses concern FLIGHTS. Accommodation sits under section B with a different contractual relationship, not yet captured."
+  },
+
+  "finding_F04": {
+    "claim": "Booking.com does operate a disruption mechanism, but only where it holds the supplier relationship.",
+    "evidence_verbatim": [
+      "For any airport pick-up, you must give us your flight details at least 24 hours before your pick-up Time so your Service Provider can adjust the pick-up Time if your flight is delayed.",
+      "If your flight is delayed or canceled or you're denied boarding, you may be entitled to compensation/assistance under EU Regulation 261/2004"
+    ],
+    "reading": "Proactive delay handling exists for pre-booked transfers. For the flight itself the response is to point the traveller at their statutory rights, not to act.",
+    "confidence": "Verified"
+  },
+
+  "finding_F05": {
+    "claim": "Accessibility is a contractual term, not only a design commitment — section A11 'Accessibility requests' sits in the Terms of Service.",
+    "confidence": "Verified",
+    "note": "Booking.com also publishes a standalone Accessibility Statement at /content/accessibility_statement.html — not yet captured."
+  },
+
+  "our_product_decision_required": [
+    "Decision required: Luma's stated goal is to reduce travel stress across the whole journey. The market leader's terms disclaim liability precisely at disruption. Does Luma accept the same intermediary position and compete on information, or take on liability it cannot currently support without supplier agreements?",
+    "Decision required: EU 261/2004 signposting is a low-cost reassurance feature the incumbent already treats as a legal notice rather than a product surface. Is it Luma's?",
+    "Decision required: Booking.com places accessibility, loyalty and 'what if something goes wrong' inside its Terms. Where does Luma make these legible before booking rather than after failure?"
+  ],
+
+  "cancellation_mechanics_verbatim": [
+    "When you make a booking, you accept the applicable policies as displayed in the booking process.",
+    "If the Service Provider requires an upfront payment, it may be taken or pre-authorized when you make your booking, and it may be non-refundable.",
+    "If you cancel a reservation within any permitted cancellation period which may apply, we'll refund you the exact same amount we initially charged you."
+  ],
+
+  "not_observed": [
+    "Section B (Accommodations) contractual relationship in full — captured at heading level only",
+    "whether the accessibility request mechanism is reachable in the booking flow",
+    "the standalone Accessibility Statement"
+  ]
+}

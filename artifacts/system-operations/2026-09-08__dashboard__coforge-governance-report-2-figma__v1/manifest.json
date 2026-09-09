@@ -1,0 +1,80 @@
+{
+  "id": "ART-027",
+  "type": "dashboard",
+  "workstream": "system-operations",
+  "version": 1,
+  "title": "CoForge governance Report 2 — four analytics frames published to FigJam (project summary, agentic blueprint, competitor analysis, contract & adoption)",
+  "file": "f1_summary.svg",
+  "status": "draft",
+  "created": "2026-09-08",
+  "owner_agent": "main session",
+  "level": 1,
+  "published_surface": {
+    "tool": "Figma (FigJam)",
+    "file": "AI Workflows for UX",
+    "file_key": "O7lZiTDS2figc9GBRbuHsF",
+    "page": "5. Testing Round 2 - Raquel Agents",
+    "section": "3rd Test wave — CoForge — Report 2 (measured 2026-09-08)",
+    "section_node": "864:15148",
+    "nodes": {
+      "f1_summary": "866:16971",
+      "f2_blueprint": "866:16777",
+      "f3_competitor": "866:16645",
+      "f4_contract": "866:16523"
+    },
+    "url": "https://www.figma.com/board/O7lZiTDS2figc9GBRbuHsF/AI-Workflows-for-UX?node-id=864-15148",
+    "boundary": "ONE-WAY. Claude Design/Code to Figma has no automated diff-back. Figma now owns these four frames; editing them there will not flow back into this repository, and re-running the pipeline OVERWRITES rather than merges. The SVGs in this directory are the exact bytes imported, verified by checksum at import time.",
+    "placement": "Additive only. Four frames appended to section 864:15148; nothing on the page was removed. An earlier pass DID delete two nodes that were not mine by clearing the section's children instead of removing four known ids — see validation.md."
+  },
+  "scope": "CoForge only (~/Projects/coforge), 2026-08-25 to 2026-09-08. The Hermes/Luma predecessor is a separate workflow and is deliberately NOT measured here; Report 1 on the same page reports that other body of work and was left untouched.",
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-024",
+      "ART-025",
+      "ART-026"
+    ],
+    "decisions": [
+      "ADR-007",
+      "ADR-012",
+      "ADR-014",
+      "ADR-021",
+      "ADR-022"
+    ],
+    "sources": [
+      "~/.claude/projects/-Users-raquelpalis-Projects-coforge/*.jsonl (deduplicated by message uuid)",
+      "git history of this repository",
+      "validation/corrections.json",
+      "validation/standing-rules.json",
+      "design-system/component-index.json",
+      "design-system/tokens/tokens.json",
+      "design-system/foundations/brand.md",
+      "artifacts/*/*/manifest.json"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "measurement": {
+    "frozen_at": "2026-09-08 13:23",
+    "counting_rule": "every transcript record counted once, keyed on message uuid; the four transcripts are nested forks",
+    "corroboration": "The repository's own collector (validation/collect-metrics.py), repaired and self-tested independently, reports 7.12M output tokens and 2.90B cache reads for the same corpus. This board's independent count agrees within 2%; the gap is the minutes between the two runs.",
+    "pricing": "Opus 5 list: $5.00/M input, $25.00/M output, cache read 0.1x input ($0.50/M), cache write 2x input at one-hour TTL ($10.00/M). Multipliers taken from the claude-api skill, not from memory. ILLUSTRATIVE ONLY — nothing was billed at these rates.",
+    "headline": {
+      "unique_records": 12614,
+      "user_turns": 441,
+      "assistant_turns": 5740,
+      "tool_calls": 2516,
+      "output_tokens": 7126415,
+      "cache_read": 2902536151,
+      "illustrative_cost_usd_1h_ttl": 2213.18,
+      "active_hours_distinct_minutes": 23.1,
+      "elapsed_span_by_day_hours": 91.3
+    },
+    "freeze": "pipeline/build-dataset.py carries an explicit FREEZE cutoff. The corpus this board measures includes the session that builds it, so without a pinned cutoff the figures moved on every run and the output never settled. The build is now reproducible: three consecutive runs are byte-identical."
+  },
+  "typography": "CoForge only. Anek Latin carries every word (display and body — single-family by OQ-2, resolved 2026-08-27). Source Code Pro carries every number, because Anek's digits are proportional: measured in this Figma file at 28px a '1' is 40.3% narrower than a '0', and Figma has no font-variant-numeric.",
+  "open_items": [
+    "brand.md records the Anek digit-width gap as 7.7% citing ART-006; measured in Figma it is 40.3%. One of the two is wrong or they measure different things. Logged for verification; it does not change the rule.",
+    "No agent holds a Figma tool (ADR-007 deferred the grant until a real file existed; it now does). This board was produced by the main session.",
+    "Neither verify-svg.mjs nor verify-frames.mjs is covered by the machinery hash — check 5g never descends into artifacts/ (recorded as W-3 in validation/attestation.json)."
+  ]
+}

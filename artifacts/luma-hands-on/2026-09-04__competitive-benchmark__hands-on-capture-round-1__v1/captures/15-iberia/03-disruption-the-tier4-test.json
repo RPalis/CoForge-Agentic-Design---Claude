@@ -1,0 +1,63 @@
+{
+  "competitor": "Iberia",
+  "capture": "s5/s7 — disruption posture. THE tier-4 test.",
+  "url": "https://www.iberia.com/es/cambios-y-reembolsos/",
+  "captured_at": "2026-09-04T13:46Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F56_THE_SENTENCE_THAT_STOPS": {
+    "claim": "Iberia explicitly distinguishes voluntary changes from operational disruption, states that the traveller's rights are different, and then provides no route to them.",
+    "evidence_verbatim_es": "La información de esta página está enfocada a cambios y reembolsos voluntarios. Si tu viaje se ha visto afectado por causas operativas, tus derechos y las opciones disponibles son diferentes",
+    "translation": "The information on this page is focused on VOLUNTARY changes and refunds. If your trip has been affected by OPERATIONAL CAUSES, your rights and the available options are different",
+    "the_gap": "Searched every link on this page for '261', 'derecho', 'compensa', 'reclama', 'incidencia' — ZERO matches. The sentence acknowledges a different regime and does not link to it.",
+    "confidence": "Verified",
+    "why_it_matters_MOST": "This is the moment of maximum traveller anxiety — my flight was cancelled and it was not my fault — and the airline's own changes-and-refunds page identifies that state precisely, tells the traveller their situation is different, and stops. It is not a disclaimer. It is a correct statement followed by a dead end.",
+    "how_it_settles_the_tier_4_question": "The tier-4 hypothesis was binary: intermediaries disclaim the failure moment, so does the OPERATOR own it? The answer observed is neither. Iberia does not disclaim — it cannot, EU 261 binds it — but nor does it OPERATIONALISE the moment on the surface a traveller reaches. It acknowledges and abandons."
+  },
+
+  "search_record_for_the_null": {
+    "why_recorded": "A null on the central test of an entire roster tier must be auditable, not asserted.",
+    "surfaces_searched": [
+      "iberia.com/es/ homepage — 237 link labels after full scroll",
+      "iberia.com/es/preguntas-frecuentes/ — 130 link labels",
+      "iberia.com/es/cambios-y-reembolsos/ — full page text, 5,880 chars, plus all link labels"
+    ],
+    "terms": ["261", "reglamento", "derechos de los pasajeros", "compensación", "indemnización",
+              "cancelación por", "gran retraso", "overbooking", "denegación de embarque", "reclamación", "incidencia"],
+    "result": "No match in navigation, FAQ index, or the changes-and-refunds page — other than the single acknowledgement sentence quoted above, which itself contains none of these terms.",
+    "what_this_does_NOT_establish": "That Iberia has no EU 261 page. It certainly does; airlines are legally required to inform passengers. What is established is that it is NOT REACHABLE from the three surfaces a traveller in trouble would most plausibly try. That is a findability finding, not a compliance one."
+  },
+
+  "what_the_page_DOES_cover": {
+    "scope": "voluntary changes and refunds only, by the page's own statement",
+    "process_verbatim_es": ["Identifica tu reserva", "Elige la gestión que necesitas", "Recibe la confirmación"],
+    "translation": ["Identify your booking", "Choose the action you need", "Receive confirmation"],
+    "channels": ["Gestión online", "Gestión telefónica", "Oficinas de reservas — sole channel for certain cases"],
+    "refund_route_verbatim_es": "Solicita el reembolso de tu vuelo en la forma de pago utilizada al comprar tu billete, y en Bono reembolso si adquiriste el extra de 'Billete Flexible'. En caso de que tu tarifa no permita e[l reembolso]...",
+    "note": "Refund to original payment method, or to a voucher if the 'Flexible Ticket' extra was purchased — and a truncated clause covering fares that do not permit refunds at all. The Turista Básica fare the Kayak handoff pre-selected (F-51) is the fare most likely to fall into that last category. NOT VERIFIED — the fare rules were not opened."
+  },
+
+  "finding_F57_THE_CHAIN_ACROSS_FIVE_COMPETITORS": {
+    "claim": "Traced end to end, the traveller's protection degrades at every hop and is never displayed at any of them.",
+    "the_chain_observed_in_this_round": [
+      "1. Kayak ranks on price and duration and shows both on the control (F-42) — but not protection (F-49).",
+      "2. The cheapest result may be a KAYAK Mix with no carrier owning the journey (F-47).",
+      "3. The handoff pre-selects the airline's least flexible fare and calls it the traveller's choice (F-51).",
+      "4. The airline's changes page states that operational disruption is a different regime — and does not link to it (F-56).",
+      "5. Booking.com's terms disclaim flight liability outright; Expedia sells anxiety relief at checkout (F-03, F-22)."
+    ],
+    "confidence": "Verified — each link in the chain is an individually verified capture in this round.",
+    "for_luma": "The scenario's business objective is 'reducing travel stress and helping users confidently navigate every stage'. This chain IS the stress, and no participant in it is lying or failing individually — each is behaving reasonably within its own scope. The gap is that nobody holds the whole chain. That is the clearest statement of Luma's opportunity produced by this round, and it is evidenced at five points across five products."
+  },
+
+  "not_observed_and_owed": [
+    "Iberia's actual EU 261 / passenger rights page, if reachable by search rather than navigation",
+    "Iberia Club loyalty tier structure",
+    "Mis viajes authenticated view",
+    "whether Turista Básica permits any refund at all",
+    "American Airlines and Qatar — the other two tier-4 products, which test whether F-56 is Iberia-specific"
+  ]
+}

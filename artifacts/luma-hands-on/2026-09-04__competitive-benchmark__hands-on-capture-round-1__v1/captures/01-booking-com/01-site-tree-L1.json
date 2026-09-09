@@ -1,0 +1,55 @@
+{
+  "competitor": "Booking.com",
+  "capture": "s0-site-tree-L1",
+  "captured_at": "2026-09-04T10:54Z",
+  "captured_by": "main session via claude-in-chrome (user's authenticated Chrome)",
+  "url": "https://www.booking.com/",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 5393, "links": 300, "buttons": 86, "inputs": 11 },
+  "consent_banner_present": false,
+  "product_lines": {
+    "Stays": "/",
+    "Flights": "/pxgo",
+    "Flight + Hotel": "/pxgo",
+    "Car rental": "/cars/",
+    "Attractions": "/attractions/",
+    "Airport transfers": "/taxi/",
+    "Restaurant reservations": "/",
+    "Discover": "/discover.html",
+    "Extended / monthly stays": "/extended-stays/"
+  },
+  "loyalty_and_account": {
+    "Genius loyalty program": "/genius.html",
+    "Manage your trips": "/mytrips.html",
+    "Customer support": "/help.html",
+    "Traveller Review Awards": "/traveller-awards/"
+  },
+  "legal_and_policy": {
+    "Terms of Service": "/content/terms.html",
+    "Privacy Notice": "/content/privacy.html",
+    "Accessibility Statement": "/content/accessibility_statement.html",
+    "Dispute resolution": "/content/complaints.html",
+    "Modern Slavery Statement": "/modern-slavery-statement/",
+    "Human Rights Statement": "/about/compliance-and-ethics/human-rights/",
+    "Content guidelines and reporting": "/content-moderation-policy/overview-page.html",
+    "Manage cookie settings": "/content/privacy.html",
+    "Manage personalized recommendations": "REDACTED_BY_EXTENSION (base64 param)"
+  },
+  "luma_capability_coverage": {
+    "flights": "present",
+    "transport_on_site": "partial — Airport transfers (/taxi/) and Car rental (/cars/); NO public-transport ticketing observed at L1",
+    "accommodation_on_site": "present",
+    "activities_experiences": "present — Attractions (/attractions/)"
+  },
+  "not_observed_at_this_level": [
+    "public transport ticket purchase",
+    "airport interior navigation / wayfinding",
+    "security wait times",
+    "lounge or Fast Track booking"
+  ],
+  "method_notes": [
+    "hrefs carrying query strings are redacted by the browser extension; captured pathname only, which is what a site tree requires and collects less.",
+    "session/auth state could not be read programmatically (extension blocks keys it reads as session-related). Recorded visually instead."
+  ]
+}

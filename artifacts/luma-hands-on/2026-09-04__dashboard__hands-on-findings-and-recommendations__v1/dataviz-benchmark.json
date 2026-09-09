@@ -1,0 +1,484 @@
+{
+  "record": "dataviz encoding benchmark for ART-026",
+  "rounds": [
+    {
+      "record": "dataviz encoding benchmark — round 4",
+      "date": "2026-09-07",
+      "source": {
+        "name": "The Data Visualisation Catalogue",
+        "url": "https://datavizcatalogue.com",
+        "author": "Severino Ribecca",
+        "retrieved": "2026-09-07",
+        "method": "raw HTML fetched from the origin (sitemap.xml, /search/<function>.html, /methods/<chart>.html, /blog/*). Consent banner NOT accepted; no cookie was granted. Page-rendered DOM was consent-walled, so every quotation below comes from the served HTML, not from a screenshot.",
+        "surface": "chrome-devtools (signed out, extension-clean) per CLAUDE.md browser-surface rule",
+        "scope_confirmed": {
+          "method_pages_in_sitemap": 60,
+          "function_pages": 16,
+          "note": "60 English /methods/ pages; the catalogue is a chart-selection reference, not a style or interaction guide. It supplies selection rules and per-chart caveats. It supplies no interaction patterns — those remain sourced from rounds 1-3."
+        }
+      },
+      "taxonomy_function_to_charts": {
+        "comparisons": [
+          "bar_chart",
+          "box_plot",
+          "bubble_chart",
+          "bullet_graph",
+          "line_graph",
+          "marimekko_chart",
+          "multiset_barchart",
+          "nightingale_rose_chart",
+          "parallel_coordinates",
+          "population_pyramid",
+          "radar_chart",
+          "radial_bar_chart",
+          "radial_column_chart",
+          "span_chart",
+          "stacked_area_graph",
+          "stacked_bar_graph",
+          "chord_diagram",
+          "choropleth",
+          "donut_chart",
+          "dot_matrix_chart",
+          "heatmap",
+          "parallel_sets",
+          "pictogram",
+          "pie_chart",
+          "area_chart",
+          "tally_chart",
+          "treemap",
+          "venn_diagram"
+        ],
+        "proportions": [
+          "bubble_chart",
+          "bubble_map",
+          "circle_packing",
+          "dot_matrix_chart",
+          "nightingale_rose_chart",
+          "area_chart",
+          "stacked_bar_graph",
+          "wordcloud",
+          "donut_chart",
+          "marimekko_chart",
+          "parallel_sets",
+          "pie_chart",
+          "sankey_diagram",
+          "treemap"
+        ],
+        "relationships": [
+          "heatmap",
+          "marimekko_chart",
+          "parallel_coordinates",
+          "radar_chart",
+          "venn_diagram",
+          "arc_diagram",
+          "brainstorm",
+          "chord_diagram",
+          "connection_map",
+          "network_diagram",
+          "non_ribbon_chord_diagram",
+          "tree_diagram",
+          "bubble_chart",
+          "scatterplot"
+        ],
+        "hierarchy": [
+          "circle_packing",
+          "sunburst_diagram",
+          "tree_diagram",
+          "treemap"
+        ],
+        "part_to_a_whole": [
+          "donut_chart",
+          "marimekko_chart",
+          "pie_chart",
+          "stacked_bar_graph",
+          "sunburst_diagram",
+          "treemap"
+        ],
+        "distribution": [
+          "box_plot",
+          "bubble_chart",
+          "density_plot",
+          "dot_matrix_chart",
+          "histogram",
+          "multiset_barchart",
+          "parallel_sets",
+          "pictogram",
+          "stem_and_leaf_plot",
+          "tally_chart",
+          "timeline",
+          "violin_plot",
+          "dot_map",
+          "connection_map",
+          "flow_map",
+          "population_pyramid",
+          "wordcloud"
+        ],
+        "range": [
+          "box_plot",
+          "bullet_graph",
+          "candlestick_chart",
+          "error_bars",
+          "gantt_chart",
+          "kagi_chart",
+          "OHLC_chart",
+          "span_chart",
+          "violin_plot"
+        ],
+        "patterns": [
+          "arc_diagram",
+          "area_graph",
+          "bar_chart",
+          "box_plot",
+          "bubble_chart",
+          "candlestick_chart",
+          "choropleth",
+          "connection_map",
+          "density_plot",
+          "dot_map",
+          "dot_matrix_chart",
+          "heatmap",
+          "histogram",
+          "kagi_chart",
+          "line_graph",
+          "multiset_barchart",
+          "OHLC_chart",
+          "parallel_coordinates",
+          "point_and_figure_chart",
+          "population_pyramid",
+          "radar_chart",
+          "scatterplot",
+          "spiral_plot",
+          "stacked_area_graph",
+          "stream_graph",
+          "timeline",
+          "violin_plot"
+        ],
+        "movement": [
+          "connection_map",
+          "flow_map",
+          "parallel_sets",
+          "sankey_diagram"
+        ],
+        "how_things_work": [
+          "flow_chart",
+          "illustration_diagram",
+          "sankey_diagram"
+        ],
+        "methods": [
+          "flow_chart",
+          "gantt_chart",
+          "illustration_diagram",
+          "parallel_sets",
+          "sankey_diagram"
+        ],
+        "concepts": [
+          "brainstorm",
+          "flow_chart",
+          "illustration_diagram",
+          "venn_diagram"
+        ],
+        "location": [
+          "bubble_map",
+          "choropleth",
+          "connection_map",
+          "dot_map",
+          "flow_map"
+        ],
+        "time": [
+          "area_graph",
+          "bubble_chart",
+          "candlestick_chart",
+          "gantt_chart",
+          "heatmap",
+          "line_graph",
+          "nightingale_rose_chart",
+          "OHLC_chart",
+          "spiral_plot",
+          "stacked_area_graph",
+          "stream_graph",
+          "calendar",
+          "timeline",
+          "timetable"
+        ],
+        "text": [
+          "wordcloud"
+        ],
+        "reference": [
+          "calendar",
+          "gantt_chart",
+          "timetable",
+          "tree_diagram",
+          "stem_and_leaf_plot"
+        ]
+      },
+      "selection_rule_variable_count": {
+        "source_page": "https://datavizcatalogue.com/blog/selecting-a-chart-based-on-the-number-of-variables/",
+        "rule": "Chart choice begins by counting variables in the dataset; the catalogue publishes a summary table binding variable count to chart family.",
+        "two_variables": [
+          "bagplot",
+          "connected_scatterplot",
+          "correlation_matrix",
+          "heatmap",
+          "hexagonal_binning",
+          "marimekko_chart",
+          "scatterplot"
+        ],
+        "three_variables": [
+          "bubble_chart",
+          "contour_plot",
+          "correlation_matrix_colour_shaded",
+          "ternary_graph",
+          "connected_ternary_graph"
+        ],
+        "four_variables": [
+          "bubble_chart_colour_shaded",
+          "ternary_bubble_graph",
+          "ternary_contour_graph"
+        ],
+        "many_variables": [
+          "chernoff_faces",
+          "custom_marker_design",
+          "parallel_coordinates",
+          "radar_chart"
+        ],
+        "caveat_quoted": "the catalogue states deciding on what chart to use is not as simple as identifying which chart can display the right number of variables, calling it a helpful starting point only"
+      },
+      "rulings_against_our_own_proposals": [
+        {
+          "id": "R4-01",
+          "proposal": "Loyalty ladders drawn as span charts, first-timer marked at zero",
+          "verdict": "REJECTED by the source's own caveat",
+          "source_caveat": "Span Chart page: span charts focus the reader on only the extreme values and give no information on the data points between the minimum and maximum values",
+          "why_it_kills_it": "The intermediate tiers ARE the finding. Booking Genius reaching priority support only at Level 3 is a statement about a middle rung. A span chart deletes exactly the data the finding rests on.",
+          "replacement": "Dot graph on one shared axis — one dot per tier per programme, the first-timer marked at 0. Listed by the catalogue under Comparisons in the Chart Selection Guide.",
+          "correction_of": "my own round-3 proposal"
+        },
+        {
+          "id": "R4-02",
+          "proposal": "Coverage shown as pictogram / unit charts",
+          "verdict": "NARROWED — dot matrix, not pictogram",
+          "source_caveat": "Pictogram Chart page names two things to avoid: using them for large data sets, which makes values hard to count; and displaying partial icons, as this adds confusion.",
+          "why_it_matters_here": "Coverage denominators are 136 stages, 119 states, 68 types. 25/136 and 8/119 do not reduce to whole icons at any sane icon value, so a pictogram would have to draw partial icons — the exact thing the source says to avoid.",
+          "replacement": "Dot Matrix Chart. The source states that with one category and all dots the same colour it is used primarily to show proportions, which is the shape of coverage.",
+          "correction_of": "my own round-3 proposal"
+        },
+        {
+          "id": "R4-03",
+          "proposal": "Competitor x theme matrix drawn as a Marimekko",
+          "verdict": "REJECTED",
+          "source_caveat": "Marimekko page: the main flaws are that they can be hard to read, especially when there are many segments, and it is hard to accurately compare segments as they are not all arranged along a common baseline; better suited to a general overview.",
+          "why_it_kills_it": "17 competitors x 11 themes is 187 segments, and the dashboard's purpose is per-cell comparison, not general overview.",
+          "replacement": "Seriated matrix with text cells (Framework Analysis), already the plan of record."
+        },
+        {
+          "id": "R4-04",
+          "proposal": "A capability radar per competitor",
+          "verdict": "REJECTED",
+          "source_caveat": "Since Radar Charts use a polar grid, they are not as good at comparing values across as graphs that use a cartesian coordinates system.",
+          "why_it_kills_it": "Cross-competitor comparison is the whole job of this dashboard."
+        },
+        {
+          "id": "R4-05",
+          "proposal": "Coverage against the plan's target",
+          "verdict": "CONFIRMED — bullet graph",
+          "source_support": "Bullet Graph page: developed by Stephen Few as an alternative to dashboard gauges; feature measure encodes the value by length, the comparative measure is a target marker, segmented bars behind carry qualitative range scores; keep performance ranges to a maximum of five.",
+          "fit": "ART-024 specified 136 stages, 68 types, 119 states. We reached 25, 47, 8. That is literally value-versus-target, which is the chart's stated job. Constraint adopted: at most five qualitative ranges."
+        },
+        {
+          "id": "R4-06",
+          "proposal": "Draw the finding-corrects-finding relation graph",
+          "verdict": "STILL BLOCKED — and independently corroborated",
+          "source_support": "In a 60-method catalogue the sole chart listed under the Text function is the word cloud. The Connections family (arc diagram, network diagram, chord, hive plot) all presuppose an existing edge list.",
+          "why_it_matters": "The catalogue offers nothing that turns free text into a relation. This is a fourth independent source agreeing that the 71 prose-buried relations must be typed into fields before any relational chart exists. It does not soften the Phase 0 requirement; it confirms it."
+        }
+      ],
+      "what_this_source_does_not_supply": [
+        "Interaction patterns. The catalogue is selection-only: no brushing, linking, focus+context, or animation guidance anywhere in the 60 method pages or the two selection guides.",
+        "Colour or accessibility rules. Nothing on contrast, colour-blind safety, or encoding redundancy — those stay sourced from Primer, USWDS, GOV.UK Analysis Function and WCAG 1.4.1 per ADR-021.",
+        "Empirical evidence. The caveats are the author's design judgement, stated without study citations. They are used here as design heuristics, not as measured findings."
+      ]
+    },
+    {
+      "record": "dataviz encoding benchmark — round 5",
+      "date": "2026-09-07",
+      "source": {
+        "name": "Flourish",
+        "url": "https://flourish.studio",
+        "owner": "Canva UK Operations Ltd",
+        "retrieved": "2026-09-07",
+        "method": "rendered DOM read from the live site. Flourish blocks cross-origin fetch, so unlike round 4 this had to be read from the page itself. The cookie banner offered Reject All and Reject All was clicked; no non-essential cookie was granted and nothing was accepted on the user's behalf.",
+        "surface": "chrome-devtools (signed out, extension-clean) per CLAUDE.md browser-surface rule",
+        "pages_read": [
+          "https://flourish.studio/visualisations/",
+          "https://app.flourish.studio/templates  (public, no login)",
+          "https://flourish.studio/accessibility/"
+        ],
+        "what_kind_of_source_this_is": "A commercial product, not a reference work. Its taxonomy is what a market leader decided was worth building and selling; its accessibility page is a vendor statement about its own product. Per the standing rule, vendor claims about a vendor's own product are recorded as vendor claims, never as fact. Nothing here is treated as measured evidence."
+      },
+      "taxonomy_two_axes": {
+        "note": "Flourish files every template on two independent axes at once — visual form and job. datavizcatalogue files on one (function). The second axis is the part we did not have.",
+        "type_visual_form": [
+          "3D",
+          "Animated",
+          "Areas",
+          "Bars",
+          "Circles",
+          "Icons",
+          "Images",
+          "Interactive content",
+          "Lines",
+          "Maps",
+          "Pies",
+          "Radial",
+          "Small multiples",
+          "Text"
+        ],
+        "purpose_job": [
+          "Annotation",
+          "Change over time",
+          "Comparison",
+          "Correlation",
+          "Counter",
+          "Distribution",
+          "Engagement",
+          "Exploration",
+          "Flow",
+          "Hierarchy",
+          "Magnitude",
+          "Part-to-whole",
+          "Ranking"
+        ]
+      },
+      "finding_purposes_datavizcatalogue_cannot_name": {
+        "id": "R5-01",
+        "statement": "Five of Flourish's thirteen purposes have no counterpart in datavizcatalogue's sixteen functions: Annotation, Counter, Engagement, Exploration, Ranking.",
+        "why_it_matters_here": "Two of those five are exactly what ART-026 has to do and what round 4 had no vocabulary for. Annotation is the job of putting an explanatory layer on top of content. Exploration is the job of letting a reader interrogate a dataset rather than read a conclusion. A reference catalogue organised purely by data shape cannot name either, because neither is a data shape — they are reader tasks. This is the gap round 4 left open, and it is why round 4 produced no interaction guidance at all.",
+        "status": "structural observation, verifiable by comparing the two published lists"
+      },
+      "interaction_vocabulary_observed": {
+        "id": "R5-02",
+        "method": "read off the template variant names in the public catalogue, which encode the interaction in the name",
+        "patterns": {
+          "filter": [
+            "Bar chart (with filter)",
+            "Scatter with filter",
+            "World (with filter)",
+            "Heatmap with filter",
+            "Radar with filter",
+            "Parallel coordinates with filter"
+          ],
+          "highlight": [
+            "Column chart (with highlight)",
+            "Line chart (with highlight)",
+            "Area chart (with color highlight)",
+            "Treemap with highlighting",
+            "Grid of quadrant charts with highlighting",
+            "Alluvial highlighted link",
+            "Bar chart race (with highlight)",
+            "Row highlight",
+            "Directional/Non-Directional Highlight Chord"
+          ],
+          "search": [
+            "Line chart (searchable)",
+            "Searchable table with charts"
+          ],
+          "hover_and_popup": [
+            "Cards: Content on hover",
+            "Cards: Content on flip",
+            "Interactive SVG: With popups",
+            "Marker map: Custom popups"
+          ],
+          "side_panel": [
+            "Interactive SVG: With side panel",
+            "Text annotator: Side panel"
+          ],
+          "reveal_layer": [
+            "Interactive SVG: With reveal layer"
+          ],
+          "time_slider": [
+            "Donut chart with time slider",
+            "World (time slider)",
+            "Polar chart with time slider"
+          ],
+          "small_multiples": [
+            "Grid of area/bar/column/line/pie/donut charts",
+            "Grid of charts with shading",
+            "Grid of quadrant charts"
+          ]
+        },
+        "reading": "Seven interaction primitives carry essentially the whole catalogue: filter, highlight, search, hover/popup, side panel, reveal, time slider. It is a short list, and it is the list round 4 could not supply."
+      },
+      "rulings": [
+        {
+          "id": "R5-03",
+          "subject": "Bullet graph for coverage-against-plan",
+          "verdict": "CONFIRMED a second time, independently",
+          "evidence": "Flourish ships a template named 'Performance vs target bars'. Round 4 reached the same chart from Stephen Few's specification via datavizcatalogue. Two unrelated sources, same answer for the same data shape."
+        },
+        {
+          "id": "R5-04",
+          "subject": "Round 4's replacement for the rejected span chart — a dot graph on one shared axis for loyalty tiers",
+          "verdict": "CONFIRMED, with three shipped forms to choose between",
+          "evidence": "Cleveland dot plot, Connected dot plot, and Lollipop chart (horizontal) all appear in the Scatter family. Arrow plot is a fourth if the emphasis is movement between two points rather than position.",
+          "consequence": "The R4-01 correction now rests on two sources rather than one."
+        },
+        {
+          "id": "R5-05",
+          "subject": "The seriated Framework Analysis matrix with text cells",
+          "verdict": "PRECEDENT EXISTS — it is a table, not a chart, and the catalogue treats it that way",
+          "evidence": "Flourish files Table as its own template family with variants: Simple, Table with charts, Numeric shading, With images, Searchable table with charts, Row highlight. Separately it ships Categorical heatmap, Numeric heatmap and Heatmap with filter.",
+          "consequence": "The matrix does not have to become a heatmap to be a visualisation. 'Table with charts' plus 'Row highlight' plus 'Numeric shading' is the shipped shape of exactly what we specified, and it keeps the text cells the Framework Analysis method requires. Under ADR-021 that table is an ordinary component and the membrane applies to it — it is read as values, not drawn by a plotting grammar."
+        },
+        {
+          "id": "R5-06",
+          "subject": "The free-text problem round 4 declared unsolved",
+          "verdict": "A SECOND RESOLUTION EXISTS, and it is not a chart",
+          "evidence": "Flourish ships a 'Text annotator' template with two variants, Inline blocks and Side panel. It also ships Word cloud, as datavizcatalogue does.",
+          "reading": "Round 4 concluded that in a 60-method reference the only chart for text is the word cloud. That still holds. But Flourish's answer to the same problem is not to chart the prose at all — it is to keep the prose and lay the structure over it, inline or in a side panel. That is a genuinely different resolution and it is available to us today, before the 71 relations are typed.",
+          "consequence": "It does NOT unblock the relation graph — a network diagram still needs an edge list. It does mean the dashboard is not obliged to wait for Phase 0 to show structure over the findings.",
+          "does_not_change": "Phase 0 remains required for any relational chart."
+        },
+        {
+          "id": "R5-07",
+          "subject": "Uncertainty and confidence encoding",
+          "verdict": "OPTION SURFACED",
+          "evidence": "Forest plot is filed under Scatter. Barcode plot is filed under Bars.",
+          "relevance": "Both are candidates for the Verified / Likely / Not-Verified confidence data — but C-042 stands: the data holds 169 Verified, 1 Likely, 0 Not-Verified, so any three-tier encoding still renders a tri-state over a near-constant. Recorded as available, not as adopted."
+        }
+      ],
+      "accessibility_vendor_statement": {
+        "id": "R5-08",
+        "status": "VENDOR CLAIM about the vendor's own product — recorded as a claim, not as fact",
+        "quoted_position": "Flourish states that instead of a blanket WCAG AA certification it focuses on enabling and guiding users, because the final accessibility level also depends on user choices like colour palettes, descriptive titles and clear annotations.",
+        "why_this_matters_to_ADR_021": "ADR-021's open item says no check enforces the encoding contract yet, and that until one exists the contract is prose. Flourish's position is the commercial version of the same admission: a market leader with an Accessibility Conformance Report declines to certify chart accessibility at the tool level, because it is decided per artifact. That is an argument for the per-artifact adversarial pass ADR-021 item 4 already requires, and against ever treating a token-level palette fix as sufficient.",
+        "feature_checklist_worth_adopting": [
+          "screen-reader description naming the chart type and its purpose",
+          "titles, subtitles and annotations read out by default",
+          "keyboard navigation through individual data points",
+          "the underlying data downloadable as CSV",
+          "reduced-motion support",
+          "auto-contrasting labels with a text-stroke fallback"
+        ]
+      },
+      "checked_against_our_own_artifact": {
+        "artifact": "ART-026 luma-competitor-research-findings.html",
+        "method": "grep against the published file, 2026-09-07",
+        "results": {
+          "prefers-reduced-motion": "present",
+          "aria-label": "193 occurrences",
+          "role=": "183 occurrences",
+          "tabindex": "185 occurrences",
+          "aria-describedby": "0 — nothing bound, consistent with there being no charts yet",
+          "svg": "0 — still no charts, as already established",
+          "data download": "0 — NO CSV or data download of any kind"
+        },
+        "gap_found": "Data download is the one item on Flourish's checklist that ART-026 does not have in any form. Everything else on that list is either already present or not yet applicable. It is also the cheapest of the six to add and the only one that helps a reader who cannot use the visual encoding at all."
+      },
+      "what_this_source_does_not_supply": [
+        "Empirical evidence of any kind. Flourish is a product catalogue and a vendor accessibility page. Nothing here is a study.",
+        "Encoding rules with numbers. No contrast ratios, no mark-count ceilings, no palette specifications. Those stay with Primer, USWDS, GOV.UK Analysis Function and WCAG 1.4.1 per ADR-021.",
+        "Any reason to change the chart choices made in round 4. It confirmed two of them and contradicted none."
+      ]
+    }
+  ]
+}

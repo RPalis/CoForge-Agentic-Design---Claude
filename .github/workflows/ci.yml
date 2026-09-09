@@ -83,6 +83,13 @@ jobs:
       - name: Figma token file is current
         run: python3 validation/build-figma-tokens.py --check
 
+      - name: Standing rules reach every agent
+        # Before this existed, 2 of 14 agent definitions mentioned the corrections
+        # ledger. A generated briefing block is only worth anything if drift is
+        # caught, so the generator runs in --check mode here and fails on either
+        # an out-of-date agent file or a correction no rule accounts for.
+        run: python3 validation/build-agent-briefing.py --check
+
       - name: System audit (severity-ranked)
         run: python3 validation/audit-system.py --report
 

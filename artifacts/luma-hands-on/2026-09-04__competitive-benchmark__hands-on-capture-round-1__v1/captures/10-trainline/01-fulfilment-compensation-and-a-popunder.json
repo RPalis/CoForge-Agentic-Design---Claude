@@ -1,0 +1,69 @@
+{
+  "competitor": "Trainline",
+  "capture": "s0 + s2/s3 — on-site transport, search to results, Madrid to Barcelona",
+  "captured_at": "2026-09-04T15:32Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en-us — REQUESTED /es, REDIRECTED to /en-us. Locale drift recorded per D-004.",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F90_PROACTIVE_COMPENSATION_NOTIFICATION": {
+    "claim": "Trainline offers to notify the traveller when they QUALIFY FOR DELAY COMPENSATION — not merely when a delay occurs.",
+    "evidence_verbatim": ["Get notified instantly in case of delay or cancellation.",
+                          "Get notified when you qualify for delay compensation."],
+    "confidence": "Verified",
+    "why_this_is_the_answer_to_the_DISRUPTION_THREAD": "F-56 found Iberia naming the operational-disruption regime and providing no route to it. F-57 traced protection degrading at every hop with nobody holding the chain. Hopper sells ownership of that moment as a paid app-only add-on (F-64). Trainline does something none of them does: it watches the traveller's own journey and tells them when a RIGHT they already hold has been triggered. That is not insurance, not a purchase, and not a disclaimer. It is the operator of the booking proactively telling you that you are owed something.",
+    "the_contrast_stated_plainly": {
+      "Iberia (airline, operator)": "'your rights and options are different' — with no link (F-56)",
+      "Booking.com (intermediary)": "points at EU 261 in its terms; disclaims flight liability (F-03, F-04)",
+      "Hopper (specialist)": "sells rebooking and refund as a product, in-app, price unpublished (F-64)",
+      "Trainline (this capture)": "notifies you, unprompted, that you qualify"
+    },
+    "for_luma": "This is the cheapest, most transferable disruption feature observed in the entire round. It requires no inventory, no balance sheet and no insurance licence — only knowing the traveller's itinerary and the compensation rules. Luma's scenario already assumes it holds the itinerary. This is the strongest single candidate for 'reducing travel stress' that is both unoccupied in air and already proven in rail."
+  },
+
+  "finding_F91_PRE_CHECKED_CROSS_SELL_FIRES_A_POPUNDER": {
+    "claim": "Trainline's search form carries a PRE-CHECKED Booking.com Genius cross-sell which, on search, opened a Booking.com hotel search in the original tab — with dates that are not the travel dates.",
+    "evidence": {
+      "the_control": "'Get up to 20% off stays with Genius' with a Booking.com badge, checkbox CHECKED by default in the search form",
+      "the_result_url_fragment": "label=popunder-see-947001-click_destid-homepageSE — the vendor's own tracking label contains the word POPUNDER",
+      "the_dates_served": "checkin=2026-09-04, checkout=2026-09-05 — today and tomorrow. The journey searched was for a different date entirely.",
+      "the_partnership_parameters": "the Trainline results URL carries partnershipType=accommodation&partnershipSelection=true"
+    },
+    "confidence": "Verified",
+    "assessment": "Three separate problems compound. It is opt-OUT rather than opt-in. It opens a window the traveller did not request, self-labelled as a popunder. And it arrives pre-filled with the WRONG DATES, so the cross-sell is not even useful — a traveller who followed it would be shown tonight's hotels for a trip they are planning for another day.",
+    "why_it_matters_for_business_goal_2": "This IS multi-type trip attachment happening across company lines — the scenario's business goal 2, implemented. And it is implemented as a pre-checked box firing a mis-dated popunder. It demonstrates that the goal is achievable AND that the obvious implementation is hostile. Luma will face the same attach incentive.",
+    "pattern_family": "Same family as Expedia's confirmshaming (F-22) and the opposite of Airbnb's neutral priced question (F-72). Third distinct dark-pattern observation in the round."
+  },
+
+  "finding_F92_EFFORT_ATTRIBUTES_ARE_FIRST_CLASS_IN_RAIL": {
+    "claim": "Trainline surfaces duration and change-count per result and offers a 'Direct only' filter.",
+    "evidence": ["3h 23m, 0 changes", "3h 20m", "3h 44m", "3h 2m", "'Direct only' filter"],
+    "confidence": "Verified",
+    "against_the_round": "Consistent with the F-25 correction: effort is structured where it is measurable. Rail, like air, quantifies duration and interchange natively. Accommodation (20 axes, zero effort) and activities (duration in seller prose, F-83) do not.",
+    "note": "Change count is arguably a purer effort measure than duration — for an anxious first-time traveller, 'how many times must I get off and find another platform' is the fear. It is present here as a number and a filter."
+  },
+
+  "fulfilment_status_HONEST_NULL": {
+    "the_tier_3_question": "Tier 3 exists because Trainline was ASSUMED to fulfil an on-site transport ticket end to end — barcode, mobile ticket, live boards.",
+    "what_was_searched": "Results page swept for eticket, e-ticket, mobile ticket, mticket, collect, print, QR, barcode, 'on your phone', digital.",
+    "result": "ZERO matches on the results surface.",
+    "recorded_as": "NOT OBSERVED AT RESULTS LEVEL — explicitly not as absent. Ticket delivery method is normally disclosed at fare selection or checkout, neither of which was reached. The homepage does claim 'Our app's got everything you need to travel' and heavily promotes the app.",
+    "consequence": "The tier-3 justification is NOT yet verified. It remains the open question the tier was created to answer, and must be settled at checkout before any claim that Trainline completes an on-site transport purchase."
+  },
+
+  "other_observations": {
+    "fare_classes": ["Standard", "1st Class"],
+    "operator_named_in_result": "OUIGO España 07415 — the operating carrier is named per result, unlike air meta-search where the aggregator often is not",
+    "age_banding_in_search": "'1 adult (26-59)' with an 'Add railcards' affordance — rail fares depend on age band and discount cards, a granularity no OTA search offers",
+    "multi_leg": "'Via' option in the search form for routing through an intermediate point",
+    "sort_control": "NOT FOUND on the results surface. Recorded as not-observed; a 'Direct only' filter exists."
+  },
+
+  "not_observed": [
+    "checkout, fare selection and ticket delivery — the tier-3 test, still OWED",
+    "live departure boards or platform data",
+    "what the compensation notification actually does when triggered",
+    "whether the Genius popunder can be prevented before searching"
+  ]
+}

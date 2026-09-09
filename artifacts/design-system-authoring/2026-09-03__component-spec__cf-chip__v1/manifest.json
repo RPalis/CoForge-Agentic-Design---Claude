@@ -1,0 +1,51 @@
+{
+  "id": "ART-018",
+  "type": "component-spec",
+  "workstream": "design-system-authoring",
+  "title": "cf-chip — a classification label with no colour channel, and why cf-badge cannot take the job",
+  "file": "chip-component-spec.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "develop",
+  "produced_by": "screen-producer",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "screen-producer",
+    "checked": 10,
+    "found": 3,
+    "skipped": 3,
+    "method": "checked = the 10 contrast pairs in the payload's measurement table, each computed from design-system/tokens/tokens.json release 0.2.0 by resolving the alias chain to a hex and applying WCAG relative luminance (Y = 0.2126R + 0.7152G + 0.0722B on linearised sRGB), ratio = (Yl + 0.05) / (Yd + 0.05), all re-derived on demand by verify-contrast.py in this directory at a tolerance of 0.002. found = 3: (1) cf-badge's four kinds are separated by HUE ONLY — semantic.support.error 4.235:1, .success 4.246:1 and .warning 4.221:1 against palette.bone.default are within 0.025 of each other and therefore luminance-identical (#da1e28 Y=0.159872, #198038 Y=0.159305, #8e6a00 Y=0.160589), so a badge reading 'error' and a badge reading 'success' are indistinguishable in greyscale, in monochrome print, and to a reader with deuteranopia or protanopia — cf-badge cannot reliably carry the four meanings it already has, which is a stronger reason not to extend it than the reserved-scale argument the dispatch supplied; (2) three of those four also fail the 4.5:1 SC 1.4.3 text floor on bone, so a badge LABEL set in semantic.support.error is non-conforming; (3) release 0.2.0 has no radius axis and gate-b.py blocks 'border-radius: <n>px' as raw spacing, so a rounded chip is not expressible on-token at all and the component ships square-cornered by constraint rather than by choice. skipped = 3 checks not run and claimed in neither direction: no render was produced; no screen-reader pass; no forced-colors or greyscale render — the greyscale claim above is derived from measured luminance, which is the correct instrument for it, but no image was produced. Skipped is not passed."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-016"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json",
+      "design-system/contracts/component.schema.json",
+      "design-system/foundations/brand.md"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "this_is_a_proposal": "Nothing here is in design-system/component-index.json and this artifact did not write to it. Promotion is explicit human approval recorded as an ADR (CLAUDE.md, 'The membrane') and screen-producer cannot perform it.",
+    "two_proposals_in_one_artifact": "This payload carries a SECOND proposal — an amendment to the existing cf-badge entry's when_not_to_use and a11y.note. cf-badge is a stable entry that screen-producer does not own and did not edit. The two proposals need separate approvals and separate ADRs; approving cf-chip does not approve the cf-badge amendment. They are filed together because the amendment is only legible next to the measurement that motivates it, and splitting them would have produced an amendment nobody could evaluate.",
+    "why_a_new_workstream": "design-system-authoring did not exist. brand-foundations is the brand and its tokens, design-system-selection is which vendor system to adopt, luma-travel is a client research thread, system-operations is the operating cost of the agent apparatus. A proposal to enter component-index.json is none of those and outlives the board that prompted it. Same reasoning ART-010 recorded when it created system-operations."
+  }
+}

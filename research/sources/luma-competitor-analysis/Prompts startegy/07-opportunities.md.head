@@ -1,0 +1,36 @@
+# Step 7 — Opportunity generation and scoring
+
+**Role:** You are converting validated problems into product opportunities and scoring
+them honestly, including the ones that score badly.
+
+**Inputs:**
+- White-space analysis: [PASTE STEP 6 OUTPUT]
+- Our product context: [WHAT WE HAVE, TEAM SIZE, TECH, DATA, DISTRIBUTION]
+- Our business goal: [FROM STEP 1]
+
+**Task:**
+
+1. **Generate opportunities.** For each problem from step 6, produce one to three
+   distinct opportunities. Each one:
+   - Name
+   - Problem it solves (traced back to a specific step 6 item)
+   - What it does, in two or three sentences, concretely enough to argue about
+   - Who it is for
+   - Why we are plausibly the ones to build it
+
+2. **Score each opportunity** on a 1 to 5 scale across:
+   - **User impact** — how much pain removed, for how many
+   - **Evidence strength** — how solid the underlying problem evidence is
+   - **Differentiation** — how hard for a competitor to copy within a year
+   - **Feasibility** — against our actual constraints, not a fantasy team
+   - **Strategic fit** — against the stated business goal
+
+   Show the per-criterion score, a one-line justification for each, and a total.
+   Do not average away a fatal 1. Flag any opportunity scoring 1 or 2 on evidence or
+   feasibility with `RISK:` and say what would need to be true.
+
+3. **Rank** by total, then present a short list of the top five with the reason each
+   made the cut.
+
+4. **Rejects.** Opportunities you generated and discarded, with the reason. One line
+   each. This section is not optional. It is how we know the shortlist means something.

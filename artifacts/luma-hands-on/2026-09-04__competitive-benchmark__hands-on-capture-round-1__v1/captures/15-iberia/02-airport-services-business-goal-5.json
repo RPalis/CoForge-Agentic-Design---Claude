@@ -1,0 +1,68 @@
+{
+  "competitor": "Iberia",
+  "capture": "s5-travel-day / airport services — the business-goal-5 comparator",
+  "url": "https://www.iberia.com/es/servicios-vip/",
+  "captured_at": "2026-09-04T13:38Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_title_verbatim": "Servicios VIP para la clase Business - Iberia España",
+
+  "finding_F53_AIRPORT_SERVICES_ARE_A_FARE_CLASS_ENTITLEMENT": {
+    "claim": "Iberia's airport services are bundled with Business class, not sold as add-ons. The page title scopes them to a fare class in its own words.",
+    "services_verbatim_es": [
+      "mostradores de check-in diferenciados",
+      "trato preferente en el embarque, desembarque y en la entrega de equipaje",
+      "accesos VIP al control",
+      "Acceso rápido en el control de seguridad",
+      "Premium Lounge"
+    ],
+    "translation": ["dedicated check-in desks", "preferential treatment at boarding, disembarking and baggage delivery",
+                    "VIP access at security control", "fast access at security control", "Premium Lounge"],
+    "no_price_observed": "The page carries no purchase price for any service. Searched for € figures, 'desde', 'precio', 'coste', 'tarifa' — only a generic 'Mejor precio garantizado' (best price guaranteed) appeared, which refers to fares, not services.",
+    "confidence": "Verified",
+    "scope_limit": "One airline, one page, Spanish market. American Airlines and Qatar are untouched and may sell these separately — that is exactly what tier 4 was widened to test."
+  },
+
+  "finding_F54_THE_BUSINESS_GOAL_HAS_A_PROBLEM": {
+    "claim": "Business goal 5 assumes airport services are a purchasable product. On the first supplier examined they are a fare-class entitlement, which changes who Luma would be selling to.",
+    "the_goal_verbatim": "Increase usage of airport services such as lounges and Fast Track (scenario.pdf, Business Goals)",
+    "what_this_capture_implies": "If lounges and Fast Track come free with Business class, then the addressable market for selling them is ECONOMY passengers — a different product entirely, and one already occupied by third-party aggregators (Priority Pass, LoungeKey, DragonPass class of product), none of which is on the roster.",
+    "confidence": "Verified as an observation about Iberia; the market inference is Inferred, from this single capture.",
+    "our_product_decision_required": [
+      "Decision required: is Luma selling airport services to economy travellers — competing with lounge aggregators nobody has analysed — or surfacing entitlements travellers already hold and do not know about? The second is a reassurance feature and needs no inventory. The first is a business Luma has not scoped.",
+      "Decision required: Luma's stated user is a first-time traveller on a limited budget. They are not in Business class. Goal 5 and the target user may be pulling in opposite directions, and that should be settled before design."
+    ],
+    "roster_consequence": "If the answer is 'sell to economy', the roster is missing its comparators entirely — lounge aggregators are absent from all four tiers. Flagged for the roster audit alongside F-45."
+  },
+
+  "finding_F55_FOURTH_AI_ASSISTANT": {
+    "claim": "Iberia ships a chat assistant, 'Ibot', present on this page.",
+    "evidence": ["Avatar de Ibot", "Mensaje de bienvenida", "Abrir chat de Ibot"],
+    "confidence": "Verified",
+    "running_count": "Fourth competitor with a conversational assistant: Booking.com (trip planner / message composer), Expedia (Romie, though absent from its homepage), Kayak (IA, prominent in the header), Iberia (Ibot). Assistant commoditisation is now observed first-hand on four of five products captured."
+  },
+
+  "accessibility_note": {
+    "observation": "Iberia's main navigation carries three dedicated accessibility destinations: /es/accesibilidad/vuelo-con-accesibilidad/, /es/accesibilidad/reservar-asistencia-vuelo/ (how to book assistance) and /es/es/perros-de-asistencia/ (assistance dogs).",
+    "comparison": "Booking.com publishes one accessibility statement that names no standard (F-06). Iberia routes accessibility as an operational service with a booking path, not as a compliance document.",
+    "confidence": "Verified",
+    "note": "Accessibility was descoped from competitor analysis by the client. Recorded as an incidental observation only; not pursued."
+  },
+
+  "disruption_status_HONEST_NULL": {
+    "searched_for": "incidencia, retraso, cancelación, interrupción, derechos, compensación, 261, reclamación across 237 link labels on the homepage after full scroll",
+    "result": "No match in link text.",
+    "recorded_as": "NOT OBSERVED IN NAVIGATION — explicitly NOT as absent. An airline cannot disclaim EU 261 and Iberia certainly documents it somewhere; it is not surfaced in the primary navigation of the Spanish homepage. The FAQ at /es/preguntas-frecuentes/ is the obvious next place and has not been opened.",
+    "why_this_matters": "This is THE tier-4 test and it remains unsettled. It must not be reported as a finding in either direction until the help centre is searched."
+  },
+
+  "not_observed_and_owed": [
+    "disruption and EU 261 posture — the central tier-4 test",
+    "Iberia Club loyalty structure and tier benefits",
+    "Manage booking / Mis viajes authenticated view",
+    "the payment gate on Iberia",
+    "whether Fast Track or lounge access is purchasable anywhere for economy fares"
+  ]
+}

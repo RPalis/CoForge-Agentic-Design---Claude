@@ -21,8 +21,15 @@ __pycache__/
 # Client-owned project. memory/ holds working notes and corrections;
 # the blueprint is a draft with unfilled placeholders. Add them back
 # deliberately if the team needs continuity in the repo.
+#
+# NARROWED 2026-09-09. This was `*.docx`, which was written for the root
+# blueprint below but also caught two RAW SOURCES in research/sources/.
+# Both are hashed in research/sources-manifest.json, so the repo declared
+# two immutable inputs that could not exist in any clone: the integrity
+# check passed on the author's machine and failed in CI, which is the
+# only reason it was found. A pattern excluded more than it was aimed at.
 memory/
-*.docx
+/Luma-Agentic-Design-System-Blueprint.docx
 
 # ── analytics ─────────────────────────────────────────────────
 # Aggregate run records ARE committed (counts only, privacy-checked).

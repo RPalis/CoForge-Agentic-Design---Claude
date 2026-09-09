@@ -1,0 +1,79 @@
+{
+  "competitor": "Qatar Airways",
+  "roster_position": "17 — tier 4, airline direct. FINAL competitor on the roster.",
+  "capture": "s0-site-tree-L1 — airport services and loyalty",
+  "url": "https://www.qatarairways.com/en-gb/homepage.html",
+  "captured_at": "2026-09-04T16:31Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en-gb",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "link_count": 289,
+
+  "finding_F105_STATUS_ITSELF_IS_PURCHASABLE": {
+    "claim": "Qatar Airways sells the loyalty currency, the STATUS points, and a paid subscription to the loyalty programme itself.",
+    "evidence_from_navigation": [
+      "Buy or boost Avios — /en-gb/Privilege-Club/buy-gift-transfer.html",
+      "Buy Qpoints — /en-gb/Privilege-Club/buy-qpoints.html",
+      "Privilege Club Pro — /en-gb/Privilege-Club/privilege-club-pro.html",
+      "Member tiers & benefits — /en-gb/Privilege-Club/membership-tiers.html"
+    ],
+    "confidence": "Verified that these products exist as named destinations. Their mechanics and prices were NOT captured.",
+    "the_progression_across_four_programmes": {
+      "Booking.com Genius": "tenure only — 5 then 15 bookings. Nothing purchasable. Nothing earnable off-platform.",
+      "Expedia One Key": "currency + tier, both earned from bookings only.",
+      "Iberia Club": "currency earnable OFF-PLATFORM via 90+ retail brands (F-58); STATUS still flight-gated.",
+      "Qatar Privilege Club": "currency purchasable, STATUS purchasable, and a paid membership tier above the free programme."
+    },
+    "why_it_matters_for_luma": "F-58 identified the transferable idea as separating a SPENDABLE currency open to everyone from a STATUS ladder earned by use. Qatar collapses that separation entirely — status is a product. That is the logical endpoint of tenure-based loyalty and it is worth Luma seeing, because it shows the model's destination: if status can be bought, it no longer signals anything about the traveller, and the first-time traveller can simply pay to skip the ladder. Whether that is a feature or the death of the mechanism is a genuine strategic question."
+  },
+
+  "finding_F106_AIRPORT_SERVICES_ARE_A_PRODUCT_LINE_HERE": {
+    "claim": "Qatar Airways treats the airport as a destination with its own product line, unlike Iberia where airport services are a Business-class entitlement.",
+    "evidence_from_navigation": [
+      "Lounges — /en-gb/lounges.html",
+      "Hamad International Airport — a dedicated site section",
+      "Oryx Airport Hotel — /en-gb/hia-hamad-international-airport/hia-airport-hotel.html",
+      "Transit Tours — /en-gb/offers/doha-city-tour.html",
+      "Qatar Airport Transfers",
+      "Add extra baggage"
+    ],
+    "confidence": "Verified that these destinations exist. Whether any is PURCHASABLE by an economy passenger was NOT determined — no pricing page was opened.",
+    "the_business_goal_5_position": {
+      "the_goal_verbatim": "Increase usage of airport services such as lounges and Fast Track (scenario.pdf)",
+      "Iberia (F-53)": "'Servicios VIP para la clase Business' — bundled with a fare class, no price anywhere",
+      "Qatar": "airport services exist as a named product line including an airport hotel and transit tours — a materially wider surface"
+    },
+    "why_this_does_NOT_close_F54": "F-54 raised the real problem: if airport services come free with premium cabins, the addressable market for SELLING them is economy passengers, which is a business the scenario has not scoped and whose competitors — lounge aggregators — are absent from all four tiers. Qatar shows a wider surface but the pricing and eligibility question is untouched. F-54 stands.",
+    "note_on_transit_tours": "A free or paid city tour during a layover is a genuinely distinctive answer to 'passengers often waste time waiting unnecessarily' — a problem the scenario names explicitly. Not pursued; recorded as the single most Luma-relevant item on this competitor's homepage."
+  },
+
+  "finding_F107_DISRUPTION_ABSENT_FROM_NAVIGATION_TWO_OF_THREE_AIRLINES": {
+    "claim": "No disruption, delay, cancellation, compensation or passenger-rights destination appears in Qatar Airways' 289 homepage links.",
+    "method": "All 289 link labels swept for disrupt/delay/cancel/irregular/compensat/rights/refund. Zero matches.",
+    "confidence": "Verified for the homepage surface",
+    "the_pattern_across_tier_4": {
+      "Iberia": "names the operational-disruption regime on its changes page, provides no link; 367+ labels searched, zero (F-56)",
+      "Qatar Airways": "289 homepage labels, zero",
+      "American Airlines": "publishes a Customer Service Plan with four named disruption sections (F-104) — though reached by URL, not by navigation"
+    },
+    "the_careful_conclusion": "Two of three airlines do not surface disruption in their primary navigation. The third publishes a structured plan whose FINDABILITY is untested. This strengthens F-104's conclusion that disruption handling is a product choice — but the symmetric findability test is owed on both American Airlines and Qatar before the comparison is sound.",
+    "for_luma": "Across three airlines, the moment a traveller most needs help is the moment hardest to navigate to. That is the consistent observation of the entire round — F-56, F-57, F-90, F-104 and now F-107 all point at the same gap from different angles."
+  },
+
+  "method_note_two_404s": {
+    "observed": "Two URL guesses returned 404s this session — American Airlines ('This page must have taken flight') and Qatar Airways ('Page not found | Qatar Airways').",
+    "the_failure": "My own is404 check read the first 300 characters of BODY text. Qatar's 404 announced itself only in the <title>. The check returned FALSE on a 404.",
+    "corrected_rule": "Check document.title AND body for 404 markers before extracting anything. Seventh instance this round of a result that looks like data and is not.",
+    "why_it_matters": "A 404 that passes an extraction sweep produces findings about a page that does not exist. Recorded so the next operator does not repeat it."
+  },
+
+  "not_observed": [
+    "lounge and Fast Track pricing and eligibility — the actual business-goal-5 answer, still OWED across all three airlines",
+    "Privilege Club tier thresholds and what Qpoints cost",
+    "Privilege Club Pro — what a paid loyalty subscription buys",
+    "Transit Tours mechanics",
+    "booking flow, fares, disruption content",
+    "symmetric findability test on AA and Qatar"
+  ]
+}

@@ -11,17 +11,17 @@
     "l2_authored_here": 0,
     "l2_vendor_ingested": 208,
     "evidence_records": 0,
-    "raw_sources": 1,
+    "raw_sources": 2,
     "tokens": 829,
-    "components": 216,
-    "artifacts": 9,
+    "components": 219,
+    "artifacts": 29,
     "brand_status": "approved",
     "brand_defined": true
   },
   "counts": {
     "agents": 14,
     "artifact_types": 41,
-    "adrs": 20,
+    "adrs": 23,
     "relationships": 159
   },
   "agents": [
@@ -404,6 +404,21 @@
       "file": "decisions/ADR-020-finder-agents.md",
       "title": "ADR-020 \u2014 Finder agents: scoped Write, and a denominator on every finding",
       "status": "Accepted \u00b7 2026-08-31"
+    },
+    {
+      "file": "decisions/ADR-021-dataviz-layer.md",
+      "title": "ADR-021 \u2014 The dataviz layer: chart marks are not components",
+      "status": "ACCEPTED \u2014 Gate A, human decision recorded 2026-09-03"
+    },
+    {
+      "file": "decisions/ADR-022-first-authored-l1-promotions.md",
+      "title": "ADR-022 \u2014 First promotions through the membrane: cf-chip, cf-nav-rail, cf-detail-panel",
+      "status": "ACCEPTED \u2014 signed off by Agentic Designer - RP, 2026-09-03 (Gate A)"
+    },
+    {
+      "file": "decisions/ADR-023-on-token-for-self-contained-artifacts.md",
+      "title": "ADR-023 \u2014 What \"on-token\" means for a self-contained artifact",
+      "status": "PROPOSED \u2014 awaiting Gate A sign-off (this ADR changes what a gate accepts)"
     }
   ],
   "relationships": [

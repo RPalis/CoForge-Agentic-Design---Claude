@@ -1,0 +1,34 @@
+══════════════════════════════════════════════════════════════════
+  COFORGE SYSTEM AUDIT — 2026-09-04
+══════════════════════════════════════════════════════════════════
+  [BLOCKER] provenance: ART-022 references tokens but its manifest declares no tokens_version
+            fix → set inputs.tokens_version to the release it was built against (currently "0.2.0") — an on-token artifact with no version is untraceable
+  [ERROR  ] attestation: the validation machinery or its wiring changed and no audit report attests to the current state
+            fix → get the hash with `python3 validation/audit-system.py --machinery-hash` (it is deliberately NOT printed here — printing it made this check clearable by redirecting its own output into a report file). Then dispatch an agent from the roster that did NOT make the change, have it attack the result and RECORD THE HASH in its report. NOTE: this is a process prompt, not enforcement — editing attestation.json silences it and nothing detects that. It raises the cost of skipping the step; it cannot make skipping impossible, and calling it enforcement would be the defect it was built to prevent
+  [WARNING] provenance: ART-015 declares tokens_version '0.2.0' but no token reference was detected in its payload
+            fix → confirm by hand. If it genuinely consumes no tokens, set the field to null; if it does and this check missed the form, widen TOKEN_REF — do NOT delete a true version to satisfy a heuristic
+  [WARNING] corrections: 8 of 39 corrections have no check: C-031, C-033, C-034, C-035, C-036, C-037, C-038, C-039
+            fix → found and fixed is two of three. Until a check exists that would have caught it, the same defect can return silently
+  [WARNING] coverage: 2 of 25 load-bearing claims are UNVERIFIED: V-015, V-020
+            fix → each is a property this system asserts about itself that nothing tests. Reported deliberately — an uncovered claim that nobody can see is how every defect in corrections.json survived
+  [WARNING] surfaces: CoForge Agentic Design: asserts repository state as of 2026-08-28; the repository has recorded changes through 2026-09-04 (https://claude.ai/code/artifact/7ed592f8-e8d8-46ee-bd26-6a10a63243ed)
+            fix → read the page against current state, then republish it and move asserted_state_date, or narrow what it claims. Comparator is the newest dated entry in corrections.json, so this UNDER-reports: a change that logged no correction will not move it
+  [WARNING] surfaces: CoForge System Board: asserts repository state as of 2026-09-02; the repository has recorded changes through 2026-09-04 (https://claude.ai/code/artifact/c8912255-4d15-4964-aee1-62d6880c20d5)
+            fix → read the page against current state, then republish it and move asserted_state_date, or narrow what it claims. Comparator is the newest dated entry in corrections.json, so this UNDER-reports: a change that logged no correction will not move it
+  [INFO   ] findings: 3 finding artifact(s) carry a checked denominator
+            fix → no action
+  [INFO   ] coverage: 23 of 25 claims verified
+            fix → no action
+  [INFO   ] map: all 14 agents appear on the map
+            fix → no action
+  [INFO   ] prose-counts: 12 of 12 declared prose counts agree with the repo (0 disagree, 0 stale)
+            fix → no action
+  [INFO   ] surfaces: 2 of 4 versioned published surfaces are current; 3 declare nothing that can go stale
+            fix → see the warnings above
+  [INFO   ] metrics: 2026-09-04.json: gate counts derived from a live audit run
+            fix → no action
+──────────────────────────────────────────────────────────────────
+  blocker 1 · error 1 · warning 5 · info 6 · skipped 0
+  VERDICT: FAIL
+  NOTE: skipped ≠ passed. Skipped checks were not run.
+══════════════════════════════════════════════════════════════════

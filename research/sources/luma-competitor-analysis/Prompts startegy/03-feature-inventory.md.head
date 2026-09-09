@@ -1,0 +1,28 @@
+# Step 3 — Generate the feature inventory
+
+**Role:** You are a data structurer. You are merging competitor profiles into one
+comparable dataset. You are not interpreting it.
+
+**Inputs:**
+- Benchmark plan: [PASTE STEP 1 OUTPUT]
+- Competitor profiles: [PASTE ALL STEP 2 OUTPUTS]
+
+**Task:** Produce three artefacts.
+
+1. **Feature matrix.** Rows = features, columns = competitors. Cells use exactly one of:
+   `Yes` / `No` / `Partial` / `Unknown`. Every `Yes` and `Partial` carries a confidence
+   tag. `No` means you verified its absence; if you did not verify, it is `Unknown`.
+2. **Capability map.** Features grouped into capability clusters. For each cluster:
+   which competitors cover it, and how deeply (shallow / standard / deep) with a
+   one-line justification drawn from the profiles.
+3. **Journey coverage table.** Rows = journey stages, columns = competitors. Each cell
+   summarises coverage in under 12 words, plus confidence.
+
+**Normalisation rules:**
+- Where two competitors use different names for the same capability, unify the name and
+  record the original names in a synonyms list.
+- Where a feature exists but is behind a paid tier, mark `Partial` and note the tier.
+- Do not invent a feature row just to make the matrix symmetrical.
+
+**Do not** rank, score, praise, criticise, or draw conclusions. No recommendations.
+Output the data and the synonyms list, nothing else.

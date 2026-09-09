@@ -1,0 +1,134 @@
+{
+  "generated": "2026-09-07",
+  "what": "Provenance overlay for ART-025. CAPTURE FILES ARE NOT EDITED — they are a published artifact and immutable. This records what could be recovered and, more importantly, what could not.",
+  "rule": "Recovery is TRANSCRIPTION ONLY. A value is recorded here when it exists somewhere in the capture under a different key or inside a URL. Locale was NOT inferred from the language of the captured text: English content is evidence of a served language, not a record of one, and the whole reason D-004 exists is that the American Airlines sweep proved a guess about locale can invert a finding.",
+  "recovered": [
+    {
+      "capture": "captures/01-booking-com/01-site-tree-L1.json",
+      "field": "surface",
+      "value": "main session via claude-in-chrome (user's authenticated Chrome)",
+      "basis": "recorded under the key 'captured_by' rather than 'surface'",
+      "method": "transcription — the value was present under a variant key name"
+    },
+    {
+      "capture": "captures/03-google-travel/01-site-tree-and-decision-surfaces.json",
+      "field": "locale_served",
+      "value": "en&gl=GB",
+      "basis": "transcribed from an explicit hl= parameter recorded in the capture itself",
+      "method": "transcription"
+    },
+    {
+      "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+      "field": "locale_served",
+      "value": "en",
+      "basis": "transcribed from an explicit hl= parameter recorded in the capture itself",
+      "method": "transcription"
+    }
+  ],
+  "irrecoverable": [
+    {
+      "capture": "captures/01-booking-com/01-site-tree-L1.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/01-booking-com/02-loyalty-genius.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/01-booking-com/02-loyalty-genius.json",
+      "field": "surface",
+      "basis": "no surface, captured_by, captured_via, browser or instance key"
+    },
+    {
+      "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/01-booking-com/03-terms-and-conditions.json",
+      "field": "surface",
+      "basis": "no surface, captured_by, captured_via, browser or instance key"
+    },
+    {
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/01-booking-com/04-accessibility-statement.json",
+      "field": "surface",
+      "basis": "no surface, captured_by, captured_via, browser or instance key"
+    },
+    {
+      "capture": "captures/01-booking-com/05-stays-search-results.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/01-booking-com/05-stays-search-results.json",
+      "field": "surface",
+      "basis": "no surface, captured_by, captured_via, browser or instance key"
+    },
+    {
+      "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/01-booking-com/06-personalisation-controlled-diff.json",
+      "field": "surface",
+      "basis": "no surface, captured_by, captured_via, browser or instance key"
+    },
+    {
+      "capture": "captures/01-booking-com/07-stays-funnel-to-payment-gate.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/02-expedia/01-site-tree-L1.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/02-expedia/02-loyalty-one-key.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/02-expedia/03-stays-search-results.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/02-expedia/04-stays-funnel-to-card-screen.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/03-google-travel/04-auth-gated-capability.json",
+      "field": "surface",
+      "basis": "no surface, captured_by, captured_via, browser or instance key"
+    },
+    {
+      "capture": "captures/03-google-travel/07-flights-sort-axes-MATERIAL-CORRECTION.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/04-kayak/06-handoff-to-carrier.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    },
+    {
+      "capture": "captures/10-trainline/02-ranking-names-effort.json",
+      "field": "locale_served",
+      "basis": "no locale, lang, hl or served-language record anywhere in the file; a deep scan for locale/lang/hl/es-ES/en-GB/en-US/idioma returned zero matches"
+    }
+  ],
+  "counts": {
+    "recovered": 3,
+    "irrecoverable": 20
+  }
+}

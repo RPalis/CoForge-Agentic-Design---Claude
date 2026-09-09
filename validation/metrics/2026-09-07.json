@@ -1,0 +1,133 @@
+{
+  "run_id": "2026-09-07",
+  "generated_at": "2026-09-07T19:44:49",
+  "project": "coforge",
+  "session": {
+    "turns": 12128,
+    "duration_min": 19308.5,
+    "transcripts": 4
+  },
+  "tokens": {
+    "input": 24196,
+    "output": 14137264,
+    "cache_read": 6346187542,
+    "cache_creation": 105580081,
+    "billable": 14161460
+  },
+  "tools": {
+    "Bash": 3049,
+    "Edit": 377,
+    "mcp__chrome-devtools__evaluate_script": 249,
+    "mcp__figma-console__figma_execute": 186,
+    "Write": 172,
+    "mcp__claude-in-chrome__javascript_tool": 158,
+    "Agent": 145,
+    "mcp__claude-in-chrome__navigate": 88,
+    "Artifact": 84,
+    "mcp__Claude_Browser__computer": 78,
+    "SendUserFile": 68,
+    "Read": 58,
+    "mcp__chrome-devtools__take_screenshot": 57,
+    "ToolSearch": 49,
+    "mcp__chrome-devtools__navigate_page": 41,
+    "mcp__claude-in-chrome__computer": 40,
+    "mcp__figma-console__figma_delete_variable": 33,
+    "mcp__Claude_Browser__javascript_tool": 29,
+    "AskUserQuestion": 28,
+    "mcp__Claude_Browser__browser_batch": 27,
+    "mcp__claude-in-chrome__find": 26,
+    "mcp__Claude_Browser__navigate": 24,
+    "mcp__figma-console__figma_import_tokens": 24,
+    "mcp__Claude_Browser__preview_start": 20,
+    "mcp__Claude_Browser__resize_window": 19,
+    "mcp__chrome-devtools__resize_page": 17,
+    "mcp__ccd_session__mark_chapter": 16,
+    "Skill": 16,
+    "mcp__chrome-devtools__new_page": 13,
+    "mcp__figma-console__figma_delete_variable_collection": 12,
+    "mcp__claude-in-chrome__tabs_context_mcp": 10,
+    "WebSearch": 10,
+    "mcp__Claude_Browser__read_page": 9,
+    "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 9,
+    "mcp__figma-console__figma_get_variables": 9,
+    "mcp__figma-console__figma_export_tokens": 9,
+    "mcp__figma-console__figma_take_screenshot": 9,
+    "mcp__chrome-devtools__emulate": 8,
+    "mcp__chrome-devtools__list_pages": 8,
+    "mcp__claude-in-chrome__browser_batch": 8,
+    "WebFetch": 7,
+    "mcp__Claude_Browser__get_page_text": 7,
+    "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 6,
+    "mcp__figma-console__figma_get_status": 6,
+    "mcp__claude-in-chrome__list_connected_browsers": 4,
+    "mcp__chrome-devtools__take_snapshot": 4,
+    "SearchSkills": 4,
+    "mcp__Claude_Browser__tabs_close": 3,
+    "mcp__chrome-devtools__list_network_requests": 3,
+    "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_design_system_kit": 3,
+    "mcp__figma-console__figma_list_open_files": 3,
+    "mcp__figma-console__figma_navigate": 3,
+    "mcp__figma-console__figma_capture_screenshot": 3,
+    "mcp__ccd_session_mgmt__set_session_title": 3,
+    "mcp__Claude_Browser__tabs_create": 2,
+    "mcp__Claude_Browser__find": 2,
+    "mcp__Claude_Browser__read_console_messages": 1,
+    "mcp__Claude_Browser__tabs_context": 1,
+    "mcp__Claude_Browser__preview_stop": 1
+  },
+  "skills": {
+    "artifact-design": 7,
+    "dataviz": 3,
+    "impeccable": 2,
+    "luma-competitor-analysis-pro": 2,
+    "data:create-viz": 1,
+    "anthropic-skills:docx": 1
+  },
+  "artifacts": {
+    "total": 27,
+    "live": 19,
+    "by_type": {
+      "brand-extraction": 1,
+      "competitive-benchmark": 7,
+      "a11y-audit": 3,
+      "component-spec": 4,
+      "prioritization": 2,
+      "dashboard": 7,
+      "research-plan": 1,
+      "ux-copy": 1,
+      "metrics-scorecard": 1
+    },
+    "by_status": {
+      "in-review": 3,
+      "approved": 2,
+      "superseded": 8,
+      "draft": 14
+    },
+    "tokens_per_artifact": 524499
+  },
+  "gates": {
+    "verdict": "FAIL",
+    "blocker": 1,
+    "error": 1,
+    "warning": 5,
+    "info": 6,
+    "skipped": 0,
+    "source": "live-audit"
+  },
+  "corrections": {
+    "logged": 52,
+    "with_check": 40,
+    "unchecked": 12,
+    "source": "validation/corrections.json"
+  },
+  "governance": {
+    "adrs": 22,
+    "agents": 14,
+    "artifact_types": 41
+  },
+  "readiness": {
+    "l1": 100.0,
+    "l2": 66.0,
+    "workflow": 100.0
+  }
+}

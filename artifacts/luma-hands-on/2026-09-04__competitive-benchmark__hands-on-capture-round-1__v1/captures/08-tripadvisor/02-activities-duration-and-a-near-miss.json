@@ -1,0 +1,73 @@
+{
+  "competitor": "Tripadvisor",
+  "capture": "s2/s6 — things to do results, Lisbon",
+  "url_path": "/Attractions-g189158-Activities-Lisbon...",
+  "captured_at": "2026-09-04T15:09Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es-ES",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_size": "54,938 visible characters",
+
+  "PROHIBITION_2_NEAR_MISS_RECORDED": {
+    "what_happened": "Two extraction sweeps on this page returned TRAVELLER REVIEW TEXT. A 'filterGroups' selector aimed at headings pulled review titles, and a 'cancellationSignals' regex pulled a complaint about a failed booking modification.",
+    "why_it_is_serious": "CLAUDE.md prohibition 2: never write a user quote that is not in research/evidence-ledger.json. The ledger holds ZERO records. Any competitor review transcribed into a capture file would be an unresolvable user quote — a real person's words, attributed to nothing, inside a research artifact. ART-024 section 5.4 exists specifically to prevent this.",
+    "action_taken": "No review text is recorded in this file. The captured strings were identified and discarded at write time, not carried through.",
+    "why_this_is_written_down": "The near-miss is the finding. A page that is 55,000 characters of mostly user-generated content will leak review text into ANY broad regex. On Tripadvisor the risk is structural, not incidental — its asset IS the review corpus. Every subsequent Tripadvisor capture must use targeted selectors, never page-wide text sweeps.",
+    "standing_rule_reinforced": "Describe the review MECHANISM. Never the words."
+  },
+
+  "finding_F83_DURATION_IS_VISIBLE_BUT_NOT_STRUCTURED": {
+    "claim": "Tripadvisor surfaces activity duration — but only inside seller-written titles, never as a structured, comparable field.",
+    "evidence_verbatim_es": [
+      "De Sintra a Cascais: 2 palacios, 7 lugares de interés, excursión de 10 horas en grupo reducido",
+      "Verdadero Tour Privado Tuk Tuk de 4 Horas",
+      "Tour Privado Tuk Tuk de Lisboa y Recogida en el hotel : 2, 3, o 4 Horas",
+      "Excursión de 2 horas al atardecer en Lisboa"
+    ],
+    "confidence": "Verified",
+    "the_distinction_that_matters": "Duration is READABLE but not COMPARABLE. It sits in prose the operator wrote, in inconsistent formats ('10 horas', '4 Horas', '2, 3, o 4 Horas'). There is no duration filter, no duration sort, and no duration field. A traveller with a three-day time budget cannot ask the product for activities that fit.",
+    "against_the_round": {
+      "Airbnb Experiences": "duration NOT shown at all (F-79)",
+      "Tripadvisor": "duration shown, unstructured, unsortable",
+      "flights (Google, Kayak)": "duration is a first-class SORT axis (F-25 correction, F-43)"
+    },
+    "for_luma": "Effort is structured where it is easy to measure and unstructured where it is not — the same pattern as the F-25 correction, now visible one layer down. Flights compute duration; activity operators type it into a title. Luma's on-site activity layer would be the first to make it a field."
+  },
+
+  "finding_F84_RANKING_EXPLAINED_AGAIN": {
+    "claim": "Tripadvisor states the basis of its rankings on the results surface.",
+    "evidence_verbatim_es": "Estas clasificaciones se basan en los datos de Tripadvisor: tenemos en cuenta las opiniones de los viajeros, las puntua[ciones]...",
+    "translation": "These rankings are based on Tripadvisor data: we take into account traveller reviews, ratings...",
+    "confidence": "Verified",
+    "disclosure_spectrum_updated": {
+      "Airbnb": "five weighted factors, ~10,800 chars, linked from results (F-75)",
+      "Tripadvisor": "criteria named inline on the results surface",
+      "Google Flights": "'ranked based on price and convenience'",
+      "Booking.com": "discloses commission influences ranking; criteria not named",
+      "Kayak": "marks each paid placement with advertiser named",
+      "Expedia": "nothing observed"
+    },
+    "the_pattern": "The two products with NO sort control — Airbnb and Tripadvisor — are the two that explain their ranking most fully. Reinforces F-75: control and explanation are being traded off across this market, and nobody offers both."
+  },
+
+  "no_sort_control": {
+    "method": "Swept for 'ordenar por', 'ordena por', 'clasificar', 'sort' across 54,938 characters and enumerated all button/select controls. No sort affordance found.",
+    "result": "Second competitor after Airbnb with zero sort axes on its primary results surface.",
+    "confidence": "Verified",
+    "accommodation_axes_unchanged": "Booking.com 11 · Expedia 6 · Google 3 · Airbnb 0 · Tripadvisor 0 (activities, not accommodation — counted separately)"
+  },
+
+  "price_convention": {
+    "observed": ["100 €", "75 €", "104 €", "90 €", "56 €", "79 €", "65 €", "62 €"],
+    "note": "Prices shown as a plain figure. Whether per person or per group was NOT determinable from the results surface — no 'por viajero' or 'por grupo' qualifier appeared. Recorded as AMBIGUOUS, which is itself the finding: Airbnb says 'por viajero', Tripadvisor says nothing.",
+    "confidence": "Verified that no qualifier was present; the pricing basis itself is UNKNOWN."
+  },
+
+  "not_observed": [
+    "an activity detail page and its booking flow",
+    "whether duration or price basis is clarified at detail level",
+    "the AI trip planner — still not located",
+    "hotels and restaurants verticals"
+  ]
+}

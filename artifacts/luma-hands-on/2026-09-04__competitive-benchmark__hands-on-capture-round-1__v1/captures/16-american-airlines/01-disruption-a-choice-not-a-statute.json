@@ -1,0 +1,54 @@
+{
+  "competitor": "American Airlines",
+  "roster_position": "16 — tier 4, airline direct",
+  "capture": "s5/s7 — disruption posture. The tier-4 regulatory-regime test.",
+  "url": "https://www.aa.com/web/i18n/customer-service/support/customer-service-plan.html",
+  "captured_at": "2026-09-04T16:22Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "en",
+  "source_class": "Own capture (first-party published commitment document)",
+  "confidence": "Verified",
+
+  "the_test_this_competitor_exists_for": "ART-024 placed American Airlines at 16 to test whether disruption handling is a PRODUCT CHOICE or a STATUTORY ARTEFACT — because it operates under US DOT rules rather than EU 261, a materially weaker passenger-rights regime.",
+
+  "finding_F104_A_PUBLISHED_COMMITMENT_DOCUMENT_WITH_NAMED_DISRUPTION_SECTIONS": {
+    "claim": "American Airlines publishes a Customer Service Plan containing explicitly named disruption sections.",
+    "sections_verbatim": [
+      "Assistance when your flight has been delayed or canceled",
+      "Flight delays and cancellations",
+      "Essential customer needs during extraordinary delays",
+      "Tarmac delay contingency plan"
+    ],
+    "adjacent_sections_verbatim": ["Unaccompanied minor service", "Customers with disabilities",
+      "Reservations special assistance coordinators", "Wheelchairs", "Boarding assistance",
+      "Medical oxygen", "Complaint resolution officials for customers with special needs"],
+    "confidence": "Verified",
+    "the_comparison_with_iberia": {
+      "Iberia": "Its changes-and-refunds page states 'Si tu viaje se ha visto afectado por causas operativas, tus derechos y las opciones disponibles son diferentes' and provides NO link. Three surfaces and 367+ link labels searched for 261 / derechos / compensación / reclamación: zero matches (F-56).",
+      "American Airlines": "A named Customer Service Plan with four disruption sections, plus a full accessibility service commitment set."
+    },
+    "the_conclusion": "Iberia's behaviour is NOT a statutory artefact. American Airlines operates under a WEAKER passenger-rights regime and publishes a MORE structured, more navigable disruption commitment. Stronger regulation did not produce better communication — in this pair it produced worse.",
+    "for_luma": "This matters because it removes an excuse. 'Disruption is a legal matter, not a product surface' does not survive the pair. One carrier chose to document its commitments in plain sections; the other chose to name the regime and stop. Both are choices, and Luma has the same choice."
+  },
+
+  "FAIRNESS_CAVEAT_ON_THE_COMPARISON": {
+    "the_problem": "The Iberia finding (F-56) is a FINDABILITY result — I searched its navigation, FAQ index and changes page and could not reach a rights page. The American Airlines finding is a CONTENT result — I reached the document by guessing a URL after a 404, NOT by navigating from the homepage.",
+    "what_this_means": "The two are not measured the same way. AA's document exists and is well-structured; whether a distressed traveller can FIND it from aa.com's navigation is untested. Iberia may equally have an excellent rights page that I could not reach.",
+    "what_would_make_it_sound": "Run the identical findability test on aa.com — sweep its navigation and help index for delay/cancellation/compensation link labels, exactly as was done for Iberia.",
+    "recorded_as": "The content-level finding (F-104) stands. Any claim that AA is MORE FINDABLE than Iberia is NOT established and must not be made until the symmetric test is run.",
+    "why_this_is_written_down": "This is precisely the class of asymmetry that produces a confident wrong comparison. The round has already corrected five of its own findings; this one is caught before it becomes one."
+  },
+
+  "note_on_the_404": {
+    "observed": "A first URL guess returned AA's 404 page — 'This page must have taken flight' — which a naive sweep would have parsed as a real page with a heading.",
+    "why_recorded": "Sixth instance in this round of a result that looks like data and is not. The 404 returned 920 characters, a title, and headings. Only the phrase itself revealed it. Standing rule holds: verify the page is the page before extracting from it."
+  },
+
+  "not_observed": [
+    "the CONTENT of the four disruption sections — headings captured, bodies not read",
+    "AA's navigation findability — the symmetric test, OWED",
+    "AAdvantage loyalty structure — the third airline programme, uncaptured",
+    "AA booking flow, fares, airport services",
+    "whether AA offers proactive disruption notification of the kind Trainline does (F-90)"
+  ]
+}

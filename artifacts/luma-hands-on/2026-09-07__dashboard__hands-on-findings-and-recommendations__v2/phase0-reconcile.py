@@ -1,0 +1,152 @@
+#!/usr/bin/env python3
+"""
+ART-026 v2 — Phase 0.
+
+Reconciles the row counts across CAPTURE-INDEX.json, WORLD.json and v1's
+build-dashboard.py, and classifies every confidence string.
+
+The classification rule is MECHANICAL and inspectable. Nothing is read for
+meaning; nothing is promoted or demoted. A string is classified by its shape:
+
+    exactly "Verified"                      -> verified-exact
+    starts with "Verified", carries more    -> verified-qualified   (keeps its full sentence)
+    "see capture file" / "see source"       -> pointer              (resolved separately, with provenance)
+    anything else                           -> other-shape          (fails the run; nothing is guessed)
+
+Run:  python3 phase0-reconcile.py
+Out:  confidence-reconciliation.json
+"""
+import json, os, sys, collections, datetime
+
+ROUND = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                     "2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1")
+V1    = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                     "2026-09-04__dashboard__hands-on-findings-and-recommendations__v1")
+
+POINTERS = {"see capture file", "see source"}
+
+def load(p):
+    with open(os.path.join(ROUND, p), encoding="utf-8") as f:
+        return json.load(f)
+
+def classify(s):
+    if not isinstance(s, str) or not s.strip():
+        return "absent"
+    t = s.strip()
+    if t.lower() in POINTERS:
+        return "pointer"
+    if t == "Verified":
+        return "verified-exact"
+    if t.startswith("Verified"):
+        return "verified-qualified"
+    return "other-shape"
+
+ci = load("CAPTURE-INDEX.json")
+wd = load("WORLD.json")
+findings, chunks = ci["findings"], wd["chunks"]
+
+# ---- 0a  reconcile the row counts -----------------------------------------
+fid = {f["id"] for f in findings}
+cid = {c["id"] for c in chunks}
+only_index = sorted(fid - cid)
+only_world = sorted(cid - fid)
+
+# v1 restored the missing rows as hand-written stubs; read their keys back out
+src = open(os.path.join(V1, "build-dashboard.py"), encoding="utf-8").read()
+seg = src[src.index("STUB_RESOLUTIONS = {"): src.index("\nTHEME_ORDER")]
+import re
+stub_keys = sorted(re.findall(r'^\s{4}"([^"]+)"\s*:\s*\{', seg, re.M))
+
+# ---- 0b  classify every confidence string ---------------------------------
+rows, counts = [], collections.Counter()
+for f in findings:
+    k = classify(f["confidence"])
+    counts[k] += 1
+    row = {
+        "id": f["id"], "competitor": f["competitor"], "capture": f["capture"],
+        "confidence_raw": f["confidence"], "confidence_class": k,
+        "claim_is_pointer": isinstance(f["claim"], str)
+                            and f["claim"].strip().lower() in POINTERS,
+    }
+    if k == "verified-qualified":
+        # the qualifying sentence IS the finding's limit — never truncated (C-039)
+        row["qualification"] = f["confidence"]
+    rows.append(row)
+
+if counts["other-shape"] or counts["absent"]:
+    sys.exit("FAIL: unclassifiable confidence string(s) present; nothing is guessed.")
+
+# ---- 0b  resolve the pointer rows, recording WHERE the value came from -----
+resolved = []
+for r in rows:
+    if r["confidence_class"] != "pointer" and not r["claim_is_pointer"]:
+        continue
+    cap = json.load(open(os.path.join(ROUND, r["capture"]), encoding="utf-8"))
+    # capture files prefix some blocks with "finding_" and infix "finding" after a
+    # verb ("CORRECTION_to_finding_F28" vs the index's "CORRECTION_to_F28"), so the
+    # infix is dropped on BOTH sides before matching. Where the two ids differ, the
+    # difference is recorded below rather than normalised away silently.
+    norm = lambda s: re.sub(r"finding", "", re.sub(r"[^a-z0-9]", "", s.lower()))
+    tgt = norm(r["id"])
+    block_key = next((k for k in cap
+                      if norm(k) == tgt or tgt in norm(k) or
+                      (len(norm(k)) > 12 and norm(k) in tgt)), None)
+    block = cap.get(block_key) if block_key else None
+    block_conf = block.get("confidence") if isinstance(block, dict) else None
+    resolved.append({
+        "id": r["id"], "competitor": r["competitor"], "capture": r["capture"],
+        "pointer_in": [x for x, y in (("claim", r["claim_is_pointer"]),
+                                      ("confidence", r["confidence_class"] == "pointer")) if y],
+        "block_key_in_capture": block_key,
+        "id_matches_capture_key": block_key in (r["id"], "finding_" + r["id"]) if block_key else None,
+        "block_states_own_confidence": block_conf,
+        "file_level_confidence": cap.get("confidence"),
+        "confidence_provenance": ("block-level — stated by the finding itself"
+                                  if block_conf else
+                                  "FILE-LEVEL ONLY — the capture file rates the capture; "
+                                  "this finding states no confidence of its own"),
+        "content_exists_in_capture": block is not None,
+    })
+
+out = {
+    "$comment": "ART-026 v2 Phase 0 output. GENERATED by phase0-reconcile.py — never hand-edited.",
+    "generated": datetime.date.today().isoformat(),
+    "rule": "Confidence is classified by STRING SHAPE only. No string is read for meaning, "
+            "promoted, demoted or merged. Transcription, not inference.",
+    "reconciliation_0a": {
+        "capture_index_rows": len(findings),
+        "world_chunks": len(chunks),
+        "in_index_not_in_world": only_index,
+        "in_world_not_in_index": only_world,
+        "v1_stub_resolutions": stub_keys,
+        "stubs_match_the_gap": sorted(stub_keys) == sorted(only_index),
+        "verdict": "RECONCILED. CAPTURE-INDEX is a strict superset of WORLD by exactly "
+                   f"{len(only_index)} rows, and v1 restored exactly those {len(stub_keys)} "
+                   "rows as hand-written stubs.",
+    },
+    "classification_0b": {
+        "counts": dict(counts),
+        "total": sum(counts.values()),
+        "distinct_raw_strings": len({f["confidence"] for f in findings}),
+    },
+    "pointer_rows_resolved": resolved,
+    "rows": rows,
+}
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "confidence-reconciliation.json"), "w", encoding="utf-8") as f:
+    json.dump(out, f, indent=2, ensure_ascii=False)
+
+print("0a  index %d / world %d / gap %d / stubs %d / match=%s"
+      % (len(findings), len(chunks), len(only_index), len(stub_keys),
+         out["reconciliation_0a"]["stubs_match_the_gap"]))
+print("0b  " + " · ".join(f"{v} {k}" for k, v in counts.most_common()))
+print("    distinct raw strings: %d" % out["classification_0b"]["distinct_raw_strings"])
+print("    pointer rows resolved: %d (content found in capture: %d)"
+      % (len(resolved), sum(r["content_exists_in_capture"] for r in resolved)))
+for r in resolved:
+    if r["block_key_in_capture"] and not r["id_matches_capture_key"]:
+        print("      ! %-46s id disagrees with capture key %r"
+              % (r["id"], r["block_key_in_capture"]))
+for r in resolved:
+    if not r["block_states_own_confidence"]:
+        print("      ! %-46s confidence is FILE-LEVEL only" % r["id"])

@@ -1,0 +1,59 @@
+{
+  "competitor": "Kayak",
+  "capture": "s0/s1 — authenticated session, ad-landing variant",
+  "url_class": "kayak.es/flights?lang=es + affiliate and click-id parameters (values not recorded — they identify the client's ad click, not the product)",
+  "captured_at": "2026-09-04T12:58Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es-es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "finding_F37_AD_LANDING_IS_NOT_DIFFERENT": {
+    "claim": "The ad-landing variant renders the same product surface as the clean URL. The tracking parameters produced no observable difference.",
+    "evidence": "Clean URL (inspector, signed out): 3,657 DOM nodes, 487 links. Ad-landing URL (authenticated Chrome): 3,668 DOM nodes, 495 links. Identical decision-aid set, identical title, identical locale.",
+    "confidence": "Verified",
+    "why_it_was_worth_checking": "Ad-landing pages CAN differ from organic ones. It was assumed they did not; this checks the assumption rather than carrying it. The small node delta is attributable to the authenticated header, not to the parameters.",
+    "caveat": "One page, one moment. Not a general claim about Kayak's ad landing pages."
+  },
+
+  "method_correction": {
+    "what_failed": "A text search for account UI ('mi cuenta', 'cerrar sesión', 'inicia sesión', 'regístrate', 'perfil') returned EMPTY, which would have supported a false conclusion that the session was not authenticated.",
+    "why": "Kayak's account control is an avatar IMAGE with no accompanying text. A text sweep cannot see it.",
+    "how_it_was_caught": "By taking a screenshot instead of trusting the empty result.",
+    "pattern": "Third occurrence this round of an empty text/selector result that was NOT absence — after the Booking.com sort options and the Google decision panels. Standing rule reinforced: an empty result is a prompt to look, never a finding."
+  },
+
+  "authenticated_state_observed": {
+    "signed_in": true,
+    "evidence": "Profile avatar and a saved-items (heart) control in the header",
+    "origin_prefilled": "Madrid (MAD) — pre-populated as the departure city without the user entering it",
+    "default_search_state": "Ida y vuelta (round trip) · 0 equipaje (0 bags) · 1 adulto, Turista (1 adult, economy)",
+    "suggestion_chip_verbatim_es": "Vuelos a París el próximo fin de semana",
+    "translation": "Flights to Paris next weekend",
+    "note": "A destination suggestion with a time frame, offered before any search. This is stage-1 discovery behaviour inside a transactional-adjacent product."
+  },
+
+  "finding_F38_AI_SURFACE": {
+    "claim": "Kayak places an 'IA' (AI) entry point directly beside its wordmark in the primary header.",
+    "confidence": "Verified",
+    "why_it_matters": "Prior desk research recorded 'assistant commoditisation' as a standing risk — that conversational planning is already shipped by competitors. This is first-hand confirmation on a third product, in its most prominent header position. Luma positioning on 'having an AI assistant' is positioning on something the market already treats as table stakes.",
+    "not_observed": "What the IA surface does. OWED — it was not opened."
+  },
+
+  "product_lines_es": {
+    "Vuelos": "flights", "Alojamientos": "stays", "Coches": "cars", "Viajes": "trips"
+  },
+
+  "our_product_decision_required": [
+    "Decision required: Kayak pre-fills origin, suggests a destination with a time frame, and offers an AI entry point before any search — all in the first viewport, all without a booking. Luma's stage 1 has to be at least this good to be noticed.",
+    "Decision required: 'IA' beside the wordmark on a third competitor confirms conversational planning is table stakes. Luma cannot differentiate on having an assistant."
+  ],
+
+  "not_observed": [
+    "the IA surface opened — OWED",
+    "saved items / favourites behind the heart control",
+    "Viajes (Trips) authenticated view",
+    "sort axes — still OWED on this competitor",
+    "the handoff to a booking site"
+  ]
+}

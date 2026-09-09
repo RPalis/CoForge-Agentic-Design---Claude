@@ -1,0 +1,52 @@
+{
+  "id": "ART-020",
+  "type": "component-spec",
+  "workstream": "design-system-authoring",
+  "title": "cf-detail-panel — provenance revealed without covering the evidence it explains",
+  "file": "detail-panel-component-spec.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "develop",
+  "produced_by": "screen-producer",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "screen-producer",
+    "checked": 9,
+    "found": 3,
+    "skipped": 5,
+    "method": "checked = the 9 contrast pairs in the payload's measurement table, computed from design-system/tokens/tokens.json release 0.2.0 by resolving the alias chain to a hex and applying WCAG relative luminance (Y = 0.2126R + 0.7152G + 0.0722B on linearised sRGB), ratio = (Yl + 0.05) / (Yd + 0.05), all re-derived on demand by verify-contrast.py in this directory at a tolerance of 0.002. found = 3: (1) semantic.layer.02 is #ffffff and measures 1.181:1 against palette.bone.default, so a white panel on the bone ground has no visible boundary and the semantic.border.strong-01 edge (4.253:1) is mandatory — elevation.surface.raised cannot substitute, because a shadow is an alpha over the ground and carries no guaranteed contrast; (2) semantic.border.subtle-01 measures 1.708:1 even against the panel's own white surface, so it fails the 3:1 non-text floor on both grounds and cannot be used as any boundary that carries meaning anywhere in this system; (3) release 0.2.0 has NO layout or size axis — the spacing scale tops out at spacing.13 = 10rem — so no token can express a side-panel width, which is resolved by giving the panel no width of its own rather than by inventing a value. skipped = 5 checks not run and claimed in neither direction: no render; no keyboard walk; no screen-reader pass; no forced-colors render; no touch test. Every behaviour in the focus-management sequence is specified and none is observed. Skipped is not passed."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-016"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json",
+      "design-system/contracts/component.schema.json",
+      "design-system/foundations/brand.md"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "this_is_a_proposal": "Nothing here is in design-system/component-index.json and this artifact did not write to it. Promotion is explicit human approval recorded as an ADR (CLAUDE.md, 'The membrane') and screen-producer cannot perform it.",
+    "level_1_is_contested_and_says_so": "This is the weakest classification in the batch and the payload argues both sides rather than picking one quietly. For level 1: ADR-012's own test is that L1 needs tokens, brand.md and the primitive set while L2 needs the component library, Code Connect and the MCP — this component needs none of the three. Against: it carries required scripted behaviour (focus management, Escape, aria-expanded) and no existing level-1 primitive does. Deciding it for now: validation/adapters/carbon-react.py would erase a CoForge-authored level 2 entry on its next run, so level 2 is currently a lossy destination. That is a repository defect, not a justification, and validation.md reports it as one.",
+    "batch_wide_audit_lives_here": "This artifact's validation.md section 7 carries the single after-run of validation/audit-system.py covering all four specs in this batch (ART-017 to ART-020), with a finding-level diff against the before-run rather than a count comparison. The other three validation.md files point here rather than each running the audit against a registry that was deliberately half-written at the time.",
+    "why_a_new_workstream": "design-system-authoring did not exist. brand-foundations is the brand and its tokens, design-system-selection is which vendor system to adopt, luma-travel is a client research thread, system-operations is the operating cost of the agent apparatus. A proposal to enter component-index.json is none of those. Same reasoning ART-010 recorded when it created system-operations."
+  }
+}

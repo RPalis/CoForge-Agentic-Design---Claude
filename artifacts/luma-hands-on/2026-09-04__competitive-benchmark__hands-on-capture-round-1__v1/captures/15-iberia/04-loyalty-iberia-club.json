@@ -1,0 +1,76 @@
+{
+  "competitor": "Iberia",
+  "capture": "L-loyalty — Iberia Club",
+  "url": "https://www.iberia.com/es/iberia-club/",
+  "captured_at": "2026-09-04T13:52Z",
+  "surface": "client's authenticated Chrome (page served generic programme content)",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "structure": {
+    "two_currencies_verbatim_es": "En Iberia Club hay dos tipos de puntos: Avios y Puntos Elite",
+    "avios": {
+      "role": "spendable currency",
+      "verbatim_es": "Los Avios son la moneda que te abrirá las puertas a obtener descuentos en vuelos, alojamientos, alquiler de coches, actividades de ocio y más",
+      "translation": "Avios are the currency that opens the door to discounts on flights, accommodation, car hire, leisure activities and more"
+    },
+    "puntos_elite": {
+      "role": "status currency — drives tier",
+      "verbatim_es": "Los Puntos Elite te permitirán subir de nivel en Iberia Club y obtener mayores ventajas. Conseguirás Puntos Elite por euro gastado en vuelos del Grupo Iberia y aerolíneas asociadas al Club",
+      "translation": "Elite Points let you move up a level. You earn Elite Points per euro spent on Iberia Group and partner airline flights"
+    }
+  },
+
+  "finding_F58_THE_ONLY_PROGRAMME_A_NON_TRAVELLER_CAN_ENTER": {
+    "claim": "Iberia Club is the only loyalty programme of the three examined whose currency can be earned without travelling at all.",
+    "evidence_verbatim_es": "Acumular puntos Iberia Club es muy fácil: te regalamos Avios cada vez que realices una compra en más de 90 marcas asociadas al programa",
+    "translation": "Accumulating Iberia Club points is very easy: we give you Avios every time you make a purchase at more than 90 partner brands",
+    "comparison": {
+      "Booking.com Genius": "requires 5 completed BOOKINGS in 2 years for Level 2, 15 for Level 3. Nothing accrues without booking.",
+      "Expedia One Key": "requires Trip Elements from eligible BOOKINGS. Nothing accrues without booking.",
+      "Iberia Club": "Avios accrue from everyday retail spend at 90+ partner brands, before any flight is taken."
+    },
+    "confidence": "Verified",
+    "why_it_matters_for_luma": "F-18 established that both OTA programmes gate their value behind accumulated bookings, which a first-time traveller by definition does not have. This is the first observed programme that solves that: a traveller can arrive at their FIRST booking already holding balance. It is the only mechanism seen in the round that gives a zero-history user something real on day one.",
+    "the_catch": "Elite Points — the status currency that unlocks tier benefits — are earned only per euro spent on FLIGHTS with Iberia Group and partners. So the spendable currency is open to everyone; the STATUS ladder remains flight-gated. Both things are true and the distinction is the useful part."
+  },
+
+  "finding_F59_BENEFITS_EXTEND_TO_CHILDREN": {
+    "claim": "Iberia Club extends programme benefits to children as a stated feature.",
+    "evidence_verbatim_es": "Las ventajas de Iberia Club, también para niños",
+    "translation": "The advantages of Iberia Club, also for children",
+    "confidence": "Verified",
+    "why_it_matters": "The scenario names five primary user types, one of which is 'Families travelling with children — coordinating several people, luggage and routines'. This is the FIRST observed competitor feature addressed at that user type anywhere in the round. Neither Genius nor One Key made any reference to children or family accounts.",
+    "not_observed": "What the child benefits actually are. OWED."
+  },
+
+  "finding_F60_THIRD_OF_THREE_ON_FIRST_TIMERS": {
+    "claim": "Three loyalty programmes, three full-page text searches, zero mentions of a first-time traveller.",
+    "evidence": "Searched this page for 'primer viaje', 'nuevo socio', 'principiante', 'primera vez' — no match. Same null previously recorded for Genius (F-02) and One Key (F-18).",
+    "confidence": "Verified",
+    "status": "Three of three across two intermediaries and one supplier. Still not a market claim — but the sample now spans two business models, which is stronger than three OTAs would have been."
+  },
+
+  "loyalty_models_compared": {
+    "Booking.com Genius": "ONE mechanism — tenure ladder, 5 then 15 bookings, unlocking discount rate and, at L3, priority support.",
+    "Expedia One Key": "TWO mechanisms — OneKeyCash currency (1-4% by tier) layered on a four-tier ladder gated by Trip Elements.",
+    "Iberia Club": "TWO mechanisms, but decoupled — Avios (spendable, earnable off-platform via retail) and Elite Points (status, flight-gated, per euro spent). Plus alliance earning across Grupo Iberia and partner airlines.",
+    "the_pattern": "Sophistication increases from intermediary to supplier. The supplier is the only one that lets value accrue outside its own transaction — because it has a retail partner network the OTAs do not.",
+    "confidence": "Verified"
+  },
+
+  "our_product_decision_required": [
+    "Decision required: Luma's user starts at zero on every observed programme except this one. Iberia's answer — let the currency accrue off-platform before the first trip — requires a partner network Luma does not have at ideation. Is there a non-retail equivalent? Earning for planning, for completing a trip, for resolving a disruption?",
+    "Decision required: F-58's split is the transferable idea. SPENDABLE value open to everyone from day one; STATUS earned by use. Genius inverts this and locks both. Which does Luma copy?",
+    "Decision required: Iberia is the only competitor observed to address families at all (F-59), and families are one of the scenario's five primary users. Four of five user types remain unaddressed by every competitor captured."
+  ],
+
+  "not_observed": [
+    "the tier names and thresholds — 'Niveles Iberia Club y sus ventajas' not opened",
+    "Avios expiry — searched for caduc/expir/vigencia/validez, no match on this page",
+    "what the children's benefits are",
+    "the authenticated member view — page served generic content despite an authenticated session",
+    "oneworld alliance reciprocity — 'aerolíneas asociadas' named but not enumerated"
+  ]
+}

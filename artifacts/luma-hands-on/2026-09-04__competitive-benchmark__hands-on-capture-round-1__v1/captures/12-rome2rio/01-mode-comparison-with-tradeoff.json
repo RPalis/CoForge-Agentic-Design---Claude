@@ -1,0 +1,48 @@
+{
+  "competitor": "Rome2Rio",
+  "capture": "s2-plan-compare / on-site transport — Madrid to Barcelona, same route as Trainline and Omio",
+  "url": "https://www.rome2rio.com/es/map/Madrid/Barcelona",
+  "captured_at": "2026-09-04T15:57Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "dom_nodes": 849, "visible_chars": 1502 },
+  "load_caveat": "Only 1,502 visible characters. The page may not have fully rendered; findings below are from what did render and are scoped accordingly.",
+
+  "finding_F97_MODE_COMPARISON_WITH_THE_TRADE_OFF_VISIBLE": {
+    "claim": "Rome2Rio presents duration and price together, per transport mode, in one view — including modes no other roster competitor surfaces.",
+    "evidence": {
+      "durations_observed": ["3h 2m", "3h 16m", "6h 20m", "7h 13m", "8h 5m"],
+      "prices_observed": ["30 €", "85 €", "139 €", "157 €", "160 €"],
+      "modes_observed": ["Tren (train)", "Autobús (bus)", "En coche 609 km (driving, with DISTANCE)", "Viaje compartido (rideshare, from the page title)"],
+      "cheapest_badge_verbatim_es": "MÁS BARATO"
+    },
+    "page_title_verbatim_es": "De Madrid a Barcelona en 3 horas: precios y horarios para ir en Tren, Autobús ó Viaje compartido",
+    "confidence": "Verified",
+    "why_it_matters": "F-42 credited Kayak with showing the trade-off ON the sort control — price and duration together, so €12 buying back 5h49m is visible before choosing. Rome2Rio does the same thing ACROSS MODES: 3h2m at one price against 8h5m at another, with the cheapest marked. A traveller can see that eight hours of coach saves a specific amount of money, without running three searches on three sites.",
+    "the_modes_nobody_else_shows": "Driving with a stated distance (609 km) and rideshare. No transactional competitor in the roster surfaces either — they cannot sell them. Rome2Rio can show them precisely BECAUSE it does not sell.",
+    "for_luma": "The scenario's stage 6 requires 'Transport on site — routes, tickets, passes, taxis, car hire'. Rome2Rio demonstrates the comparison layer for exactly that, including the non-bookable options a traveller may actually take. A product that only shows what it can sell cannot answer 'how do I get there' honestly."
+  },
+
+  "finding_F98_NOT_SELLING_IS_WHAT_MAKES_IT_HONEST": {
+    "claim": "Rome2Rio surfaces no booking or purchase language on the comparison view — consistent with the roster's assumption that it routes and compares without fulfilling.",
+    "method": "Swept for 'reservar', 'comprar', 'ver ofertas', 'ir a', 'billetes' — zero matches on the rendered page.",
+    "confidence": "Verified for the rendered surface; the load caveat applies.",
+    "the_pattern_completed": "This closes the business-model observation that F-26 opened and F-88 complicated. Across the roster: products that TRANSACT (Booking.com, Expedia, Iberia) show only what they sell and build no decision layer. Products that HAND OFF (Google, Kayak, Skyscanner) build decision layers and show what they can refer. Rome2Rio, which does neither, shows options that CANNOT be monetised at all — driving your own car, sharing someone else's.",
+    "the_sharp_version": "The more a product can sell you, the less of the real answer it shows. That is not a criticism of any one competitor; it is the structural consequence of the revenue model, and it is the clearest strategic frame this round has produced for a product proposing to serve the traveller's whole journey."
+  },
+
+  "roster_note_tier_3": {
+    "observation": "Trainline (270 companies, train and bus, sells), Omio (2,000 companies, four modes, sells), Rome2Rio (routes across modes including non-bookable, does not sell).",
+    "assessment": "The three tier-3 entries occupy genuinely distinct positions rather than duplicating each other. The tier-3 argument in ART-024 section 2.2 — that no tier-1 or tier-2 product covers on-site transport — is holding, with the qualification from F-45 that Kayak prompts cross-modally for bus prices without fulfilling them.",
+    "still_owed": "Citymapper (13) is the fourth tier-3 entry and the only one addressing movement WITHIN a destination rather than between cities. Untouched."
+  },
+
+  "not_observed": [
+    "full page render — 1,502 chars suggests partial",
+    "whether Rome2Rio hands off to booking partners further down the page",
+    "the accom_comparison=true parameter observed in the URL and its effect",
+    "step-by-step route detail — the 'how do I actually do this' layer Rome2Rio is known for"
+  ]
+}

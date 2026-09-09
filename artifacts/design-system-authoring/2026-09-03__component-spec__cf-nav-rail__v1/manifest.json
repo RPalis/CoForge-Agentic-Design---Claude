@@ -1,0 +1,51 @@
+{
+  "id": "ART-019",
+  "type": "component-spec",
+  "workstream": "design-system-authoring",
+  "title": "cf-nav-rail — within-page section navigation that cannot conceal anything",
+  "file": "nav-rail-component-spec.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "develop",
+  "produced_by": "screen-producer",
+  "model": "claude-opus-5",
+  "skills_used": [],
+  "findings": {
+    "findings_by": "screen-producer",
+    "checked": 10,
+    "found": 2,
+    "skipped": 5,
+    "method": "checked = the 10 contrast pairs in the payload's measurement table, computed from design-system/tokens/tokens.json release 0.2.0 by resolving the alias chain to a hex and applying WCAG relative luminance (Y = 0.2126R + 0.7152G + 0.0722B on linearised sRGB), ratio = (Yl + 0.05) / (Yd + 0.05), all re-derived on demand by verify-contrast.py in this directory at a tolerance of 0.002. found = 2 properties of release 0.2.0 that each invalidate the obvious implementation: (1) semantic.layer.01 measures 1.074:1 against palette.bone.default, so a rail drawn as a tinted surface has no visible boundary at all on our own ground and the semantic.border.strong-01 edge (4.253:1) is mandatory rather than decorative; (2) semantic.layer.selected-01 measures 1.200:1 against semantic.layer.01, so the current-section item CANNOT be marked with the selected surface — which is the token a developer will reach for, because its name says exactly what they are looking for. The current item is therefore marked on three channels (a spacing.01 leading bar in semantic.text.primary at 17.127:1, typography.weight.semibold, and aria-current='location'), only one of which is colour. skipped = 5 checks not run and claimed in neither direction: no render; no keyboard walk; no screen-reader pass; no forced-colors render; no zoom or reflow test. Also not verified: that spacing.09 is sufficient scroll-margin-top for a sticky header (payload assumption A-2 — it depends on a header this component does not own), and that scrollspy is implementable as described, since no implementation was written. Skipped is not passed."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-016"
+    ],
+    "sources": [
+      "design-system/tokens/tokens.json",
+      "design-system/component-index.json",
+      "design-system/contracts/component.schema.json",
+      "design-system/foundations/brand.md"
+    ],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "this_is_a_proposal": "Nothing here is in design-system/component-index.json and this artifact did not write to it. Promotion is explicit human approval recorded as an ADR (CLAUDE.md, 'The membrane') and screen-producer cannot perform it.",
+    "the_prohibition_is_the_component": "The dispatch asked for navigation that cannot filter, sort or hide, because a control that conceals the eight never-profiled competitors would delete the board's headline finding (D-001). That constraint is not implemented as a rule an implementer must remember: every item is a plain anchor, there is no state to persist, there is no collapsed variant, and the spec says in three places that this is not a tab set. A prohibition that depends on somebody reading it is the weakest enforcement layer this repository recognises.",
+    "why_a_new_workstream": "design-system-authoring did not exist. brand-foundations is the brand and its tokens, design-system-selection is which vendor system to adopt, luma-travel is a client research thread, system-operations is the operating cost of the agent apparatus. A proposal to enter component-index.json is none of those. Same reasoning ART-010 recorded when it created system-operations."
+  }
+}

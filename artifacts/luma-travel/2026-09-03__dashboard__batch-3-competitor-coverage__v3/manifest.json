@@ -1,0 +1,57 @@
+{
+  "id": "ART-016",
+  "type": "dashboard",
+  "workstream": "luma-travel",
+  "title": "Luma Batch 3 \u2014 competitor coverage & evidence-integrity board (v3 \u2014 full-scope denominators, a decollided VSUP, and every finding from two independent audits)",
+  "file": "luma-competitor-coverage-board.html",
+  "version": 3,
+  "supersedes": "ART-014",
+  "status": "superseded",
+  "stage": "develop",
+  "produced_by": "dashboard-analyst",
+  "model": "claude-sonnet-5",
+  "skills_used": [
+    "dataviz"
+  ],
+  "findings": {
+    "findings_by": "dashboard-analyst",
+    "checked": 21,
+    "found": 1,
+    "method": "This build's own job was not to re-check ART-011/ART-012 (unchanged since v2; see ART-014's own 108-figure check, not repeated) but to verify every finding in the two attacking reports resolves in the new payload, and to attack the fix itself before shipping it. 21 items checked: the 3 blockers named in the dispatch (denominator rebase, VSUP inversion, print), the 11 a11y-checker findings (F-01..F-11), and 7 of design-critic's numbered findings that required a payload change (DC-04, DC-05, DC-06, DC-10, DC-12, DC-13, DC-14 \u2014 DC-07/08/09/16/18/19/20 are validation.md-only and are corrected there, not in the payload; DC-11 and DC-15 are documented judgment calls, not defects, per the brief's own instruction to correct only what the evidence contradicts; DC-01..DC-03 are the three numbered blockers). Verified per-item: (1) recomputed the ten cluster percentages against the full 770 by hand from ART-012's own stated per-cluster row counts (not inferred), summed to 581/770=75.5%, the exact complement of the 24.5% KPI \u2014 matches design-critic's independent 75.5% exactly; (2) recomputed the luminance (WCAG relative-luminance formula) of all four hue families teal/warmGray/coolGray/cyan/green/blue/purple at every step 10-90 directly from tokens.json component values, confirming the isoluminant-ladder root cause, then recomputed the luminance of every fill actually rendered in the new journey grid and confirmed zero teal-fill/gap-fill adjacencies exist (gap is never a fill in that grid); (3) rendered the file with headless Chrome twice (screen and --print-to-pdf), decoded both with PyMuPDF, and read real pixel RGB values off the print PDF confirming background fills survive in that pipeline \u2014 logged as a real but partial test, not a full claim (see validation.md \u00a76 for what this does and does not prove about the interactive Print dialog). found=1: while extending the fix, this build introduced and then caught, before writing this file, four of its own off-token literal values (a 0.15em icon gap, a 0.7em icon width, a 0.85rem icon font-size, and a 3px/6px raw pixel stripe pattern) \u2014 the same defect class DC-14 named in v2. All four were corrected to existing spacing/type tokens before delivery, verified by grepping every rem/em/px literal in the final file and accounting for each one (structural layout widths and border-weights are the same accepted-as-structural category v1 and v2 both used, per v2's own \u00a76 reasoning, carried forward unchanged; every remaining literal is either a declared token or falls in that structural bucket)."
+  },
+  "inputs": {
+    "evidence": [],
+    "artifacts": [
+      "ART-011",
+      "ART-012",
+      "ART-014",
+      "ART-015"
+    ],
+    "decisions": [
+      "D-001",
+      "D-002"
+    ],
+    "sources": [],
+    "tokens_version": "0.2.0"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-03"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-03",
+  "notes": {
+    "why_a_new_id_and_not_ART-014_v3": "Same convention ART-014 itself documented and that this repository has used at every prior version bump (ART-001\u2192002, ART-003\u2192004, ART-008\u2192009, ART-013\u2192014): a new sequential ART id per version, with the immediately-prior version recorded in supersedes and named again in inputs.artifacts alongside the two content sources. ART-015 (the a11y audit of v2) is also cited in inputs.artifacts because two of its findings (F-01, F-08) drove payload changes here, in addition to the ledger of design-critic findings.",
+    "directory_still_says_v3": "ADR-003's directory contract versions by slug, independent of the registry id \u2014 the same pattern ART-014 used relative to ART-013.",
+    "what_this_build_changed_and_why": "Three blockers named by the dispatch, plus every a11y error/warning and every design-critique finding that named a payload defect (not a validation.md-only defect, and not a stated judgment call). See the payload's own 'Meta > Corrections made from v2 to v3' section for the on-page account a Gate A reviewer can read without opening this file, and validation.md \u00a71-\u00a77 for the full verification trail with re-runnable commands.",
+    "root_cause_finding_beyond_the_brief": "The dispatch attributed the VSUP inversion to v2's choice of a color-mix() blend toward a fixed grey target. That is the proximate mechanism, but this build traced it one level further: design-system/tokens/tokens.json is a Carbon-derived palette in which every hue family (teal, warmGray, coolGray, cyan, green, blue, purple \u2014 measured, not assumed) shares one universal lightness ladder, so ANY two ordinal ramps drawn from it at matching step numbers are luminance-identical regardless of hue. There is no alternative hue this board could have reached for that would have avoided the collision by picking a 'better' colour \u2014 the fix had to change WHICH CHANNEL carries confidence and WHETHER absence is ever a competing fill, not which hue carries value. Recorded because 'pick a different colour' would have been the natural first fix attempt and would not have worked.",
+    "token_gate_correction_to_the_brief": "The dispatch stated tokens.json records bone/ink/coral's Gate A as APPROVED and instructed removing v2's Assumption A-4 outright. Checked directly: a batch-level note (line 21) does say APPROVED, dated 2026-09-02 \u2014 but the four individual palette entries for bone.default, ink.default and both coral roles (lines 5319/5341/5363/5383) each still carry their OWN unchanged 'suggested by token-keeper; not counted until a human approves' string. The file disagrees with itself across two levels of specificity. This board treats the values as approved (the newer, more specific, dated record) but states the disagreement rather than deleting A-4 outright \u2014 token-keeper's file to reconcile, not this board's call.",
+    "interaction_boundary_held": "Unchanged from v2's own correct standard, now extended: every details.note/meta element discloses EVIDENCE OR ELABORATION only. The two disclosures design-critic identified as functioning as hidden DATA VALUES (Google Travel's 'not like-for-like' and Tripadvisor's 'prompt not typed') are no longer behind a click at all \u2014 both are now static body text at point of use; the retained <details> beside each carries only the fuller citation, which is elaboration, not the qualifying fact itself."
+  }
+}

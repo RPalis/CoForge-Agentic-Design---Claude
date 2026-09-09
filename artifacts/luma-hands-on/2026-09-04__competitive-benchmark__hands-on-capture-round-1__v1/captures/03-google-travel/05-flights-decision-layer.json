@@ -1,0 +1,58 @@
+{
+  "competitor": "Google Travel — Flights vertical",
+  "capture": "s2-plan-compare / flights — decision layer",
+  "url": "https://www.google.com/travel/flights?hl=en&gl=GB",
+  "captured_at": "2026-09-04T12:29Z",
+  "surface": "inspector instance (signed out, extension-clean)",
+  "locale_served": "en",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+
+  "decision_surfaces_verbatim": {
+    "date_grid_and_price_graph": "Find the cheapest days to fly — The Date grid and Price graph make it easy to find the best flight deals",
+    "price_insights": "Know when to book with price insights — Price history and trend data show you the best time to book your airline ticket to get the cheapest price for your flight",
+    "price_tracking": "Track flight prices for a trip — Not ready to book yet? Observe price changes for a route or flight and get notified when prices drop.",
+    "ai_exploration": "Explore the best flight deals with AI — Describe your ideal trip and let Google Flights find you the best deals",
+    "flexibility_guidance": "If your travel plans are flexible, use the form above to start searching for a specific trip. Then, play around with the Date grid"
+  },
+
+  "finding_F30_PRICE_HONESTY_COMMITMENT": {
+    "claim": "Google Flights publishes an explicit all-in pricing commitment — the stated opposite of drip pricing.",
+    "evidence_verbatim": "Prices are final prices and include all taxes and fees, including payment fees for the cheapest common payment method (which may d[iffer]...)",
+    "confidence": "Verified",
+    "contrast": "Expedia disclosed city tax per person per night at the property page — good, but late and per-item. Booking.com said only 'Includes taxes and fees'. Google states a platform-level commitment BEFORE any search, and names the payment-fee edge case rather than hiding it.",
+    "why_it_matters": "For a first-time traveller the fear is not the headline price, it is what appears at the end. A stated all-in commitment answers that fear before it forms."
+  },
+
+  "finding_F31_BUILT_FOR_THE_UNDECIDED": {
+    "claim": "Google Flights explicitly addresses a traveller who has not decided, in its own copy.",
+    "evidence_verbatim": ["Not ready to book yet? Observe price changes for a route or flight and get notified when prices drop.",
+                          "If your travel plans are flexible, use the form above... then play around with the Date grid"],
+    "confidence": "Verified",
+    "why_it_matters": "Booking.com and Expedia both REQUIRE destination and dates as search inputs — an undecided traveller cannot start. Google treats indecision as the normal starting state and builds tools for it: date grid, price graph, price history, tracking. This is the scenario's stage 1 'Dream & discover', which the transactional incumbents skip entirely.",
+    "running_pattern": "Reinforces F-26. Across three competitors, decision-support and transaction are inversely distributed. Nobody observed so far holds both."
+  },
+
+  "capability_inventory_flights": [
+    "Date grid — price across a matrix of departure/return dates",
+    "Price graph — price over time for a route",
+    "Price insights / price history — is now a good time to book",
+    "Price tracking with notification — monitoring while away",
+    "AI natural-language trip exploration",
+    "Multi-origin search ('Where else?' fields on both from and to)"
+  ],
+  "note_multi_origin": "The search form offers 'Where from? / Where else?' and 'Where to? / Where else?' — multiple origins AND multiple destinations in one query. Neither transactional competitor observed offers this.",
+
+  "our_product_decision_required": [
+    "Decision required: Luma's Core Features list includes 'live flight tracking' — Google already ships price tracking, price history and a date grid, free, without a booking. Luma's flight layer starts behind, not ahead. What does Luma add that Google does not already give away?",
+    "Decision required: an all-in price commitment (F-30) is a stated policy, not a feature build. It costs nothing to adopt at ideation and directly answers the target user's core fear. Is it a Luma commitment?",
+    "Decision required: every transactional competitor requires dates and destination to begin. Google does not. Luma's stage 1 is 'Dream & discover' — can its search accept an undecided traveller, or does it inherit the incumbents' assumption?"
+  ],
+
+  "not_observed": [
+    "date grid / price graph opened with a real route",
+    "the handoff to airline or OTA after selection",
+    "whether price insights appear for thin routes",
+    "empty / error / no-results states"
+  ]
+}

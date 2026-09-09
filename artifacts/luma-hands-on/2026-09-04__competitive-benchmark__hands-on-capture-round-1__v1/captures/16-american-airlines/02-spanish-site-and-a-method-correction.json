@@ -1,0 +1,64 @@
+{
+  "competitor": "American Airlines",
+  "capture": "s0-site-tree-L1 — localised site, AAdvantage, and a correction to my own findability test",
+  "url": "aa.com/homePage.do → redirected to americanairlines.es/intl/es/index.jsp",
+  "captured_at": "2026-09-04T16:52Z",
+  "surface": "client's authenticated Chrome",
+  "locale_served": "es",
+  "source_class": "Own capture",
+  "confidence": "Verified",
+  "page_shape": { "links": 43, "visible_chars": 1325, "form_inputs": 32 },
+
+  "METHOD_CORRECTION_TO_MY_OWN_FINDABILITY_TEST": {
+    "what_I_did_wrong": "I ran the symmetric findability sweep on AA using ENGLISH terms — delay, cancel, disrupt, compensat, rights, irregular, service plan, refund — against a page served in SPANISH. It returned zero matches for every category including loyalty and lounges, which should have been the tell.",
+    "what_a_correct_sweep_found": "The Spanish site carries 'Actualizaciones de viaje' (Travel updates) as a HEADING, 'Alertas de viaje' (Travel alerts) as a link, 'Estado del vuelo' (Flight status), and 'Clubes y salas' (Clubs and lounges).",
+    "the_consequence": "A zero-match sweep in the wrong language is indistinguishable from a genuine absence. Had I written it up, the record would state that AA's homepage surfaces no disruption route — the exact opposite of what is there.",
+    "eighth_instance": "This is the eighth result this round that looked like data and was not. The others: five empty selector returns, two 404s that rendered as pages. This one is different in kind — the tool worked, the page rendered, and the ERROR WAS MINE for not matching the query language to the served locale.",
+    "standing_rule_added": "Sweep terms must be in the locale actually served, not the locale requested. D-004 records locale per capture; the search vocabulary must follow it."
+  },
+
+  "finding_F112_AA_SERVES_A_DIFFERENT_SITE_BY_LOCALE": {
+    "claim": "aa.com redirects to americanairlines.es for a Spanish-locale session, serving a materially thinner site — 43 links against a US site that hosts a full Customer Service Plan.",
+    "confidence": "Verified",
+    "why_it_matters_for_the_ROUND": "F-104 found AA's Customer Service Plan with four named disruption sections and concluded that Iberia's silence is a product choice rather than a statutory artefact. That comparison is now weaker than stated: the plan lives on the US site, and a Spanish-locale traveller — the same locale in which Iberia was tested — reaches this 43-link page instead. Whether the Customer Service Plan is reachable from HERE is untested.",
+    "the_honest_position": "F-104's content finding stands: AA publishes a structured disruption document and Iberia does not. The FINDABILITY comparison remains unsound, now for two reasons — I reached AA's plan by URL rather than navigation, and AA serves a different site to the locale Iberia was tested in.",
+    "for_luma": "The scenario requires 'Multi-language support' as a constraint. This is what it looks like when a carrier implements localisation as a SEPARATE, thinner site rather than a translation: capability silently disappears by market. A traveller's access to disruption help depends on which country they load the page from."
+  },
+
+  "finding_F113_DISRUPTION_IS_PROMINENT_HERE_AFTER_ALL": {
+    "claim": "AA's Spanish homepage surfaces travel disruption prominently — as a heading, not a buried link.",
+    "evidence_verbatim_es": ["Actualizaciones de viaje (heading)", "Alertas de viaje (link, appearing twice)", "Estado del vuelo (link)"],
+    "translation": ["Travel updates", "Travel alerts", "Flight status"],
+    "confidence": "Verified",
+    "the_revised_tier_4_picture": {
+      "American Airlines": "'Actualizaciones de viaje' as a homepage HEADING plus travel alerts and flight status — disruption is a first-class homepage surface",
+      "Qatar Airways": "289 homepage links, zero disruption matches (F-107) — though its notice bar carried an operational advisory about power banks",
+      "Iberia": "367+ labels across three surfaces, zero; and its changes page explicitly declines to link onward (F-56)"
+    },
+    "the_conclusion_that_now_holds": "Three airlines, three different postures on the same regulatory obligation. American surfaces it on the homepage. Qatar does not surface it but publishes operational advisories. Iberia names the regime and stops. This is a stronger version of F-104's conclusion — disruption handling is a product choice — and it is now built on three comparable observations rather than one asymmetric pair."
+  },
+
+  "aadvantage_observed": {
+    "currency": "Loyalty Points",
+    "threshold_verbatim_es": "Loyalty Point Rewards — Desbloquee recompensas desde 15 000 Loyalty Points",
+    "translation": "Unlock rewards from 15,000 Loyalty Points",
+    "join_cta_verbatim_es": "Únase al programa AAdvantage",
+    "airport_services_verbatim_es": "Clubes y salas (Clubs and lounges)",
+    "alliance_verbatim_es": "Viaje a más de 1000 destinos de todo el mundo — Líneas aéreas oneworld®",
+    "confidence": "Verified that these surfaces exist. Tier names, thresholds and lounge eligibility NOT captured — the AAdvantage status page 404'd twice on URL guesses."
+  },
+
+  "closes_an_open_assumption": {
+    "the_assumption": "ART-024 section 2.2b recorded as an Assumption, explicitly not relied upon, that Iberia, American Airlines and Qatar Airways all appear to be oneworld members — which would mean alliance reciprocity is observable across all three but the sample under-represents non-alliance carriers.",
+    "now_verified": "American Airlines states 'Líneas aéreas oneworld®' on its homepage. Qatar Airways carries a 'one-world' navigation item (F-105 capture). Iberia's Club page names 'aerolíneas asociadas al Club' without naming the alliance.",
+    "verdict": "Two of three verified directly, the third by strong implication. The tier-4 sample IS alliance-concentrated. The plan's caveat holds and should be stated in any tier-4 conclusion: this sample says nothing about low-cost or non-alliance carrier behaviour.",
+    "confidence": "Verified for AA and Qatar; Iberia Inferred."
+  },
+
+  "not_observed": [
+    "AAdvantage tier names and thresholds — two 404s on URL guesses; must be reached by navigation",
+    "'Clubes y salas' — lounge access rules and whether purchasable",
+    "whether the US Customer Service Plan is reachable from the Spanish site",
+    "AA booking flow"
+  ]
+}

@@ -38,7 +38,7 @@ wanting to change something, that is the finding — write it down and stop.
 <!-- STANDING-RULES:BEGIN -->
 ## Standing rules — earned, not asserted
 
-Generated from `validation/standing-rules.json`, which is checked against all 56 entries in `validation/corrections.json`. Every rule below cost this project a real defect; the cost is named so you can weigh it.
+Generated from `validation/standing-rules.json`, which is checked against all 58 entries in `validation/corrections.json`. Every rule below cost this project a real defect; the cost is named so you can weigh it.
 
 **SR-1 · Resolve, never recall.**
 Any claim naming a company, a number or a quote must be resolved to a file at the moment you write it. Never from memory, however certain — especially when it is a comparison against something you captured earlier in the same session. Confident, specific and wrong is the most damaging output this project can produce.
@@ -66,7 +66,7 @@ The author is the one party who cannot audit their own work. Before reporting th
 
 **SR-7 · Do not generalise from the first instance you examined.**
 One directory, one file format, one vertical, one competitor. Check a second before stating a pattern, and say how many you checked.
-*Earned by C-047, C-049 — A market-wide ranking claim measured on one vertical and overturned by enumerating a second; a roster counted as 17 independent companies when three share a parent.*
+*Earned by C-047, C-049, C-057 — A market-wide ranking claim measured on one vertical and overturned by enumerating a second; a roster counted as 17 independent companies when three share a parent. And C-057: the metrics join was built against a transcript corpus that happened to contain no fork, so nothing ever checked that the files were distinct. Once forks accumulated it summed four overlapping files as four independent sessions, counted 55% of records twice or three times, and reported roughly 2.1x the true figures. A governance report was about to be built on them.*
 
 **SR-8 · An honest 'nothing found' is a valuable answer. A padded one is not.**
 If the evidence does not support the conclusion you were asked to reach, say so and name what would settle it. Never fill a table to look thorough, and never adopt a classification you marked unsure without review.
@@ -81,8 +81,8 @@ Writing a correction down does not stop it recurring. Ask who would repeat this 
 *Earned by C-051 — Fifty corrections logged, and twelve of fourteen agents dispatched knowing none of them. The check that generates this block caught its own author leaving C-051 uncovered within a minute of being written.*
 
 **SR-11 · A check that cannot fail is not a check.**
-Before trusting a green result, ask what would have to be true for this check to report FAIL, and then make that true. Four ways a check quietly cannot fail: it exempts an element on the strength of a class name nothing has to earn; its justification rests on a second check whose selector never reaches the same elements; it measures a resting page while claiming to test an interactive state; or it fails OPEN, so that breaking it produces a pass. Every exemption must name the mechanical property that makes an element exempt, and that property must be asserted, not described in a comment.
-*Earned by C-053, C-054, C-055, C-056 — A bar chart shipped with 1.45:1 bars because they wore a class the checker exempted by name. A contrast exemption justified by a redundancy check hard-scoped to a single figure, so it stood alone everywhere else. A pressed-state check that never pressed anything, unable to see the exact defect its own comment claimed to guard. And three colour predicates disabled by double-escaping, reporting clean while testing nothing -- hit three times in one hour, including inside the fix written to repair it. All four reported PASS.*
+Before trusting a green result, ask what would have to be true for this check to report FAIL, and then make that true. Five ways a check quietly cannot fail: it exempts an element on the strength of a class name nothing has to earn; its justification rests on a second check whose selector never reaches the same elements; it measures a resting page while claiming to test an interactive state; it fails OPEN, so that breaking it produces a pass; or it tests for a SPELLING rather than for the property, so a value written in a notation the check does not recognise reports clean without ever being examined. Every exemption must name the mechanical property that makes an element exempt, and that property must be asserted, not described in a comment.
+*Earned by C-053, C-054, C-055, C-056, C-058 — A bar chart shipped with 1.45:1 bars because they wore a class the checker exempted by name. A contrast exemption justified by a redundancy check hard-scoped to a single figure, so it stood alone everywhere else. A pressed-state check that never pressed anything, unable to see the exact defect its own comment claimed to guard. And three colour predicates disabled by double-escaping, reporting clean while testing nothing -- hit three times in one hour, including inside the fix written to repair it. All four reported PASS. And C-058: the raw-colour check matches hex only. ART-026 v2 inlines 708 literal colour values in color(srgb ...) notation and the check has always reported ZERO findings against it -- clean because it cannot read the notation, not because the values are on-token. The same practice written in hex produced 30 blockers, which is how the blind spot surfaced.*
 
 If you cannot follow one of these for a specific task, say so in your return and say why. Do not quietly work around it.
 <!-- STANDING-RULES:END -->

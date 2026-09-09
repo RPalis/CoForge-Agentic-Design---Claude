@@ -1,6 +1,6 @@
 # ADR-023 — What "on-token" means for a self-contained artifact
 
-**Status:** PROPOSED — awaiting Gate A sign-off (this ADR changes what a gate accepts)
+**Status:** ACCEPTED — signed off by Agentic Designer - RP, 2026-09-09 (Gate A), on merging PR #6 (recorded in PR #7, which carries the sign-off commit PR #6 merged without)
 **Date:** 2026-09-09
 **Evidence:** C-058 (`validation/corrections.json`); `validation/colour_resolve.py`;
 `validation/audit-system.py` check 6; `.claude/hooks/gate-b.py` check 1

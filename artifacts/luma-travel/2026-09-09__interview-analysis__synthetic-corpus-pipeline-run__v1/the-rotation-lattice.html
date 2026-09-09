@@ -9,7 +9,7 @@
   --s1:#0f62fe; --s2:#d02670; --s3:#08bdba; --s4:#8e6a00;
   --sans:"Anek Latin",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:"Source Code Pro",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --measure:68ch;
+  --measure:62ch; --col:640px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -25,22 +25,34 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bone);color:var(--ink);font-family:var(--sans);
-  font-weight:300;line-height:1.55;margin:0;padding:0 24px 96px;
-  -webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto}
+  font-weight:400;line-height:1.6;margin:0;padding:0 24px 96px;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{max-width:940px;margin:0 auto}
+/* Two widths, one axis. Text keeps a 62ch measure; figures and tables break out
+   to the full column. Before this the text sat at 603px inside a 1080px column,
+   leaving 360px of dead space beside every paragraph on a 1440px screen. */
+section{align-items:center}
+/* Both parents are centring flex columns, so every child needs an explicit
+   width or it shrink-wraps: that is how .meta collapsed from 640 to 209. */
+section > h2, section > h3, section > p, section > ul, section > .rulel,
+header > *{width:100%;max-width:var(--col);margin-inline:auto}
+/* the breakout band, deliberately wider than the text and on the same axis */
+section > figure, section > .tw, section > .tiles{width:100%;max-width:100%}
+header{display:flex;flex-direction:column;align-items:center}
 .eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-2);margin:0}
-h1{font-size:clamp(34px,5vw,54px);font-weight:700;letter-spacing:-.025em;line-height:1.04;
-  margin:14px 0 0;text-wrap:balance;max-width:16ch}
-.stand{font-size:20px;font-weight:300;color:var(--ink-2);max-width:var(--measure);
+h1{font-size:clamp(34px,4.6vw,50px);font-weight:700;letter-spacing:-.028em;line-height:1.06;
+  margin:14px 0 0;text-wrap:balance;max-width:var(--col)}
+.stand{font-size:19px;font-weight:300;color:var(--ink-2);max-width:var(--col);
   margin:18px 0 0;text-wrap:pretty}
-h2{font-size:26px;font-weight:600;letter-spacing:-.015em;margin:0;text-wrap:balance}
-h3{font-size:17px;font-weight:600;margin:0 0 6px}
-p{max-width:var(--measure);margin:14px 0 0}
+h2{font-size:27px;font-weight:600;letter-spacing:-.018em;line-height:1.2;margin:0;
+  text-wrap:balance}
+h3{font-size:15px;font-weight:600;margin:22px 0 0;letter-spacing:.01em}
+p{max-width:var(--col);margin:14px 0 0}
 section{margin-top:72px;display:flex;flex-direction:column;gap:14px}
 header{padding:56px 0 0}
 .flag{display:flex;gap:14px;align-items:flex-start;border-left:3px solid var(--flag);
-  background:var(--sunk);padding:16px 20px;margin:32px 0 0;max-width:var(--measure)}
+  background:var(--sunk);padding:16px 20px;margin:32px 0 0;max-width:var(--col)}
 .flag p{margin:0;font-size:15px;color:var(--ink-2)}
 .flag strong{color:var(--flag);font-weight:600}
 .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;
@@ -55,10 +67,25 @@ header{padding:56px 0 0}
 .tile .big{font-family:var(--mono);font-size:40px;font-weight:600;letter-spacing:-.03em;
   font-variant-numeric:tabular-nums;line-height:1;color:var(--ink)}
 .tile .big.alarm{color:var(--flag)}
+/* the four ranks are a sequence, not a number: 6&#8202;5&#8202;5&#8202;4 read as 6554 */
+.tile .big.seq i{font-style:normal;color:var(--ink-3);font-weight:400;
+  padding:0 2px}
+.tile .big.seq{font-size:34px;letter-spacing:0}
 .tile .lbl{margin-top:10px;font-size:14px;color:var(--ink-2);max-width:30ch}
-figure{margin:0;background:var(--paper);border:1px solid var(--rule);padding:26px 24px 20px;
+figure{margin:0;background:var(--paper);border:1px solid var(--rule);padding:28px 14px 22px;
   overflow-x:auto}
-figcaption{font-size:14px;color:var(--ink-2);margin-top:18px;max-width:var(--measure)}
+/* capped at the design width so a figure is never upscaled and every px inside
+   the svg is the px it was drawn at */
+.fig{width:100%;max-width:912px;margin-inline:auto;min-width:660px}
+/* min-width, so a narrow screen SCROLLS the figure instead of shrinking it.
+   Without it the lattice renders at ~330px on a phone and its 10px labels come
+   out near 4px — present, and unreadable, which is worse than absent. */
+figure{scrollbar-width:thin}
+@media (max-width:720px){
+  figure{padding-left:12px;padding-right:12px}
+  figcaption{min-width:0}
+}
+figcaption{font-size:14px;color:var(--ink-2);margin-top:20px;max-width:var(--col)}
 figcaption b{color:var(--ink);font-weight:600}
 .fig{display:block}
 .fig .ax{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}
@@ -104,14 +131,34 @@ td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;
   border-radius:2px;white-space:nowrap}
 .p-refuted,.p-contradicted{color:var(--flag)}
 .p-upheld{color:var(--ink-2)}
-ul{max-width:var(--measure);padding-left:20px;margin:8px 0 0}
+ul{max-width:var(--col);padding-left:20px;margin:8px 0 0}
 li{margin-top:9px}
 li b{font-weight:600}
 .rulel{border:0;border-top:1px solid var(--ink);margin:0}
 footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--rule);
-  font-size:13px;color:var(--ink-3);max-width:var(--measure)}
+  font-size:13px;color:var(--ink-3);max-width:var(--col);margin-inline:auto}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--s1);outline-offset:2px}
+:focus-visible{outline:2px solid var(--s1);outline-offset:3px;border-radius:2px}
+
+/* hover + focus affordances. CSS does the highlighting; the script only positions
+   a readable tooltip. Everything below still reads correctly with script off. */
+.fig .on, .fig .dot, .fig .bar{transition:opacity .12s ease}
+.fig:hover .on, .fig:hover .dot, .fig:hover .bar{opacity:.42}
+.fig .on:hover, .fig .dot:hover, .fig .bar:hover{opacity:1}
+/* one tab stop per figure, not one per mark: the svg root is focusable and
+   announces its own title and desc; the table view carries the values. */
+.fig:focus-visible{outline:2px solid var(--s1);outline-offset:4px}
+.fig .row-hit{fill:var(--ink);opacity:0}
+.fig .row-hit:hover{opacity:.055}
+tbody tr{transition:background .12s ease}
+tbody tr:hover{background:var(--sunk)}
+#tip{position:fixed;z-index:9;pointer-events:none;opacity:0;transform:translate(-50%,-124%);
+  background:var(--ink);color:var(--bone);font-family:var(--mono);font-size:12px;
+  line-height:1.45;padding:7px 10px;border-radius:3px;max-width:280px;
+  transition:opacity .1s ease}
+#tip.on{opacity:1}
+#tip b{font-weight:600;color:var(--bone)}
+@media (hover:none){#tip{display:none} .fig:hover .on{opacity:1}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -155,730 +202,770 @@ a{color:inherit}
       <div class="lbl">of them appear in more than one segment</div></div>
     <div class="tile"><div class="big">80</div>
       <div class="lbl">theme marks, exactly two per participant</div></div>
-    <div class="tile"><div class="big">6&#8202;5&#8202;5&#8202;4</div>
+    <div class="tile"><div class="big seq">6<i>/</i>5<i>/</i>5<i>/</i>4</div>
       <div class="lbl">frequency ranking, identical in every segment</div></div>
   </div>
 
   <figure>
-    <svg viewBox="0 0 688 802" role="img" width="100%" aria-labelledby="latt-t latt-d" class="fig">
+    <svg viewBox="0 0 912 842" role="img" width="100%" aria-labelledby="latt-t latt-d" class="fig" tabindex="0">
 <title id="latt-t">Pain-theme assignment across 40 participants and 16 themes</title>
 <desc id="latt-d">Each segment of ten participants is confined to four themes. No theme appears in more than one segment. Within each segment the pairs cycle through a fixed rotation, so the marks form four identical diagonal blocks.</desc>
-<text class="ax rot" x="197.0" y="160" transform="rotate(-90 197.0 160)">Compare never lines up</text>
-<text class="ax rot" x="227.0" y="160" transform="rotate(-90 227.0 160)">No single trip/cost view</text>
-<text class="ax rot" x="257.0" y="160" transform="rotate(-90 257.0 160)">Find things to do</text>
-<text class="ax rot" x="287.0" y="160" transform="rotate(-90 287.0 160)">On-site transport</text>
-<text class="ax rot" x="317.0" y="160" transform="rotate(-90 317.0 160)">Flight changes</text>
-<text class="ax rot" x="347.0" y="160" transform="rotate(-90 347.0 160)">Expenses chore</text>
-<text class="ax rot" x="377.0" y="160" transform="rotate(-90 377.0 160)">Booked separately</text>
-<text class="ax rot" x="407.0" y="160" transform="rotate(-90 407.0 160)">Airport waiting</text>
-<text class="ax rot" x="437.0" y="160" transform="rotate(-90 437.0 160)">Coordinating people</text>
-<text class="ax rot" x="467.0" y="160" transform="rotate(-90 467.0 160)">Arrival to accommodation</text>
-<text class="ax rot" x="497.0" y="160" transform="rotate(-90 497.0 160)">Updates not personalised</text>
-<text class="ax rot" x="527.0" y="160" transform="rotate(-90 527.0 160)">Manage booked activities</text>
-<text class="ax rot" x="557.0" y="160" transform="rotate(-90 557.0 160)">Anxious navigating</text>
-<text class="ax rot" x="587.0" y="160" transform="rotate(-90 587.0 160)">Info across apps</text>
-<text class="ax rot" x="617.0" y="160" transform="rotate(-90 617.0 160)">Entry/docs confusing</text>
-<text class="ax rot" x="647.0" y="160" transform="rotate(-90 647.0 160)">Booking done right?</text>
-<rect class="band" x="0" y="168" width="132" height="148" rx="2"/>
+<text class="ax rot" x="200.0" y="160" transform="rotate(-90 200.0 160)">Compare never lines up</text>
+<text class="ax rot" x="244.0" y="160" transform="rotate(-90 244.0 160)">No single trip/cost view</text>
+<text class="ax rot" x="288.0" y="160" transform="rotate(-90 288.0 160)">Find things to do</text>
+<text class="ax rot" x="332.0" y="160" transform="rotate(-90 332.0 160)">On-site transport</text>
+<text class="ax rot" x="376.0" y="160" transform="rotate(-90 376.0 160)">Flight changes</text>
+<text class="ax rot" x="420.0" y="160" transform="rotate(-90 420.0 160)">Expenses chore</text>
+<text class="ax rot" x="464.0" y="160" transform="rotate(-90 464.0 160)">Booked separately</text>
+<text class="ax rot" x="508.0" y="160" transform="rotate(-90 508.0 160)">Airport waiting</text>
+<text class="ax rot" x="552.0" y="160" transform="rotate(-90 552.0 160)">Coordinating people</text>
+<text class="ax rot" x="596.0" y="160" transform="rotate(-90 596.0 160)">Arrival to accommodation</text>
+<text class="ax rot" x="640.0" y="160" transform="rotate(-90 640.0 160)">Updates not personalised</text>
+<text class="ax rot" x="684.0" y="160" transform="rotate(-90 684.0 160)">Manage booked activities</text>
+<text class="ax rot" x="728.0" y="160" transform="rotate(-90 728.0 160)">Anxious navigating</text>
+<text class="ax rot" x="772.0" y="160" transform="rotate(-90 772.0 160)">Info across apps</text>
+<text class="ax rot" x="816.0" y="160" transform="rotate(-90 816.0 160)">Entry/docs confusing</text>
+<text class="ax rot" x="860.0" y="160" transform="rotate(-90 860.0 160)">Booking done right?</text>
+<rect class="band" x="0" y="168" width="132" height="158" rx="2"/>
 <text class="seg s-s1" x="10" y="194">Leisure</text>
 <text class="segn" x="10" y="212">10 participants</text>
 <text class="segn" x="10" y="226">4 themes</text>
-<text class="pid" x="172" y="179">001</text>
-<rect class="on s-s1" x="183" y="169" width="28" height="13" rx="2"><title>LUMA-001 &#183; Leisure &#183; Compare never lines up</title></rect>
-<rect class="on s-s1" x="213" y="169" width="28" height="13" rx="2"><title>LUMA-001 &#183; Leisure &#183; No single trip/cost view</title></rect>
-<rect class="off" x="243" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="169" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="169" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="194">002</text>
-<rect class="off" x="183" y="184" width="28" height="13" rx="2"/>
-<rect class="on s-s1" x="213" y="184" width="28" height="13" rx="2"><title>LUMA-002 &#183; Leisure &#183; No single trip/cost view</title></rect>
-<rect class="on s-s1" x="243" y="184" width="28" height="13" rx="2"><title>LUMA-002 &#183; Leisure &#183; Find things to do</title></rect>
-<rect class="off" x="273" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="184" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="184" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="209">003</text>
-<rect class="off" x="183" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="199" width="28" height="13" rx="2"/>
-<rect class="on s-s1" x="243" y="199" width="28" height="13" rx="2"><title>LUMA-003 &#183; Leisure &#183; Find things to do</title></rect>
-<rect class="on s-s1" x="273" y="199" width="28" height="13" rx="2"><title>LUMA-003 &#183; Leisure &#183; On-site transport</title></rect>
-<rect class="off" x="303" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="199" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="199" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="224">004</text>
-<rect class="on s-s1" x="183" y="214" width="28" height="13" rx="2"><title>LUMA-004 &#183; Leisure &#183; Compare never lines up</title></rect>
-<rect class="off" x="213" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="214" width="28" height="13" rx="2"/>
-<rect class="on s-s1" x="273" y="214" width="28" height="13" rx="2"><title>LUMA-004 &#183; Leisure &#183; On-site transport</title></rect>
-<rect class="off" x="303" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="214" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="214" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="239">005</text>
-<rect class="on s-s1" x="183" y="229" width="28" height="13" rx="2"><title>LUMA-005 &#183; Leisure &#183; Compare never lines up</title></rect>
-<rect class="on s-s1" x="213" y="229" width="28" height="13" rx="2"><title>LUMA-005 &#183; Leisure &#183; No single trip/cost view</title></rect>
-<rect class="off" x="243" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="229" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="229" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="254">006</text>
-<rect class="off" x="183" y="244" width="28" height="13" rx="2"/>
-<rect class="on s-s1" x="213" y="244" width="28" height="13" rx="2"><title>LUMA-006 &#183; Leisure &#183; No single trip/cost view</title></rect>
-<rect class="on s-s1" x="243" y="244" width="28" height="13" rx="2"><title>LUMA-006 &#183; Leisure &#183; Find things to do</title></rect>
-<rect class="off" x="273" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="244" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="244" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="269">007</text>
-<rect class="off" x="183" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="259" width="28" height="13" rx="2"/>
-<rect class="on s-s1" x="243" y="259" width="28" height="13" rx="2"><title>LUMA-007 &#183; Leisure &#183; Find things to do</title></rect>
-<rect class="on s-s1" x="273" y="259" width="28" height="13" rx="2"><title>LUMA-007 &#183; Leisure &#183; On-site transport</title></rect>
-<rect class="off" x="303" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="259" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="259" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="284">008</text>
-<rect class="on s-s1" x="183" y="274" width="28" height="13" rx="2"><title>LUMA-008 &#183; Leisure &#183; Compare never lines up</title></rect>
-<rect class="off" x="213" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="274" width="28" height="13" rx="2"/>
-<rect class="on s-s1" x="273" y="274" width="28" height="13" rx="2"><title>LUMA-008 &#183; Leisure &#183; On-site transport</title></rect>
-<rect class="off" x="303" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="274" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="274" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="299">009</text>
-<rect class="on s-s1" x="183" y="289" width="28" height="13" rx="2"><title>LUMA-009 &#183; Leisure &#183; Compare never lines up</title></rect>
-<rect class="on s-s1" x="213" y="289" width="28" height="13" rx="2"><title>LUMA-009 &#183; Leisure &#183; No single trip/cost view</title></rect>
-<rect class="off" x="243" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="289" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="289" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="314">010</text>
-<rect class="off" x="183" y="304" width="28" height="13" rx="2"/>
-<rect class="on s-s1" x="213" y="304" width="28" height="13" rx="2"><title>LUMA-010 &#183; Leisure &#183; No single trip/cost view</title></rect>
-<rect class="on s-s1" x="243" y="304" width="28" height="13" rx="2"><title>LUMA-010 &#183; Leisure &#183; Find things to do</title></rect>
-<rect class="off" x="273" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="304" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="304" width="28" height="13" rx="2"/>
-<rect class="band" x="0" y="318" width="132" height="148" rx="2"/>
-<text class="seg s-s2" x="10" y="344">Business</text>
-<text class="segn" x="10" y="362">10 participants</text>
-<text class="segn" x="10" y="376">4 themes</text>
-<text class="pid" x="172" y="329">011</text>
-<rect class="off" x="183" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="319" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="303" y="319" width="28" height="13" rx="2"><title>LUMA-011 &#183; Business &#183; Flight changes</title></rect>
-<rect class="on s-s2" x="333" y="319" width="28" height="13" rx="2"><title>LUMA-011 &#183; Business &#183; Expenses chore</title></rect>
-<rect class="off" x="363" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="319" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="319" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="344">012</text>
-<rect class="off" x="183" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="334" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="333" y="334" width="28" height="13" rx="2"><title>LUMA-012 &#183; Business &#183; Expenses chore</title></rect>
-<rect class="on s-s2" x="363" y="334" width="28" height="13" rx="2"><title>LUMA-012 &#183; Business &#183; Booked separately</title></rect>
-<rect class="off" x="393" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="334" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="334" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="359">013</text>
-<rect class="off" x="183" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="349" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="363" y="349" width="28" height="13" rx="2"><title>LUMA-013 &#183; Business &#183; Booked separately</title></rect>
-<rect class="on s-s2" x="393" y="349" width="28" height="13" rx="2"><title>LUMA-013 &#183; Business &#183; Airport waiting</title></rect>
-<rect class="off" x="423" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="349" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="349" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="374">014</text>
-<rect class="off" x="183" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="364" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="303" y="364" width="28" height="13" rx="2"><title>LUMA-014 &#183; Business &#183; Flight changes</title></rect>
-<rect class="off" x="333" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="364" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="393" y="364" width="28" height="13" rx="2"><title>LUMA-014 &#183; Business &#183; Airport waiting</title></rect>
-<rect class="off" x="423" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="364" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="364" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="389">015</text>
-<rect class="off" x="183" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="379" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="303" y="379" width="28" height="13" rx="2"><title>LUMA-015 &#183; Business &#183; Flight changes</title></rect>
-<rect class="on s-s2" x="333" y="379" width="28" height="13" rx="2"><title>LUMA-015 &#183; Business &#183; Expenses chore</title></rect>
-<rect class="off" x="363" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="379" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="379" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="404">016</text>
-<rect class="off" x="183" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="394" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="333" y="394" width="28" height="13" rx="2"><title>LUMA-016 &#183; Business &#183; Expenses chore</title></rect>
-<rect class="on s-s2" x="363" y="394" width="28" height="13" rx="2"><title>LUMA-016 &#183; Business &#183; Booked separately</title></rect>
-<rect class="off" x="393" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="394" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="394" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="419">017</text>
-<rect class="off" x="183" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="409" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="363" y="409" width="28" height="13" rx="2"><title>LUMA-017 &#183; Business &#183; Booked separately</title></rect>
-<rect class="on s-s2" x="393" y="409" width="28" height="13" rx="2"><title>LUMA-017 &#183; Business &#183; Airport waiting</title></rect>
-<rect class="off" x="423" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="409" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="409" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="434">018</text>
-<rect class="off" x="183" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="424" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="303" y="424" width="28" height="13" rx="2"><title>LUMA-018 &#183; Business &#183; Flight changes</title></rect>
-<rect class="off" x="333" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="424" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="393" y="424" width="28" height="13" rx="2"><title>LUMA-018 &#183; Business &#183; Airport waiting</title></rect>
-<rect class="off" x="423" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="424" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="424" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="449">019</text>
-<rect class="off" x="183" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="439" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="303" y="439" width="28" height="13" rx="2"><title>LUMA-019 &#183; Business &#183; Flight changes</title></rect>
-<rect class="on s-s2" x="333" y="439" width="28" height="13" rx="2"><title>LUMA-019 &#183; Business &#183; Expenses chore</title></rect>
-<rect class="off" x="363" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="439" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="439" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="464">020</text>
-<rect class="off" x="183" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="454" width="28" height="13" rx="2"/>
-<rect class="on s-s2" x="333" y="454" width="28" height="13" rx="2"><title>LUMA-020 &#183; Business &#183; Expenses chore</title></rect>
-<rect class="on s-s2" x="363" y="454" width="28" height="13" rx="2"><title>LUMA-020 &#183; Business &#183; Booked separately</title></rect>
-<rect class="off" x="393" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="454" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="454" width="28" height="13" rx="2"/>
-<rect class="band" x="0" y="468" width="132" height="148" rx="2"/>
-<text class="seg s-s3" x="10" y="494">Families</text>
-<text class="segn" x="10" y="512">10 participants</text>
-<text class="segn" x="10" y="526">4 themes</text>
-<text class="pid" x="172" y="479">021</text>
-<rect class="off" x="183" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="469" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="423" y="469" width="28" height="13" rx="2"><title>LUMA-021 &#183; Families &#183; Coordinating people</title></rect>
-<rect class="on s-s3" x="453" y="469" width="28" height="13" rx="2"><title>LUMA-021 &#183; Families &#183; Arrival to accommodation</title></rect>
-<rect class="off" x="483" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="469" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="469" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="494">022</text>
-<rect class="off" x="183" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="484" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="453" y="484" width="28" height="13" rx="2"><title>LUMA-022 &#183; Families &#183; Arrival to accommodation</title></rect>
-<rect class="on s-s3" x="483" y="484" width="28" height="13" rx="2"><title>LUMA-022 &#183; Families &#183; Updates not personalised</title></rect>
-<rect class="off" x="513" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="484" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="484" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="509">023</text>
-<rect class="off" x="183" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="499" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="483" y="499" width="28" height="13" rx="2"><title>LUMA-023 &#183; Families &#183; Updates not personalised</title></rect>
-<rect class="on s-s3" x="513" y="499" width="28" height="13" rx="2"><title>LUMA-023 &#183; Families &#183; Manage booked activities</title></rect>
-<rect class="off" x="543" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="499" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="499" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="524">024</text>
-<rect class="off" x="183" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="514" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="423" y="514" width="28" height="13" rx="2"><title>LUMA-024 &#183; Families &#183; Coordinating people</title></rect>
-<rect class="off" x="453" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="514" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="513" y="514" width="28" height="13" rx="2"><title>LUMA-024 &#183; Families &#183; Manage booked activities</title></rect>
-<rect class="off" x="543" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="514" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="514" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="539">025</text>
-<rect class="off" x="183" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="529" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="423" y="529" width="28" height="13" rx="2"><title>LUMA-025 &#183; Families &#183; Coordinating people</title></rect>
-<rect class="on s-s3" x="453" y="529" width="28" height="13" rx="2"><title>LUMA-025 &#183; Families &#183; Arrival to accommodation</title></rect>
-<rect class="off" x="483" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="529" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="529" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="554">026</text>
-<rect class="off" x="183" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="544" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="453" y="544" width="28" height="13" rx="2"><title>LUMA-026 &#183; Families &#183; Arrival to accommodation</title></rect>
-<rect class="on s-s3" x="483" y="544" width="28" height="13" rx="2"><title>LUMA-026 &#183; Families &#183; Updates not personalised</title></rect>
-<rect class="off" x="513" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="544" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="544" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="569">027</text>
-<rect class="off" x="183" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="559" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="483" y="559" width="28" height="13" rx="2"><title>LUMA-027 &#183; Families &#183; Updates not personalised</title></rect>
-<rect class="on s-s3" x="513" y="559" width="28" height="13" rx="2"><title>LUMA-027 &#183; Families &#183; Manage booked activities</title></rect>
-<rect class="off" x="543" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="559" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="559" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="584">028</text>
-<rect class="off" x="183" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="574" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="423" y="574" width="28" height="13" rx="2"><title>LUMA-028 &#183; Families &#183; Coordinating people</title></rect>
-<rect class="off" x="453" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="574" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="513" y="574" width="28" height="13" rx="2"><title>LUMA-028 &#183; Families &#183; Manage booked activities</title></rect>
-<rect class="off" x="543" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="574" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="574" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="599">029</text>
-<rect class="off" x="183" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="589" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="423" y="589" width="28" height="13" rx="2"><title>LUMA-029 &#183; Families &#183; Coordinating people</title></rect>
-<rect class="on s-s3" x="453" y="589" width="28" height="13" rx="2"><title>LUMA-029 &#183; Families &#183; Arrival to accommodation</title></rect>
-<rect class="off" x="483" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="589" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="589" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="614">030</text>
-<rect class="off" x="183" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="604" width="28" height="13" rx="2"/>
-<rect class="on s-s3" x="453" y="604" width="28" height="13" rx="2"><title>LUMA-030 &#183; Families &#183; Arrival to accommodation</title></rect>
-<rect class="on s-s3" x="483" y="604" width="28" height="13" rx="2"><title>LUMA-030 &#183; Families &#183; Updates not personalised</title></rect>
-<rect class="off" x="513" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="604" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="604" width="28" height="13" rx="2"/>
-<rect class="band" x="0" y="618" width="132" height="148" rx="2"/>
-<text class="seg s-s4" x="10" y="644">First-time</text>
-<text class="segn" x="10" y="662">10 participants</text>
-<text class="segn" x="10" y="676">4 themes</text>
-<text class="pid" x="172" y="629">031</text>
-<rect class="off" x="183" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="619" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="543" y="619" width="28" height="13" rx="2"><title>LUMA-031 &#183; First-time &#183; Anxious navigating</title></rect>
-<rect class="on s-s4" x="573" y="619" width="28" height="13" rx="2"><title>LUMA-031 &#183; First-time &#183; Info across apps</title></rect>
-<rect class="off" x="603" y="619" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="619" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="644">032</text>
-<rect class="off" x="183" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="634" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="634" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="573" y="634" width="28" height="13" rx="2"><title>LUMA-032 &#183; First-time &#183; Info across apps</title></rect>
-<rect class="on s-s4" x="603" y="634" width="28" height="13" rx="2"><title>LUMA-032 &#183; First-time &#183; Entry/docs confusing</title></rect>
-<rect class="off" x="633" y="634" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="659">033</text>
-<rect class="off" x="183" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="649" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="649" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="603" y="649" width="28" height="13" rx="2"><title>LUMA-033 &#183; First-time &#183; Entry/docs confusing</title></rect>
-<rect class="on s-s4" x="633" y="649" width="28" height="13" rx="2"><title>LUMA-033 &#183; First-time &#183; Booking done right?</title></rect>
-<text class="pid" x="172" y="674">034</text>
-<rect class="off" x="183" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="664" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="543" y="664" width="28" height="13" rx="2"><title>LUMA-034 &#183; First-time &#183; Anxious navigating</title></rect>
-<rect class="off" x="573" y="664" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="664" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="633" y="664" width="28" height="13" rx="2"><title>LUMA-034 &#183; First-time &#183; Booking done right?</title></rect>
-<text class="pid" x="172" y="689">035</text>
-<rect class="off" x="183" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="679" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="543" y="679" width="28" height="13" rx="2"><title>LUMA-035 &#183; First-time &#183; Anxious navigating</title></rect>
-<rect class="on s-s4" x="573" y="679" width="28" height="13" rx="2"><title>LUMA-035 &#183; First-time &#183; Info across apps</title></rect>
-<rect class="off" x="603" y="679" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="679" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="704">036</text>
-<rect class="off" x="183" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="694" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="694" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="573" y="694" width="28" height="13" rx="2"><title>LUMA-036 &#183; First-time &#183; Info across apps</title></rect>
-<rect class="on s-s4" x="603" y="694" width="28" height="13" rx="2"><title>LUMA-036 &#183; First-time &#183; Entry/docs confusing</title></rect>
-<rect class="off" x="633" y="694" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="719">037</text>
-<rect class="off" x="183" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="709" width="28" height="13" rx="2"/>
-<rect class="off" x="573" y="709" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="603" y="709" width="28" height="13" rx="2"><title>LUMA-037 &#183; First-time &#183; Entry/docs confusing</title></rect>
-<rect class="on s-s4" x="633" y="709" width="28" height="13" rx="2"><title>LUMA-037 &#183; First-time &#183; Booking done right?</title></rect>
-<text class="pid" x="172" y="734">038</text>
-<rect class="off" x="183" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="724" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="543" y="724" width="28" height="13" rx="2"><title>LUMA-038 &#183; First-time &#183; Anxious navigating</title></rect>
-<rect class="off" x="573" y="724" width="28" height="13" rx="2"/>
-<rect class="off" x="603" y="724" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="633" y="724" width="28" height="13" rx="2"><title>LUMA-038 &#183; First-time &#183; Booking done right?</title></rect>
-<text class="pid" x="172" y="749">039</text>
-<rect class="off" x="183" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="739" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="543" y="739" width="28" height="13" rx="2"><title>LUMA-039 &#183; First-time &#183; Anxious navigating</title></rect>
-<rect class="on s-s4" x="573" y="739" width="28" height="13" rx="2"><title>LUMA-039 &#183; First-time &#183; Info across apps</title></rect>
-<rect class="off" x="603" y="739" width="28" height="13" rx="2"/>
-<rect class="off" x="633" y="739" width="28" height="13" rx="2"/>
-<text class="pid" x="172" y="764">040</text>
-<rect class="off" x="183" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="213" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="243" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="273" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="303" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="333" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="363" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="393" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="423" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="453" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="483" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="513" y="754" width="28" height="13" rx="2"/>
-<rect class="off" x="543" y="754" width="28" height="13" rx="2"/>
-<rect class="on s-s4" x="573" y="754" width="28" height="13" rx="2"><title>LUMA-040 &#183; First-time &#183; Info across apps</title></rect>
-<rect class="on s-s4" x="603" y="754" width="28" height="13" rx="2"><title>LUMA-040 &#183; First-time &#183; Entry/docs confusing</title></rect>
-<rect class="off" x="633" y="754" width="28" height="13" rx="2"/>
-<line class="rule" x1="0" y1="317" x2="662" y2="317"/>
-<line class="rule" x1="0" y1="467" x2="662" y2="467"/>
-<line class="rule" x1="0" y1="617" x2="662" y2="617"/>
-<text class="foot" x="182" y="790">Filled cell = theme recorded for that participant. 80 marks, two per participant.</text>
+<text class="pid" x="168" y="179">001</text>
+<rect class="row-hit" x="178" y="168" width="704" height="16"/>
+<rect class="on s-s1" x="179" y="169" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-001</b> &#183; Leisure<br>Compare never lines up" aria-label="LUMA-001 Leisure Compare never lines up"><title>LUMA-001 &#183; Leisure &#183; Compare never lines up</title></rect>
+<rect class="on s-s1" x="223" y="169" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-001</b> &#183; Leisure<br>No single trip/cost view" aria-label="LUMA-001 Leisure No single trip/cost view"><title>LUMA-001 &#183; Leisure &#183; No single trip/cost view</title></rect>
+<rect class="off" x="267" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="169" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="169" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="195">002</text>
+<rect class="row-hit" x="178" y="184" width="704" height="16"/>
+<rect class="off" x="179" y="185" width="42" height="14" rx="2"/>
+<rect class="on s-s1" x="223" y="185" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-002</b> &#183; Leisure<br>No single trip/cost view" aria-label="LUMA-002 Leisure No single trip/cost view"><title>LUMA-002 &#183; Leisure &#183; No single trip/cost view</title></rect>
+<rect class="on s-s1" x="267" y="185" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-002</b> &#183; Leisure<br>Find things to do" aria-label="LUMA-002 Leisure Find things to do"><title>LUMA-002 &#183; Leisure &#183; Find things to do</title></rect>
+<rect class="off" x="311" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="185" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="185" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="211">003</text>
+<rect class="row-hit" x="178" y="200" width="704" height="16"/>
+<rect class="off" x="179" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="201" width="42" height="14" rx="2"/>
+<rect class="on s-s1" x="267" y="201" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-003</b> &#183; Leisure<br>Find things to do" aria-label="LUMA-003 Leisure Find things to do"><title>LUMA-003 &#183; Leisure &#183; Find things to do</title></rect>
+<rect class="on s-s1" x="311" y="201" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-003</b> &#183; Leisure<br>On-site transport" aria-label="LUMA-003 Leisure On-site transport"><title>LUMA-003 &#183; Leisure &#183; On-site transport</title></rect>
+<rect class="off" x="355" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="201" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="201" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="227">004</text>
+<rect class="row-hit" x="178" y="216" width="704" height="16"/>
+<rect class="on s-s1" x="179" y="217" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-004</b> &#183; Leisure<br>Compare never lines up" aria-label="LUMA-004 Leisure Compare never lines up"><title>LUMA-004 &#183; Leisure &#183; Compare never lines up</title></rect>
+<rect class="off" x="223" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="217" width="42" height="14" rx="2"/>
+<rect class="on s-s1" x="311" y="217" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-004</b> &#183; Leisure<br>On-site transport" aria-label="LUMA-004 Leisure On-site transport"><title>LUMA-004 &#183; Leisure &#183; On-site transport</title></rect>
+<rect class="off" x="355" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="217" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="217" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="243">005</text>
+<rect class="row-hit" x="178" y="232" width="704" height="16"/>
+<rect class="on s-s1" x="179" y="233" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-005</b> &#183; Leisure<br>Compare never lines up" aria-label="LUMA-005 Leisure Compare never lines up"><title>LUMA-005 &#183; Leisure &#183; Compare never lines up</title></rect>
+<rect class="on s-s1" x="223" y="233" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-005</b> &#183; Leisure<br>No single trip/cost view" aria-label="LUMA-005 Leisure No single trip/cost view"><title>LUMA-005 &#183; Leisure &#183; No single trip/cost view</title></rect>
+<rect class="off" x="267" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="233" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="233" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="259">006</text>
+<rect class="row-hit" x="178" y="248" width="704" height="16"/>
+<rect class="off" x="179" y="249" width="42" height="14" rx="2"/>
+<rect class="on s-s1" x="223" y="249" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-006</b> &#183; Leisure<br>No single trip/cost view" aria-label="LUMA-006 Leisure No single trip/cost view"><title>LUMA-006 &#183; Leisure &#183; No single trip/cost view</title></rect>
+<rect class="on s-s1" x="267" y="249" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-006</b> &#183; Leisure<br>Find things to do" aria-label="LUMA-006 Leisure Find things to do"><title>LUMA-006 &#183; Leisure &#183; Find things to do</title></rect>
+<rect class="off" x="311" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="249" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="249" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="275">007</text>
+<rect class="row-hit" x="178" y="264" width="704" height="16"/>
+<rect class="off" x="179" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="265" width="42" height="14" rx="2"/>
+<rect class="on s-s1" x="267" y="265" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-007</b> &#183; Leisure<br>Find things to do" aria-label="LUMA-007 Leisure Find things to do"><title>LUMA-007 &#183; Leisure &#183; Find things to do</title></rect>
+<rect class="on s-s1" x="311" y="265" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-007</b> &#183; Leisure<br>On-site transport" aria-label="LUMA-007 Leisure On-site transport"><title>LUMA-007 &#183; Leisure &#183; On-site transport</title></rect>
+<rect class="off" x="355" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="265" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="265" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="291">008</text>
+<rect class="row-hit" x="178" y="280" width="704" height="16"/>
+<rect class="on s-s1" x="179" y="281" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-008</b> &#183; Leisure<br>Compare never lines up" aria-label="LUMA-008 Leisure Compare never lines up"><title>LUMA-008 &#183; Leisure &#183; Compare never lines up</title></rect>
+<rect class="off" x="223" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="281" width="42" height="14" rx="2"/>
+<rect class="on s-s1" x="311" y="281" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-008</b> &#183; Leisure<br>On-site transport" aria-label="LUMA-008 Leisure On-site transport"><title>LUMA-008 &#183; Leisure &#183; On-site transport</title></rect>
+<rect class="off" x="355" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="281" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="281" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="307">009</text>
+<rect class="row-hit" x="178" y="296" width="704" height="16"/>
+<rect class="on s-s1" x="179" y="297" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-009</b> &#183; Leisure<br>Compare never lines up" aria-label="LUMA-009 Leisure Compare never lines up"><title>LUMA-009 &#183; Leisure &#183; Compare never lines up</title></rect>
+<rect class="on s-s1" x="223" y="297" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-009</b> &#183; Leisure<br>No single trip/cost view" aria-label="LUMA-009 Leisure No single trip/cost view"><title>LUMA-009 &#183; Leisure &#183; No single trip/cost view</title></rect>
+<rect class="off" x="267" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="297" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="297" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="323">010</text>
+<rect class="row-hit" x="178" y="312" width="704" height="16"/>
+<rect class="off" x="179" y="313" width="42" height="14" rx="2"/>
+<rect class="on s-s1" x="223" y="313" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-010</b> &#183; Leisure<br>No single trip/cost view" aria-label="LUMA-010 Leisure No single trip/cost view"><title>LUMA-010 &#183; Leisure &#183; No single trip/cost view</title></rect>
+<rect class="on s-s1" x="267" y="313" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-010</b> &#183; Leisure<br>Find things to do" aria-label="LUMA-010 Leisure Find things to do"><title>LUMA-010 &#183; Leisure &#183; Find things to do</title></rect>
+<rect class="off" x="311" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="313" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="313" width="42" height="14" rx="2"/>
+<rect class="band" x="0" y="328" width="132" height="158" rx="2"/>
+<text class="seg s-s2" x="10" y="354">Business</text>
+<text class="segn" x="10" y="372">10 participants</text>
+<text class="segn" x="10" y="386">4 themes</text>
+<text class="pid" x="168" y="339">011</text>
+<rect class="row-hit" x="178" y="328" width="704" height="16"/>
+<rect class="off" x="179" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="329" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="355" y="329" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-011</b> &#183; Business<br>Flight changes" aria-label="LUMA-011 Business Flight changes"><title>LUMA-011 &#183; Business &#183; Flight changes</title></rect>
+<rect class="on s-s2" x="399" y="329" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-011</b> &#183; Business<br>Expenses chore" aria-label="LUMA-011 Business Expenses chore"><title>LUMA-011 &#183; Business &#183; Expenses chore</title></rect>
+<rect class="off" x="443" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="329" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="329" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="355">012</text>
+<rect class="row-hit" x="178" y="344" width="704" height="16"/>
+<rect class="off" x="179" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="345" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="399" y="345" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-012</b> &#183; Business<br>Expenses chore" aria-label="LUMA-012 Business Expenses chore"><title>LUMA-012 &#183; Business &#183; Expenses chore</title></rect>
+<rect class="on s-s2" x="443" y="345" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-012</b> &#183; Business<br>Booked separately" aria-label="LUMA-012 Business Booked separately"><title>LUMA-012 &#183; Business &#183; Booked separately</title></rect>
+<rect class="off" x="487" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="345" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="345" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="371">013</text>
+<rect class="row-hit" x="178" y="360" width="704" height="16"/>
+<rect class="off" x="179" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="361" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="443" y="361" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-013</b> &#183; Business<br>Booked separately" aria-label="LUMA-013 Business Booked separately"><title>LUMA-013 &#183; Business &#183; Booked separately</title></rect>
+<rect class="on s-s2" x="487" y="361" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-013</b> &#183; Business<br>Airport waiting" aria-label="LUMA-013 Business Airport waiting"><title>LUMA-013 &#183; Business &#183; Airport waiting</title></rect>
+<rect class="off" x="531" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="361" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="361" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="387">014</text>
+<rect class="row-hit" x="178" y="376" width="704" height="16"/>
+<rect class="off" x="179" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="377" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="355" y="377" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-014</b> &#183; Business<br>Flight changes" aria-label="LUMA-014 Business Flight changes"><title>LUMA-014 &#183; Business &#183; Flight changes</title></rect>
+<rect class="off" x="399" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="377" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="487" y="377" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-014</b> &#183; Business<br>Airport waiting" aria-label="LUMA-014 Business Airport waiting"><title>LUMA-014 &#183; Business &#183; Airport waiting</title></rect>
+<rect class="off" x="531" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="377" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="377" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="403">015</text>
+<rect class="row-hit" x="178" y="392" width="704" height="16"/>
+<rect class="off" x="179" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="393" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="355" y="393" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-015</b> &#183; Business<br>Flight changes" aria-label="LUMA-015 Business Flight changes"><title>LUMA-015 &#183; Business &#183; Flight changes</title></rect>
+<rect class="on s-s2" x="399" y="393" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-015</b> &#183; Business<br>Expenses chore" aria-label="LUMA-015 Business Expenses chore"><title>LUMA-015 &#183; Business &#183; Expenses chore</title></rect>
+<rect class="off" x="443" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="393" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="393" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="419">016</text>
+<rect class="row-hit" x="178" y="408" width="704" height="16"/>
+<rect class="off" x="179" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="409" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="399" y="409" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-016</b> &#183; Business<br>Expenses chore" aria-label="LUMA-016 Business Expenses chore"><title>LUMA-016 &#183; Business &#183; Expenses chore</title></rect>
+<rect class="on s-s2" x="443" y="409" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-016</b> &#183; Business<br>Booked separately" aria-label="LUMA-016 Business Booked separately"><title>LUMA-016 &#183; Business &#183; Booked separately</title></rect>
+<rect class="off" x="487" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="409" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="409" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="435">017</text>
+<rect class="row-hit" x="178" y="424" width="704" height="16"/>
+<rect class="off" x="179" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="425" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="443" y="425" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-017</b> &#183; Business<br>Booked separately" aria-label="LUMA-017 Business Booked separately"><title>LUMA-017 &#183; Business &#183; Booked separately</title></rect>
+<rect class="on s-s2" x="487" y="425" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-017</b> &#183; Business<br>Airport waiting" aria-label="LUMA-017 Business Airport waiting"><title>LUMA-017 &#183; Business &#183; Airport waiting</title></rect>
+<rect class="off" x="531" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="425" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="425" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="451">018</text>
+<rect class="row-hit" x="178" y="440" width="704" height="16"/>
+<rect class="off" x="179" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="441" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="355" y="441" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-018</b> &#183; Business<br>Flight changes" aria-label="LUMA-018 Business Flight changes"><title>LUMA-018 &#183; Business &#183; Flight changes</title></rect>
+<rect class="off" x="399" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="441" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="487" y="441" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-018</b> &#183; Business<br>Airport waiting" aria-label="LUMA-018 Business Airport waiting"><title>LUMA-018 &#183; Business &#183; Airport waiting</title></rect>
+<rect class="off" x="531" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="441" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="441" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="467">019</text>
+<rect class="row-hit" x="178" y="456" width="704" height="16"/>
+<rect class="off" x="179" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="457" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="355" y="457" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-019</b> &#183; Business<br>Flight changes" aria-label="LUMA-019 Business Flight changes"><title>LUMA-019 &#183; Business &#183; Flight changes</title></rect>
+<rect class="on s-s2" x="399" y="457" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-019</b> &#183; Business<br>Expenses chore" aria-label="LUMA-019 Business Expenses chore"><title>LUMA-019 &#183; Business &#183; Expenses chore</title></rect>
+<rect class="off" x="443" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="457" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="457" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="483">020</text>
+<rect class="row-hit" x="178" y="472" width="704" height="16"/>
+<rect class="off" x="179" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="473" width="42" height="14" rx="2"/>
+<rect class="on s-s2" x="399" y="473" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-020</b> &#183; Business<br>Expenses chore" aria-label="LUMA-020 Business Expenses chore"><title>LUMA-020 &#183; Business &#183; Expenses chore</title></rect>
+<rect class="on s-s2" x="443" y="473" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-020</b> &#183; Business<br>Booked separately" aria-label="LUMA-020 Business Booked separately"><title>LUMA-020 &#183; Business &#183; Booked separately</title></rect>
+<rect class="off" x="487" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="473" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="473" width="42" height="14" rx="2"/>
+<rect class="band" x="0" y="488" width="132" height="158" rx="2"/>
+<text class="seg s-s3" x="10" y="514">Families</text>
+<text class="segn" x="10" y="532">10 participants</text>
+<text class="segn" x="10" y="546">4 themes</text>
+<text class="pid" x="168" y="499">021</text>
+<rect class="row-hit" x="178" y="488" width="704" height="16"/>
+<rect class="off" x="179" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="489" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="531" y="489" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-021</b> &#183; Families<br>Coordinating people" aria-label="LUMA-021 Families Coordinating people"><title>LUMA-021 &#183; Families &#183; Coordinating people</title></rect>
+<rect class="on s-s3" x="575" y="489" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-021</b> &#183; Families<br>Arrival to accommodation" aria-label="LUMA-021 Families Arrival to accommodation"><title>LUMA-021 &#183; Families &#183; Arrival to accommodation</title></rect>
+<rect class="off" x="619" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="489" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="489" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="515">022</text>
+<rect class="row-hit" x="178" y="504" width="704" height="16"/>
+<rect class="off" x="179" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="505" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="575" y="505" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-022</b> &#183; Families<br>Arrival to accommodation" aria-label="LUMA-022 Families Arrival to accommodation"><title>LUMA-022 &#183; Families &#183; Arrival to accommodation</title></rect>
+<rect class="on s-s3" x="619" y="505" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-022</b> &#183; Families<br>Updates not personalised" aria-label="LUMA-022 Families Updates not personalised"><title>LUMA-022 &#183; Families &#183; Updates not personalised</title></rect>
+<rect class="off" x="663" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="505" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="505" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="531">023</text>
+<rect class="row-hit" x="178" y="520" width="704" height="16"/>
+<rect class="off" x="179" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="521" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="619" y="521" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-023</b> &#183; Families<br>Updates not personalised" aria-label="LUMA-023 Families Updates not personalised"><title>LUMA-023 &#183; Families &#183; Updates not personalised</title></rect>
+<rect class="on s-s3" x="663" y="521" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-023</b> &#183; Families<br>Manage booked activities" aria-label="LUMA-023 Families Manage booked activities"><title>LUMA-023 &#183; Families &#183; Manage booked activities</title></rect>
+<rect class="off" x="707" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="521" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="521" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="547">024</text>
+<rect class="row-hit" x="178" y="536" width="704" height="16"/>
+<rect class="off" x="179" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="537" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="531" y="537" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-024</b> &#183; Families<br>Coordinating people" aria-label="LUMA-024 Families Coordinating people"><title>LUMA-024 &#183; Families &#183; Coordinating people</title></rect>
+<rect class="off" x="575" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="537" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="663" y="537" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-024</b> &#183; Families<br>Manage booked activities" aria-label="LUMA-024 Families Manage booked activities"><title>LUMA-024 &#183; Families &#183; Manage booked activities</title></rect>
+<rect class="off" x="707" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="537" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="537" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="563">025</text>
+<rect class="row-hit" x="178" y="552" width="704" height="16"/>
+<rect class="off" x="179" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="553" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="531" y="553" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-025</b> &#183; Families<br>Coordinating people" aria-label="LUMA-025 Families Coordinating people"><title>LUMA-025 &#183; Families &#183; Coordinating people</title></rect>
+<rect class="on s-s3" x="575" y="553" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-025</b> &#183; Families<br>Arrival to accommodation" aria-label="LUMA-025 Families Arrival to accommodation"><title>LUMA-025 &#183; Families &#183; Arrival to accommodation</title></rect>
+<rect class="off" x="619" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="553" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="553" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="579">026</text>
+<rect class="row-hit" x="178" y="568" width="704" height="16"/>
+<rect class="off" x="179" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="569" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="575" y="569" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-026</b> &#183; Families<br>Arrival to accommodation" aria-label="LUMA-026 Families Arrival to accommodation"><title>LUMA-026 &#183; Families &#183; Arrival to accommodation</title></rect>
+<rect class="on s-s3" x="619" y="569" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-026</b> &#183; Families<br>Updates not personalised" aria-label="LUMA-026 Families Updates not personalised"><title>LUMA-026 &#183; Families &#183; Updates not personalised</title></rect>
+<rect class="off" x="663" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="569" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="569" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="595">027</text>
+<rect class="row-hit" x="178" y="584" width="704" height="16"/>
+<rect class="off" x="179" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="585" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="619" y="585" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-027</b> &#183; Families<br>Updates not personalised" aria-label="LUMA-027 Families Updates not personalised"><title>LUMA-027 &#183; Families &#183; Updates not personalised</title></rect>
+<rect class="on s-s3" x="663" y="585" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-027</b> &#183; Families<br>Manage booked activities" aria-label="LUMA-027 Families Manage booked activities"><title>LUMA-027 &#183; Families &#183; Manage booked activities</title></rect>
+<rect class="off" x="707" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="585" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="585" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="611">028</text>
+<rect class="row-hit" x="178" y="600" width="704" height="16"/>
+<rect class="off" x="179" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="601" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="531" y="601" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-028</b> &#183; Families<br>Coordinating people" aria-label="LUMA-028 Families Coordinating people"><title>LUMA-028 &#183; Families &#183; Coordinating people</title></rect>
+<rect class="off" x="575" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="601" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="663" y="601" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-028</b> &#183; Families<br>Manage booked activities" aria-label="LUMA-028 Families Manage booked activities"><title>LUMA-028 &#183; Families &#183; Manage booked activities</title></rect>
+<rect class="off" x="707" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="601" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="601" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="627">029</text>
+<rect class="row-hit" x="178" y="616" width="704" height="16"/>
+<rect class="off" x="179" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="617" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="531" y="617" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-029</b> &#183; Families<br>Coordinating people" aria-label="LUMA-029 Families Coordinating people"><title>LUMA-029 &#183; Families &#183; Coordinating people</title></rect>
+<rect class="on s-s3" x="575" y="617" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-029</b> &#183; Families<br>Arrival to accommodation" aria-label="LUMA-029 Families Arrival to accommodation"><title>LUMA-029 &#183; Families &#183; Arrival to accommodation</title></rect>
+<rect class="off" x="619" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="617" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="617" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="643">030</text>
+<rect class="row-hit" x="178" y="632" width="704" height="16"/>
+<rect class="off" x="179" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="633" width="42" height="14" rx="2"/>
+<rect class="on s-s3" x="575" y="633" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-030</b> &#183; Families<br>Arrival to accommodation" aria-label="LUMA-030 Families Arrival to accommodation"><title>LUMA-030 &#183; Families &#183; Arrival to accommodation</title></rect>
+<rect class="on s-s3" x="619" y="633" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-030</b> &#183; Families<br>Updates not personalised" aria-label="LUMA-030 Families Updates not personalised"><title>LUMA-030 &#183; Families &#183; Updates not personalised</title></rect>
+<rect class="off" x="663" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="633" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="633" width="42" height="14" rx="2"/>
+<rect class="band" x="0" y="648" width="132" height="158" rx="2"/>
+<text class="seg s-s4" x="10" y="674">First-time</text>
+<text class="segn" x="10" y="692">10 participants</text>
+<text class="segn" x="10" y="706">4 themes</text>
+<text class="pid" x="168" y="659">031</text>
+<rect class="row-hit" x="178" y="648" width="704" height="16"/>
+<rect class="off" x="179" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="649" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="707" y="649" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-031</b> &#183; First-time<br>Anxious navigating" aria-label="LUMA-031 First-time Anxious navigating"><title>LUMA-031 &#183; First-time &#183; Anxious navigating</title></rect>
+<rect class="on s-s4" x="751" y="649" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-031</b> &#183; First-time<br>Info across apps" aria-label="LUMA-031 First-time Info across apps"><title>LUMA-031 &#183; First-time &#183; Info across apps</title></rect>
+<rect class="off" x="795" y="649" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="649" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="675">032</text>
+<rect class="row-hit" x="178" y="664" width="704" height="16"/>
+<rect class="off" x="179" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="665" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="665" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="751" y="665" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-032</b> &#183; First-time<br>Info across apps" aria-label="LUMA-032 First-time Info across apps"><title>LUMA-032 &#183; First-time &#183; Info across apps</title></rect>
+<rect class="on s-s4" x="795" y="665" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-032</b> &#183; First-time<br>Entry/docs confusing" aria-label="LUMA-032 First-time Entry/docs confusing"><title>LUMA-032 &#183; First-time &#183; Entry/docs confusing</title></rect>
+<rect class="off" x="839" y="665" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="691">033</text>
+<rect class="row-hit" x="178" y="680" width="704" height="16"/>
+<rect class="off" x="179" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="681" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="681" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="795" y="681" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-033</b> &#183; First-time<br>Entry/docs confusing" aria-label="LUMA-033 First-time Entry/docs confusing"><title>LUMA-033 &#183; First-time &#183; Entry/docs confusing</title></rect>
+<rect class="on s-s4" x="839" y="681" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-033</b> &#183; First-time<br>Booking done right?" aria-label="LUMA-033 First-time Booking done right?"><title>LUMA-033 &#183; First-time &#183; Booking done right?</title></rect>
+<text class="pid" x="168" y="707">034</text>
+<rect class="row-hit" x="178" y="696" width="704" height="16"/>
+<rect class="off" x="179" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="697" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="707" y="697" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-034</b> &#183; First-time<br>Anxious navigating" aria-label="LUMA-034 First-time Anxious navigating"><title>LUMA-034 &#183; First-time &#183; Anxious navigating</title></rect>
+<rect class="off" x="751" y="697" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="697" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="839" y="697" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-034</b> &#183; First-time<br>Booking done right?" aria-label="LUMA-034 First-time Booking done right?"><title>LUMA-034 &#183; First-time &#183; Booking done right?</title></rect>
+<text class="pid" x="168" y="723">035</text>
+<rect class="row-hit" x="178" y="712" width="704" height="16"/>
+<rect class="off" x="179" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="713" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="707" y="713" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-035</b> &#183; First-time<br>Anxious navigating" aria-label="LUMA-035 First-time Anxious navigating"><title>LUMA-035 &#183; First-time &#183; Anxious navigating</title></rect>
+<rect class="on s-s4" x="751" y="713" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-035</b> &#183; First-time<br>Info across apps" aria-label="LUMA-035 First-time Info across apps"><title>LUMA-035 &#183; First-time &#183; Info across apps</title></rect>
+<rect class="off" x="795" y="713" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="713" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="739">036</text>
+<rect class="row-hit" x="178" y="728" width="704" height="16"/>
+<rect class="off" x="179" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="729" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="729" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="751" y="729" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-036</b> &#183; First-time<br>Info across apps" aria-label="LUMA-036 First-time Info across apps"><title>LUMA-036 &#183; First-time &#183; Info across apps</title></rect>
+<rect class="on s-s4" x="795" y="729" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-036</b> &#183; First-time<br>Entry/docs confusing" aria-label="LUMA-036 First-time Entry/docs confusing"><title>LUMA-036 &#183; First-time &#183; Entry/docs confusing</title></rect>
+<rect class="off" x="839" y="729" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="755">037</text>
+<rect class="row-hit" x="178" y="744" width="704" height="16"/>
+<rect class="off" x="179" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="745" width="42" height="14" rx="2"/>
+<rect class="off" x="751" y="745" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="795" y="745" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-037</b> &#183; First-time<br>Entry/docs confusing" aria-label="LUMA-037 First-time Entry/docs confusing"><title>LUMA-037 &#183; First-time &#183; Entry/docs confusing</title></rect>
+<rect class="on s-s4" x="839" y="745" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-037</b> &#183; First-time<br>Booking done right?" aria-label="LUMA-037 First-time Booking done right?"><title>LUMA-037 &#183; First-time &#183; Booking done right?</title></rect>
+<text class="pid" x="168" y="771">038</text>
+<rect class="row-hit" x="178" y="760" width="704" height="16"/>
+<rect class="off" x="179" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="761" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="707" y="761" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-038</b> &#183; First-time<br>Anxious navigating" aria-label="LUMA-038 First-time Anxious navigating"><title>LUMA-038 &#183; First-time &#183; Anxious navigating</title></rect>
+<rect class="off" x="751" y="761" width="42" height="14" rx="2"/>
+<rect class="off" x="795" y="761" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="839" y="761" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-038</b> &#183; First-time<br>Booking done right?" aria-label="LUMA-038 First-time Booking done right?"><title>LUMA-038 &#183; First-time &#183; Booking done right?</title></rect>
+<text class="pid" x="168" y="787">039</text>
+<rect class="row-hit" x="178" y="776" width="704" height="16"/>
+<rect class="off" x="179" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="777" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="707" y="777" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-039</b> &#183; First-time<br>Anxious navigating" aria-label="LUMA-039 First-time Anxious navigating"><title>LUMA-039 &#183; First-time &#183; Anxious navigating</title></rect>
+<rect class="on s-s4" x="751" y="777" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-039</b> &#183; First-time<br>Info across apps" aria-label="LUMA-039 First-time Info across apps"><title>LUMA-039 &#183; First-time &#183; Info across apps</title></rect>
+<rect class="off" x="795" y="777" width="42" height="14" rx="2"/>
+<rect class="off" x="839" y="777" width="42" height="14" rx="2"/>
+<text class="pid" x="168" y="803">040</text>
+<rect class="row-hit" x="178" y="792" width="704" height="16"/>
+<rect class="off" x="179" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="223" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="267" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="311" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="355" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="399" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="443" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="487" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="531" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="575" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="619" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="663" y="793" width="42" height="14" rx="2"/>
+<rect class="off" x="707" y="793" width="42" height="14" rx="2"/>
+<rect class="on s-s4" x="751" y="793" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-040</b> &#183; First-time<br>Info across apps" aria-label="LUMA-040 First-time Info across apps"><title>LUMA-040 &#183; First-time &#183; Info across apps</title></rect>
+<rect class="on s-s4" x="795" y="793" width="42" height="14" rx="2" role="img" data-tip="<b>LUMA-040</b> &#183; First-time<br>Entry/docs confusing" aria-label="LUMA-040 First-time Entry/docs confusing"><title>LUMA-040 &#183; First-time &#183; Entry/docs confusing</title></rect>
+<rect class="off" x="839" y="793" width="42" height="14" rx="2"/>
+<line class="rule" x1="0" y1="327" x2="882" y2="327"/>
+<line class="rule" x1="0" y1="487" x2="882" y2="487"/>
+<line class="rule" x1="0" y1="647" x2="882" y2="647"/>
+<text class="foot" x="178" y="830">Filled cell = theme recorded for that participant. 80 marks, two per participant.</text>
 </svg>
     <figcaption><b>Read the shape, not the counts.</b> Four blocks, no overlap between them,
     and inside each block the same staircase. Because no theme was ever permitted outside its
@@ -922,73 +1009,73 @@ a{color:inherit}
   document reports that terse participants gave short answers and the guide coped. It did
   cope. But terse and average are indistinguishable in the corpus.</p>
   <figure>
-    <svg viewBox="0 0 760 268" role="img" width="100%" aria-labelledby="vb-t vb-d" class="fig">
+    <svg viewBox="0 0 912 300" role="img" width="100%" aria-labelledby="vb-t vb-d" class="fig" tabindex="0">
 <title id="vb-t">Words spoken per participant, by declared verbosity band</title>
 <desc id="vb-d">Terse and average participants produced almost identical output, 86.8 and 85.2 words on average. Only the talkative band separates.</desc>
-<line class="grid" x1="157.4736842105263" y1="36" x2="157.4736842105263" y2="214"/>
-<text class="ax mid" x="157.4736842105263" y="234">60</text>
-<line class="grid" x1="334.31578947368416" y1="36" x2="334.31578947368416" y2="214"/>
-<text class="ax mid" x="334.31578947368416" y="234">90</text>
-<line class="grid" x1="511.15789473684214" y1="36" x2="511.15789473684214" y2="214"/>
-<text class="ax mid" x="511.15789473684214" y="234">120</text>
-<line class="grid" x1="688.0" y1="36" x2="688.0" y2="214"/>
-<text class="ax mid" x="688.0" y="234">150</text>
-<text class="band-l" x="114" y="77">terse</text>
-<text class="band-n" x="114" y="93">n=12</text>
-<line class="span s-s1" x1="240.0" y1="72" x2="475.7894736842106" y2="72"/>
-<circle class="dot s-s1" cx="240.0" cy="72" r="4.5"><title>terse &#183; 74 words</title></circle>
-<circle class="dot s-s1" cx="245.89473684210526" cy="72" r="4.5"><title>terse &#183; 75 words</title></circle>
-<circle class="dot s-s1" cx="257.6842105263158" cy="72" r="4.5"><title>terse &#183; 77 words</title></circle>
-<circle class="dot s-s1" cx="257.6842105263158" cy="72" r="4.5"><title>terse &#183; 77 words</title></circle>
-<circle class="dot s-s1" cx="281.2631578947369" cy="72" r="4.5"><title>terse &#183; 81 words</title></circle>
-<circle class="dot s-s1" cx="287.1578947368421" cy="72" r="4.5"><title>terse &#183; 82 words</title></circle>
-<circle class="dot s-s1" cx="304.8421052631579" cy="72" r="4.5"><title>terse &#183; 85 words</title></circle>
-<circle class="dot s-s1" cx="322.5263157894737" cy="72" r="4.5"><title>terse &#183; 88 words</title></circle>
-<circle class="dot s-s1" cx="346.10526315789474" cy="72" r="4.5"><title>terse &#183; 92 words</title></circle>
-<circle class="dot s-s1" cx="375.57894736842104" cy="72" r="4.5"><title>terse &#183; 97 words</title></circle>
-<circle class="dot s-s1" cx="387.36842105263156" cy="72" r="4.5"><title>terse &#183; 99 words</title></circle>
-<circle class="dot s-s1" cx="475.7894736842106" cy="72" r="4.5"><title>terse &#183; 114 words</title></circle>
-<line class="mean" x1="315.1578947368421" y1="59" x2="315.1578947368421" y2="85"/>
-<text class="meanl" x="315.1578947368421" y="53">86.8</text>
-<text class="band-l" x="114" y="131">average</text>
-<text class="band-n" x="114" y="147">n=16</text>
-<line class="span s-s2" x1="151.57894736842104" y1="126" x2="487.57894736842104" y2="126"/>
-<circle class="dot s-s2" cx="151.57894736842104" cy="126" r="4.5"><title>average &#183; 59 words</title></circle>
-<circle class="dot s-s2" cx="210.52631578947367" cy="126" r="4.5"><title>average &#183; 69 words</title></circle>
-<circle class="dot s-s2" cx="216.42105263157896" cy="126" r="4.5"><title>average &#183; 70 words</title></circle>
-<circle class="dot s-s2" cx="222.31578947368422" cy="126" r="4.5"><title>average &#183; 71 words</title></circle>
-<circle class="dot s-s2" cx="234.10526315789474" cy="126" r="4.5"><title>average &#183; 73 words</title></circle>
-<circle class="dot s-s2" cx="251.78947368421052" cy="126" r="4.5"><title>average &#183; 76 words</title></circle>
-<circle class="dot s-s2" cx="263.57894736842104" cy="126" r="4.5"><title>average &#183; 78 words</title></circle>
-<circle class="dot s-s2" cx="281.2631578947369" cy="126" r="4.5"><title>average &#183; 81 words</title></circle>
-<circle class="dot s-s2" cx="281.2631578947369" cy="126" r="4.5"><title>average &#183; 81 words</title></circle>
-<circle class="dot s-s2" cx="340.2105263157895" cy="126" r="4.5"><title>average &#183; 91 words</title></circle>
-<circle class="dot s-s2" cx="352.0" cy="126" r="4.5"><title>average &#183; 93 words</title></circle>
-<circle class="dot s-s2" cx="363.7894736842105" cy="126" r="4.5"><title>average &#183; 95 words</title></circle>
-<circle class="dot s-s2" cx="387.36842105263156" cy="126" r="4.5"><title>average &#183; 99 words</title></circle>
-<circle class="dot s-s2" cx="399.1578947368421" cy="126" r="4.5"><title>average &#183; 101 words</title></circle>
-<circle class="dot s-s2" cx="458.1052631578947" cy="126" r="4.5"><title>average &#183; 111 words</title></circle>
-<circle class="dot s-s2" cx="487.57894736842104" cy="126" r="4.5"><title>average &#183; 116 words</title></circle>
-<line class="mean" x1="306.3157894736842" y1="113" x2="306.3157894736842" y2="139"/>
-<text class="meanl" x="306.3157894736842" y="107">85.2</text>
-<text class="band-l" x="114" y="185">talkative</text>
-<text class="band-n" x="114" y="201">n=12</text>
-<line class="span s-s4" x1="352.0" y1="180" x2="652.6315789473684" y2="180"/>
-<circle class="dot s-s4" cx="352.0" cy="180" r="4.5"><title>talkative &#183; 93 words</title></circle>
-<circle class="dot s-s4" cx="375.57894736842104" cy="180" r="4.5"><title>talkative &#183; 97 words</title></circle>
-<circle class="dot s-s4" cx="405.05263157894734" cy="180" r="4.5"><title>talkative &#183; 102 words</title></circle>
-<circle class="dot s-s4" cx="458.1052631578947" cy="180" r="4.5"><title>talkative &#183; 111 words</title></circle>
-<circle class="dot s-s4" cx="493.47368421052636" cy="180" r="4.5"><title>talkative &#183; 117 words</title></circle>
-<circle class="dot s-s4" cx="505.2631578947368" cy="180" r="4.5"><title>talkative &#183; 119 words</title></circle>
-<circle class="dot s-s4" cx="534.7368421052631" cy="180" r="4.5"><title>talkative &#183; 124 words</title></circle>
-<circle class="dot s-s4" cx="546.5263157894738" cy="180" r="4.5"><title>talkative &#183; 126 words</title></circle>
-<circle class="dot s-s4" cx="581.8947368421052" cy="180" r="4.5"><title>talkative &#183; 132 words</title></circle>
-<circle class="dot s-s4" cx="587.7894736842105" cy="180" r="4.5"><title>talkative &#183; 133 words</title></circle>
-<circle class="dot s-s4" cx="652.6315789473684" cy="180" r="4.5"><title>talkative &#183; 144 words</title></circle>
-<circle class="dot s-s4" cx="652.6315789473684" cy="180" r="4.5"><title>talkative &#183; 144 words</title></circle>
-<line class="mean" x1="512.140350877193" y1="167" x2="512.140350877193" y2="193"/>
-<text class="meanl" x="512.140350877193" y="161">120.2</text>
-<text class="ax" x="128" y="260">words spoken by the participant, whole interview, speaker labels excluded</text>
+<line class="grid" x1="186.8421052631579" y1="42" x2="186.8421052631579" y2="220"/>
+<text class="ax mid" x="186.8421052631579" y="240">60</text>
+<line class="grid" x1="407.89473684210526" y1="42" x2="407.89473684210526" y2="220"/>
+<text class="ax mid" x="407.89473684210526" y="240">90</text>
+<line class="grid" x1="628.9473684210527" y1="42" x2="628.9473684210527" y2="220"/>
+<text class="ax mid" x="628.9473684210527" y="240">120</text>
+<line class="grid" x1="850.0" y1="42" x2="850.0" y2="220"/>
+<text class="ax mid" x="850.0" y="240">150</text>
+<text class="band-l" x="136" y="83">terse</text>
+<text class="band-n" x="136" y="99">n=12</text>
+<line class="span s-s1" x1="290.0" y1="78" x2="584.7368421052631" y2="78"/>
+<circle class="dot s-s1" cx="290.0" cy="78" r="5" role="img" aria-label="terse, 74 words" data-tip="<b>74 words</b><br>terse band"><title>terse &#183; 74 words</title></circle>
+<circle class="dot s-s1" cx="297.36842105263156" cy="78" r="5" role="img" aria-label="terse, 75 words" data-tip="<b>75 words</b><br>terse band"><title>terse &#183; 75 words</title></circle>
+<circle class="dot s-s1" cx="312.10526315789474" cy="78" r="5" role="img" aria-label="terse, 77 words" data-tip="<b>77 words</b><br>terse band"><title>terse &#183; 77 words</title></circle>
+<circle class="dot s-s1" cx="312.10526315789474" cy="78" r="5" role="img" aria-label="terse, 77 words" data-tip="<b>77 words</b><br>terse band"><title>terse &#183; 77 words</title></circle>
+<circle class="dot s-s1" cx="341.57894736842104" cy="78" r="5" role="img" aria-label="terse, 81 words" data-tip="<b>81 words</b><br>terse band"><title>terse &#183; 81 words</title></circle>
+<circle class="dot s-s1" cx="348.9473684210526" cy="78" r="5" role="img" aria-label="terse, 82 words" data-tip="<b>82 words</b><br>terse band"><title>terse &#183; 82 words</title></circle>
+<circle class="dot s-s1" cx="371.0526315789474" cy="78" r="5" role="img" aria-label="terse, 85 words" data-tip="<b>85 words</b><br>terse band"><title>terse &#183; 85 words</title></circle>
+<circle class="dot s-s1" cx="393.1578947368421" cy="78" r="5" role="img" aria-label="terse, 88 words" data-tip="<b>88 words</b><br>terse band"><title>terse &#183; 88 words</title></circle>
+<circle class="dot s-s1" cx="422.63157894736844" cy="78" r="5" role="img" aria-label="terse, 92 words" data-tip="<b>92 words</b><br>terse band"><title>terse &#183; 92 words</title></circle>
+<circle class="dot s-s1" cx="459.4736842105263" cy="78" r="5" role="img" aria-label="terse, 97 words" data-tip="<b>97 words</b><br>terse band"><title>terse &#183; 97 words</title></circle>
+<circle class="dot s-s1" cx="474.2105263157895" cy="78" r="5" role="img" aria-label="terse, 99 words" data-tip="<b>99 words</b><br>terse band"><title>terse &#183; 99 words</title></circle>
+<circle class="dot s-s1" cx="584.7368421052631" cy="78" r="5" role="img" aria-label="terse, 114 words" data-tip="<b>114 words</b><br>terse band"><title>terse &#183; 114 words</title></circle>
+<line class="mean" x1="383.9473684210526" y1="65" x2="383.9473684210526" y2="91"/>
+<text class="meanl" x="383.9473684210526" y="59">86.8</text>
+<text class="band-l" x="136" y="137">average</text>
+<text class="band-n" x="136" y="153">n=16</text>
+<line class="span s-s2" x1="179.4736842105263" y1="132" x2="599.4736842105262" y2="132"/>
+<circle class="dot s-s2" cx="179.4736842105263" cy="132" r="5" role="img" aria-label="average, 59 words" data-tip="<b>59 words</b><br>average band"><title>average &#183; 59 words</title></circle>
+<circle class="dot s-s2" cx="253.15789473684208" cy="132" r="5" role="img" aria-label="average, 69 words" data-tip="<b>69 words</b><br>average band"><title>average &#183; 69 words</title></circle>
+<circle class="dot s-s2" cx="260.5263157894737" cy="132" r="5" role="img" aria-label="average, 70 words" data-tip="<b>70 words</b><br>average band"><title>average &#183; 70 words</title></circle>
+<circle class="dot s-s2" cx="267.89473684210526" cy="132" r="5" role="img" aria-label="average, 71 words" data-tip="<b>71 words</b><br>average band"><title>average &#183; 71 words</title></circle>
+<circle class="dot s-s2" cx="282.63157894736844" cy="132" r="5" role="img" aria-label="average, 73 words" data-tip="<b>73 words</b><br>average band"><title>average &#183; 73 words</title></circle>
+<circle class="dot s-s2" cx="304.7368421052631" cy="132" r="5" role="img" aria-label="average, 76 words" data-tip="<b>76 words</b><br>average band"><title>average &#183; 76 words</title></circle>
+<circle class="dot s-s2" cx="319.47368421052636" cy="132" r="5" role="img" aria-label="average, 78 words" data-tip="<b>78 words</b><br>average band"><title>average &#183; 78 words</title></circle>
+<circle class="dot s-s2" cx="341.57894736842104" cy="132" r="5" role="img" aria-label="average, 81 words" data-tip="<b>81 words</b><br>average band"><title>average &#183; 81 words</title></circle>
+<circle class="dot s-s2" cx="341.57894736842104" cy="132" r="5" role="img" aria-label="average, 81 words" data-tip="<b>81 words</b><br>average band"><title>average &#183; 81 words</title></circle>
+<circle class="dot s-s2" cx="415.2631578947369" cy="132" r="5" role="img" aria-label="average, 91 words" data-tip="<b>91 words</b><br>average band"><title>average &#183; 91 words</title></circle>
+<circle class="dot s-s2" cx="430.0" cy="132" r="5" role="img" aria-label="average, 93 words" data-tip="<b>93 words</b><br>average band"><title>average &#183; 93 words</title></circle>
+<circle class="dot s-s2" cx="444.7368421052631" cy="132" r="5" role="img" aria-label="average, 95 words" data-tip="<b>95 words</b><br>average band"><title>average &#183; 95 words</title></circle>
+<circle class="dot s-s2" cx="474.2105263157895" cy="132" r="5" role="img" aria-label="average, 99 words" data-tip="<b>99 words</b><br>average band"><title>average &#183; 99 words</title></circle>
+<circle class="dot s-s2" cx="488.94736842105266" cy="132" r="5" role="img" aria-label="average, 101 words" data-tip="<b>101 words</b><br>average band"><title>average &#183; 101 words</title></circle>
+<circle class="dot s-s2" cx="562.6315789473683" cy="132" r="5" role="img" aria-label="average, 111 words" data-tip="<b>111 words</b><br>average band"><title>average &#183; 111 words</title></circle>
+<circle class="dot s-s2" cx="599.4736842105262" cy="132" r="5" role="img" aria-label="average, 116 words" data-tip="<b>116 words</b><br>average band"><title>average &#183; 116 words</title></circle>
+<line class="mean" x1="372.89473684210526" y1="119" x2="372.89473684210526" y2="145"/>
+<text class="meanl" x="372.89473684210526" y="113">85.2</text>
+<text class="band-l" x="136" y="191">talkative</text>
+<text class="band-n" x="136" y="207">n=12</text>
+<line class="span s-s4" x1="430.0" y1="186" x2="805.7894736842105" y2="186"/>
+<circle class="dot s-s4" cx="430.0" cy="186" r="5" role="img" aria-label="talkative, 93 words" data-tip="<b>93 words</b><br>talkative band"><title>talkative &#183; 93 words</title></circle>
+<circle class="dot s-s4" cx="459.4736842105263" cy="186" r="5" role="img" aria-label="talkative, 97 words" data-tip="<b>97 words</b><br>talkative band"><title>talkative &#183; 97 words</title></circle>
+<circle class="dot s-s4" cx="496.3157894736842" cy="186" r="5" role="img" aria-label="talkative, 102 words" data-tip="<b>102 words</b><br>talkative band"><title>talkative &#183; 102 words</title></circle>
+<circle class="dot s-s4" cx="562.6315789473683" cy="186" r="5" role="img" aria-label="talkative, 111 words" data-tip="<b>111 words</b><br>talkative band"><title>talkative &#183; 111 words</title></circle>
+<circle class="dot s-s4" cx="606.8421052631579" cy="186" r="5" role="img" aria-label="talkative, 117 words" data-tip="<b>117 words</b><br>talkative band"><title>talkative &#183; 117 words</title></circle>
+<circle class="dot s-s4" cx="621.578947368421" cy="186" r="5" role="img" aria-label="talkative, 119 words" data-tip="<b>119 words</b><br>talkative band"><title>talkative &#183; 119 words</title></circle>
+<circle class="dot s-s4" cx="658.421052631579" cy="186" r="5" role="img" aria-label="talkative, 124 words" data-tip="<b>124 words</b><br>talkative band"><title>talkative &#183; 124 words</title></circle>
+<circle class="dot s-s4" cx="673.1578947368421" cy="186" r="5" role="img" aria-label="talkative, 126 words" data-tip="<b>126 words</b><br>talkative band"><title>talkative &#183; 126 words</title></circle>
+<circle class="dot s-s4" cx="717.3684210526316" cy="186" r="5" role="img" aria-label="talkative, 132 words" data-tip="<b>132 words</b><br>talkative band"><title>talkative &#183; 132 words</title></circle>
+<circle class="dot s-s4" cx="724.7368421052631" cy="186" r="5" role="img" aria-label="talkative, 133 words" data-tip="<b>133 words</b><br>talkative band"><title>talkative &#183; 133 words</title></circle>
+<circle class="dot s-s4" cx="805.7894736842105" cy="186" r="5" role="img" aria-label="talkative, 144 words" data-tip="<b>144 words</b><br>talkative band"><title>talkative &#183; 144 words</title></circle>
+<circle class="dot s-s4" cx="805.7894736842105" cy="186" r="5" role="img" aria-label="talkative, 144 words" data-tip="<b>144 words</b><br>talkative band"><title>talkative &#183; 144 words</title></circle>
+<line class="mean" x1="630.1754385964912" y1="173" x2="630.1754385964912" y2="199"/>
+<text class="meanl" x="630.1754385964912" y="167">120.2</text>
+<text class="ax" x="150" y="266">words spoken by the participant, whole interview, speaker labels excluded</text>
 </svg>
     <figcaption><b>The vertical rule on each row is the mean.</b> Terse sits at 86.8 words and
     average at 85.2, a gap of 1.5 words across 28 participants. Only the talkative band
@@ -1036,57 +1123,57 @@ a{color:inherit}
   story.</p>
 
   <figure>
-    <svg viewBox="0 0 760 366" role="img" width="100%" aria-labelledby="st-t st-d" class="fig">
+    <svg viewBox="0 0 912 372" role="img" width="100%" aria-labelledby="st-t st-d" class="fig" tabindex="0">
 <title id="st-t">Journey stages probed, out of 40 interviews</title>
 <desc id="st-d">Return and after is probed in one interview of forty. Prepare is probed in ten, all of them first-time travellers.</desc>
-<line class="grid" x1="214.0" y1="34" x2="214.0" y2="338"/>
-<text class="ax mid" x="214.0" y="358">0</text>
-<line class="grid" x1="331.5" y1="34" x2="331.5" y2="338"/>
-<text class="ax mid" x="331.5" y="358">10</text>
-<line class="grid" x1="449.0" y1="34" x2="449.0" y2="338"/>
-<text class="ax mid" x="449.0" y="358">20</text>
-<line class="grid" x1="566.5" y1="34" x2="566.5" y2="338"/>
-<text class="ax mid" x="566.5" y="358">30</text>
-<line class="grid" x1="684.0" y1="34" x2="684.0" y2="338"/>
-<text class="ax mid" x="684.0" y="358">40</text>
-<text class="stl" x="200" y="53">Dream &amp; discover</text>
-<text class="stn" x="200" y="65">generous — only the grand-tour opener touches it</text>
-<rect class="track" x="214" y="40" width="470" height="26" rx="3"/>
-<rect class="bar s-s1" x="214" y="40" width="470.0" height="26" rx="3"><title>Dream &amp; discover: 40 of 40 interviews</title></rect>
-<text class="barv" x="693.0" y="58">40</text>
-<text class="stl" x="200" y="91">Plan &amp; compare</text>
-<rect class="track" x="214" y="78" width="470" height="26" rx="3"/>
-<rect class="bar s-s1" x="214" y="78" width="352.5" height="26" rx="3"><title>Plan &amp; compare: 30 of 40 interviews</title></rect>
-<text class="barv" x="575.5" y="96">30</text>
-<text class="stl" x="200" y="129">Book</text>
-<rect class="track" x="214" y="116" width="470" height="26" rx="3"/>
-<rect class="bar s-s1" x="214" y="116" width="470.0" height="26" rx="3"><title>Book: 40 of 40 interviews</title></rect>
-<text class="barv" x="693.0" y="134">40</text>
-<text class="stl" x="200" y="167">Prepare (docs, entry)</text>
-<text class="stn" x="200" y="179">first-time segment only</text>
-<rect class="track" x="214" y="154" width="470" height="26" rx="3"/>
-<rect class="bar s-s2" x="214" y="154" width="117.5" height="26" rx="3"><title>Prepare (docs, entry): 10 of 40 interviews</title></rect>
-<text class="barv" x="340.5" y="172">10</text>
-<text class="stl" x="200" y="205">Travel day</text>
-<text class="stn" x="200" y="217">business + families only</text>
-<rect class="track" x="214" y="192" width="470" height="26" rx="3"/>
-<rect class="bar s-s1" x="214" y="192" width="235.0" height="26" rx="3"><title>Travel day: 20 of 40 interviews</title></rect>
-<text class="barv" x="458.0" y="210">20</text>
-<text class="stl" x="200" y="243">In destination</text>
-<rect class="track" x="214" y="230" width="470" height="26" rx="3"/>
-<rect class="bar s-s1" x="214" y="230" width="246.75" height="26" rx="3"><title>In destination: 21 of 40 interviews</title></rect>
-<text class="barv" x="469.75" y="248">21</text>
-<text class="stl" x="200" y="281">Return &amp; after</text>
-<text class="stn" x="200" y="293">one interview in forty</text>
-<rect class="track" x="214" y="268" width="470" height="26" rx="3"/>
-<rect class="bar s-s2" x="214" y="268" width="11.75" height="26" rx="3"><title>Return &amp; after: 1 of 40 interviews</title></rect>
-<text class="barv" x="234.75" y="286">1</text>
-<text class="stl" x="200" y="319">Reflect</text>
-<text class="stn" x="200" y="331">the solution-eliciting closer</text>
-<rect class="track" x="214" y="306" width="470" height="26" rx="3"/>
-<rect class="bar s-s1" x="214" y="306" width="470.0" height="26" rx="3"><title>Reflect: 40 of 40 interviews</title></rect>
-<text class="barv" x="693.0" y="324">40</text>
-<text class="ax" x="214" y="378">interviews in which a moderator question touches the stage, of 40</text>
+<line class="grid" x1="250.0" y1="34" x2="250.0" y2="354"/>
+<text class="ax mid" x="250.0" y="374">0</text>
+<line class="grid" x1="402.5" y1="34" x2="402.5" y2="354"/>
+<text class="ax mid" x="402.5" y="374">10</text>
+<line class="grid" x1="555.0" y1="34" x2="555.0" y2="354"/>
+<text class="ax mid" x="555.0" y="374">20</text>
+<line class="grid" x1="707.5" y1="34" x2="707.5" y2="354"/>
+<text class="ax mid" x="707.5" y="374">30</text>
+<line class="grid" x1="860.0" y1="34" x2="860.0" y2="354"/>
+<text class="ax mid" x="860.0" y="374">40</text>
+<text class="stl" x="236" y="53">Dream &amp; discover</text>
+<text class="stn" x="236" y="65">generous — only the grand-tour opener touches it</text>
+<rect class="track" x="250" y="40" width="610" height="28" rx="3"/>
+<rect class="bar s-s1" x="250" y="40" width="610.0" height="28" rx="3" role="img" aria-label="Dream &amp; discover, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Dream &amp; discover"><title>Dream &amp; discover: 40 of 40 interviews</title></rect>
+<text class="barv" x="869.0" y="58">40</text>
+<text class="stl" x="236" y="93">Plan &amp; compare</text>
+<rect class="track" x="250" y="80" width="610" height="28" rx="3"/>
+<rect class="bar s-s1" x="250" y="80" width="457.5" height="28" rx="3" role="img" aria-label="Plan &amp; compare, 30 of 40 interviews" data-tip="<b>30 of 40 interviews</b><br>Plan &amp; compare"><title>Plan &amp; compare: 30 of 40 interviews</title></rect>
+<text class="barv" x="716.5" y="98">30</text>
+<text class="stl" x="236" y="133">Book</text>
+<rect class="track" x="250" y="120" width="610" height="28" rx="3"/>
+<rect class="bar s-s1" x="250" y="120" width="610.0" height="28" rx="3" role="img" aria-label="Book, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Book"><title>Book: 40 of 40 interviews</title></rect>
+<text class="barv" x="869.0" y="138">40</text>
+<text class="stl" x="236" y="173">Prepare (docs, entry)</text>
+<text class="stn" x="236" y="185">first-time segment only</text>
+<rect class="track" x="250" y="160" width="610" height="28" rx="3"/>
+<rect class="bar s-s2" x="250" y="160" width="152.5" height="28" rx="3" role="img" aria-label="Prepare (docs, entry), 10 of 40 interviews" data-tip="<b>10 of 40 interviews</b><br>Prepare (docs, entry)"><title>Prepare (docs, entry): 10 of 40 interviews</title></rect>
+<text class="barv" x="411.5" y="178">10</text>
+<text class="stl" x="236" y="213">Travel day</text>
+<text class="stn" x="236" y="225">business + families only</text>
+<rect class="track" x="250" y="200" width="610" height="28" rx="3"/>
+<rect class="bar s-s1" x="250" y="200" width="305.0" height="28" rx="3" role="img" aria-label="Travel day, 20 of 40 interviews" data-tip="<b>20 of 40 interviews</b><br>Travel day"><title>Travel day: 20 of 40 interviews</title></rect>
+<text class="barv" x="564.0" y="218">20</text>
+<text class="stl" x="236" y="253">In destination</text>
+<rect class="track" x="250" y="240" width="610" height="28" rx="3"/>
+<rect class="bar s-s1" x="250" y="240" width="320.25" height="28" rx="3" role="img" aria-label="In destination, 21 of 40 interviews" data-tip="<b>21 of 40 interviews</b><br>In destination"><title>In destination: 21 of 40 interviews</title></rect>
+<text class="barv" x="579.25" y="258">21</text>
+<text class="stl" x="236" y="293">Return &amp; after</text>
+<text class="stn" x="236" y="305">one interview in forty</text>
+<rect class="track" x="250" y="280" width="610" height="28" rx="3"/>
+<rect class="bar s-s2" x="250" y="280" width="15.25" height="28" rx="3" role="img" aria-label="Return &amp; after, 1 of 40 interviews" data-tip="<b>1 of 40 interviews</b><br>Return &amp; after"><title>Return &amp; after: 1 of 40 interviews</title></rect>
+<text class="barv" x="274.25" y="298">1</text>
+<text class="stl" x="236" y="333">Reflect</text>
+<text class="stn" x="236" y="345">the solution-eliciting closer</text>
+<rect class="track" x="250" y="320" width="610" height="28" rx="3"/>
+<rect class="bar s-s1" x="250" y="320" width="610.0" height="28" rx="3" role="img" aria-label="Reflect, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Reflect"><title>Reflect: 40 of 40 interviews</title></rect>
+<text class="barv" x="869.0" y="338">40</text>
+<text class="ax" x="250" y="394">interviews in which a moderator question touches the stage, of 40</text>
 </svg>
     <figcaption><b>Coverage is real data, unlike theme frequency.</b> Return and after is
     touched in one interview of forty. Prepare is touched in ten, all first-time travellers,
@@ -1169,4 +1256,32 @@ a{color:inherit}
   CoForge tokens 0.2.0 and validated in light and dark; every colour on this page resolves to
   a token value under ADR-023. Charts render without script, so the page reads at rest.</p>
 </footer>
+<div id="tip" role="status" aria-live="polite"></div>
 </div>
+<script>
+/* Positions the tooltip for any mark carrying data-tip. No layout depends on it:
+   with script disabled every mark keeps its native <title>. */
+(function(){
+  var tip=document.getElementById('tip'), cur=null;
+  function show(el,x,y){
+    var t=el.getAttribute('data-tip'); if(!t) return;
+    tip.innerHTML=t; tip.classList.add('on');
+    tip.style.left=x+'px'; tip.style.top=y+'px'; cur=el;
+  }
+  function hide(){ tip.classList.remove('on'); cur=null; }
+  document.addEventListener('mouseover',function(e){
+    var el=e.target.closest && e.target.closest('[data-tip]');
+    if(el) show(el,e.clientX,e.clientY);
+  });
+  document.addEventListener('mousemove',function(e){
+    var el=e.target.closest && e.target.closest('[data-tip]');
+    if(!el){ if(cur) hide(); return; }
+    show(el,e.clientX,e.clientY);
+  });
+  document.addEventListener('mouseout',function(e){
+    var el=e.target.closest && e.target.closest('[data-tip]');
+    if(el) hide();
+  });
+  document.addEventListener('scroll',hide,{passive:true});
+})();
+</script>

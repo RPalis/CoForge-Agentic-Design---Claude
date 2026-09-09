@@ -1,6 +1,6 @@
 {
   "run_id": "2026-09-09",
-  "generated_at": "2026-09-09T17:42:26",
+  "generated_at": "2026-09-09T17:50:54",
   "project": "coforge",
   "provenance": {
     "schema_version": "2",
@@ -8,23 +8,23 @@
     "detail": "validation/metrics.schema.json"
   },
   "session": {
-    "turns": 6544,
+    "turns": 6566,
     "transcripts": 5,
-    "unique_records": 17345,
-    "non_message_records": 3161,
-    "active_minutes_distinct": 1551,
+    "unique_records": 17404,
+    "non_message_records": 3171,
+    "active_minutes_distinct": 1556,
     "active_hours_distinct_minutes": 25.9,
-    "elapsed_span_by_day_hours": 107.9
+    "elapsed_span_by_day_hours": 108.1
   },
   "tokens": {
-    "input": 13046,
-    "output": 8368640,
-    "cache_read": 3257421639,
-    "cache_creation": 66178459,
-    "billable": 8381686
+    "input": 13090,
+    "output": 8397367,
+    "cache_read": 3268327971,
+    "cache_creation": 66204868,
+    "billable": 8410457
   },
   "tools": {
-    "Bash": 1716,
+    "Bash": 1722,
     "Edit": 126,
     "mcp__chrome-devtools__evaluate_script": 116,
     "mcp__figma-console__figma_execute": 94,
@@ -34,17 +34,17 @@
     "Write": 61,
     "Read": 44,
     "mcp__claude-in-chrome__navigate": 44,
-    "SendUserFile": 36,
+    "SendUserFile": 37,
     "Artifact": 35,
     "ToolSearch": 27,
     "mcp__chrome-devtools__take_screenshot": 26,
     "mcp__Claude_Browser__javascript_tool": 25,
+    "mcp__Claude_Browser__browser_batch": 23,
     "AskUserQuestion": 20,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__chrome-devtools__navigate_page": 20,
     "mcp__claude-in-chrome__computer": 20,
     "mcp__Claude_Browser__resize_window": 19,
-    "mcp__Claude_Browser__browser_batch": 18,
     "Skill": 13,
     "mcp__claude-in-chrome__find": 13,
     "mcp__Claude_Browser__preview_start": 12,
@@ -118,7 +118,7 @@
       "superseded": 8,
       "draft": 17
     },
-    "tokens_per_artifact": 279390
+    "tokens_per_artifact": 280349
   },
   "gates": {
     "verdict": "PASS",

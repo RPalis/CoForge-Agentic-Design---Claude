@@ -6,7 +6,7 @@
 :root {
   --bone:#eeece6; --ink:#041222; --ink-2:#525252; --ink-3:#6f6f6f;
   --rule:#e0e0e0; --sunk:#f4f4f4; --paper:#ffffff; --flag:#b03822;
-  --s1:#0f62fe; --s2:#d02670; --s3:#08bdba; --s4:#8e6a00;
+  --mark:#b03822; --mark-2:#041222; --mark-soft:#f15b40;
   --sans:"Anek Latin",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:"Source Code Pro",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --measure:62ch; --col:640px;
@@ -15,13 +15,13 @@
   :root:not([data-theme="light"]) {
     --bone:#041222; --ink:#eeece6; --ink-2:#c6c6c6; --ink-3:#a8a8a8;
     --rule:#393939; --sunk:#262626; --paper:#161616; --flag:#ff8389;
-    --s1:#4589ff; --s2:#ee5396; --s3:#009d9a; --s4:#b28600;
+    --mark:#f15b40; --mark-2:#eeece6; --mark-soft:#b03822;
   }
 }
 :root[data-theme="dark"] {
   --bone:#041222; --ink:#eeece6; --ink-2:#c6c6c6; --ink-3:#a8a8a8;
   --rule:#393939; --sunk:#262626; --paper:#161616; --flag:#ff8389;
-  --s1:#4589ff; --s2:#ee5396; --s3:#009d9a; --s4:#b28600;
+  --mark:#f15b40; --mark-2:#eeece6; --mark-soft:#b03822;
 }
 *{box-sizing:border-box}
 body{background:var(--bone);color:var(--ink);font-family:var(--sans);
@@ -55,14 +55,18 @@ header{padding:56px 0 0}
   background:var(--sunk);padding:16px 20px;margin:32px 0 0;max-width:var(--col)}
 .flag p{margin:0;font-size:15px;color:var(--ink-2)}
 .flag strong{color:var(--flag);font-weight:600}
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;
+/* four items, so the allowed column counts are 1, 2 and 4 — auto-fit gave 3
+   at mid widths and left a single tile alone on the second row */
+.meta{display:grid;grid-template-columns:1fr;gap:2px;
   margin-top:34px;background:var(--rule);border:1px solid var(--rule)}
 .meta div{background:var(--bone);padding:14px 16px}
 .meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-3);margin:0}
 .meta dd{margin:5px 0 0;font-size:15px;font-weight:400}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;
+.tiles{display:grid;grid-template-columns:1fr;gap:2px;
   background:var(--rule);border:1px solid var(--rule)}
+@media (min-width:430px){.meta,.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:860px){.meta,.tiles{grid-template-columns:repeat(4,1fr)}}
 .tile{background:var(--bone);padding:22px}
 .tile .big{font-family:var(--mono);font-size:40px;font-weight:600;letter-spacing:-.03em;
   font-variant-numeric:tabular-nums;line-height:1;color:var(--ink)}
@@ -92,7 +96,7 @@ figcaption b{color:var(--ink);font-weight:600}
 .fig .rot{text-anchor:start}
 .fig .mid{text-anchor:middle}
 .fig .pid{font-family:var(--mono);font-size:9px;fill:var(--ink-3);text-anchor:end}
-.fig .seg{font-family:var(--sans);font-size:15px;font-weight:600}
+.fig .seg{font-family:var(--sans);font-size:15px;font-weight:600;fill:var(--ink)}
 .fig .segn{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}
 .fig .band{fill:var(--sunk)}
 .fig .off{fill:var(--rule);opacity:.5}
@@ -111,10 +115,9 @@ figcaption b{color:var(--ink);font-weight:600}
 .fig .bar{stroke:none}
 .fig .barv{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--ink);font-variant-numeric:tabular-nums}
 .fig .stn{font-family:var(--mono);font-size:9.5px;fill:var(--ink-3);text-anchor:end}
-.s-s1{fill:var(--s1);stroke:var(--s1)}
-.s-s2{fill:var(--s2);stroke:var(--s2)}
-.s-s3{fill:var(--s3);stroke:var(--s3)}
-.s-s4{fill:var(--s4);stroke:var(--s4)}
+.s-s1,.s-s2,.s-s3,.s-s4{fill:var(--mark);stroke:var(--mark)}
+.s-flag{fill:var(--mark);stroke:var(--mark)}
+.s-base{fill:var(--mark-2);stroke:var(--mark-2)}
 table{border-collapse:collapse;width:100%;font-size:15px}
 caption{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-3);padding-bottom:10px}
@@ -123,8 +126,6 @@ th{text-align:left;font-weight:600;font-size:13px;color:var(--ink-2);
 td{border-bottom:1px solid var(--rule);padding:11px 14px 11px 0;vertical-align:top}
 td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;
   padding-right:0}
-.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:9px;
-  vertical-align:baseline}
 .tw{overflow-x:auto}
 .pill{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;
   text-transform:uppercase;padding:3px 9px;border:1px solid currentColor;
@@ -138,7 +139,7 @@ li b{font-weight:600}
 footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--rule);
   font-size:13px;color:var(--ink-3);max-width:var(--col);margin-inline:auto}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--s1);outline-offset:3px;border-radius:2px}
+:focus-visible{outline:2px solid var(--mark);outline-offset:3px;border-radius:2px}
 
 /* hover + focus affordances. CSS does the highlighting; the script only positions
    a readable tooltip. Everything below still reads correctly with script off. */
@@ -147,7 +148,7 @@ a{color:inherit}
 .fig .on:hover, .fig .dot:hover, .fig .bar:hover{opacity:1}
 /* one tab stop per figure, not one per mark: the svg root is focusable and
    announces its own title and desc; the table view carries the values. */
-.fig:focus-visible{outline:2px solid var(--s1);outline-offset:4px}
+.fig:focus-visible{outline:2px solid var(--mark);outline-offset:4px}
 .fig .row-hit{fill:var(--ink);opacity:0}
 .fig .row-hit:hover{opacity:.055}
 tbody tr{transition:background .12s ease}
@@ -227,7 +228,7 @@ tbody tr:hover{background:var(--sunk)}
 <text class="ax rot" x="816.0" y="160" transform="rotate(-90 816.0 160)">Entry/docs confusing</text>
 <text class="ax rot" x="860.0" y="160" transform="rotate(-90 860.0 160)">Booking done right?</text>
 <rect class="band" x="0" y="168" width="132" height="158" rx="2"/>
-<text class="seg s-s1" x="10" y="194">Leisure</text>
+<text class="seg" x="10" y="194">Leisure</text>
 <text class="segn" x="10" y="212">10 participants</text>
 <text class="segn" x="10" y="226">4 themes</text>
 <text class="pid" x="168" y="179">001</text>
@@ -411,7 +412,7 @@ tbody tr:hover{background:var(--sunk)}
 <rect class="off" x="795" y="313" width="42" height="14" rx="2"/>
 <rect class="off" x="839" y="313" width="42" height="14" rx="2"/>
 <rect class="band" x="0" y="328" width="132" height="158" rx="2"/>
-<text class="seg s-s2" x="10" y="354">Business</text>
+<text class="seg" x="10" y="354">Business</text>
 <text class="segn" x="10" y="372">10 participants</text>
 <text class="segn" x="10" y="386">4 themes</text>
 <text class="pid" x="168" y="339">011</text>
@@ -595,7 +596,7 @@ tbody tr:hover{background:var(--sunk)}
 <rect class="off" x="795" y="473" width="42" height="14" rx="2"/>
 <rect class="off" x="839" y="473" width="42" height="14" rx="2"/>
 <rect class="band" x="0" y="488" width="132" height="158" rx="2"/>
-<text class="seg s-s3" x="10" y="514">Families</text>
+<text class="seg" x="10" y="514">Families</text>
 <text class="segn" x="10" y="532">10 participants</text>
 <text class="segn" x="10" y="546">4 themes</text>
 <text class="pid" x="168" y="499">021</text>
@@ -779,7 +780,7 @@ tbody tr:hover{background:var(--sunk)}
 <rect class="off" x="795" y="633" width="42" height="14" rx="2"/>
 <rect class="off" x="839" y="633" width="42" height="14" rx="2"/>
 <rect class="band" x="0" y="648" width="132" height="158" rx="2"/>
-<text class="seg s-s4" x="10" y="674">First-time</text>
+<text class="seg" x="10" y="674">First-time</text>
 <text class="segn" x="10" y="692">10 participants</text>
 <text class="segn" x="10" y="706">4 themes</text>
 <text class="pid" x="168" y="659">031</text>
@@ -976,10 +977,10 @@ tbody tr:hover{background:var(--sunk)}
   </figure>
 
   <div class="tw"><table><caption>Theme assignment, as data</caption><thead><tr><th scope="col">Segment</th><th scope="col">Themes it is confined to</th><th scope="col">Participants</th><th scope="col">Marks</th></tr></thead><tbody>
-<tr><td><span class="sw s-s1"></span>Leisure</td><td>Compare never lines up, No single trip/cost view, Find things to do, On-site transport</td><td class="n">10</td><td class="n">20</td></tr>
-<tr><td><span class="sw s-s2"></span>Business</td><td>Flight changes, Expenses chore, Booked separately, Airport waiting</td><td class="n">10</td><td class="n">20</td></tr>
-<tr><td><span class="sw s-s3"></span>Families</td><td>Coordinating people, Arrival to accommodation, Updates not personalised, Manage booked activities</td><td class="n">10</td><td class="n">20</td></tr>
-<tr><td><span class="sw s-s4"></span>First-time</td><td>Anxious navigating, Info across apps, Entry/docs confusing, Booking done right?</td><td class="n">10</td><td class="n">20</td></tr>
+<tr><td>Leisure</td><td>Compare never lines up, No single trip/cost view, Find things to do, On-site transport</td><td class="n">10</td><td class="n">20</td></tr>
+<tr><td>Business</td><td>Flight changes, Expenses chore, Booked separately, Airport waiting</td><td class="n">10</td><td class="n">20</td></tr>
+<tr><td>Families</td><td>Coordinating people, Arrival to accommodation, Updates not personalised, Manage booked activities</td><td class="n">10</td><td class="n">20</td></tr>
+<tr><td>First-time</td><td>Anxious navigating, Info across apps, Entry/docs confusing, Booking done right?</td><td class="n">10</td><td class="n">20</td></tr>
 </tbody></table></div>
 </section>
 
@@ -1139,39 +1140,39 @@ tbody tr:hover{background:var(--sunk)}
 <text class="stl" x="236" y="53">Dream &amp; discover</text>
 <text class="stn" x="236" y="65">generous — only the grand-tour opener touches it</text>
 <rect class="track" x="250" y="40" width="610" height="28" rx="3"/>
-<rect class="bar s-s1" x="250" y="40" width="610.0" height="28" rx="3" role="img" aria-label="Dream &amp; discover, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Dream &amp; discover"><title>Dream &amp; discover: 40 of 40 interviews</title></rect>
+<rect class="bar s-base" x="250" y="40" width="610.0" height="28" rx="3" role="img" aria-label="Dream &amp; discover, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Dream &amp; discover"><title>Dream &amp; discover: 40 of 40 interviews</title></rect>
 <text class="barv" x="869.0" y="58">40</text>
 <text class="stl" x="236" y="93">Plan &amp; compare</text>
 <rect class="track" x="250" y="80" width="610" height="28" rx="3"/>
-<rect class="bar s-s1" x="250" y="80" width="457.5" height="28" rx="3" role="img" aria-label="Plan &amp; compare, 30 of 40 interviews" data-tip="<b>30 of 40 interviews</b><br>Plan &amp; compare"><title>Plan &amp; compare: 30 of 40 interviews</title></rect>
+<rect class="bar s-base" x="250" y="80" width="457.5" height="28" rx="3" role="img" aria-label="Plan &amp; compare, 30 of 40 interviews" data-tip="<b>30 of 40 interviews</b><br>Plan &amp; compare"><title>Plan &amp; compare: 30 of 40 interviews</title></rect>
 <text class="barv" x="716.5" y="98">30</text>
 <text class="stl" x="236" y="133">Book</text>
 <rect class="track" x="250" y="120" width="610" height="28" rx="3"/>
-<rect class="bar s-s1" x="250" y="120" width="610.0" height="28" rx="3" role="img" aria-label="Book, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Book"><title>Book: 40 of 40 interviews</title></rect>
+<rect class="bar s-base" x="250" y="120" width="610.0" height="28" rx="3" role="img" aria-label="Book, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Book"><title>Book: 40 of 40 interviews</title></rect>
 <text class="barv" x="869.0" y="138">40</text>
 <text class="stl" x="236" y="173">Prepare (docs, entry)</text>
 <text class="stn" x="236" y="185">first-time segment only</text>
 <rect class="track" x="250" y="160" width="610" height="28" rx="3"/>
-<rect class="bar s-s2" x="250" y="160" width="152.5" height="28" rx="3" role="img" aria-label="Prepare (docs, entry), 10 of 40 interviews" data-tip="<b>10 of 40 interviews</b><br>Prepare (docs, entry)"><title>Prepare (docs, entry): 10 of 40 interviews</title></rect>
+<rect class="bar s-flag" x="250" y="160" width="152.5" height="28" rx="3" role="img" aria-label="Prepare (docs, entry), 10 of 40 interviews" data-tip="<b>10 of 40 interviews</b><br>Prepare (docs, entry)"><title>Prepare (docs, entry): 10 of 40 interviews</title></rect>
 <text class="barv" x="411.5" y="178">10</text>
 <text class="stl" x="236" y="213">Travel day</text>
 <text class="stn" x="236" y="225">business + families only</text>
 <rect class="track" x="250" y="200" width="610" height="28" rx="3"/>
-<rect class="bar s-s1" x="250" y="200" width="305.0" height="28" rx="3" role="img" aria-label="Travel day, 20 of 40 interviews" data-tip="<b>20 of 40 interviews</b><br>Travel day"><title>Travel day: 20 of 40 interviews</title></rect>
+<rect class="bar s-base" x="250" y="200" width="305.0" height="28" rx="3" role="img" aria-label="Travel day, 20 of 40 interviews" data-tip="<b>20 of 40 interviews</b><br>Travel day"><title>Travel day: 20 of 40 interviews</title></rect>
 <text class="barv" x="564.0" y="218">20</text>
 <text class="stl" x="236" y="253">In destination</text>
 <rect class="track" x="250" y="240" width="610" height="28" rx="3"/>
-<rect class="bar s-s1" x="250" y="240" width="320.25" height="28" rx="3" role="img" aria-label="In destination, 21 of 40 interviews" data-tip="<b>21 of 40 interviews</b><br>In destination"><title>In destination: 21 of 40 interviews</title></rect>
+<rect class="bar s-base" x="250" y="240" width="320.25" height="28" rx="3" role="img" aria-label="In destination, 21 of 40 interviews" data-tip="<b>21 of 40 interviews</b><br>In destination"><title>In destination: 21 of 40 interviews</title></rect>
 <text class="barv" x="579.25" y="258">21</text>
 <text class="stl" x="236" y="293">Return &amp; after</text>
 <text class="stn" x="236" y="305">one interview in forty</text>
 <rect class="track" x="250" y="280" width="610" height="28" rx="3"/>
-<rect class="bar s-s2" x="250" y="280" width="15.25" height="28" rx="3" role="img" aria-label="Return &amp; after, 1 of 40 interviews" data-tip="<b>1 of 40 interviews</b><br>Return &amp; after"><title>Return &amp; after: 1 of 40 interviews</title></rect>
+<rect class="bar s-flag" x="250" y="280" width="15.25" height="28" rx="3" role="img" aria-label="Return &amp; after, 1 of 40 interviews" data-tip="<b>1 of 40 interviews</b><br>Return &amp; after"><title>Return &amp; after: 1 of 40 interviews</title></rect>
 <text class="barv" x="274.25" y="298">1</text>
 <text class="stl" x="236" y="333">Reflect</text>
 <text class="stn" x="236" y="345">the solution-eliciting closer</text>
 <rect class="track" x="250" y="320" width="610" height="28" rx="3"/>
-<rect class="bar s-s1" x="250" y="320" width="610.0" height="28" rx="3" role="img" aria-label="Reflect, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Reflect"><title>Reflect: 40 of 40 interviews</title></rect>
+<rect class="bar s-base" x="250" y="320" width="610.0" height="28" rx="3" role="img" aria-label="Reflect, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Reflect"><title>Reflect: 40 of 40 interviews</title></rect>
 <text class="barv" x="869.0" y="338">40</text>
 <text class="ax" x="250" y="394">interviews in which a moderator question touches the stage, of 40</text>
 </svg>

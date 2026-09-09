@@ -1,50 +1,64 @@
-# Handover — read this first if the context was cleared
+# HANDOVER — as of 2026-09-09
 
-**State at 2026-09-07.** Branch `capture-round-1`. Working tree committed.
-Everything below is on disk; nothing important lives only in a conversation.
+Read `CLAUDE.md`, then this. Detail is in `memory/session-log.md` (last entry) and
+`validation/corrections.json` (58 entries).
 
-## Where things are
+## Where things stand
 
-| What | Where |
+| | |
 |---|---|
-| The dashboard (11 charts) | `artifacts/luma-hands-on/2026-09-07__dashboard__hands-on-findings-and-recommendations__v2/luma-competitor-research-findings.html` — **local file, never published** |
-| Its generator | `build-dashboard.py` + `charts.py`, same directory |
-| The evidence | `artifacts/luma-hands-on/2026-09-04__competitive-benchmark__hands-on-capture-round-1__v1/` — 50 captures, 121 findings |
-| 52 corrections | `validation/corrections.json` |
-| 10 standing rules, in every agent | `validation/standing-rules.json` → all 14 `.claude/agents/*.md` |
-| Plans | `V2-ITERATION-PLAN.md`, `ROUND-2-PLAN.md`, `FINAL-CLEANING-PLAN.md` in the v2 directory |
-| Capture backlog | `round2-capture-ranked.json` (146 tiered) + `unranked-76-ranked.json` (60 rows) |
+| Branch | `capture-round-1` |
+| Design-system state | **RED** — unchanged. 208 of 208 L2 rows are `@carbon/react`; 0 authored here |
+| Evidence ledger | **empty (0 records)** — Design Loop still not runnable |
+| Corrections | 58 · Standing rules 11 (newest **SR-11**) |
+| Audit verdict | **FAIL** — 31 blockers, 1 error |
 
-## Status of the coverage figures — C-052 was largely WITHDRAWN
+## The 31 blockers, and why 30 of them are one question
 
-An earlier claim that all five coverage ratios fail to derive was **wrong and is withdrawn**.
-Re-checked properly: *payment gate 6 of 17* derives to exactly 6, *both browser surfaces 4 of
-17* derives to exactly 4, and *states 8 of 119* and *booking types 47 of 68* are not
-contradicted. The original derivation searched capture titles instead of file contents.
+30 are `raw colour #......` in artifacts generated on 2026-09-08. They are **not** a
+correctness problem: the values match `tokens.json` exactly (verified). They are C-058 —
+the raw-colour check matches hex only, so ART-026 v2's **708** literal `color(srgb …)`
+values have always passed unseen.
 
-**What remains open is narrow.** ART-024 §3.2 enumerates **fifteen** stage-units; the row
-*Journey stages 25 of 136* is built from **eight** stages × 17. The board reports the booking-type
-decomposition as its own separate row, so this may be a deliberate split — but the chart caption
-says every bar is "measured against what the research plan specified", and that specific claim is
-unverified. **A caption to fix or a split to document. Not a number to change.**
+**Do not silence these by switching the generators to `color(srgb …)`.** That changes
+nothing real and hides the same practice again. The open question is what "on-token" can
+mean for a self-contained file that must open offline with no build step, where a literal
+is unavoidable. Likely answer: a generated-from-tokens provenance claim in the manifest
+that the check can verify. **Needs an ADR.**
 
-## Also open, in order
+The 31st blocker is **ART-022** (`tokens_version: null`), which predates this session.
 
-1. `insight-7` and `rec-4` rest on unverifiable quotes (C-050) — re-source before Gate A
-2. Ratify `themes.json` (`status: proposed`), and have someone who has NOT read its per-row
-   list re-derive `price-honesty`, which its author cut from 29 findings to 6
-3. Amend ART-024 §5.2 to a confidence scale that varies (C-042, C-044)
-4. Attestation — four validators changed and nobody outside those changes has attacked them
-5. Then, and only then, round 2 capture: tiers 1 and 2, 41 aimed captures
+## Deliverables live now
 
-## What is true about the content
+- **Figma** — Report 2, section `864:15148` in *AI Workflows for UX*, page *5. Testing
+  Round 2 - Raquel Agents*. Frames `866:16971 / 16777 / 16645 / 16523`.
+  **Figma is one-way**: re-running the pipeline overwrites, it does not merge.
+- **Zip** — `artifacts/design-system-authoring/2026-09-08__handoff-spec__coforge-shareable-package__v1/coforge-artifacts.zip`.
+  Rebuild: `python3 build/build_foundations.py && python3 build/build_index.py &&
+  python3 build/build_figma_make.py`, then re-zip `dist/`.
+- **Board pipeline** — `artifacts/system-operations/2026-09-08__dashboard__…__v1/pipeline/`.
+  Reads `board-dataset.frozen.json`; `build-dataset.py` is deliberately OUT of the build
+  path so figures cannot move under the report.
 
-The observations are sound: all 121 findings resolve to a capture, competitor fields match,
-claim text traces. Six confirmed defects among ~62 attributed quotes. **The findings are
-largely accurate; the summary statistics about them are not.**
+## Waiting on the client
 
-## The rule that earned itself today
+1. **Embed the fonts?** The zip falls back to a system sans without Anek Latin and Source
+   Code Pro. Embedding needs ~400KB downloaded from Google Fonts (both OFL). Asked, unanswered.
+2. **ART-022's `tokens_version`** — I will not declare provenance I did not verify.
+3. **C-058** — the ADR above.
 
-Nine of the ten corrections logged were found by someone other than the author. Not one was
-found by re-reading. Dispatch a second agent; give it your numbers and tell it to
-contradict them.
+## Owed work
+
+- An independent agent must attack **ART-028**; I wrote its pages, generator and checker.
+- **W-3**: `audit-system.py` check 5g never descends into `artifacts/`, so
+  `verify-charts.mjs`, `verify-widgets.mjs` and `verify-frames.mjs` are outside the
+  machinery hash. Closing it invalidates the current attestation and needs a fresh round.
+- Round 2 capture: 41 aimed captures across tiers 1+2.
+
+## Two habits this session paid for
+
+- **Delete by explicit id, never by container.** Clearing a Figma section's children
+  removed two nodes the client had made, and reported what it deleted only afterwards.
+- **Read the output before shipping it.** Reading each frame before import caught five
+  hand-written sentences that had drifted from their own charts, and one that was simply
+  false. No checker would have caught any of them.

@@ -1,0 +1,55 @@
+{
+  "id": "ART-030",
+  "type": "persona",
+  "workstream": "luma-travel",
+  "title": "Research-grounded persona set for Luma — 14 synthetic archetypes built from bias-controlled desk research, replacing the rotation-lattice roster, and four premises of the brief that the research overturned",
+  "file": "research-grounded-personas.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "define",
+  "produced_by": "main-session",
+  "model": "claude-opus-5",
+  "corpus": "synthetic",
+  "skills_used": [],
+  "skills_note": "SearchSkills was used to review the wider toolbelt at the user's request; ux-personas, ux-research-methods and ux-interview-analysis were identified as relevant and enabled but were NOT loaded before writing this set, because the research phase consumed the session's budget. ux-personas states it should be loaded before writing any persona from scratch. That is an unmet instruction and is recorded rather than glossed: the persona set should be reviewed against that skill before it is used.",
+  "findings": {
+    "findings_by": "main-session, from four parallel research agents",
+    "checked": "Open-source desk research across travel forums, parenting forums, frequent-flyer forums, consumer bodies, trade-body surveys, aviation and rail regulators, market research, disability organisations, first-person blogs, news features and peer-reviewed abstracts. Four researchers ran in parallel by segment: leisure plus premise-rejectors; business travellers; families plus disabled travellers; first-timers plus over-55s.",
+    "found": 6,
+    "method": "found = 6 premises of the brief that the research contradicted. (1) PLANNING IS THE PLEASURE, not the pain: in enthusiast communities planning-as-enjoyment is the majority position, with 9-18 month lead times treated as the point. The pain is one specific sub-task, multi-leg ground transport on fixed dates. A product that removes the stress of planning destroys what they came for. (2) THE DREADED MOMENT IS THE RETURN LEG at the home airport late at night, not the destination arrival the brief targets; for a packaged family with transfers the destination arrival is routinely a non-event. (3) THE NEEDS-HELP-BOOKING PERSONA IS YOUNG: booking through a travel professional is highest among 18-24s and 25-34s and families, not over-55s, while over-65 smartphone ownership runs near four in five. The roster's implicit older-traveller assumption is wrong as a default, though variance inside the 55+ band is larger than the gap between bands and the split sits nearer 75 than 55. (4) THE FAILURE MODE IS NEAR-MISS COMPLETION, not refusal: the sharpest case is a 79-year-old who did check in online, printed the return boarding passes instead of the outbound pair, and paid GBP 110 at the desk. (5) FOR DISABLED TRAVELLERS RESEARCH IS A GATE ON BOOKING AT ALL: around three in five avoid venues with no published access information, around three-quarters have found venue websites inaccurate, and verification is done by telephone. That abandonment fires before any funnel a product team would instrument. (6) NOBODY IS ASKING FOR ONE APP: contradicted independently in every segment; the most-used sync mechanism found anywhere is forwarding a confirmation email to an itinerary service, an aggregator that works because it does not own the booking.",
+    "bias_controls": "Six controls were declared before searching and their outcomes are reported in the payload, including where they failed. Held: non-leading queries; mandatory disconfirming searches, three of four returning strong counter-evidence; co-occurrence rather than rotation. Partly held: the demographic frame and the source-type quota. NOT RUN: the blind check, in which an agent that did not build the personas attempts to reverse-engineer the assignment rule. Until that runs this set is unaudited and could carry a generator fingerprint exactly as the round-1 rotation did."
+  },
+  "inputs": {
+    "evidence": [],
+    "evidence_note": "EMPTY AND MUST STAY EMPTY. These are synthetic archetypes, not people, and no line in the payload is a quote. Per ADR-024 nothing here may enter research/evidence-ledger.json. The ledger still reads zero and that number is still truthful.",
+    "artifacts": [
+      "ART-029"
+    ],
+    "decisions": [
+      "ADR-017",
+      "ADR-024"
+    ],
+    "sources": [],
+    "sources_note": "Source URLs were deliberately NOT captured or published, by decision of Agentic Designer - RP on 2026-09-09: the output is a synthetic persona set rather than testimony, so no real person's words are stored or attributed, and nothing identifiable enters this public repository. Source DOMAINS and types were reported by the research agents and used to audit diversity; that audit is summarised in the payload, including where it failed.",
+    "tokens_version": null
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-10"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-10",
+  "notes": {
+    "type_contract_collision": "artifacts/_types.json defines persona as 'Evidence-backed archetype. Never composite fiction.' These are composites grounded in desk research, not archetypes derived from primary research with users. The contract and this artifact are in tension. Reported rather than dodged by filing under a different type, which is the same choice ART-029 made when interview-analysis collided with ADR-024. Both collisions have the same root: the registered contracts assume real research and have never been tested against synthetic work.",
+    "incomplete_research": "The business-traveller research agent was TERMINATED MID-RUN by a monthly spend limit and did not report. That segment is therefore grounded in nothing from this sweep, and the persona set contains no business traveller as a result. This is a gap, not a decision.",
+    "the_finding_that_cost_ART_029_its_headline": "ART-029's headline is the rotation lattice, which exists only because the round-1 corpus was mechanical. A genuinely non-mechanical corpus removes that finding. The user chose to decide ART-029's fate after this phase rather than before it; that decision is now due.",
+    "what_desk_research_cannot_fix": "Every source is typed and edited prose. Nothing in the sweep contains hesitation, self-repair or a person thinking aloud. The disfluency gap that makes the round-1 corpus read as synthetic cannot be closed by more desk research at any budget. It needs recordings, or it must be generated deliberately and labelled as generated."
+  }
+}

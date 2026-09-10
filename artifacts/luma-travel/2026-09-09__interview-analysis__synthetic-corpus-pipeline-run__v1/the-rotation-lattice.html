@@ -1,12 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Without this, a phone lays the page out at a 980px fallback viewport and
+     scales it down: body text renders near 6px and every breakpoint below is
+     dead. An iframe-based measurement cannot detect that, which is why the
+     first responsive pass missed it. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Rotation Lattice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap">
+<meta name="description" content="Forty synthetic interviews run end to end through the CoForge pipeline: the corpus is a designed rotation, so its frequency findings are generator arithmetic.">
 <style>
 :root {
   --bone:#eeece6; --ink:#041222; --ink-2:#525252; --ink-3:#6f6f6f;
   --rule:#e0e0e0; --sunk:#f4f4f4; --paper:#ffffff; --flag:#b03822;
-  --mark:#b03822; --mark-2:#041222; --mark-soft:#f15b40;
+  --mark:#b03822; --mark-2:#041222;
   --sans:"Anek Latin",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:"Source Code Pro",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --measure:62ch; --col:640px;
@@ -15,13 +25,13 @@
   :root:not([data-theme="light"]) {
     --bone:#041222; --ink:#eeece6; --ink-2:#c6c6c6; --ink-3:#a8a8a8;
     --rule:#393939; --sunk:#262626; --paper:#161616; --flag:#ff8389;
-    --mark:#f15b40; --mark-2:#eeece6; --mark-soft:#b03822;
+    --mark:#f15b40; --mark-2:#eeece6;
   }
 }
 :root[data-theme="dark"] {
   --bone:#041222; --ink:#eeece6; --ink-2:#c6c6c6; --ink-3:#a8a8a8;
   --rule:#393939; --sunk:#262626; --paper:#161616; --flag:#ff8389;
-  --mark:#f15b40; --mark-2:#eeece6; --mark-soft:#b03822;
+  --mark:#f15b40; --mark-2:#eeece6;
 }
 *{box-sizing:border-box}
 body{background:var(--bone);color:var(--ink);font-family:var(--sans);
@@ -39,11 +49,10 @@ header > *{width:100%;max-width:var(--col);margin-inline:auto}
 /* the breakout band, deliberately wider than the text and on the same axis */
 section > figure, section > .tw, section > .tiles{width:100%;max-width:100%}
 header{display:flex;flex-direction:column;align-items:center}
-.eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-2);margin:0}
+.dateline{font-family:var(--mono);font-size:13px;color:var(--ink-2);margin:0 0 10px}
 h1{font-size:clamp(34px,4.6vw,50px);font-weight:700;letter-spacing:-.028em;line-height:1.06;
   margin:14px 0 0;text-wrap:balance;max-width:var(--col)}
-.stand{font-size:19px;font-weight:300;color:var(--ink-2);max-width:var(--col);
+.stand{font-size:19px;font-weight:400;color:var(--ink-2);max-width:var(--col);
   margin:18px 0 0;text-wrap:pretty}
 h2{font-size:27px;font-weight:600;letter-spacing:-.018em;line-height:1.2;margin:0;
   text-wrap:balance}
@@ -51,8 +60,10 @@ h3{font-size:15px;font-weight:600;margin:22px 0 0;letter-spacing:.01em}
 p{max-width:var(--col);margin:14px 0 0}
 section{margin-top:72px;display:flex;flex-direction:column;gap:14px}
 header{padding:56px 0 0}
-.flag{display:flex;gap:14px;align-items:flex-start;border-left:3px solid var(--flag);
-  background:var(--sunk);padding:16px 20px;margin:32px 0 0;max-width:var(--col)}
+/* was a 3px coloured left rail. The weight now comes from the ground and a
+   hairline, and the coral survives where it means something: the word. */
+.flag{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--rule);
+  background:var(--sunk);padding:18px 22px;margin:32px 0 0;max-width:var(--col)}
 .flag p{margin:0;font-size:15px;color:var(--ink-2)}
 .flag strong{color:var(--flag);font-weight:600}
 /* four items, so the allowed column counts are 1, 2 and 4 — auto-fit gave 3
@@ -60,8 +71,11 @@ header{padding:56px 0 0}
 .meta{display:grid;grid-template-columns:1fr;gap:2px;
   margin-top:34px;background:var(--rule);border:1px solid var(--rule)}
 .meta div{background:var(--bone);padding:14px 16px}
-.meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-3);margin:0}
+/* --ink-3 measures 4.25:1 on --bone and fails AA at these sizes; it clears on
+   --paper (5.02:1) and is still used inside the figures. On the page ground the
+   11-13px labels take --ink-2 (6.61:1) instead. */
+.meta dt{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--ink-2);margin:0}
 .meta dd{margin:5px 0 0;font-size:15px;font-weight:400}
 .tiles{display:grid;grid-template-columns:1fr;gap:2px;
   background:var(--rule);border:1px solid var(--rule)}
@@ -76,7 +90,12 @@ header{padding:56px 0 0}
   padding:0 2px}
 .tile .big.seq{font-size:34px;letter-spacing:0}
 .tile .lbl{margin-top:10px;font-size:14px;color:var(--ink-2);max-width:30ch}
-figure{margin:0;background:var(--paper);border:1px solid var(--rule);padding:28px 14px 22px;
+/* position:relative so the absolutely-positioned .sr tables are contained and
+   clipped by this figure's own overflow. Without it their containing block is
+   the page, they escape the clip, and the body gains 225px of horizontal
+   scroll at 360px wide. */
+figure{margin:0;position:relative;background:var(--paper);
+  border:1px solid var(--rule);padding:28px 14px 22px;scroll-behavior:smooth;
   overflow-x:auto}
 /* capped at the design width so a figure is never upscaled and every px inside
    the svg is the px it was drawn at */
@@ -92,35 +111,44 @@ figure{scrollbar-width:thin}
 figcaption{font-size:14px;color:var(--ink-2);margin-top:20px;max-width:var(--col)}
 figcaption b{color:var(--ink);font-weight:600}
 .fig{display:block}
-.fig .ax{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}
+.fig .ax{font-family:var(--mono);font-size:12px;fill:var(--ink-3)}
 .fig .rot{text-anchor:start}
 .fig .mid{text-anchor:middle}
-.fig .pid{font-family:var(--mono);font-size:9px;fill:var(--ink-3);text-anchor:end}
+.fig .pid{font-family:var(--mono);font-size:12px;fill:var(--ink-3);text-anchor:end}
 .fig .seg{font-family:var(--sans);font-size:15px;font-weight:600;fill:var(--ink)}
-.fig .segn{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}
+.fig .segn{font-family:var(--mono);font-size:12px;fill:var(--ink-3)}
 .fig .band{fill:var(--sunk)}
-.fig .off{fill:var(--rule);opacity:.5}
+.fig .off{fill:var(--rule);opacity:.85}
 .fig .rule{stroke:var(--rule);stroke-width:1}
 .fig .grid{stroke:var(--rule);stroke-width:1}
-.fig .foot{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}
+.fig .foot{font-family:var(--mono);font-size:12px;fill:var(--ink-3)}
+.fig .coltot{font-family:var(--mono);font-size:12px;font-weight:600;fill:var(--ink);
+  text-anchor:middle;font-variant-numeric:tabular-nums}
+.fig .totlab{font-family:var(--mono);font-size:12px;fill:var(--ink-3);text-anchor:end}
 .fig .span{stroke-width:2;opacity:.34}
 .fig .dot{opacity:.9}
 .fig .mean{stroke:var(--ink);stroke-width:2}
 .fig .meanl{font-family:var(--mono);font-size:11px;font-weight:600;fill:var(--ink);
   text-anchor:middle;font-variant-numeric:tabular-nums}
 .fig .band-l{font-size:15px;font-weight:600;fill:var(--ink);text-anchor:end}
-.fig .band-n{font-family:var(--mono);font-size:10px;fill:var(--ink-3);text-anchor:end}
+.fig .band-n{font-family:var(--mono);font-size:12px;fill:var(--ink-3);text-anchor:end}
 .fig .stl{font-size:14px;fill:var(--ink);text-anchor:end}
 .fig .track{fill:var(--rule);opacity:.45}
 .fig .bar{stroke:none}
 .fig .barv{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--ink);font-variant-numeric:tabular-nums}
-.fig .stn{font-family:var(--mono);font-size:9.5px;fill:var(--ink-3);text-anchor:end}
+.fig .stn{font-family:var(--mono);font-size:12px;fill:var(--ink-3);text-anchor:end}
 .s-s1,.s-s2,.s-s3,.s-s4{fill:var(--mark);stroke:var(--mark)}
 .s-flag{fill:var(--mark);stroke:var(--mark)}
 .s-base{fill:var(--mark-2);stroke:var(--mark-2)}
 table{border-collapse:collapse;width:100%;font-size:15px}
-caption{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ink-3);padding-bottom:10px}
+/* Every mark carries role="img", which per ARIA makes its subtree presentational:
+   all 128 aria-labels inside the figures are dropped from the accessibility tree.
+   These tables are the actual values, reachable by assistive tech and by anyone
+   who wants the numbers. Clipped, not display:none, so they stay in the tree. */
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+caption{text-align:left;font-family:var(--mono);font-size:12px;letter-spacing:0;
+  color:var(--ink-2);padding-bottom:10px}
 th{text-align:left;font-weight:600;font-size:13px;color:var(--ink-2);
   border-bottom:1px solid var(--ink);padding:8px 14px 8px 0}
 td{border-bottom:1px solid var(--rule);padding:11px 14px 11px 0;vertical-align:top}
@@ -137,15 +165,19 @@ li{margin-top:9px}
 li b{font-weight:600}
 .rulel{border:0;border-top:1px solid var(--ink);margin:0}
 footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--rule);
-  font-size:13px;color:var(--ink-3);max-width:var(--col);margin-inline:auto}
+  font-size:13px;color:var(--ink-2);max-width:var(--col);margin-inline:auto}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--mark);outline-offset:3px;border-radius:2px}
 
 /* hover + focus affordances. CSS does the highlighting; the script only positions
    a readable tooltip. Everything below still reads correctly with script off. */
 .fig .on, .fig .dot, .fig .bar{transition:opacity .12s ease}
-.fig:hover .on, .fig:hover .dot, .fig:hover .bar{opacity:.42}
-.fig .on:hover, .fig .dot:hover, .fig .bar:hover{opacity:1}
+/* NOT `.fig:hover .on` — that dimmed all 123 marks whenever the pointer sat
+   anywhere in the 912x842 figure, including the 560 empty cells, and collapsed
+   the on/off encoding from 5.36:1 to 1.76:1. A trackpad enters that state with
+   no deliberate act. Emphasis is now additive on the hovered mark only. */
+.fig .on:hover, .fig .dot:hover, .fig .bar:hover{stroke:var(--ink);
+  stroke-width:2;paint-order:stroke}
 /* one tab stop per figure, not one per mark: the svg root is focusable and
    announces its own title and desc; the table view carries the values. */
 .fig:focus-visible{outline:2px solid var(--mark);outline-offset:4px}
@@ -159,14 +191,15 @@ tbody tr:hover{background:var(--sunk)}
   transition:opacity .1s ease}
 #tip.on{opacity:1}
 #tip b{font-weight:600;color:var(--bone)}
-@media (hover:none){#tip{display:none} .fig:hover .on{opacity:1}}
+@media (hover:none){#tip{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-
-<div class="wrap">
+</head>
+<body>
+<main class="wrap">
 <header>
-  <p class="eyebrow">CoForge &#183; pipeline run &#183; 2026-09-09</p>
   <h1>The Rotation Lattice</h1>
+  <p class="dateline">A CoForge pipeline run &#183; 9 September 2026</p>
   <p class="stand">Forty synthetic interviews went through the CoForge pipeline end to end.
   The corpus yields one genuinely useful finding, and it is not about travellers. It is that
   the most obvious analysis of this data would have been confident, well-presented, and
@@ -174,7 +207,8 @@ tbody tr:hover{background:var(--sunk)}
 
   <div class="flag">
     <p><strong>Synthetic corpus.</strong> Every participant below was model-generated. No
-    quote here is in the evidence ledger and none may enter it, per ADR-024. The ledger
+    quote here is in the evidence ledger and none may enter it. That rule is ADR-024,
+    which is still <em>proposed</em> and unsigned at the time of writing. The ledger
     still reads zero, and that number is truthful: no real user has been interviewed for
     this project. Nothing on this page is a finding about real travellers.</p>
   </div>
@@ -208,7 +242,7 @@ tbody tr:hover{background:var(--sunk)}
   </div>
 
   <figure>
-    <svg viewBox="0 0 912 842" role="img" width="100%" aria-labelledby="latt-t latt-d" class="fig" tabindex="0">
+    <svg viewBox="0 0 912 870" role="img" width="100%" aria-labelledby="latt-t latt-d" class="fig" tabindex="0">
 <title id="latt-t">Pain-theme assignment across 40 participants and 16 themes</title>
 <desc id="latt-d">Each segment of ten participants is confined to four themes. No theme appears in more than one segment. Within each segment the pairs cycle through a fixed rotation, so the marks form four identical diagonal blocks.</desc>
 <text class="ax rot" x="200.0" y="160" transform="rotate(-90 200.0 160)">Compare never lines up</text>
@@ -966,8 +1000,68 @@ tbody tr:hover{background:var(--sunk)}
 <line class="rule" x1="0" y1="327" x2="882" y2="327"/>
 <line class="rule" x1="0" y1="487" x2="882" y2="487"/>
 <line class="rule" x1="0" y1="647" x2="882" y2="647"/>
-<text class="foot" x="178" y="830">Filled cell = theme recorded for that participant. 80 marks, two per participant.</text>
+<line class="rule" x1="178" y1="814" x2="882" y2="814"/>
+<text class="coltot" x="200.0" y="832">5</text>
+<text class="coltot" x="244.0" y="832">6</text>
+<text class="coltot" x="288.0" y="832">5</text>
+<text class="coltot" x="332.0" y="832">4</text>
+<text class="coltot" x="376.0" y="832">5</text>
+<text class="coltot" x="420.0" y="832">6</text>
+<text class="coltot" x="464.0" y="832">5</text>
+<text class="coltot" x="508.0" y="832">4</text>
+<text class="coltot" x="552.0" y="832">5</text>
+<text class="coltot" x="596.0" y="832">6</text>
+<text class="coltot" x="640.0" y="832">5</text>
+<text class="coltot" x="684.0" y="832">4</text>
+<text class="coltot" x="728.0" y="832">5</text>
+<text class="coltot" x="772.0" y="832">6</text>
+<text class="coltot" x="816.0" y="832">5</text>
+<text class="coltot" x="860.0" y="832">4</text>
+<text class="totlab" x="168" y="832">marks</text>
+<text class="foot" x="178" y="860">Filled cell = theme recorded for that participant. 80 marks, two per participant; column totals above.</text>
 </svg>
+    <table class="sr"><caption>Every participant and the themes recorded for them</caption><thead><tr><th scope="col">Participant</th><th scope="col">Segment</th><th scope="col">Themes</th></tr></thead><tbody>
+<tr><td>LUMA-001</td><td>Leisure</td><td>Compare never lines up; No single trip/cost view</td></tr>
+<tr><td>LUMA-002</td><td>Leisure</td><td>No single trip/cost view; Find things to do</td></tr>
+<tr><td>LUMA-003</td><td>Leisure</td><td>Find things to do; On-site transport</td></tr>
+<tr><td>LUMA-004</td><td>Leisure</td><td>Compare never lines up; On-site transport</td></tr>
+<tr><td>LUMA-005</td><td>Leisure</td><td>Compare never lines up; No single trip/cost view</td></tr>
+<tr><td>LUMA-006</td><td>Leisure</td><td>No single trip/cost view; Find things to do</td></tr>
+<tr><td>LUMA-007</td><td>Leisure</td><td>Find things to do; On-site transport</td></tr>
+<tr><td>LUMA-008</td><td>Leisure</td><td>Compare never lines up; On-site transport</td></tr>
+<tr><td>LUMA-009</td><td>Leisure</td><td>Compare never lines up; No single trip/cost view</td></tr>
+<tr><td>LUMA-010</td><td>Leisure</td><td>No single trip/cost view; Find things to do</td></tr>
+<tr><td>LUMA-011</td><td>Business</td><td>Flight changes; Expenses chore</td></tr>
+<tr><td>LUMA-012</td><td>Business</td><td>Expenses chore; Booked separately</td></tr>
+<tr><td>LUMA-013</td><td>Business</td><td>Booked separately; Airport waiting</td></tr>
+<tr><td>LUMA-014</td><td>Business</td><td>Flight changes; Airport waiting</td></tr>
+<tr><td>LUMA-015</td><td>Business</td><td>Flight changes; Expenses chore</td></tr>
+<tr><td>LUMA-016</td><td>Business</td><td>Expenses chore; Booked separately</td></tr>
+<tr><td>LUMA-017</td><td>Business</td><td>Booked separately; Airport waiting</td></tr>
+<tr><td>LUMA-018</td><td>Business</td><td>Flight changes; Airport waiting</td></tr>
+<tr><td>LUMA-019</td><td>Business</td><td>Flight changes; Expenses chore</td></tr>
+<tr><td>LUMA-020</td><td>Business</td><td>Expenses chore; Booked separately</td></tr>
+<tr><td>LUMA-021</td><td>Families</td><td>Coordinating people; Arrival to accommodation</td></tr>
+<tr><td>LUMA-022</td><td>Families</td><td>Arrival to accommodation; Updates not personalised</td></tr>
+<tr><td>LUMA-023</td><td>Families</td><td>Updates not personalised; Manage booked activities</td></tr>
+<tr><td>LUMA-024</td><td>Families</td><td>Coordinating people; Manage booked activities</td></tr>
+<tr><td>LUMA-025</td><td>Families</td><td>Coordinating people; Arrival to accommodation</td></tr>
+<tr><td>LUMA-026</td><td>Families</td><td>Arrival to accommodation; Updates not personalised</td></tr>
+<tr><td>LUMA-027</td><td>Families</td><td>Updates not personalised; Manage booked activities</td></tr>
+<tr><td>LUMA-028</td><td>Families</td><td>Coordinating people; Manage booked activities</td></tr>
+<tr><td>LUMA-029</td><td>Families</td><td>Coordinating people; Arrival to accommodation</td></tr>
+<tr><td>LUMA-030</td><td>Families</td><td>Arrival to accommodation; Updates not personalised</td></tr>
+<tr><td>LUMA-031</td><td>First-time</td><td>Anxious navigating; Info across apps</td></tr>
+<tr><td>LUMA-032</td><td>First-time</td><td>Info across apps; Entry/docs confusing</td></tr>
+<tr><td>LUMA-033</td><td>First-time</td><td>Entry/docs confusing; Booking done right?</td></tr>
+<tr><td>LUMA-034</td><td>First-time</td><td>Anxious navigating; Booking done right?</td></tr>
+<tr><td>LUMA-035</td><td>First-time</td><td>Anxious navigating; Info across apps</td></tr>
+<tr><td>LUMA-036</td><td>First-time</td><td>Info across apps; Entry/docs confusing</td></tr>
+<tr><td>LUMA-037</td><td>First-time</td><td>Entry/docs confusing; Booking done right?</td></tr>
+<tr><td>LUMA-038</td><td>First-time</td><td>Anxious navigating; Booking done right?</td></tr>
+<tr><td>LUMA-039</td><td>First-time</td><td>Anxious navigating; Info across apps</td></tr>
+<tr><td>LUMA-040</td><td>First-time</td><td>Info across apps; Entry/docs confusing</td></tr>
+</tbody></table>
     <figcaption><b>Read the shape, not the counts.</b> Four blocks, no overlap between them,
     and inside each block the same staircase. Because no theme was ever permitted outside its
     segment, any statement that a segment distinctively suffers a pain is true by construction.
@@ -1078,6 +1172,48 @@ tbody tr:hover{background:var(--sunk)}
 <text class="meanl" x="630.1754385964912" y="167">120.2</text>
 <text class="ax" x="150" y="266">words spoken by the participant, whole interview, speaker labels excluded</text>
 </svg>
+    <table class="sr"><caption>Words spoken by each participant</caption><thead><tr><th scope="col">Participant</th><th scope="col">Declared band</th><th scope="col">Words</th></tr></thead><tbody>
+<tr><td>LUMA-001</td><td>terse</td><td>88</td></tr>
+<tr><td>LUMA-002</td><td>terse</td><td>97</td></tr>
+<tr><td>LUMA-003</td><td>terse</td><td>85</td></tr>
+<tr><td>LUMA-004</td><td>average</td><td>95</td></tr>
+<tr><td>LUMA-005</td><td>average</td><td>111</td></tr>
+<tr><td>LUMA-006</td><td>average</td><td>71</td></tr>
+<tr><td>LUMA-007</td><td>average</td><td>116</td></tr>
+<tr><td>LUMA-008</td><td>talkative</td><td>124</td></tr>
+<tr><td>LUMA-009</td><td>talkative</td><td>144</td></tr>
+<tr><td>LUMA-010</td><td>talkative</td><td>132</td></tr>
+<tr><td>LUMA-011</td><td>terse</td><td>77</td></tr>
+<tr><td>LUMA-012</td><td>terse</td><td>114</td></tr>
+<tr><td>LUMA-013</td><td>terse</td><td>81</td></tr>
+<tr><td>LUMA-014</td><td>average</td><td>73</td></tr>
+<tr><td>LUMA-015</td><td>average</td><td>81</td></tr>
+<tr><td>LUMA-016</td><td>average</td><td>59</td></tr>
+<tr><td>LUMA-017</td><td>average</td><td>70</td></tr>
+<tr><td>LUMA-018</td><td>talkative</td><td>93</td></tr>
+<tr><td>LUMA-019</td><td>talkative</td><td>133</td></tr>
+<tr><td>LUMA-020</td><td>talkative</td><td>117</td></tr>
+<tr><td>LUMA-021</td><td>terse</td><td>74</td></tr>
+<tr><td>LUMA-022</td><td>terse</td><td>99</td></tr>
+<tr><td>LUMA-023</td><td>terse</td><td>75</td></tr>
+<tr><td>LUMA-024</td><td>average</td><td>91</td></tr>
+<tr><td>LUMA-025</td><td>average</td><td>81</td></tr>
+<tr><td>LUMA-026</td><td>average</td><td>78</td></tr>
+<tr><td>LUMA-027</td><td>average</td><td>99</td></tr>
+<tr><td>LUMA-028</td><td>talkative</td><td>102</td></tr>
+<tr><td>LUMA-029</td><td>talkative</td><td>119</td></tr>
+<tr><td>LUMA-030</td><td>talkative</td><td>126</td></tr>
+<tr><td>LUMA-031</td><td>terse</td><td>92</td></tr>
+<tr><td>LUMA-032</td><td>terse</td><td>77</td></tr>
+<tr><td>LUMA-033</td><td>terse</td><td>82</td></tr>
+<tr><td>LUMA-034</td><td>average</td><td>76</td></tr>
+<tr><td>LUMA-035</td><td>average</td><td>93</td></tr>
+<tr><td>LUMA-036</td><td>average</td><td>69</td></tr>
+<tr><td>LUMA-037</td><td>average</td><td>101</td></tr>
+<tr><td>LUMA-038</td><td>talkative</td><td>97</td></tr>
+<tr><td>LUMA-039</td><td>talkative</td><td>144</td></tr>
+<tr><td>LUMA-040</td><td>talkative</td><td>111</td></tr>
+</tbody></table>
     <figcaption><b>The vertical rule on each row is the mean.</b> Terse sits at 86.8 words and
     average at 85.2, a gap of 1.5 words across 28 participants. Only the talkative band
     separates. Whatever this corpus tested, it was not a three-level verbosity range, so the
@@ -1124,58 +1260,68 @@ tbody tr:hover{background:var(--sunk)}
   story.</p>
 
   <figure>
-    <svg viewBox="0 0 912 372" role="img" width="100%" aria-labelledby="st-t st-d" class="fig" tabindex="0">
+    <svg viewBox="0 0 912 412" role="img" width="100%" aria-labelledby="st-t st-d" class="fig" tabindex="0">
 <title id="st-t">Journey stages probed, out of 40 interviews</title>
 <desc id="st-d">Return and after is probed in one interview of forty. Prepare is probed in ten, all of them first-time travellers.</desc>
-<line class="grid" x1="250.0" y1="34" x2="250.0" y2="354"/>
-<text class="ax mid" x="250.0" y="374">0</text>
-<line class="grid" x1="402.5" y1="34" x2="402.5" y2="354"/>
-<text class="ax mid" x="402.5" y="374">10</text>
-<line class="grid" x1="555.0" y1="34" x2="555.0" y2="354"/>
-<text class="ax mid" x="555.0" y="374">20</text>
-<line class="grid" x1="707.5" y1="34" x2="707.5" y2="354"/>
-<text class="ax mid" x="707.5" y="374">30</text>
+<line class="grid" x1="306.0" y1="34" x2="306.0" y2="354"/>
+<text class="ax mid" x="306.0" y="374">0</text>
+<line class="grid" x1="444.5" y1="34" x2="444.5" y2="354"/>
+<text class="ax mid" x="444.5" y="374">10</text>
+<line class="grid" x1="583.0" y1="34" x2="583.0" y2="354"/>
+<text class="ax mid" x="583.0" y="374">20</text>
+<line class="grid" x1="721.5" y1="34" x2="721.5" y2="354"/>
+<text class="ax mid" x="721.5" y="374">30</text>
 <line class="grid" x1="860.0" y1="34" x2="860.0" y2="354"/>
 <text class="ax mid" x="860.0" y="374">40</text>
-<text class="stl" x="236" y="53">Dream &amp; discover</text>
-<text class="stn" x="236" y="65">generous — only the grand-tour opener touches it</text>
-<rect class="track" x="250" y="40" width="610" height="28" rx="3"/>
-<rect class="bar s-base" x="250" y="40" width="610.0" height="28" rx="3" role="img" aria-label="Dream &amp; discover, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Dream &amp; discover"><title>Dream &amp; discover: 40 of 40 interviews</title></rect>
+<text class="stl" x="292" y="53">Dream &amp; discover</text>
+<text class="stn" x="292" y="65">generous — only the grand-tour opener touches it</text>
+<rect class="track" x="306" y="40" width="554" height="28" rx="3"/>
+<rect class="bar s-base" x="306" y="40" width="554.0" height="28" rx="3" role="img" aria-label="Dream &amp; discover, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Dream &amp; discover"><title>Dream &amp; discover: 40 of 40 interviews</title></rect>
 <text class="barv" x="869.0" y="58">40</text>
-<text class="stl" x="236" y="93">Plan &amp; compare</text>
-<rect class="track" x="250" y="80" width="610" height="28" rx="3"/>
-<rect class="bar s-base" x="250" y="80" width="457.5" height="28" rx="3" role="img" aria-label="Plan &amp; compare, 30 of 40 interviews" data-tip="<b>30 of 40 interviews</b><br>Plan &amp; compare"><title>Plan &amp; compare: 30 of 40 interviews</title></rect>
-<text class="barv" x="716.5" y="98">30</text>
-<text class="stl" x="236" y="133">Book</text>
-<rect class="track" x="250" y="120" width="610" height="28" rx="3"/>
-<rect class="bar s-base" x="250" y="120" width="610.0" height="28" rx="3" role="img" aria-label="Book, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Book"><title>Book: 40 of 40 interviews</title></rect>
+<text class="stl" x="292" y="93">Plan &amp; compare</text>
+<rect class="track" x="306" y="80" width="554" height="28" rx="3"/>
+<rect class="bar s-base" x="306" y="80" width="415.5" height="28" rx="3" role="img" aria-label="Plan &amp; compare, 30 of 40 interviews" data-tip="<b>30 of 40 interviews</b><br>Plan &amp; compare"><title>Plan &amp; compare: 30 of 40 interviews</title></rect>
+<text class="barv" x="730.5" y="98">30</text>
+<text class="stl" x="292" y="133">Book</text>
+<rect class="track" x="306" y="120" width="554" height="28" rx="3"/>
+<rect class="bar s-base" x="306" y="120" width="554.0" height="28" rx="3" role="img" aria-label="Book, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Book"><title>Book: 40 of 40 interviews</title></rect>
 <text class="barv" x="869.0" y="138">40</text>
-<text class="stl" x="236" y="173">Prepare (docs, entry)</text>
-<text class="stn" x="236" y="185">first-time segment only</text>
-<rect class="track" x="250" y="160" width="610" height="28" rx="3"/>
-<rect class="bar s-flag" x="250" y="160" width="152.5" height="28" rx="3" role="img" aria-label="Prepare (docs, entry), 10 of 40 interviews" data-tip="<b>10 of 40 interviews</b><br>Prepare (docs, entry)"><title>Prepare (docs, entry): 10 of 40 interviews</title></rect>
-<text class="barv" x="411.5" y="178">10</text>
-<text class="stl" x="236" y="213">Travel day</text>
-<text class="stn" x="236" y="225">business + families only</text>
-<rect class="track" x="250" y="200" width="610" height="28" rx="3"/>
-<rect class="bar s-base" x="250" y="200" width="305.0" height="28" rx="3" role="img" aria-label="Travel day, 20 of 40 interviews" data-tip="<b>20 of 40 interviews</b><br>Travel day"><title>Travel day: 20 of 40 interviews</title></rect>
-<text class="barv" x="564.0" y="218">20</text>
-<text class="stl" x="236" y="253">In destination</text>
-<rect class="track" x="250" y="240" width="610" height="28" rx="3"/>
-<rect class="bar s-base" x="250" y="240" width="320.25" height="28" rx="3" role="img" aria-label="In destination, 21 of 40 interviews" data-tip="<b>21 of 40 interviews</b><br>In destination"><title>In destination: 21 of 40 interviews</title></rect>
-<text class="barv" x="579.25" y="258">21</text>
-<text class="stl" x="236" y="293">Return &amp; after</text>
-<text class="stn" x="236" y="305">one interview in forty</text>
-<rect class="track" x="250" y="280" width="610" height="28" rx="3"/>
-<rect class="bar s-flag" x="250" y="280" width="15.25" height="28" rx="3" role="img" aria-label="Return &amp; after, 1 of 40 interviews" data-tip="<b>1 of 40 interviews</b><br>Return &amp; after"><title>Return &amp; after: 1 of 40 interviews</title></rect>
-<text class="barv" x="274.25" y="298">1</text>
-<text class="stl" x="236" y="333">Reflect</text>
-<text class="stn" x="236" y="345">the solution-eliciting closer</text>
-<rect class="track" x="250" y="320" width="610" height="28" rx="3"/>
-<rect class="bar s-base" x="250" y="320" width="610.0" height="28" rx="3" role="img" aria-label="Reflect, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Reflect"><title>Reflect: 40 of 40 interviews</title></rect>
+<text class="stl" x="292" y="173">Prepare (docs, entry)</text>
+<text class="stn" x="292" y="185">first-time segment only</text>
+<rect class="track" x="306" y="160" width="554" height="28" rx="3"/>
+<rect class="bar s-flag" x="306" y="160" width="138.5" height="28" rx="3" role="img" aria-label="Prepare (docs, entry), 10 of 40 interviews" data-tip="<b>10 of 40 interviews</b><br>Prepare (docs, entry)"><title>Prepare (docs, entry): 10 of 40 interviews</title></rect>
+<text class="barv" x="453.5" y="178">10</text>
+<text class="stl" x="292" y="213">Travel day</text>
+<text class="stn" x="292" y="225">business + families only</text>
+<rect class="track" x="306" y="200" width="554" height="28" rx="3"/>
+<rect class="bar s-base" x="306" y="200" width="277.0" height="28" rx="3" role="img" aria-label="Travel day, 20 of 40 interviews" data-tip="<b>20 of 40 interviews</b><br>Travel day"><title>Travel day: 20 of 40 interviews</title></rect>
+<text class="barv" x="592.0" y="218">20</text>
+<text class="stl" x="292" y="253">In destination</text>
+<rect class="track" x="306" y="240" width="554" height="28" rx="3"/>
+<rect class="bar s-base" x="306" y="240" width="290.85" height="28" rx="3" role="img" aria-label="In destination, 21 of 40 interviews" data-tip="<b>21 of 40 interviews</b><br>In destination"><title>In destination: 21 of 40 interviews</title></rect>
+<text class="barv" x="605.85" y="258">21</text>
+<text class="stl" x="292" y="293">Return &amp; after</text>
+<text class="stn" x="292" y="305">one interview in forty</text>
+<rect class="track" x="306" y="280" width="554" height="28" rx="3"/>
+<rect class="bar s-flag" x="306" y="280" width="13.850000000000001" height="28" rx="3" role="img" aria-label="Return &amp; after, 1 of 40 interviews" data-tip="<b>1 of 40 interviews</b><br>Return &amp; after"><title>Return &amp; after: 1 of 40 interviews</title></rect>
+<text class="barv" x="328.85" y="298">1</text>
+<text class="stl" x="292" y="333">Reflect</text>
+<text class="stn" x="292" y="345">the solution-eliciting closer</text>
+<rect class="track" x="306" y="320" width="554" height="28" rx="3"/>
+<rect class="bar s-base" x="306" y="320" width="554.0" height="28" rx="3" role="img" aria-label="Reflect, 40 of 40 interviews" data-tip="<b>40 of 40 interviews</b><br>Reflect"><title>Reflect: 40 of 40 interviews</title></rect>
 <text class="barv" x="869.0" y="338">40</text>
-<text class="ax" x="250" y="394">interviews in which a moderator question touches the stage, of 40</text>
+<text class="ax" x="306" y="394">interviews in which a moderator question touches the stage, of 40</text>
 </svg>
+    <table class="sr"><caption>Journey stages probed, of 40 interviews</caption><thead><tr><th scope="col">Stage</th><th scope="col">Interviews</th><th scope="col">Note</th></tr></thead><tbody>
+<tr><td>Dream &amp; discover</td><td>40</td><td>generous — only the grand-tour opener touches it</td></tr>
+<tr><td>Plan &amp; compare</td><td>30</td><td>&#8212;</td></tr>
+<tr><td>Book</td><td>40</td><td>&#8212;</td></tr>
+<tr><td>Prepare (docs, entry)</td><td>10</td><td>first-time segment only</td></tr>
+<tr><td>Travel day</td><td>20</td><td>business + families only</td></tr>
+<tr><td>In destination</td><td>21</td><td>&#8212;</td></tr>
+<tr><td>Return &amp; after</td><td>1</td><td>one interview in forty</td></tr>
+<tr><td>Reflect</td><td>40</td><td>the solution-eliciting closer</td></tr>
+</tbody></table>
     <figcaption><b>Coverage is real data, unlike theme frequency.</b> Return and after is
     touched in one interview of forty. Prepare is touched in ten, all first-time travellers,
     because only that segment's guide asks about documents. Dream and discover reads as
@@ -1258,7 +1404,7 @@ tbody tr:hover{background:var(--sunk)}
   a token value under ADR-023. Charts render without script, so the page reads at rest.</p>
 </footer>
 <div id="tip" role="status" aria-live="polite"></div>
-</div>
+</main>
 <script>
 /* Positions the tooltip for any mark carrying data-tip. No layout depends on it:
    with script disabled every mark keeps its native <title>. */
@@ -1286,3 +1432,5 @@ tbody tr:hover{background:var(--sunk)}
   document.addEventListener('scroll',hide,{passive:true});
 })();
 </script>
+</body>
+</html>

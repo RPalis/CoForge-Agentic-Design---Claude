@@ -83,6 +83,14 @@ jobs:
       - name: Figma token file is current
         run: python3 validation/build-figma-tokens.py --check
 
+      # The vendor-neutral context bundle. Before it existed, context reached an
+      # arbitrary model only by being pasted into a prompt by hand, which drifts from
+      # its source the moment the source changes and nobody notices. AGENTS.md is now
+      # generated from the sources of truth and fails here on any difference, exactly
+      # like .ai/, the registry and llms.txt.
+      - name: Context bundle is current
+        run: python3 validation/build-context.py --check
+
       - name: Standing rules reach every agent
         # Before this existed, 2 of 14 agent definitions mentioned the corrections
         # ledger. A generated briefing block is only worth anything if drift is

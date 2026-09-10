@@ -64,22 +64,26 @@ One `orchestrator`, which reads the plan and dispatches but does no design work,
 and 13 workers. Each owns its artifact types and hands off through files,
 never chat.
 
-| agent | writes | tools |
-|---|---|---|
-| `a11y-checker` | yes | Read, Write |
-| `brand-director` | yes | Read, Write |
-| `content-comms` | yes | Read, Write |
-| `dashboard-analyst` | yes | Read, Write, Bash |
-| `design-critic` | yes | Read, Write |
-| `diagram-cartographer` | yes | Read, Write |
-| `evidence-clerk` | yes | Read, Write, Grep |
-| `handoff-scribe` | yes | Read, Write |
-| `orchestrator` | NO | Read, Agent, Task, TodoWrite |
-| `research-ops` | yes | Read, Write |
-| `research-synthesizer` | yes | Read, Write |
-| `screen-producer` | yes | Read, Write, Bash |
-| `system-keeper` | yes | Read, Write, Bash, Grep |
-| `token-keeper` | yes | Read, Write, Bash |
+Which model runs which agent is set in one place, `validation/models.json`, and
+generated into the agent definitions. Swap with
+`python3 validation/build-models.py --set <agent|all>=<alias>`.
+
+| agent | model | writes | tools |
+|---|---|---|---|
+| `a11y-checker` | sonnet | yes | Read, Write |
+| `brand-director` | opus | yes | Read, Write |
+| `content-comms` | sonnet | yes | Read, Write |
+| `dashboard-analyst` | sonnet | yes | Read, Write, Bash |
+| `design-critic` | opus | yes | Read, Write |
+| `diagram-cartographer` | sonnet | yes | Read, Write |
+| `evidence-clerk` | sonnet | yes | Read, Write, Grep |
+| `handoff-scribe` | opus | yes | Read, Write |
+| `orchestrator` | opus | NO | Read, Agent, Task, TodoWrite |
+| `research-ops` | opus | yes | Read, Write |
+| `research-synthesizer` | opus | yes | Read, Write |
+| `screen-producer` | opus | yes | Read, Write, Bash |
+| `system-keeper` | sonnet | yes | Read, Write, Bash, Grep |
+| `token-keeper` | sonnet | yes | Read, Write, Bash |
 
 ### The standing rules
 

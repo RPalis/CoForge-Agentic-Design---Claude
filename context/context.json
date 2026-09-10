@@ -6,6 +6,7 @@
     "validation/corrections.json",
     ".ai/index.json",
     "artifacts/_types.json",
+    "validation/models.json",
     "context/rescued-from-memory.json (snapshot of gitignored memory/)"
   ],
   "rescue_snapshot_note": "The snapshot carries a sha256 of each memory/ file it was built from. Where gitignored memory/ is PRESENT the build verifies those hashes and aborts on drift. Where it is ABSENT — CI, and any clone — drift between the snapshot and its source is structurally UNDETECTABLE. Stated rather than implied. This note is deliberately constant: a generated file that is staleness-checked must not vary by environment, and recording the verification result here broke CI once already.",
@@ -199,6 +200,42 @@
       "trigger": "Use any time tokens change or drift — \"sync the tokens\", \"check for drift\", \"propose a new token\", and throughout the DS fork (build/match the design system). Owns tokens.json and "
     }
   ],
+  "model_assignment": {
+    "a11y-checker": "sonnet",
+    "brand-director": "opus",
+    "content-comms": "sonnet",
+    "dashboard-analyst": "sonnet",
+    "design-critic": "opus",
+    "diagram-cartographer": "sonnet",
+    "evidence-clerk": "sonnet",
+    "handoff-scribe": "opus",
+    "orchestrator": "opus",
+    "research-ops": "opus",
+    "research-synthesizer": "opus",
+    "screen-producer": "opus",
+    "system-keeper": "sonnet",
+    "token-keeper": "sonnet"
+  },
+  "model_roster": {
+    "opus": {
+      "id": "claude-opus-5",
+      "vendor": "anthropic",
+      "tier": "frontier",
+      "use_for": "Judgement under ambiguity, adversarial review, synthesis where being confidently wrong is expensive. Anything whose output a human will act on without re-deriving it."
+    },
+    "sonnet": {
+      "id": "claude-sonnet-5",
+      "vendor": "anthropic",
+      "tier": "balanced",
+      "use_for": "Structured, verifiable work with a small blast radius: mechanical checks, extraction against a schema, generation from a fixed contract. Work where an error shows up in a diff."
+    },
+    "haiku": {
+      "id": "claude-haiku-4-5-20251001",
+      "vendor": "anthropic",
+      "tier": "fast",
+      "use_for": "High-volume, low-judgement passes. NOT ASSIGNED TO ANY AGENT TODAY, and listed so a swap to it is a deliberate act with a stated reason rather than a guess."
+    }
+  },
   "standing_rules": [
     {
       "id": "SR-1",

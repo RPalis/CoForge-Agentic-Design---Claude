@@ -88,6 +88,13 @@ jobs:
       # its source the moment the source changes and nobody notices. AGENTS.md is now
       # generated from the sources of truth and fails here on any difference, exactly
       # like .ai/, the registry and llms.txt.
+      # The model each agent runs on lives in ONE file and is generated into the
+      # fourteen agent definitions. A swap that half-applies — some agents moved,
+      # some not — is worse than no swap, because the run is a mixture and nothing
+      # says so.
+      - name: Agent model assignment is current
+        run: python3 validation/build-models.py --check
+
       - name: Context bundle is current
         run: python3 validation/build-context.py --check
 

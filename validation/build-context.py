@@ -277,6 +277,10 @@ def build():
     idx = need_json(".ai/index.json")
     corr = need_json("validation/corrections.json")
     types_doc = need_json("artifacts/_types.json")
+    models_doc = need_json("validation/models.json")
+    models = models_doc.get("assignment")
+    if not models:
+        raise SourceError("validation/models.json has no 'assignment'")
 
     types = types_doc.get("types")
     if not types:
@@ -370,12 +374,17 @@ def build():
     w(f"and {len(workers)} workers. Each owns its artifact types and hands off through files,")
     w(f"never chat.")
     w("")
-    w("| agent | writes | tools |")
-    w("|---|---|---|")
+    w("Which model runs which agent is set in one place, `validation/models.json`, and")
+    w("generated into the agent definitions. Swap with")
+    w("`python3 validation/build-models.py --set <agent|all>=<alias>`.")
+    w("")
+    w("| agent | model | writes | tools |")
+    w("|---|---|---|---|")
     for a in sorted(agents, key=lambda x: x.get("name", "")):
-        t = a.get("tools", "")
-        t = ", ".join(t) if isinstance(t, list) else str(t)
-        w(f"| `{a.get('name','?')}` | {'yes' if a.get('writes') else 'NO'} | {t} |")
+        tl = a.get("tools", "")
+        tl = ", ".join(tl) if isinstance(tl, list) else str(tl)
+        mdl = models.get(a.get("name"), "?")
+        w(f"| `{a.get('name','?')}` | {mdl} | {'yes' if a.get('writes') else 'NO'} | {tl} |")
     w("")
     w("### The standing rules")
     w("")
@@ -452,7 +461,7 @@ def build():
                     "extracted verbatim from CLAUDE.md; markdown twin is AGENTS.md.",
         "generated_from": ["CLAUDE.md", "validation/standing-rules.json",
                            "validation/corrections.json", ".ai/index.json",
-                           "artifacts/_types.json", RESCUE + " (snapshot of gitignored memory/)"],
+                           "artifacts/_types.json", "validation/models.json", RESCUE + " (snapshot of gitignored memory/)"],
         "rescue_snapshot_note": "The snapshot carries a sha256 of each memory/ file it "
                                 "was built from. Where gitignored memory/ is PRESENT the "
                                 "build verifies those hashes and aborts on drift. Where "
@@ -472,6 +481,8 @@ def build():
         "state": state,
         "counts": {**counts, "corrections_logged": n_corr, "workers": len(workers)},
         "agents": agents,
+        "model_assignment": models,
+        "model_roster": models_doc.get("roster", {}),
         "standing_rules": rules["rules"],
         "open_questions": oq,
         "correction_candidates_rescued_from_untracked_memory": cand,

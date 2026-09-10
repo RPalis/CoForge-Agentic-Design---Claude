@@ -1,0 +1,49 @@
+{
+  "$comment": "SOURCE OF TRUTH for which model each agent runs on. The `model:` field in every .claude/agents/*.md is GENERATED from this file by validation/build-models.py and must never be hand-edited: fourteen hand-edited copies is how a swap silently half-applies. Change an assignment here, or with --set, then regenerate.",
+  "version": "1.0.0",
+  "roster": {
+    "opus": {
+      "id": "claude-opus-5",
+      "vendor": "anthropic",
+      "tier": "frontier",
+      "use_for": "Judgement under ambiguity, adversarial review, synthesis where being confidently wrong is expensive. Anything whose output a human will act on without re-deriving it."
+    },
+    "sonnet": {
+      "id": "claude-sonnet-5",
+      "vendor": "anthropic",
+      "tier": "balanced",
+      "use_for": "Structured, verifiable work with a small blast radius: mechanical checks, extraction against a schema, generation from a fixed contract. Work where an error shows up in a diff."
+    },
+    "haiku": {
+      "id": "claude-haiku-4-5-20251001",
+      "vendor": "anthropic",
+      "tier": "fast",
+      "use_for": "High-volume, low-judgement passes. NOT ASSIGNED TO ANY AGENT TODAY, and listed so a swap to it is a deliberate act with a stated reason rather than a guess."
+    }
+  },
+  "assignment": {
+    "a11y-checker": "sonnet",
+    "brand-director": "opus",
+    "content-comms": "sonnet",
+    "dashboard-analyst": "sonnet",
+    "design-critic": "opus",
+    "diagram-cartographer": "sonnet",
+    "evidence-clerk": "sonnet",
+    "handoff-scribe": "opus",
+    "orchestrator": "opus",
+    "research-ops": "opus",
+    "research-synthesizer": "opus",
+    "screen-producer": "opus",
+    "system-keeper": "sonnet",
+    "token-keeper": "sonnet"
+  },
+  "why": {
+    "opus_agents": "brand-director, design-critic, handoff-scribe, orchestrator, research-ops, research-synthesizer, screen-producer. Each either makes a judgement call a human will act on, or reviews someone else's work adversarially. A confidently wrong critique steers a bad revision, and a confidently wrong synthesis becomes a requirement.",
+    "sonnet_agents": "a11y-checker, content-comms, dashboard-analyst, diagram-cartographer, evidence-clerk, system-keeper, token-keeper. Each works against a fixed contract — a schema, a token file, a checklist — so an error surfaces mechanically rather than silently.",
+    "the_rule_worth_keeping": "Downgrade an agent whose errors show up in a diff. Do not downgrade an agent whose errors show up as a confident sentence a human believes."
+  },
+  "swap_safety": {
+    "what_makes_a_swap_safe_here": "The standing rules, the gates and the context all live outside the agent prompt, in AGENTS.md and context/context.json, so they do not change when the model does. The agent prompts are near vendor-neutral: three mentions of a specific tool across fourteen files, all naming a real toolchain rather than assuming an identity.",
+    "what_a_swap_does_NOT_prove": "That quality held. Nothing in this repository counts clean reviews, so a downgrade that degrades judgement is invisible until someone reads the output. artifacts/*/manifest.json records the producing model on every artifact, which is the raw material for measuring that — but 8 of 36 manifests carry no model or an empty one, so the record is not yet complete enough to compare against."
+  }
+}

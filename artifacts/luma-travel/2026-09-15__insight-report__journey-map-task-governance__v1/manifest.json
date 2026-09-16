@@ -1,0 +1,57 @@
+{
+  "id": "ART-041",
+  "type": "insight-report",
+  "workstream": "luma-travel",
+  "title": "Journey-map task governance — tool-call tally across ART-038 (v1-v3), ART-039, ART-040",
+  "file": "luma-journey-map-task-governance.md",
+  "version": 1,
+  "status": "draft",
+  "stage": "define",
+  "produced_by": "main session (no subagent dispatched)",
+  "model": "claude-sonnet-5",
+  "corpus": "synthetic",
+  "created": "2026-09-15",
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-038", "ART-039", "ART-040", "ART-037"],
+    "decisions": ["ADR-024"],
+    "sources": ["context/luma-travel.md"]
+  },
+  "method": {
+    "basis": "Sums the 'Production note' section already written into each of the 5 source validation.md files (ART-038 v1/v2/v3, ART-039, ART-040) at the time each artifact was produced, plus the delivery turn's 2 SendUserFile calls.",
+    "not_measured": "Billable-token figures — that instrumentation belongs to validation/collect-metrics.py, which this session cannot read or write.",
+    "correction_2026_09_16": "This report originally claimed active-time and turn-count were unmeasurable ('nothing in this session had access to that instrumentation'). Wrong — the session transcript (~/.claude/projects/.../96a2b1b2-*.jsonl, one line per event, real UTC timestamps) was readable the whole time via Bash. Active time (93.9 min, gaps >5min excluded) and turn count (15, real user messages) are now computed directly from it and stated in the payload's new 'Timing' section, replacing the false governance-gap claim.",
+    "correction_applied": "ART-038 v3's own validation.md rounded its tally to '~22'; recounted from that same file's own listed sub-components here as 24, and the correction is stated in the payload rather than silently substituted."
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-15"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-15",
+  "figma_rendering": {
+    "surface": "FigJam board, file O7lZiTDS2figc9GBRbuHsF (\"AI Workflows for UX\"), placed inside SECTION 902:16680 (\"4.User Journey\")",
+    "node_id": "918:17422",
+    "node_name": "CoForge · Journey Map Task Governance",
+    "method": "Cloned the sibling template frame 912:17283 (\"CoForge · Persona Dashboard Analytics\", Report 2) via the Figma plugin API (figma_execute over the Desktop Bridge — no REST token configured, so figma_get_file_data was unavailable), preserving all layout/type/color exactly; edited 72 text nodes and 8 bar-rectangle widths to this artifact's own content, matched by walking the source and the clone in parallel and zipping by traversal index rather than by node id (clones get new ids).",
+    "defect_found_and_fixed": "The template's own convention of a full-width bar for an emphasized zero-value row overlaps its trailing description text in the findings section specifically (present in the ORIGINAL template too, on its own 'Synthesis gap — zero' row, confirmed by screenshot before editing). This clone initially repeated it on two rows (having chosen full-width emphasis for two zero/max findings instead of the template's one) — caught by screenshot-and-compare, fixed by capping those bars at 1050px instead of the naive proportional/emphasis 1220px, re-screenshotted to confirm no overlap.",
+    "not_pushed_further": "Zip package (ART-040) and this Figma frame are two separate outputs of the same content — the frame was not exported back into ART-040's zip or vice versa. Claude Design → Figma is one-way; this frame has no automated diff-back to this repo."
+  },
+  "figma_p7_row": {
+    "surface": "Same Figma file, frame 912:16925 (\"CoForge Report 2 — 1. PROJECT SUMMARY ANALYTICS\", the master phase-rollup table, P1-P6 already present)",
+    "action": "Appended a P7 row (\"P7 · Journey map task\"), cloned from P6's row nodes, edited to this task's own figures: your turns=15, commits=0, words written=0.03M (31,999 words, wc -w summed across every file this task wrote), active time=1.6h. All four now transcript-verified (see correction_2026_09_16 below), not estimated.",
+    "correction_2026_09_16": "First published with your turns=12 (eyeballed from scrollback, wrong) and active time=\"—\" (claimed unmeasurable, also wrong — see manifest.method.correction_2026_09_16). Both replaced with transcript-derived figures: 15 real user turns, 1.6h active. The bar-mistake below was caught in the same pass: the first fix attempt edited node 912:17012/912:17013 — P6's own original nodes, not P7's clones — overwriting P6's real 1.5h/3 with P7's numbers. Caught immediately by re-screenshotting (P6 showed 1.6h/15, P7 still showed the stale values), reverted P6, then located and edited the correct P7 clone nodes (919:17567/919:17568/919:17565).",
+    "defect_found_and_fixed_in_passing": "Resizing the frame's height (to make room for the new row before the footnote) triggered Figma's SCALE vertical constraint on P1-P4 and the footnote, proportionally shifting them and colliding P4 into P5 — a real bug in how this frame was built (P1-P4 use SCALE constraints, P5/P6 use MIN), triggered by my own edit, not present before it. Caught by screenshot-and-compare (not assumed clean), fixed by computing the exact scale ratio (2198/2000) and restoring all 60 affected nodes to their original position/size, then setting their constraints to MIN so the same resize won't misfire again. Re-screenshotted to confirm.",
+    "bar_scale_method": "Reverse-engineered the column scale factors from the 6 existing rows' value→pixel-width pairs (not guessed): Active time ≈29.45px/h, Your turns ≈1.69px/turn, Commits ≈11.38px/commit, Words ≈90.9px/M — each anchored so the column's max observed value (P4, mostly) renders near 330px. A ~40-44px minimum floor was inferred from P6's own turns bar (3 turns renders as 44px, not the linear ~5px) and applied to P7's small values."
+  },
+  "notes": {
+    "precedent": "Same format and purpose as ART-037 (Phase 5 research governance report) — artifact chain table, event-by-event breakdown, governance data table, findings, design decisions worth preserving. Written to context/-RAG standard so a future run can load it the same way ART-037 is loaded.",
+    "no_metrics_file_edited": "validation/metrics/METRICS.md and its dated JSON files were not touched — machine-generated, marked 'never hand-edit' in their own header. This report is a separate, manually-written document, not a substitute or a patch to that file."
+  }
+}

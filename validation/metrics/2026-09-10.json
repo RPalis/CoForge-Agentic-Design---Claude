@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-09-09",
-  "generated_at": "2026-09-09T18:12:17",
+  "run_id": "2026-09-10",
+  "generated_at": "2026-09-10T13:54:45",
   "project": "coforge",
   "provenance": {
     "schema_version": "2",
@@ -8,48 +8,48 @@
     "detail": "validation/metrics.schema.json"
   },
   "session": {
-    "turns": 6678,
+    "turns": 6792,
     "transcripts": 5,
-    "unique_records": 17660,
-    "non_message_records": 3213,
-    "active_minutes_distinct": 1574,
-    "active_hours_distinct_minutes": 26.2,
-    "elapsed_span_by_day_hours": 108.4
+    "unique_records": 17948,
+    "non_message_records": 3269,
+    "active_minutes_distinct": 1611,
+    "active_hours_distinct_minutes": 26.9,
+    "elapsed_span_by_day_hours": 113.7
   },
   "tokens": {
-    "input": 13314,
-    "output": 8544630,
-    "cache_read": 3329231128,
-    "cache_creation": 66388479,
-    "billable": 8557944
+    "input": 13540,
+    "output": 8787432,
+    "cache_read": 3403036503,
+    "cache_creation": 69544334,
+    "billable": 8800972
   },
   "tools": {
-    "Bash": 1742,
+    "Bash": 1763,
     "Edit": 126,
     "mcp__chrome-devtools__evaluate_script": 116,
     "mcp__figma-console__figma_execute": 94,
     "mcp__claude-in-chrome__javascript_tool": 79,
-    "Agent": 70,
+    "Agent": 76,
     "mcp__Claude_Browser__computer": 66,
-    "Write": 61,
-    "Read": 45,
+    "Write": 64,
+    "Read": 48,
     "mcp__claude-in-chrome__navigate": 44,
-    "SendUserFile": 39,
-    "mcp__Claude_Browser__javascript_tool": 36,
-    "mcp__Claude_Browser__browser_batch": 35,
+    "SendUserFile": 41,
+    "mcp__Claude_Browser__browser_batch": 39,
+    "mcp__Claude_Browser__javascript_tool": 38,
     "Artifact": 35,
-    "ToolSearch": 27,
+    "ToolSearch": 29,
     "mcp__chrome-devtools__take_screenshot": 26,
-    "AskUserQuestion": 20,
+    "AskUserQuestion": 23,
     "mcp__Claude_Browser__navigate": 20,
     "mcp__chrome-devtools__navigate_page": 20,
     "mcp__claude-in-chrome__computer": 20,
     "mcp__Claude_Browser__resize_window": 19,
+    "WebSearch": 16,
     "Skill": 13,
     "mcp__claude-in-chrome__find": 13,
     "mcp__Claude_Browser__preview_start": 12,
     "mcp__figma-console__figma_delete_variable": 11,
-    "WebSearch": 10,
     "mcp__ccd_session__mark_chapter": 8,
     "mcp__chrome-devtools__resize_page": 8,
     "mcp__figma-console__figma_import_tokens": 8,
@@ -62,17 +62,18 @@
     "mcp__chrome-devtools__list_pages": 5,
     "mcp__figma-console__figma_delete_variable_collection": 4,
     "mcp__claude-in-chrome__browser_batch": 4,
+    "SearchSkills": 3,
     "mcp__chrome-devtools__emulate": 3,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_get_variables": 3,
     "mcp__figma-console__figma_get_status": 3,
     "mcp__figma-console__figma_get_variables": 3,
     "mcp__figma-console__figma_export_tokens": 3,
+    "mcp__Claude_Browser__tabs_create": 2,
     "mcp__Claude_Browser__find": 2,
     "mcp__ccd_session_mgmt__set_session_title": 2,
     "mcp__c9aab61a-50cd-4017-8c31-f94e774e161b__figma_pair_plugin": 2,
     "mcp__claude-in-chrome__list_connected_browsers": 2,
     "mcp__chrome-devtools__take_snapshot": 2,
-    "SearchSkills": 2,
     "mcp__ccd_directory__request_directory": 1,
     "mcp__Claude_Browser__read_console_messages": 1,
     "mcp__Claude_Browser__tabs_context": 1,
@@ -83,7 +84,6 @@
     "mcp__figma-console__figma_list_open_files": 1,
     "mcp__figma-console__figma_navigate": 1,
     "mcp__figma-console__figma_capture_screenshot": 1,
-    "mcp__Claude_Browser__tabs_create": 1,
     "mcp__figma-console__figjam_get_board_contents": 1
   },
   "skills": {
@@ -97,8 +97,8 @@
     "claude-api": 1
   },
   "artifacts": {
-    "total": 30,
-    "live": 22,
+    "total": 31,
+    "live": 23,
     "by_type": {
       "brand-extraction": 1,
       "competitive-benchmark": 7,
@@ -110,15 +110,16 @@
       "research-plan": 1,
       "ux-copy": 1,
       "interview-analysis": 1,
+      "persona": 1,
       "metrics-scorecard": 1
     },
     "by_status": {
       "in-review": 3,
       "approved": 2,
       "superseded": 8,
-      "draft": 17
+      "draft": 18
     },
-    "tokens_per_artifact": 285265
+    "tokens_per_artifact": 283902
   },
   "gates": {
     "verdict": "PASS",

@@ -1,0 +1,54 @@
+{
+  "id": "ART-038",
+  "type": "journey-map",
+  "workstream": "luma-travel",
+  "title": "Luma Travel — priority-four journey maps, interactive with a dataviz overview (P09 Halina, P14 Bernard, P04 Reuben, P12 Jaden)",
+  "file": "luma-journey-maps-priority-four.html",
+  "version": 3,
+  "supersedes": "artifacts/luma-travel/2026-09-15__journey-map__luma-priority-four__v2/",
+  "status": "draft",
+  "stage": "define",
+  "corpus": "synthetic",
+  "created": "2026-09-15",
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-030", "ART-029", "ART-035", "ART-039"],
+    "decisions": ["ADR-024", "ADR-021"]
+  },
+  "method": {
+    "agent": "diagram-cartographer",
+    "skill": "journey-map (customer-journey-mapping base + CoForge extensions §16, re-invoked this turn via /journey-map) + dataviz (loaded this session for the overview charts)",
+    "claim_format": "Evidenced [ART-030 § section] for pain/behaviour; Evidenced [ART-039 § persona] for opportunities (unchanged from v2)",
+    "gate_b": "no raw hex outside :root token block, no raw px outside the token/spacing scale, zero minted [E-nnn] IDs, synthetic banner in header and footer, Anek Latin for prose, Source Code Pro for labels/IDs/citations, tabular-nums class available",
+    "dataviz_governance": "ADR-021 — chart marks and anatomy (the sparklines, the heatmap and its cells, the legend, tooltips) are governed as the dataviz layer, Gate B only, not the component membrane. Encoding contract followed: 3:1 mark contrast (coral on tinted-ink backgrounds reuses the already-established coral-on-bone-family pattern used throughout this document), colour never the sole channel (every heatmap cell carries a text confidence letter — H/M/L — in addition to its background tint; pain is a coral dot, a shape-presence channel, not a hue-only signal)."
+  },
+  "structure": {
+    "personas": 4,
+    "persona_ids": ["P09", "P14", "P04", "P12"],
+    "stages_per_persona": 7,
+    "stages": [
+      "Inspiration & Dreaming", "Research & Compare", "Book", "Pre-departure",
+      "Airport (outbound)", "At Destination", "Return & Post-trip"
+    ],
+    "fields_per_stage": ["Goal", "Actions", "Thoughts", "Emotion", "Pain points", "Opportunities", "Evidence", "Confidence"],
+    "one_map_per_persona": "Each of the 4 <details class=\"pj\"> blocks is a complete, self-contained one-actor journey map (diagram-cartographer hard rule) — now also a native collapsible disclosure."
+  },
+  "v3_changes": {
+    "what_changed": [
+      "Added an Overview section (dataviz layer, ADR-021): 4 small-multiple emotion sparklines (one per persona, linking to that persona's full section) and a 4×7 pain/confidence heatmap (sequential ink-tint for confidence + coral dot for evidenced pain, both non-color-redundant per WCAG 1.4.1).",
+      "Converted each persona's <section class=\"pj\"> into a native <details class=\"pj\"> disclosure — collapsible, keyboard-operable, no dependency, open by default so nothing is hidden on load.",
+      "Added Expand all / Collapse all controls (vanilla JS, ~10 lines, no library).",
+      "Native <title> tooltips on every sparkline point and every heatmap cell — the accessible, dependency-free hover layer the dataviz skill's interaction step calls for."
+    ],
+    "what_did_not_change": "Every persona's Goal/Actions/Thoughts/Emotion/Pain points/Opportunities (incl. all ART-039 citations)/Evidence/Confidence content is identical to v2 — verbatim, not re-authored. The 4 main emotion-curve SVGs inside each persona's detail body are unchanged from v2/v1.",
+    "why_small_multiples_not_one_combined_chart": "CoForge's palette has exactly one categorical-safe, non-reserved-for-status colour available for a 4-series chart: none. Coral is reserved for pain/critical moments (brand rule, restated in CLAUDE.md's visual spec) and ink is the only other chart-safe colour. Overlaying 4 lines would have required either inventing an off-token hue (a Gate B violation) or repurposing coral as persona-identity (breaking its one reserved meaning, and colliding with its use as the pain marker on the very same chart). Small multiples were the form the design system's actual palette supports — this is stated in the artifact's own copy, not hidden as a design choice.",
+    "dataviz_skill_step_followed": "Ran the dataviz skill's validator (scripts/validate_palette.js) against ink+coral in categorical mode; it correctly FAILED — because ink/coral are a status/text pair, not a categorical set, confirming the small-multiples decision rather than blocking it. The validator's own scope note says as much: 'for a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity' — which is what was actually built."
+  },
+  "notes": [
+    "No quotes used anywhere — evidence ledger holds zero entries, ADR-024 in force.",
+    "P09 (Disabled/Assisted segment) carries the same grounding caveat as v1/v2. Coral top accent (now on the <details> summary's left border, since the disclosure pattern replaced the old top bar) applied only to this segment.",
+    "Heatmap cell text cross-checked against each persona's own Pain points row — 11 pain cells total (Halina 5, Bernard 2, Reuben 2, Jaden 2), grep-verified to match.",
+    "Agents/skills check (user-requested this turn): diagram-cartographer + journey-map skill were already wired into CLAUDE.md's routing table (row 'journey / empathy map') and .ai/index.md before this session — confirmed, not newly added. dataviz is a global skill, loaded via the Skill tool per its own trigger rule; it does not require project-level wiring to be available.",
+    "Figma package still deferred pending Gate A sign-off, per journey-map skill §16."
+  ]
+}

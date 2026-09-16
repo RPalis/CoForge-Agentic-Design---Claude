@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CoForge Design System — Foundations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ─── Tokens ─── */
+:root {
+  --ground:    #eeece6;
+  --ink:       #041222;
+  --ink2:      #525252;
+  --coral:     #f15b40;
+  --coral-txt: #b03822;
+  --rule:      #c6c6c6;
+  --white:     #ffffff;
+  --shadow-1:  0 2px 6px rgba(4,18,34,.12);
+  --shadow-2:  0 8px 24px rgba(4,18,34,.18);
+  --sans:      'Anek Latin', system-ui, sans-serif;
+  --mono:      'Source Code Pro', ui-monospace, monospace;
+  --r-pill:    9999px;
+  --r-btn:     8px;
+  --r-card:    16px;
+  --r-card-lg: 24px;
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--ground); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+
+/* ─── Layout ─── */
+.page { max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+.section { margin-top: 80px; }
+.section + .section { border-top: 1px solid var(--rule); padding-top: 72px; }
+
+/* ─── Type ─── */
+.kick      { font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: .08em; color: var(--ink2); text-transform: uppercase; }
+h1.display { font-family: var(--sans); font-size: 56px; font-weight: 700; letter-spacing: -.125rem; line-height: 1.05; color: var(--ink); margin-top: 12px; }
+.lede      { font-size: 19px; color: var(--ink2); margin-top: 8px; max-width: 640px; line-height: 1.45; }
+h2.sh      { font-size: 28px; font-weight: 700; letter-spacing: -.04em; color: var(--ink); margin-bottom: 6px; }
+.sh-sub    { font-size: 16px; color: var(--ink2); margin-bottom: 32px; }
+h3.sh3     { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+
+/* ─── Grid ─── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 768px) { .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; } }
+
+/* ─── Cards ─── */
+.card      { background: var(--white); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: 24px; }
+.card-lg   { background: var(--white); border-radius: var(--r-card-lg); box-shadow: var(--shadow-2); padding: 32px; }
+
+/* ─── Colour swatches ─── */
+.swatch-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 4px; }
+.swatch { border-radius: 12px; width: 120px; flex-shrink: 0; overflow: hidden; box-shadow: 0 1px 3px rgba(4,18,34,.1); }
+.swatch-block { height: 80px; }
+.swatch-label { padding: 10px 12px; background: var(--white); }
+.swatch-name { font-size: 13px; font-weight: 700; color: var(--ink); display: block; }
+.swatch-hex  { font-family: var(--mono); font-size: 11px; color: var(--ink2); margin-top: 2px; display: block; }
+.swatch-role { font-size: 11px; color: var(--ink2); margin-top: 2px; display: block; line-height: 1.3; }
+
+/* ─── Type ramp ─── */
+.type-row { display: flex; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+.type-row:first-child { border-top: 1px solid var(--rule); }
+.type-meta { font-family: var(--mono); font-size: 11px; color: var(--ink2); min-width: 200px; flex-shrink: 0; line-height: 1.6; }
+.type-sample { flex: 1; }
+.t-display { font-size: 56px; font-weight: 700; letter-spacing: -.125rem; line-height: 1; font-family: var(--sans); }
+.t-h2      { font-size: 42px; font-weight: 700; letter-spacing: -.08rem; line-height: 1.05; font-family: var(--sans); }
+.t-h3      { font-size: 28px; font-weight: 700; letter-spacing: -.04rem; line-height: 1.1; font-family: var(--sans); }
+.t-h4      { font-size: 20px; font-weight: 700; line-height: 1.2; font-family: var(--sans); }
+.t-body-lg { font-size: 19px; font-weight: 400; line-height: 1.45; font-family: var(--sans); }
+.t-body    { font-size: 16px; font-weight: 400; line-height: 1.5; font-family: var(--sans); }
+.t-body-sm { font-size: 14px; font-weight: 400; line-height: 1.5; font-family: var(--sans); }
+.t-label   { font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-family: var(--mono); }
+.t-code    { font-size: 14px; font-weight: 400; font-family: var(--mono); }
+.t-num     { font-size: 20px; font-weight: 700; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* ─── Spacing ─── */
+.space-row { display: flex; align-items: center; gap: 20px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.space-bar { background: var(--ink); height: 20px; border-radius: 2px; flex-shrink: 0; }
+.space-meta { font-family: var(--mono); font-size: 12px; color: var(--ink2); min-width: 100px; }
+
+/* ─── Radius ─── */
+.radius-row { display: flex; flex-wrap: wrap; gap: 20px; }
+.radius-item { text-align: center; }
+.radius-block { width: 72px; height: 56px; background: var(--ink); display: block; margin: 0 auto 8px; }
+.radius-label { font-family: var(--mono); font-size: 11px; color: var(--ink2); display: block; }
+.radius-value { font-size: 12px; color: var(--ink); font-weight: 700; display: block; margin-top: 2px; }
+
+/* ─── Shadow ─── */
+.shadow-demo { background: var(--white); border-radius: var(--r-card); padding: 20px 24px; }
+.shadow-label { font-family: var(--mono); font-size: 12px; color: var(--ink2); margin-bottom: 4px; display: block; }
+
+/* ─── Buttons ─── */
+.btn-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 4px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--r-btn); font-family: var(--sans); font-size: 16px; font-weight: 700; cursor: pointer; border: none; transition: opacity 120ms cubic-bezier(.2,0,.38,.9); text-decoration: none; }
+.btn-primary   { background: var(--coral); color: var(--white); }
+.btn-secondary { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+.btn-ghost     { background: transparent; color: var(--ink); }
+.btn-sm        { padding: 8px 16px; font-size: 14px; border-radius: 6px; }
+.btn:hover     { opacity: .85; }
+
+/* ─── Tags ─── */
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: var(--r-pill); font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+.tag-ink  { background: var(--ink); color: var(--ground); }
+.tag-rule { background: transparent; color: var(--ink2); border: 1px solid var(--rule); }
+.tag-coral { background: var(--coral); color: var(--white); }
+
+/* ─── Table ─── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.tbl th { text-align: left; font-size: 12px; font-weight: 700; color: var(--ink2); letter-spacing: .04em; text-transform: uppercase; padding: 0 12px 12px; border-bottom: 2px solid var(--ink); }
+.tbl td { padding: 12px; border-bottom: 1px solid var(--rule); color: var(--ink); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .mono { font-family: var(--mono); }
+.tbl .num  { font-family: var(--mono); text-align: right; }
+
+/* ─── Divider ─── */
+.rule-line { height: 1px; background: var(--rule); }
+.rule-ink  { height: 1px; background: var(--ink); }
+
+/* ─── Form elements ─── */
+.input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--rule); border-radius: var(--r-btn); font-family: var(--sans); font-size: 16px; color: var(--ink); background: var(--white); outline: none; transition: border-color 120ms; }
+.input:focus { border-color: var(--ink); }
+.label { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; display: block; }
+.hint  { font-size: 13px; color: var(--ink2); margin-top: 4px; }
+
+/* ─── Do/Don't ─── */
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 4px; }
+.do   { border-left: 3px solid var(--ink); padding: 16px 20px; background: rgba(4,18,34,.04); border-radius: 0 var(--r-btn) var(--r-btn) 0; }
+.dont { border-left: 3px solid var(--coral); padding: 16px 20px; background: rgba(241,91,64,.06); border-radius: 0 var(--r-btn) var(--r-btn) 0; }
+.do-label   { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink); letter-spacing: .08em; margin-bottom: 8px; display: block; }
+.dont-label { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--coral-txt); letter-spacing: .08em; margin-bottom: 8px; display: block; }
+.rule-text { font-size: 14px; line-height: 1.5; color: var(--ink2); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header>
+    <span class="kick">CoForge Design System · Foundations Reference · v0.2.0</span>
+    <h1 class="display">Foundations</h1>
+    <p class="lede">Colour, type, spacing, radius, elevation, and motion. The complete L1 foundation layer — everything a screen, report, or dashboard is built from.</p>
+  </header>
+
+  <!-- ══ 1. COLOUR ══════════════════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">1 — Colour</h2>
+    <p class="sh-sub">Six roles. Colour names describe function, never hue.</p>
+
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#eeece6;"></div>
+        <div class="swatch-label">
+          <span class="swatch-name">Ground</span>
+          <span class="swatch-hex">#eeece6</span>
+          <span class="swatch-role">Default page surface</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#041222;"></div>
+        <div class="swatch-label">
+          <span class="swatch-name">Ink</span>
+          <span class="swatch-hex">#041222</span>
+          <span class="swatch-role">Default text + marks</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#525252;"></div>
+        <div class="swatch-label">
+          <span class="swatch-name">Ink 2</span>
+          <span class="swatch-hex">#525252</span>
+          <span class="swatch-role">Secondary text, captions</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#f15b40;"></div>
+        <div class="swatch-label">
+          <span class="swatch-name">Coral</span>
+          <span class="swatch-hex">#f15b40</span>
+          <span class="swatch-role">Accent — fills + large CTA only</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#b03822;"></div>
+        <div class="swatch-label">
+          <span class="swatch-name">Coral Text</span>
+          <span class="swatch-hex">#b03822</span>
+          <span class="swatch-role">Coral as text — separate role</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#c6c6c6;"></div>
+        <div class="swatch-label">
+          <span class="swatch-name">Rule</span>
+          <span class="swatch-hex">#c6c6c6</span>
+          <span class="swatch-role">Dividers, borders</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#ffffff; border: 1px solid #e0deda;"></div>
+        <div class="swatch-label">
+          <span class="swatch-name">White</span>
+          <span class="swatch-hex">#ffffff</span>
+          <span class="swatch-role">Raised surfaces — cards, nav</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <div class="do-dont">
+        <div class="do">
+          <span class="do-label">✓ DO</span>
+          <p class="rule-text">Use coral to fill shapes, mark the wordmark, draw rules, back large-type CTAs, and colour bar chart marks.</p>
+        </div>
+        <div class="dont">
+          <span class="dont-label">✗ DO NOT</span>
+          <p class="rule-text">Use coral as body text, captions, labels, table values, or any text below large-text size on any ground. It fails AA at 2.82:1.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 2. TYPOGRAPHY ══════════════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">2 — Typography</h2>
+    <p class="sh-sub">Anek Latin for all prose. Source Code Pro for numbers, labels, and code. <code style="font-family:var(--mono);font-size:13px;">font-variant-numeric: tabular-nums</code> is mandatory wherever numbers appear.</p>
+
+    <div class="type-row">
+      <div class="type-meta">Anek Latin 700<br>56px / −0.125rem<br>Display / H1</div>
+      <div class="type-sample"><span class="t-display">AI is here.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Anek Latin 700<br>42px / −0.08rem<br>H2</div>
+      <div class="type-sample"><span class="t-h2">What we found</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Anek Latin 700<br>28px / −0.04rem<br>H3 / Section</div>
+      <div class="type-sample"><span class="t-h3">How it was built, start to finish</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Anek Latin 700<br>20px / 0<br>H4</div>
+      <div class="type-sample"><span class="t-h4">Step title — what happened here</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Anek Latin 400<br>19px / 0<br>Body Large</div>
+      <div class="type-sample"><span class="t-body-lg">40 synthetic interviews, 14 personas, and the one finding the attack changed.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Anek Latin 400<br>16px / 0<br>Body</div>
+      <div class="type-sample"><span class="t-body">The lattice is not a simulation — each interview was generated for a specific persona slot. A random corpus of 40 cannot be exhaustive by construction; this one is.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Anek Latin 400<br>14px / 0<br>Caption / Small</div>
+      <div class="type-sample"><span class="t-body-sm" style="color:var(--ink2);">CoForge · measured from git history and session logs, frozen at 2026-09-10 · ART-029</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Source Code Pro 700<br>15px / 0.08em<br>Label / Tag</div>
+      <div class="type-sample"><span class="t-label">REPORT 2 · USER RESEARCH ANALYTICS</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Source Code Pro 700<br>20px / 0<br>Step numbers</div>
+      <div class="type-sample"><span class="t-num">1 &nbsp; 2 &nbsp; 3 &nbsp; 40 &nbsp; 121 &nbsp; 14</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Source Code Pro 400<br>14px / 0<br>ART ref / code</div>
+      <div class="type-sample"><span class="t-code" style="color:var(--ink2);">ART-029 &nbsp;&nbsp; ART-030 &nbsp;&nbsp; ADR-024</span></div>
+    </div>
+  </section>
+
+  <!-- ══ 3. SPACING ═════════════════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">3 — Spacing</h2>
+    <p class="sh-sub">4px base grid. 9 steps.</p>
+
+    <div style="margin-top:16px; border-top:1px solid var(--rule);">
+      <div class="space-row"><div class="space-bar" style="width:4px;"></div><span class="space-meta">space-1 · 4px</span><span style="font-size:13px;color:var(--ink2);">Micro gaps, icon padding</span></div>
+      <div class="space-row"><div class="space-bar" style="width:8px;"></div><span class="space-meta">space-2 · 8px</span><span style="font-size:13px;color:var(--ink2);">Tight element gaps</span></div>
+      <div class="space-row"><div class="space-bar" style="width:12px;"></div><span class="space-meta">space-3 · 12px</span><span style="font-size:13px;color:var(--ink2);">Default small padding</span></div>
+      <div class="space-row"><div class="space-bar" style="width:16px;"></div><span class="space-meta">space-4 · 16px</span><span style="font-size:13px;color:var(--ink2);">Standard component padding</span></div>
+      <div class="space-row"><div class="space-bar" style="width:24px;"></div><span class="space-meta">space-5 · 24px</span><span style="font-size:13px;color:var(--ink2);">Section gap small</span></div>
+      <div class="space-row"><div class="space-bar" style="width:32px;"></div><span class="space-meta">space-6 · 32px</span><span style="font-size:13px;color:var(--ink2);">Section gap</span></div>
+      <div class="space-row"><div class="space-bar" style="width:48px;"></div><span class="space-meta">space-7 · 48px</span><span style="font-size:13px;color:var(--ink2);">Large section gap</span></div>
+      <div class="space-row"><div class="space-bar" style="width:64px;"></div><span class="space-meta">space-8 · 64px</span><span style="font-size:13px;color:var(--ink2);">Hero / page-level gap</span></div>
+      <div class="space-row" style="border-bottom:1px solid var(--rule);"><div class="space-bar" style="width:80px;"></div><span class="space-meta">space-9 · 80px</span><span style="font-size:13px;color:var(--ink2);">Stage register breathing room</span></div>
+    </div>
+  </section>
+
+  <!-- ══ 4. RADIUS ══════════════════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">4 — Radius</h2>
+    <p class="sh-sub">One continuous language. Scale with the size of the thing.</p>
+
+    <div class="radius-row" style="margin-top:20px;">
+      <div class="radius-item">
+        <span class="radius-block" style="border-radius:2px;"></span>
+        <span class="radius-label">Input</span>
+        <span class="radius-value">4px</span>
+      </div>
+      <div class="radius-item">
+        <span class="radius-block" style="border-radius:8px;"></span>
+        <span class="radius-label">Button</span>
+        <span class="radius-value">8px</span>
+      </div>
+      <div class="radius-item">
+        <span class="radius-block" style="border-radius:16px;"></span>
+        <span class="radius-label">Card</span>
+        <span class="radius-value">16px</span>
+      </div>
+      <div class="radius-item">
+        <span class="radius-block" style="border-radius:24px;"></span>
+        <span class="radius-label">Card large</span>
+        <span class="radius-value">24–28px</span>
+      </div>
+      <div class="radius-item">
+        <span class="radius-block" style="border-radius:9999px; width:72px;"></span>
+        <span class="radius-label">Pill (tag/chip)</span>
+        <span class="radius-value">9999px</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 5. ELEVATION ═══════════════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">5 — Elevation</h2>
+    <p class="sh-sub">Single soft shadow. One depth at a time. Shapes float, not stack.</p>
+
+    <div class="grid-3" style="margin-top:20px;">
+      <div>
+        <span class="kick" style="font-size:11px;display:block;margin-bottom:12px;">shadow-0 — Resting</span>
+        <div style="background:var(--white);border-radius:var(--r-card);padding:20px 24px;border:1px solid var(--rule);">
+          <p style="font-size:14px;color:var(--ink2);">No shadow. Most elements.</p>
+        </div>
+      </div>
+      <div>
+        <span class="kick" style="font-size:11px;display:block;margin-bottom:12px;">shadow-1 — Raised</span>
+        <div class="shadow-demo" style="box-shadow:var(--shadow-1);">
+          <p style="font-size:14px;color:var(--ink2);">Cards, floating nav. 0 2px 6px ink 12%.</p>
+        </div>
+      </div>
+      <div>
+        <span class="kick" style="font-size:11px;display:block;margin-bottom:12px;">shadow-2 — Modal</span>
+        <div class="shadow-demo" style="box-shadow:var(--shadow-2);">
+          <p style="font-size:14px;color:var(--ink2);">Modals, dropdowns. 0 8px 24px ink 18%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 6. COMPONENTS ══════════════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">6 — L1 Component Vocabulary</h2>
+    <p class="sh-sub">The 11 primitives available for all L1 output (documents, reports, dashboards).</p>
+
+    <!-- Buttons -->
+    <div style="margin-top:32px;">
+      <h3 class="sh3">Buttons</h3>
+      <p style="font-size:14px;color:var(--ink2);margin-bottom:16px;">Primary uses coral fill + white text at large size (AA requires large type on coral). Secondary and ghost use ink.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#">Start the conversation</a>
+        <a class="btn btn-secondary" href="#">Secondary action</a>
+        <a class="btn btn-ghost" href="#">Ghost</a>
+        <a class="btn btn-primary btn-sm" href="#">Small primary</a>
+        <a class="btn btn-secondary btn-sm" href="#">Small secondary</a>
+      </div>
+    </div>
+
+    <!-- Tags / chips -->
+    <div style="margin-top:40px;">
+      <h3 class="sh3">Tags &amp; chips</h3>
+      <p style="font-size:14px;color:var(--ink2);margin-bottom:16px;">Full pill. Source Code Pro Bold. Three fills.</p>
+      <div class="tag-row">
+        <span class="tag tag-ink">ART-029</span>
+        <span class="tag tag-ink">Phase 2 · Define</span>
+        <span class="tag tag-rule">Draft</span>
+        <span class="tag tag-rule">Gate A pending</span>
+        <span class="tag tag-coral">L1 approved</span>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div style="margin-top:40px;">
+      <h3 class="sh3">Cards</h3>
+      <p style="font-size:14px;color:var(--ink2);margin-bottom:16px;">White raised surface on bone ground. shadow-1 default, shadow-2 for modals.</p>
+      <div class="grid-3">
+        <div class="card">
+          <span class="kick" style="font-size:11px;">Metric card</span>
+          <div style="font-family:var(--mono);font-size:40px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;margin:8px 0 4px;letter-spacing:-.02em;">40</div>
+          <div style="font-size:14px;color:var(--ink2);">Interviews in corpus</div>
+        </div>
+        <div class="card">
+          <span class="kick" style="font-size:11px;">Finding card</span>
+          <div style="font-size:17px;font-weight:700;color:var(--ink);margin:8px 0 4px;">Return-window gap</div>
+          <div style="font-size:14px;color:var(--ink2);">Business travellers book 2.4× later on average — 9 of 14 personas.</div>
+        </div>
+        <div class="card-lg" style="border-left:4px solid var(--coral);">
+          <span class="kick" style="font-size:11px;">Highlight card</span>
+          <div style="font-size:17px;font-weight:700;color:var(--ink);margin:8px 0 4px;">Access gap</div>
+          <div style="font-size:14px;color:var(--ink2);">2 of 14 personas have no accessible path through the booking flow.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div style="margin-top:40px;">
+      <h3 class="sh3">Form inputs</h3>
+      <div style="max-width:480px;margin-top:16px;display:grid;gap:20px;">
+        <div>
+          <label class="label">Participant name</label>
+          <input class="input" type="text" placeholder="Enter name">
+          <span class="hint">Used for session attribution only.</span>
+        </div>
+        <div>
+          <label class="label">Number of sessions</label>
+          <input class="input" type="number" value="40" style="font-family:var(--mono);font-variant-numeric:tabular-nums;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div style="margin-top:40px;">
+      <h3 class="sh3">Table</h3>
+      <p style="font-size:14px;color:var(--ink2);margin-bottom:16px;">Dense, scannable. <code style="font-family:var(--mono);font-size:13px;">tabular-nums</code> enforced. Header weight carries hierarchy.</p>
+      <div style="overflow-x:auto;">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Finding</th>
+              <th>Personas</th>
+              <th style="text-align:right;">Count</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Return-window gap — booking 2.4× later</td>
+              <td class="mono" style="color:var(--ink2);">BP-02, BP-07, BP-11…</td>
+              <td class="num">9</td>
+              <td><span class="tag tag-ink" style="font-size:11px;padding:2px 8px;">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td>Access needs — no compliant path</td>
+              <td class="mono" style="color:var(--ink2);">AP-01, AP-03</td>
+              <td class="num">2</td>
+              <td><span class="tag tag-rule" style="font-size:11px;padding:2px 8px;">Open</span></td>
+            </tr>
+            <tr>
+              <td>Verbosity signal — solo travellers 3× length</td>
+              <td class="mono" style="color:var(--ink2);">ST-01 through ST-07</td>
+              <td class="num">7</td>
+              <td><span class="tag tag-ink" style="font-size:11px;padding:2px 8px;">Confirmed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Dividers -->
+    <div style="margin-top:40px;">
+      <h3 class="sh3">Dividers</h3>
+      <div style="display:grid;gap:20px;margin-top:16px;">
+        <div>
+          <span class="kick" style="font-size:11px;display:block;margin-bottom:8px;">Rule — default (#c6c6c6)</span>
+          <div class="rule-line"></div>
+        </div>
+        <div>
+          <span class="kick" style="font-size:11px;display:block;margin-bottom:8px;">Rule — strong (Ink #041222)</span>
+          <div class="rule-ink"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 7. DENSITY REGISTERS ═══════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">7 — Density registers</h2>
+    <p class="sh-sub">Same colour, same radius, same accent. Different space and type scale only.</p>
+
+    <div class="grid-2" style="margin-top:24px;">
+      <!-- Stage -->
+      <div style="background:var(--ink);border-radius:var(--r-card-lg);padding:48px 40px;min-height:280px;">
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;color:rgba(238,236,230,.5);display:block;margin-bottom:16px;">STAGE REGISTER</span>
+        <div style="font-family:var(--sans);font-size:48px;font-weight:700;letter-spacing:-.125rem;line-height:1.05;color:var(--ground);">AI is here.<br>AI is real.</div>
+        <div style="width:48px;height:4px;background:var(--coral);border-radius:2px;margin-top:28px;"></div>
+        <p style="font-size:16px;color:rgba(238,236,230,.6);margin-top:20px;">Large type, long silences, one idea per surface.</p>
+      </div>
+      <!-- Document -->
+      <div style="background:var(--white);border-radius:var(--r-card-lg);box-shadow:var(--shadow-1);padding:32px;">
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--ink2);display:block;margin-bottom:12px;">DOCUMENT REGISTER</span>
+        <div style="font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px;">40 interviews, lattice enforced</div>
+        <div style="font-size:14px;color:var(--ink2);margin-bottom:20px;">ART-029 — rotation lattice, 14 persona slots</div>
+        <div style="height:1px;background:var(--rule);margin-bottom:16px;"></div>
+        <div style="font-size:14px;color:var(--ink2);line-height:1.6;">The lattice is not a simulation — each interview was generated for a specific persona slot. A random corpus of 40 cannot be exhaustive by construction; this one is.</div>
+        <div style="display:flex;gap:16px;margin-top:20px;">
+          <div><div style="font-family:var(--mono);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;">40</div><div style="font-size:12px;color:var(--ink2);">interviews</div></div>
+          <div><div style="font-family:var(--mono);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;">14</div><div style="font-size:12px;color:var(--ink2);">personas</div></div>
+          <div><div style="font-family:var(--mono);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;">6</div><div style="font-size:12px;color:var(--ink2);">themes</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 8. DO/DON'T ════════════════════════════════════ -->
+  <section class="section">
+    <h2 class="sh">8 — Critical rules for Figma Make</h2>
+    <p class="sh-sub">These constraints are non-negotiable. Breaking them breaks the brand.</p>
+
+    <div style="margin-top:24px;display:grid;gap:16px;">
+      <div class="do-dont">
+        <div class="do">
+          <span class="do-label">✓ DO — page background</span>
+          <p class="rule-text">Use <strong>#eeece6</strong> (Ground) as the default page and document surface.</p>
+        </div>
+        <div class="dont">
+          <span class="dont-label">✗ DO NOT</span>
+          <p class="rule-text">Use #ffffff as the page background. White is only for raised surfaces (cards, modals).</p>
+        </div>
+      </div>
+      <div class="do-dont">
+        <div class="do">
+          <span class="do-label">✓ DO — coral</span>
+          <p class="rule-text">Fill shapes with coral. Back CTAs with coral when the label is large type. Mark charts and wordmarks.</p>
+        </div>
+        <div class="dont">
+          <span class="dont-label">✗ DO NOT</span>
+          <p class="rule-text">Put body text, labels, captions, or table values in coral. 2.82:1 contrast fails AA for any text size below 18pt bold / 24pt regular.</p>
+        </div>
+      </div>
+      <div class="do-dont">
+        <div class="do">
+          <span class="do-label">✓ DO — ink</span>
+          <p class="rule-text">Use #041222 (deep navy) as the default text and icon colour.</p>
+        </div>
+        <div class="dont">
+          <span class="dont-label">✗ DO NOT</span>
+          <p class="rule-text">Use pure black (#000000). It is not in this system.</p>
+        </div>
+      </div>
+      <div class="do-dont">
+        <div class="do">
+          <span class="do-label">✓ DO — numbers</span>
+          <p class="rule-text">Apply <code style="font-family:var(--mono);font-size:12px;">font-variant-numeric: tabular-nums</code> to every element that may carry a number.</p>
+        </div>
+        <div class="dont">
+          <span class="dont-label">✗ DO NOT</span>
+          <p class="rule-text">Leave tabular-nums as optional. Anek Latin's digits are proportional — columns will visibly misalign without it.</p>
+        </div>
+      </div>
+      <div class="do-dont">
+        <div class="do">
+          <span class="do-label">✓ DO — one accent</span>
+          <p class="rule-text">One hot accent in the UI chrome. Secondary hues live only in illustration and chart marks.</p>
+        </div>
+        <div class="dont">
+          <span class="dont-label">✗ DO NOT</span>
+          <p class="rule-text">Add a second competing accent colour to the interface. It divides emphasis instead of adding it.</p>
+        </div>
+      </div>
+      <div class="do-dont">
+        <div class="do">
+          <span class="do-label">✓ DO — texture</span>
+          <p class="rule-text">Flat fills. One soft shadow for elevation. Shapes float.</p>
+        </div>
+        <div class="dont">
+          <span class="dont-label">✗ DO NOT</span>
+          <p class="rule-text">Use gradients, glassmorphism, noise, blurs, or gradient meshes. The interface layer is entirely flat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════ -->
+  <footer style="margin-top:80px;padding-top:32px;border-top:1px solid var(--rule);">
+    <p style="font-family:var(--mono);font-size:12px;color:var(--ink2);">CoForge Design System · Foundations v0.2.0 · Generated 2026-09-14 · For Figma Make input · design-system/for-figma-make/coforge-foundations.html</p>
+    <p style="font-size:13px;color:var(--ink2);margin-top:6px;">Tokens: 829 across 5 axes · Brand approved Gate A 2026-08-27 · DS state: RED (L1 complete, L2 in progress)</p>
+  </footer>
+
+</div>
+</body>
+</html>

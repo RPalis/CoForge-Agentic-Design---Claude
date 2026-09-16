@@ -1,0 +1,49 @@
+{
+  "id": "ART-038",
+  "type": "journey-map",
+  "workstream": "luma-travel",
+  "title": "Luma Travel — priority-four journey maps, 7 stages each (P09 Halina, P14 Bernard, P04 Reuben, P12 Jaden) — opportunities benchmarked",
+  "file": "luma-journey-maps-priority-four.html",
+  "version": 2,
+  "supersedes": "artifacts/luma-travel/2026-09-15__journey-map__luma-priority-four__v1/",
+  "status": "superseded",
+  "superseded_by": "artifacts/luma-travel/2026-09-15__journey-map__luma-priority-four__v3/",
+  "superseded_reason": "User (/journey-map skill invocation) asked for an interactive version with data-visualization graphics. v3 adds an overview (emotion sparklines + pain/confidence heatmap, ADR-021 dataviz layer) and converts each persona section to a native <details> disclosure. All v2 grounded-opportunity content (ART-039 citations) carried forward unchanged.",
+  "stage": "define",
+  "corpus": "synthetic",
+  "created": "2026-09-15",
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-030", "ART-029", "ART-035", "ART-039"],
+    "decisions": ["ADR-024"]
+  },
+  "method": {
+    "agent": "diagram-cartographer",
+    "skill": "journey-map (customer-journey-mapping base + CoForge extensions §16, loaded this session)",
+    "claim_format": "Evidenced [ART-030 § section] for pain/behaviour claims; Evidenced [ART-039 § persona] for opportunity claims (new in v2) — the two are deliberately different citations, because a pain is evidence about the persona and an opportunity is evidence about the market, and blurring them would misstate what's actually grounded",
+    "gate_b": "no raw hex outside :root token block (values match design-system/tokens/tokens.json — bone #eeece6, ink #041222, coral #f15b40), no raw px outside the token/spacing scale, zero minted [E-nnn] IDs, synthetic banner present in header and footer, Anek Latin for prose, Source Code Pro for labels/IDs/citations, tabular-nums class available for any numeral runs"
+  },
+  "structure": {
+    "personas": 4,
+    "persona_ids": ["P09", "P14", "P04", "P12"],
+    "selection": "Same four personas as ART-035 and ART-038 v1, unchanged in v2.",
+    "stages_per_persona": 7,
+    "stages": [
+      "Inspiration & Dreaming", "Research & Compare", "Book", "Pre-departure",
+      "Airport (outbound)", "At Destination", "Return & Post-trip"
+    ],
+    "fields_per_stage": ["Goal", "Actions", "Thoughts", "Emotion", "Pain points", "Opportunities", "Evidence", "Confidence"],
+    "one_map_per_persona": "Each of the 4 <section class=\"pj\"> blocks is a complete, self-contained one-actor journey map (diagram-cartographer hard rule: one actor per map) bundled into a single document — same bundling precedent as ART-035 (4 personas, one file) and ART-036 (zip package)."
+  },
+  "v2_changes": {
+    "what_changed": "8 Opportunities cells (2 per persona — the two stages carrying each persona's main pain) rewritten with inline [ART-039 § persona] citations grounding each opportunity in named market precedent, instead of stating design reasoning uncited. Everything else in the payload (Goal/Actions/Thoughts/Emotion/Pain points/Evidence/Confidence rows, all 4 emotion-curve SVGs, header, footer provenance list) is unchanged from v1.",
+    "what_did_not_change": "The other ~20 Opportunities cells that were already '—' (no grounded pain at that stage) remain '—'. No new opportunity was invented to fill them; ART-039 only benchmarked the 4 already-populated cells per persona's main pain, so only those were touched.",
+    "honesty_preserved": "P14 Bernard's revised opportunity explicitly states that no market precedent was found for his specific failure mode (confusable boarding-pass pair) — the benchmark's finding was an evidenced absence, and v2 carries that absence forward rather than substituting an adjacent-sounding citation."
+  },
+  "notes": [
+    "No quotes used anywhere — evidence ledger holds zero entries, ADR-024 in force.",
+    "P09 (Disabled/Assisted segment) carries the same grounding caveat ART-030 §2 states for that register. Coral top accent applied only to this segment per the visual spec.",
+    "v1 (same date) is superseded by this version — see v1/manifest.json for the supersession note. v1's other 10 personas (P01–P03, P05–P08, P10, P11, P13) were dropped before v1 shipped, at user direction; not reintroduced here, out of scope for this revision.",
+    "Figma package deferred pending Gate A sign-off on this HTML, per journey-map skill §16 CoForge extensions ('Human approves the HTML before any Figma package is produced')."
+  ]
+}

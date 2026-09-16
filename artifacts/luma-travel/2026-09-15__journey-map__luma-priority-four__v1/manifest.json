@@ -1,0 +1,44 @@
+{
+  "id": "ART-038",
+  "type": "journey-map",
+  "workstream": "luma-travel",
+  "title": "Luma Travel — priority-four journey maps, 7 stages each (P09 Halina, P14 Bernard, P04 Reuben, P12 Jaden)",
+  "file": "luma-journey-maps-priority-four.html",
+  "version": 1,
+  "status": "superseded",
+  "superseded_by": "artifacts/luma-travel/2026-09-15__journey-map__luma-priority-four__v2/",
+  "superseded_reason": "Opportunities column flagged by Agentic Designer - RP as unevidenced design reasoning. v2 grounds the 4 stage-level Opportunities cells that carry the personas' main pain against ART-039 (new competitive-benchmark). Payload otherwise unchanged.",
+  "stage": "define",
+  "corpus": "synthetic",
+  "created": "2026-09-15",
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-030", "ART-029", "ART-035"],
+    "decisions": ["ADR-024"]
+  },
+  "method": {
+    "agent": "diagram-cartographer",
+    "skill": "journey-map (customer-journey-mapping base + CoForge extensions §16, loaded this session)",
+    "claim_format": "Evidenced [ART-030 § section] where ART-030 places the claim at that stage; Inferred [ART-030 § section/persona] elsewhere — no cell states more than the source supports",
+    "gate_b": "no raw hex outside :root token block (values match design-system/tokens/tokens.json — bone #eeece6, ink #041222, coral #f15b40), no raw px outside the token/spacing scale, zero minted [E-nnn] IDs, synthetic banner present in header and footer, Anek Latin for prose, Source Code Pro for labels/IDs/citations, tabular-nums class available for any numeral runs"
+  },
+  "structure": {
+    "personas": 4,
+    "persona_ids": ["P09", "P14", "P04", "P12"],
+    "selection": "Same four personas as ART-035, same selection_criteria — reused here rather than re-derived. Scope narrowed from an initial 14-persona draft to match ART-035 at the direction of Agentic Designer - RP, 2026-09-15.",
+    "stages_per_persona": 7,
+    "stages": [
+      "Inspiration & Dreaming", "Research & Compare", "Book", "Pre-departure",
+      "Airport (outbound)", "At Destination", "Return & Post-trip"
+    ],
+    "fields_per_stage": ["Goal", "Actions", "Thoughts", "Emotion", "Pain points", "Opportunities", "Evidence", "Confidence"],
+    "one_map_per_persona": "Each of the 4 <section class=\"pj\"> blocks is a complete, self-contained one-actor journey map (diagram-cartographer hard rule: one actor per map) bundled into a single document — same bundling precedent as ART-035 (4 personas, one file) and ART-036 (zip package)."
+  },
+  "notes": [
+    "No quotes used anywhere — evidence ledger holds zero entries, ADR-024 in force.",
+    "Every stage cell is graded Evidenced/Inferred against ART-030 at the per-stage level, not the per-persona level: a persona can be Evidenced at its grounded pain stage and Inferred/Low everywhere else in the same map.",
+    "P09 (Disabled/Assisted segment) carries the same grounding caveat ART-030 §2 states for that register: regulator/market evidence, thin first-person voice, Reddit blocked by policy. Coral top accent applied only to this segment per the visual spec.",
+    "Scope history: this artifact was first drafted covering all 14 ART-030 personas, then trimmed to the same 4 as ART-035 at the user's explicit direction. The other 10 sections (P01, P02, P03, P05, P06, P07, P08, P10, P11, P13) were authored and verified before being removed — not skipped for lack of time — should a future run need the full 14 restored.",
+    "Figma package deferred pending Gate A sign-off on this HTML, per journey-map skill §16 CoForge extensions ('Human approves the HTML before any Figma package is produced')."
+  ]
+}

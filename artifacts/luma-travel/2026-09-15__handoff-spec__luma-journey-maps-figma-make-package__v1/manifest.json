@@ -1,0 +1,29 @@
+{
+  "id": "ART-040",
+  "type": "handoff-spec",
+  "workstream": "luma-travel",
+  "title": "Luma Travel journey maps — Figma Make package. Self-contained ZIP with HTML reference, content MD, CoForge foundations, and a genuine ready-to-paste Figma Make prompt.",
+  "file": "luma-journey-maps.zip",
+  "version": 1,
+  "status": "draft",
+  "stage": "define",
+  "corpus": "synthetic",
+  "created": "2026-09-15",
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-038", "ART-035", "ART-030", "ART-039", "ART-036"],
+    "decisions": ["ADR-024", "ADR-021"]
+  },
+  "surface": {
+    "kind": "local",
+    "ref": "luma-journey-maps.zip"
+  },
+  "notes": {
+    "payload": "luma-journey-maps.zip contains: 01-luma-journey-maps-priority-four.html (ART-038 v3, visual target, byte-identical to the ART-038 v3 payload), 02-coforge-foundations.md and 03-coforge-foundations.html (both copied verbatim from design-system/for-figma-make/ — the project's canonical foundations source, not regenerated), 04-figma-make-prompt.md (a genuine ready-to-paste prompt — see 'ART-036 defect' note below), 05-luma-journey-maps-priority-four-content.md (all 4 personas' full journey content as plain markdown tables, for copy-paste accuracy), README.md.",
+    "verified_not_assumed": "Every file the README describes was checked against the actual zip with `unzip -l` after packaging (7 entries: 6 files + 1 directory), matching exactly. No claimed file is missing.",
+    "art_036_defect_found": "While building this package, found that ART-036 (the precedent this one follows) has a README.md and manifest.json that both describe a '04-figma-make-prompt.md' which is NOT actually in that zip (unzip -l confirms only 5 files, none numbered, no prompt file). Not silently repeated here — this package's own 04-figma-make-prompt.md is real, and a spawn_task suggestion was raised to fix ART-036 separately.",
+    "canonical_foundations_reused": "02/03 are copied from design-system/for-figma-make/ rather than re-authored, per the user's explicit '1:1 migration and reproduction consistency' request — any other Figma Make package drawing from that same canonical source will match this one exactly.",
+    "gate_a_status_at_production": "ART-038 v3 and ART-039 (this package's own evidentiary basis) are NOT YET Gate-A-signed. The journey-map skill's own rule is that Figma packages wait for HTML approval. This package was produced anyway, at Agentic Designer - RP's direct request — same precedent as ART-036 shipping ahead of ART-035's Gate A. Stated in the README's Provenance section, not hidden.",
+    "not_primary_research": "The underlying corpus is synthetic (ART-030 desk research, ART-029 synthetic interviews) plus single-session web benchmarking (ART-039). No participant was recruited. README states this explicitly."
+  }
+}

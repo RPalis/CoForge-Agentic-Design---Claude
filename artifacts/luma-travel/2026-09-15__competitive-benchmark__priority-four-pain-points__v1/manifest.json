@@ -1,0 +1,43 @@
+{
+  "id": "ART-039",
+  "type": "competitive-benchmark",
+  "workstream": "luma-travel",
+  "title": "Priority-four pain-point benchmark — evidence check on ART-038's opportunity cells, 4 personas",
+  "file": "luma-priority-four-benchmark.md",
+  "version": 1,
+  "supersedes": null,
+  "status": "draft",
+  "stage": "discover",
+  "produced_by": "research-synthesizer",
+  "model": "claude-sonnet-5",
+  "skills_used": [],
+  "inputs": {
+    "evidence": [],
+    "artifacts": ["ART-030", "ART-035", "ART-038", "ART-012"],
+    "decisions": ["ADR-024"],
+    "sources": []
+  },
+  "method": {
+    "tools": ["WebSearch", "WebFetch"],
+    "session": "single session, 2026-09-15, no live product accounts or transactions — narrower and shallower than ART-011/ART-012's live-account walkthrough",
+    "source_register": "7 sources (W-01..W-07), each confidence-tagged High/Medium/Low-Medium in the payload's Source register table, per how it was actually obtained (full page fetch vs. search-result aggregation)",
+    "claim_format": "Evidenced [W-nn] for this session's own web findings; Evidenced [ART-012 § Section] for cross-referenced findings from the existing Luma benchmark; Evidenced [ART-030 § persona] for the pain being addressed"
+  },
+  "surface": {
+    "kind": "local",
+    "ref": null
+  },
+  "validation": {
+    "passed": true,
+    "report": "validation.md",
+    "checked_at": "2026-09-15"
+  },
+  "autonomy": "draft",
+  "reviewed_by": null,
+  "created_at": "2026-09-15",
+  "notes": {
+    "purpose": "Produced in direct response to feedback that ART-038's Opportunities column was unevidenced design reasoning. Audits 4 specific opportunity cells (P09, P14, P04, P12) against named market precedent, and is written to be consumed back into ART-038 v2 via inline citation.",
+    "honesty_flag": "P14 Bernard's specific failure mode (wrong boarding-pass-pair leg) was NOT corroborated by any source this session. That is stated as a finding in the payload, not omitted or papered over with an adjacent-sounding citation.",
+    "not_a_replacement_for_ART-012": "This is a narrow, single-session, 4-topic check, not a repeat of ART-011/ART-012's live-account methodology. Confidence is capped accordingly (Medium ceiling on most claims) and the payload says so in its own opening section."
+  }
+}
